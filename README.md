@@ -3,7 +3,7 @@
 ![Alt License](https://img.shields.io/badge/licence-AGPL--3-blue.svg) 
 
 
-LIBRERP.IT
+SIMPLERP.IT
 ====================================
 
 Customized version of Odoo for Italy

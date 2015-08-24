@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="view_account_tax_inh1" model="ir.ui.view">
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']/field[@name='base_code_id']
+" position="replace">
+                          <field name="base_code_id" domain="[('is_base','=','True'),]"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Refunds']/field[@name='ref_base_code_id']" position="replace">
+                          <field name="ref_base_code_id" domain="[('is_base','=','True'),]"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']/field[@name='tax_code_id']" position="replace">
+                          <field name="tax_code_id" domain="[('is_base','&lt;&gt;','True'),]"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Refunds']/field[@name='ref_tax_code_id']" position="replace">
+                          <field name="ref_tax_code_id" domain="[('is_base','&lt;&gt;','True'),]"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_account_tax_code_inh1" model="ir.ui.view">
+            <field name="model">account.tax.code</field>
+            <field name="inherit_id" ref="account.view_tax_code_tree"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="is_base"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

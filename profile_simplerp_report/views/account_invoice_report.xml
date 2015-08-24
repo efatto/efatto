@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="account.account_invoices" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="profile_simplerp_report.paperformat_euro_invoice"/>
+        </record>
+    </data>
+</openerp>

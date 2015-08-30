@@ -19,11 +19,11 @@
 ##############################################################################
 
 {
-    'name': 'Italy - SimplERP Srl profile & report',
+    'name': 'Italy - SimplERP Srl profile',
     'version': '4.0.0.0',
     'category': 'other',
     'description': """
-    Profilatura SimplERP - report
+    Profilatura SimplERP
     """,
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',
@@ -31,7 +31,8 @@
     "depends": [
         'base_setup',
         'base_iban',
-        'report',
+        'sale',
+        'account',
         'account_invoice_entry_date',
         'account_invoice_merge',
         'account_auto_fy_sequence',
@@ -45,27 +46,8 @@
         'l10n_it_pec',
         'l10n_it_vat_registries',
         'account_vat_period_end_statement',
-        'sale',
-        # 'account_payment_term_month', già installato perchè i campi sono definiti solo lì
-        # 'stock',
-        # 'l10n_it_account_report',
     ],
     "data": [
-        'data/res_country_data.xml',
-        'views/report.paperformat_euro_invoice.xml',
-        'views/account_invoice_report.xml',
-        'views/report.external_layout_header_inh.xml',
-        'views/report.external_layout_footer_inh.xml',
-        'views/report.report_invoice_document_inh.xml',
-        # 'views/sale.report_saleorder_document_inh.xml',
-        # 'stock_picking/reports.xml',
-        # 'stock_picking/picking_view.xml',
-        # 'sale_order/reports.xml',
-        # 'purchase_order/reports.xml',
-        # 'sale_order/sale_view.xml',
-        # 'account_invoice/reports.xml',
-        # 'product/product.xml',
-        # 'repair_machine/repair_center_view.xml',
     ],
     "demo": [],
     "active": False,

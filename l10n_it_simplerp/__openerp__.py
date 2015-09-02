@@ -29,7 +29,6 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_chart',
         'l10n_configurable',
         'partner_subaccount',
         'account_accountant',

@@ -34,9 +34,8 @@ class account_tax(models.Model):
 
     @api.model
     def create(self, vals):
-        
+
         tax_code_obj = self.env['account.tax.code']
-        #tax_obj = self.pool['account.tax'] # is self
         if self.search([('name', '=', vals['name'])]):
             raise Warning(_("Tax name must be unique."))
         if vals.get('description', False):
@@ -161,11 +160,15 @@ class account_tax(models.Model):
             elif type_tax_use == "all":
                 return {'value': {'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': 1, 'ref_tax_sign': 1}}
 
-    account_tax_code_id = fields.Many2one('account.tax.code', string='Tax Code Parent',
+    account_tax_code_id = fields.Many2one(
+        'account.tax.code', string='Tax Code Parent',
         required=False, help='Parent tax code')
-    account_base_tax_code_id = fields.Many2one('account.tax.code', string='Base Tax Code Parent',
+    account_base_tax_code_id = fields.Many2one(
+        'account.tax.code', string='Base Tax Code Parent',
         required=False, help='Parent base tax code')
-    account_collected_id = fields.Many2one('account.account', string='Invoice Tax Account',
+    account_collected_id = fields.Many2one(
+        'account.account', string='Invoice Tax Account',
         related='account_tax_code_id.vat_statement_account_id', copy=False, readonly=True)
-    account_paid_id = fields.Many2one('account.account', string='Refund Tax Account',
+    account_paid_id = fields.Many2one(
+        'account.account', string='Refund Tax Account',
         related='account_tax_code_id.vat_statement_account_id', copy=False, readonly=True)

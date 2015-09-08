@@ -36,6 +36,7 @@
         #  'account_tax_simplified', da installare dopo perchè nel csv delle imposte non sono definiti i campi base_tax ecc.
     ],
     "data": [
+        'data/account.configurable_account_chart.xml',
         'data/payment_data.xml',
         'data/account.account.type.csv',
         'data/account.account.template.csv',

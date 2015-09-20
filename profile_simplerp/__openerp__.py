@@ -20,7 +20,7 @@
 
 {
     'name': 'Italy - SimplERP Srl profile',
-    'version': '4.0.0.0',
+    'version': '4.0.0.1',
     'category': 'other',
     'description': """
     Profilatura SimplERP
@@ -31,21 +31,27 @@
     "depends": [
         'base_setup',
         'base_iban',
+        'country_data_it',
         'sale',
         'account',
-        'account_invoice_entry_date',
-        'account_invoice_merge',
         'account_auto_fy_sequence',
         'account_cancel',
+        'account_invoice_entry_date',
+        'account_invoice_merge',
+        'account_invoice_force_number',
+        'account_invoice_report_ext',
+        'account_move_template',
+        'account_vat_period_end_statement',
         'account_withholding_tax',
+        'disable_openerp_online',
         'l10n_it_invoice_intra_cee',
         'l10n_it_base',
         'l10n_it_base_location_geonames_import',
         'l10n_it_fiscalcode',
         'l10n_it_abicab',
+        'l10n_it_partially_deductible_vat',
         'l10n_it_pec',
         'l10n_it_vat_registries',
-        'account_vat_period_end_statement',
     ],
     "data": [
     ],

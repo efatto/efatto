@@ -39,7 +39,6 @@
         'account_invoice_entry_date',
         'account_invoice_merge',
         'account_invoice_force_number',
-        'account_invoice_report_ext',
         'account_move_template',
         'account_vat_period_end_statement',
         'account_withholding_tax',

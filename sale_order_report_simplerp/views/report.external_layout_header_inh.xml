@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    <template id="report.style_inh" inherit_id="report.style">
+    <xpath expr="." position="inside">    
+        <style type="text/css">
+            .table td {
+                border: 1px solid black !important;
+            }
+            .table th {
+                border: 1px solid black !important;
+                background-color: lightblue;
+            }
+            .invoice_tbody td {
+                border: 1px solid black !important;
+            }
+            .invoice_tax th {
+                border-bottom: 1px solid black !important;
+                border-right: 0px white !important;
+                border-left: 0px white !important;
+                background-color: white;
+            }
+            .invoice_tax td {
+                border-bottom: 1px solid black !important;
+                background-color: white;
+            }
+            .invoice_tax {
+                margin-bottom: 0px;
+                margin-top: 0px;
+                border-right: 1px solid black;
+                border-left: 1px solid black;
+            }
+        </style>
+    </xpath>
+    </template>
+    
+        <template id="report.external_layout_header_inh" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-xs-3" >
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 105px;"/>
+                        </div>
+                        <!--div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/-->
+                    </div>
+                    <div class="row" >
+                        <div class="col-xs-6">
+                          <small>
+                            <t t-if="company.name">
+                                <span t-field="company.name" /><br/>
+                            </t>
+                            <t t-if="company.street">
+                                Sede Legale: 
+                                <span t-field="company.street" /> 
+                                -
+                            </t>
+                            <t t-if="company.zip">
+                                <span t-field="company.zip" /> <span t-field="company.city" /><br/>
+                            </t>
+                            <t t-if="company.vat">
+                                P.IVA: 
+                                <span t-field="company.vat" /><br/>
+                            </t>
+                          </small>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="account_invoice_report_ext.external_layout_header_inh">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report_ext.external_layout_header_inh')"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

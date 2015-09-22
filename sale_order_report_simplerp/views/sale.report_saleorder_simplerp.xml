@@ -14,6 +14,7 @@
     
     <div class="page">
       <div class="oe_structure"/>
+      <br/><br/><br/><br/><br/><br/>
       <table style="height: 400px">
       <thead><tr><th>
           <h1 class="text-muted text-center">
@@ -23,7 +24,7 @@
           </h1>
       </th></tr></thead>
       </table>
-
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <table class="table_rs">
         <thead>
           <tr>
@@ -38,7 +39,15 @@
                 <span t-if="o.state not in ['draft','sent']">Ordine n° </span>
                 <span t-if="o.state in ['draft','sent']">Offerta n° </span>
             </td>
-            <td width="70%">n. <span t-field="o.name"/> del <span t-field="o.date_order"/>
+            <td width="70%">n. <span t-field="o.name"/> del <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}'/>
+            </td>
+          </tr>
+          <tr>
+            <td>Cliente: </td>
+            <td>
+                <span t-field="o.partner_id.name"/><br/>
+                <span t-field="o.partner_id.street"/><br/>
+                <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.zip"/>
             </td>
           </tr>
           <tr>
@@ -65,7 +74,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
 
             <p style="margin-bottom: 0.42cm; line-height: 100%; page-break-before: always" lang="it-IT" align="justify"><a name="_Toc382210786"/><font color="#6464a5"><font face="Ubuntu"><font style="font-size: 18pt" size="5">Premessa e Figure Responsabili</font></font></font></p>
 
-            <p style="margin-bottom: 0cm; line-height: 100%" lang="it-IT" align="left"><font face="Ubuntu">Nel seguito della presente Proposta, inclusa ogni sua appendice, tabella e/o allegato saranno utilizzate la seguenti definizioni:</font></p>
+            <p style="margin-bottom: 0cm; line-height: 100%" lang="it-IT" align="left"><font face="Ubuntu">Nel seguito della presente Proposta, inclusa ogni sua appendice, tabella e/o allegato saranno utilizzate le seguenti definizioni:</font></p>
 
             <p style="margin-bottom: 0cm; line-height: 100%" lang="it-IT" align="left"/>
 
@@ -115,7 +124,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
 
             <p style="margin-bottom: 0cm; line-height: 100%" lang="it-IT" align="justify"><font face="Times New Roman, serif"><font style="font-size: 11pt" size="2"><font color="#404040"><font face="Ubuntu"><font style="font-size: 12pt" size="3">
             Il Cliente designa come Responsabili delle Attività </font></font></font><font color="#000000"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="zxx"><i><span style="text-decoration: none"><b><span style="background: transparent">
-            _________________________________________________________
+            <br/>_________________________________________________________
             <!-- &amp;lt;o.partner_id.mail_order_id and o.partner_id.mail_order_id.last_name or ''&amp;gt; &amp;lt;o.partner_id.mail_order_id and o.partner_id.mail_order_id.first_name or ''&amp;gt; -->
             </span></b></span></i></span></font></font></font></font></font></p>
 
@@ -125,7 +134,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
 
             <p class="western" style="margin-bottom: 0cm" lang="it-IT"><font face="Arial, sans-serif"><font face="Ubuntu"><span lang="it-IT">La richiesta da parte della committenza prevede la fornitura dei prodotti opensource/servizi sotto elencati:</span></font></font></p>
 
-            <ul><li><p class="western" lang="it-IT"><font face="Ubuntu"><span lang="it-IT">SimplERP: una evoluzione di OpenERP 6.1 dedicata al mercato italiano</span></font></p></li></ul>
+            <ul><li><p class="western" lang="it-IT"><font face="Ubuntu"><span lang="it-IT">SimplERP: una evoluzione di Odoo 8.0 dedicata al mercato italiano</span></font></p></li></ul>
 
             <p class="western" style="margin-bottom: 0cm" lang="it-IT"><font face="Ubuntu">La soluzione proposta per la gestione interna prevede l’utilizzo dell’applicativo gestionale SimplERP su sistema operativo Linux base Debian e database Postresql.</font></p>
 
@@ -136,7 +145,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
             <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify"/>
 
             <table width="100%" cellpadding="0" cellspacing="0"><colgroup><col width="10*"/><col width="127*"/><col width="9*"/><col width="110*"/></colgroup><tbody><tr valign="top"><td style="border: none; padding: 0cm" height="146" width="4%"><p align="justify"/></td>
-<td style="border: none; padding: 0cm" width="50%"><p style="margin-bottom: 0cm" align="justify"><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT">Completa</span></font></font></b><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT"> </span></font></font></b></p><p align="justify"><font face="Times New Roman, serif"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">OpenERP</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> è una suite completa di applicazioni aziendali che include la Gestione delle Vendite, il CRM, il Project Management, il Magazzino, la Produzione e la Gestione Finanziaria, solo per citarne alcune</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">.</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">Più di</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">1300</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">moduli OpenERP</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">sono</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">disponibili su</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font color="#0000ff"><u><a href="http://apps.openerp.com/" target="_top"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">http://</span></font></font></a></u></font><font color="#0000ff"><u><a href="http://apps.openerp.com/" target="_top"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">apps.openerp.com</span></font></font></a></u></font></font></p></td>
+<td style="border: none; padding: 0cm" width="50%"><p style="margin-bottom: 0cm" align="justify"><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT">Completa</span></font></font></b><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT"> </span></font></font></b></p><p align="justify"><font face="Times New Roman, serif"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">OpenERP</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> è una suite completa di applicazioni aziendali che include la Gestione delle Vendite, il CRM, il Project Management, il Magazzino, la Produzione e la Gestione Finanziaria, solo per citarne alcune</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">.</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">Più di</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">1300</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">moduli OpenERP</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">sono</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">disponibili su</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font color="#0000ff"><u><a href="http://apps.odoo.com/" target="_top"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">http://</span></font></font></a></u></font><font color="#0000ff"><u><a href="http://apps.odoo.com/" target="_top"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">apps.odoo.com</span></font></font></a></u></font></font></p></td>
 <td style="border: none; padding: 0cm" width="4%"><p align="justify"/></td>
 <td style="border: none; padding: 0cm" width="43%"><p style="margin-bottom: 0cm" align="justify"><font face="Times New Roman, serif"><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT">Accessibile</span></font></font></b><b><font face="Ubuntu"><font style="font-size: 14pt" size="4"><span lang="it-IT"> </span></font></font></b></font></p><p align="justify"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">L’assenza di canoni di licenza rende OpenERP estremamente accessibile.</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> La linea completa di servizi offerti </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">(On</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">line</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">and</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">On site)</span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT"> </span></font></font><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="it-IT">rappresenta un enorme valore aggiunto per i clienti.</span></font></font></p></td>
 </tr><tr valign="top"><td style="border: none; padding: 0cm" height="103" width="4%"><p align="justify"/></td>
@@ -291,31 +300,27 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
             <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify"/>
 
 <table cellpadding="7" cellspacing="0" width="100%">
-
+<br/><br/>
   <tbody>
    <tr valign="top">
      <td width="50%" height="120px" valign="top"><p class="p_grey">
             <span t-field="o.user_id.name"/><p/>
-            <p style="margin-bottom: 0cm; line-height: 125%" />
-            <p style="margin-bottom: 0cm; line-height: 125%" >
-            ______________________________</p></p>
+            <br/><br/>
+            ______________________________</p>
      </td>
     <td >
         <p class="p_grey">
-            Per Accettazione
-        <p/>
+            Per Accettazione 
             Data e Firma
-        <p style="margin-bottom: 0cm; line-height: 125%" />
-        <p style="margin-bottom: 0cm; line-height: 125%" >
-        ______________________________</p></p>
+        <br/><br/>
+        ______________________________</p>
     </td>
    </tr>
    <tr>
-    <td width="50%"><p class="p_grey">
+   <td width="50%"><p class="p_grey">
 Simplerp S.r.l.<br/>
 Via San Pio X, 44<br/>
 35133, Noventa Padovana<br/>
-Tel: +39 049 8597240<br/>
 Partita Iva n° 04896920289</p></td>
     <td ><p class="p_grey">
         <span t-field="o.partner_id.name"/><br/>
@@ -365,7 +370,7 @@ Partita Iva n° 04896920289</p></td>
                 <font style="font-size: 10pt" size="2">Fatte salve le disposizioni inderogabili di legge, il Cliente dichiara che esso e/o i suoi ausiliari:</font>
               </font>
             </p>
-            <ol type="i">
+            <ol style="margin-left: 1cm;" type="i">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -379,97 +384,7 @@ Partita Iva n° 04896920289</p></td>
                     <font style="font-size: 10pt" size="2">Con riguardo alle prestazioni oggetto della presente Proposta, terranno indenne IL FORNITORE da qualsiasi pretesa avanzata nei confronti di IL FORNITORE da terzi - inclusi, in via esemplificativa e non esaustiva, i soggetti cui si riferiscono i Dati, nonché il personale del Cliente e/o degli ausiliari – relativamente a tali Dati. Il Cliente dichiara e garantisce a IL FORNITORE che, con riferimento ai Dati, ogni accesso, trattamento, elaborazione e/o trasferimento tra il Cliente e/o i suoi ausiliari da un lato e IL FORNITORE dall’altro sono stati e saranno condotti in piena osservanza di ogni disposizione legislativa e regolamentare applicabile alla protezione dei Dati medesimi. Fatte salve le disposizioni inderogabili di legge il Cliente, altresì, riconosce che: </font>
                   </font>
                 </p>
-                <ol>
-                  <li>
-                    <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-                      <font face="Ubuntu">
-                        <font style="font-size: 10pt" size="2">Il Cliente e/o i suoi ausiliari sono e saranno i soli responsabili nel procurare a IL FORNITORE le indicazioni ed istruzioni sulle finalità e modalità di trattamento dei Dati e sugli adempimenti previsti dalle leggi vigenti in materia, indicazioni ed istruzioni su cui IL FORNITORE farà esclusivo affidamento in caso di accesso, trattamento, elaborazione e trasferimento dei Dati durante l’esecuzione delle prestazioni oggetto della presente Proposta; </font>
-                      </font>
-                    </p>
-                  </li>
-                  <li>
-                    <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-                      <font face="Ubuntu">
-                        <font style="font-size: 10pt" size="2">Il Cliente sarà l’unico soggetto tenuto a verificare l’esistenza, e a garantire l’osservanza e a dare attuazione a qualsiasi disposizione legislativa o regolamentare in materia di protezione dei Dati, suscettibili di applicazione ai Deliverables di IL FORNITORE e al successivo impiego degli stessi da parte del Cliente.</font>
-                      </font>
-                    </p>
-                  </li>
-                </ol>
-              </li>
-            </ol>
-            <p style="margin-top: 0.35cm; margin-bottom: 0cm; line-height: 125%; page-break-inside: avoid; page-break-after: avoid" lang="it-IT" align="justify">
-              <a name="_Toc382210814"/>
-              <a name="_Toc227749424"/>
-              <font color="#84b0b9">
-                <font face="Ubuntu">
-                  <font style="font-size: 12pt" size="3">
-                    <b>Clausola per il consenso al trattamento di dati ex art. 23 D.Lgs 196/2003</b>
-                  </font>
-                </font>
-              </font>
-            </p>
-            <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-              <font face="Ubuntu">
-                <font style="font-size: 10pt" size="2">Con la sottoscrizione della presente per accettazione, il Cliente dichiara di aver ricevuto la nota scritta allegata, resa in base all’art. 13 della legge 196/2003, e di aver acquisito le relative informazioni e, ai sensi dell’art. 23 della legge stessa, rilascia il proprio consenso ai trattamenti dei propri dati personali indicati nell’informativa per le finalità e nei limiti indicati nella stessa.</font>
-              </font>
-            </p>
-            <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-              <font face="Ubuntu">
-                <font style="font-size: 10pt" size="2">In particolare, il Cliente consente alla comunicazione e diffusione per le finalità di cui alle lettere (c) e (d) dell’informativa ivi incluso l’inserimento del proprio nominativo nell’elenco dei clienti e delle credenziali di IL FORNITORE.</font>
-              </font>
-            </p>
-            <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-              <font face="Ubuntu">
-                <font style="font-size: 10pt" size="2">Qualora per lo svolgimento dei Servizi da parte di IL FORNITORE fosse necessario acquisire da terzi informazioni o dati e ciò richieda il consenso degli interessati sarà cura del Cliente procurare il valido consenso dei medesimi in modo da consentire a IL FORNITORE l’espletamento del proprio incarico.</font>
-              </font>
-            </p>
-            <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-              <font face="Ubuntu">
-                <font style="font-size: 10pt" size="2">IL FORNITORE ribadisce al Cliente la facoltà per quest’ultimo di rivolgersi a Simplerp S.r.l., Via San Pio X, 44, 35027 Noventa Padovana (PD) quale titolare del trattamento per far valere i diritti allo stesso riconosciuti dall’art. 7 della Legge 196/2003.</font>
-              </font>
-            </p>
-            <style type="text/css">p { margin-bottom: 0.21cm; color: rgb(102, 102, 102); }p.western { font-family: "Ubuntu"; font-size: 12pt; }p.cjk { font-family: "Century Schoolbook",serif; font-size: 12pt; }p.ctl { font-family: "Arial",sans-serif; font-size: 12pt; }a:link {  }
-</style>
-            <p style="margin-bottom: 0.42cm; line-height: 100%; page-break-before: always" lang="it-IT" align="justify">
-              <a name="_Toc382210812"/>
-              <a name="_Toc227749422"/>
-              <font color="#6464a5">
-                <font face="Ubuntu">
-                  <font style="font-size: 18pt" size="5">Privacy</font>
-                </font>
-              </font>
-            </p>
-            <p style="margin-top: 0.35cm; margin-bottom: 0cm; line-height: 125%; page-break-inside: avoid; page-break-after: avoid" lang="it-IT" align="justify">
-              <a name="_Toc382210813"/>
-              <a name="_Toc227749423"/>
-              <font color="#84b0b9">
-                <font face="Ubuntu">
-                  <font style="font-size: 12pt" size="3">
-                    <b>Tutela dei dati personali</b>
-                  </font>
-                </font>
-              </font>
-            </p>
-            <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-              <font face="Ubuntu">
-                <font style="font-size: 10pt" size="2">Fatte salve le disposizioni inderogabili di legge, il Cliente dichiara che esso e/o i suoi ausiliari:</font>
-              </font>
-            </p>
-            <ol type="i">
-              <li>
-                <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-                  <font face="Ubuntu">
-                    <font style="font-size: 10pt" size="2">Sono titolari del trattamento dei dati e dei database – ivi inclusi, tra gli altri, i database che contengono dati personali - del Cliente, degli ausiliari o di terzi, cui IL FORNITORE abbia accesso e/o che vengano trattati, elaborati e/o trasferiti nel corso dell’esecuzione delle prestazioni fornite (di seguito i “Dati”)</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
-                  <font face="Ubuntu">
-                    <font style="font-size: 10pt" size="2">Con riguardo alle prestazioni oggetto della presente Proposta, terranno indenne IL FORNITORE da qualsiasi pretesa avanzata nei confronti di IL FORNITORE da terzi - inclusi, in via esemplificativa e non esaustiva, i soggetti cui si riferiscono i Dati, nonché il personale del Cliente e/o degli ausiliari – relativamente a tali Dati. Il Cliente dichiara e garantisce a IL FORNITORE che, con riferimento ai Dati, ogni accesso, trattamento, elaborazione e/o trasferimento tra il Cliente e/o i suoi ausiliari da un lato e IL FORNITORE dall’altro sono stati e saranno condotti in piena osservanza di ogni disposizione legislativa e regolamentare applicabile alla protezione dei Dati medesimi. Fatte salve le disposizioni inderogabili di legge il Cliente, altresì, riconosce che: </font>
-                  </font>
-                </p>
-                <ol>
+                <ol style="margin-left: 1cm;">
                   <li>
                     <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                       <font face="Ubuntu">
@@ -554,7 +469,7 @@ Partita Iva n° 04896920289</p></td>
                 <font style="font-size: 10pt" size="2">In particolare i Vostri dati vengono trattati per le seguenti finalità: </font>
               </font>
             </p>
-            <ol>
+            <ol style="margin-left: 1cm;">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -589,7 +504,7 @@ Partita Iva n° 04896920289</p></td>
                 <font style="font-size: 10pt" size="2">Potranno venire a conoscenza dei Vostri dati le seguenti categorie di incaricati:</font>
               </font>
             </p>
-            <ol type="i">
+            <ol style="margin-left: 1cm;" type="i">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -648,7 +563,7 @@ Partita Iva n° 04896920289</p></td>
                 <font style="font-size: 10pt" size="2">I Vostri dati potranno essere comunicati, per le finalità indicate, tra l’altro, a: </font>
               </font>
             </p>
-            <ol>
+            <ol style="margin-left: 1cm;">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -697,7 +612,7 @@ Partita Iva n° 04896920289</p></td>
                 <font style="font-size: 10pt" size="2">Vi informiamo inoltre che i Vostri dati potranno, con il Vostro preventivo consenso, essere comunicati a </font>
               </font>
             </p>
-            <ol start="7">
+            <ol style="margin-left: 1cm;" start="7">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -727,7 +642,7 @@ Partita Iva n° 04896920289</p></td>
                 </font>
               </font>
             </p>
-            <ol>
+            <ol style="margin-left: 1cm;">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -742,8 +657,6 @@ Partita Iva n° 04896920289</p></td>
                   </font>
                 </p>
               </li>
-            </ol>
-            <ol>
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -779,8 +692,6 @@ Partita Iva n° 04896920289</p></td>
                   </font>
                 </p>
               </li>
-            </ol>
-            <ol start="3">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -788,8 +699,6 @@ Partita Iva n° 04896920289</p></td>
                   </font>
                 </p>
               </li>
-            </ol>
-            <ol>
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -811,8 +720,6 @@ Partita Iva n° 04896920289</p></td>
                   </font>
                 </p>
               </li>
-            </ol>
-            <ol start="4">
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">
@@ -820,8 +727,6 @@ Partita Iva n° 04896920289</p></td>
                   </font>
                 </p>
               </li>
-            </ol>
-            <ol>
               <li>
                 <p style="margin-bottom: 0cm; line-height: 125%" lang="it-IT" align="justify">
                   <font face="Ubuntu">

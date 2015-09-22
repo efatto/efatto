@@ -47,16 +47,16 @@
             <td>
                 <span t-field="o.partner_id.name"/><br/>
                 <span t-field="o.partner_id.street"/><br/>
-                <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.zip"/>
+                <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.zip"/><br/>
+                <span t-if="o.partner_id.vat">Partita Iva n° <span class="" t-field="o.partner_id.vat"/></span>
             </td>
           </tr>
           <tr>
-            <td>C.F.: </td>
-            <td><span t-field="o.partner_id.fiscalcode"/></td>
-          </tr>
-          <tr>
-            <td>P.IVA: </td>
-            <td><span t-field="o.partner_id.vat"/></td>
+            <td>Fornitore: </td>
+            <td>Simplerp S.r.l.<br/>
+            Via San Pio X, 44<br/>
+            35133, Noventa Padovana<br/>
+            Partita Iva n° 04896920289</td>
           </tr>
         </tbody>
        </table>

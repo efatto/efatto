@@ -68,7 +68,7 @@ Alla cortese attenzione di <span t-esc="o.partner_id.child_ids[0].name" />
 di consulenza informatica.</p>
 <p>Rimaniamo a Sua disposizione per qualsiasi chiarimento o informazione aggiuntiva in merito a quanto di seguito riportato.</p>
 
-Cordialmente,
+Cordialmente,<br/>
 
 Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}'/>
 
@@ -124,7 +124,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
 
             <p style="margin-bottom: 0cm; line-height: 100%" lang="it-IT" align="justify"><font face="Times New Roman, serif"><font style="font-size: 11pt" size="2"><font color="#404040"><font face="Ubuntu"><font style="font-size: 12pt" size="3">
             Il Cliente designa come Responsabili delle Attività </font></font></font><font color="#000000"><font face="Ubuntu"><font style="font-size: 11pt" size="2"><span lang="zxx"><i><span style="text-decoration: none"><b><span style="background: transparent">
-            <br/>_________________________________________________________
+            <br/><br/>_________________________________________________________
             <!-- &amp;lt;o.partner_id.mail_order_id and o.partner_id.mail_order_id.last_name or ''&amp;gt; &amp;lt;o.partner_id.mail_order_id and o.partner_id.mail_order_id.first_name or ''&amp;gt; -->
             </span></b></span></i></span></font></font></font></font></font></p>
 
@@ -245,7 +245,7 @@ Noventa Padovana, <span t-field="o.date_order" t-field-options='{"format": "d MM
 
             <p style="margin-top: 0.35cm; margin-bottom: 0cm; line-height: 125%; page-break-inside: avoid; page-break-after: avoid" lang="it-IT" align="justify"><a name="_Toc382210801"/><font color="#84b0b9"><font face="Ubuntu"><b>Calendarizzazione</b></font></font></p>
 
-            <p style="margin-bottom: 0cm; line-height: 125%" align="justify"><font face="Ubuntu"><span lang="it-IT">I servizi inizieranno ad essere erogati durante il peri</span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">odo dei 3 giorni lavorativi seguenti alla verifica con esito positivo del primo pagamento. </span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">[</span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">Il contratto sarà valido a decorrere dal primo giorno di erogazione dei servizi e sarà tacitamente rinnovato per 12 mesi, salvo comunicazione da inviarsi al fornitore almeno 30 gg prima della scadenza.</span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">]</span></span></font></p>
+            <p style="margin-bottom: 0cm; line-height: 125%" align="justify"><font face="Ubuntu"><span lang="it-IT">I servizi inizieranno ad essere erogati durante il peri</span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">odo dei 3 giorni lavorativi seguenti alla verifica con esito positivo del primo pagamento. </span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent"></span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent">Il contratto sarà valido a decorrere dal primo giorno di erogazione dei servizi e sarà tacitamente rinnovato per 12 mesi, salvo comunicazione da inviarsi al fornitore almeno 30 gg prima della scadenza.</span></span></font><font face="Ubuntu"><span lang="it-IT"><span style="background: transparent"></span></span></font></p>
 
             <p style="margin-top: 0.35cm; margin-bottom: 0cm; line-height: 125%; page-break-inside: avoid; page-break-after: avoid" align="justify"><a name="_Toc382210802"/><a name="_Toc227749414"/><font color="#84b0b9"><font face="Ubuntu"><b>Luogo di erogazione delle attività e modalità.</b></font></font></p>
 

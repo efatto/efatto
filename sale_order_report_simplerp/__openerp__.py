@@ -35,12 +35,9 @@
         'l10n_it_fiscalcode',
     ],
     "data": [
+        'views/report.external_layout_header_rs.xml',
         'views/sale.report_saleorder_simplerp.xml',
-        #'views/report.paperformat_euro_invoice.xml',
-        #'views/account_invoice_report.xml',
-        #'views/report.external_layout_header_inh.xml',
-        #'views/report.external_layout_footer_inh.xml',
-        #'views/account.report_invoice_document_inh.xml',
+        'views/sale_report.xml',
     ],
     "demo": [],
     "test": [

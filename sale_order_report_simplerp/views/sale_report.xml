@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_sale_order_simplerp"
+            string="Quotation / Order SimplERP"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="sale_order_report_simplerp.report_saleorder_simplerp" 
+            name="sale_order_report_simplerp.report_saleorder_simplerp" 
+        />
+    </data>
+</openerp>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<openerp>
-    <data>
-        <record id="account.account_invoices" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="account_invoice_report_ext.paperformat_euro_invoice"/>
-            <field name="attachment_use" eval="False"/>
-        </record>
-    </data>
-</openerp>

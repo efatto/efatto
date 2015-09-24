@@ -114,7 +114,7 @@ class account_tax(models.Model):
             vals.update({'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': -1, 'ref_tax_sign': -1})
         elif (vals.get('type_tax_use', False) or tax.type_tax_use) == 'purchase':
             vals.update({'base_sign': -1, 'tax_sign': -1, 'ref_base_sign': 1, 'ref_tax_sign': 1})
-        if tax.base_code_id and tax.tax_code_id:
+        if tax.base_code_id or tax.tax_code_id:
             return super(account_tax, self).write(vals)
         if not tax.base_code_id:
             if not vals.get('account_base_tax_code_id', False) and not tax.account_base_tax_code_id:

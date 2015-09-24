@@ -23,7 +23,7 @@
 
 {
     "name": 'Account chart autoconfigurable',
-    "version": "4.0.0.1",
+    "version": "4.0.1.1",
     "depends": [
         'base_vat',
         'account',

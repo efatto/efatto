@@ -153,13 +153,20 @@ class wizard_multi_charts_accounts(models.TransientModel):
                         tax_code_template.vat_statement_type,
                         'vat_statement_sign':
                         tax_code_template.vat_statement_sign,
-                        'vat_statement_account_id':
-                        tax_code_template.vat_statement_account_id.id,
                         'exclude_from_registries':
                         tax_code_template.exclude_from_registries,
                         'withholding_type': tax_code_template.withholding_type,
                         'withholding_payment_term_id':
                         tax_code_template.withholding_payment_term_id.id, })
+
+            # get id with code, as id is not correct in table because of configurable_account_chart auto install
+            obj_account_account = self.env['account.account']
+            tax_code_template_ids = self.env['account.tax.code.template'].search([])
+            for tax_code_template in tax_code_template_ids:
+                if tax_code_template.vat_statement_account_id:
+                    account_id = obj_account_account.search([('code', '=', tax_code_template.vat_statement_account_id.code)])
+                    if account_id:
+                        obj_tax_code.search([('code', '=', tax_code_template.code)]).vat_statement_account_id = account_id.id
 
             obj_tax = self.env['account.tax']
             tax_template_ids = self.env['account.tax.template'].search([])

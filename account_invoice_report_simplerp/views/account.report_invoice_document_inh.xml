@@ -2,12 +2,9 @@
 <openerp>
     <data>
         
-        <template id="account.report_invoice_document_inh" inherit_id="account.report_invoice_document">
-     
-         <xpath expr="//div[@class='page']" position="replace">
+        <template id="report_accountinvoice_simplerp_doc">
           <div class="page">
             <div class="row">
-
             <div class="col-xs-12">
               <h4 >
                 <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
@@ -20,7 +17,7 @@
                 <span t-field="o.number"/><span t-if="o.date_invoice"> del <span t-field="o.date_invoice"/></span>
               </h4>
             </div>
-                
+            
                 <div class="col-xs-4">
                     <div t-if="o.name">
                         <strong>Description:</strong>
@@ -142,14 +139,12 @@
                     </table>
                 </div>
             </div>
-            
           </div>
-        </xpath>
         </template>
-        <template id="account_invoice_report_simplerp.report_invoice_document_inh">
+        <template id="report_accountinvoice_simplerp">
             <t t-call="report.html_container">
                 <t t-foreach="doc_ids" t-as="doc_id">
-                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report_simplerp.report_invoice_document_inh')"/>
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_accountinvoice_simplerp_doc')"/>
                 </t>
             </t>
         </template>

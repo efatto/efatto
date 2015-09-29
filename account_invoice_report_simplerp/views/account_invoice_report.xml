@@ -1,9 +1,15 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="account.account_invoices" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="account_invoice_report_simplerp.paperformat_euro_invoice"/>
-            <field name="attachment_use" eval="False"/>
-        </record>
+        <report 
+            id="accountinvoices_simplerp"
+            string="Invoice SimplERP"
+            model="account.invoice" 
+            report_type="qweb-pdf"
+            attachment_use="False"
+            file="report_accountinvoice_simplerp" 
+            name="report_accountinvoice_simplerp" 
+        />
     </data>
+
 </openerp>

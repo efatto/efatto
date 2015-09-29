@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <template id="report.external_layout_footer_inh" inherit_id="report.external_layout_footer">
-            <xpath expr="//div[@class='footer']" position="replace">
+        <template id="account_invoice_report_simplerp.external_layout_footer" >
                 <div class="footer">
                     <div class="text-right" style="border-top: 1px solid black;">
                         <span style="font-size: xx-small; text-align: center"> Ai sensi del D.Lgs. 196/2003 Vi informiamo che i Vs. dati saranno utilizzati esclusivamente per i fini connessi ai rapporti commerciali tra di noi in essere. 
@@ -32,12 +31,11 @@ Contributo CONAI assolto ove dovuto - Vi preghiamo di controllare i Vs. dati ana
                         </ul>
                     </div>
                 </div>
-            </xpath>      
         </template>
-        <template id="account_invoice_report_simplerp.external_layout_footer_inh">
+        <template id="account_invoice_report_simplerp.external_layout_footer">
             <t t-call="report.html_container">
                 <t t-foreach="doc_ids" t-as="doc_id">
-                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report_simplerp.external_layout_footer_inh')"/>
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report_simplerp.external_layout_footer')"/>
                 </t>
             </t>
         </template>

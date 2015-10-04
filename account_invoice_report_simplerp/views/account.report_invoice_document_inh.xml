@@ -144,7 +144,7 @@
         <template id="report_accountinvoice_simplerp">
             <t t-call="report.html_container">
                 <t t-foreach="doc_ids" t-as="doc_id">
-                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_accountinvoice_simplerp_doc')"/>
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report_simplerp.report_accountinvoice_simplerp_doc')"/>
                 </t>
             </t>
         </template>

@@ -33,6 +33,7 @@
         'sale',
         'account',
         'l10n_it_fiscalcode',
+        'partner_subaccount',
     ],
     "data": [
         'views/report.paperformat_euro_invoice.xml',

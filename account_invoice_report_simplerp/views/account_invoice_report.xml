@@ -7,8 +7,8 @@
             model="account.invoice" 
             report_type="qweb-pdf"
             attachment_use="False"
-            file="report_accountinvoice_simplerp" 
-            name="report_accountinvoice_simplerp" 
+            file="account_invoice_report_simplerp.report_accountinvoice_simplerp" 
+            name="account_invoice_report_simplerp.report_accountinvoice_simplerp" 
         />
     </data>
 

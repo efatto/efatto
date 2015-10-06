@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_project_smart,project.project,project.model_project_project,profile_smart.group_project_user_smart,1,1,1,1
+access_account_account_user_smart,account.account,account.model_account_account,profile_smart.group_account_user_smart,1,1,1,1
+access_hr_employee_category_user_smart,hr.employee.category.user,hr.model_hr_employee_category,profile_smart.group_hr_user_smart,1,1,1,1

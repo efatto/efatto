@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+ <!-- invoice smart -->   
+        <record id="invoice_form_smart" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </field>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </field>
+                <page string="Other Info" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </page>
+                <page string="Payments" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </page>
+            </field>
+        </record>
+ 
+ <!-- expenses smart -->
+        <record id="view_expenses_form" model="ir.ui.view">
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+            <field name="name">view_expenses_form_smart</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="arch" type="xml">
+                <page string="Accounting" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </page>
+            </field>
+        </record>
+         <record id="hr_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree.smart</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="arch" type="xml">
+                 <field name="account_id" position="replace">
+                    <field domain="[('type','=','normal'),('use_timesheets','=',1)]" name="account_id" context="{'default_use_timesheets': 1, 'default_type': 'contract'}"/>
+                </field>
+            </field>
+        </record>
+
+<record id="account.menu_finance" model="ir.ui.menu">
+    <field name="groups_id" eval="[(3,ref('group_account_user_smart'))]"/>
+</record>
+<record id="account.menu_finance_receivables" model="ir.ui.menu">
+    <field name="groups_id" eval="[(3,ref('group_account_user_smart'))]"/>
+</record>
+<record id="account.menu_finance_payables" model="ir.ui.menu">
+    <field name="groups_id" eval="[(3,ref('group_account_user_smart'))]"/>
+</record>
+<record id="hr.menu_hr_root" model="ir.ui.menu">
+    <field name="groups_id" eval="[(3,ref('group_account_user_smart'))]"/>
+</record>
+<record id="hr.menu_hr_main" model="ir.ui.menu">
+    <field name="groups_id" eval="[(3,ref('group_account_user_smart'))]"/>
+</record>
+        <menuitem name="Smart" id="base.menu_main_sm" groups="group_project_user_smart" sequence="40"/>
+        <menuitem name="Customers" id="menu_smart" parent="base.menu_main_sm" sequence="1"/>
+        <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1" parent="menu_smart" sequence="3"/>
+        <menuitem name="Tasks" id="menu_tasks_smart" parent="base.menu_main_sm" sequence="5"/>
+        <menuitem action="project.action_view_task" id="menu_action_view_task" parent="menu_tasks_smart" sequence="5"/>
+        <menuitem name="Expenses" id="menu_expenses_smart" sequence="15" parent="base.menu_main_sm"/>
+        <menuitem action="hr_expense.expense_all" id="hr_expense.menu_expense_all" name="Expenses" parent="menu_expenses_smart"/>
+        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="hr_timesheet.menu_hr_working_hours" parent="menu_expenses_smart"/>
+        <menuitem name="Projects" id="menu_projects_smart" sequence="25" parent="base.menu_main_sm"/>
+        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart" parent="menu_projects_smart"/>
+    </data>
+</openerp>

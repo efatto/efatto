@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* profile_smart
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-08 07:16+0000\n"
+"PO-Revision-Date: 2015-10-08 07:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: profile_smart
+#: view:hr.expense.expense:profile_smart.view_expenses_form
+msgid "Accounting"
+msgstr "Contabilità"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.account_analytic_def_account_smart
+#: model:ir.ui.menu,name:profile_smart.account_analytic_def_account_smart_h
+msgid "Analytic Accounts"
+msgstr "Conti progetti"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1_h
+msgid "Customer Invoices"
+msgstr "Fatture"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_smart
+msgid "Customers"
+msgstr "Clienti"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_expense_all_h
+#: model:ir.ui.menu,name:profile_smart.menu_expenses_smart
+msgid "Expenses"
+msgstr "Spese"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_invoiced_smart
+msgid "Invoicing"
+msgstr "Fatturazione"
+
+#. module: profile_smart
+#: view:account.invoice:profile_smart.invoice_form_smart
+msgid "Other Info"
+msgstr "Altre informazioni"
+
+#. module: profile_smart
+#: view:account.invoice:profile_smart.invoice_form_smart
+msgid "Payments"
+msgstr "Pagamenti"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_projects_smart
+msgid "Projects"
+msgstr "Progetti"
+
+#. module: profile_smart
+#: model:res.groups,name:profile_smart.group_hidden
+msgid "Show normal menus"
+msgstr "Mostra i menu"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_view_task
+#: model:ir.ui.menu,name:profile_smart.menu_action_view_task_h
+#: model:ir.ui.menu,name:profile_smart.menu_tasks_smart
+msgid "Tasks"
+msgstr "Attività"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_hr_tree_invoiced_all_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_hr_tree_invoiced_all_smart_h
+msgid "Time & Materials to Invoice"
+msgstr "Da fatturare"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_hr_working_hours_h
+msgid "Timesheet Activities"
+msgstr "Ore lavorate"
+
+#. module: profile_smart
+#: model:res.groups,name:profile_smart.group_smart
+msgid "User Smart"
+msgstr "Utente Smart"
+
+#. module: profile_smart
+#: view:account.invoice:profile_smart.invoice_form_smart
+#: view:hr.expense.expense:profile_smart.view_expenses_form
+msgid "base.group_account_user"
+msgstr "base.group_account_user"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar
+#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar_h
+msgid "Calendar"
+msgstr "Calendario"

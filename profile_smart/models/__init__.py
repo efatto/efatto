@@ -18,32 +18,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Italy - SimplERP Srl profile Smart',
-    'version': '4.0.0.1',
-    'category': 'other',
-    'description': """
-    Profilatura SimplERP
-    """,
-    'author': 'SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'base_setup',
-        'base_iban',
-        'country_data_it',
-        'disable_openerp_online',
-        'l10n_it_base_location_geonames_import',
-        'project',
-        'hr',
-    ],
-    "data": [
-        'security/profile_smart_security.xml',
-        'security/ir.model.access.csv',
-        'views/account_invoice_view.xml',
-        #'views/project.xml',
-    ],
-    "demo": [],
-    "active": False,
-    "installable": True,
-}
+from . import project

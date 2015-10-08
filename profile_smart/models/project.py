@@ -18,32 +18,38 @@
 #
 ##############################################################################
 
-{
-    'name': 'Italy - SimplERP Srl profile Smart',
-    'version': '4.0.0.1',
-    'category': 'other',
-    'description': """
-    Profilatura SimplERP
-    """,
-    'author': 'SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'base_setup',
-        'base_iban',
-        'country_data_it',
-        'disable_openerp_online',
-        'l10n_it_base_location_geonames_import',
-        'project',
-        'hr',
-    ],
-    "data": [
-        'security/profile_smart_security.xml',
-        'security/ir.model.access.csv',
-        'views/account_invoice_view.xml',
-        #'views/project.xml',
-    ],
-    "demo": [],
-    "active": False,
-    "installable": True,
-}
+from openerp import models, fields, api
+
+
+class project(models.Model):
+    _inherit = "project.project"
+
+    _defaults = {
+        'use_tasks': True,
+        'use_timesheets': True,
+    }
+
+
+class account_analytic_account(models.Model):
+    _inherit = "account.analytic.account"
+
+    def _get_100_percent(self, cr, uid, context):
+        ids = self.pool.get('hr_timesheet_invoice.factor').search(
+            cr, uid, [('name', 'ilike', '100')], context=context)
+        return ids[0]
+
+    _defaults = {
+        'use_tasks': True,
+        'use_timesheets': True,
+        'to_invoice': _get_100_percent,
+    }
+
+
+class hr_expense_line(models.Model):
+    _inherit = "hr.expense.line"
+
+    partner_id = fields.Many2one(
+        'res.partner',
+        'Supplier')
+    date_maturity = fields.Date(
+        'Maturity date')

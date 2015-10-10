@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields
 
 
 class project(models.Model):
@@ -50,6 +50,7 @@ class hr_expense_line(models.Model):
 
     partner_id = fields.Many2one(
         'res.partner',
+        domain="[('supplier', '=', True)]"
         'Supplier')
     date_maturity = fields.Date(
         'Maturity date')

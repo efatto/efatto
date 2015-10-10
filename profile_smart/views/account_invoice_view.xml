@@ -42,6 +42,9 @@
                 <page string="Accounting" position="attributes">
                     <attribute name="groups">base.group_account_user</attribute>
                 </page>
+                <field name="department_id" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </field>
                 <xpath expr="//tree[@string='Expense Lines']/field[@name='date_value']" position="after">
                     <field name="date_maturity"/>
                     <field name="partner_id"/>
@@ -59,6 +62,7 @@
             </field>
         </record>
 
+<!-- hide main menu -->
 <record id="account.menu_finance" model="ir.ui.menu">
     <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
 </record>
@@ -91,15 +95,15 @@
     <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
 </record>
         
-        <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1_h" sequence="2"/>
-        <menuitem action="project.action_view_task" id="menu_action_view_task_h" sequence="3"/>
-        <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar_h" name="Calendar" sequence="3" />
-        <menuitem action="hr_expense.expense_all" id="menu_expense_all_h" name="Expenses" sequence="4"/>
-        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5"/>
-        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6"/>
-        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart_h" sequence="7"/>
+        <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1_h" sequence="2" groups="group_smart"/>
+        <menuitem action="project.action_view_task" id="menu_action_view_task_h" sequence="3" groups="group_smart"/>
+        <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar_h" name="Calendar" sequence="3" groups="group_smart"/>
+        <menuitem action="hr_expense.expense_all" id="menu_expense_all_h" name="Expenses" sequence="4" groups="group_smart"/>
+        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/>
+        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6" groups="group_smart"/>
+        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart_h" sequence="7" groups="group_smart"/>
         
-        <menuitem name="Smart" id="base.menu_main_sm" sequence="1"/>
+        <menuitem name="Smart" id="base.menu_main_sm" sequence="1" groups="group_smart"/>
         <menuitem name="Customers" id="menu_smart" parent="base.menu_main_sm" sequence="1"/>
         <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1" parent="menu_smart" sequence="3"/>
         <menuitem name="Tasks" id="menu_tasks_smart" parent="base.menu_main_sm" sequence="5"/>

@@ -17,29 +17,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp import models, fields
-
-
-class project(models.Model):
-    _inherit = "project.project"
-
-    _defaults = {
-        'use_tasks': True,
-        'use_timesheets': True,
-    }
+from openerp import models
 
 
-class account_analytic_account(models.Model):
-    _inherit = "account.analytic.account"
-
-    def _get_100_percent(self, cr, uid, context):
-        ids = self.pool.get('hr_timesheet_invoice.factor').search(
-            cr, uid, [('name', 'ilike', '100')], context=context)
-        return ids[0]
+class account_journal(models.Model):
+    _inherit = "account.journal"
 
     _defaults = {
-        'use_tasks': True,
-        'use_timesheets': True,
-        'to_invoice': _get_100_percent,
+        'update_posted': True,
     }

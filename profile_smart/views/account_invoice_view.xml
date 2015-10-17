@@ -33,34 +33,7 @@
             </field>
         </record>
  
- <!-- expenses smart -->
-        <record id="view_expenses_form" model="ir.ui.view">
-            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
-            <field name="name">view_expenses_form_smart</field>
-            <field name="model">hr.expense.expense</field>
-            <field name="arch" type="xml">
-                <page string="Accounting" position="attributes">
-                    <attribute name="groups">base.group_account_user</attribute>
-                </page>
-                <field name="department_id" position="attributes">
-                    <attribute name="groups">base.group_account_user</attribute>
-                </field>
-                <xpath expr="//tree[@string='Expense Lines']/field[@name='date_value']" position="after">
-                    <field name="date_maturity"/>
-                    <field name="partner_id"/>
-                </xpath>
-            </field>
-        </record>
-         <record id="hr_timesheet_line_tree" model="ir.ui.view">
-            <field name="name">hr.analytic.timesheet.tree.smart</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
-            <field name="model">hr.analytic.timesheet</field>
-            <field name="arch" type="xml">
-                 <field name="account_id" position="replace">
-                    <field domain="[('type','=','normal'),('use_timesheets','=',1)]" name="account_id" context="{'default_use_timesheets': 1, 'default_type': 'contract'}"/>
-                </field>
-            </field>
-        </record>
+
 
 <!-- hide main menu -->
 <record id="account.menu_finance" model="ir.ui.menu">
@@ -99,7 +72,7 @@
         <menuitem action="project.action_view_task" id="menu_action_view_task_h" sequence="3" groups="group_smart"/>
         <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar_h" name="Calendar" sequence="3" groups="group_smart"/>
         <menuitem action="hr_expense.expense_all" id="menu_expense_all_h" name="Expenses" sequence="4" groups="group_smart"/>
-        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/>
+        <!--menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/-->
         <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6" groups="group_smart"/>
         <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart_h" sequence="7" groups="group_smart"/>
         

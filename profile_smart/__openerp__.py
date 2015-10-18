@@ -40,6 +40,7 @@
         'document_carddav',
         'l10n_it_base_location_geonames_import',
         'project',
+        'project_timesheet',
         'hr_timesheet_sheet',
         'hr_expense',
         'web_debranding',

@@ -46,24 +46,24 @@ class task(models.Model):
         if m:
             # if more than 1 occurrence, take the 2°?
             datet_work = datetime.strptime(m.group(0), '%d %b %Y')
-        hours = re.search('[0-9]{,1}[0-9](:[0-9][0-9]){,1}[AP]M - [0-9]{,1}[0-9](:[0-9][0-9]){,1}[AP]M', name).group(0)
-        hours_start = self.time_string_to_decimals(hours[:(hours.find(' - ')) - 2], hours[(hours.find(' - ')) - 2:(hours.find(' - '))])
-        hours_end = self.time_string_to_decimals(hours[(hours.find(' - ')) + 3: - 2], hours[(hours.find(' - ')):][-2:])
-        # if more than 1 occurrence, take the 2°?
-        hours_work = 0.0
-        if hours:
-            hours_work = hours_end - hours_start
-        project_id = vals.get('project_id', False)
-        if name and project_id:
-            task_work = self.pool['project.task.work']
-            work_vals = {
-                'name': name,
-                'task_id': task_id,
-                'date': datet_work.strftime(tools.DEFAULT_SERVER_DATETIME_FORMAT),
-                'hours': hours_work,
-                'user_id': uid,
-            }
-            task_work.create(cr, uid, work_vals, context=context)
+            hours = re.search('[0-9]{,1}[0-9](:[0-9][0-9]){,1}[AP]M - [0-9]{,1}[0-9](:[0-9][0-9]){,1}[AP]M', name).group(0)
+            hours_start = self.time_string_to_decimals(hours[:(hours.find(' - ')) - 2], hours[(hours.find(' - ')) - 2:(hours.find(' - '))])
+            hours_end = self.time_string_to_decimals(hours[(hours.find(' - ')) + 3: - 2], hours[(hours.find(' - ')):][-2:])
+            # if more than 1 occurrence, take the 2°?
+            hours_work = 0.0
+            if hours:
+                hours_work = hours_end - hours_start
+            project_id = vals.get('project_id', False)
+            if name and project_id:
+                task_work = self.pool['project.task.work']
+                work_vals = {
+                    'name': name,
+                    'task_id': task_id,
+                    'date': datet_work.strftime(tools.DEFAULT_SERVER_DATETIME_FORMAT),
+                    'hours': hours_work,
+                    'user_id': uid,
+                }
+                task_work.create(cr, uid, work_vals, context=context)
         return task_id
 
 

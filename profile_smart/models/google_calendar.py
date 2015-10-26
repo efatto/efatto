@@ -17,29 +17,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp import models
-
-
-class project(models.Model):
-    _inherit = "project.project"
-
-    _defaults = {
-        'use_tasks': True,
-        'use_timesheets': True,
-    }
+from openerp import models, fields, api
+from openerp.tools.float_utils import float_round, float_compare
+from openerp.tools.translate import _
 
 
-class account_analytic_account(models.Model):
-    _inherit = "account.analytic.account"
+class google_calendar(models.AbstractModel):
+    _inherit = 'google.calendar'
 
-    def _get_100_percent(self, cr, uid, context):
-        ids = self.pool.get('hr_timesheet_invoice.factor').search(
-            cr, uid, [('name', 'ilike', '100')], context=context)
-        return ids[0]
+    def update_from_google(self, cr, uid, event, single_event_dict, type, context):
+        res = super(google_calendar, self).update_from_google(cr, uid, event, single_event_dict, type, context)
+        # todo: create task
+        calendar_event = self.pool['calendar.event']
+        cal_event = calendar_event.browse(cr, uid, res)
+        hours_work = cal_event.duration
+        self.pool['project.task'].create(cr, uid, vals, context=context)
+        return res
 
-    _defaults = {
-        'use_tasks': True,
-        'use_timesheets': True,
-        'to_invoice': _get_100_percent,
-    }
+    def delete_an_event(self, cr, uid, event_id, context=None):
+        super(google_calendar, self).delete_an_event(cr, uid, event_id=event_id, context=context)
+        # todo: delete task

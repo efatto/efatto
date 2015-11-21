@@ -98,6 +98,10 @@ class account_asset_asset(orm.Model):
                                     context=None):
         depreciation_stop_date = super(account_asset_asset, self)._get_depreciation_stop_date(cr, uid, asset,
                                     depreciation_start_date=depreciation_start_date, context=context)
+        ##################
+        import pdb
+        pdb.set_trace()
+        ##################
         if 'lost_year' in context:
             lost_year = context['lost_year']
         if asset.method_time == 'percent':

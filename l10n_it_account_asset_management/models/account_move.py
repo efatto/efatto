@@ -3,8 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #
+#    Copyright (C) 2010-2012 OpenERP s.a. (<http://openerp.com>).
 #    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
-#    Copyright (C) 2014 Didotech srl (www.didotech.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,18 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from decimal import Decimal, ROUND_HALF_UP
 import logging
 _logger = logging.getLogger(__name__)
+from decimal import Decimal, ROUND_HALF_UP
+
+# List of move's fields that can't be modified if move is linked
+# with a depreciation line
+FIELDS_AFFECTS_ASSET_MOVE = set(['period_id', 'journal_id', 'date'])
+# List of move line's fields that can't be modified if move is linked
+# with a depreciation line
+FIELDS_AFFECTS_ASSET_MOVE_LINE = \
+    set(['credit', 'debit', 'account_id', 'journal_id', 'date',
+         'asset_category_id', 'asset_id', 'tax_code_id', 'tax_amount'])
 
 
 class account_move(orm.Model):
@@ -136,6 +145,13 @@ class account_move_line(orm.Model):
 
     def write(self, cr, uid, ids, vals,
               context=None, check=True, update_check=True):
+        for move_line in self.browse(cr, uid, ids, context=context):
+            if move_line.asset_id.id:
+                if set(vals).intersection(FIELDS_AFFECTS_ASSET_MOVE_LINE):
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _("You cannot change an accounting item "
+                          "linked to an asset depreciation line."))
 #removed from 6.1
         if vals.get('asset_id'):
             raise orm.except_orm(

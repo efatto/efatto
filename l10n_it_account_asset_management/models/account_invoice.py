@@ -23,27 +23,6 @@ from openerp.osv import orm, fields
 class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
-    def action_number(self, cr, uid, ids, context=None):
-        super(account_invoice, self).action_number(cr, uid, ids, context)
-        asset_obj = self.pool['account.asset.asset']
-        asset_line_obj = self.pool['account.asset.depreciation.line']
-        for inv in self.browse(cr, uid, ids):
-            for aml in inv.move_id.line_id:
-                if aml.asset_id and not aml.subsequent_asset:
-                    asset = aml.asset_id
-                    ctx = {'create_asset_from_move_line': True}
-                    asset_obj.write(
-                        cr, uid, [asset.id],
-                        {'code': '', }, context=ctx)
-                    # TODO progressive number?
-                    asset_line_name = asset_obj._get_depreciation_entry_name(
-                         cr, uid, asset, 0)
-                    asset_line_obj.write(
-                        cr, uid, [asset.depreciation_line_ids[0].id],
-                        {'name': asset_line_name},
-                        context={'allow_asset_line_update': True})
-        return True
-
     def action_cancel(self, cr, uid, ids, context=None):
         assets = []
         for inv in self.browse(cr, uid, ids):
@@ -56,24 +35,15 @@ class account_invoice(orm.Model):
         if assets:
             adl_obj = self.pool['account.asset.depreciation.line']
             adl_ids = adl_obj.search(cr, uid, [('move_id', '=', move.id)])
-            asset_obj = self.pool.get('account.asset.asset')
-            for asset in asset_obj.browse(cr, uid, [x.id for x in assets]):
-                # delete asset only if not invoice rows linked left
-                if not asset.account_move_line_ids:
-                    asset_obj.unlink(cr, uid, [x.id for x in assets])
-                # if there is moves linked to the asset we have to delete
-                # the linked depreciation lines for not leave orphans
-                elif adl_ids:
+            # if there is moves linked to the asset we have to delete
+            # the linked depreciation lines to not leave orphans
+            if adl_ids:
                     adl_obj.unlink(cr, uid, adl_ids, context={'remove_asset_dl_from_invoice': True})
         return True
 
     def line_get_convert(self, cr, uid, x, part, date, context=None):
         res = super(account_invoice, self).line_get_convert(
             cr, uid, x, part, date, context=context)
-        if x.get('asset_category_id'):
-            # skip empty debit/credit
-            if res.get('debit') or res.get('credit'):
-                res['asset_category_id'] = x['asset_category_id']
         if x.get('asset_id'):
             if res.get('debit') or res.get('credit'):
                 res['asset_id'] = x['asset_id']
@@ -100,8 +70,6 @@ class account_invoice_line(orm.Model):
     def move_line_get_item(self, cr, uid, line, context=None):
         res = super(account_invoice_line, self).move_line_get_item(
             cr, uid, line, context)
-        if line.asset_category_id:
-            res['asset_category_id'] = line.asset_category_id.id
         if line.asset_id:
             res['asset_id'] = line.asset_id.id
         return res

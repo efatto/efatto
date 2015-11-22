@@ -9,11 +9,10 @@
       <field name="model">account.asset.category</field>
       <field name="arch" type="xml">
         <field name="method_number" position="replace">
-              <field name="method_number" attrs="{'invisible':[('method_time','in',['end','percent'])], 'required':[('method_time','in',['number','year'])]}"/>
-              <field name="method_number_percent" attrs="{'invisible':[('method_time','in',['end','number','year'])], 'required':[('method_time','=','percent')]}"/>
+              <field name="method_number_percent"/>
         </field>
         <field name="prorata" position="replace">
-              <field name="prorata" attrs="{'readonly':['|',('method_time','not in',('year', 'percent')), ('first_year_half_rata','&lt;&gt;',False)]}"/>
+              <field name="prorata" attrs="{'readonly':['|',('method_time','not in',('year',)), ('first_year_half_rata','&lt;&gt;',False)]}"/>
               <field name="first_year_half_rata" attrs="{'readonly':[('prorata','&lt;&gt;',False)]}"/>
         </field>
       </field>
@@ -49,14 +48,13 @@
                            on_change="onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)"/>
            </field>
            <field name="method_number" position="replace">
-                    <field name="method_number" attrs="{'invisible':[('method_time','in',['end','percent'])], 'required':[('method_time','in',['number','year'])]}"/>
-                    <field name="method_number_percent" attrs="{'invisible':[('method_time','in',['end','number','year'])], 'required':[('method_time','=','percent')]}"/>
+                    <field name="method_number_percent" />
            </field>
            <field name="method_end" position="attributes">
-               <attribute name="invisible">[('method_time','in',['number','year','percent'])]</attribute>
+               <attribute name="invisible">[('method_time','in',['number','year'])]</attribute>
            </field>
            <field name="prorata" position="attributes">
-               <attribute name="readonly">['|',('method_time','not in',('year', 'percent')), ('first_year_half_rata','&lt;&gt;',False)]</attribute>
+               <attribute name="readonly">['|',('method_time','not in',('year',)), ('first_year_half_rata','&lt;&gt;',False)]</attribute>
            </field>
            <field name="prorata" position="after">
                     <field name="first_year_half_rata" attrs="{'readonly':[('prorata','&lt;&gt;',False)]}"/>
@@ -77,11 +75,10 @@
       <field name="inherit_id" ref="account_asset_management.view_account_asset_history_form"/>
       <field name="arch" type="xml">
         <field name="method_number" position="replace">
-            <field name="method_number" attrs="{'invisible':[('method_time','in',['end','percent'])]}"/>
-            <field name="method_number_percent" attrs="{'invisible':[('method_time','in',['end','year','number'])]}"/>
+            <field name="method_number_percent" />
         </field>
         <field name="method_end" position="attributes">
-           <attribute name="invisible">[('method_time','in',['number','year','percent'])]</attribute>
+           <attribute name="invisible">[('method_time','in',['number','year'])]</attribute>
         </field>
       </field>
     </record>

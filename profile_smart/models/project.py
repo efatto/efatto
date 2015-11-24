@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models
+from openerp import models, fields, api
 
 
 class project(models.Model):
@@ -38,6 +38,35 @@ class account_analytic_account(models.Model):
             cr, uid, [('name', 'ilike', '100')], context=context)
         return ids[0]
 
+    def project_create(self, cr, uid, analytic_account_id, vals, context=None):
+        project = super(account_analytic_account, self).project_create(cr, uid, analytic_account_id, vals, context=context)
+        project_pool = self.pool.get('project.project')
+        if project and vals.get('alias_mail', False):
+            project_pool.write(cr, uid, [project], {'alias_name': vals.get('alias_mail')}, context=context)
+            return project
+        elif project:
+            return project
+        return False
+
+# TODO: project write
+
+    @api.one
+    def _get_alias(self):
+        for r in self:
+            project = self.env['project.project'].search([('analytic_account_id', 'in', [r.id])])
+            if project:
+                r.alias_id = project.alias_id.id
+
+    alias_mail = fields.Char(
+        'Alias', required=True, size=64,
+        help="To be filled with text prior to @ to create an internal email associated with this project."
+        " Incoming emails are automatically synchronized with Tasks.")
+    alias_id = fields.Many2one(
+        'mail.alias',
+        compute='_get_alias',
+        string='Alias',
+        help="Internal email associated with this project. Incoming emails are automatically synchronized"
+        "with Tasks (or optionally Issues if the Issue Tracker module is installed).")
     _defaults = {
         'use_tasks': True,
         'use_timesheets': True,

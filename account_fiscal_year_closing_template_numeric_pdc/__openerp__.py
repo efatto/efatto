@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Sergio Corato (<http://www.didotech.com>)
+#    Copyright (C) 2013 Sergio Corato (<http://www.simplerp.it>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -22,8 +22,8 @@
 {
     "name" : "Fiscal Year Closing Template",
     "version" : "3.0.0.0",
-    "author" : "Didotech",
-    "website" : "http://www.didotech.com",
+    "author" : "Sergio Corato",
+    "website" : "http://www.simplerp.it",
     "category" : "Generic Modules/Accounting",
     "description": """
 

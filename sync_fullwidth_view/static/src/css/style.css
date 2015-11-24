@@ -24,9 +24,9 @@
     box-shadow: none;
 }
 .oe_leftbar .hide-left-menu .arrow-image, .oe_im .oe_im_users .hide-pane div.arrow-img{
-    height: 25px;
+    height: 40px;
     width: 25px;
-    top: 50%;
+    top: 12%;
     padding: 0px;
     margin-left: -5px
     border: none;
@@ -45,7 +45,7 @@
 }
 .hide-pane{
     height: 40px;
-    width: 26px;
+    width: 25px;
     top:12%;
     font-size: 24px;
     padding: 0px;

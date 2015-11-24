@@ -12,13 +12,13 @@ openerp.sync_fullwidth_view = function (instance) {
 	                	'left': '-220px'
 	               	}, 100).addClass("Moved");
 	                $(".oe_leftbar").css({'position': 'absolute'});
-	                $(this).css('top','37%');
+	                $(this).css('top','7%');
 	                $(".arrow-image").css({'transform' : 'rotate(180deg)'});
 	            }else{
 	                $(".oe_leftbar").animate({
 	                    "left": "0px"
 	                }, 'slow').removeClass("Moved").css({'position': 'inherit'});
-	                $(this).css('top','42%');
+	                $(this).css('top','12%');
 	                $(".arrow-image").css({'transform' : 'rotate(0deg)'});
 	            }
 	        });

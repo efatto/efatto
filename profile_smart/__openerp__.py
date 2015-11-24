@@ -31,7 +31,6 @@
     "depends": [
         'account_analytic_analysis',
         'account_cancel',
-        'autohide_leftbar',
         'base_setup',
         'base_iban',
         'country_data_it',

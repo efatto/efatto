@@ -7,7 +7,10 @@
             model="sale.order" 
             report_type="qweb-pdf"
             file="sale_order_report_simplerp.report_saleorder_simplerp" 
-            name="sale_order_report_simplerp.report_saleorder_simplerp" 
-        />
+            name="sale_order_report_simplerp.report_saleorder_simplerp"
+            />
+        <record id="report_sale_order_simplerp" model="ir.actions.report.xml">
+            <field name="download_filename">Quotation ${o.name}.pdf</field>
+        </record>
     </data>
 </openerp>

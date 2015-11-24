@@ -30,6 +30,7 @@
     'license': 'AGPL-3',
     "depends": [
         'report',
+        'report_custom_filename',
         'sale',
         'account',
         'l10n_it_fiscalcode',

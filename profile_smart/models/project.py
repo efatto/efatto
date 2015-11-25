@@ -58,7 +58,7 @@ class account_analytic_account(models.Model):
                 r.alias_id = project.alias_id.id
 
     alias_mail = fields.Char(
-        'Alias', required=True, size=64,
+        'Alias', size=64,
         help="To be filled with text prior to @ to create an internal email associated with this project."
         " Incoming emails are automatically synchronized with Tasks.")
     alias_id = fields.Many2one(

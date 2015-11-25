@@ -38,43 +38,49 @@ class google_calendar(models.AbstractModel):
             mail_obj = self.pool['mail.alias']
             if single_event_dict['creator']['email']:
                 creator = single_event_dict['creator']['email'].split('@')[0]
+            if single_event_dict['organizer']['email']:
+                organizer = single_event_dict['organizer']['email'].split('@')[0]
             hours_work = cal_event.duration or False
             new = False
             project_id = False
-            creator_id = False
+            user_id = False
             if attendees and hours_work:
                 for attendant in attendees:
                     #  note: get only one occurrence of the creator, not investigated if only one possible
                     if 'email' in attendant and 'organizer' not in attendant:
                         project_alias_mail = attendant['email'].split('@')[0]
                         alias_id = mail_obj.search(cr, uid, [('alias_name', '=', project_alias_mail)])
+                        alias_organizer_id = mail_obj.search(cr, uid, [('alias_name', '=', organizer)])
+                        organizer = self.pool['res.users'].search(cr, uid, [('alias_id', 'in', alias_organizer_id)])
                         alias_creator_id = mail_obj.search(cr, uid, [('alias_name', '=', creator)])
                         creator = self.pool['res.users'].search(cr, uid, [('alias_id', 'in', alias_creator_id)])
-                        if creator:
-                            creator_id = creator[0]
+                        if organizer:
+                            user_id = organizer[0]
+                        elif creator:
+                            user_id = creator[0]
                         project = self.pool['project.project'].search(cr, uid, [('alias_id', 'in', alias_id)])
                         if project:
                             project_id = project[0]
                         break
-                if not task_id and cal_event.duration and project_id and creator_id:
+                if not task_id and cal_event.duration and project_id and user_id:
                     new = True
                     vals = {
                         'event_id': event_id,
                         'name': '',
                         'project_id': project_id,
                     }
-                    task_id = task_obj.create(cr, uid, vals, context=context)
+                    task_id = [task_obj.create(cr, uid, vals, context=context)]
             task_work = self.pool['project.task.work']
-            if project_id and hours_work and new and creator_id and task_id:
+            if project_id and hours_work and new and user_id and task_id:
                 work_vals = {
                     'name': cal_event.name or '',
                     'task_id': task_id[0],
                     'date': cal_event.start_datetime,
                     'hours': hours_work,
-                    'user_id': creator_id,
+                    'user_id': user_id,
                 }
                 task_work.create(cr, uid, work_vals, context=context)
-            elif project_id and hours_work and not new and creator_id and task_id:
+            elif project_id and hours_work and not new and user_id and task_id:
                 task = task_obj.browse(cr, uid, task_id, context)
                 if task.work_ids:
                     work_id = [x.id for x in task.work_ids][0]
@@ -82,7 +88,7 @@ class google_calendar(models.AbstractModel):
                     'name': cal_event.name or '',
                     'date': cal_event.start_datetime,
                     'hours': hours_work,
-                    'user_id': creator_id,
+                    'user_id': user_id,
                 }
                 task_work.write(cr, uid, [work_id], work_vals, context=context)
         return res

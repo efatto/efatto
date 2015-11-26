@@ -66,16 +66,16 @@ class google_calendar(models.AbstractModel):
                     }
                     task_id = [task_obj.create(cr, uid, vals, context=context)]
                 task_work = self.pool['project.task.work']
-                if project_id and new and user_id and task_id:
+                if project_id and new:
                     work_vals = {
                         'name': cal_event.name or '',
                         'task_id': task_id[0],
                         'date': cal_event.start_datetime,
                         'hours': hours_work,
-                        'user_id': user_id[0],
+                        'user_id': user_id[0] or 1,
                     }
                     task_work.create(cr, uid, work_vals, context=context)
-                elif project_id and not new and user_id and task_id:
+                elif project_id and not new:
                     task = task_obj.browse(cr, uid, task_id, context)
                     if task.work_ids:
                         work_id = [x.id for x in task.work_ids][0]
@@ -83,7 +83,7 @@ class google_calendar(models.AbstractModel):
                         'name': cal_event.name or '',
                         'date': cal_event.start_datetime,
                         'hours': hours_work,
-                        'user_id': user_id[0],
+                        'user_id': user_id[0] or 1,
                     }
                     task_work.write(cr, uid, [work_id], work_vals, context=context)
         return res

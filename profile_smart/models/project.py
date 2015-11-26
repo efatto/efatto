@@ -40,9 +40,15 @@ class account_analytic_account(models.Model):
 
     def project_create(self, cr, uid, analytic_account_id, vals, context=None):
         project = super(account_analytic_account, self).project_create(cr, uid, analytic_account_id, vals, context=context)
-        project_pool = self.pool.get('project.project')
+        project_obj = self.pool['project.project']
+        partner_obj = self.pool['res.partner']
         if project and vals.get('alias_mail', False):
-            project_pool.write(cr, uid, [project], {'alias_name': vals.get('alias_mail')}, context=context)
+            project_obj.write(cr, uid, [project], {'alias_name': vals.get('alias_mail')}, context=context)
+            project = project_obj.browse(cr, uid, [project], context=context)
+            email = project.alias_id.name_get()[0][1]
+            partner_id = partner_obj.search(cr, uid, [('email', '=', email)], context=context)
+            if not partner_id:
+                partner_obj.create(cr, uid, {'name': email, 'email': email, 'customer': False}, context=context)
             return project
         elif project:
             return project

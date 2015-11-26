@@ -1,7 +1,7 @@
 .oe_leftbar .hide-left-menu{
     height: 40px;
     width: 25px;
-    top:12%;
+    top:5%;
     font-size: 24px;
     padding: 0px;
     margin-left: 220px;
@@ -12,7 +12,7 @@
     border-style:solid;
     border-radius: 0px 10px 10px 0px;
     background-color:  #F0EEEE;
-    
+    opacity: 0.7;
 }
 .openerp_webclient_container .oe_leftbar button:focus {
     outline: none;
@@ -26,12 +26,13 @@
 .oe_leftbar .hide-left-menu .arrow-image, .oe_im .oe_im_users .hide-pane div.arrow-img{
     height: 40px;
     width: 25px;
-    top: 12%;
+    top: 5%;
     padding: 0px;
     margin-left: -5px
     border: none;
     position:static;
     background: url(/sync_leftbar/static/src/img/wantclose.png) scroll center 0% no-repeat;
+    opacity: 0.7;
 }
 .openerp_webclient_container .hide-left-menu:hover, .oe_im .oe_im_users .hide-pane:hover{
     background: #CCC;
@@ -46,7 +47,7 @@
 .hide-pane{
     height: 40px;
     width: 25px;
-    top:12%;
+    top:5%;
     font-size: 24px;
     padding: 0px;
     margin-left: -14px;
@@ -57,6 +58,7 @@
     border-style:solid;
     border-radius: 10px 0px 0px 10px;
     background-color: #E8EBEF;
+    opacity: 0.7;
 }
 .oe_im .oe_im_users button.hide-pane:focus {
     outline:0;

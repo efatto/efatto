@@ -40,13 +40,15 @@ class google_calendar(models.AbstractModel):
             new = False
             project_id = False
             user_id = False
-            #  if single_event_dict['creator']['email']:
-            #  alias_creator = single_event_dict['creator']['email'].split('@')[0]
-            #  N.B. creator is the calendar
             if single_event_dict['organizer']['email']:
                 alias_organizer = single_event_dict['organizer']['email'].split('@')[0]
                 user_id = self.pool['res.users'].search(cr, uid, [('alias_id', 'in', alias_organizer)])
-                #  N.B. organizer must be the user login to sync - this is the user_id
+            if not user_id:
+                if single_event_dict['creator']['email']:
+                    alias_creator = single_event_dict['creator']['email'].split('@')[0]
+                    user_id = self.pool['res.users'].search(cr, uid, [('alias_id', 'in', alias_creator)])
+            if not user_id:
+                user_id = [1]
             if attendees and hours_work:
                 for attendant in attendees:
                     #  note: get only one occurrence of the creator, not investigated if only one possible
@@ -57,7 +59,7 @@ class google_calendar(models.AbstractModel):
                         if project:
                             project_id = project[0]
                         break
-                if not task_id and cal_event.duration and project_id and user_id:
+                if not task_id and cal_event.duration and project_id:
                     new = True
                     vals = {
                         'event_id': event_id,
@@ -72,7 +74,7 @@ class google_calendar(models.AbstractModel):
                         'task_id': task_id[0],
                         'date': cal_event.start_datetime,
                         'hours': hours_work,
-                        'user_id': user_id[0] or 1,
+                        'user_id': user_id[0],
                     }
                     task_work.create(cr, uid, work_vals, context=context)
                 elif project_id and not new:
@@ -83,7 +85,7 @@ class google_calendar(models.AbstractModel):
                         'name': cal_event.name or '',
                         'date': cal_event.start_datetime,
                         'hours': hours_work,
-                        'user_id': user_id[0] or 1,
+                        'user_id': user_id[0],
                     }
                     task_work.write(cr, uid, [work_id], work_vals, context=context)
         return res

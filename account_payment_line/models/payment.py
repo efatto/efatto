@@ -40,20 +40,12 @@ class account_payment_term_line(models.Model):
     type = fields.Selection(
         PAYMENT_TERM_TYPE_SELECTION, "Type of payment")
 
-    _defaults = {
-        'type': 'BB',
-    }
-
 
 class account_move_line(models.Model):
     _inherit = 'account.move.line'
 
     payment_term_type = fields.Selection(
         PAYMENT_TERM_TYPE_SELECTION, 'Payment line term type')
-
-    _defaults = {
-        'payment_term_type': 'BB',
-    }
 
 
 class account_invoice(models.Model):

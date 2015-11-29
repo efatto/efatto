@@ -21,12 +21,9 @@
 {
     "name": "Payment terms for line",
     "version": "8.1.0.0.0",
-    "author": "SimplERP s.r.l.",
+    "author": "SimplERP srl",
     "website": "http://www.simplerp.it",
     "category": "Account / Payments",
-    "description": """
-This module add term payment type for line of account move line, adding the 
-chance to put different type of payment in the same invoice  """,
     "depends": [
         "account",
     ],

@@ -47,7 +47,7 @@
             <td>
                 <span t-field="o.partner_id.name"/><br/>
                 <span t-field="o.partner_id.street"/><br/>
-                <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.zip"/><br/>
+                <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.state_id.code"/><br/>
                 <span t-if="o.partner_id.vat">Partita Iva n° <span class="" t-field="o.partner_id.vat"/></span>
             </td>
           </tr>

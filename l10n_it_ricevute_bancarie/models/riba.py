@@ -24,14 +24,15 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
-import decimal_precision as dp
+from openerp.osv import fields, orm
+import openerp.addons.decimal_precision as dp
 from openerp import netsvc
 from openerp.tools.translate import _
 from datetime import datetime
 
-class riba_distinta(osv.osv):
-    
+
+class riba_distinta(orm.Model):
+
     def _get_accruement_move_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
@@ -51,7 +52,7 @@ class riba_distinta(osv.osv):
                     move_ids.append(line.accreditation_move_id.id)
             res[distinta.id] = move_ids
         return res
-    
+
     def _get_acceptance_move_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
@@ -61,7 +62,7 @@ class riba_distinta(osv.osv):
                     move_ids.append(line.acceptance_move_id.id)
             res[distinta.id] = move_ids
         return res
-    
+
     def _get_unsolved_move_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
@@ -71,7 +72,7 @@ class riba_distinta(osv.osv):
                     move_ids.append(line.unsolved_move_id.id)
             res[distinta.id] = move_ids
         return res
-    
+
     def _get_payment_ids(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for distinta in self.browse(cr, uid, ids, context=context):
@@ -88,8 +89,9 @@ class riba_distinta(osv.osv):
 
     _columns = {
         'name': fields.char('Reference', size=128, required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'config_id': fields.many2one('riba.configuration', 'Configuration', 
-            select=True, required=True, readonly=True, states={'draft': [('readonly', False)]}, 
+        'config_id': fields.many2one(
+            'riba.configuration', 'Configuration',
+            select=True, required=True, readonly=True, states={'draft': [('readonly', False)]},
             help='Riba configuration to be used'),
         'state': fields.selection([
             ('draft', 'Draft'),
@@ -99,20 +101,21 @@ class riba_distinta(osv.osv):
             ('paid', 'Paid'),
             ('unsolved', 'Unsolved'),
             ('cancel', 'Canceled')], 'State', select=True, readonly=True),
-        'line_ids': fields.one2many('riba.distinta.line', 'distinta_id',
-            'Riba deadlines', readonly=False,),# states={'draft': [('readonly', False)]}),
+        'line_ids': fields.one2many(
+            'riba.distinta.line', 'distinta_id',
+            'Riba deadlines', readonly=False,),  # states={'draft': [('readonly', False)]}),
         'user_id': fields.many2one('res.users', 'User', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'date_created': fields.date('Creation date', readonly=True),
         'date_accepted': fields.date('Acceptance date', readonly=False),
         'date_accreditation': fields.date('Accreditation date', readonly=False),
         'date_paid': fields.date('Paid date', readonly=True),
         'date_unsolved': fields.date('Unsolved date', readonly=True),
-        'company_id': fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft':[('readonly',False)]}),
+        'company_id': fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft': [('readonly',False)]}),
         'acceptance_move_ids': fields.function(_get_acceptance_move_ids, type='many2many', relation='account.move', method=True, string="Acceptance Entries"),
-        #sc: modify accreditation from id to ids
+        #  sc: modify accreditation from id to ids
         'accreditation_move_ids': fields.function(_get_accreditation_move_ids, type='many2many', relation='account.move', method=True, string="Accreditation Entries"),
         'accruement_move_ids': fields.function(_get_accruement_move_ids, type='many2many', relation='account.move', method=True, string="Accruement Entries"),
-        #'accreditation_move_id': fields.many2one('account.move', 'Accreditation Entry', readonly=True),
+        #  'accreditation_move_id': fields.many2one('account.move', 'Accreditation Entry', readonly=True),
         'payment_ids': fields.function(_get_payment_ids, relation='account.move.line', type="many2many", string='Payments'),
         'unsolved_move_ids': fields.function(_get_unsolved_move_ids, type='many2many', relation='account.move', method=True, string="Unsolved Entries"),
         'type': fields.related('config', 'tipo', type='char', size=32, string='Type', readonly=True),
@@ -121,19 +124,19 @@ class riba_distinta(osv.osv):
     _order = 'name desc'
 
     _defaults = {
-        'user_id': lambda self,cr,uid,context: uid,
+        'user_id': lambda self, cr, uid, context: uid,
         'date_created': fields.date.context_today,
         'date_accepted': fields.date.context_today,
         'date_accreditation': fields.date.context_today,
-        'name': lambda self,cr,uid,context: self.pool.get('ir.sequence').get(cr, uid, 'riba.distinta'),
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'riba.distinta', context=c),
+        'name': lambda self, cr, uid, context: self.pool.get('ir.sequence').get(cr, uid, 'riba.distinta'),
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.company')._company_default_get(cr, uid, 'riba.distinta', context=c),
     }
-    
+
     def unlink(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids, context=context):
-            if distinta.state not in ('draft',  'cancel'):
-                raise osv.except_osv(_('Error'),_('Distinta %s is in state %s. You can only delete documents in state draft or canceled') % (distinta.name, distinta.state))
-        osv.osv.unlink(self, cr, uid, ids, context=context)
+            if distinta.state not in ('draft', 'cancel'):
+                raise orm.except_orm(_('Error'), _('Distinta %s is in state %s. You can only delete documents in state draft or canceled') % (distinta.name, distinta.state))
+        orm.Model.unlink(self, cr, uid, ids, context=context)
         return True
 
     def confirm(self, cr, uid, ids, context=None):
@@ -141,13 +144,13 @@ class riba_distinta(osv.osv):
         for distinta in self.browse(cr, uid, ids, context=context):
             line_pool.confirm(cr, uid, [line.id for line in distinta.line_ids], context=context)
         return True
-    
+
     def riba_new(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'draft',
-            }, context=context)
+        }, context=context)
         return True
-    
+
     def riba_cancel(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids, context=context):
             # TODO remove ervery other move
@@ -160,60 +163,60 @@ class riba_distinta(osv.osv):
                     line.accreditation_move_id.unlink()
         self.write(cr, uid, ids, {
             'state': 'cancel',
-            }, context=context)
+        }, context=context)
         return True
-    
+
     def riba_accepted(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids):
             self.write(cr, uid, ids, {
                 'state': 'accepted',
-                'date_accepted': distinta.date_accepted or fields.date.context_today(cr,uid,context),
-                }, context=context)
+                'date_accepted': distinta.date_accepted or fields.date.context_today(cr, uid, context),
+            }, context=context)
         return True
-    
+
     def riba_accredited(self, cr, uid, ids, context=None):
         for distinta in self.browse(cr, uid, ids):
             self.write(cr, uid, ids, {
                 'state': 'accredited',
-                'date_accreditation': distinta.date_accreditation or fields.date.context_today(cr,uid,context),
-                }, context=context)
+                'date_accreditation': distinta.date_accreditation or fields.date.context_today(cr, uid, context),
+            }, context=context)
         return True
-    
+
     def riba_paid(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'paid',
-            'date_paid': fields.date.context_today(cr,uid,context),
-            }, context=context)
+            'date_paid': fields.date.context_today(cr, uid, context),
+        }, context=context)
         return True
-    
+
     def riba_unsolved(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {
             'state': 'unsolved',
-            'date_unsolved': fields.date.context_today(cr,uid,context),
-            }, context=context)
+            'date_unsolved': fields.date.context_today(cr, uid, context),
+        }, context=context)
         return True
-        
+
     def test_accepted(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'confirmed':
                     return False
         return True
-        
+
     def test_unsolved(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'unsolved':
                     return False
         return True
-        
+
     def test_paid(self, cr, uid, ids, *args):
         for distinta in self.browse(cr, uid, ids):
             for line in distinta.line_ids:
                 if line.state != 'paid':
                     return False
         return True
-        
+
     def action_cancel_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state':'draft'})
         wf_service = netsvc.LocalService("workflow")
@@ -223,8 +226,8 @@ class riba_distinta(osv.osv):
         return True
 
 
-class riba_distinta_line(osv.osv):
-    
+class riba_distinta_line(orm.Model):
+
     def _get_line_values(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
@@ -244,17 +247,17 @@ class riba_distinta_line(osv.osv):
                     if not res[line.id]['invoice_number']:
                         res[line.id]['invoice_number'] = str(move_line.move_line_id.invoice.internal_number)
                     else:
-                        res[line.id]['invoice_number'] += ', '+str(move_line.move_line_id.invoice.internal_number)
+                        res[line.id]['invoice_number'] += ', ' + str(move_line.move_line_id.invoice.internal_number)
                     if move_line.move_line_id.invoice.cup:
                         if not res[line.id]['cup']:
                             res[line.id]['cup'] = str(move_line.move_line_id.invoice.cup)
                         else:
-                            res[line.id]['cup'] += ', '+str(move_line.move_line_id.invoice.cup)
+                            res[line.id]['cup'] += ', ' + str(move_line.move_line_id.invoice.cup)
                     if move_line.move_line_id.invoice.cig:
                         if not res[line.id]['cig']:
                             res[line.id]['cig'] = str(move_line.move_line_id.invoice.cig)
                         else:
-                            res[line.id]['cig'] += ', '+str(move_line.move_line_id.invoice.cig)
+                            res[line.id]['cig'] += ', ' + str(move_line.move_line_id.invoice.cig)
         return res
 
     def _reconciled(self, cr, uid, ids, name, args, context=None):
@@ -271,7 +274,8 @@ class riba_distinta_line(osv.osv):
 
     def move_line_id_payment_gets(self, cr, uid, ids, *args):
         res = {}
-        if not ids: return res
+        if not ids:
+            return res
         cr.execute('SELECT distinta_line.id, l.id '\
                    'FROM account_move_line l '\
                    'LEFT JOIN riba_distinta_line distinta_line ON (distinta_line.acceptance_move_id=l.move_id) '\
@@ -280,13 +284,14 @@ class riba_distinta_line(osv.osv):
                    (tuple(ids),))
         for r in cr.fetchall():
             res.setdefault(r[0], [])
-            res[r[0]].append( r[1] )
+            res[r[0]].append(r[1])
         return res
 
     # return the ids of the move lines which has the same account than the statement
     # whose id is in ids
     def move_line_id_payment_get(self, cr, uid, ids, *args):
-        if not ids: return []
+        if not ids:
+            return []
         result = self.move_line_id_payment_gets(cr, uid, ids, *args)
         return result.get(ids[0], [])
 
@@ -297,7 +302,7 @@ class riba_distinta_line(osv.osv):
         ok = True
         for id in res:
             cr.execute('select reconcile_id from account_move_line where id=%s', (id,))
-            ok = ok and  bool(cr.fetchone()[0])
+            ok = ok and bool(cr.fetchone()[0])
         return ok
 
     def _get_riba_line_from_move_line(self, cr, uid, ids, context=None):
@@ -312,7 +317,7 @@ class riba_distinta_line(osv.osv):
         line_ids = []
         if move:
             line_ids = self.pool.get('riba.distinta.line').search(
-                cr, uid, [('acceptance_move_id','in',move.keys())], context=context)
+                cr, uid, [('acceptance_move_id', 'in', move.keys())], context=context)
         return line_ids
 
     def _get_line_from_reconcile(self, cr, uid, ids, context=None):
@@ -325,7 +330,7 @@ class riba_distinta_line(osv.osv):
         line_ids = []
         if move:
             line_ids = self.pool.get('riba.distinta.line').search(
-                cr, uid, [('acceptance_move_id','in',move.keys())], context=context)
+                cr, uid, [('acceptance_move_id', 'in', move.keys())], context=context)
         return line_ids
 
     def _compute_lines(self, cr, uid, ids, name, args, context=None):
@@ -375,8 +380,9 @@ class riba_distinta_line(osv.osv):
             ('accrued', 'Accrued'),
             ('paid', 'Paid'),
             ('unsolved', 'Unsolved'),
-            ], 'State', select=True, readonly=True),
-        'reconciled': fields.function(_reconciled, string='Paid/Reconciled', type='boolean',
+        ], 'State', select=True, readonly=True),
+        'reconciled': fields.function(
+            _reconciled, string='Paid/Reconciled', type='boolean',
             store={
                 'riba.distinta.line': (lambda self, cr, uid, ids, c={}: ids, ['acceptance_move_id'], 50),
                 'account.move.line': (_get_riba_line_from_move_line, None, 50),
@@ -388,7 +394,7 @@ class riba_distinta_line(osv.osv):
         'cig': fields.function(_get_line_values, string="Cig", type='char', size=64, method=True, multi="line"),
         'cup': fields.function(_get_line_values, string="Cup", type='char', size=64, method=True, multi="line"),
     }
-    
+
     def confirm(self, cr, uid, ids, context=None):
         move_pool = self.pool.get('account.move')
         move_line_pool = self.pool.get('account.move.line')
@@ -397,7 +403,7 @@ class riba_distinta_line(osv.osv):
             journal = line.distinta_id.config.acceptance_journal_id
             total_credit = 0.0
             if not line.distinta_id.date_accepted:
-                raise osv.except_osv(_('Warning'), _('Missing Accepted Date'))
+                raise orm.except_orm(_('Warning'), _('Missing Accepted Date'))
             date_accepted = line.distinta_id.date_accepted
             move_id = move_pool.create(cr, uid, {
                 'ref': _('Ri.Ba. %s - line %s') % (line.distinta_id.name, line.sequence),
@@ -424,11 +430,11 @@ class riba_distinta_line(osv.osv):
                 }, context=context)
                 to_be_reconciled.append([move_line_id, riba_move_line.move_line_id.id])
             if total_credit < 0.0:
-                raise osv.except_osv(_('Warning'), _('Total of riba cannot be negative'))
+                raise orm.except_orm(_('Warning'), _('Total of riba cannot be negative'))
             move_line_pool.create(cr, uid, {
                 'name': 'Ri.Ba. %s-%s Rif. %s - %s' % (line.distinta_id.name, line.sequence, riba_move_line_name, line.partner_id.name),
                 'account_id': line.acceptance_account_id.id,
-                #'partner_id': line.partner_id.id,
+                #  'partner_id': line.partner_id.id,
                 'date_maturity': line.due_date,
                 'credit': 0.0,
                 'debit': total_credit,
@@ -441,13 +447,13 @@ class riba_distinta_line(osv.osv):
             line.write({
                 'acceptance_move_id': move_id,
                 'state': 'confirmed',
-                })
+            })
             wf_service.trg_validate(
                 uid, 'riba.distinta', line.distinta_id.id, 'accepted', cr)
         return True
 
 
-class riba_distinta_move_line(osv.osv):
+class riba_distinta_move_line(orm.Model):
 
     _name = 'riba.distinta.move.line'
     _description = 'Riba details'

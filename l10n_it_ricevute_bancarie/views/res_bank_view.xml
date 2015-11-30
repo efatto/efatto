@@ -41,9 +41,6 @@
                         <field name="cab"/>
                     </group>
                 </field>
-                <field name="city" position="after">
-                    <field name="province" />
-                </field>
             </field>
     	</record>
 

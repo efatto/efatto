@@ -27,7 +27,7 @@
 from openerp.osv import fields, orm
 from openerp import api, _, models
 from openerp.exceptions import Warning as UserError
-import openerp.addons.decimal_precision as dp
+#  import openerp.addons.decimal_precision as dp
 
 
 class AccountPaymentTerm(orm.Model):
@@ -71,10 +71,10 @@ class AccountMoveLine(orm.Model):
         'iban': fields.related(
             'partner_id', 'bank_ids', 'iban', type='char', string='IBAN',
             store=False),
-        'abi' : fields.related(
+        'abi': fields.related(
             'partner_id', 'bank_riba_id', 'abi', type='char', string='ABI',
             store=False),
-        'cab' : fields.related(
+        'cab': fields.related(
             'partner_id', 'bank_riba_id', 'cab', type='char', string='CAB',
             store=False),
 
@@ -119,8 +119,8 @@ class AccountMoveLine(orm.Model):
                 for riba_line in riba_distinta_line_obj.browse(cr, uid, riba_line_ids, context=context):
                     if riba_line.state in ['draft', 'cancel']:
                         riba_distinta_line_obj.unlink(cr, uid, riba_line_ids, context=context)
-                        #TODO: unlink in 'accepted' state too?
-        return super(account_move_line, self).unlink(cr, uid, ids, context=context, check=check)
+                        #  TODO: unlink in 'accepted' state too?
+        return super(AccountMoveLine, self).unlink(cr, uid, ids, context=context, check=check)
 
 
 class AccountInvoice(orm.Model):

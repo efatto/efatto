@@ -4,14 +4,14 @@
         <!-- ====================================================== -->
         <!--                 CONFIGURAZIONE RIBA FORM                 -->
         <!-- ====================================================== -->
-        <record model="ir.ui.view" id="view_riba_configurazione_form">
-            <field name="name">riba.configurazione.form</field>
-            <field name="model">riba.configurazione</field>
+        <record model="ir.ui.view" id="view_riba_configuration_form">
+            <field name="name">riba.configuration.form</field>
+            <field name="model">riba.configuration</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Ri.Ba. - Configurazione">
+                <form string="Ri.Ba. - Configuration">
                     <field name="name" />
-                    <field name="tipo" />
+                    <field name="type" />
                     <field name="bank_id" />
                     <field name="company_id"  widget="selection" groups="base.group_multi_company"/>
                     <group string="Salvo buon fine" attrs="{'invisible': [('tipo','!=','sbf')]}" colspan="4" col="4">
@@ -34,18 +34,18 @@
         <!-- ====================================================== -->
         <!--                 CONFIGURAZIONE RIBA ACTION                -->
         <!-- ====================================================== -->
-        <record model="ir.actions.act_window" id="action_riba_configurazione">
+        <record model="ir.actions.act_window" id="action_riba_configuration">
                 <field name="name">Ri.Ba. - Configuration</field>
                 <field name="type">ir.actions.act_window</field>
-                <field name="res_model">riba.configurazione</field>
+                <field name="res_model">riba.configuration</field>
                 <field name="view_type">form</field>
                 <field name="view_mode">tree,form</field>
-                <!--field name="view_id" ref="view_riba_configurazione_form"/-->
+                <!--field name="view_id" ref="view_riba_configuration_form"/-->
         </record>
         <!-- ====================================================== -->
         <!--                 CONFIGURAZIONE RIBA MENU                 -->
         <!-- ====================================================== -->
-        <menuitem action="action_riba_configurazione" id="menu_riba_configurazione" name="Ri.Ba. Configuration" parent="account.menu_configuration_misc"/>
+        <menuitem action="action_riba_configuration" id="menu_riba_configuration" name="Ri.Ba. Configuration" parent="account.menu_configuration_misc"/>
 
     </data>
 </openerp>

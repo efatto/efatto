@@ -217,10 +217,10 @@ class RibaAccreditation(orm.TransientModel):
                 not line.distinta_id.config.accreditation_account_id
             ):
                 context.update({'accruement': True, 'accreditation_accruement': True})
-        
+
         wizard = self.browse(cr, uid, ids)[0]
         if not wizard.accreditation_journal_id or not wizard.date_accreditation:
-            raise orm.except_orm_('Error'), _('Every account is mandatory'))
+            raise orm.except_orm(_('Error'), _('Every account is mandatory'))
         if not context.get('accruement', False):
             if not wizard.bank_account_id or not wizard.accreditation_account_id:
                 raise orm.except_orm(_('Error'), _('Bank account is mandatory for accreditation move'))
@@ -228,14 +228,14 @@ class RibaAccreditation(orm.TransientModel):
             if not wizard.acceptance_account_id and not wizard.accreditation_account_id:
                 raise orm.except_orm(_('Error'), _('Acceptance or accredit account is mandatory for accrue move'))
         date_accreditation = wizard.date_accreditation
-        
+
         move_vals = {
             'ref': _('Accreditation Ri.Ba. %s') % ref,
             'journal_id': wizard.accreditation_journal_id.id,
             'date': date_accreditation,
             'line_id': [
                 (0, 0, {
-                    'name':  _('Credit'),
+                    'name': _('Credit'),
                     'account_id': context.get(
                         'accruement', False) and
                         wizard.acceptance_account_id.id or
@@ -243,9 +243,9 @@ class RibaAccreditation(orm.TransientModel):
                     'credit': wizard.accreditation_amount,
                     'debit': 0.0,
                     'date': date_accreditation,
-                    }),
+                }),
                 (0, 0, {
-                    'name':  _('Bank'),
+                    'name': _('Bank'),
                     'account_id': context.get(
                         'accruement', False) and
                         not context.get('accreditation_accruement', False) and
@@ -254,9 +254,9 @@ class RibaAccreditation(orm.TransientModel):
                     'debit': wizard.bank_amount,
                     'credit': 0.0,
                     'date': date_accreditation,
-                    }),
-                ]
-            }
+                }),
+            ]
+        }
         move_id = move_pool.create(cr, uid, move_vals, context=context)
         accredited = True
         accrued = True

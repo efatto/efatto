@@ -2,6 +2,28 @@
 <openerp>
     <data>
  
+        <record id="hr_timesheet_line_tree_smart" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree.smart</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="replace">
+                    <field domain="[('type','in',['normal','contract']),('use_timesheets','=',1)]" name="account_id" context="{'default_use_timesheets': 1}" options="{'no_open': True, 'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+
+      <record id="hr_timesheet_line_form" model="ir.ui.view">
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+            <field name="name">hr.analytic.timesheet.form.smart</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="arch" type="xml">
+                <field name="account_id" position="replace">
+                    <field domain="[('type','in',['normal','contract']),('state', '&lt;&gt;', 'close'),('parent_id','!=',False)]" name="account_id" select="1" options="{'no_open': True, 'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+        
  <!-- invoice smart -->   
         <record id="invoice_form_smart" model="ir.ui.view">
             <field name="model">account.invoice</field>
@@ -67,7 +89,9 @@
 <record id="hr.menu_open_view_employee_list_my" model="ir.ui.menu">
     <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
 </record>
-        
+    
+    <!-- add inline menu smart -->
+    
         <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1_h" sequence="2" groups="group_smart"/>
         <menuitem action="project.action_view_task" id="menu_action_view_task_h" sequence="3" groups="group_smart"/>
         <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar_h" name="Calendar" sequence="3" groups="group_smart"/>
@@ -75,20 +99,25 @@
         <!--menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/-->
         <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6" groups="group_smart"/>
         <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart_h" sequence="7" groups="group_smart"/>
-        
+    
+    <!-- add drop down menu smart -->
+    
         <menuitem name="Smart" id="base.menu_main_sm" sequence="1" groups="group_smart"/>
-        <menuitem name="Customers" id="menu_smart" parent="base.menu_main_sm" sequence="1"/>
-        <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1" parent="menu_smart" sequence="3"/>
+        <menuitem name="Customers" id="menu_customers_smart" parent="base.menu_main_sm" sequence="1"/>
+        <menuitem action="base.action_partner_form" id="action_partner_form" parent="menu_customers_smart" sequence="2"/>
+        <menuitem action="account.action_invoice_tree1" id="account.menu_action_invoice_tree1" parent="menu_customers_smart" sequence="3"/>
+        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart" parent="menu_customers_smart" sequence="4"/>
+        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart" parent="menu_customers_smart" sequence="5"/>
+        
         <menuitem name="Tasks" id="menu_tasks_smart" parent="base.menu_main_sm" sequence="5"/>
         <menuitem action="project.action_view_task" id="menu_action_view_task" parent="menu_tasks_smart" sequence="5"/>
         <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar" name="Calendar" parent="menu_tasks_smart" sequence="5" />
+        
         <menuitem name="Expenses" id="menu_expenses_smart" sequence="15" parent="base.menu_main_sm"/>
-        <menuitem action="hr_expense.expense_all" id="hr_expense.menu_expense_all" name="Expenses" parent="menu_expenses_smart"/>
-        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="hr_timesheet.menu_hr_working_hours" parent="menu_expenses_smart"/>
-        <menuitem name="Projects" id="menu_projects_smart" sequence="25" parent="base.menu_main_sm"/>
-        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart" parent="menu_projects_smart"/>
-        <menuitem name="Invoicing" id="menu_invoiced_smart" parent="base.menu_main_sm" sequence="35"/>
-        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart" parent="menu_invoiced_smart" sequence="5"/>
-
+        <menuitem action="base.action_partner_supplier_form" id="action_partner_supplier_form" parent="menu_expenses_smart" sequence="1" />
+        <menuitem action="account.action_invoice_tree2" id="account.menu_action_invoice_tree2" parent="menu_expenses_smart" sequence="2" />
+        <menuitem action="hr_expense.expense_all" id="hr_expense.menu_expense_all" name="Expenses" parent="menu_expenses_smart" sequence="3" />
+        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours" parent="menu_expenses_smart" sequence="4" />
+        
    </data>
 </openerp>

@@ -27,16 +27,6 @@
 from openerp.osv import fields, orm
 from openerp import api, _, models
 from openerp.exceptions import Warning as UserError
-#  import openerp.addons.decimal_precision as dp
-
-
-class AccountPaymentTerm(orm.Model):
-    # flag riba utile a distinguere la modalità di pagamento
-    _inherit = 'account.payment.term'
-
-    _columns = {
-        'riba': fields.boolean('Riba'),
-    }
 
 
 class ResBankAddField(orm.Model):
@@ -62,9 +52,6 @@ class AccountMoveLine(orm.Model):
     _columns = {
         'distinta_line_ids': fields.one2many(
             'riba.distinta.move.line', 'move_line_id', "Dettaglio riba"),
-        'riba': fields.related(
-            'invoice', 'payment_term', 'riba', type='boolean', string='RiBa',
-            store=False),
         'unsolved_invoice_ids': fields.many2many(
             'account.invoice', 'invoice_unsolved_line_rel', 'line_id',
             'invoice_id', 'Unsolved Invoices'),

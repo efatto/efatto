@@ -28,7 +28,7 @@
 {
     'name': "Ricevute Bancarie",
     'version': "8.1.1.3.0",
-    'author': "Odoo Community Association (OCA)",
+    'author': "Odoo Community Association (OCA), SimplERP srl",
     'category': "Accounting & Finance",
     'website': "http://www.odoo-italia.org",
     'license': "AGPL-3",
@@ -38,7 +38,7 @@
         'account_due_list',
         'base_iban',
         'account_payment_term_month',
-        #  'account_bank',
+        'account_bank',
         'account_payment_line',
     ],
     'data': [

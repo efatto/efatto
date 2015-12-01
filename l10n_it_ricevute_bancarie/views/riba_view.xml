@@ -233,7 +233,7 @@
                     <separator orientation="vertical"/>
                     <field name="due_date" />
                     <separator orientation="vertical"/>
-                    <field name="acceptance_account_id" attrs="{'required':[('tipo','=','sbf')]}"/>
+                    <field name="acceptance_account_id" attrs="{'required':[('type','=','sbf')]}"/>
                     <separator orientation="vertical"/>
                     <field name="partner_id" domain="[('customer', '=', True)]"/>
                     <separator orientation="vertical"/>

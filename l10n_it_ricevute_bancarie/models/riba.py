@@ -218,7 +218,7 @@ class riba_distinta(orm.Model):
         return True
 
     def action_cancel_draft(self, cr, uid, ids, *args):
-        self.write(cr, uid, ids, {'state':'draft'})
+        self.write(cr, uid, ids, {'state': 'draft'})
         wf_service = netsvc.LocalService("workflow")
         for distinta_id in ids:
             wf_service.trg_delete(uid, 'riba.distinta', distinta_id, cr)

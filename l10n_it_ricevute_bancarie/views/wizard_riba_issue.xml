@@ -17,7 +17,7 @@
                     </group>
                     <group col="4" colspan="4">
                         <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
-                        <button string="Create" name="crea_distinta" type="object" icon="gtk-ok" colspan="2"/>
+                        <button string="Create" name="create_list" type="object" icon="gtk-ok" colspan="2"/>
                     </group>
                 </form>
             </field>

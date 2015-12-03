@@ -39,7 +39,6 @@
         'base_iban',
         'account_payment_term_month',
         'account_bank',
-        'account_payment_line',
     ],
     'data': [
         "views/res_bank_view.xml",

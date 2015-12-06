@@ -205,8 +205,8 @@ class RibaFileExport(orm.TransientModel):
         active_ids = context and context.get('active_ids', [])
         order_obj = self.pool['riba.distinta'].browse(
             cr, uid, active_ids, context=context)[0]
-        credit_bank = order_obj.config.bank_id
-        name_company = order_obj.config.company_id.partner_id.name
+        credit_bank = order_obj.config_id.bank_id
+        name_company = order_obj.config_id.company_id.partner_id.name
         if not credit_bank.iban:
             raise orm.except_orm('Error', _('No IBAN specified'))
         iban = credit_bank.iban.replace(" ", "")
@@ -221,13 +221,13 @@ class RibaFileExport(orm.TransientModel):
         dataemissione = datetime.datetime.now().strftime("%d%m%y")
         nome_supporto = datetime.datetime.now().strftime(
             "%d%m%y%H%M%S") + credit_sia
-        creditor_address = order_obj.config.company_id.partner_id
+        creditor_address = order_obj.config_id.company_id.partner_id
         creditor_city = creditor_address.city or ''
         if creditor_address.province:
             creditor_province = creditor_address.province.code
         if (
-            not order_obj.config.company_id.partner_id.vat
-            and not order_obj.config.company_id.partner_id.fiscalcode
+            not order_obj.config_id.company_id.partner_id.vat
+            and not order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise orm.except_orm(
                 'Error',
@@ -243,11 +243,11 @@ class RibaFileExport(orm.TransientModel):
             name_company,
             creditor_address.street or '',
             creditor_address.zip or '' + ' ' + creditor_city,
-            order_obj.config.company_id.partner_id.ref or '',
+            order_obj.config_id.company_id.partner_id.ref or '',
             (
-                order_obj.config.company_id.partner_id.vat
-                and order_obj.config.company_id.partner_id.vat[2:]
-                or order_obj.config.company_id.partner_id.fiscalcode),
+                order_obj.config_id.company_id.partner_id.vat
+                and order_obj.config_id.company_id.partner_id.vat[2:]
+                or order_obj.config_id.company_id.partner_id.fiscalcode),
         ]
         arrayRiba = []
         for line in order_obj.line_ids:

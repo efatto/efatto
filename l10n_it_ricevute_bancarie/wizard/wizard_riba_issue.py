@@ -51,7 +51,6 @@ class RibaIssue(models.TransientModel):
                 'bank_riba_id': bank_riba_id,
             }
             return riba_list_line.create(rdl)
-
         self.ensure_one()
         # Qui creiamo la distinta
         # wizard_obj = self.browse(cr, uid, ids)[0]
@@ -87,6 +86,7 @@ class RibaIssue(models.TransientModel):
         countme = 1
 
         for move_line in move_lines:
+            bank_riba_id = False
             if move_line.partner_id.bank_riba_id:
                 bank_riba_id = move_line.partner_id.bank_riba_id
             elif move_line.partner_id.bank_ids:

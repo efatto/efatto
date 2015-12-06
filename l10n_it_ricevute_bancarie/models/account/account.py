@@ -116,4 +116,6 @@ class AccountInvoice(orm.Model):
         'unsolved_move_line_ids': fields.many2many(
             'account.move.line', 'invoice_unsolved_line_rel', 'invoice_id',
             'line_id', 'Unsolved journal items'),
+        'cig': fields.char('CIG', size=64, help="Codice identificativo di gara"),
+        'cup': fields.char('CUP', size=64, help="Codice unico di Progetto")
     }

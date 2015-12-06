@@ -44,7 +44,7 @@
         <!-- ====================================================== -->
         <!--                     DISTINTA RIBA FORM                     -->
         <!-- ====================================================== -->
-        <record model="ir.ui.view" id="view_distinta_riba_form">
+        <record model="ir.ui.view" id="view_riba_distinta_form">
             <field name="name">riba.distinta.form</field>
             <field name="model">riba.distinta</field>
             <field name="arch" type="xml">

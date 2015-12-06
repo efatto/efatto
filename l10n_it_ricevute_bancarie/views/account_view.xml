@@ -111,6 +111,10 @@
                     <separator string="Unsolved Ri.Ba." colspan="4"/>
                     <field name="unsolved_move_line_ids" colspan="4" nolabel="1"/>
                 </field>
+                <field name="payment_term" position="after">
+                        <field name="cig" />
+                        <field name="cup" />
+                </field>
             </field>
         </record>
 

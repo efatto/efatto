@@ -118,7 +118,7 @@ class riba_distinta(orm.Model):
         #  'accreditation_move_id': fields.many2one('account.move', 'Accreditation Entry', readonly=True),
         'payment_ids': fields.function(_get_payment_ids, relation='account.move.line', type="many2many", string='Payments'),
         'unsolved_move_ids': fields.function(_get_unsolved_move_ids, type='many2many', relation='account.move', method=True, string="Unsolved Entries"),
-        'type': fields.related('config', 'type', type='char', size=32, string='Type', readonly=True),
+        'type': fields.related('config_id', 'type', type='char', size=32, string='Type', readonly=True),
     }
 
     _order = 'name desc'
@@ -400,7 +400,7 @@ class riba_distinta_line(orm.Model):
         move_line_pool = self.pool.get('account.move.line')
         wf_service = netsvc.LocalService("workflow")
         for line in self.browse(cr, uid, ids, context=context):
-            journal = line.distinta_id.config.acceptance_journal_id
+            journal = line.distinta_id.config_id.acceptance_journal_id
             total_credit = 0.0
             if not line.distinta_id.date_accepted:
                 raise orm.except_orm(_('Warning'), _('Missing Accepted Date'))

@@ -3,6 +3,7 @@
     <data>
         
         <template id="report_accountinvoice_simplerp_doc">
+          <t t-call="account_invoice_report_simplerp.external_layout">
           <div class="page">
             <div class="row">
             <div class="col-xs-12">
@@ -140,6 +141,7 @@
                 </div>
             </div>
           </div>
+          </t>
         </template>
         <template id="report_accountinvoice_simplerp">
             <t t-call="report.html_container">

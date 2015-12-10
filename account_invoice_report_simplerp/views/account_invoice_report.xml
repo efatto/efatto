@@ -6,10 +6,12 @@
             string="Invoice SimplERP"
             model="account.invoice" 
             report_type="qweb-pdf"
-            attachment_use="False"
             file="account_invoice_report_simplerp.report_accountinvoice_simplerp" 
             name="account_invoice_report_simplerp.report_accountinvoice_simplerp" 
         />
+        <record id="accountinvoices_simplerp" model="ir.actions.report.xml">
+            <field name="download_filename">Invoice ${o.number}.pdf</field>
+            <field name="paperformat_id" ref="account_invoice_report_simplerp.paperformat_euro_invoice"/>
+        </record>
     </data>
-
 </openerp>

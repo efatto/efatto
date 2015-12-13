@@ -16,38 +16,7 @@
             <field name="header_spacing">40</field>
             <field name="dpi">90</field>
         </record>
-    <template id="report.style_inh" inherit_id="report.style">
-    <xpath expr="." position="inside">    
-        <style type="text/css">
-            .table td {
-                border: 1px solid black !important;
-            }
-            .table th {
-                border: 1px solid black !important;
-                background-color: lightblue;
-            }
-            .invoice_tbody td {
-                border: 1px solid black !important;
-            }
-            .invoice_tax th {
-                border-bottom: 1px solid black !important;
-                border-right: 0px white !important;
-                border-left: 0px white !important;
-                background-color: white;
-            }
-            .invoice_tax td {
-                border-bottom: 1px solid black !important;
-                background-color: white;
-            }
-            .invoice_tax {
-                margin-bottom: 0px;
-                margin-top: 0px;
-                border-right: 1px solid black;
-                border-left: 1px solid black;
-            }
-        </style>
-    </xpath>
-    </template>
+
       <template id="account_invoice_report_simplerp.external_layout">
           <!-- Multicompany -->
           <t t-if="o and 'company_id' in o">

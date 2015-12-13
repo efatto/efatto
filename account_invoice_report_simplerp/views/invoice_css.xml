@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <template id="invoicereport_simplerp" name="invoice report simplerp" inherit_id="report.minimal_layout">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/account_invoice_report_simplerp/static/src/css/invoice_simplerp.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

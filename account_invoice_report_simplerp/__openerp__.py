@@ -40,6 +40,8 @@
         'views/report.paperformat_euro_invoice.xml',
         'views/account_invoice_report.xml',
         'views/account.report_invoice_document.xml',
+        'views/invoice_css.xml',
+        #'views/invoice_subst.xml',
     ],
     "demo": [],
     "test": [

@@ -1,0 +1,28 @@
+.table td {
+    border: 1px solid black !important;
+    page-break-inside: avoid;
+}
+.table th {
+    border: 1px solid black !important;
+    background-color: lightblue;
+    page-break-inside: avoid;
+}
+.invoice_tbody td {
+    border: 1px solid black !important;
+    page-break-inside: avoid;
+}
+.invoice_tax th {
+    border: 1px solid black !important;
+    background-color: white;
+    page-break-inside: avoid;
+}
+.invoice_tax td {
+    border: 1px solid black !important;
+    background-color: white;
+    page-break-inside: avoid;
+}
+.invoice_tax {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border: 1px solid black;
+}

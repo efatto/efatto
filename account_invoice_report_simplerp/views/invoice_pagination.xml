@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<template id="report_minimal_layout" inherit_id="report.minimal_layout" >
+            <xpath expr="//head" position="inside">
+              <script type="text/javascript" src="/account_invoice_report_simplerp/static/src/js/pagination.js"></script>
+            </xpath>
+
+            <xpath expr="//body" position="attributes">
+                <attribute t-translation="off" name="onload">subst(); pagination_hide();</attribute>
+            </xpath>
+        </template>
+        
+        <template id="report_style_simplerp" name="style invoice simplerp" inherit_id="report.style">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/account_invoice_report_simplerp/static/src/css/invoice_simplerp.css"/>
+                <script type="text/javascript" src="/account_invoice_report_simplerp/static/src/js/hid.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

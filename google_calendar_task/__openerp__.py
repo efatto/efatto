@@ -18,8 +18,8 @@
 #
 #
 {
-    'name': 'google_calendar_task',
-    'version': '4.0.0.0',
+    'name': 'Integrate task with Google Calendar',
+    'version': '8.0.0.0.1',
     'category': 'other',
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',

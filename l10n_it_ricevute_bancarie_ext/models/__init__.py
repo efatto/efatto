@@ -17,6 +17,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+from . import res_bank
 from . import account
-from . import hr
-from . import project
+from . import riba

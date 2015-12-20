@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="report_account_smart">
+    <t t-call="report.html_container">
+     <div class="page">
+        <table style="width:100%; font-size: small;" cellspacing="0">
+            <thead>
+                <tr class="first_th_row">
+                   <td colspan="7" style="padding:10;">Invoice Report</td>
+                </tr>
+                    <tr style="page-break-inside: avoid">
+                        <th class="left_without_line">DATA FT.</th>
+                        <th class="left_without_line">NUM. FT.</th>
+                        <th class="left_without_line">RAGIONE SOCIALE</th>
+                        <th class="left_without_line">P.IVA</th>
+                        <th class="right_without_line">IMPONIBILE</th>
+                        <th class="right_without_line">IVA</th>
+                        <th class="right_without_line">TOTALE</th>
+                    </tr>
+                    <tr style="page-break-inside: avoid">
+                        <th class="left_without_line"></th>
+                        <th class="left_without_line"></th>
+                        <th class="left_without_line">DESCRIZIONE</th>
+                        <th class="left_without_line">CONTO</th>
+                        <th class="right_without_line">IMPONIBILE</th>
+                        <th class="right_without_line">QUANTITÀ</th>
+                        <th class="right_without_line"></th>
+                    </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="docs" t-as="o">
+                    <tr>
+                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-field="o.date_invoice"/></td>
+                        <td class="left_without_line"><span t-field="o.number"/></td>
+                        <td class="left_without_line"><span t-field="o.partner_id.name"/></td>
+                        <td class="left_without_line"><span t-field="o.partner_id.vat"/></td>
+                        <td class="right_without_line"><span t-field="o.amount_untaxed"/></td>
+                        <td class="right_without_line"><span t-field="o.amount_tax"/></td>
+                        <td class="right_without_line"><span t-field="o.amount_total"/></td>
+                    </tr>
+                    <t t-foreach="o.invoice_line" t-as="line">
+                        <tr>
+                            <td class="left_without_line_bold"><div style="page-break-inside: avoid"/></td>
+                            <td class="left_without_line"></td>
+                            <td class="left_without_line"><span t-field="line.name"/></td>
+                            <td class="left_without_line"><span t-field="line.account_id.name"/></td>
+                            <td class="right_without_line"><span t-field="line.price_subtotal"/></td>
+                            <td class="right_without_line"><span t-field="line.quantity"/></td>
+                            <td class="right_without_line"></td>
+                        </tr>
+                    </t>
+                </t>
+            </tbody>
+        </table>
+     </div>
+    </t>
+</template>     
+
+</data>
+</openerp>

@@ -17,6 +17,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from . import account
-from . import hr
-from . import project
+
+from openerp.osv import fields, orm
+from openerp import api, _, models
+from openerp.exceptions import Warning as UserError
+
+
+class AccountMoveLine(orm.Model):
+    _inherit = "account.move.line"
+
+    _columns = {
+        'abi': fields.related(
+            'partner_id', 'bank_riba_id', 'abi', type='char', string='ABI',
+            store=False),
+        'cab': fields.related(
+            'partner_id', 'bank_riba_id', 'cab', type='char', string='CAB',
+            store=False),
+
+    }

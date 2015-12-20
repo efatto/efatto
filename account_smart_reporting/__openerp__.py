@@ -17,6 +17,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from . import account
-from . import hr
-from . import project
+{
+    'name': 'Account smart reporting',
+    'version': '8.0.0.0.0',
+    'category': 'other',
+    'author': 'SimplERP SRL',
+    'website': 'http://www.simplerp.it',
+    'license': 'AGPL-3',
+    'depends': [
+        'account',
+        'report',
+    ],
+    'data': [
+        'views/account_config_view.xml',
+        'views/account_report.xml',
+        'views/account_sales_report_mail.xml',
+        #'views/hr_expense_report_mail.xml',
+        'views/report.account_report_smart.xml',
+    ],
+    'installable': True
+}

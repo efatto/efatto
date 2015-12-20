@@ -17,6 +17,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from . import account
-from . import hr
-from . import project
+{
+    'name': 'l10n_it_ricevute_bancarie_ext',
+    'version': '8.1.0.0.0',
+    'category': 'other',
+    'author': 'SimplERP SRL',
+    'website': 'http://www.simplerp.it',
+    'license': 'AGPL-3',
+    'depends': [
+        'account_bank',
+        'account_payment_term_month',
+        'l10n_it_ricevute_bancarie',
+    ],
+    'data': [
+        'views/account_view.xml',
+        'views/partner_view.xml',
+        'views/res_bank_view.xml',
+        'views/riba_view.xml',
+        'views/wizard_accreditation.xml',
+    ],
+    'installable': True
+}

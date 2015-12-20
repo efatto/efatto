@@ -20,7 +20,7 @@
 
 {
     'name': 'Italy - SimplERP Srl profile Smart',
-    'version': '4.0.0.1',
+    'version': '8.0.0.0.1',
     'category': 'other',
     'description': """
     Profilatura SimplERP
@@ -48,12 +48,10 @@
     "data": [
         'security/profile_smart_security.xml',
         #'security/ir.model.access.csv',
-        'views/account_invoice_view.xml',
-        'views/hr_view.xml',
-        'hr_workflow.xml',
         'views/account_analytic_view.xml',
+        'views/hr_view.xml',
+        'views/hr_workflow.xml',
+        'views/smart_view.xml',
     ],
-    "demo": [],
-    "active": False,
     "installable": True,
 }

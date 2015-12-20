@@ -1,10 +1,12 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
+#    This module copyright (C) 2013 B-Informed B.V. (<http://b-informed.nl>).
+#    Author: Roel Adriaans
 #
-#    Copyright (C) 2015 Sergio Corato
-#    Copyright (C) 2014 Didotech srl
+#	 This module has been translated/tested/edited to fit SimplERP
+#	 requirements and features (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,28 +22,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    "name": 'Account chart autoconfigurable',
-    "version": "4.0.1.1",
-    "depends": [
-        'base_vat',
-        'account',
-        'l10n_it_account',
-    ],
-    "author": "Sergio Corato",
-    "description": """
-    Autoconfigure tax pdc.
+    'name': 'Disabilita indicizzazione sito web',
+    'summary': 'Modifica il file robots.txt affinchè il sito web non venga indicizzato',
 
+    'version': '1.0',
+    'author': 'B-Informed B.V.',
+    'complexity': 'normal',
+    'description': """
+Questo modulo modifica il file robots.txt al fine di bloccare l'indicizzazione da parte dei motori di ricerca.
+
+Questa funzionalità risulta estremamente utile nell'integrazione di sistemi di test o siti web che non si desidera vengano indicizzati.
     """,
-    "license": "AGPL-3",
-    "category": "Localisation/Italy",
-    'website': 'http://www.simplerp.it',
-    'data': [
-        'data/account_tax_view.xml',
-        'data/payment_type_view.xml',
+    'category': 'Website',
+    'depends': [
+        'website',
     ],
-    'demo': [],
-    'installable': True,
-    'active': False,
+    'data': [
+        'views/disable_robots.xml',
+    ],
+    'auto_install': False,
 }

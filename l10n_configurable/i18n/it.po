@@ -1,120 +1,169 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_configurable
+#	* l10n_configurable
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-17 21:06+0000\n"
-"PO-Revision-Date: 2014-04-17 23:11+0100\n"
-"Last-Translator: Sergio Corato <sergiocorato@gmail.com>\n"
+"POT-Creation-Date: 2015-12-08 16:08+0000\n"
+"PO-Revision-Date: 2015-12-08 16:08+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_configurable
-#: field:account.tax.code,vat_statement_type:0
-#: field:account.tax.code.template,vat_statement_type:0
-msgid "Type"
-msgstr "Tipo"
-
-#. module: l10n_it_configurable
-#: help:account.tax.code,vat_statement_sign:0
-#: help:account.tax.code.template,vat_statement_sign:0
-msgid "If tax code period sum is usually negative, set '-1' here"
-msgstr "Se la somma dell'imposta nel periodo è usualmente di segno negativo, impostare '-1' qui"
-
-#. module: l10n_it_configurable
-#: constraint:account.tax.code:0
-msgid "Error ! You can not create recursive accounts."
-msgstr "Errore! Non puoi creare conti ricorsivi"
-
-#. module: l10n_it_configurable
-#: field:account.tax.code.template,exclude_from_registries:0
-msgid "Exclude from VAT registries"
-msgstr "Escludi dai registri IVA"
-
-#. module: l10n_it_configurable
-#: field:account.tax.code.template,is_base:0
-msgid "Is base"
-msgstr "Imponibile"
-
-#. module: l10n_it_configurable
-#: help:account.tax.code.template,is_base:0
-msgid "This tax code is used for base amounts (field used by VAT registries)"
-msgstr "Questo codice imposta è usato per l'imponibile (per la stampa dei registri IVA)"
-
-#. module: l10n_it_configurable
-#: model:ir.model,name:l10n_it_configurable.model_account_tax_code
-msgid "Tax Code"
-msgstr "Codice imposta"
-
-#. module: l10n_it_configurable
-#: help:account.tax.code,vat_statement_type:0
-#: help:account.tax.code.template,vat_statement_type:0
-msgid "This establish whether amount will be loaded as debit or credit"
-msgstr "Questo stabilisce se il saldo debba essere caricato come debito o come credito"
-
-#. module: l10n_it_configurable
+#. module: l10n_configurable
 #: field:account.tax.code,vat_statement_account_id:0
 #: field:account.tax.code.template,vat_statement_account_id:0
 msgid "Account used for VAT statement"
 msgstr "Conto utilizzato per la liquidazione IVA"
 
-#. module: l10n_it_configurable
-#: field:account.tax,auto_invoice_tax_id:0
-#: field:account.tax.template,auto_invoice_tax_id:0
-msgid "Tax code for reverse charge invoice"
-msgstr "Codice imposta per fatture in reverse charge"
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Bonifico Bancario"
+msgstr "Bonifico Bancario"
 
-#. module: l10n_it_configurable
-#: selection:account.tax.code,vat_statement_type:0
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Bonifico Postale"
+msgstr "Bonifico Postale"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Carta di Credito"
+msgstr "Carta di Credito"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Contanti"
+msgstr "Contanti"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Contrassegno"
+msgstr "Contrassegno"
+
+#. module: l10n_configurable
 #: selection:account.tax.code.template,vat_statement_type:0
 msgid "Credit"
 msgstr "Credito"
 
-#. module: l10n_it_configurable
-#: model:ir.model,name:l10n_it_configurable.model_account_tax_template
-msgid "account.tax.template"
-msgstr "account.tax.template"
+#. module: l10n_configurable
+#: selection:account.tax.code.template,vat_statement_type:0
+msgid "Debit"
+msgstr "Debito"
 
-#. module: l10n_it_configurable
+#. module: l10n_configurable
+#: field:account.tax.code,exclude_from_registries:0
+#: field:account.tax.code.template,exclude_from_registries:0
+msgid "Exclude from VAT registries"
+msgstr "Escludi dai registri IVA"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "F24"
+msgstr "F24"
+
+#. module: l10n_configurable
+#: help:account.tax.code,vat_statement_sign:0
+#: help:account.tax.code.template,vat_statement_sign:0
+msgid "If tax code period sum is usually negative, set '-1' here"
+msgstr "Se il saldo del conto imposta solitamente è negativo, impostare -1"
+
+#. module: l10n_configurable
+#: field:account.tax.code.template,is_base:0
+msgid "Is base"
+msgstr "Imponibile"
+
+#. module: l10n_configurable
+#: model:ir.model,name:l10n_configurable.model_account_payment_term
+msgid "Payment Term"
+msgstr "Termine di pagamento"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Paypal"
+msgstr "Paypal"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Ricevuta Bancaria"
+msgstr "Ricevuta Bancaria"
+
+#. module: l10n_configurable
+#: selection:account.payment.term,type:0
+msgid "Rimessa Diretta"
+msgstr "Rimessa Diretta"
+
+#. module: l10n_configurable
+#: field:account.tax.code,withholding_type:0
+#: field:account.tax.code.template,withholding_type:0
+msgid "Ritenuta d'acconto"
+msgstr "Ritenuta d'acconto"
+
+#. module: l10n_configurable
 #: field:account.tax.code,vat_statement_sign:0
 #: field:account.tax.code.template,vat_statement_sign:0
 msgid "Sign used in statement"
 msgstr "Segno usato nelle scritture"
 
-#. module: l10n_it_configurable
-#: selection:account.tax.code,vat_statement_type:0
-#: selection:account.tax.code.template,vat_statement_type:0
-msgid "Debit"
-msgstr "Debito"
+#. module: l10n_configurable
+#: model:ir.model,name:l10n_configurable.model_account_tax
+msgid "Tax"
+msgstr "Imposta"
 
-#. module: l10n_it_configurable
-#: constraint:account.tax.code.template:0
-msgid "Error ! You can not create recursive Tax Codes."
-msgstr "Errore! Non puoi creare un Codice di imposta ricorsivo"
+#. module: l10n_configurable
+#: model:ir.model,name:l10n_configurable.model_account_tax_code
+msgid "Tax Code"
+msgstr "Codice imposta"
 
-#. module: l10n_it_configurable
-#: sql_constraint:account.tax:0
-msgid "Tax Name must be unique per company!"
-msgstr "Il nome dell'imposta deve essere unico per azienda!"
-
-#. module: l10n_it_configurable
-#: model:ir.model,name:l10n_it_configurable.model_account_tax_code_template
+#. module: l10n_configurable
+#: model:ir.model,name:l10n_configurable.model_account_tax_code_template
 msgid "Tax Code Template"
 msgstr "Template di codici tassa"
 
-#. module: l10n_it_configurable
-#: model:ir.model,name:l10n_it_configurable.model_wizard_multi_charts_accounts
-msgid "wizard.multi.charts.accounts"
-msgstr "wizard.multi.charts.accounts"
+#. module: l10n_configurable
+#: field:account.tax,auto_invoice_tax_id:0
+#: field:account.tax.template,auto_invoice_tax_id:0
+msgid "Tax code for reverse charge invoice"
+msgstr "Codice imposta per fatture in reverse charge"
 
-#. module: l10n_it_configurable
-#: model:ir.model,name:l10n_it_configurable.model_account_tax
-msgid "account.tax"
-msgstr "account.tax"
+#. module: l10n_configurable
+#: model:ir.model,name:l10n_configurable.model_account_tax_template
+msgid "Templates for Taxes"
+msgstr "Modelli per tasse"
+
+#. module: l10n_configurable
+#: field:account.tax.code,withholding_payment_term_id:0
+#: field:account.tax.code.template,withholding_payment_term_id:0
+msgid "Termine di pagamento ritenuta d'acconto"
+msgstr "Termine di pagamento ritenuta d'acconto"
+
+#. module: l10n_configurable
+#: help:account.tax.code,vat_statement_account_id:0
+msgid "The tax code balance will be associated to this account after selecting the period in VAT statement"
+msgstr "Il saldo del codice IVA sarà associato a questo conto dopo avere selezionato il periodo nella liquidazione IVA"
+
+#. module: l10n_configurable
+#: help:account.tax.code.template,vat_statement_type:0
+msgid "This establish whether amount will be loaded as debit or credit"
+msgstr "Questo stabilisce se il saldo debba essere caricato come debito o come credito"
+
+#. module: l10n_configurable
+#: help:account.tax.code.template,is_base:0
+msgid "This tax code is used for         base amounts (field used by VAT registries)"
+msgstr "Questo codice IVA è usato per         l'imponibile (campo usato dai registri IVA)"
+
+#. module: l10n_configurable
+#: field:account.tax.code.template,vat_statement_type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_configurable
+#: field:account.payment.term,type:0
+msgid "Type of payment"
+msgstr "Tipo di pagamento"
 

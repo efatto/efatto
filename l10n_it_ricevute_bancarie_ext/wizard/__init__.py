@@ -17,6 +17,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from . import account
-from . import hr
-from . import project
+from . import wizard_accreditation
+from . import wizard_riba_file_export
+from . import wizard_riba_issue

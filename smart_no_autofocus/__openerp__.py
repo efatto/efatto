@@ -17,6 +17,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from . import account
-from . import hr
-from . import project
+{
+    'name': 'Smart remove autofocus',
+    'version': '8.0.0.0.0',
+    'category': 'other',
+    'author': 'SimplERP SRL',
+    'website': 'http://www.simplerp.it',
+    'license': 'AGPL-3',
+    'depends': [
+    ],
+    'data': [
+        'views/focus.xml',
+    ],
+    'installable': True
+}

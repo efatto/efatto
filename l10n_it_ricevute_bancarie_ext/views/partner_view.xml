@@ -18,9 +18,6 @@
                         <field name="group_riba"/>
                         <field name="bank_riba_id" colspan="4"/>
                     </group>
-                    <group>
-                        <field name="company_bank_id" domain="[('company_id', '=', company_id), ('state', '=', 'iban')]" />
-                    </group>
                 </field>
             </field>
         </record>

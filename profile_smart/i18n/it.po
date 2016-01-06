@@ -190,3 +190,7 @@ msgstr "base.group_account_user"
 msgid "base.group_account_user,profile_smart.group_hidden"
 msgstr "base.group_account_user,profile_smart.group_hidden"
 
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_payments_smart
+msgid "Due list"
+msgstr "Scadenzario"

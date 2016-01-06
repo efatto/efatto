@@ -129,6 +129,7 @@
         <menuitem action="project.action_view_task" id="menu_action_view_task_smart" sequence="3" groups="group_smart"/>
         <menuitem name="Calendar" action="calendar.action_calendar_event" id="mail_menu_calendar_smart" sequence="3" groups="group_smart"/>
         <menuitem name="Expenses" action="account.action_invoice_tree2" id="menu_action_invoice_tree2_smart" sequence="4" groups="group_smart"/>
+        <menuitem name="Due list" action="account_due_list.action_invoice_payments" id="menu_action_invoice_payments_smart" sequence="5"/>
         <!--menuitem action="hr_expense.expense_all" id="menu_expense_all_h" name="Expenses" sequence="4" groups="group_smart"/-->
         <!--menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/-->
         <!--menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6" groups="group_smart"/-->

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 07:16+0000\n"
-"PO-Revision-Date: 2015-10-08 07:16+0000\n"
+"POT-Creation-Date: 2016-01-05 23:56+0000\n"
+"PO-Revision-Date: 2016-01-05 23:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,47 +21,115 @@ msgid "Accounting"
 msgstr "Contabilità"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.account_analytic_def_account_smart
-#: model:ir.ui.menu,name:profile_smart.account_analytic_def_account_smart_h
+#: field:account.analytic.account,alias_mail:0
+msgid "Alias"
+msgstr "Alias"
+
+#. module: profile_smart
+#: model:ir.model,name:profile_smart.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Conto Analitico"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.account_analytic_def_account_smart_dd
 msgid "Analytic Accounts"
 msgstr "Conti progetti"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1
-#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1_h
-msgid "Customer Invoices"
-msgstr "Fatture"
+#: view:hr.expense.expense:profile_smart.view_expenses_form
+msgid "Approve"
+msgstr "Approva"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_smart
+#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar_smart
+#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar_smart_dd
+msgid "Calendar"
+msgstr "Calendario"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1_smart_dd
+msgid "Customer Invoices"
+msgstr "Fatture Clienti"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.action_partner_form_smart_dd
+#: model:ir.ui.menu,name:profile_smart.menu_customers_smart
 msgid "Customers"
 msgstr "Clienti"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_expense_all_h
+#: model:ir.model,name:profile_smart.model_hr_expense_expense
+msgid "Expense"
+msgstr "Spesa"
+
+#. module: profile_smart
+#: model:ir.model,name:profile_smart.model_hr_expense_line
+msgid "Expense Line"
+msgstr "Riga Spesa"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree2_smart
+#: model:ir.ui.menu,name:profile_smart.menu_expense_all_smart_dd
 #: model:ir.ui.menu,name:profile_smart.menu_expenses_smart
 msgid "Expenses"
 msgstr "Spese"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_invoiced_smart
-msgid "Invoicing"
-msgstr "Fatturazione"
+#: view:hr.expense.expense:profile_smart.view_hr_expense_filter_smart
+msgid "Expenses of current month"
+msgstr "Expenses of current month"
+
+#. module: profile_smart
+#: view:hr.expense.expense:profile_smart.view_hr_expense_filter_smart
+msgid "Expenses of last month"
+msgstr "Expenses of last month"
+
+#. module: profile_smart
+#: model:ir.model,name:profile_smart.model_account_journal
+msgid "Journal"
+msgstr "Sezionale"
+
+#. module: profile_smart
+#: view:hr.expense.expense:profile_smart.view_hr_expense_filter_smart
+msgid "Last month"
+msgstr "Last month"
+
+#. module: profile_smart
+#: field:hr.expense.line,date_maturity:0
+msgid "Maturity date"
+msgstr "Maturity date"
 
 #. module: profile_smart
 #: view:account.invoice:profile_smart.invoice_form_smart
+#: view:account.invoice:profile_smart.supplier_invoice_form_smart
 msgid "Other Info"
 msgstr "Altre informazioni"
 
 #. module: profile_smart
+#: field:hr.expense.line,partner_id:0
+msgid "Partner id"
+msgstr "Partner id"
+
+#. module: profile_smart
 #: view:account.invoice:profile_smart.invoice_form_smart
+#: view:account.invoice:profile_smart.supplier_invoice_form_smart
 msgid "Payments"
 msgstr "Pagamenti"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_projects_smart
-msgid "Projects"
+#: model:ir.model,name:profile_smart.model_project_project
+msgid "Project"
 msgstr "Progetti"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree1_smart
+msgid "Sales"
+msgstr "Vendite"
+
+#. module: profile_smart
+#: view:hr.expense.expense:profile_smart.view_expenses_form
+msgid "Set to Draft"
+msgstr "Imposta come Bozza"
 
 #. module: profile_smart
 #: model:res.groups,name:profile_smart.group_hidden
@@ -69,22 +137,42 @@ msgid "Show normal menus"
 msgstr "Mostra i menu"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_action_view_task
-#: model:ir.ui.menu,name:profile_smart.menu_action_view_task_h
+#: model:ir.ui.menu,name:profile_smart.menu_action_invoice_tree2_smart_dd
+msgid "Supplier Invoices"
+msgstr "Fatture fornitori"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.action_partner_supplier_form_smart_dd
+msgid "Suppliers"
+msgstr "Fornitori"
+
+#. module: profile_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_view_task_smart
+#: model:ir.ui.menu,name:profile_smart.menu_action_view_task_smart_dd
 #: model:ir.ui.menu,name:profile_smart.menu_tasks_smart
 msgid "Tasks"
 msgstr "Attività"
 
 #. module: profile_smart
+#: view:hr.expense.expense:profile_smart.view_hr_expense_filter_smart
+msgid "This month"
+msgstr "This month"
+
+#. module: profile_smart
 #: model:ir.ui.menu,name:profile_smart.menu_action_hr_tree_invoiced_all_smart
-#: model:ir.ui.menu,name:profile_smart.menu_action_hr_tree_invoiced_all_smart_h
+#: model:ir.ui.menu,name:profile_smart.menu_action_hr_tree_invoiced_all_smart_dd
 msgid "Time & Materials to Invoice"
 msgstr "Da fatturare"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.menu_hr_working_hours_h
+#: model:ir.ui.menu,name:profile_smart.menu_hr_working_hours_smart_dd
 msgid "Timesheet Activities"
 msgstr "Ore lavorate"
+
+#. module: profile_smart
+#: help:account.analytic.account,alias_mail:0
+msgid "To be filled with text prior to @ to create an internal email associated with this project. Incoming emails are automatically synchronized with Tasks."
+msgstr "Indicare il testo prima della @ per creare una mail interna associata con questo progetto. Le email in ingresso saranno automaticamente sincronizzate con le Attività."
 
 #. module: profile_smart
 #: model:res.groups,name:profile_smart.group_smart
@@ -92,13 +180,13 @@ msgid "User Smart"
 msgstr "Utente Smart"
 
 #. module: profile_smart
-#: view:account.invoice:profile_smart.invoice_form_smart
 #: view:hr.expense.expense:profile_smart.view_expenses_form
 msgid "base.group_account_user"
 msgstr "base.group_account_user"
 
 #. module: profile_smart
-#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar
-#: model:ir.ui.menu,name:profile_smart.mail_menu_calendar_h
-msgid "Calendar"
-msgstr "Calendario"
+#: view:account.invoice:profile_smart.invoice_form_smart
+#: view:account.invoice:profile_smart.supplier_invoice_form_smart
+msgid "base.group_account_user,profile_smart.group_hidden"
+msgstr "base.group_account_user,profile_smart.group_hidden"
+

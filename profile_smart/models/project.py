@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 
 
 class project(models.Model):
@@ -34,45 +34,66 @@ class account_analytic_account(models.Model):
     _inherit = "account.analytic.account"
 
     def _get_100_percent(self, cr, uid, context):
-        ids = self.pool.get('hr_timesheet_invoice.factor').search(
-            cr, uid, [('name', 'ilike', '100')], context=context)
-        return ids[0]
-
-    def project_create(self, cr, uid, analytic_account_id, vals, context=None):
-        project = super(account_analytic_account, self).project_create(cr, uid, analytic_account_id, vals, context=context)
-        project_obj = self.pool['project.project']
-        partner_obj = self.pool['res.partner']
-        if project and vals.get('alias_mail', False):
-            project_obj.write(cr, uid, [project], {'alias_name': vals.get('alias_mail')}, context=context)
-            project = project_obj.browse(cr, uid, [project], context=context)
-            email = project.alias_id.name_get()[0][1]
-            partner_id = partner_obj.search(cr, uid, [('email', '=', email)], context=context)
-            if not partner_id:
-                partner_obj.create(cr, uid, {'name': email, 'email': email, 'customer': False}, context=context)
-            return project
-        elif project:
-            return project
+        data_obj = self.pool.get('ir.model.data')
+        data_id = data_obj._get_id(cr, uid, 'hr_timesheet_invoice', 'timesheet_invoice_factor1')
+        if data_id:
+            return data_obj.browse(cr, uid, data_id).res_id
         return False
 
-# TODO: project write
+    def project_create(self, cr, uid, analytic_account_id, vals, context=None):
+        vals['use_tasks'] = True
+        project_id = super(account_analytic_account, self).project_create(
+            cr, uid, analytic_account_id, vals, context=context)
+        project_obj = self.pool['project.project']
+        project = project_obj.browse(cr, uid, [project_id], context=context)
+        partner_obj = self.pool['res.partner']
+        analytic_obj = self.pool['account.analytic.account']
+        if project_id and vals.get('alias_mail', False):
+            project_obj.write(cr, uid, [project_id], {
+                'alias_name': vals.get('alias_mail')}, context=context)
+            email = project.alias_id.name_get()[0][1]
+            partner_id = partner_obj.search(
+                cr, uid, [('email', '=', email)], context=context)
+            if not partner_id:
+                partner_id = partner_obj.create(cr, uid, {
+                    'name': email, 'email': email, 'customer': False
+                    }, context=context)
+            pricelist = partner_obj.read(cr, uid, partner_id, ['property_product_pricelist'], context=context)
+            pricelist_id = pricelist.get('property_product_pricelist', False) and pricelist.get(
+                'property_product_pricelist')[0] or False
+            if not analytic_obj.browse(cr, uid, analytic_account_id, context).pricelist_id:
+                analytic_obj.write(cr, uid, analytic_account_id, {'pricelist_id': pricelist_id}, context=context)
+            return project_id
+        elif not project_id and vals.get('partner_id', False):
+            pricelist = partner_obj.read(cr, uid, vals['partner_id'], ['property_product_pricelist'], context=context)
+            pricelist_id = pricelist.get('property_product_pricelist', False) and pricelist.get(
+                'property_product_pricelist')[0] or False
+            analytic_obj = self.pool['account.analytic.account']
+            if not analytic_obj.browse(cr, uid, analytic_account_id, context).pricelist_id:
+                analytic_obj.write(cr, uid, analytic_account_id, {'pricelist_id': pricelist_id}, context=context)
+            return project_id
+        return False
 
     @api.one
     def _get_alias(self):
         for r in self:
-            project = self.env['project.project'].search([('analytic_account_id', 'in', [r.id])])
+            project = self.env['project.project'].search(
+                [('analytic_account_id', 'in', [r.id])])
             if project:
                 r.alias_id = project.alias_id.id
 
     alias_mail = fields.Char(
         'Alias', size=64,
-        help="To be filled with text prior to @ to create an internal email associated with this project."
-        " Incoming emails are automatically synchronized with Tasks.")
+        help="To be filled with text prior to @ to create an internal email "
+        "associated with this project. Incoming emails are automatically "
+        "synchronized with Tasks.")
     alias_id = fields.Many2one(
         'mail.alias',
         compute='_get_alias',
         string='Alias',
-        help="Internal email associated with this project. Incoming emails are automatically synchronized"
-        "with Tasks (or optionally Issues if the Issue Tracker module is installed).")
+        help="Internal email associated with this project. Incoming emails are"
+        " automatically synchronized with Tasks (or optionally Issues if the "
+        "Issue Tracker module is installed).")
     _defaults = {
         'use_tasks': True,
         'use_timesheets': True,

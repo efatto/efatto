@@ -66,9 +66,13 @@
                 <field name="fiscal_position" position="attributes">
                     <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
                 </field>
-                <field name="journal_id" position="attributes">
-                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                <field name="journal_id" position="replace">
                 </field>
+                <xpath expr="//sheet[@string='Supplier Invoice']/div[@class='oe_title']" position="before">
+                    <group>
+                        <field name="journal_id" string="Expense Type:"/>
+                    </group>
+                </xpath>
                 <field name="account_id" position="attributes">
                     <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
                 </field>

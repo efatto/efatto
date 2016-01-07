@@ -194,3 +194,8 @@ msgstr "base.group_account_user,profile_smart.group_hidden"
 #: model:ir.ui.menu,name:profile_smart.menu_action_invoice_payments_smart
 msgid "Due list"
 msgstr "Scadenzario"
+
+#. module: profile_smart
+#: view:account.invoice:profile_smart.supplier_invoice_form_smart
+msgid "Expense Type:"
+msgstr "Tipo di spesa:"

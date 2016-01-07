@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="expenses_journal" model="account.journal">
+            <field name="name">Scontrini e ricevute</field>
+            <field name="type">purchase</field>
+            <field name="code">EXPJ</field>
+            <field name="default_debit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
+            <field name="default_credit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
+            <field name="view_id" eval="3"/>
+            <field name="update_posted">True</field>
+        </record>
+
+    </data>
+</openerp>

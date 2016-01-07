@@ -31,6 +31,7 @@
     "depends": [
         'account_analytic_analysis',
         'account_cancel',
+        'account_due_list',
         'base_setup',
         'base_iban',
         'country_data_it',
@@ -52,6 +53,7 @@
         'views/hr_view.xml',
         'views/hr_workflow.xml',
         'views/smart_view.xml',
+        'data/account_journal.xml',
     ],
     "installable": True,
 }

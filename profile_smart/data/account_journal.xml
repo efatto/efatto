@@ -2,13 +2,21 @@
 <openerp>
     <data noupdate="0">
 
+        <record id="partner_expenses_journal" model="res.partner">
+            <field name="name">Scontrini per cassa</field>
+            <field name="supplier" eval="1"/>
+            <field name="customer" eval="0"/>
+            <field name="property_account_payable" search="[('code','=','2400150005')]" model="account.account"/>
+            <field name="block_ref_supplier" eval="1"/>
+        </record>
+
         <record id="expenses_journal" model="account.journal">
-            <field name="name">Scontrini e ricevute</field>
+            <field name="name">Scontrini per cassa</field>
             <field name="type">purchase</field>
             <field name="code">EXPJ</field>
             <field name="default_debit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
             <field name="default_credit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
-            <field name="view_id" eval="3"/>
+            <field name="default_partner_id" eval="partner_expenses_journal"/>
             <field name="update_posted">True</field>
         </record>
 

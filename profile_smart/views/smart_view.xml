@@ -68,10 +68,19 @@
                 </field>
                 <field name="journal_id" position="replace">
                 </field>
-                <xpath expr="//sheet[@string='Supplier Invoice']/div[@class='oe_title']" position="before">
-                    <group>
-                        <field name="journal_id" string="Expense Type:"/>
-                    </group>
+                <xpath expr="//sheet[@string='Supplier Invoice']/div[@class='oe_title']" position="replace">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="journal_id" string="Expense Type:" class="oe_inline" on_change="onchange_journal"/>
+                            <label string="Draft Expense" attrs="{'invisible': ['|',('state','&lt;&gt;','draft'), ('expense_generic','&lt;&gt;',True)]}"/>
+                            <label string="Expense" attrs="{'invisible': ['|',('state','=','draft'), ('expense_generic','&lt;&gt;',True)]}"/>
+                            <label string="Draft Invoice" attrs="{'invisible': ['|','|',('state','&lt;&gt;','draft'), ('type','&lt;&gt;','in_invoice'), ('expense_generic','=',True)]}"/>
+                            <label string="Draft Refund" attrs="{'invisible': ['|','|',('state','&lt;&gt;','draft'), ('type','&lt;&gt;','in_refund'), ('expense_generic','=',True)]}"/>
+                            <label string="Invoice" attrs="{'invisible': ['|','|',('state', '=', 'draft'), ('type','&lt;&gt;','in_invoice'), ('expense_generic','=',True)]}"/>
+                            <label string="Refund" attrs="{'invisible': ['|','|',('state', '=', 'draft'), ('type','&lt;&gt;','in_refund'), ('expense_generic','=',True)]}"/>
+                            <field name="number" class="oe_inline"  attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        </h1>
+                    </div>
                 </xpath>
                 <field name="account_id" position="attributes">
                     <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
@@ -93,7 +102,21 @@
                 </field>
             </field>
         </record>
-        
+
+        <record id="view_account_journal_form_smart" model="ir.ui.view">
+            <field name="name">account.journal.form.smart</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="group_invoice_lines" position="after">
+                    <field name="generic_expense"/>
+                </field>
+                <field name="default_credit_account_id" position="after">
+                    <field name="default_partner_id"/>
+                </field>
+            </field>
+        </record>
+
 <!-- hide main menu -->
 <record id="account.menu_finance" model="ir.ui.menu">
     <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>

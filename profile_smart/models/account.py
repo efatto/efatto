@@ -17,12 +17,41 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models
+from openerp import models, fields, api
 
 
-class account_journal(models.Model):
+class AccountJournal(models.Model):
     _inherit = "account.journal"
+
+    generic_expense = fields.Boolean('Generic Expense type')
+    default_partner_id = fields.Many2one(
+        'res.partner',
+        string="Default partner",
+        help="Used for expenses without VAT statement",
+    )
 
     _defaults = {
         'update_posted': True,
     }
+
+
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    @api.multi
+    def onchange_journal_id(self, journal_id=False):
+        res = super(AccountInvoice, self).onchange_journal_id(journal_id=journal_id)
+        if journal_id:
+            journal = self.env['account.journal'].browse(journal_id)
+            if journal.generic_expense and journal.default_partner_id:
+                res['value'].update({
+                    'partner_id': journal.default_partner_id.id,
+                })
+        return res
+
+    expense_generic = fields.Boolean(
+        string='Expense generic',
+        related='journal_id.generic_expense',
+        store=False, readonly=True,
+    )
+

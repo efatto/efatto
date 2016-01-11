@@ -23,7 +23,9 @@ from openerp import models, fields, api
 class AccountJournal(models.Model):
     _inherit = "account.journal"
 
-    generic_expense = fields.Boolean('Generic Expense type')
+    generic_expense = fields.Boolean(
+            string='Generic Expense type'
+    )
     default_partner_id = fields.Many2one(
         'res.partner',
         string="Default partner",
@@ -35,12 +37,12 @@ class AccountJournal(models.Model):
     }
 
 
-class AccountInvoice(models.Model):
+class account_invoice(models.Model):
     _inherit = "account.invoice"
 
     @api.multi
     def onchange_journal_id(self, journal_id=False):
-        res = super(AccountInvoice, self).onchange_journal_id(journal_id=journal_id)
+        res = super(account_invoice, self).onchange_journal_id(journal_id=journal_id)
         if journal_id:
             journal = self.env['account.journal'].browse(journal_id)
             if journal.generic_expense and journal.default_partner_id:
@@ -52,6 +54,5 @@ class AccountInvoice(models.Model):
     expense_generic = fields.Boolean(
         string='Expense generic',
         related='journal_id.generic_expense',
-        store=False, readonly=True,
+        store=True, readonly=True
     )
-

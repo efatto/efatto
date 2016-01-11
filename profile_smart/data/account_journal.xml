@@ -17,7 +17,8 @@
             <field name="default_debit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
             <field name="default_credit_account_id" search="[('code','=','6600300055')]" model="account.account"/>
             <field name="default_partner_id" eval="partner_expenses_journal"/>
-            <field name="update_posted">True</field>
+            <field name="update_posted" eval="1"/>
+            <field name="generic_expense" eval="1"/>
         </record>
 
     </data>

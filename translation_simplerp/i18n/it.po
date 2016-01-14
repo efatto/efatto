@@ -10943,7 +10943,7 @@ msgid ""
 "\n"
 "To contribute to this module, please visit http://odoo-community.org.\n"
 msgstr ""
-"====================\n"
+"=====================\n"
 "Payments and due list\n"
 "=====================\n"
 

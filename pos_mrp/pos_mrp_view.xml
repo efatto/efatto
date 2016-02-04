@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_pos_order_form_inherit_mrp" model="ir.ui.view">
+            <field name="name">pos.order.form.stock.mrp</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//page[@string='Products']/field[@name='lines']/form[@string='Order lines']/group/field[@name='notice']" position="after">
+                   <field name="property_ids" widget="many2many_tags"
+                        groups="sale.group_mrp_properties"/>
+               </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

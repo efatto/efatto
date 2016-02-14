@@ -58,7 +58,7 @@
                 <div class="footer">
                     <div class="text-right" style="border-top: 1px solid black;">
                         <span style="font-size: xx-small; text-align: center"> Ai sensi del D.Lgs. 196/2003 Vi informiamo che i Vs. dati saranno utilizzati esclusivamente per i fini connessi ai rapporti commerciali tra di noi in essere. 
-Contributo CONAI assolto ove dovuto - Vi preghiamo di controllare i Vs. dati anagrafici, la Partita IVA e il Codice Fiscale. Non ci riteniamo responsabili di eventuali incongruità </span>
+Contributo CONAI assolto ove dovuto - Vi preghiamo di controllare i Vs. dati anagrafici, la Partita IVA e il Codice Fiscale. Non ci riteniamo responsabili di eventuali incongruità. </span>
                         <ul t-if="not company.custom_footer" class="list-inline">
                             <li t-if="company.phone">Phone: <span t-field="company.phone"/></li>
 

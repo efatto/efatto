@@ -52,16 +52,16 @@
                 </div>
             </div>
     
-            <table class="table">
+            <table class="table table-condensed">
                 <thead>
                     <tr >
                         <th style="width: 60%">Description</th>
-                        <th>U.M.</th>
-                        <th>Quantity</th>
-                        <th class="text-right">Unit Price</th>
-                        <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
-                        <th class="text-right">IVA</th>
-                        <th class="text-right">Amount</th>
+                        <th style="width: 5%">U.M.</th>
+                        <th style="width: 5%">Quantity</th>
+                        <th style="width: 10%" class="text-right">Unit Price</th>
+                        <th style="width: 5%" class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                        <th style="width: 5%" class="text-right">IVA</th>
+                        <th style="width: 10%" class="text-right">Amount</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
@@ -91,60 +91,60 @@
             
             <div class="row" t-if="o.tax_line">
                 <div class="col-xs-12">
-                    <table class="table table-condensed invoice_tax">
+                    <table class="table-condensed invoice_tax">
                         <thead>
                             <tr>
-                                <th>IVA</th>
-                                <th class="text-right">Imponibile</th>
-                                <th class="text-right">Amount</th>
+                                <th style="width: 70%" >IVA</th>
+                                <th style="width: 10%" class="text-right">Imponibile</th>
+                                <th style="width: 10%" class="text-right">Amount</th>
+                                <th style="width: 10%; border-bottom: 0px white !important;"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr t-foreach="o.tax_line" t-as="t">
-                                <td><span t-field="t.name"/></td>
-                                <td class="text-right">
+                                <td style="border-bottom: 1px solid black;"><span t-field="t.name"/></td>
+                                <td style="border-bottom: 1px solid black;" class="text-right">
                                     <span t-field="t.base"
                                         t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
                                 </td>
-                                <td class="text-right">
+                                <td style="border-bottom: 1px solid black;" class="text-right">
                                     <span t-field="t.amount"
                                         t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
                                 </td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-right" style="border: 1px solid black;"><strong>Total</strong></td>
+                                <td class="text-right" style="border: 1px solid black;">
+                                    <strong><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                </td>
+                                <td class="text-right" style="border: 1px solid black;">
+                                    <strong><span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                </td>
+                                <td class="text-right" style="border: 1px solid black;">
+                                    <strong><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
                     <p/>
-                    <span class="spacer"/>
-                    <table class="table table-condensed invoice_tax">
-                        <tr class="border-black">
-                            <td><strong>Comment: </strong></td>
-                            <td><span t-if="o.comment"><span t-field="o.comment"/></span></td>
-                            <td><strong>Imponibile</strong></td>
-                            <td class="text-right">
-                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-                            </td>
+
+                    <table>
+                        <tr>
+                            <td><span t-if="o.comment"><strong>Comment: </strong><span t-field="o.comment"/></span></td>
                         </tr>
                         <tr>
-                            <td><strong t-if="o.payment_term.note">Payment Term: </strong></td>
-                            <td><span t-field="o.payment_term.note"/>
-                                <strong>Banca: </strong>
-                                <p t-if="o.partner_bank_id">
+                            <td><span t-if="o.payment_term.note"><strong>Payment Term: </strong><span t-field="o.payment_term.note"/></span>
+                                <p t-if="o.partner_bank_id"><strong>Banca: </strong>
                                 <span t-field="o.partner_bank_id.bank_name"/> 
                                 <span t-field="o.partner_bank_id.acc_number"/>
                                 </p>
                             </td>
-                            <td>Taxes</td>
-                            <td class="text-right">
-                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-                            </td>
                         </tr>
-                        <tr class="border-black">
-                            <td><strong>Fiscal Position Remark: </strong></td>
-                            <td><span t-if="o.fiscal_position.note"><span t-field="o.fiscal_position.note"/></span></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right">
-                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-                            </td>
+                        <tr>
+                            <td><span t-if="o.fiscal_position.note"><strong>Fiscal Position Remark: </strong><span t-field="o.fiscal_position.note"/></span></td>
                         </tr>
                     </table>
                 </div>

@@ -20,7 +20,7 @@
 
 {
     'name': 'Italy - Improved invoice report SimplERP',
-    'version': '4.0.0.0',
+    'version': '8.1.0.0.1',
     'category': 'other',
     'description': """
     Modifiche al report fattura
@@ -38,13 +38,9 @@
     ],
     "data": [
         'views/report.paperformat_euro_invoice.xml',
-        'views/account_invoice_report.xml',
-        'views/account.report_invoice_document.xml',
         'views/invoice_css.xml',
-        #'views/invoice_subst.xml',
-    ],
-    "demo": [],
-    "test": [
+        'views/account.report_invoice_document.xml',
+        'views/account_invoice_report.xml',
     ],
     "installable": True,
 }

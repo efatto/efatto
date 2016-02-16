@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="point_of_sale.picking_type_posout" model="stock.picking.type">
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+        </record>
+    </data>
+</openerp>

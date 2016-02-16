@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,19 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-{
-    'name': 'Pos create MRP procurement',
-    'version': '8.0.0.0.0',
-    'category': 'Hidden',
-    'summary': "",
-    'author': 'SimplERP Srl',
-    'website': 'http://simplerp.it',
-    'depends': ['mrp', 'point_of_sale', 'sale'],
-    'data': [
-        'data/pos_mrp_data.xml',
-        'views/pos_mrp_view.xml',
-    ],
-    'installable': True,
-}
-
+from . import pos_mrp

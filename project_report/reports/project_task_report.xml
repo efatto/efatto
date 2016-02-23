@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_project_task_overview">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <h2>Panoramica Attività</h2>
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Attività</th>
+                                <th>Progetto</th>
+                                <th>Assegnata a</th>
+                                <th>Stato</th>
+                            </tr>
+                            <t t-foreach="docs" t-as="f">
+                                <tr>
+                                    <td>
+                                        <span t-field="f.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="f.project_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="f.user_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="f.stage_id"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</openerp>

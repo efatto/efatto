@@ -1,0 +1,282 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* project_extenssion
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-25 15:33+0000\n"
+"PO-Revision-Date: 2016-02-25 15:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_extenssion
+#: model:email.template,body_html:project_extenssion.email_template_report_work_done
+msgid "\n"
+"\n"
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Dear ${object.project_id.partner_id.name},</p>\n"
+"\n"
+"Our work is done on the following task:</p>\n"
+"    \n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>Info</strong><br />\n"
+"       &nbsp;&nbsp;Name: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Time Spent: <strong>${object.effective_hours} ${object.company_id.project_time_mode_id.name or ''}</strong><br />\n"
+"       % if object.user_id:\n"
+"       &nbsp;&nbsp;Contact: <a href=\"mailto:${object.user_id.email or ''}?subject=Number%20${object.number}\">${object.user_id.name}</a>\n"
+"       % endif\n"
+"    </p>  \n"
+"    \n"
+"    \n"
+"    \n"
+"    <br/>\n"
+"    <p>Thank you for your preference.</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Tel:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"		</span>\n"
+"        % if object.company_id.id:\n"
+"            <div>\n"
+"               </br><a href=\"http://simplerp.it/\" target=\"_blank\">Empowered by SimplERP srl</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"\n"
+"            \n"
+"            \n"
+"            \n"
+"            "
+msgstr ""
+"<p>\n"
+"\n"
+"\n"
+"</p><div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Egr. ${object.project_id.partner_id.name},</p>\n"
+"\n"
+"Comunichiamo la chiusura del'attività ${object.name} ed alleghiamo una descrizione dettagliata delle varie operazioni svolte.\n"
+" Qualora fosse necessario un nuovo intervento, la preghiamo di richiedere l'apertura di una nuova attività.\n"
+"<p>Si trasmette in allegato il rapporto di lavoro e la descrizione delle attività.:</p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>Informazioni Attività</strong></p><p>\n"
+"       &nbsp;&nbsp;Nome: <strong>${object.name}</strong></p><p>\n"
+"       &nbsp;&nbsp;Tempo Impiegato: <strong>${object.effective_hours} ${object.company_id.project_time_mode_id.name or ''}</strong></p><p>\n"
+"       % if object.user_id:\n"
+"       &nbsp;&nbsp;Contatto: <a href=\"mailto:${object.user_id.email or ''}?subject=Fattura%20${object.number}\">${object.user_id.name}</a>\n"
+"       % endif\n"
+"    </p>\n"
+"\n"
+"\n"
+"\n"
+"    <p></p><p>\n"
+"    </p><p>Non esitate a contattarci per qualsiasi informazione o chiarimento.</p>\n"
+"    <p>Cordiali saluti!</p>\n"
+"    <p></p><p>\n"
+"    </p><p>\n"
+"    </p><div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin-left:0px;margin-right:0px;margin-bottom:4px;margin-top:0px;line-height:1.1;font-weight:bold;font-family:inherit;margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<p></p><p>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}</p><p>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}</p><p>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}</p><p>\n"
+"        % endif\n"
+"        \n"
+"        % if object.company_id.phone:\n"
+"            </p><div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Tel:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Home Page :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"\t\t</span>\n"
+"        % if object.company_id.id:\n"
+"            <div>\n"
+"               <p></p><p>\n"
+"            </p></div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"            <p></p>"
+
+#. module: project_extenssion
+#: model:email.template,subject:project_extenssion.email_template_report_work_done
+msgid "${user.company_id.name} - Task Done"
+msgstr "${user.company_id.name} - Task Done"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_form2_inherit
+msgid "Add finished works ..."
+msgstr "Aggiungi attività completate..."
+
+#. module: project_extenssion
+#: selection:project.task,state:0
+#: selection:project.task.history,state:0
+#: selection:project.task.type,state:0
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_form2_inherit
+#: field:project.task,done:0
+#: selection:project.task,state:0
+#: selection:project.task.history,state:0
+#: selection:project.task.type,state:0
+msgid "Done"
+msgstr "Completato"
+
+#. module: project_extenssion
+#: model:ir.model,name:project_extenssion.model_project_task_history
+msgid "History of Tasks"
+msgstr "Storico Attività"
+
+#. module: project_extenssion
+#: selection:project.task,state:0
+#: selection:project.task.history,state:0
+#: selection:project.task.type,state:0
+msgid "In Progress"
+msgstr "In Corso"
+
+#. module: project_extenssion
+#: selection:project.task,state:0
+#: selection:project.task.history,state:0
+#: selection:project.task.type,state:0
+msgid "New"
+msgstr "Nuovo"
+
+#. module: project_extenssion
+#: field:project.task,date_work_started:0
+msgid "New work start date"
+msgstr "Nuova data inizio attività"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_form2_inherit
+msgid "Notify Partner"
+msgstr "Notificare Cliente"
+
+#. module: project_extenssion
+#: selection:project.task,state:0
+#: selection:project.task.history,state:0
+#: selection:project.task.type,state:0
+msgid "Pending"
+msgstr "Sospeso"
+
+#. module: project_extenssion
+#: field:project.task.type,state:0
+msgid "Related Status"
+msgstr "Stato Collegato"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_form2_inherit
+msgid "Start Work"
+msgstr "Avvia Attività"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_search_form_inherit
+msgid "Started"
+msgstr "Avviata"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_search_form_inherit
+msgid "State Started"
+msgstr "Stato Avviata"
+
+#. module: project_extenssion
+#: field:project.task,state:0
+#: field:project.task.history,state:0
+msgid "Status"
+msgstr "Stato"
+
+#. module: project_extenssion
+#: view:project.task:project_extenssion.view_task_form2_inherit
+msgid "Stop Work"
+msgstr "Ferma Attività"
+
+#. module: project_extenssion
+#: model:ir.model,name:project_extenssion.model_project_task
+msgid "Task"
+msgstr "Attività"
+
+#. module: project_extenssion
+#: model:ir.model,name:project_extenssion.model_project_task_type
+msgid "Task Stage"
+msgstr "Stato Attività"
+
+#. module: project_extenssion
+#: help:project.task,state:0
+msgid "The status is set to 'Draft', when a case is created.                      If the case is in progress the status is set to 'Open'.                      When the case is over, the status is set to 'Done'.                      If the case needs to be reviewed then the status is                       set to 'Pending'."
+msgstr "Lo stato è settato in \"Bozza\" al momento della creazione dell'attività. Se l'attività è in corso, lo stato viene impostato su \"Aperto\". Al completamento dell'attività, lo stato viene impostato su 'Completato'. Se l'attività deve essere rivista o ripresa, lo stato viene impostato su \"Sospeso\"."
+
+#. module: project_extenssion
+#: help:project.task.type,state:0
+msgid "The status of your document is automatically changed regarding the selected stage. For example, if a stage is related to the status 'Close', when your document reaches this stage, it is automatically closed."
+msgstr "Lo stato del documento viene automaticamente modificato rispetto al suo stadio. Per esempio: Se uno stadio di riferisce allo stato \"Chiuso\", il documento verrà automaticamente chiuso quando raggiungerà quello stadio."
+
+#. module: project_extenssion
+#: field:project.task,work_started:0
+msgid "Work Started"
+msgstr "Attività Avviata"
+
+#. module: project_extenssion
+#: code:addons/project_extenssion/project_extenssion.py:78
+#, python-format
+msgid "Work of the day "
+msgstr "Attività del giorno"
+

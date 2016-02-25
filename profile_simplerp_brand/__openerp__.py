@@ -18,29 +18,18 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile apps',
+    'name': 'Italy - SimplERP Srl branding',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Profilo applicazioni SimplERP
+    Profilo brand SimplERP
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_bank',
-        'account_balance_line_view',
-        'account_cancel',
-        'account_due_list',
-        'account_invoice_force_number',
-        'account_move_line_no_default_search',
-        'account_move_line_report_xls',
-        'base_setup',
-        'base_iban',
-        'country_data_it',
-        'disable_openerp_online',
-        'l10n_it_base_location_geonames_import',
-        'web_debranding',
+        'material_backend_theme',
+        'support_branding_ext',
     ],
     "installable": True,
 }

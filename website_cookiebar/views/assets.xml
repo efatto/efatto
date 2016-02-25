@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+    	<template id="styles_compiled" inherit_id="website.theme">
+    		<xpath expr="." position="inside">
+		        <link href="/website_cookiebar/static/src/css/jquery.cookiebar.css" rel="stylesheet"/>
+    		</xpath>
+    	</template>
+
+    	<template id="assets_frontend" inherit_id="website.assets_frontend">
+    		<xpath expr="." position="inside">
+                <script type="text/javascript" src="/website_cookiebar/static/src/js/jquery.cookiebar.js"></script>
+    		</xpath>
+    	</template>
+
+    </data>
+</openerp>

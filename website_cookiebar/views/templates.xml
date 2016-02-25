@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<template id="layout" inherit_id="website.layout">
+    		<xpath expr="//script[@t-if='website and website.google_analytics_key']" position="before">
+                <script type="text/javascript">
+                    <t t-set="cookiebar_message" t-value="request.env['x_cookiebar_config'].sudo().browse([1]).x_message"/>
+                    <t t-set="cookiebar_button_text" t-value="request.env['x_cookiebar_config'].sudo().browse([1]).x_button_text"/>
+                    <t t-set="cookiebar_policy_text" t-value="request.env['x_cookiebar_config'].sudo().browse([1]).x_policy_text"/>
+                    <t t-set="cookiebar_policy_url" t-value="request.env['x_cookiebar_config'].sudo().browse([1]).x_policy_url"/>
+                    $.cookieBar({
+                        'message': '<t t-esc="cookiebar_message"/>',
+                        'acceptText': '<t t-esc="cookiebar_button_text"/>'
+                        <t t-if="cookiebar_policy_text">,'policyText': '<t t-esc="cookiebar_policy_text"/>'</t>
+                        <t t-if="cookiebar_policy_url">
+                            ,'policyButton': true
+                            ,'policyURL': '<t t-esc="cookiebar_policy_url"/>'
+                        </t>
+                    });
+                </script>
+    		</xpath>
+    	</template>
+
+    </data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="action_x_cookiebar_config_apply" model="ir.actions.server">
+            <field name="name">CookieBar Config Apply</field>
+            <field name="model_id" ref="model_x_cookiebar_config"/>
+            <field name="code">dummy = True</field>
+        </record>
+
+        <record id="view_x_cookiebar_config" model="ir.ui.view">
+            <field name="name">CookieBar</field>
+            <field name="model">x_cookiebar_config</field>
+            <field name="arch" type="xml">
+                <form string="CookieBar">
+                    <header>
+                        <button name="%(action_x_cookiebar_config_apply)d" type="action" string="Apply" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </header>
+                    <group>
+                        <field name="x_message"/>
+                        <field name="x_button_text"/>
+                        <field name="x_policy_text"/>
+                        <field name="x_policy_url"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_window_x_cookiebar_config" model="ir.actions.act_window">
+            <field name="name">CookieBar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">x_cookiebar_config</field>
+            <field name="res_id" eval="1"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_x_cookiebar_config"
+                  action="act_window_x_cookiebar_config"
+                  parent="base.menu_config"
+                  name="CookieBar"/>
+    </data>
+</openerp>

@@ -28,12 +28,10 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_analytic_analysis',
-        'account_invoice_entry_date_ext',
-        'account_tax_simplified',
-        'account_vat_statement_endyear',
-        'account_withholding_tax',
-        'l10n_it_vat_registries',
+        'account_fiscal_year_closing_template_numeric_pdc',
+        'l10n_it_invoice_intra_cee',
+        'l10n_it_ricevute_bancarie_data',
+        'l10n_it_ricevute_bancarie_ext',
     ],
     "installable": True,
 }

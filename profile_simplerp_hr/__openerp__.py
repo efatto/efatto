@@ -30,7 +30,6 @@
     "depends": [
         'project',
         'project_timesheet',
-        'hr_timesheet',
         'hr_timesheet_sheet',
         'hr_expense',
     ],

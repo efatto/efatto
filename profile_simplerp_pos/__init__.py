@@ -17,23 +17,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Italy - SimplERP Srl profile Accounting',
-    'version': '8.0.0.0.0',
-    'category': 'other',
-    'description': """
-    Profilo applicazioni Contabilità SimplERP
-    """,
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'account_analytic_analysis',
-        'account_invoice_entry_date_ext',
-        'account_tax_simplified',
-        'account_vat_statement_endyear',
-        'account_withholding_tax',
-        'l10n_it_vat_registries',
-    ],
-    "installable": True,
-}
+
+

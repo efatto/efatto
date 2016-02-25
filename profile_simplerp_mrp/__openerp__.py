@@ -28,7 +28,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'mrp',
+        'mrp_operations',
     ],
     "installable": True,
 }

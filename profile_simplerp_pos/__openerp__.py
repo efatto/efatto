@@ -18,22 +18,20 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile Accounting',
+    'name': 'Italy - SimplERP Srl profile apps',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Profilo applicazioni Contabilità SimplERP
+    Profilo applicazioni SimplERP
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_analytic_analysis',
-        'account_invoice_entry_date_ext',
-        'account_tax_simplified',
-        'account_vat_statement_endyear',
-        'account_withholding_tax',
-        'l10n_it_vat_registries',
+        'pos_default_customer',
+        'pos_discount',
+        'pos_mrp',
+        'pos_restaurant',
     ],
     "installable": True,
 }

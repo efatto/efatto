@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2016 SimplERP srl (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,24 +17,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Account smart reporting',
-    'version': '8.0.0.0.0',
-    'category': 'other',
-    'author': 'SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    'depends': [
-        'account',
-        'report',
-    ],
-    'data': [
-        'views/account_config_view.xml',
-        'views/account_report.xml',
-        'views/account_sales_report_mail.xml',
-        #'views/hr_expense_report_mail.xml',
-        'views/report.account_report_smart.xml',
-        'views/account_view.xml',
-    ],
-    'installable': True
-}
+from openerp import models, fields, api
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    tax_code_is_base = fields.Many2one(
+        'account.tax.code',
+        string='Tax is base',
+        related='tax_code_id.is_base',
+        copy=False, store=False, readonly=True
+        )

@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile Accounting',
+    'name': 'Italy - SimplERP Srl profile Accounting Advanced',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Profilo applicazioni Contabilità SimplERP
+    Profilo applicazioni Contabilità Avanzata SimplERP
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile apps',
+    'name': 'Italy - SimplERP Srl profile MRP',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Profilo applicazioni SimplERP
+    Profilo applicazioni Produzione SimplERP
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

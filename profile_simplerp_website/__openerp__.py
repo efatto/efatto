@@ -33,7 +33,7 @@
         'web_debranding_support',
         'web_norobots',
         'website_blog',
-        'website_cookiebar',
+        #'website_cookiebar',
         'website_crm',
         'website_crm_partner_assign',
         'website_customer',

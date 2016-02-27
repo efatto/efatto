@@ -46,7 +46,7 @@
         'l10n_it_base_location_geonames_import',
         'l10n_it_fiscalcode',
         'l10n_it_pec',
-        'web_debranding',
+        #'web_debranding',
     ],
     "installable": True,
 }

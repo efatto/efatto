@@ -26,7 +26,5 @@
     'license': 'AGPL-3',
     'depends': [
     ],
-    'data': [
-    ],
-    'installable': True
+    'installable': False,
 }

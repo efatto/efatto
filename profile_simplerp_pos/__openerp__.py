@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile apps',
+    'name': 'Italy - SimplERP Srl profile POS',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Profilo applicazioni SimplERP
+    Profilo applicazioni POS SimplERP
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

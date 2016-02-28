@@ -6,5 +6,5 @@ DATABASE=inserire_il_nome_del_db
 for f in $FILES
 do
   echo "Elaborazione file $f ..."
-  bin/start_odoo --language=it_IT --i18n-import=$f --i18n-overwrite  -d $DATABASE
+  /opt/simplerp/buildout/bin/start_odoo --language=it_IT --i18n-import=$f --i18n-overwrite  -d $DATABASE
 done

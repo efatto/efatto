@@ -4,6 +4,9 @@
     <delete id="web_debranding.new_name" model="ir.config_parameter"/>
     <delete id="web_debranding.custom_title" model="ir.config_parameter"/>
     <delete id="web_debranding.favicon_url" model="ir.config_parameter"/>
+    <delete search="[('key', 'ilike', 'web_debranding.new_name')]" model="ir.config_parameter"/>
+    <delete search="[('key', 'ilike', 'web_debranding.custom_title')]" model="ir.config_parameter"/>
+    <delete search="[('key', 'ilike', 'web_debranding.favicon_url')]" model="ir.config_parameter"/>
 
     <record id="web_debranding.new_name" model="ir.config_parameter">
         <field name="key">web_debranding.new_name</field>

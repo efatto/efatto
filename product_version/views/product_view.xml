@@ -32,7 +32,7 @@
                     <button name="button_activate" type="object" string="Activate"
                             attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
                             icon="terp-camera_test"
-                            confirm="You will activate the Product. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                            confirm="You will activate the Product. Are you sure you want to proceed?"/>
                     <button name="button_new_version" type="object" string="New version"
                             attrs="{'invisible':[('state','==','obsolete')]}"
                             icon="gtk-execute"
@@ -69,7 +69,7 @@
                         <button name="button_historical" type="object" string="Historical"
                                 attrs="{'invisible':[('state','!=','sellable')]}"
                                 class="oe_highlight"
-                                confirm="You are going to historize an Product. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                                confirm="You are going to historize a Product. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sellable,end,obsolete"/>
                     </header>
                 </xpath>

@@ -26,12 +26,10 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
-        'account',
+        'account_cashflow',
         'sale',
     ],
     'data': [
-        'views/account_view.xml',
-        'views/config.xml',
     ],
     'installable': True
 }

@@ -27,3 +27,11 @@ class ResCompany(models.Model):
         comodel_name='account.account',
         string='Account for cash flow temporary moves',
         required=True,)
+
+
+class AccountConfigSettings(models.TransientModel):
+    _inherit = 'account.config.settings'
+
+    cashflow_account_id = fields.Many2one(
+        string="Account for cash flow temporary moves",
+        related='company_id.cashflow_account_id')

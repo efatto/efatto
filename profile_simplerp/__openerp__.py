@@ -39,6 +39,7 @@
         'account_move_line_report_xls',
         'base_setup',
         'base_iban',
+        'contacts',
         'country_data_it',
         'disable_openerp_online',
         'l10n_it_abicab',

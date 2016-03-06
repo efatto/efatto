@@ -38,8 +38,6 @@
         'account_payment',
         'account_budget',
         'auto_backup',
-        'base_import_module',
-        'contacts',
         'crm_ext',
         'crm_mass_mailing',
         'crm_profiling',

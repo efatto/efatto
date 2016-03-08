@@ -34,7 +34,7 @@
         'account_vat_statement_endyear',
         'account_withholding_tax',
         'l10n_it_vat_registries',
-        'res_partner_fiscal_position',
+        #'res_partner_fiscal_position',
     ],
     "installable": True,
 }

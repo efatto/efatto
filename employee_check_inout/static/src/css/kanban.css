@@ -1,0 +1,45 @@
+.btn-sign-in {
+  -webkit-border-radius: 5 !important;
+  -moz-border-radius: 5 !important;
+  border-radius: 5px !important;
+  font-family: Arial !important;
+  font-weight:bold !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+  background: #34d994 !important;
+  text-align:center !important;
+  text-decoration: none !important;
+}
+
+.btn-sign-in:hover {
+  background: #3cb0fd !important;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db) !important;
+  text-decoration: none !important;
+}
+
+.btn-sign-out {
+    font-weight:bold !important;
+  -webkit-border-radius: 5 !important;
+  -moz-border-radius: 5 !important;
+  border-radius: 5px !important;
+  font-family: Arial !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+  background: #d95834 !important;
+  text-align:center !important;
+  text-decoration: none !important;
+}
+
+.btn-sign-out:hover {
+  background: #3cb0fd !important;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db) !important;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db) !important;
+  text-decoration: none !important;
+}

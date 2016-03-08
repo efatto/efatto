@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="acespritech_assets_backend" name="acespritech assets" inherit_id="web_kanban.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/employee_check_inout/static/src/css/kanban.css"/>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

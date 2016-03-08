@@ -30,6 +30,7 @@
     "depends": [
         'account_fiscal_year_closing_template_numeric_pdc',
         'l10n_it_invoice_intra_cee',
+        'l10n_it_fatturapa_out',
         'l10n_it_ricevute_bancarie_data',
         'l10n_it_ricevute_bancarie_ext',
     ],

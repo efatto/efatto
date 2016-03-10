@@ -46,6 +46,6 @@ class wizard_weekly_hours(models.TransientModel):
             'model': 'wizard.weekly.hours',
             'form': data
         }
-        return  self.env['report'].get_action(self, 'employee_check_inout.print_weekly_hours_template',data=datas,)
+        return  self.env['report'].get_action(self, 'employee_check_inout.print_weekly_hours_template', data=datas,)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -20,9 +20,8 @@
 ##############################################################################
 
 from openerp import models, api, _
-from datetime import datetime, timedelta
-from pytz import timezone
-from openerp import tools
+from datetime import datetime
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class print_weekly_hours_template(models.AbstractModel):
@@ -56,39 +55,27 @@ class print_weekly_hours_template(models.AbstractModel):
         return employee_data
 
     def _get_attendance_list(self, data):
-        attendance_list = []
         if data.get('form') and data.get('form').get('start_date') and data.get('form').get('end_date')\
-            and data.get('form').get('employee_id') and self._context.get('tz'):
-            attendance_ids = self.env['hr.attendance'].search([('employee_id', '=', data.get('form').get('employee_id')),
+                and data.get('form').get('employee_id'):
+            attendance_obj = self.env['hr.attendance']
+            attendance_ids = attendance_obj.search([('employee_id', '=', data.get('form').get('employee_id')),
                                                                ('name', '>=', data.get('form').get('start_date')),
                                                                ('name', '<=', data.get('form').get('end_date'))],
                                                                order='id')
-            for attendance in range(0, len(list(attendance_ids))):
-                tz = timezone(self._context.get('tz'))
-                c_time = datetime.now(tz)
-                hour_tz = int(str(c_time)[-5:][:2])
-                min_tz = int(str(c_time)[-5:][3:])
-                check_in_date = datetime.strptime(attendance_ids[attendance].name,
-                                                  tools.DEFAULT_SERVER_DATETIME_FORMAT) + \
-                                                  timedelta(hours=hour_tz, minutes=min_tz)
-                try:
-                    if attendance_ids[attendance].action != 'sign_in' or not attendance_ids[attendance + 1]:
-                        continue
-                    check_out_date = datetime.strptime(attendance_ids[attendance + 1].name,
-                                                       tools.DEFAULT_SERVER_DATETIME_FORMAT) + \
-                                                       timedelta(hours=hour_tz, minutes=min_tz)
-                    diff_hours = (check_in_date - check_out_date).total_seconds() / 3600
-                    attendance_list.append({
-                        'total_hours_worked' : str(int(abs(round(diff_hours, 0)))) + ' hours',
-                        'check_in': check_in_date.strftime('%Y %m %d %I:%M %p') or '',
-                        'check_out': check_out_date.strftime('%Y %m %d %I:%M %p') or ''
-                    })
-                except:
-                    attendance_list.append({
-                        'total_hours_worked' : '---',
-                        'check_in': check_in_date.strftime('%Y %m %d %I:%M %p') or '',
-                        'check_out': '---'
-                    })
+            attendance_list = []
+            check_in = ''
+            for attendance in attendance_ids:
+                if attendance.action == 'sign_in':
+                    check_in = datetime.strptime(attendance.name, DEFAULT_SERVER_DATETIME_FORMAT)
+                elif attendance.action == 'sign_out':
+                    check_out = datetime.strptime(attendance.name, DEFAULT_SERVER_DATETIME_FORMAT)
+                    duration = check_out - check_in
+                    duration_minuts = int(duration.total_seconds()/60)
+                    if duration_minuts >= 0:
+                        duration_hours = ('%.2f' % (duration_minuts/60.0))
+                        attendance_list.append({
+                            'total_hours_worked': duration_hours,
+                            'check_in': check_in.strftime("%d/%m/%Y") or '',
+                            'check_out': check_out.strftime("%d/%m/%Y") or '',
+                        })
         return attendance_list
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

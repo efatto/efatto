@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#    Copyright (c) 2012 - Present Acespritech Solutions Pvt. Ltd. All Rights Reserved
+#    Copyright (c) 2012 - Present Acespritech Solutions Pvt. Ltd.
 #    Author: <info@acespritech.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,15 +20,13 @@
 
 {
     'name': 'Employee CheckIn/CheckOut',
-    'version': '8.1.0.0.0',
+    'version': '8.1.0.1.0',
     'category': 'HR',
     'summary': 'HR: Employee Check In-Out',
     'description': """
 Allows to keep track of employee attendance and can print attendance report.
     """,
-    'price': 15,
-    'currency': 'EUR',
-    'author': "Acespritech Solutions Pvt. Ltd.",
+    'author': "Acespritech Solutions Pvt. Ltd., SimplERP Srl",
     'website': "www.acespritech.com",
     'images': ['static/description/main_screenshot.png'],
     'depends': ['base', 'hr_attendance', 'hr_timesheet'],
@@ -39,11 +37,5 @@ Allows to keep track of employee attendance and can print attendance report.
         'views/employee_kanban_view.xml',
         'views/hr_employee_view.xml'
     ],
-    'demo': [],
-    'test': [],
-    'qweb': [],
     'installable': True,
-    'auto_install': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

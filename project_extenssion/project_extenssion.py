@@ -86,8 +86,6 @@ class task(osv.osv):
 
                 remain_final = task.remaining_hours - duration_hours
                 self.write(cr, uid, [task.id], {'remaining_hours': remain_final})
-            else:
-                self.unlink(cr, uid, [task.id], context)
             return True
 
     def write(self, cr, uid, ids, vals, context=None):

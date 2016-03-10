@@ -75,7 +75,7 @@ class task(osv.osv):
             duration_hours = duration_minuts/60.0
             company_id = self.pool['res.users'].browse(cr, uid, uid, context).company_id
             now = fields.datetime.now()
-            today = datetime.now().strftime("%d-%m-%Y")
+            today = datetime.now().strftime("%d/%m/%Y")
             if duration_hours:
                 self.pool.get('project.task.work').create(cr, uid, {
                     'name': _('Work of the day ') + today,

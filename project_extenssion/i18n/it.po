@@ -278,5 +278,5 @@ msgstr "Attività Avviata"
 #: code:addons/project_extenssion/project_extenssion.py:78
 #, python-format
 msgid "Work of the day "
-msgstr "Attività del giorno"
+msgstr "Attività del giorno "
 

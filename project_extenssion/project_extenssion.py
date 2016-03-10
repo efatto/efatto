@@ -72,7 +72,7 @@ class task(osv.osv):
             self.write(cr, uid, [task.id], {'work_started': False})
             duration = datetime.now() - datetime.strptime(task.date_work_started, DEFAULT_SERVER_DATETIME_FORMAT)
             duration_minuts = int(duration.total_seconds()/60)
-            duration_hours = duration_minuts/60
+            duration_hours = duration_minuts/60.0
             company_id = self.pool['res.users'].browse(cr, uid, uid, context).company_id
             if duration_hours:
                 self.pool.get('project.task.work').create(cr, uid, {

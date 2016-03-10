@@ -20,7 +20,7 @@
 
 {
     'name': 'Employee CheckIn/CheckOut',
-    'version': '1.0',
+    'version': '8.1.0.0.0',
     'category': 'HR',
     'summary': 'HR: Employee Check In-Out',
     'description': """

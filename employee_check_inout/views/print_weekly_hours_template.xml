@@ -15,14 +15,14 @@
                                     </div>
                                 </div>
                                 <div style="margin-left:30px;" class="col-xs-10">
-                                    Date: <span t-esc="get_date(data['form']['start_date'])"/> - <span t-esc="get_date(data['form']['end_date'])"/>
+                                    Dates : <span t-esc="get_date(data['form']['start_date'])"/> - <span t-esc="get_date(data['form']['end_date'])"/>
                                 </div>
                                 <table class="table table-condensed">
                                     <thead>
                                         <tr>
-                                            <th>Entrata</th>
-                                            <th>Uscita</th>
-                                            <th>Totale Ore</th>
+                                            <th>Check In</th>
+                                            <th>Check Out</th>
+                                            <th>Total Hours Worked</th>
                                         </tr>
                                     </thead>
                                     <tbody class="invoice_tbody">

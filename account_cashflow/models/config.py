@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -26,7 +26,7 @@ class ResCompany(models.Model):
     cashflow_account_id = fields.Many2one(
         comodel_name='account.account',
         string='Account for cash flow temporary moves',
-        required=True,)
+        )
 
 
 class AccountConfigSettings(models.TransientModel):

@@ -3,7 +3,7 @@
 {
     "name": "Project Tasks Start/Stop",
     "summary": "Starts and stops the project tasks easily",
-    "version": "2.0",
+    "version": "8.0.0.1",
     "author": "SimplERP SRL, Opencloud",
     "license": "LGPL-3",
     "website": "http://www.opencloud.pro",

@@ -59,8 +59,8 @@ class task(osv.osv):
         'work_started': False,
     }
 
-    def do_start_work(self, cr, uid, ids):
-        for task in self.browse(cr, uid, ids):
+    def do_start_work(self, cr, uid, ids, context=None):
+        for task in self.browse(cr, uid, ids, context):
             if not task.work_started:
                 self.write(cr, uid, ids, {
                     'work_started': True, 'date_work_started': datetime.now()
@@ -71,21 +71,23 @@ class task(osv.osv):
         for task in self.browse(cr, uid, ids):
             self.write(cr, uid, [task.id], {'work_started': False})
             duration = datetime.now() - datetime.strptime(task.date_work_started, DEFAULT_SERVER_DATETIME_FORMAT)
-            duration_hours = duration.total_seconds()/3600
+            duration_minuts = int(duration.total_seconds()/60)
+            duration_hours = duration_minuts/60
             company_id = self.pool['res.users'].browse(cr, uid, uid, context).company_id
+            if duration_hours:
+                self.pool.get('project.task.work').create(cr, uid, {
+                    'name': _('Work of the day ') + str(datetime.now())[:10],
+                    'date': str(datetime.now())[:10],
+                    'hours': duration_hours,
+                    'user_id': uid,
+                    'company_id': company_id.id,
+                    'task_id': task.id,
+                    })
 
-            self.pool.get('project.task.work').create(cr, uid, {
-                'name': _('Work of the day ') + str(datetime.now())[:10],
-                'date': str(datetime.now())[:10],
-                'hours': duration_hours,
-                'user_id': uid,
-                'company_id': company_id.id,
-                'task_id': task.id,
-                })
-
-            remain_final = task.remaining_hours - duration_hours
-            self.write(cr, uid, [task.id], {'remaining_hours': remain_final})
-
+                remain_final = task.remaining_hours - duration_hours
+                self.write(cr, uid, [task.id], {'remaining_hours': remain_final})
+            else:
+                self.unlink(cr, uid, [task.id], context)
             return True
 
     def write(self, cr, uid, ids, vals, context=None):

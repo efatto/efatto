@@ -37,5 +37,5 @@ Allows to keep track of employee attendance and can print attendance report.
         'views/employee_kanban_view.xml',
         'views/hr_employee_view.xml'
     ],
-    'installable': True,
+    'installable': False,
 }

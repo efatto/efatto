@@ -42,6 +42,6 @@
         'data/payment_type_view.xml',
     ],
     'demo': [],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

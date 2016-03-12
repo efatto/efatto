@@ -28,7 +28,7 @@ Designed in best possible look with flat, clean and clear design.
     'website' : 'http://8cells.com',
 
     # Technical
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 

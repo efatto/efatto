@@ -33,5 +33,5 @@
     'data': [
         'views/task_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

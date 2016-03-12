@@ -30,6 +30,6 @@
         'data/pos_mrp_data.xml',
         'views/pos_mrp_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
 

@@ -36,5 +36,5 @@
         'views/riba_view.xml',
         'views/wizard_accreditation.xml',
     ],
-    'installable': True
+    'installable': False
 }

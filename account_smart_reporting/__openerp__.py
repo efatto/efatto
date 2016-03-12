@@ -36,5 +36,5 @@
         'views/report.account_report_smart.xml',
         'views/account_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

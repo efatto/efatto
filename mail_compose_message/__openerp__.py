@@ -15,7 +15,7 @@ requisiti di SimplERP (<http://www.simplerp.it>
 Contact : info@emiprotechnologies.com for any kind of services on Odoo V8.
         """,
     'images': ['static/description/main_screen.png'],
-    'installable': True,
+    'installable': False,
     'qweb': [
         "static/src/xml/*.xml",
     ],

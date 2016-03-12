@@ -31,5 +31,5 @@
         'views/sale.xml',
         'views/stock.xml',
     ],
-    'installable': True
+    'installable': False
 }

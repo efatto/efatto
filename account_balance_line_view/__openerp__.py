@@ -30,5 +30,5 @@
     'data': [
         'views/account_move_line_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

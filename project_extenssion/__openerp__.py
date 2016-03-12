@@ -34,7 +34,7 @@
         'project_extenssion_view.xml',
         'email_data.xml',
      ],
-    'installable': True,
+    'installable': False,
     'images': ['images/imagem_project_extension.png'],
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

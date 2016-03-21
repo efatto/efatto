@@ -51,6 +51,8 @@ class account_invoice(models.Model):
                 })
         return res
 
+#TODO if account_id.type not in ['payable','receivable'] trg wkfl paied
+
     expense_generic = fields.Boolean(
         string='Expense generic',
         related='journal_id.generic_expense',

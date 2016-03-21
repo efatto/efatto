@@ -26,6 +26,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'report_aeroo',
     ],
     'data': [
         'data/reports.xml',

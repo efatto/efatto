@@ -47,7 +47,7 @@ class account_journal(orm.Model):
         'spesometro': fields.boolean('Da includere'),
         'spesometro_operazione': fields.selection((('FA','Operazioni documentate da fattura'), 
                                   ('SA','Operazioni senza fattura'),
-                                  ('BL1','Operazioni con paesi con fiscalità privilegiata'),
+                                  ('BL1','Operazioni con paesi con fiscalita privilegiata'),
                                   ('BL2','Operazioni con soggetti non residenti'),
                                   ('BL3','Acquisti di servizi da soggetti non residenti'),
                                   ('DR','Documento Riepilogativo')),
@@ -64,7 +64,7 @@ class res_partner(orm.Model):
         'spesometro_escludi': fields.boolean('Escludi'),
         'spesometro_operazione': fields.selection((('FA','Operazioni documentate da fattura'), 
                                   ('SA','Operazioni senza fattura'),
-                                  ('BL1','Operazioni con paesi con fiscalità privilegiata'),
+                                  ('BL1','Operazioni con paesi con fiscalita privilegiata'),
                                   ('BL2','Operazioni con soggetti non residenti'),
                                   ('BL3','Acquisti di servizi da soggetti non residenti'),
                                   ('DR','Documento Riepilogativo')),
@@ -73,12 +73,12 @@ class res_partner(orm.Model):
         'spesometro_leasing': fields.selection((('A','Autovettura'), 
                                   ('B','Caravan'),
                                   ('C','Altri veicoli'),
-                                  ('D','Unità da diporto'),
+                                  ('D','Unita da diporto'),
                                   ('E','Aeromobili')),
                    'Tipo Leasing' ),
         'spesometro_tipo_servizio': fields.selection((('cessione','Cessione Beni'), 
                                   ('servizi','Prestazione di servizi')),
-                    'Tipo servizio', help="Specificare per 'Operazioni con paesi con fiscalità privilegiata' "),
+                    'Tipo servizio', help="Specificare per 'Operazioni con paesi con fiscalita privilegiata' "),
         'spesometro_indirizzo_estero': fields.many2one('res.partner', 'Indirizzo non residente'),
     }
     
@@ -207,7 +207,7 @@ class spesometro_comunicazione(orm.Model):
         'soggetto_codice_fiscale': fields.char('Codice fiscale soggetto obbligato', size=16, 
                     help="Soggetto cui si riferisce la comunicazione"),
         'soggetto_partitaIVA': fields.char('Partita IVA', size=11),
-        'soggetto_codice_attivita': fields.char('Codice attività', size=6, help="Codice ATECO 2007"),
+        'soggetto_codice_attivita': fields.char('Codice attivita', size=6, help="Codice ATECO 2007"),
         'soggetto_telefono': fields.char('Telefono', size=12),
         'soggetto_fax': fields.char('Fax', size=12),
         'soggetto_email': fields.char('E-mail', size=50),
@@ -473,7 +473,7 @@ class spesometro_comunicazione(orm.Model):
         # Forma analitica
         if arg['formato_dati'] == 'analitici':
             
-            # Priorità x San Marino -> quadro SE
+            # Priorita x San Marino -> quadro SE
             if self.partner_is_from_san_marino(cr, uid, move, invoice, arg):
                 operazione = 'BL3'
             
@@ -487,7 +487,7 @@ class spesometro_comunicazione(orm.Model):
                 quadro = 'DF'
             elif operazione == 'BL2': #Operazioni con soggetti non residenti
                 quadro = 'FN'
-            elif operazione == 'BL1' or operazione == 'BL3': #Operazioni con paesi con fiscalità privilegiata - Acquisti di servizi da soggetti non residenti
+            elif operazione == 'BL1' or operazione == 'BL3': #Operazioni con paesi con fiscalita privilegiata - Acquisti di servizi da soggetti non residenti
                 quadro = 'SE'
             # Note di variazione
             if operazione == 'FE' and 'refund' in move.journal_id.type:
@@ -714,7 +714,7 @@ class spesometro_comunicazione_line_FA(orm.Model):
         'partita_iva': fields.char('Partita IVA', size=11),
         'codice_fiscale': fields.char('Codice Fiscale', size=16),
         'documento_riepilogativo': fields.boolean('Documento Riepilogativo'),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         
         'numero_operazioni_attive_aggregate': fields.integer('Nr op. attive', size=16),
         'numero_operazioni_passive_aggregate': fields.integer('Nr op. passive', size=16),
@@ -831,7 +831,7 @@ class spesometro_comunicazione_line_SA(orm.Model):
         
         'numero_operazioni': fields.integer('Numero operazioni'),
         'importo_complessivo': fields.float('Importo complessivo', digits_compute=dp.get_precision('Account')),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         }
     
     def add_line(self, cr, uid, move, invoice, arg):
@@ -869,7 +869,7 @@ class spesometro_comunicazione_line_SA(orm.Model):
 class spesometro_comunicazione_line_BL(orm.Model):
     '''
     QUADRO BL
-    - Operazioni con paesi con fiscalità privilegiata (è obbligatorio compilare le sezioni BL001, BL002
+    - Operazioni con paesi con fiscalita privilegiata (è obbligatorio compilare le sezioni BL001, BL002
          e almeno un campo delle sezioni BL003, BL004, BL005, BL006, BL007, BL008)
     - Operazioni con soggetti non residenti (è obbligatorio compilare le sezioni BL001, BL002 e almeno 
         un campo delle sezioni BL003 e BL006)
@@ -885,7 +885,7 @@ class spesometro_comunicazione_line_BL(orm.Model):
         
         'numero_operazioni': fields.integer('Numero operazioni'),
         'importo_complessivo': fields.integer('Importo complessivo', digits_compute=dp.get_precision('Account')),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         
         'pf_cognome': fields.char('Cognome', size=24, help=""),
         'pf_nome': fields.char('Nome', size=20, help=""),
@@ -895,13 +895,13 @@ class spesometro_comunicazione_line_BL(orm.Model):
         'pf_codice_stato_estero': fields.char('Codice Stato Estero', size=3, help="Deve essere uno di quelli presenti nella tabella 'elenco dei paesi e\
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         'pg_denominazione': fields.char('Denominazione/Ragione sociale', size=60),
-        'pg_citta_estera_sede_legale': fields.char('Città estera delle Sede legale', size=40),
+        'pg_citta_estera_sede_legale': fields.char('Citta estera delle Sede legale', size=40),
         'pg_codice_stato_estero': fields.char('Codice Stato Estero', size=3, help="Deve essere uno di quelli presenti nella tabella 'elenco dei paesi e\
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         'pg_indirizzo_sede_legale': fields.char('Indirizzo sede legale', size=60),
          
         'codice_identificativo_IVA': fields.char('Codice identificativo IVA', size=16), 
-        'operazione_fiscalita_privilegiata': fields.boolean('Operazione con pesei con fiscalità privilegiata'), 
+        'operazione_fiscalita_privilegiata': fields.boolean('Operazione con pesei con fiscalita privilegiata'),
         'operazione_con_soggetti_non_residenti': fields.boolean('Operazione con soggetto non residente'), 
         'Acquisto_servizi_da_soggetti_non_residenti': fields.boolean('Acquisto di servizi da soggetti non residenti'), 
         
@@ -1049,7 +1049,7 @@ class spesometro_comunicazione_line_FE(orm.Model):
         'partita_iva': fields.char('Partita IVA', size=11),
         'codice_fiscale': fields.char('Codice Fiscale', size=16),
         'documento_riepilogativo': fields.boolean('Documento Riepilogativo'),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         
         'autofattura': fields.boolean('Autofattura'),
         'data_documento': fields.date('Data documento'),
@@ -1126,7 +1126,7 @@ class spesometro_comunicazione_line_DF(orm.Model):
         'data_operazione': fields.date('Data operazione'),
         
         'importo': fields.float('Importo', digits_compute=dp.get_precision('Account')),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         }     
     
 class spesometro_comunicazione_line_FN(orm.Model):
@@ -1146,7 +1146,7 @@ class spesometro_comunicazione_line_FN(orm.Model):
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         
         'pg_denominazione': fields.char('Denominazione/Ragione sociale', size=60),
-        'pg_citta_estera_sede_legale': fields.char('Città estera delle Sede legale', size=40),
+        'pg_citta_estera_sede_legale': fields.char('Citta estera delle Sede legale', size=40),
         'pg_codice_stato_estero_domicilio': fields.char('Codice Stato Estero del Domicilio', size=3, help="Deve essere uno di quelli presenti nella tabella 'elenco dei paesi e\
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         'pg_indirizzo_sede_legale': fields.char('Indirizzo legale', size=40),
@@ -1154,7 +1154,7 @@ class spesometro_comunicazione_line_FN(orm.Model):
         'data_emissione': fields.date('Data emissione'),
         'data_registrazione': fields.date('Data registrazione'),
         'numero_fattura': fields.char('Numero Fattura/Doc riepilog.', size=16),
-        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unità  da diporto'), ('E','Aeromobii')),'Leasing'),
+        'noleggio': fields.selection((('A','Autovettura'), ('B','Caravan'), ('C','Altri Veicoli'), ('D','Unita  da diporto'), ('E','Aeromobii')),'Leasing'),
         
         'importo': fields.float('Importo', digits_compute=dp.get_precision('Account')),
         'imposta': fields.float('Imposta', digits_compute=dp.get_precision('Account')),
@@ -1180,7 +1180,7 @@ class spesometro_comunicazione_line_SE(orm.Model):
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         
         'pg_denominazione': fields.char('Denominazione/Ragione sociale', size=60),
-        'pg_citta_estera_sede_legale': fields.char('Città estera delle Sede legale', size=40),
+        'pg_citta_estera_sede_legale': fields.char('Citta estera delle Sede legale', size=40),
         'pg_codice_stato_estero_domicilio': fields.char('Codice Stato Estero del Domicilio', size=3, help="Deve essere uno di quelli presenti nella tabella 'elenco dei paesi e\
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         'pg_indirizzo_sede_legale': fields.char('Indirizzo legale', size=40),
@@ -1266,7 +1266,7 @@ class spesometro_comunicazione_line_TU(orm.Model):
         'data_nascita': fields.date('Data di nascita'),
         'comune_stato_nascita': fields.char('Comune o stato estero di nascita', size=40),
         'provincia_nascita': fields.char('Provincia', size=2),
-        'citta_estera_residenza': fields.char('Città Estera di residenza', size=40),
+        'citta_estera_residenza': fields.char('Citta Estera di residenza', size=40),
         'codice_stato_estero': fields.char('Codice Stato Estero', size=3, help="Deve essere uno di quelli presenti nella tabella 'elenco dei paesi e\
                     territori esteri' pubblicata nelle istruzioni del modello Unico"),
         'indirizzo_estero_residenza': fields.char('Indirizzo Estero di residenza', size=40),

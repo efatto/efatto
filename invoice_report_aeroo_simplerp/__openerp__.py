@@ -27,6 +27,7 @@
     'depends': [
         'account',
         'report_aeroo',
+        'stock',
     ],
     'data': [
         'data/reports.xml',

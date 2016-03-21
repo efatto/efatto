@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-
-
         <record id="account.account_invoices" model="ir.actions.report.xml">
-            <field name="name">Print Fattura</field>
+            <field name="name">Stampa Fattura</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">account.invoice</field>
-            <field name="report_name">account.invoice.simplerp</field>
+            <field name="report_name">account.report_invoice</field>
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
@@ -18,6 +16,5 @@
             <field name="attachment"></field>
             <field name="attachment_use" eval="0"/>
         </record>
-
     </data>
 </openerp>

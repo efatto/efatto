@@ -79,7 +79,7 @@ class res_partner(orm.Model):
         'spesometro_tipo_servizio': fields.selection((('cessione','Cessione Beni'), 
                                   ('servizi','Prestazione di servizi')),
                     'Tipo servizio', help="Specificare per 'Operazioni con paesi con fiscalità privilegiata' "),
-        'spesometro_indirizzo_estero': fields.many2one('res.partner.address', 'Indirizzo non residente'),
+        'spesometro_indirizzo_estero': fields.many2one('res.partner', 'Indirizzo non residente'),
     }
     
     _defaults = {

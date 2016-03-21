@@ -29,7 +29,7 @@ class StockDdtType(models.Model):
         'stock.picking.goods_description', 'Description of Goods')
     transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        'Reason for Transportation', required=True)
+        'Reason for Transportation')
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         'Method of Transportation')

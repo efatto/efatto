@@ -5,20 +5,20 @@
 <!-- Create preceding fy for facility-->
 
         <record id="preceding_fiscal_year" model="account.fiscalyear">
-            <field name="name" eval="'Template' + str(time.localtime()[0] - 3)"/>
-            <field name="code" eval="str(time.localtime()[0] - 3)"/>
-            <field name="date_start" eval="str(time.localtime()[0] - 3) + '-01-01'"/>
-            <field name="date_stop" eval="str(time.localtime()[0] - 3) + '-12-31'"/>
+            <field name="name" eval="'Template' + str(time.localtime()[0] - 2)"/>
+            <field name="code" eval="str(time.localtime()[0] - 2)"/>
+            <field name="date_start" eval="str(time.localtime()[0] - 2) + '-01-01'"/>
+            <field name="date_stop" eval="str(time.localtime()[0] - 2) + '-12-31'"/>
         </record>
 
         <function model="account.fiscalyear" name="create_period" 
                 eval="[[(preceding_fiscal_year)]]"/>
 
         <record id="closing_period_preceding_fiscal_year" model="account.period">
-            <field name="name" eval="'Periodo di chiusura ' + str(time.localtime()[0] - 3)"/>
-            <field name="code" eval="'13/' + str(time.localtime()[0] - 3)"/>
-            <field name="date_start" eval="str(time.localtime()[0] - 3) + '-12-31'"/>
-            <field name="date_stop" eval="str(time.localtime()[0] - 3) + '-12-31'"/>
+            <field name="name" eval="'Periodo di chiusura ' + str(time.localtime()[0] - 2)"/>
+            <field name="code" eval="'13/' + str(time.localtime()[0] - 2)"/>
+            <field name="date_start" eval="str(time.localtime()[0] - 2) + '-12-31'"/>
+            <field name="date_stop" eval="str(time.localtime()[0] - 2) + '-12-31'"/>
             <field name="fiscalyear_id" ref="preceding_fiscal_year"/>
             <field name="special" eval="True"/>
         </record>

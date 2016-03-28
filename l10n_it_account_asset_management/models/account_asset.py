@@ -441,7 +441,8 @@ class account_asset_depreciation_line(orm.Model):
     _inherit = 'account.asset.depreciation.line'
     _columns = {
         'parent_category_id': fields.related(
-            'asset_id', 'category_id', type='many2one', string="Category of Asset"),
+            'asset_id', 'category_id', type='many2one',
+            relation='account.asset.category', string="Category of Asset"),
         'type': fields.selection([
             ('create', 'Asset Value'),
             ('depreciate', 'Depreciation'),

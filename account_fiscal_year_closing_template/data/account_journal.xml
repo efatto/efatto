@@ -6,9 +6,8 @@
             <field name="name">Chiusura conti economici</field>
             <field name="type">situation</field>
             <field name="code">CHCE</field>
-            <field name="default_debit_account_id" search="[('code','=','990005')]" model="account.account"/>
-            <field name="default_credit_account_id" search="[('code','=','990005')]" model="account.account"/>
-            <field name="view_id" eval="3"/>
+            <field name="default_debit_account_id" search="[('code','=','9900050005')]" model="account.account"/>
+            <field name="default_credit_account_id" search="[('code','=','9900050005')]" model="account.account"/>
             <field name="centralisation" eval="1"/>
             <field name="update_posted">True</field>
         </record>
@@ -19,7 +18,6 @@
             <field name="code">CHPA</field>
             <field name="default_debit_account_id" search="[('code','=','5500050005')]" model="account.account"/>
             <field name="default_credit_account_id" search="[('code','=','5500050005')]" model="account.account"/>
-            <field name="view_id" eval="3"/>
             <field name="centralisation" eval="1"/>
             <field name="update_posted">True</field>
         </record>
@@ -30,7 +28,6 @@
             <field name="code">CHUP</field>
             <field name="default_debit_account_id" search="[('code','=','2800450010')]" model="account.account"/>
             <field name="default_credit_account_id" search="[('code','=','2800450005')]" model="account.account"/>
-            <field name="view_id" eval="3"/>
             <field name="centralisation" eval="1"/>
             <field name="update_posted">True</field>
         </record>
@@ -39,7 +36,6 @@
             <field name="name">Prima apertura azienda</field>
             <field name="type">situation</field>
             <field name="code">FOPJ</field>
-            <field name="view_id" eval="3"/>
             <field name="centralisation" eval="0"/>
             <field name="update_posted">True</field>
         </record>

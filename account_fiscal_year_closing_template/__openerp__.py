@@ -21,25 +21,21 @@
 
 {
     "name" : "Fiscal Year Closing Template",
-    "version" : "3.0.0.0",
+    "version" : "8.1.0.0.0",
     "author" : "Sergio Corato",
     "website" : "http://www.simplerp.it",
     "category" : "Generic Modules/Accounting",
-    "description": """
-
-Fiscal Year Closing Wizard Template for numeric pdc
-
+    "summary": """
+    Fiscal Year Closing Wizard Template
     """,
-    "license" : "AGPL-3",
-    "depends" : [
-                    "account_fiscal_year_closing",
-                ],
-    "init_xml" : [],
-    "update_xml" : [
-                    "data/account_journal.xml",
-                    "data/account_template_fy.xml",
-                    ],
-    "active": False,
+    "license": "AGPL-3",
+    "depends": [
+        "account_fiscal_year_closing",
+    ],
+    "data": [
+        "data/account_journal.xml",
+        "data/account_template_fy.xml",
+    ],
     "installable": True
 }
 

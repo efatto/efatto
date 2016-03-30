@@ -25,36 +25,6 @@ import tempfile
 from openerp.addons.pos_fiscal_printer.ecr import Ecr
 
 
-def italian_number(number, precision=1, no_zero=False):
-    if not number:
-        return '0,00'
-
-    if number < 0:
-        sign = '-'
-    else:
-        sign = ''
-    # Requires Python >= 2.7:
-    # before, after = "{:.{digits}f}".format(number, digits=precision).split('.')
-    # Works with Python 2.6:
-    before, after = "{0:10.{digits}f}".format(
-        number, digits=precision).strip('- ').split('.')
-
-    belist = []
-    end = len(before)
-    for i in range(3, len(before) + 3, 3):
-        start = len(before) - i
-        if start < 0:
-            start = 0
-        belist.append(before[start: end])
-        end = len(before) - i
-    before = '.'.join(reversed(belist))
-
-    if no_zero and int(number) == float(number):
-        return sign + before
-    else:
-        return sign + before + ',' + after
-
-
 class Ditron(Ecr):
     def compose(self):
         '''
@@ -71,15 +41,44 @@ class Ditron(Ecr):
         receipt attributes:
             payments
         '''
+        '''
+        slave on, msg='TASTIERA DISABILITATA'			;disabilita la tastiera
+        CLEAR        						            ;preme il tasto C
+        CHIAVE REG              						;conferma che la cassa si trovi in assetto REGistrazione
+
+        VEND REP=1,PREZZO=0.55          			;vendita semplice a reparto 1
+        SCONTO VAL=0.05                  			;sconto assoluto diretto su reparto
+
+        VEND REP=2,PREZZO=0.25          			;vendita semplice a reparto 2
+        VEND REP=3,PREZZO=0.25          			;vendita semplice a reparto 3
+        VEND REP=4,PREZZO=0.25          			;vendita semplice a reparto 4
+
+        VEND REP=2,PREZZO=0.25,STORNO   			;storno della vendita semplice a reparto 2
+
+        VEND REP=2,QTY=6,PREZZO=0.25    	        ;vendita su reparto con quantita' non unitaria
+        VEND REP=3,PRE=0.30,DES='CANCELLERIA' 	    ;vendita su reparto con descrizione
+
+        PERCA ALI=50, SUBTOT 			            ;Sconto del 50% sul subtotale
+
+        CORT R1='PROVA MESSAGGIO 1',R2='PROVA MESSAGGIO 2' 	;messaggio di cortesia
+
+        SUBT                            			;subtotale
+
+        CHIUS T=1,IMP=0.40              			;chiusura mista : 0.40 Euro in contanti
+        CHIUS T=2                       			;                 e il resto a credito #ahah
+        #oppure
+        CHIUS T=1                                   ;Chiusura in contanti
+        slave off						            ;riabilita la tastiera
+            '''
         receipt = self.receipt_data
         ticket = []
-        ticket.append(receipt.date.strftime(
-            '%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference)
+        ticket.append(u"slave on, msg='TASTIERA DISABILITATA'") #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
         ticket.append(u'')
-        ticket.append(receipt.user.company_id.name)
-        ticket.append(u'Phone: ' + str(receipt.user.company_id.phone))
-        ticket.append(u'User: ' + receipt.user.name)
-        ticket.append(u'POS: ' + receipt.cash_register_name)
+        ticket.append(u'CLEAR') #receipt.user.company_id.name
+        ticket.append(u'CHIAVE REG') #str(receipt.user.company_id.phone)
+
+        # ticket.append(u'User: ' + receipt.user.name)
+        # ticket.append(u'POS: ' + receipt.cash_register_name)
         ticket.append(u'')
         
         #lines = self.get_product_line()
@@ -87,43 +86,44 @@ class Ditron(Ecr):
             self.subtotal += line.price_subtotal
             if line.discount:
                 self.discount += line.product_id.list_price * line.qty - line.price_subtotal
-            qty = italian_number(line.qty, 1, True)
-            
+            qty = line.qty != 0 or 1
+            reparto = 1
             if line.product_id and line.product_id.taxes_id and line.product_id.taxes_id[0]:
-                reparto = line.product_id.taxes_id[0].department.department
-            else:
-                reparto = 1
-            
-            ticket.append(u"rep={reparto} {name:<24}{qty: ^3}{price:>6.2f} €".format(
-                reparto=reparto, name=line.product_id.name, qty=qty, price=line.price_subtotal_incl))
-            
-            if line.discount:
-                ticket.append(
-                    u'With a {discount}% discount'.format(discount=line.discount))
+                if line.product_id.taxes_id[0].department.department:
+                    reparto = line.product_id.taxes_id[0].department.department
+            price = line.price_subtotal_incl
+
+            if price != 0.0:
+                ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
+                    reparto=reparto, name=line.product_id.name, qty=qty, price=price))
+                if line.discount:
+                    ticket.append(
+                        u'SCONTO VAL={discount:.2f}'.format(discount=line.product_id.list_price * line.qty - line.price_subtotal))
                 
             #line = self.get_product_line()
 
         ticket.append(u'')
 
-        ticket.append(u'{text:<30}{subtotal:>9.2f} €'.format(
-            text='Subtotal: ', subtotal=self.subtotal))
-        ticket.append(
-            u'Tax:                          {tax:9.2f} €'.format(tax=receipt.amount_tax))
-        ticket.append(
-            u'Discount:                     {discount:9.2f} €'.format(discount=self.discount))
-        ticket.append(
-            u'Total:                        {total:9.2f} €'.format(total=receipt.amount_total))
+        ticket.append(u'SUBT')
+        ticket.append(u'CHIUS T=1') # PER CASSA
+        ticket.append(u'slave off')  # {text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
+        # ticket.append(
+        #     u'Tax:                          {tax:9.2f} €'.format(tax=receipt.amount_tax))
+        # ticket.append(
+        #     u'Discount:                     {discount:9.2f} €'.format(discount=self.discount))
+        # ticket.append(
+        #     u'Total:                        {total:9.2f} €'.format(total=receipt.amount_total))
 
         ticket.append(u'')
 
-        for payment in receipt.payments:
-            ticket.append(u'{name:<30}{amount:9.2f} €'.format(
-                name=payment.name_get()[0][1], amount=payment.amount))
-
-        ticket.append(u'')
-
-        ticket.append(
-            u'Change:                       {a_return:9.2f} €'.format(a_return=receipt.amount_return))
+        # for payment in receipt.payments:
+        #     ticket.append(u'{name:<30}{amount:9.2f} €'.format(
+        #         name=payment.name_get()[0][1], amount=payment.amount))
+        #
+        # ticket.append(u'')
+        #
+        # ticket.append(
+        #     u'Change:                       {a_return:9.2f} €'.format(a_return=receipt.amount_return))
         
         return ticket
 

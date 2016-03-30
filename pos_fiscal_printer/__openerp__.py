@@ -33,11 +33,9 @@
      ],
     'data': [
         'security/ir.model.access.csv',  # load access rights after groups
-        'fiscal_printer_view.xml',
+        'views/fiscal_printer_view.xml',
+        'views/point_of_sale.xml',
     ],
     'installable': True,
-    'js': [
-        'static/src/js/pos_fiscal_printer.js',
-    ],
 }
 

@@ -82,8 +82,11 @@ class Ditron(Ecr):
         ticket.append(u'POS: ' + receipt.cash_register_name)
         ticket.append(u'')
         
-        line = self.get_product_line()
-        while line:
+        #lines = self.get_product_line()
+        for line in self.product_lines:
+            self.subtotal += line.price_subtotal
+            if line.discount:
+                self.discount += line.product_id.list_price * line.qty - line.price_subtotal
             qty = italian_number(line.qty, 1, True)
             
             if line.product_id and line.product_id.taxes_id and line.product_id.taxes_id[0]:
@@ -98,7 +101,7 @@ class Ditron(Ecr):
                 ticket.append(
                     u'With a {discount}% discount'.format(discount=line.discount))
                 
-            line = self.get_product_line()
+            #line = self.get_product_line()
 
         ticket.append(u'')
 

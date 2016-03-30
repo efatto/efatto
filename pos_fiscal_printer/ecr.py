@@ -34,7 +34,7 @@ class Ecr():
     
     def get_product_line(self):
         if self.product_lines:
-            line = self.product_lines[0] # perchè c'era questo??? .pop(0)
+            line = self.product_lines[0]
             self.subtotal += line.price_subtotal
             if line.discount:
                 self.discount += line.product_id.list_price * line.qty - line.price_subtotal

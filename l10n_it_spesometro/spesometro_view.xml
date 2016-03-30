@@ -259,8 +259,12 @@
                 	    	        <field name="noleggio"/>
                 	    	        <field name="attive_imponibile_non_esente" string="Attive : Impon., non impon, esente"/>
                 	    	        <field name="attive_imposta" string="Attive : imposta"/>
+									<field name="attive_note_variazione" string="Attive variaz.: Impon., non impon, esente"/>
+                	    	        <field name="attive_note_variazione_imposta" string="Attive variaz.: imposta"/>
                 	    	        <field name="passive_imponibile_non_esente" string="Passive : Impon., non impon, esente"/>
                 	    	        <field name="passive_imposta" string="Passive : imposta"/>
+									<field name="passive_note_variazione" string="Attive variaz.: Impon., non impon, esente"/>
+                	    	        <field name="passive_note_variazione_imposta" string="Attive variaz.: imposta"/>
                 	    	    </tree>
                 	    	</field>
                 	    </page>
@@ -506,7 +510,7 @@
                    		<field name="passive_imposta"/>    
                    		<field name="passive_operazioni_iva_non_esposta"/>    
                    		<field name="passive_note_variazione"/>    
-                   		<field name="passive_note_variazione_imposta"/>    
+                   		<field name="passive_note_variazione_imposta"/>
                    	</group>
                    	  
                 </form>

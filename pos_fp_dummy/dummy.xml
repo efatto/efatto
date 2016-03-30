@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="fp_driver" model="fp.driver">
+            <field name="class_name">Dummy</field>
+            <field name="name">Dummy driver</field>
+            <field name="module">pos_fp_dummy</field>
+        </record>
+    </data>
+</openerp>

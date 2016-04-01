@@ -6,6 +6,7 @@ from os.path import isfile
 from openerp import http
 import xml.etree.ElementTree as ET
 import openerp.addons.hw_proxy.controllers.main as hw_proxy
+from time import sleep
 
 _logger = logging.getLogger(__name__)
 
@@ -166,7 +167,11 @@ class Ditron(Ecr):
             os.makedirs(destination)
         ticket = 'scontrino.txt'
 
-        file(os.path.join(destination, ticket), 'w').write(
+        file_destination = os.path.join(destination, ticket)
+        # while isfile(file_destination):
+        #     sleep(1)  # quanto?
+        # else:
+        file(file_destination, 'w').write(
             unicode(self).encode('utf8'))
 
         return True

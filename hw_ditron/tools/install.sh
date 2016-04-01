@@ -92,8 +92,8 @@ chmod 644 /etc/logrotate.conf
 echo "* * * * * rm /var/run/odoo/sessions/*" | crontab -
 
 #verificare se questo non serve
-update-rc.d -f hostapd remove
-update-rc.d -f isc-dhcp-server remove
+#update-rc.d -f hostapd remove
+#update-rc.d -f isc-dhcp-server remove
 
 # https://www.raspberrypi.org/forums/viewtopic.php?p=79249
 # to not have "setting up console font and keymap" during boot take ages

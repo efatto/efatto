@@ -7,7 +7,11 @@
     'summary': 'Hardware Driver for Italian Fiscal Ditron',
     'website': 'https://www.simplerp.it',
     'author': 'Sergio Corato - SimplERP Srl',
-    'depends': ['hw_proxy'],
+    'depends': [
+        'point_of_sale',
+        'hw_proxy',
+    ],
+    'qweb': ['static/src/xml/pos.xml'],
     'installable': True,
     'auto_install': False,
 }

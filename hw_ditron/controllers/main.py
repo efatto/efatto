@@ -12,14 +12,17 @@ _logger = logging.getLogger(__name__)
 import tempfile
 import os
 from datetime import datetime
+from threading import Thread
 
-
-class Ecr():
+class Ecr(Thread):
     reference = ''
 
     def __init__(self, receipt):
+        Thread.__init__(self)
         self.receipt_data = receipt
+        self.receipt_xml = ''
         self.receipt = self.compose()
+        self.status = {}
 
     def __unicode__(self):
         return u'\r\n'.join(self.receipt) + u'\r\n\r\n'
@@ -32,6 +35,28 @@ class Ecr():
 
     def print_receipt(self):
         pass
+
+    def set_status(self, status, message=None):
+        _logger.info(status + ' : ' + (message or 'no message'))
+        # if status == self.status['status']:
+        #     if message != None and (len(self.status['messages']) == 0 or message !=
+        #         self.status['messages'][-1]):
+        #         self.status['messages'].append(message)
+        # else:
+        #self.status['status'] = status
+        if message:
+            self.status['messages'] = [message]
+        else:
+            self.status['messages'] = []
+
+        if status == 'error' and message:
+            _logger.error('DITRON Error: ' + message)
+        elif status == 'disconnected' and message:
+            _logger.warning('DITRON Device Disconnected: ' + message)
+
+    def get_status(self):
+        self.set_status('connected', 'Connected to Ditron')
+        return True
 
     def dry_print(self):
         destination = os.path.join(tempfile.gettempdir(), 'fp_tmp')
@@ -48,10 +73,6 @@ class Ecr():
 class Ditron(Ecr):
     def compose(self):
         '''
-        slave on, msg='TASTIERA DISABILITATA'			;disabilita la tastiera
-        CLEAR        						            ;preme il tasto C
-        CHIAVE REG              						;conferma che la cassa si trovi in assetto REGistrazione
-
         VEND REP=1,PREZZO=0.55          			;vendita semplice a reparto 1
         SCONTO VAL=0.05                  			;sconto assoluto diretto su reparto
 
@@ -68,27 +89,22 @@ class Ditron(Ecr):
 
         CORT R1='PROVA MESSAGGIO 1',R2='PROVA MESSAGGIO 2' 	;messaggio di cortesia
 
-        SUBT                            			;subtotale
 
         CHIUS T=1,IMP=0.40              			;chiusura mista : 0.40 Euro in contanti
         CHIUS T=2                       			;                 e il resto a credito #ahah
-        #oppure
-        CHIUS T=1                                   ;Chiusura in contanti
-        slave off						            ;riabilita la tastiera
             '''
-        # receipt = self.receipt_data
+        receipt_xml = self.receipt_xml
         ticket = []
-        ticket.append(u"slave on, msg='TASTIERA DISABILITATA'") #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
+        ticket.append(u"slave on, msg='TASTIERA DISABILITATA'") #  ;disabilita la tastiera
+        #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
         ticket.append(u'')
-        ticket.append(u'CLEAR') #receipt.user.company_id.name
-        ticket.append(u'CHIAVE REG') #str(receipt.user.company_id.phone)
+        ticket.append(u'CLEAR') #  ;preme il tasto C  #receipt.user.company_id.name
+        ticket.append(u'CHIAVE REG') #  ;conferma che la cassa si trovi in assetto REGistrazione #str(receipt.user.company_id.phone)
 
         # ticket.append(u'User: ' + receipt.user.name)
         # ticket.append(u'POS: ' + receipt.cash_register_name)
-        ticket.append(u'')
+        ticket.append(receipt_xml)
 
-        if self:
-            pass
         # for line in self.product_lines:
         #     self.subtotal += line.price_subtotal
         #     if line.discount:
@@ -108,9 +124,9 @@ class Ditron(Ecr):
         #                 u'SCONTO VAL={discount:.2f}'.format(discount=line.product_id.list_price * line.qty - line.price_subtotal))
 
         ticket.append(u'')
-        ticket.append(u'SUBT')
-        ticket.append(u'CHIUS T=1') # PER CASSA
-        ticket.append(u'slave off')  # {text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
+        ticket.append(u'SUBT')   # ;subtotale
+        ticket.append(u'CHIUS T=1') # ;Chiusura in contanti
+        ticket.append(u'slave off')  # ;riabilita la tastiera  #{text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
         # ticket.append(
         #     u'Tax:                          {tax:9.2f} €'.format(tax=receipt.amount_tax))
         # ticket.append(
@@ -135,18 +151,28 @@ class Ditron(Ecr):
         destination = "/home/sergio/share"  # os.path.join(tempfile.gettempdir(), 'opentmp')
         if not os.path.exists(destination):
             os.makedirs(destination)
-        ticket = 'scontrino.txt'
+        ticket = 'scontrino.xml'
 
         file(os.path.join(destination, ticket), 'w').write(
-            unicode(self).encode('utf8'))
+            unicode(self.receipt).encode('utf8'))
 
         return True
+
+
+    def push_task(self, receipt_xml):
+        self.receipt_xml = receipt_xml
+        # self.lockedstart()
+        self.receipt = self.compose()
+        self.print_receipt()
+
+
+driver = Ditron(Ecr)
+#driver.push_task('printstatus')
+hw_proxy.drivers['ditron'] = driver
 
 
 class DitronDriver(hw_proxy.Proxy):
     @http.route('/hw_proxy/print_xml_receipt', type='json', auth='none', cors='*')
     def print_xml_receipt(self, receipt):
-        driver = Ditron(receipt)
-        hw_proxy.drivers['fiscal_data_module'] = driver
-        _logger.info('ESC/POS: PRINT XML RECEIPT')
-        driver.print_receipt(receipt)
+        _logger.info('DITRON: PRINT XML RECEIPT')
+        driver.push_task(receipt)

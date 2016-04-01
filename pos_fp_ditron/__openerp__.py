@@ -32,5 +32,5 @@
     'data': [
         'ditron.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

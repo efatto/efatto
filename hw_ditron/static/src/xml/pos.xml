@@ -5,12 +5,19 @@
          <t t-jquery="t[t-if='receipt.company.logo']" t-operation="replace">
          </t>
         <t t-jquery="t[t-foreach='receipt.orderlines']" t-operation="replace">
-                 <t t-foreach='receipt.orderlines' t-as='line'>
-                        <line_name>VEND REP=1,DES='<t t-esc='line.product_name' />',QTY=<t t-esc='line.quantity' />,PRE=<t t-esc='line.price' /></line_name>
+            <receipt_lines>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <line_vend>
+                        <rep>1</rep>
+                        <des><t t-esc='line.product_name' /></des>
+                        <qty><t t-esc='line.quantity' /></qty>
+                        <pre><t t-esc='line.price' /></pre>
                         <t t-if='line.discount !== 0'>
-                            <line_name>SCONTO VAL=<t t-esc='line.discount' /></line_name>
+                        <sconto><t t-esc='line.discount' /></sconto>
                         </t>
+                    </line_vend>
                 </t>
+            </receipt_lines>
          </t>
     </t>
 

@@ -91,6 +91,7 @@ chmod 644 /etc/logrotate.conf
 
 echo "* * * * * rm /var/run/odoo/sessions/*" | crontab -
 
+#verificare se questo non serve
 update-rc.d -f hostapd remove
 update-rc.d -f isc-dhcp-server remove
 

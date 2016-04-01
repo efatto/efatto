@@ -4,7 +4,7 @@
 import logging
 from os.path import isfile
 from openerp import http
-
+import xml.etree.ElementTree as ET
 import openerp.addons.hw_proxy.controllers.main as hw_proxy
 
 _logger = logging.getLogger(__name__)
@@ -93,17 +93,31 @@ class Ditron(Ecr):
         CHIUS T=1,IMP=0.40              			;chiusura mista : 0.40 Euro in contanti
         CHIUS T=2                       			;                 e il resto a credito #ahah
             '''
-        receipt_xml = self.receipt_xml
         ticket = []
-        ticket.append(u"slave on, msg='TASTIERA DISABILITATA'") #  ;disabilita la tastiera
+        ticket.append(
+            u"slave on, msg='TASTIERA DISABILITATA'")  # ;disabilita la tastiera
         #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
         ticket.append(u'')
-        ticket.append(u'CLEAR') #  ;preme il tasto C  #receipt.user.company_id.name
-        ticket.append(u'CHIAVE REG') #  ;conferma che la cassa si trovi in assetto REGistrazione #str(receipt.user.company_id.phone)
+        ticket.append(
+            u'CLEAR')  # ;preme il tasto C  #receipt.user.company_id.name
+        ticket.append(
+            u'CHIAVE REG')  # ;conferma che la cassa si trovi in assetto REGistrazione #str(receipt.user.company_id.phone)
+
+        if self.receipt_xml:
+            root = ET.fromstring(self.receipt_xml)
+            for child in root.findall('receipt_lines'):
+                for line in child:
+                    if line.tag == 'line_vend':
+                        # if price != 0.0:
+                        ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
+                                    reparto=line.find('rep').text, name=line.find('des').text, qty=line.find('qty').text, price=line.find('pre').text))
+                    if line.find('sconto'):
+                        ticket.append(
+                        u'SCONTO VAL={discount:.2f}'.format(discount=line.find('sconto').text * line.find('qty').text * line.find('pre').text))
 
         # ticket.append(u'User: ' + receipt.user.name)
         # ticket.append(u'POS: ' + receipt.cash_register_name)
-        ticket.append(receipt_xml)
+        #ticket.append(receipt_xml)
 
         # for line in self.product_lines:
         #     self.subtotal += line.price_subtotal
@@ -151,7 +165,7 @@ class Ditron(Ecr):
         destination = "/home/sergio/share"  # os.path.join(tempfile.gettempdir(), 'opentmp')
         if not os.path.exists(destination):
             os.makedirs(destination)
-        ticket = 'scontrino.xml'
+        ticket = 'scontrino.txt'
 
         file(os.path.join(destination, ticket), 'w').write(
             unicode(self.receipt).encode('utf8'))

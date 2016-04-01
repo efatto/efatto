@@ -36,6 +36,6 @@
         'views/fiscal_printer_view.xml',
         'views/point_of_sale.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
 

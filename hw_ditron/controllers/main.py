@@ -105,15 +105,14 @@ class Ditron(Ecr):
 
         if self.receipt_xml:
             root = ET.fromstring(self.receipt_xml)
-            for child in root.findall('receipt_lines'):
-                for line in child:
-                    if line.tag == 'line_vend':
-                        # if price != 0.0:
-                        ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
-                                    reparto=line.find('rep').text, name=line.find('des').text, qty=line.find('qty').text, price=line.find('pre').text))
+            for child in root.iter('receipt_lines'):
+                for line in child.findall('line_vend'):
+                    # if price != 0.0:
+                    ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
+                                reparto=line.find('rep').text, name=line.find('des').text, qty=float(line.find('qty').text), price=float(line.find('pre').text)))
                     if line.find('sconto'):
                         ticket.append(
-                        u'SCONTO VAL={discount:.2f}'.format(discount=line.find('sconto').text * line.find('qty').text * line.find('pre').text))
+                        u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) * float(line.find('qty').text) * float(line.find('pre').text)))
 
         # ticket.append(u'User: ' + receipt.user.name)
         # ticket.append(u'POS: ' + receipt.cash_register_name)
@@ -168,7 +167,7 @@ class Ditron(Ecr):
         ticket = 'scontrino.txt'
 
         file(os.path.join(destination, ticket), 'w').write(
-            unicode(self.receipt).encode('utf8'))
+            unicode(self).encode('utf8'))
 
         return True
 

@@ -13,11 +13,12 @@ ssh-keyscan -t rsa,dsa -H gitlab.com >> ~/.ssh/known_hosts
 
 #clona e scarica solo quello che serve di odoo e simplerp
 OVERWRITE_FILES_BEFORE_INIT_DIR="${__dir}/overwrite_before_init"
-OVERWRITE_FILES_AFTER_INIT_DIR="${__dir}/overwrite_after_init"
+#OVERWRITE_FILES_AFTER_INIT_DIR="${__dir}/overwrite_after_init"
 CLONE_DIR="${OVERWRITE_FILES_BEFORE_INIT_DIR}/home/pi/odoo"
 echo "creo directory odoo"
 mkdir "${CLONE_DIR}"
 
+apt-get install git -y
 git clone -b master --depth 1 git@gitlab.com:sergio-corato/simplerpos.git "${CLONE_DIR}"
 
 # copia i file: COME SI FA A COPIARLI NELLA ISO PRIMA DI INSTALLARLA??? SERVE???
@@ -25,7 +26,7 @@ MOUNT_POINT="/"
 # 'overlay' the overwrite directory onto the mounted image filesystem
 cp -a "${OVERWRITE_FILES_BEFORE_INIT_DIR}"/* "${MOUNT_POINT}"
 
-cp -av "${OVERWRITE_FILES_AFTER_INIT_DIR}"/* "${MOUNT_POINT}"
+#cp -av "${OVERWRITE_FILES_AFTER_INIT_DIR}"/* "${MOUNT_POINT}"
 
 #prosegui con la configurazione di debian
 # Recommends: antiword, graphviz, ghostscript, postgresql, python-gevent, poppler-utils
@@ -57,11 +58,6 @@ apt-get -y install ${PKGS_TO_INSTALL}
 
 apt-get clean
 localepurge
-rm -rf /usr/share/doc
-rm -rf /home/pi/python_games
-
-# remove raspi-config notice, it's not necessary and it's not installed anyway
-rm -f /etc/profile.d/raspi-config.sh
 
 # python-usb in wheezy is too old
 # the latest pyusb from pip does not work either, usb.core.find() never returns
@@ -83,6 +79,10 @@ su - postgres -c "createuser -s pi" 2> /dev/null || true
 mkdir /var/log/odoo
 chown pi:pi /var/log/odoo
 
+#create folder to be shared after
+mkdir /home/pi/share
+chown pi:pi /home/pi/share
+
 # logrotate is very picky when it comes to file permissions
 chown -R root:root /etc/logrotate.d/
 chmod -R 644 /etc/logrotate.d/
@@ -92,20 +92,14 @@ chmod 644 /etc/logrotate.conf
 echo "* * * * * rm /var/run/odoo/sessions/*" | crontab -
 
 #verificare se questo non serve
-#update-rc.d -f hostapd remove
-#update-rc.d -f isc-dhcp-server remove
+update-rc.d -f hostapd remove
+update-rc.d -f isc-dhcp-server remove
+
+#non c'era prima?
+update-rc.d odoo defaults
 
 # https://www.raspberrypi.org/forums/viewtopic.php?p=79249
 # to not have "setting up console font and keymap" during boot take ages
 setupcon
-
-# create dirs for ramdisks
-#create_ramdisk_dir () {
-#    mkdir "${1}_ram"
-#}
-
-#create_ramdisk_dir "/var"
-#create_ramdisk_dir "/etc"
-#mkdir /root_bypass_ramdisks
 
 reboot

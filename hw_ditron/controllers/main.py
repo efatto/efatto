@@ -5,25 +5,26 @@ import logging
 from os.path import isfile
 from openerp import http
 import xml.etree.ElementTree as ET
-import openerp.addons.hw_proxy.controllers.main as hw_proxy
+
 from time import sleep
-
-_logger = logging.getLogger(__name__)
-
 import tempfile
 import os
 from datetime import datetime
 from threading import Thread
+import openerp.addons.hw_proxy.controllers.main as hw_proxy
 
-class Ecr(Thread):
+_logger = logging.getLogger(__name__)
+
+
+class Ditron(Thread):
     reference = ''
 
-    def __init__(self, receipt):
+    def __init__(self):
         Thread.__init__(self)
-        self.receipt_data = receipt
         self.receipt_xml = ''
         self.receipt = self.compose()
-        self.status = {}
+        self.set_status('connecting')
+        self.device_path = self._find_device_path_by_probing()
 
     def __unicode__(self):
         return u'\r\n'.join(self.receipt) + u'\r\n\r\n'
@@ -31,47 +32,32 @@ class Ecr(Thread):
     def __str__(self):
         return u'\r\n'.join(self.receipt) + u'\r\n\r\n'
 
-    def compose(self):
-        pass
-
-    def print_receipt(self):
-        pass
-
-    def set_status(self, status, message=None):
-        _logger.info(status + ' : ' + (message or 'no message'))
-        # if status == self.status['status']:
-        #     if message != None and (len(self.status['messages']) == 0 or message !=
-        #         self.status['messages'][-1]):
-        #         self.status['messages'].append(message)
-        # else:
-        #self.status['status'] = status
-        if message:
-            self.status['messages'] = [message]
-        else:
-            self.status['messages'] = []
-
-        if status == 'error' and message:
-            _logger.error('DITRON Error: ' + message)
-        elif status == 'disconnected' and message:
-            _logger.warning('DITRON Device Disconnected: ' + message)
+    def set_status(self, status, messages=[]):
+        self.status = {
+            'status': status,
+            'messages': messages
+        }
 
     def get_status(self):
-        self.set_status('connected', 'Connected to Ditron')
-        return True
+        return self.status
 
-    def dry_print(self):
-        destination = os.path.join(tempfile.gettempdir(), 'fp_tmp')
+    def _find_device_path_by_probing(self):
+        destination = "/home/pi/share"
         if not os.path.exists(destination):
             os.makedirs(destination)
-        ticket = datetime.now().strftime("%Y%m%d.%H%M") + '.txt'
+        ticket = 'scontrino.txt'
 
-        file(os.path.join(destination, ticket), 'w').write(
-            unicode(self).encode('utf8'))
-
+        file_destination = os.path.join(destination, ticket)
+        if isfile(file_destination):  # scontrino.txt not already printed, ECRCOM driver dead???
+            _logger.debug("Probing " + file_destination)
+            self.set_status('error', ["Couldn't Connected to Ditron"])
+        # while isfile(file_destination):
+        #     sleep(5)  # quanto?
+        # else:
+        else:
+            self.set_status('connected', 'Connected to Ditron')
         return True
 
-
-class Ditron(Ecr):
     def compose(self):
         '''
         VEND REP=1,PREZZO=0.55          			;vendita semplice a reparto 1
@@ -108,16 +94,15 @@ class Ditron(Ecr):
             root = ET.fromstring(self.receipt_xml)
             for child in root.iter('receipt_lines'):
                 for line in child.findall('line_vend'):
-                    # if price != 0.0:
-                    ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
-                                reparto=line.find('rep').text, name=line.find('des').text, qty=float(line.find('qty').text), price=float(line.find('pre').text)))
-                    if line.find('sconto'):
-                        ticket.append(
-                        u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) * float(line.find('qty').text) * float(line.find('pre').text)))
+                    if float(line.find('pre').text) != 0.0:
+                        ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
+                                    reparto=line.find('rep').text, name=line.find('des').text, qty=float(line.find('qty').text), price=float(line.find('pre').text)))
+                        if line.find('sconto'):
+                            ticket.append(
+                            u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) * float(line.find('qty').text) * float(line.find('pre').text)))
 
         # ticket.append(u'User: ' + receipt.user.name)
         # ticket.append(u'POS: ' + receipt.cash_register_name)
-        #ticket.append(receipt_xml)
 
         # for line in self.product_lines:
         #     self.subtotal += line.price_subtotal
@@ -136,38 +121,29 @@ class Ditron(Ecr):
         #         if line.discount:
         #             ticket.append(
         #                 u'SCONTO VAL={discount:.2f}'.format(discount=line.product_id.list_price * line.qty - line.price_subtotal))
-
-        ticket.append(u'')
-        ticket.append(u'SUBT')   # ;subtotale
-        ticket.append(u'CHIUS T=1') # ;Chiusura in contanti
-        ticket.append(u'slave off')  # ;riabilita la tastiera  #{text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
-        # ticket.append(
-        #     u'Tax:                          {tax:9.2f} €'.format(tax=receipt.amount_tax))
-        # ticket.append(
-        #     u'Discount:                     {discount:9.2f} €'.format(discount=self.discount))
-        # ticket.append(
-        #     u'Total:                        {total:9.2f} €'.format(total=receipt.amount_total))
-
-        ticket.append(u'')
-
         # for payment in receipt.payments:
         #     ticket.append(u'{name:<30}{amount:9.2f} €'.format(
         #         name=payment.name_get()[0][1], amount=payment.amount))
         #
-        # ticket.append(u'')
-        #
-        # ticket.append(
-        #     u'Change:                       {a_return:9.2f} €'.format(a_return=receipt.amount_return))
-
+        ticket.append(u'')
+        ticket.append(u'SUBT')   # ;subtotale
+        ticket.append(u'CHIUS T=1') # ;Chiusura in contanti
+        ticket.append(u'slave off')  # ;riabilita la tastiera  #{text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
+        ticket.append(u'')
+        _logger.debug("Appended Ticket")
         return ticket
 
     def print_receipt(self):
-        destination = "/home/sergio/share"  # os.path.join(tempfile.gettempdir(), 'opentmp')
+        destination = "/home/pi/share"  # os.path.join(tempfile.gettempdir(), 'opentmp')
         if not os.path.exists(destination):
             os.makedirs(destination)
         ticket = 'scontrino.txt'
 
         file_destination = os.path.join(destination, ticket)
+        if isfile(file_destination):  # scontrino.txt not already printed, ECRCOM driver dead???
+            ticket = ticket + str(datetime.now()) + '.txt'
+            file_destination = os.path.join(destination, ticket)
+            # TODO rename ticket after scontrino.txt is deleted, so it will be printed
         # while isfile(file_destination):
         #     sleep(1)  # quanto?
         # else:
@@ -176,15 +152,13 @@ class Ditron(Ecr):
 
         return True
 
-
     def push_task(self, receipt_xml):
         self.receipt_xml = receipt_xml
         # self.lockedstart()
         self.receipt = self.compose()
         self.print_receipt()
 
-
-driver = Ditron(Ecr)
+driver = Ditron()
 #driver.push_task('printstatus')
 hw_proxy.drivers['ditron'] = driver
 

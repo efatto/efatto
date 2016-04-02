@@ -68,7 +68,7 @@ class Ditron(Thread):
         VEND REP=4,PREZZO=0.25          			;vendita semplice a reparto 4
 
         VEND REP=2,PREZZO=0.25,STORNO   			;storno della vendita semplice a reparto 2
-
+        vend rep=1, pre=1.00, des='Articolo 3', reso
         VEND REP=2,QTY=6,PREZZO=0.25    	        ;vendita su reparto con quantita' non unitaria
         VEND REP=3,PRE=0.30,DES='CANCELLERIA' 	    ;vendita su reparto con descrizione
 
@@ -79,16 +79,32 @@ class Ditron(Thread):
 
         CHIUS T=1,IMP=0.40              			;chiusura mista : 0.40 Euro in contanti
         CHIUS T=2                       			;                 e il resto a credito #ahah
+
+        scontrini parlanti:
+        ;ESEMPIO CON CODICE FISCALE:
+
+        INP TERM=61
+        INP ALFA='MRTRSR76S11F158E',TERM=49
+        VEND REP=1, PRE=1.00
+        VEND REP=2,PRE=1.50,QTY=5,DES='ARTICOLO PROVA'
+        CHIUS
+
+        ;ESEMPIO CON P.IVA
+
+        INP TERM=61
+        INP ALFA='07291140635',TERM=49
+        VEND REP=1, PRE=1.00
+        VEND REP=2,PRE=1.50,QTY=5,DES='ARTICOLO PROVA'
+        CHIUS
             '''
         ticket = []
         ticket.append(
-            u"slave on, msg='TASTIERA DISABILITATA'")  # ;disabilita la tastiera
+            u"slave on, msg='TASTIERA DISABILITATA'")
         #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
         ticket.append(u'')
-        ticket.append(
-            u'CLEAR')  # ;preme il tasto C  #receipt.user.company_id.name
-        ticket.append(
-            u'CHIAVE REG')  # ;conferma che la cassa si trovi in assetto REGistrazione #str(receipt.user.company_id.phone)
+        ticket.append(u'CLEAR')  # ;preme il tasto C
+        ticket.append(u'CHIAVE REG')
+        # ;conferma che la cassa si trovi in assetto REGistrazione
 
         if self.receipt_xml:
             root = ET.fromstring(self.receipt_xml)
@@ -97,11 +113,12 @@ class Ditron(Thread):
                     if float(line.find('pre').text) != 0.0:
                         ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
                                     reparto=line.find('rep').text, name=line.find('des').text, qty=float(line.find('qty').text), price=float(line.find('pre').text)))
-                        if line.find('sconto'):
+                        if float(line.find('sconto').text) != 0.0:
                             ticket.append(
-                            u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) * float(line.find('qty').text) * float(line.find('pre').text)))
-
+                            u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) / 100 * float(line.find('qty').text) * float(line.find('pre').text)
+                                                                ))
         # ticket.append(u'User: ' + receipt.user.name)
+        # #receipt.user.company_id.name
         # ticket.append(u'POS: ' + receipt.cash_register_name)
 
         # for line in self.product_lines:
@@ -154,7 +171,6 @@ class Ditron(Thread):
 
     def push_task(self, receipt_xml):
         self.receipt_xml = receipt_xml
-        # self.lockedstart()
         self.receipt = self.compose()
         self.print_receipt()
 

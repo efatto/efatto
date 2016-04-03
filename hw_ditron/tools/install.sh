@@ -12,7 +12,7 @@ __base="$(basename ${__file} .sh)"
 #clona e scarica solo quello che serve di odoo e simplerp
 OVERWRITE_FILES_BEFORE_INIT_DIR="${__dir}/overwrite_before_init"
 
-apt-get install git -y
+apt-get install git vim -y
 
 # copia i file: COME SI FA A COPIARLI NELLA ISO PRIMA DI INSTALLARLA??? SERVE???
 MOUNT_POINT="/"
@@ -68,7 +68,7 @@ usermod -a -G lp $OE_USER
 su - $OE_USER -c "cd && ssh-keygen -t rsa -b 4096 -N '' -f ~/.ssh/id_rsa -C '$OE_USER.simplerpos.it'"
 su - $OE_USER -c "ssh-keyscan -t rsa,dsa -H github.com > ~/.ssh/known_hosts"
 su - $OE_USER -c "ssh-keyscan -t rsa,dsa -H gitlab.com >> ~/.ssh/known_hosts"
-su - $OE_USER -c "cd && git clone -b master --depth 1 git@gitlab.com:sergio-corato/simplerpos.git /home/'${OE_USER}'/odoo"
+#su - $OE_USER -c "cd && git clone -b master --depth 1 git@gitlab.com:sergio-corato/simplerpos.git /home/'${OE_USER}'/odoo"
 
 su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
 mkdir /var/log/odoo
@@ -97,4 +97,4 @@ update-rc.d odoo defaults
 # to not have "setting up console font and keymap" during boot take ages
 setupcon
 
-reboot
+#reboot

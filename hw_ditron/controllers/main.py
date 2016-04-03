@@ -110,13 +110,22 @@ class Ditron(Thread):
             root = ET.fromstring(self.receipt_xml)
             for child in root.iter('receipt_lines'):
                 for line in child.findall('line_vend'):
+                    reso = ''
+                    if float(line.find('pre').text) < 0.0:
+                        reso = ', reso'
                     if float(line.find('pre').text) != 0.0:
-                        ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
-                                    reparto=line.find('rep').text, name=line.find('des').text, qty=float(line.find('qty').text), price=float(line.find('pre').text)))
+                        ticket.append(
+                            u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}{reso}'".format(
+                                reparto=line.find('rep').text, name=line.find('des').text,
+                                qty=float(line.find('qty').text),
+                                price=float(line.find('pre').text),
+                                reso=reso,)
+                        )
                         if float(line.find('sconto').text) != 0.0:
                             ticket.append(
-                            u'SCONTO VAL={discount:.2f}'.format(discount=float(line.find('sconto').text) / 100 * float(line.find('qty').text) * float(line.find('pre').text)
-                                                                ))
+                                u'SCONTO VAL={discount:.2f}'.format(
+                                    discount=float(line.find('sconto').text) / 100 * float(
+                                        line.find('qty').text) * float(line.find('pre').text)))
         # ticket.append(u'User: ' + receipt.user.name)
         # #receipt.user.company_id.name
         # ticket.append(u'POS: ' + receipt.cash_register_name)

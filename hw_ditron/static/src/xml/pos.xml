@@ -12,11 +12,10 @@
                         <des><t t-esc='line.product_name' /></des>
                         <qty><t t-esc='line.quantity' /></qty>
                         <pre><t t-esc='line.price' /></pre>
-                        <t t-if='line.discount !== 0'>
                         <sconto><t t-esc='line.discount' /></sconto>
-                        </t>
                     </line_vend>
                 </t>
+                <!--TODO NON SI PUÒ STAMPARE UNO SCONTRINO FISCALE NEGATIVO, DEV'ESSERE BLOCCATO IN FASE DI COMPILAZIONE A VIDEO (NON DOPO!)-->
             </receipt_lines>
          </t>
     </t>

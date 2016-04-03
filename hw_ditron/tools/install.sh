@@ -3,30 +3,21 @@ set -o errexit
 set -o nounset
 set -o pipefail
 # set -o xtrace
+OE_USER=pi
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 
-ssh-keyscan -t rsa,dsa -H github.com > ~/.ssh/known_hosts
-ssh-keyscan -t rsa,dsa -H gitlab.com >> ~/.ssh/known_hosts
-
 #clona e scarica solo quello che serve di odoo e simplerp
 OVERWRITE_FILES_BEFORE_INIT_DIR="${__dir}/overwrite_before_init"
-#OVERWRITE_FILES_AFTER_INIT_DIR="${__dir}/overwrite_after_init"
-CLONE_DIR="${OVERWRITE_FILES_BEFORE_INIT_DIR}/home/pi/odoo"
-echo "creo directory odoo"
-mkdir "${CLONE_DIR}"
 
 apt-get install git -y
-git clone -b master --depth 1 git@gitlab.com:sergio-corato/simplerpos.git "${CLONE_DIR}"
 
 # copia i file: COME SI FA A COPIARLI NELLA ISO PRIMA DI INSTALLARLA??? SERVE???
 MOUNT_POINT="/"
 # 'overlay' the overwrite directory onto the mounted image filesystem
 cp -a "${OVERWRITE_FILES_BEFORE_INIT_DIR}"/* "${MOUNT_POINT}"
-
-#cp -av "${OVERWRITE_FILES_AFTER_INIT_DIR}"/* "${MOUNT_POINT}"
 
 #prosegui con la configurazione di debian
 # Recommends: antiword, graphviz, ghostscript, postgresql, python-gevent, poppler-utils
@@ -67,21 +58,25 @@ pip install pyusb==1.0.0b1
 pip install qrcode
 pip install evdev
 
-adduser --system --quiet --shell=/bin/bash --gecos '' --group pi
-chown pi:pi /home/pi
-usermod -m -d /home/pi pi
+adduser --system --quiet --home=/home/$OE_USER --shell=/bin/bash --gecos '' --group $OE_USER
+chown $OE_USER:$OE_USER /home/$OE_USER
 
 groupadd usbusers
-usermod -a -G usbusers pi
-usermod -a -G lp pi
+usermod -a -G usbusers $OE_USER
+usermod -a -G lp $OE_USER
 
-su - postgres -c "createuser -s pi" 2> /dev/null || true
+su - $OE_USER -c "cd && ssh-keygen -t rsa -b 4096 -N '' -f ~/.ssh/id_rsa -C '$OE_USER.simplerpos.it'"
+su - $OE_USER -c "ssh-keyscan -t rsa,dsa -H github.com > ~/.ssh/known_hosts"
+su - $OE_USER -c "ssh-keyscan -t rsa,dsa -H gitlab.com >> ~/.ssh/known_hosts"
+su - $OE_USER -c "cd && git clone -b master --depth 1 git@gitlab.com:sergio-corato/simplerpos.git /home/'${OE_USER}'/odoo"
+
+su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
 mkdir /var/log/odoo
-chown pi:pi /var/log/odoo
+chown $OE_USER:$OE_USER /var/log/odoo
 
 #create folder to be shared after
-mkdir /home/pi/share
-chown pi:pi /home/pi/share
+mkdir /home/$OE_USER/share
+chown $OE_USER:$OE_USER /home/$OE_USER/share
 
 # logrotate is very picky when it comes to file permissions
 chown -R root:root /etc/logrotate.d/

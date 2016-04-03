@@ -24,12 +24,12 @@ a VirtualBox (or equivalent) using script:
 launched as root (this module is installed automatically with this script).
 This script create a PosBox installation of Odoo.
 After creation, to work it need to:
-    - add Guest to VirtualBox;
+    - add Guest Additions to VirtualBox;
     - share the folder /home/pi/share with the parent os (usually Windows)
-    - configure WinEcrCom with same shared folder
+    - configure WinEcrCom with the same shared folder
 
-Preferably configure Debian machine in VirtualBox with static IP, taking an ip
-far from normally used, like:
+Preferably configure Debian machine in VirtualBox with static IP, taking an IP
+far from the ones normally used, likes:
 auto eth0
 iface eth0 inet static
              address 192.168.0.189
@@ -39,7 +39,10 @@ iface eth0 inet static
              #dns-search somedomain.org
              #dns-nameservers 195.238.2.21 195.238.2.22
              #broadcast 192.168.0.0
+This IP will be put in as 'proxy' in Odoo POS configuration.
 
+TODO:
+    - print receipt if queue is full (now they are saved with another name)
 
 Maintainer
 ----------

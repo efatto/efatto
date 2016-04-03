@@ -15,7 +15,7 @@
                         <sconto><t t-esc='line.discount' /></sconto>
                     </line_vend>
                 </t>
-                <!--TODO NON SI PUÒ STAMPARE UNO SCONTRINO FISCALE NEGATIVO, DEV'ESSERE BLOCCATO IN FASE DI COMPILAZIONE A VIDEO (NON DOPO!)-->
+                <!--TODO NON SI PUÒ STAMPARE UNO SCONTRINO FISCALE NEGATIVO, DEV'ESSERE BLOCCATO IN FASE DI COMPILAZIONE A VIDEO su screens.js (NON DOPO!)-->
             </receipt_lines>
          </t>
     </t>

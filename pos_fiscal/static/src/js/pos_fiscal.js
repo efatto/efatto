@@ -112,4 +112,5 @@ openerp.pos_fiscal = function(instance) {
             },250);
         },
     });
+
 }

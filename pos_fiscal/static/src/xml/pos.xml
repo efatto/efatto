@@ -8,14 +8,13 @@
             <receipt_lines>
                 <t t-foreach='receipt.orderlines' t-as='line'>
                     <line_vend>
-                        <rep><t t-esc='line.tax_department' /></rep>
+                        <rep>1</rep>
                         <des><t t-esc='line.product_name' /></des>
                         <qty><t t-esc='line.quantity' /></qty>
                         <pre><t t-esc='line.price' /></pre>
                         <sconto><t t-esc='line.discount' /></sconto>
                     </line_vend>
                 </t>
-                <!--TODO NON SI PUÒ STAMPARE UNO SCONTRINO FISCALE NEGATIVO, DEV'ESSERE BLOCCATO IN FASE DI COMPILAZIONE A VIDEO su screens.js (NON DOPO!)-->
             </receipt_lines>
          </t>
     </t>

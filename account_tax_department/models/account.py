@@ -5,7 +5,7 @@
 from openerp import models, fields
 
 
-class TaxDepartment(models.Model):
+class AccountTaxDepartment(models.Model):
     _name = 'account.tax.department'
     _description = 'Tax department'
 

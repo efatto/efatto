@@ -30,6 +30,7 @@
         'point_of_sale',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/account_view.xml',
     ],
     'installable': True

@@ -41,6 +41,13 @@ iface eth0 inet static
              #broadcast 192.168.0.0
 This IP will be put in as 'proxy' in Odoo POS configuration.
 
+To update the Simplerpos, only do (there isn't a db):
+    su - pi
+    cd odoo
+    git pull -u
+    exit
+    reboot
+
 TODO:
     - print receipt if queue is full (now they are saved with another name)
 

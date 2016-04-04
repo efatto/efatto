@@ -33,7 +33,6 @@
         'profile_simplerp_brand',
         'profile_simplerp_hr',
         'profile_simplerp_pos',
-        'profile_simplerp_stock',
         'profile_simplerp_website',
         'account_payment',
         'account_budget',

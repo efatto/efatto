@@ -1,5 +1,6 @@
 openerp.pos_fiscal = function(instance) {
     // loading the namespace of the 'point_of_sale' module
+    var QWeb = instance.web.qweb;
     var module = instance.point_of_sale;
     var _t = instance.web._t;
 

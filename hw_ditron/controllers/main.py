@@ -167,7 +167,7 @@ class Ditron(Thread):
 
         file_destination = os.path.join(destination, ticket)
         if isfile(file_destination):  # scontrino.txt not already printed, ECRCOM driver dead???
-            ticket = ticket + str(datetime.now()) + '.txt'
+            ticket = ticket + str(datetime.now()).replace(':','').replace('.','').replace(' ','') + '.txt'
             file_destination = os.path.join(destination, ticket)
             # TODO rename ticket after scontrino.txt is deleted, so it will be printed
         # while isfile(file_destination):

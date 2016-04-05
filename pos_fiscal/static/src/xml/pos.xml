@@ -8,7 +8,7 @@
             <receipt_lines>
                 <t t-foreach='receipt.orderlines' t-as='line'>
                     <line_vend>
-                        <rep>1</rep>
+                        <rep><t t-esc='line.tax_department' /></rep>
                         <des><t t-esc='line.product_name' /></des>
                         <qty><t t-esc='line.quantity' /></qty>
                         <pre><t t-esc='line.price' /></pre>

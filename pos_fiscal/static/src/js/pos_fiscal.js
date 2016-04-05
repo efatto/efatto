@@ -113,4 +113,62 @@ openerp.pos_fiscal = function(instance) {
         },
     });
 
+    var OrderlineParent = module.Orderline;
+    module.Orderline = module.Orderline.extend({
+        /**
+         * @param attr
+         * @param options
+         */
+        initialize: function (attr, options) {
+            OrderlineParent.prototype.initialize.apply(this, arguments);
+            this.tax_department = false;
+        },
+
+        get_tax_department: function(){
+            var self = this;
+            var currentOrder = this.pos.get('selectedOrder');
+            var ptaxes_ids = this.get_product().taxes_id;
+            var tax_amount = false
+            if (ptaxes_ids[0] !== false) {
+                ptaxes_id = ptaxes_ids[0];
+                for (var i = 0; i < this.pos.taxes.length; i++) {
+                    if (ptaxes_id === this.pos.taxes[i].id) {
+                        tax_amount = this.pos.taxes[i].amount;
+                    }
+                }
+                if(tax_amount === 0.04) {
+                    return 1; //ptaxes_ids[i].tax_department; currentOrder.get('orderLines').models.
+                }else{
+                    if(tax_amount === 0.10) {
+                        return 2;
+                    }else{
+                        if(tax_amount === 0.22) {
+                            return 3;
+                        }else{
+                            return 4;
+                            }
+                    }
+                }
+            }
+
+        },
+
+        export_for_printing: function(){
+
+            return {
+                quantity:           this.get_quantity(),
+                unit_name:          this.get_unit().name,
+                price:              this.get_unit_price(),
+                discount:           this.get_discount(),
+                product_name:       this.get_product().display_name,
+                price_display :     this.get_display_price(),
+                price_with_tax :    this.get_price_with_tax(),
+                price_without_tax:  this.get_price_without_tax(),
+                tax:                this.get_tax(),
+                product_description:      this.get_product().description,
+                product_description_sale: this.get_product().description_sale,
+                tax_department:     this.get_tax_department(),
+            };
+        },
+    });
 }

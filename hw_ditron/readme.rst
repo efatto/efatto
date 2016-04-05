@@ -23,9 +23,14 @@ a VirtualBox (or equivalent) using script:
     hw_ditron/tools/install.sh
 launched as root (this module is installed automatically with this script).
 This script create a PosBox installation of Odoo.
+
 After creation, to work it need to:
-    - add Guest Additions to VirtualBox;
-    - share the folder /home/pi/share with the parent os (usually Windows)
+    - add Guest Additions to VirtualBox and run installation of shared folder;
+    - add pi to vbosf group with:
+        usermod -a -G vboxsf pi
+    - link the folder /home/pi/share to shared folder with:
+        su - pi
+        ln -s /media/sf_Shared share
     - configure WinEcrCom with the same shared folder
 
 Preferably configure Debian machine in VirtualBox with static IP, taking an IP
@@ -39,7 +44,7 @@ iface eth0 inet static
              #dns-search somedomain.org
              #dns-nameservers 195.238.2.21 195.238.2.22
              #broadcast 192.168.0.0
-This IP will be put in as 'proxy' in Odoo POS configuration.
+Put this IP as 'proxy' in Odoo POS configuration.
 
 To update the Simplerpos, only do (there isn't a db):
     su - pi

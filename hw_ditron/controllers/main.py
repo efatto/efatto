@@ -96,17 +96,16 @@ class Ditron(Thread):
         VEND REP=1, PRE=1.00
         VEND REP=2,PRE=1.50,QTY=5,DES='ARTICOLO PROVA'
         CHIUS
-            '''
+        '''
         ticket = []
-        ticket.append(
-            u"slave on, msg='TASTIERA DISABILITATA'")
-        #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
-        ticket.append(u'')
-        ticket.append(u'CLEAR')  # ;preme il tasto C
-        ticket.append(u'CHIAVE REG')
-        # ;conferma che la cassa si trovi in assetto REGistrazione
-
         if self.receipt_xml:
+            ticket.append(
+                u"slave on, msg='TASTIERA DISABILITATA'")
+            #  receipt.date.strftime('%d/%m/%Y %H:%M:%S') + ' ' + receipt.reference
+            ticket.append(u'')
+            ticket.append(u'CLEAR')  # ;preme il tasto C
+            ticket.append(u'CHIAVE REG')
+            # ;conferma che la cassa si trovi in assetto REGistrazione
             root = ET.fromstring(self.receipt_xml)
             for child in root.iter('receipt_lines'):
                 for line in child.findall('line_vend'):
@@ -126,37 +125,37 @@ class Ditron(Thread):
                                 u'SCONTO VAL={discount:.2f}'.format(
                                     discount=float(line.find('sconto').text) / 100 * float(
                                         line.find('qty').text) * float(line.find('pre').text)))
-        # ticket.append(u'User: ' + receipt.user.name)
-        # #receipt.user.company_id.name
-        # ticket.append(u'POS: ' + receipt.cash_register_name)
+            # ticket.append(u'User: ' + receipt.user.name)
+            # #receipt.user.company_id.name
+            # ticket.append(u'POS: ' + receipt.cash_register_name)
 
-        # for line in self.product_lines:
-        #     self.subtotal += line.price_subtotal
-        #     if line.discount:
-        #         self.discount += line.product_id.list_price * line.qty - line.price_subtotal
-        #     qty = line.qty != 0 or 1
-        #     reparto = 1
-        #     if line.product_id and line.product_id.taxes_id and line.product_id.taxes_id[0]:
-        #         if line.product_id.taxes_id[0].department.department:
-        #             reparto = line.product_id.taxes_id[0].department.department
-        #     price = line.price_subtotal_incl
-        #
-        #     if price != 0.0:
-        #         ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
-        #             reparto=reparto, name=line.product_id.name, qty=qty, price=price))
-        #         if line.discount:
-        #             ticket.append(
-        #                 u'SCONTO VAL={discount:.2f}'.format(discount=line.product_id.list_price * line.qty - line.price_subtotal))
-        # for payment in receipt.payments:
-        #     ticket.append(u'{name:<30}{amount:9.2f} €'.format(
-        #         name=payment.name_get()[0][1], amount=payment.amount))
-        #
-        ticket.append(u'')
-        ticket.append(u'SUBT')   # ;subtotale
-        ticket.append(u'CHIUS T=1') # ;Chiusura in contanti
-        ticket.append(u'slave off')  # ;riabilita la tastiera  #{text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
-        ticket.append(u'')
-        _logger.debug("Appended Ticket")
+            # for line in self.product_lines:
+            #     self.subtotal += line.price_subtotal
+            #     if line.discount:
+            #         self.discount += line.product_id.list_price * line.qty - line.price_subtotal
+            #     qty = line.qty != 0 or 1
+            #     reparto = 1
+            #     if line.product_id and line.product_id.taxes_id and line.product_id.taxes_id[0]:
+            #         if line.product_id.taxes_id[0].department.department:
+            #             reparto = line.product_id.taxes_id[0].department.department
+            #     price = line.price_subtotal_incl
+            #
+            #     if price != 0.0:
+            #         ticket.append(u"VEND REP={reparto},QTY={qty:.0f},PRE={price:.2f},DES='{name:.24}'".format(
+            #             reparto=reparto, name=line.product_id.name, qty=qty, price=price))
+            #         if line.discount:
+            #             ticket.append(
+            #                 u'SCONTO VAL={discount:.2f}'.format(discount=line.product_id.list_price * line.qty - line.price_subtotal))
+            # for payment in receipt.payments:
+            #     ticket.append(u'{name:<30}{amount:9.2f} €'.format(
+            #         name=payment.name_get()[0][1], amount=payment.amount))
+            #
+            ticket.append(u'')
+            ticket.append(u'SUBT')   # ;subtotale
+            ticket.append(u'CHIUS T=1') # ;Chiusura in contanti
+            ticket.append(u'slave off')  # ;riabilita la tastiera  #{text:<30}{subtotal:>9.2f} €'.format(text='Subtotal: ', subtotal=self.subtotal))
+            ticket.append(u'')
+            _logger.debug("Appended Ticket")
         return ticket
 
     def print_receipt(self):

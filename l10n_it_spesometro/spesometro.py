@@ -323,7 +323,8 @@ class spesometro_comunicazione(orm.Model):
               'amount_total' : 0,
               }
         for line in invoice.tax_line:
-            if line.tax_code_id and not line.tax_code_id.spesometro_escludi:
+            if (line.tax_code_id and not line.tax_code_id.spesometro_escludi) or \
+                   (line.base_code_id and not line.base_code_id.spesometro_escludi):
                 res['amount_untaxed'] += line.base
                 res['amount_tax'] += line.amount
                 res['amount_total'] += round(line.base + line.amount, 2)

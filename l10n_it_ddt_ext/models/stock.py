@@ -55,7 +55,8 @@ class StockMove(models.Model):
     @api.multi
     def action_done(self):
         if not any(picking.ddt_ids for picking in self.picking_id) and \
-                not (self.location_dest_id.usage == 'internal'):
+                not (self.location_dest_id.usage == 'internal' or
+                     self.location_dest_id.usage == 'production'):
             raise Warning(_('This transfer is not linked to a ddt!'))
             return False
         return super(StockMove, self).action_done()

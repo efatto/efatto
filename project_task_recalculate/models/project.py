@@ -29,7 +29,7 @@ class ProjectProject(models.Model):
                 raise Warning(_("Cannot recalculate project because your "
                                 "project don't have date end."))
             if project.calculation_type != 'none':
-                #TODO calculate tasks by priority
+
                 task_with_only_childs = self.env['project.task'].search(
                     [('project_id', '=', project.id),
                     ('child_ids', '!=', False), ('parent_ids', '=', False)])
@@ -121,6 +121,7 @@ class ProjectTask(models.Model):
                 'date_end': date_end and to_string(date_end) or False,
                 'date_deadline': date_end and to_string(date_end) or False,
             })
+
         return True
 
     def _get_max_date_from_parents(self, task, date_start):
@@ -129,8 +130,5 @@ class ProjectTask(models.Model):
         for parent in task.parent_ids:
             if datetime.strptime(parent.date_end[:10], '%Y-%m-%d') > max_date:
                 max_date = datetime.strptime(parent.date_end[:10], '%Y-%m-%d')
-
-            #if parent.parent_ids:
-            #    self._get_max_date_from_parents(task, date_start=max_date)
 
         return max_date

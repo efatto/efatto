@@ -145,7 +145,7 @@ openerp.pos_fiscal = function(instance) {
                         if(tax_amount === 0.22) {
                             return 3;
                         }else{
-                            return 4;
+                            return 3;
                             }
                     }
                 }

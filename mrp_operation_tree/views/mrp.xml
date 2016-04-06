@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+    
+        <record model="ir.ui.view" id="operation_tree_view">
+            <field name="name">Operation in tree View</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product_qty" position="after">
+                    <button name="button_confirm" states="draft" string="Confirm Production" icon="gtk-apply"/>
+                    <button name="%(mrp.act_mrp_product_produce)d" states="ready,in_production" string="Produce" type="action" icon="gtk-media-play"/>
+                    <button name="action_assign" states="confirmed,picking_except" string="Check Availability" type="object" icon="gtk-media-play"/>
+                    <button name="force_production" states="confirmed" string="Force Reservation" type="object" icon="gtk-jump-to"/>
+                    <button name="button_produce" states="ready" string="Mark as Started" icon="terp-check"/>
+                    <button name="button_cancel" states="draft,ready,in_production" string="Cancel Production" icon="gtk-cancel"/>
+                    <button name="action_cancel" type="object" states="confirmed" string="Cancel Production" icon="gtk-cancel"/>
+                </field>
+            </field>
+        </record>
+
+  </data>
+</openerp>

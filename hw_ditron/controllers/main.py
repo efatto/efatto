@@ -2,13 +2,12 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import logging
-from os.path import isfile
+import os
+from os.path import isfile, join
+from os import listdir
 from openerp import http
 import xml.etree.ElementTree as ET
-
 from time import sleep
-import tempfile
-import os
 from datetime import datetime
 from threading import Thread
 import openerp.addons.hw_proxy.controllers.main as hw_proxy
@@ -168,19 +167,26 @@ class Ditron(Thread):
         if isfile(file_destination):  # scontrino.txt not already printed, ECRCOM driver dead???
             ticket = 'scontrino' + str(datetime.now()).replace(':','').replace('.','').replace(' ','') + '.txt'
             file_destination = os.path.join(destination, ticket)
-            # TODO rename ticket after scontrino.txt is deleted, so it will be printed
-        # while isfile(file_destination):
-        #     sleep(1)  # quanto?
-        # else:
         file(file_destination, 'w').write(
             unicode(self).encode('utf8'))
 
         return True
 
+    def print_queue(self):
+        destination = "/home/pi/share"
+        ticket = 'scontrino.txt'
+        while [f for f in listdir(destination) if isfile(join(destination, f))]:
+            for ticket_queue in [f for f in listdir(destination) if isfile(join(destination, f))]:
+                if not isfile(os.path.join(destination, ticket)):
+                    if ticket_queue != ticket:
+                        os.rename(os.path.join(destination, ticket_queue), os.path.join(destination, ticket))
+                        sleep(2)
+
     def push_task(self, receipt_xml):
         self.receipt_xml = receipt_xml
         self.receipt = self.compose()
         self.print_receipt()
+        self.print_queue()
 
 driver = Ditron()
 #driver.push_task('printstatus')

@@ -19,11 +19,11 @@
 ##############################################################################
 
 {
-    'name': 'Italy - Improved invoice report SimplERP',
+    'name': 'Italy - Improved invoice report SimplERP - DEPRECATED',
     'version': '8.1.0.0.1',
     'category': 'other',
     'description': """
-    Modifiche al report fattura
+    Modifiche al report fattura - DEPRECATED
     """,
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',

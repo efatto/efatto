@@ -22,15 +22,17 @@
 from openerp import fields, models, api
 
 PAYMENT_TERM_TYPE_SELECTION = [
+    ('AV', 'Avvenuto'),
     ('BB', 'Bonifico Bancario'),
     ('BP', 'Bonifico Postale'),
-    ('RD', 'Rimessa Diretta'),
-    ('RB', 'Ricevuta Bancaria'),
+    ('CC', 'Carta di Credito'),
+    ('CN', 'Contanti'),
+    ('CO', 'Contrassegno'),
     ('F4', 'F24'),
     ('PP', 'Paypal'),
-    ('CC', 'Carta di Credito'),
-    ('CO', 'Contrassegno'),
-    ('CN', 'Contanti'),
+    ('RB', 'Ricevuta Bancaria'),
+    ('RD', 'Rimessa Diretta'),
+    ('SD', 'Sepa DD'),
 ]
 
 

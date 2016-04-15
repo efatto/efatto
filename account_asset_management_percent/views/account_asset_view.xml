@@ -5,6 +5,9 @@
             <field name="model">account.asset.category</field>
             <field name="inherit_id" ref="account_asset_management.view_account_asset_category_form"/>
             <field name="arch" type="xml">
+                <field name="method_time" position="attributes">
+                    <attribute name="invisible" eval="1"/>
+                </field>
                 <field name="method_number" position="after">
                     <field name="method_percent" />
                 </field>
@@ -19,6 +22,9 @@
           <field name="model">account.asset.asset</field>
           <field name="inherit_id" ref="account_asset_management.view_account_asset_asset_form"/>
           <field name="arch" type="xml">
+               <field name="method_time" position="attributes">
+                    <attribute name="invisible" eval="1"/>
+                </field>
                <field name="method_number" position="after">
                     <field name="method_percent" />
                </field>

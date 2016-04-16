@@ -24,6 +24,7 @@
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
+    'description': 'Italian customization for asset',
     'depends': [
         'account_asset_management',
     ],

@@ -41,8 +41,8 @@ class my_report_pl_account_horizontal(report_pl_account_horizontal):
             objects = result.result_temp
             objects.append({'result': result.res_pl})
             lang_dict = self.pool.get('res.users').read(
-                self.cr, self.uid, self.uid, ['context_lang'])
-            data['lang'] = lang_dict.get('context_lang') or False
+                self.cr, self.uid, self.uid, ['lang'])
+            data['lang'] = lang_dict.get('lang') or False
 
         self.localcontext.update({'objects': objects})
 

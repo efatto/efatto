@@ -131,9 +131,11 @@ class report_pl_account_horizontal(report_sxw.rml_parse, common_report_header):
             ctx['date_to'] = data['form'].get('date_to', False)
         ctx['state'] = data['form'].get('target_move', 'all')
         cal_list = {}
-        account_id = data['form'].get('chart_account_id', False)
+
+        account_id = account_pool.search(cr, uid, [('parent_id', '=', False)])
         if account_id:
             account_id = account_id[0]
+
         account_ids = account_pool._get_children_and_consol(
             cr, uid, account_id, context=ctx)
         accounts = account_pool.browse(cr, uid, account_ids, context=ctx)

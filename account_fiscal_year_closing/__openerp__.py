@@ -29,7 +29,7 @@
 
 {
     "name": "Fiscal Year Closing",
-    "version": "1.1.1",
+    "version": "8.1.1.1",
     "author": "OpenERP Italian Community, Pexego",
     "website": "http://www.openerp-italia.org",
     "category": "Generic Modules/Accounting",
@@ -56,15 +56,13 @@ user can cancel and undo the operations easily.
         "account",
         "account_cancel",
     ],
-    "init_xml": [],
-    "update_xml": [
+    "data": [
         "security/ir.model.access.csv",
         "fyc_workflow.xml",
         "wizard/wizard_run.xml",
         "fyc_view.xml",
         "hide_account_wizards.xml",
     ],
-    "active": False,
     "installable": True
 }
 

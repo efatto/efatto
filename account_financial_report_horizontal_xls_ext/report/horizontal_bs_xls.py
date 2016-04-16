@@ -21,8 +21,6 @@
 ##############################################################################
 
 import xlwt
-import time
-from openerp.report import report_sxw
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell
 from openerp.addons.account_financial_report_horizontal_ext.report.account_balance_sheet import report_balancesheet_horizontal

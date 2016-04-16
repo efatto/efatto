@@ -30,7 +30,10 @@
     This module adds XLS export to the following accounting reports:
         - horizontal report
     """,
-    'depends': ['report_xls', 'account_financial_report_horizontal_ext'], #'account_financial_report_webkit',
+    'depends': [
+        'report_xls',
+        'account_financial_report_horizontal_ext'
+    ],
     'data': [
         'wizard/horizontal_wizard_view.xml',
     ],

@@ -27,11 +27,13 @@
     "category": 'Accounting & Finance',
     'complexity': "normal",
     "description": """
-This is a backport to OpenERP 6.1 of the horizontal financial reports
+This is a port to OpenERP 8.0 of the horizontal financial reports
 'Balance sheet' and 'Profit and Loss' as found in OpenERP 7.0.
     """,
     'website': 'https://www.simplerp.it',
-    "depends": ["account"],
+    "depends": [
+        'account',
+    ],
     'data': [
         'menu.xml',
         'account_report.xml',

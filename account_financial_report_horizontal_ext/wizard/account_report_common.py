@@ -35,9 +35,14 @@ class account_common_report(orm.TransientModel):
     _columns = {
         'name': fields.char("Name", size=16),
         'chart_account_id': fields.many2one(
-            'account.account', 'Chart of account',
-            help='Select Charts of Accounts',
+            'account.account', 'Root account',
+            help='Select Root of Accounts',
             required=True, domain=[('parent_id', '=', False)]),
+        'chart_template_id': fields.many2one(
+            'account.chart.template', 'Chart of account',
+            help='Select Charts of Accounts',
+            required=True, domain=[('parent_id', '=', False),
+                                   ('visible', '=', True)]),
         'fiscalyear_id': fields.many2one(
             'account.fiscalyear', 'Fiscal year',
             help='Keep empty for all open fiscal year'),
@@ -132,6 +137,13 @@ class account_common_report(orm.TransientModel):
             cr, uid, [('parent_id', '=', False)], limit=1)
         return accounts and accounts[0] or False
 
+    def _get_chart(self, cr, uid, context=None):
+        charts = self.pool.get('account.chart.template').search(
+            cr, uid, [('parent_id', '=', False),
+                      ('visible', '=', True),
+                      ('complete_tax_set', '=', True)], limit=1)
+        return charts and charts[0] or False
+
     def _get_fiscalyear(self, cr, uid, context=None):
         now = time.strftime('%Y-%m-%d')
         fiscalyears = self.pool.get('account.fiscalyear').search(
@@ -144,6 +156,7 @@ class account_common_report(orm.TransientModel):
         'filter': 'filter_no',
         'chart_account_id': _get_account,
         'target_move': 'posted',
+        'chart_template_id': _get_chart,
     }
 
     def _build_contexts(self, cr, uid, ids, data, context=None):
@@ -154,6 +167,8 @@ class account_common_report(orm.TransientModel):
             'form']['fiscalyear_id'] or False
         result['chart_account_id'] = 'chart_account_id' in data[
             'form'] and data['form']['chart_account_id'] or False
+        result['chart_template_id'] = 'chart_template_id' in data[
+            'form'] and data['form']['chart_template_id'] or False
         if data['form']['filter'] == 'filter_date':
             result['date_from'] = data['form']['date_from']
             result['date_to'] = data['form']['date_to']
@@ -187,7 +202,8 @@ class account_common_report(orm.TransientModel):
         data['model'] = context.get('active_model', 'ir.ui.menu')
         data['form'] = self.read(cr, uid, ids, [
             'date_from',  'date_to',  'fiscalyear_id', 'period_from',
-            'period_to',  'filter',  'chart_account_id', 'target_move'
+            'period_to',  'filter',  'chart_account_id', 'target_move',
+            'chart_template_id'
             ])[0]
         used_context = self._build_contexts(
             cr, uid, ids, data, context=context)

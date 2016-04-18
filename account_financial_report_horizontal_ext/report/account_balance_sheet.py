@@ -83,6 +83,10 @@ class report_balancesheet_horizontal(
             lang_dict = self.pool.get('res.users').read(
                 self.cr, self.uid, self.uid, ['lang'])
             data['lang'] = lang_dict.get('lang') or False
+            chart_id = 'chart_template_id' in data['form'] \
+                  and data['form']['chart_template_id'] \
+                  and [data['form']['chart_template_id'][0]] or []
+            data['chart'] = self.pool['account.chart.template'].browse(self.cr, self.uid, chart_id)
         return super(
             report_balancesheet_horizontal, self
         ).set_context(objects, data, new_ids, report_type=report_type)
@@ -134,20 +138,10 @@ class report_balancesheet_horizontal(
         ctx['state'] = data['form'].get('target_move', 'all')
         cal_list = {}
         account_dict = {}
+        chart = data['chart']
+        rec_account = chart.property_account_receivable
+        pay_account = chart.property_account_payable
 
-        #get account_id and receivable - payable from accounts in use - not search from chart
-        company_id = self.pool.get('res.users').browse(cr, uid, uid,
-                                                    ctx).company_id.id
-        prop = self.pool['ir.property']
-        rec_dom = [('name', '=', 'property_account_receivable'),
-                   ('company_id', '=', company_id)]
-        pay_dom = [('name', '=', 'property_account_payable'),
-                   ('company_id', '=', company_id)]
-        res_dom = [('res_id', '=', False)]
-        rec_prop = prop.search(cr, uid, rec_dom + res_dom)# or prop.search(rec_dom)
-        pay_prop = prop.search(cr, uid, pay_dom + res_dom)# or prop.search(pay_dom)
-        rec_account = prop.browse(cr, uid, rec_prop[0]).get_by_record(prop.browse(cr, uid, rec_prop[0]))
-        pay_account = prop.browse(cr, uid, pay_prop[0]).get_by_record(prop.browse(cr, uid, pay_prop[0]))
         account_ids = account_pool.search(cr, uid, [('parent_id', '=', False)])
         if account_ids:
             account_id = account_ids[0]
@@ -177,9 +171,12 @@ class report_balancesheet_horizontal(
         for typ in types:
             for account in accounts:
                 # Show normal accounts
-                if (account.user_type.report_type) and (account.user_type.report_type == typ) and (
+                if account.user_type.report_type and account.user_type.report_type == typ and (
                     account.parent_id.code != rec_account.code) and (
-                    account.parent_id.code != pay_account.code):
+                    account.parent_id.code != pay_account.code) and (
+                    account.code != rec_account.code) and (
+                    account.code != pay_account.code
+                ):
                     account_dict = {
                         'id': account.id,
                         'code': account.code,
@@ -296,9 +293,9 @@ class report_balancesheet_horizontal(
             
             #add supplier and customer total
             if typ == 'liability':
-                account_view_id = account_pool.search(cr, uid, [('code', '=', rec_account.code)])
-            if typ == 'asset':
                 account_view_id = account_pool.search(cr, uid, [('code', '=', pay_account.code)])
+            if typ == 'asset':
+                account_view_id = account_pool.search(cr, uid, [('code', '=', rec_account.code)])
             account_view = account_pool.browse(cr, uid, account_view_id[0], context=ctx)
             account_dict = {
                     'id': account_view.id,

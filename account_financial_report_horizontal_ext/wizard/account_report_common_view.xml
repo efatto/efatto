@@ -12,6 +12,7 @@
                   <newline/>
                 <group colspan="4" col="4">
                    <field name="chart_account_id" widget='selection'/>
+                   <field name="chart_template_id" widget="selection"/>
                    <field name="fiscalyear_id"/>
                    <field name="target_move"/>
                 </group>

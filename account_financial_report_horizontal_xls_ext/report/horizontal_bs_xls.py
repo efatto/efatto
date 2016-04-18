@@ -57,7 +57,7 @@ class trial_balance_xls(report_xls):
                     12, 30, 17, 17, 17, 17]
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
-        ws = wb.add_sheet('BS Report')  # _p.report_name[:31])
+        ws = wb.add_sheet(_('Stato Patrimoniale'))  # _p.report_name[:31])
         ws.panes_frozen = True
         ws.remove_splits = True
         ws.portrait = 0  # Landscape
@@ -70,7 +70,7 @@ class trial_balance_xls(report_xls):
 
         # Title
         cell_style = xlwt.easyxf(_xs['xls_title'])
-        report_name = ' - '.join(['BS Report'.upper(), _p.company.partner_id.name, _p.company.currency_id.name])
+        report_name = ' - '.join([_('Stato Patrimoniale').upper(), _p.company.partner_id.name, _p.company.currency_id.name])
         c_specs = [
             ('report_name', 1, 0, 'text', report_name),
         ]
@@ -89,8 +89,8 @@ class trial_balance_xls(report_xls):
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
 
         c_specs = [
-            ('fy', 1, 0, 'text', _('Fiscal Year')),
-            ('df', 2, 0, 'text', _('Filter')),
+            ('fy', 1, 0, 'text', _('Anno Fiscale')),
+            ('df', 2, 0, 'text', _('Filtro')),
 #                               data['form'].get('filter', False) == 'filter_date' and _('Dates Filter')
 #                               or data['form'].get('filter', False) == 'filter_period' and _('Periods Filter')
 #                               or u''),
@@ -136,14 +136,14 @@ class trial_balance_xls(report_xls):
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
         account_span = 3
         c_specs = [
-            ('d_code', 1, 0, 'text', _('Code')),
-            ('d_account', account_span, 0, 'text', _('Account')),
-            ('total_debit', 1, 0, 'text', _('Total Debit'), None, cell_style_right),
-            ('debit', 1, 0, 'text', _('Debit'), None, cell_style_right),
-            ('c_code', 1, 0, 'text', _('Code')),
-            ('c_account', account_span, 0, 'text', _('Account')),
-            ('total_credit', 1, 0, 'text', _('Total Credit'), None, cell_style_right),
-            ('credit', 1, 0, 'text', _('Credit'), None, cell_style_right)]
+            ('d_code', 1, 0, 'text', _('Codice')),
+            ('d_account', account_span, 0, 'text', _('Conto')),
+            ('total_debit', 1, 0, 'text', _('Totale Attività'), None, cell_style_right),
+            ('debit', 1, 0, 'text', _('Attività'), None, cell_style_right),
+            ('c_code', 1, 0, 'text', _('Codice')),
+            ('c_account', account_span, 0, 'text', _('Conto')),
+            ('total_credit', 1, 0, 'text', _('Totale Passività'), None, cell_style_right),
+            ('credit', 1, 0, 'text', _('Passività'), None, cell_style_right)]
 
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
@@ -210,11 +210,11 @@ class trial_balance_xls(report_xls):
         c_tot_formula = 'sum(' + rowcol_to_cell(5, 11) + ':' + rowcol_to_cell(row_pos - 1, 11) + ')'
         c_specs = [
             ('d_code', 1, 0, 'text', None, None, view_cell_style),
-            ('d_account', account_span, 0, 'text', _('Debit Totals'), None, view_cell_style),
+            ('d_account', account_span, 0, 'text', _('Totale'), None, view_cell_style),
             ('total_debit', 1, 0, 'text', None, None, view_cell_style),
             ('debit', 1, 0, 'number', None, d_tot_formula, view_cell_style_decimal),
             ('c_code', 1, 0, 'text', None, None, view_cell_style),
-            ('c_account', account_span, 0, 'text', _('Credit Totals'), None, view_cell_style),
+            ('c_account', account_span, 0, 'text', _('Totale'), None, view_cell_style),
             ('total_credit', 1, 0, 'text', None, None, view_cell_style),
             ('credit', 1, 0, 'number', None, c_tot_formula, view_cell_style_decimal)]
 
@@ -243,11 +243,11 @@ class trial_balance_xls(report_xls):
         c_tot_formula = 'sum(' + rowcol_to_cell(row_pos - 2, 5) + ':' + rowcol_to_cell(row_pos - 1, 5) + ')'
         c_specs = [
             ('d_code', 1, 0, 'text', None, None, view_cell_style),
-            ('d_account', account_span, 0, 'text', _('Totals'), None, view_cell_style),
+            ('d_account', account_span, 0, 'text', _('Totale Attività'), None, view_cell_style),
             ('total_debit', 1, 0, 'text', None, None, view_cell_style),
             ('debit', 1, 0, 'number', None, d_tot_formula, view_cell_style_decimal),
             ('c_code', 1, 0, 'text', None, None, view_cell_style),
-            ('c_account', account_span, 0, 'text', _('Totals'), None, view_cell_style),
+            ('c_account', account_span, 0, 'text', _('Totale Passività'), None, view_cell_style),
             ('total_credit', 1, 0, 'text', None, None, view_cell_style),
             ('credit', 1, 0, 'number', None, c_tot_formula, view_cell_style_decimal)]
 

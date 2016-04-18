@@ -163,7 +163,13 @@ class trial_balance_xls(report_xls):
         account_id = data['form'].get('chart_account_id', False)
         if account_id:
             account_id = account_id[0]
-        chart = self.pool['account.chart.template'].browse(self.cr, 1, account_id)
+
+        chart_id = 'chart_template_id' in data['form'] \
+                       and data['form']['chart_template_id'] \
+                       and [data['form']['chart_template_id'][0]] or []
+        chart = self.pool['account.chart.template'].browse(
+            self.cr, self.uid, chart_id)
+
         partners = [
             chart.property_account_payable.code,
             chart.property_account_receivable.code,

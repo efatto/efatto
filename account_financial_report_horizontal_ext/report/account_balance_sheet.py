@@ -83,10 +83,6 @@ class report_balancesheet_horizontal(
             lang_dict = self.pool.get('res.users').read(
                 self.cr, self.uid, self.uid, ['lang'])
             data['lang'] = lang_dict.get('lang') or False
-            chart_id = 'chart_template_id' in data['form'] \
-                  and data['form']['chart_template_id'] \
-                  and [data['form']['chart_template_id'][0]] or []
-            data['chart'] = self.pool['account.chart.template'].browse(self.cr, self.uid, chart_id)
         return super(
             report_balancesheet_horizontal, self
         ).set_context(objects, data, new_ids, report_type=report_type)
@@ -138,7 +134,12 @@ class report_balancesheet_horizontal(
         ctx['state'] = data['form'].get('target_move', 'all')
         cal_list = {}
         account_dict = {}
-        chart = data['chart']
+        chart_id = 'chart_template_id' in data['form'] \
+                   and data['form']['chart_template_id'] \
+                   and [data['form']['chart_template_id'][0]] or []
+        chart = self.pool['account.chart.template'].browse(
+            self.cr, self.uid, chart_id)
+
         rec_account = chart.property_account_receivable
         pay_account = chart.property_account_payable
 

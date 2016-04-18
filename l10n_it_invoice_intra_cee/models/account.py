@@ -524,3 +524,9 @@ class account_invoice(orm.Model):
 
         self._log_event(cr, uid, ids)
         return True
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default.update({'transfer_entry_id': '', 'auto_invoice_id': ''})
+        return super(account_invoice, self).copy(cr, uid, id, default, context)

@@ -28,9 +28,11 @@
         'account',
         'report_aeroo',
         'stock',
+        'l10n_it_ddt',
     ],
     'data': [
         'data/reports.xml',
+        'views/invoice.xml',
     ],
     'installable': True
 }

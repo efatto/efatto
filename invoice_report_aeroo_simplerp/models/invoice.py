@@ -97,7 +97,7 @@ class Parser(report_sxw.rml_parse):
         return res
 
     def _set_picking(self, invoice):
-        self._get_invoice_tree(invoice.invoice_line)
+        self._get_invoice_tree(invoice.invoice_line, invoice.stock_picking_package_preparation_ids)
         return False
 
     def _get_ddt(self):
@@ -138,28 +138,21 @@ class Parser(report_sxw.rml_parse):
             return sign + before
         else:
             return sign + before + ',' + after
-    
-    def get_description(self, ddt_name, order_name):
-        ddt_obj = self.pool['stock.picking']
-        order_obj = self.pool['sale.order']
+
+    def get_description(self, ddt_name, ddt_date, order_name, order_date):
         description = []
-        
+
         if ddt_name:
-            ddt_ids = ddt_obj.search(self.cr, self.uid, [('name', '=', ddt_name)])
-            if len(ddt_ids) == 1:
-                ddt = ddt_obj.browse(self.cr, self.uid, ddt_ids[0])
-                if ddt.ddt_number:
-                    ddt_date = datetime.strptime(ddt.ddt_date, DEFAULT_SERVER_DATE_FORMAT)
-                    ## Ex: Rif. Ns. DDT 2012/0335
-                    description.append(u'Rif. Ns. DDT {ddt} del {ddt_date}'.format(ddt=ddt.ddt_number, ddt_date=ddt_date.strftime("%d/%m/%Y")))
-        
-        if order_name:# and not self.pool['res.users'].browse(
-                #self.cr, self.uid, self.uid).company_id.disable_sale_ref_invoice_report:
-            order_ids = order_obj.search(self.cr, self.uid, [('name', '=', order_name)])
-            if len(order_ids) == 1:
-                order = order_obj.browse(self.cr, self.uid, order_ids[0])
-                order_date = datetime.strptime(order.date_order[:10], DEFAULT_SERVER_DATE_FORMAT)
-                description.append(u'Rif. Ns. Ordine {order} del {order_date}'.format(order=order.name.replace('Consuntivo', ''), order_date=order_date.strftime("%d/%m/%Y")))
+            ## Ex: Rif. Ns. DDT 2012/0335
+            ddt_date = datetime.strptime(ddt_date[:10],
+                                         DEFAULT_SERVER_DATE_FORMAT)
+            description.append(u'Rif. Ns. {ddt} del {ddt_date}'.format(ddt=ddt_name, ddt_date=ddt_date.strftime("%d/%m/%Y")))
+
+        elif order_name:# and not self.pool['res.users'].browse(
+            #self.cr, self.uid, self.uid).company_id.disable_sale_ref_invoice_report:
+            order_date = datetime.strptime(order_date[:10],
+                                           DEFAULT_SERVER_DATE_FORMAT)
+            description.append(u'Rif. Ns. Ordine {order} del {order_date}'.format(order=order_name.replace('Consuntivo', ''), order_date=order_date.strftime("%d/%m/%Y")))
 
         return '\n'.join(description)
     
@@ -190,73 +183,45 @@ class Parser(report_sxw.rml_parse):
         else:
             return False
     
-    def _get_invoice_tree(self, invoice_lines):
+    def _get_invoice_tree(self, invoice_lines, picking_preparation_ids):
         invoice = {}
         keys = {}
-        picking_obj = self.pool['stock.picking']
-        sale_order_obj = self.pool['sale.order']
+        ddt = False
+        sale_order = False
+        ddt_date = False
+        sale_order_date = False
+
         for line in invoice_lines:
             if line.origin:
-                if ':' in line.origin:
-                    split_list = line.origin.split(':')
-                    ddt, sale_order = split_list[0], split_list[1]
-                    # if line.invoice_id.direct_invoice:
-                    #     self.picking_name = ddt
-                    #     ddt = False
-                elif line.origin[:4] == 'OUT/':
-                    # if line.invoice_id.direct_invoice:
-                    #     self.picking_name = line.origin
-                    #     ddt = False
-                    # else:
-                    ddt = line.origin
-                    sale_order = False
-                elif line.origin[:4] == 'IN/':
-                    ddt = False
-                    sale_order = False
-                # elif line.invoice_id.direct_invoice:
-                #     print line.origin
-                #     ddt = False
-                #     sale_order = line.origin
-                #     self.picking_name = self._get_picking_name(line)
-                #     #if isinstance(self.picking_name, (list, tuple)):
+                if picking_preparation_ids:
+                    for picking_preparation in picking_preparation_ids:
+                        for picking in picking_preparation.picking_ids:
+                            if picking.name == line.origin:
+                                ddt = picking_preparation.ddt_number
+                                ddt_date = picking_preparation.date
+                                sale_order = picking.sale_id.name
+                                sale_order_date = picking.sale_id.date_order
                 else:
-                    ddt = False
                     sale_order = line.origin
-            else:
-                ddt = False
-                sale_order = False
+                    sale_order_date = line.invoice_id.date_invoice #TODO search date order
             # Order lines by date and by ddt, so first create date_ddt key:
             if ddt:
                 if ddt in keys:
                     key = keys[ddt]
                 else:
-                    picking_ids = picking_obj.search(
-                        self.cr, self.uid, [('name', '=', ddt)])
-                    if picking_ids:
-                        picking = picking_obj.browse(
-                            self.cr, self.uid, picking_ids[0])
-                        key = "{0}_{1}".format(picking.ddt_date, ddt)
-                    else:
-                        key = ddt
+                    key = "{0}_{1}".format(ddt_date, ddt)
             elif sale_order:
                 if sale_order in keys:
                     key = keys[sale_order]
                 else:
-                    sale_order_ids = sale_order_obj.search(
-                        self.cr, self.uid, [('name', '=', sale_order)])
-                    if sale_order_ids:
-                        sale = sale_order_obj.browse(
-                            self.cr, self.uid, sale_order_ids[0])
-                        key = "{0}_{1}".format(sale.date_order, sale)
-                    else:
-                        key = sale_order
+                    key = "{0}_{1}".format(sale_order_date, sale_order)
             else:
                 key = False
-            
+
             if key in invoice:
                 invoice[key]['lines'].append(line)
             else:
-                description = self.get_description(ddt, sale_order)
+                description = self.get_description(ddt, ddt_date, sale_order, sale_order_date)
                 invoice[key] = {'description': description, 'lines': [line]}
         
         return OrderedDict(sorted(invoice.items(), key=lambda t: t[0])).values()

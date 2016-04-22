@@ -22,7 +22,7 @@
     'name': 'Pos create MRP procurement',
     'version': '8.0.0.0.0',
     'category': 'Hidden',
-    'summary': "",
+    'description': "Pos create MRP procurement",
     'author': 'SimplERP Srl',
     'website': 'http://simplerp.it',
     'depends': ['mrp', 'point_of_sale', 'sale'],

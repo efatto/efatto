@@ -156,32 +156,32 @@ class Parser(report_sxw.rml_parse):
 
         return '\n'.join(description)
     
-    def _get_picking_name(self, line):
-        picking_obj = self.pool['stock.picking']
-        picking_ids = picking_obj.search(self.cr, self.uid, [
-            ('origin', '=', line.origin)])
-        
-        if len(picking_ids) == 1:
-            picking = picking_obj.browse(self.cr, self.uid, picking_ids[0])
-            return picking.name
-        elif picking_ids:
-            move_obj = self.pool['stock.move']
-            move_ids = move_obj.search(self.cr, self.uid, [
-                ('product_id', '=', line.product_id.id),
-                ('origin', '=', line.origin)])
-            if len(move_ids) == 1:
-                stock_move = move_obj.browse(self.cr, self.uid, move_ids[0])
-                if stock_move.picking_id:
-                    return stock_move.picking_id.name
-                else:
-                    return False
-            elif move_ids:
-                # The same product from the same sale_order is present in various picking lists
-                raise orm.except_orm('Warning', _('Ambiguous line origin'))
-            else:
-                return False
-        else:
-            return False
+    # def _get_picking_name(self, line):
+    #     picking_obj = self.pool['stock.picking']
+    #     picking_ids = picking_obj.search(self.cr, self.uid, [
+    #         ('origin', '=', line.origin)])
+    #
+    #     if len(picking_ids) == 1:
+    #         picking = picking_obj.browse(self.cr, self.uid, picking_ids[0])
+    #         return picking.name
+    #     elif picking_ids:
+    #         move_obj = self.pool['stock.move']
+    #         move_ids = move_obj.search(self.cr, self.uid, [
+    #             ('product_id', '=', line.product_id.id),
+    #             ('origin', '=', line.origin)])
+    #         if len(move_ids) == 1:
+    #             stock_move = move_obj.browse(self.cr, self.uid, move_ids[0])
+    #             if stock_move.picking_id:
+    #                 return stock_move.picking_id.name
+    #             else:
+    #                 return False
+    #         elif move_ids:
+    #             # The same product from the same sale_order is present in various picking lists
+    #             raise orm.except_orm('Warning', _('Ambiguous line origin'))
+    #         else:
+    #             return False
+    #     else:
+    #         return False
     
     def _get_invoice_tree(self, invoice_lines, picking_preparation_ids):
         invoice = {}

@@ -942,7 +942,7 @@ class spesometro_comunicazione_line_BL(orm.Model):
                 city_data = move.partner_id._set_vals_city_data(cr, uid, {'city' : move.partner_id.birth_city.name})
                 prov_id = city_data.get('province_id', False)
                 if prov_id:
-                    prov = self.pool.get('res.province').borwse(cr, uid, prov_id)
+                    prov = self.pool.get('res.province').browse(cr, uid, prov_id)
                     prov_nascita_code = prov.code
             
             val = {
@@ -977,11 +977,12 @@ class spesometro_comunicazione_line_BL(orm.Model):
             
             # attive
             if arg.get('segno', False) == 'attiva':
-                
-                if val['operazione_fiscalita_privilegiata'] or val['operazione_con_soggetti_non_residenti']:
+                if val.get('operazione_fiscalita_privilegiata',
+                           False) or val.get(
+                        'operazione_con_soggetti_non_residenti', False):
                     val['attive_importo_complessivo'] = doc_vals.get('amount_total', 0)
                     val['attive_imposta'] = doc_vals.get('amount_tax', 0)
-                if val['operazione_fiscalita_privilegiata'] == True:
+                if val.get('operazione_fiscalita_privilegiata', False):
                     if move.partner_id.spesometro_operazione == 'cessioni':
                         val['attive_non_sogg_cessione_beni'] = doc_vals.get('amount_total', 0)
                     else:
@@ -991,11 +992,13 @@ class spesometro_comunicazione_line_BL(orm.Model):
                     val['attive_note_variazione_imposta'] = doc_vals.get('amount_tax', 0)
             # passive         
             else:
-                
-                if val['operazione_fiscalita_privilegiata'] or val['operazione_con_soggetti_non_residenti'] or val['Acquisto_servizi_da_soggetti_non_residenti']:
+                if val.get('operazione_fiscalita_privilegiata',
+                           False) or val.get(
+                    'operazione_con_soggetti_non_residenti', False) or val.get(
+                        'Acquisto_servizi_da_soggetti_non_residenti', False):
                     val['passive_importo_complessivo'] = doc_vals.get('amount_total', 0)
                     val['passive_imposta'] = doc_vals.get('amount_tax', 0)
-                if val['operazione_fiscalita_privilegiata'] == True:
+                if val.get('operazione_fiscalita_privilegiata', False):
                     val['passive_non_sogg_importo_complessivo'] = doc_vals.get('amount_total', 0)
                 if 'refund' in move.journal_id.type:
                     val['passive_note_variazione'] = doc_vals.get('amount_untaxed', 0)
@@ -1006,11 +1009,12 @@ class spesometro_comunicazione_line_BL(orm.Model):
             for com_line in self.browse(cr, uid, com_line_ids):
                 # attive
                 if arg.get('segno', False) == 'attiva':
-                    
-                    if val['operazione_fiscalita_privilegiata'] or val['operazione_con_soggetti_non_residenti']:
+                    if val.get('operazione_fiscalita_privilegiata',
+                               False) or val.get(
+                            'operazione_con_soggetti_non_residenti', False):
                         val['attive_importo_complessivo'] = com_line.attive_importo_complessivo + doc_vals.get('amount_total', 0)
                         val['attive_imposta'] = com_line.attive_imposta + doc_vals.get('amount_tax', 0)
-                    if val['operazione_fiscalita_privilegiata'] == True:
+                    if val.get('operazione_fiscalita_privilegiata', False):
                         if move.partner_id.spesometro_operazione == 'cessioni':
                             val['attive_non_sogg_cessione_beni'] = com_line.attive_non_sogg_cessione_beni + doc_vals.get('amount_total', 0)
                         else:
@@ -1021,11 +1025,14 @@ class spesometro_comunicazione_line_BL(orm.Model):
                         
                 # passive         
                 else:
-                    
-                    if val['operazione_fiscalita_privilegiata'] or val['operazione_con_soggetti_non_residenti'] or val['Acquisto_servizi_da_soggetti_non_residenti']:
+                    if val.get('operazione_fiscalita_privilegiata',
+                               False) or val.get(
+                        'operazione_con_soggetti_non_residenti',
+                        False) or val.get(
+                        'Acquisto_servizi_da_soggetti_non_residenti', False):
                         val['passive_importo_complessivo'] = com_line.passive_importo_complessivo + doc_vals.get('amount_total', 0)
                         val['passive_imposta'] = com_line.passive_imposta + doc_vals.get('amount_tax', 0)
-                    if val['operazione_fiscalita_privilegiata'] == True:
+                    if val.get('operazione_fiscalita_privilegiata', False):
                         val['passive_non_sogg_importo_complessivo'] = com_line.passive_non_sogg_importo_complessivo + doc_vals.get('amount_total', 0)
                     if 'refund' in move.journal_id.type:
                         val['passive_note_variazione'] = com_line.passive_note_variazione + doc_vals.get('amount_untaxed', 0)
@@ -1214,7 +1221,7 @@ class spesometro_comunicazione_line_SE(orm.Model):
             city_data = move.partner_id._set_vals_city_data(cr, uid, {'city' : move.partner_id.birth_city.name})
             prov_id = city_data.get('province_id', False)
             if prov_id:
-                prov = self.pool.get('res.province').borwse(cr, uid, prov_id)
+                prov = self.pool.get('res.province').browse(cr, uid, prov_id)
                 prov_nascita_code = prov.code
         # Indirizzo
         address = self.pool.get('spesometro.comunicazione')._get_partner_address_obj(cr, uid, move, invoice, arg)

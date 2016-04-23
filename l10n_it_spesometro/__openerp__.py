@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Spesometro - Comunicazione art.21',
-    'version': '0.2',
+    'version': '8.0.0.3',
     'category': 'Localisation/Italy',
     'description': """Spesometro - Comunicazione art.21
 
@@ -41,8 +41,6 @@ Functionalities:
               'wizard/wizard_default_view.xml',
               'wizard/wizard_export_view.xml',
         ],
-    "demo" : [],
-    "active": False,
     "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -333,7 +333,9 @@ class move_xls(report_xls):
         ws.set_horz_split_pos(row_pos)
 
         # account move lines
+        aml_cnt = 0
         for move in objects:
+            aml_cnt += len(move.line_id)
             for line in move.line_id:
                 debit_cell = rowcol_to_cell(row_pos, debit_pos)
                 credit_cell = rowcol_to_cell(row_pos, credit_pos)
@@ -347,7 +349,7 @@ class move_xls(report_xls):
                     ws, row_pos, row_data, row_style=self.aml_cell_style)
 
         # Totals           
-        aml_cnt = len(objects)
+        #aml_cnt = len(objects)
         debit_start = rowcol_to_cell(row_pos - aml_cnt, debit_pos)
         debit_stop = rowcol_to_cell(row_pos - 1, debit_pos)
         debit_formula = 'SUM(%s:%s)' % (debit_start, debit_stop)

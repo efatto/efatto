@@ -1,0 +1,504 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_geoengine
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-19 14:58+0100\n"
+"PO-Revision-Date: 2016-03-19 15:18+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: base_geoengine
+#: code:addons/base_geoengine/geo_model.py:162
+#, python-format
+msgid "%s column does not exists or is not a geo field"
+msgstr "La colona %s non esiste o non è un campo geografico"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,swisstopo_type:0
+msgid "Aerial imagery"
+msgstr "Immagini Aeree"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,geo_repr:0
+msgid "Basic"
+msgstr "Essenziale"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,begin_color:0
+msgid "Begin color class"
+msgstr "Inizio Classe Colore"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,symbol_binary:0
+msgid "Binary Symbol"
+msgstr "Simbolo Binario"
+
+#. module: base_geoengine
+#. openerp-web
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:41
+#, python-format
+msgid "Bottom-Left"
+msgstr "In Basso a Sinistra"
+
+#. module: base_geoengine
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_form
+msgid "Classification"
+msgstr "Classificazione"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,classification:0
+msgid "Classification mode"
+msgstr "Metodo di Classificazione"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,swisstopo_type:0
+msgid "Color map"
+msgstr "Mappa Colore"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,geo_repr:0
+msgid "Colored range/Choropleth"
+msgstr "Colori / Mappa Tematica"
+
+#. module: base_geoengine
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_form
+msgid "Colors"
+msgstr "Colori"
+
+#. module: base_geoengine
+#: model:ir.ui.menu,name:base_geoengine.geoengine_base_view_menu
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: base_geoengine
+#: field:ir.model.fields,gist_index:0
+msgid "Create gist index"
+msgstr "Crea Indice Gist"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,create_uid:0
+#: field:geoengine.vector.layer,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,create_date:0
+#: field:geoengine.vector.layer,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: base_geoengine
+#: field:ir.ui.view,default_extent:0
+msgid "Default map extent in 900913"
+msgstr "Estensione Predefinita Mappa in 900913"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "Distant WMS"
+msgstr "WMS Remoto"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,end_color:0
+msgid "End color class"
+msgstr "Fine Classe Colore"
+
+#. module: base_geoengine
+#: model:ir.model,name:base_geoengine.model_ir_model_fields
+msgid "Fields"
+msgstr "Campi"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_form
+msgid "General"
+msgstr "Generale"
+
+#. module: base_geoengine
+#: code:addons/base_geoengine/geo_field.py:89
+#, python-format
+msgid "Geo Value %s must be of the same type %s as fields"
+msgstr "Il valore %s deve essere dello stesso tipo %s dei campi"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,geo_field_id:0
+msgid "Geo field"
+msgstr "Campo Geo"
+
+#. module: base_geoengine
+#: model:ir.ui.menu,name:base_geoengine.geoengine_base_menu
+msgid "GeoEngine Backend"
+msgstr "GeoEngine Backend"
+
+#. module: base_geoengine
+#: view:ir.ui.view:base_geoengine.geoengine_view_form
+msgid "GeoEngine Data"
+msgstr "Dati GeoEngine"
+
+#. module: base_geoengine
+#: model:res.groups,name:base_geoengine.group_geoengine_admin
+msgid "Geoengine admin"
+msgstr "Amministrazione Geoengine"
+
+#. module: base_geoengine
+#: model:res.groups,name:base_geoengine.group_geoengine_user
+msgid "Geoengine user"
+msgstr "Utente Geoengine"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "Google"
+msgstr "Google"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,google_type:0
+msgid "Google Hybrid map"
+msgstr "Google Mappa Ibrida"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,google_type:0
+msgid "Google Physical map"
+msgstr "Google Mappa Fisica"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+msgid "Google layer data"
+msgstr "Google Dati Livello"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,google_type:0
+msgid "Google normal map"
+msgstr "Google Mappa Normale"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,google_type:0
+msgid "Google raster layer type"
+msgstr "Google Tipo Livello raster"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,google_type:0
+msgid "Google staellite map"
+msgstr "Google Mappa Satellitare"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,id:0 field:geoengine.vector.layer,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,classification:0
+msgid "Interval"
+msgstr "Intervallo"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,overlay:0
+msgid "Is overlay layer?"
+msgstr "E' un livello trasparente?"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "LINESTRING"
+msgstr "LINESTRING"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,write_uid:0
+#: field:geoengine.vector.layer,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,write_date:0
+#: field:geoengine.vector.layer,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,name:0 field:geoengine.vector.layer,name:0
+msgid "Layer Name"
+msgstr "Nome Livello"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,readonly:0
+msgid "Layer is read only"
+msgstr "Il livello è di sola lettura"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "MULTILINESTRING"
+msgstr "MULTILINESTRING"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "MULTIPOINT"
+msgstr "MULTIPOINT"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "MULTIPOLYGON"
+msgstr "MULTIPOLYGON"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "MapBox"
+msgstr "MapBox"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+msgid "MapBox layer data"
+msgstr "Livello Dati MapBox"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,mapbox_id:0
+msgid "Mapbox ID"
+msgstr "ID MapBox"
+
+#. module: base_geoengine
+#: code:addons/base_geoengine/geo_model.py:103
+#, python-format
+msgid "No GeoEngine view defined for the model %s"
+msgstr "Non è stato definita alcuna alcuna vista Geonengine per il modello %s"
+
+#. module: base_geoengine
+#: code:addons/base_geoengine/geo_model.py:173
+#, python-format
+msgid "No raster layer for view %s"
+msgstr "Nessun livello raster per visualizzare %s"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,nb_class:0
+msgid "Number of class"
+msgstr "Numero Classe"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "OpenERP -- not implemented"
+msgstr "SimplERP - Non Implementato"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+msgid "OpenERP layer data (Not implemented)"
+msgstr "Livello Dati SimplERP (non implementato)"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,field_id:0
+msgid "OpenERP layer field to use"
+msgstr "Campo Livello da Utilizzare in SimplERP"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "POINT"
+msgstr "POINT"
+
+#. module: base_geoengine
+#: selection:ir.model.fields,geo_type:0
+msgid "POLYGON"
+msgstr "POLYGON"
+
+#. module: base_geoengine
+#: code:addons/base_geoengine/geo_model.py:104
+#, python-format
+msgid "Please create a view or modify view mode"
+msgstr "Devi creare una vista oppure modificare la modalità di visualizzazione"
+
+#. module: base_geoengine
+#: field:ir.model.fields,dim:0 field:ir.model.fields,geo_type:0
+msgid "PostGIs type"
+msgstr "Tipo PostGis"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,geo_repr:0
+msgid "Proportional Symbol"
+msgstr "Simbolo Proporzionale"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,classification:0
+msgid "Quantile"
+msgstr "Quantile"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_tree
+msgid "Raster"
+msgstr "Raster"
+
+#. module: base_geoengine
+#: view:ir.ui.view:base_geoengine.geoengine_view_form
+msgid "Raster (Background layers)"
+msgstr "Raster (Livelli di Sfondo)"
+
+#. module: base_geoengine
+#: model:ir.actions.act_window,name:base_geoengine.geo_engine_view_rater_action
+msgid "Raster Layer"
+msgstr "Livello Raster"
+
+#. module: base_geoengine
+#: model:ir.ui.menu,name:base_geoengine.geoengine_raster_layer_menu
+msgid "Raster Layer Management"
+msgstr "Gestione Livello Raster"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+msgid "Raster Layer View"
+msgstr "Vista Livello Raster"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,raster_type:0
+msgid "Raster layer type"
+msgstr "Tipo Livello raster"
+
+#. module: base_geoengine
+#: field:ir.ui.view,raster_layer_ids:0
+msgid "Raster layers"
+msgstr "Livelli Raster"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,view_id:0
+#: field:geoengine.vector.layer,view_id:0
+msgid "Related View"
+msgstr "Viste Collegate"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,swisstopo_time:0
+msgid "Release date"
+msgstr "Data"
+
+#. module: base_geoengine
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_form
+msgid "Representation"
+msgstr "Rappresentazione"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,geo_repr:0
+msgid "Representation mode"
+msgstr "Modalità di Rappresentazione"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,url:0
+msgid "Service URL"
+msgstr "URL Servizio"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,swisstopo_type:0
+msgid "Swisstopo raster layer type"
+msgstr "Tipo Livello Raster Swisstopo"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,symbol_url:0
+msgid "Symbol URL"
+msgstr "URL Simbolo"
+
+#. module: base_geoengine
+#: selection:geoengine.vector.layer,classification:0
+msgid "Unique value"
+msgstr "Valore Univoco"
+
+#. module: base_geoengine
+#. openerp-web
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:60
+#, python-format
+msgid "Up-Right"
+msgstr "In Alto a Destra"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,use_to_edit:0
+msgid "Use to edit"
+msgstr "Utilizza per Modificare"
+
+#. module: base_geoengine
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_form
+#: view:geoengine.vector.layer:base_geoengine.geo_vector_view_tree
+msgid "Vector"
+msgstr "Vettore"
+
+#. module: base_geoengine
+#: view:ir.ui.view:base_geoengine.geoengine_view_form
+msgid "Vector (Active layers)"
+msgstr "Vettore (Livelli Attivi)"
+
+#. module: base_geoengine
+#: model:ir.actions.act_window,name:base_geoengine.geo_engine_view_raster_action
+msgid "Vector Layer"
+msgstr "Livello Vetore"
+
+#. module: base_geoengine
+#: model:ir.ui.menu,name:base_geoengine.geoengine_vector_layer_menu
+msgid "Vector Layer Management"
+msgstr "Gestione Livello Vettore"
+
+#. module: base_geoengine
+#: field:ir.ui.view,vector_layer_ids:0
+msgid "Vector layers"
+msgstr "Livelli Vettore"
+
+#. module: base_geoengine
+#: model:ir.ui.menu,name:base_geoengine.geoengine_view_menu
+msgid "View Management"
+msgstr "Gestione Vista"
+
+#. module: base_geoengine
+#: model:ir.actions.act_window,name:base_geoengine.geo_engine_view_action
+msgid "Views"
+msgstr "Viste"
+
+#. module: base_geoengine
+#. openerp-web
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:15
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:46
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:65
+#, python-format
+msgid "X:"
+msgstr "X:"
+
+#. module: base_geoengine
+#. openerp-web
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:21
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:52
+#: code:addons/base_geoengine/static/src/xml/geoengine.xml:71
+#, python-format
+msgid "Y:"
+msgstr "Y:"
+
+#. module: base_geoengine
+#: field:geoengine.vector.layer,attribute_field_id:0
+msgid "attribute field"
+msgstr "Campo Attributo"
+
+#. module: base_geoengine
+#: help:geoengine.vector.layer,begin_color:0
+#: help:geoengine.vector.layer,end_color:0
+msgid "hex value"
+msgstr "Valore Esadecimale"
+
+#. module: base_geoengine
+#: field:geoengine.raster.layer,sequence:0
+#: field:geoengine.vector.layer,sequence:0
+msgid "layer priority lower on top"
+msgstr "Priorità livello più bassa se più in alto"
+
+#. module: base_geoengine
+#: field:ir.model.fields,srid:0
+msgid "srid"
+msgstr "srid"
+
+#. module: base_geoengine
+#: selection:geoengine.raster.layer,raster_type:0
+msgid "swisstopo"
+msgstr "swisstopo"
+
+#. module: base_geoengine
+#: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
+msgid "swisstopo layer data"
+msgstr "Livello Dati Swisstopo"

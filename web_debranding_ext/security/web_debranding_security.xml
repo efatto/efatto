@@ -7,7 +7,7 @@
         </record>
 
         <record id="web_debranding.group_show_modules_menu" model="res.groups">
-            <field name="name">Visualizza Menu Moduli</field>
+            <field name="name">View MoM</field>
         </record>
 
     </data>

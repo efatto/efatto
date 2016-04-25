@@ -27,9 +27,12 @@
     'description': 'Italian customization for asset',
     'depends': [
         'account_asset_management',
+        'report_aeroo',
     ],
     'data': [
         'views/account_asset_view.xml',
+        'data/reports.xml',
+        'report/print_asset_report.xml',
     ],
     'installable': True
 }

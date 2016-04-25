@@ -2,6 +2,5 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from . import models
-from . import wizard
-from . import report
+from . import asset_report
+from . import account_asset_report

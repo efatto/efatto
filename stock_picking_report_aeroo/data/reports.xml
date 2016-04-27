@@ -2,21 +2,22 @@
 <openerp>
     <data>
            
-        <record id="delivery.report_shipping" model="ir.actions.report.xml">
-            <field name="name">Print DDT</field>
+        <record id="l10n_it_ddt.action_report_ddt" model="ir.actions.report.xml">
+            <field name="name">Stampa DDT</field>
             <field name="type">ir.actions.report.xml</field>
-            <field name="model">stock.picking</field>
+            <field name="model">stock.picking.package.preparation</field>
             <field name="report_name">stock_picking_ddt</field>
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
-            <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>
-            <field name="parser_loc">repair_center/ddt.py</field>
-            <field name="report_rml">profile_sc/stock_picking/templates/DDT_Consegna.odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"/>
+            <field name="parser_loc">stock_picking_report_aeroo/models/ddt.py</field>
+            <field name="report_rml">stock_picking_report_aeroo/data/DDT.odt</field>
             <field name="parser_state">loc</field>
+            <field name="attachment"/>
+            <field name="attachment_use" eval="0"/>
         </record>
 
-                
     </data>
 </openerp>
 

@@ -128,7 +128,10 @@ class ProjectTask(models.Model):
         max_date = date_start
 
         for parent in task.parent_ids:
-            if datetime.strptime(parent.date_end[:10], '%Y-%m-%d') > max_date:
-                max_date = datetime.strptime(parent.date_end[:10], '%Y-%m-%d')
+            if parent.date_end:
+                if datetime.strptime(
+                        parent.date_end[:10], '%Y-%m-%d') > max_date:
+                    max_date = datetime.strptime(
+                        parent.date_end[:10], '%Y-%m-%d')
 
         return max_date

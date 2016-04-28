@@ -24,6 +24,10 @@
             <button name="action_draft" position="attributes">
                 <attribute name="states">cancel,done</attribute>>
             </button>
+              <field name="company_id" position="after">
+                  <separator/><separator/>
+                  <field name="ddt_date_start"/>
+              </field>
           </field>
         </record>
 

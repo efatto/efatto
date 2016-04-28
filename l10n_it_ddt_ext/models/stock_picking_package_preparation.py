@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime
 
 
@@ -25,6 +25,20 @@ class StockDdtType(models.Model):
 class StockPickingPackagePreparation(models.Model):
     _inherit = 'stock.picking.package.preparation'
 
+    FIELDS_STATES = {'done': [('readonly', True)],
+                     'in_pack': [('readonly', True)],
+                     'cancel': [('readonly', True)]}
+
+    ddt_date_start = fields.Datetime(
+        string='DDT date start',
+        default=fields.Datetime.now
+    )
+    date = fields.Date(
+        string='Document Date',
+        default=fields.Datetime.now,
+        states=FIELDS_STATES,
+    )
+
     @api.multi
     def action_draft(self):
         # ever possible
@@ -38,12 +52,11 @@ class StockPickingPackagePreparation(models.Model):
             if package.ddt_type_id and not package.ddt_number:
                 fy_id = self.env['account.fiscalyear'].find(
                     dt=datetime.strptime(
-                        package.date, DEFAULT_SERVER_DATETIME_FORMAT))
+                        package.date, DEFAULT_SERVER_DATE_FORMAT))
                 package.ddt_number = package.ddt_type_id.sequence_id.\
                     with_context({'fiscalyear_id': fy_id}).get(
                     package.ddt_type_id.sequence_id.code)
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
-
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):

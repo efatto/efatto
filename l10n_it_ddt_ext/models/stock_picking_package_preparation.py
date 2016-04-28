@@ -38,6 +38,17 @@ class StockPickingPackagePreparation(models.Model):
         default=fields.Datetime.now,
         states=FIELDS_STATES,
     )
+    tobeinvoiced = fields.Boolean(
+        compute='_tobeinvoiced',
+        store=True
+    )
+
+    @api.one
+    @api.depends('picking_ids')
+    def _tobeinvoiced(self):
+        if any(picking.invoice_state == '2binvoiced' for picking in \
+               self.picking_ids):
+            self.tobeinvoiced = True
 
     @api.multi
     def action_draft(self):

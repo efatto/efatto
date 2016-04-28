@@ -33,7 +33,6 @@
     ],
     'data': [
         'data/reports.xml',
-        # 'views/invoice.xml',
     ],
     'installable': True
 }

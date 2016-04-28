@@ -3,6 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, _
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from datetime import datetime
 
 
 class StockDdtType(models.Model):
@@ -25,8 +27,19 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def action_draft(self):
-        # if any(prep.state != 'cancel' for prep in self):
-        #     raise exceptions.Warning(
-        #         _('Only canceled package preparations can be reset to draft.')
-        #     )
+        # ever possible
         self.write({'state': 'draft'})
+
+    @api.multi
+    def action_put_in_pack(self):
+        # put fy in context to get fy sequence
+        for package in self:
+            # ----- Assign ddt number if ddt type is set
+            if package.ddt_type_id and not package.ddt_number:
+                fy_id = self.env['account.fiscalyear'].find(
+                    dt=datetime.strptime(
+                        package.date, DEFAULT_SERVER_DATETIME_FORMAT))
+                package.ddt_number = package.ddt_type_id.sequence_id.\
+                    with_context({'fiscalyear_id': fy_id}).get(
+                    package.ddt_type_id.sequence_id.code)
+        return super(StockPickingPackagePreparation, self).action_put_in_pack()

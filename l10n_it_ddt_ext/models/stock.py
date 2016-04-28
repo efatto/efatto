@@ -1,22 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import api, _, models
 from openerp.exceptions import Warning
 
@@ -53,12 +38,11 @@ class StockMove(models.Model):
 
     @api.cr_uid_ids_context
     def action_done(self, cr, uid, ids, context=None):
-        if not any(picking.ddt_ids for picking in (
-                move.picking_id for move in self.browse(
-                cr, uid, ids, context))) and \
-                not (self.location_dest_id.usage == 'internal' or
-                     self.location_dest_id.usage == 'production'):
-            raise Warning(_('This transfer is not linked to a ddt!'))
-            return False
+        for move in self.browse(cr, uid, ids, context):
+            if not any(picking.ddt_ids for picking in move.picking_id) and \
+                not (move.picking_id.location_dest_id.usage == 'internal' or
+                     move.picking_id.location_dest_id.usage == 'production'):
+                raise Warning(_('This transfer is not linked to a ddt!'))
+                return False
         return super(StockMove, self).action_done(cr, uid, ids, context)
         #todo update view of ddt_ids (on back of current view)

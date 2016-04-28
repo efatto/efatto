@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ddt_ext
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-28 13:27+0000\n"
+"PO-Revision-Date: 2016-04-28 13:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.ddt.type,carriage_condition_id:0
+msgid "Carriage Condition"
+msgstr "Porto"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,ddt_date_start:0
+msgid "DDT date start"
+msgstr "DDT date start"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.ddt.type,goods_description_id:0
+msgid "Description of Goods"
+msgstr "Aspetto dei Beni"
+
+#. module: l10n_it_ddt_ext
+#: view:stock.picking.package.preparation:l10n_it_ddt_ext.ddt_stock_picking_package_preparation_search
+msgid "Invoiced"
+msgstr "Fatturato"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.ddt.type,transportation_method_id:0
+msgid "Method of Transportation"
+msgstr "Trasporto"
+
+#. module: l10n_it_ddt_ext
+#: model:ir.model,name:l10n_it_ddt_ext.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr "DDT"
+
+#. module: l10n_it_ddt_ext
+#: model:ir.model,name:l10n_it_ddt_ext.model_stock_picking
+msgid "Picking List"
+msgstr "Picking List"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.ddt.type,transportation_reason_id:0
+msgid "Reason for Transportation"
+msgstr "Causale di Trasporto"
+
+#. module: l10n_it_ddt_ext
+#: model:ir.model,name:l10n_it_ddt_ext.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: l10n_it_ddt_ext
+#: model:ir.model,name:l10n_it_ddt_ext.model_stock_ddt_type
+msgid "Stock DdT Type"
+msgstr "Tipo DdT Magazzino"
+
+#. module: l10n_it_ddt_ext
+#: model:ir.model,name:l10n_it_ddt_ext.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: l10n_it_ddt_ext
+#: code:addons/l10n_it_ddt_ext/models/stock.py:31
+#: code:addons/l10n_it_ddt_ext/models/stock.py:41
+#: code:addons/l10n_it_ddt_ext/models/stock.py:61
+#, python-format
+msgid "This transfer is not linked to a ddt!"
+msgstr "Questo movimento non è collegato ad un ddt!"
+
+#. module: l10n_it_ddt_ext
+#: view:stock.picking.package.preparation:l10n_it_ddt_ext.ddt_stock_picking_package_preparation_search
+msgid "To be invoiced"
+msgstr "Da Fatturare"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,tobeinvoiced:0
+msgid "Tobeinvoiced"
+msgstr "Da Fatturare"
+
+#. module: l10n_it_ddt_ext
+#: field:sale.order,ddt_type_id:0
+msgid "Type of DDT"
+msgstr "Tipo di DDT"
+
+#. module: l10n_it_ddt_ext
+#: view:stock.picking.package.preparation:l10n_it_ddt_ext.stock_picking_package_preparation_reopen_form
+msgid "cancel,done"
+msgstr "cancel,done"
+
+#. module: l10n_it_ddt_ext
+#: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_ext
+msgid "{'invisible': True}"
+msgstr "{'invisible': True}"
+

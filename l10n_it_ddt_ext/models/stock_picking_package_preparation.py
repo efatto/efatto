@@ -1,22 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import models, fields, api, _
 
 
@@ -33,3 +18,15 @@ class StockDdtType(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         'Method of Transportation')
+
+
+class StockPickingPackagePreparation(models.Model):
+    _inherit = 'stock.picking.package.preparation'
+
+    @api.multi
+    def action_draft(self):
+        # if any(prep.state != 'cancel' for prep in self):
+        #     raise exceptions.Warning(
+        #         _('Only canceled package preparations can be reset to draft.')
+        #     )
+        self.write({'state': 'draft'})

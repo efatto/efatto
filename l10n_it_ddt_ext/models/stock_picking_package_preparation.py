@@ -43,3 +43,21 @@ class StockPickingPackagePreparation(models.Model):
                     with_context({'fiscalyear_id': fy_id}).get(
                     package.ddt_type_id.sequence_id.code)
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
+
+
+    @api.onchange('partner_id', 'ddt_type_id')
+    def on_change_partner(self):
+        super(StockPickingPackagePreparation, self).on_change_partner()
+        if self.ddt_type_id:
+            if not self.carriage_condition_id:
+                self.carriage_condition_id = self.ddt_type_id.carriage_condition_id.id \
+                    if self.ddt_type_id.carriage_condition_id else False
+            if not self.goods_description_id:
+                self.goods_description_id = self.ddt_type_id.goods_description_id.id \
+                    if self.ddt_type_id.goods_description_id else False
+            if not self.transportation_reason_id:
+                self.transportation_reason_id = self.ddt_type_id.transportation_reason_id.id \
+                    if self.ddt_type_id.transportation_reason_id else False
+            if not self.transportation_method_id:
+                self.transportation_method_id = self.ddt_type_id.transportation_method_id.id \
+                    if self.ddt_type_id.transportation_method_id else False

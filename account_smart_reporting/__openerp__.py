@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2015-2016 SimplERP srl (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,12 +21,13 @@
     'name': 'Account smart reporting',
     'version': '8.0.0.0.0',
     'category': 'other',
-    'author': 'SimplERP SRL',
+    'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
         'account',
         'report',
+        'l10n_it_account',
     ],
     'data': [
         'views/account_config_view.xml',

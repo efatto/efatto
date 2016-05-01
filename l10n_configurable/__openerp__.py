@@ -23,7 +23,7 @@
 
 {
     "name": 'Account chart autoconfigurable',
-    "version": "8.4.0.1.2",
+    "version": "8.0.0.1.2",
     "depends": [
         'base_vat',
         'account',
@@ -41,7 +41,5 @@
         'data/account_tax_view.xml',
         'data/payment_type_view.xml',
     ],
-    'demo': [],
     'installable': True,
-    'active': False,
 }

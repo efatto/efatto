@@ -6,8 +6,7 @@
             <field name="inherit_id" ref="account.view_tax_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']/field[@name='base_code_id']
-" position="replace">
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']/field[@name='base_code_id']" position="replace">
                           <field name="base_code_id" domain="[('is_base','=','True'),]"/>
                     </xpath>
                     <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Refunds']/field[@name='ref_base_code_id']" position="replace">

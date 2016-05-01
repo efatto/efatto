@@ -18,38 +18,30 @@
 #
 ##############################################################################
 {
-    'name': 'Italy - SimplERP Srl',
+    'name': 'Italy - LibrERP',
     'version': '8.0.0.0.1',
     'category': 'Localization/Account Charts',
     'description': """
-    Profilatura SimplERP
+    Profilatura LibrERP
 
     """,
-    'author': 'SimplERP SRL',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.librerp.it',
     'license': 'AGPL-3',
     "depends": [
         'base_vat',
         'account_chart',
         'base_iban',
-        'l10n_configurable',
-        'partner_subaccount',
-        'account_accountant',
-        'account_payment_term_month',  # per il campo sequence e months
-        #  'account_tax_simplified', da installare dopo perchè nel csv delle imposte non sono definiti i campi base_tax ecc.
     ],
     "data": [
-        'data/payment_data.xml',
         'data/account.account.type.csv',
         'data/account.account.template.csv',
         'data/account.tax.code.template.csv',
-        'data/account_chart.xml',
+        'account_chart.xml',
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
-        'data/account.fiscal.position.tax.template.csv',
-        'data/l10n_chart_it_generic.xml',
+        # 'data/account.fiscal.position.tax.template.csv',
+        'l10n_chart_it_generic.xml',
     ],
-    "demo": [],
-    "active": False,
     "installable": True,
 }

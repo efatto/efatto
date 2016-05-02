@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 20:07+0100\n"
-"PO-Revision-Date: 2015-12-14 20:42+0100\n"
+"PO-Revision-Date: 2016-05-02 17:19+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "Last-Translator: \n"
 "Language: it_IT\n"
 
@@ -914,7 +914,7 @@ msgstr "Tipo Camera"
 #. module: hotel
 #: view:hotel.folio:0
 msgid "Invoice Corrected"
-msgstr "Fattura Corretta"
+msgstr "Fattura Aggiornata"
 
 #. module: hotel
 #: selection:hotel.folio,hotel_policy:0

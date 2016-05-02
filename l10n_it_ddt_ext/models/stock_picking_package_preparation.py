@@ -1,23 +1,10 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import models, fields, api, _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from datetime import datetime
 
 
 class StockDdtType(models.Model):
@@ -33,3 +20,68 @@ class StockDdtType(models.Model):
     transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
         'Method of Transportation')
+
+
+class StockPickingPackagePreparation(models.Model):
+    _inherit = 'stock.picking.package.preparation'
+
+    FIELDS_STATES = {'done': [('readonly', True)],
+                     'in_pack': [('readonly', True)],
+                     'cancel': [('readonly', True)]}
+
+    ddt_date_start = fields.Datetime(
+        string='DDT date start',
+        default=fields.Datetime.now
+    )
+    date = fields.Date(
+        string='Document Date',
+        default=fields.Datetime.now,
+        states=FIELDS_STATES,
+    )
+    tobeinvoiced = fields.Boolean(
+        compute='_tobeinvoiced',
+        store=True
+    )
+
+    @api.one
+    @api.depends('picking_ids')
+    def _tobeinvoiced(self):
+        if any(picking.invoice_state == '2binvoiced' for picking in \
+               self.picking_ids):
+            self.tobeinvoiced = True
+
+    @api.multi
+    def action_draft(self):
+        # ever possible
+        self.write({'state': 'draft'})
+
+    @api.multi
+    def action_put_in_pack(self):
+        # put fy in context to get fy sequence
+        for package in self:
+            # ----- Assign ddt number if ddt type is set
+            if package.ddt_type_id and not package.ddt_number:
+                fy_id = self.env['account.fiscalyear'].find(
+                    dt=datetime.strptime(
+                        package.date, DEFAULT_SERVER_DATE_FORMAT))
+                package.ddt_number = package.ddt_type_id.sequence_id.\
+                    with_context({'fiscalyear_id': fy_id}).get(
+                    package.ddt_type_id.sequence_id.code)
+        return super(StockPickingPackagePreparation, self).action_put_in_pack()
+
+    @api.onchange('partner_id', 'ddt_type_id')
+    def on_change_partner(self):
+        super(StockPickingPackagePreparation, self).on_change_partner()
+        if self.ddt_type_id:
+            if not self.carriage_condition_id:
+                self.carriage_condition_id = self.ddt_type_id.carriage_condition_id.id \
+                    if self.ddt_type_id.carriage_condition_id else False
+            if not self.goods_description_id:
+                self.goods_description_id = self.ddt_type_id.goods_description_id.id \
+                    if self.ddt_type_id.goods_description_id else False
+            if not self.transportation_reason_id:
+                self.transportation_reason_id = self.ddt_type_id.transportation_reason_id.id \
+                    if self.ddt_type_id.transportation_reason_id else False
+            if not self.transportation_method_id:
+                self.transportation_method_id = self.ddt_type_id.transportation_method_id.id \
+                    if self.ddt_type_id.transportation_method_id else False

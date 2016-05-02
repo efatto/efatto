@@ -9,6 +9,9 @@
                 <xpath expr="//button[@name='action_view_delivery']" position="attributes">
                     <attribute name="attrs">{'invisible': True}</attribute>
                 </xpath>
+                <xpath expr="//field[@name='create_ddt']" position="after">
+                    <field name="ddt_type_id"/>
+                </xpath>
             </field>
         </record>
     </data>

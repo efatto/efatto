@@ -4,11 +4,12 @@
 
 <template id="report_account_smart">
     <t t-call="report.html_container">
+    <t t-call="l10n_it_account.internal_layout">
      <div class="page">
-        <table style="width:100%; font-size: small;" cellspacing="0">
+        <table style="width:100%; font-size: small; border: 1px solid black;" cellspacing="0">
             <thead>
                 <tr class="first_th_row">
-                   <td colspan="7" style="padding:10;">Invoice Report</td>
+                   <td colspan="7" style="padding:10;">Report Fatture dettagliato</td>
                 </tr>
                     <tr style="page-break-inside: avoid">
                         <th class="left_without_line">DATA FT.</th>
@@ -55,6 +56,7 @@
             </tbody>
         </table>
      </div>
+    </t>
     </t>
 </template>     
 

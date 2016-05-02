@@ -5,9 +5,9 @@
             <field name="model">account.asset.category</field>
             <field name="inherit_id" ref="account_asset_management.view_account_asset_category_form"/>
             <field name="arch" type="xml">
-                <field name="method_time" position="attributes">
-                    <attribute name="invisible" eval="1"/>
-                </field>
+               <field name="method_number" position="replace">
+                    <field name="method_number" attrs="{'invisible': True}"/>
+               </field>
                 <field name="method_number" position="after">
                     <field name="method_percent" />
                 </field>
@@ -22,15 +22,52 @@
           <field name="model">account.asset.asset</field>
           <field name="inherit_id" ref="account_asset_management.view_account_asset_asset_form"/>
           <field name="arch" type="xml">
-               <field name="method_time" position="attributes">
-                    <attribute name="invisible" eval="1"/>
-                </field>
+               <field name="method_number" position="replace">
+                    <field name="method_number" attrs="{'invisible': True}"/>
+               </field>
                <field name="method_number" position="after">
                     <field name="method_percent" />
                </field>
                <field name="prorata" position="after">
                     <field name="first_year_half"/>
                </field>
+               <xpath expr="//form/sheet/notebook/page[@string='Depreciation Board']/field[@name='depreciation_line_ids']/tree/field[@name='amount']" position="after">
+                   <field name="factor"/>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='Depreciation Board']/field[@name='depreciation_line_ids']/tree[@string='Asset Lines']" position="attributes">
+                   <attribute name="create">true</attribute>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='Depreciation Board']/field[@name='depreciation_line_ids']/form/group/group/field[@name='move_id']" position="attributes">
+                   <attribute name="attrs">{'readonly':[('move_check','=',True)]}</attribute>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='Depreciation Board']/field[@name='depreciation_line_ids']/tree/button[@name='create_move']" position="attributes">
+                   <attribute name="context">{'create_move_from_button':True}</attribute>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='Depreciation Board']/field[@name='depreciation_line_ids']/form/group/group/field[@name='amount']" position="after">
+                   <field name="factor"/>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='General']/group/group/field[@name='date_start']" position="after">
+                  <field name="increase_value"
+                           attrs="{'readonly':['|',('move_line_check','=',True),('state','!=','draft')]}"
+                           on_change="onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)"/>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='General']/group/group/field[@name='salvage_value']" position="after">
+                   <field name="remove_value"
+                           attrs="{'readonly':['|',('move_line_check','=',True),('state','!=','draft')]}"
+                           on_change="onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)"/>
+                   <field name="decrease_value"
+                           attrs="{'readonly':['|',('move_line_check','=',True),('state','!=','draft')]}"
+                           on_change="onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)"/>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='General']/group/group/field[@name='salvage_value']" position="attributes">
+                       <attribute name="on_change">onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)</attribute>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='General']/group/group/field[@name='purchase_value']" position="attributes">
+                       <attribute name="on_change">onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)</attribute>
+               </xpath>
+               <xpath expr="//form/sheet/notebook/page[@string='General']/group/group/field[@name='date_start']" position="attributes">
+                       <attribute name="on_change">onchange_purchase_salvage_value(purchase_value, salvage_value, increase_value, decrease_value, remove_value, date_start)</attribute>
+               </xpath>
           </field>
         </record>
 

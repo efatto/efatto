@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-15 21:14+0000\n"
-"PO-Revision-Date: 2015-12-15 21:14+0000\n"
+"POT-Creation-Date: 2016-04-28 22:13+0000\n"
+"PO-Revision-Date: 2016-04-28 22:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "\n"
 "    <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "    <p>Hello ${object.user_id.company_id.accountant_partner_id.name},</p>\n"
 "\n"
-"    <p>You will find attached the accounting report of ${object.user_id.company_id.name} of .</p>\n"
+"    <p>You will find attached the accounting report of ${object.user_id.company_id.name}.</p>\n"
 "\n"
 "    <p>Please find the attachment.</p>\n"
 "    <p>Thanks</p>\n"
@@ -32,10 +32,10 @@ msgstr "\n"
 "    <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "    <p>Buongiorno ${object.user_id.company_id.accountant_partner_id.name},</p>\n"
 "\n"
-"    <p>allego alla presente il report delle fatture di ${object.user_id.company_id.name}.</p>\n"
+"    <p>In allegato il report delle fatture di: ${object.user_id.company_id.name}.</p>\n"
 "\n"
+"    <p>Vedi allegato.</p>\n"
 "    <p>Grazie.</p>\n"
-"    <p>Cordiali saluti.</p>\n"
 "\n"
 "    </div>            \n"
 "            "
@@ -93,7 +93,12 @@ msgstr "IVA"
 #. module: account_smart_reporting
 #: view:website:account_smart_reporting.report_account_smart
 msgid "Invoice Report"
-msgstr "Invoice Report"
+msgstr "Report Fattura"
+
+#. module: account_smart_reporting
+#: model:ir.model,name:account_smart_reporting.model_account_move_line
+msgid "Journal Items"
+msgstr "Voci sezionale"
 
 #. module: account_smart_reporting
 #: view:website:account_smart_reporting.report_account_smart
@@ -111,11 +116,6 @@ msgid "QUANTITÀ"
 msgstr "QUANTITÀ"
 
 #. module: account_smart_reporting
-#: model:ir.actions.report.xml,name:account_smart_reporting.report_account
-msgid "Quotation / Order SimplERP"
-msgstr "Quotation / Order SimplERP"
-
-#. module: account_smart_reporting
 #: view:website:account_smart_reporting.report_account_smart
 msgid "RAGIONE SOCIALE"
 msgstr "RAGIONE SOCIALE"
@@ -124,6 +124,11 @@ msgstr "RAGIONE SOCIALE"
 #: model:email.template,subject:account_smart_reporting.email_template_sales_details
 msgid "Report Sales and Journal "
 msgstr "Report Vendite e Giornale "
+
+#. module: account_smart_reporting
+#: model:ir.actions.report.xml,name:account_smart_reporting.report_account
+msgid "Report of Invoices for Accountant"
+msgstr "Report delle Fatture per il Commercialista"
 
 #. module: account_smart_reporting
 #: model:ir.actions.act_window,name:account_smart_reporting.action_send_report_invoices_and_files

@@ -70,18 +70,18 @@ class account_tax_code_template(models.Model):
 class account_tax_code(models.Model):
     _inherit = "account.tax.code"
 
-    is_base = fields.Boolean(
-        'Is base',
-        help="This tax code is used for \
-        base amounts (field used by VAT registries)"
-    )
-    vat_statement_type = fields.Selection(
-        [('credit', 'Credit'),
-         ('debit', 'Debit')],
-        'Type',
-        help="This establish whether amount will be \
-        loaded as debit or credit"
-    )
+    # is_base = fields.Boolean(
+    #     'Is base',
+    #     help="This tax code is used for \
+    #     base amounts (field used by VAT registries)"
+    # )
+    # vat_statement_type = fields.Selection(
+    #     [('credit', 'Credit'),
+    #      ('debit', 'Debit')],
+    #     'Type',
+    #     help="This establish whether amount will be \
+    #     loaded as debit or credit"
+    # )
     vat_statement_sign = fields.Integer(
         'Sign used in statement',
         help="If tax code period sum is usually negative, set '-1' here"
@@ -115,18 +115,18 @@ class account_tax(models.Model):
         'account.tax',
         string='Tax code for reverse charge invoice'
     )
-    ref_base_code_id = fields.Many2one(
-        'account.tax.code',
-        string='Refund Base Code',
-        related='base_code_id',
-        copy=False, store=True, readonly=True
-    )
-    ref_tax_code_id = fields.Many2one(
-        'account.tax.code',
-        string='Refund Tax Code',
-        related='tax_code_id',
-        copy=False, store=True, readonly=True
-    )
+    # ref_base_code_id = fields.Many2one(
+    #     # 'account.tax.code',
+    #     string='Refund Base Code',
+    #     related='base_code_id',
+    #     copy=False, store=True, readonly=True
+    # )
+    # ref_tax_code_id = fields.Many2one(
+    #     # 'account.tax.code',
+    #     string='Refund Tax Code',
+    #     related='tax_code_id',
+    #     copy=False, store=True, readonly=True
+    # )
 
 
 class wizard_multi_charts_accounts(models.TransientModel):

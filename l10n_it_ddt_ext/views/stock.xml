@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
         <record id="view_ddt_type_form_ext" model="ir.ui.view">
             <field name="name">stock.ddt.type.form.ext</field>
             <field name="model">stock.ddt.type</field>
@@ -14,5 +15,35 @@
                 </field>
             </field>
         </record>
+
+        <record id="stock_picking_package_preparation_reopen_form" model="ir.ui.view">
+          <field name="name">stock.picking.package.preparation.reopen.form</field>
+          <field name="model">stock.picking.package.preparation</field>
+          <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+          <field name="arch" type="xml">
+            <button name="action_draft" position="attributes">
+                <attribute name="states">cancel,done</attribute>>
+            </button>
+              <field name="company_id" position="after">
+                  <separator/><separator/>
+                  <field name="ddt_date_start"/>
+              </field>
+          </field>
+        </record>
+
+        <record id="ddt_stock_picking_package_preparation_search" model="ir.ui.view">
+            <field name="name">ddt.stock.picking.package.preparation.invoice.search</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/filter[@name='to_be_invoiced']" position="replace">
+                    <filter string="To be invoiced" domain="[('tobeinvoiced','!=',False)]" name="to_be_invoiced"/>
+                </xpath>
+                <xpath expr="//search/filter[@name='invoiced']" position="replace">
+                    <filter string="Invoiced" domain="[('tobeinvoiced','=',False)]" name="invoiced"/>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </openerp>

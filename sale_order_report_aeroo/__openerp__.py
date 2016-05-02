@@ -27,9 +27,8 @@
     'depends': [
         'account',
         'report_aeroo',
-        'stock',
         'report_branding',
-        'stock_picking_report_aeroo',
+        'invoice_report_aeroo_simplerp',
     ],
     'data': [
         'data/reports.xml',

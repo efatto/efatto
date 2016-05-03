@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione cinese.\n"
-"======================================================="
+"=========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_pos_restaurant
@@ -85,7 +85,7 @@ msgid ""
 "\n"
 "\n"
 "Base module for Hungarian localization\n"
-"==========================================\n"
+"======================================\n"
 "\n"
 "This module consists :\n"
 "\n"
@@ -98,7 +98,7 @@ msgstr ""
 "\n"
 "\n"
 "Modulo base per la localizzazione ungherese\n"
-"==========================================\n"
+"===========================================\n"
 "\n"
 "Questo modulo consiste in:\n"
 "\n"
@@ -124,7 +124,7 @@ msgstr ""
 "\n"
 "\n"
 "Gestione Reclami\n"
-"=======================\n"
+"================\n"
 "Questa applicazione consente di tracciare i reclami e le rimostranze di clienti e fornitori.  \n"
 "\n"
 "E' completamente integrata con il gateway della posta elettronica, in modo da\n"
@@ -154,7 +154,7 @@ msgstr ""
 "\n"
 "\n"
 "Contenuto:\n"
-"---------\n"
+"----------\n"
 "\n"
 "* Struttura di base Piano dei conti e tasse per aziende Giapponesi.\n"
 "* Forse non copre tutte la localizzazione giapponese. Dovrai aggiungere o configurare alcune pati in base alle necessita'.\n"
@@ -220,12 +220,12 @@ msgstr ""
 "\n"
 "    \n"
 "Localizzazione Belga per le fatture in entrata e uscita (prerequisito  account_coda):\n"
-"============================================================================\n"
+"=====================================================================================\n"
 "    - Rinomina il testo  'reference' a 'Communication'\n"
 "    - e supporta  la comunicazione strutturata\n"
 "\n"
 "Una comunicazione strutturata puo essere generata automaticamente dal seguente algoritmo:\n"
-"---------------------------------------------------------------------------------------------------------------------\n"
+"-----------------------------------------------------------------------------------------\n"
 "    1) Random : +++RRR/RRRR/RRRDD+++\n"
 "        **R..R =** Random Digits, **DD =** Check Digits\n"
 "    2) Date : +++DOY/YEAR/SSSDD+++\n"
@@ -313,7 +313,7 @@ msgid ""
 msgstr ""
 "\n"
 "Un modulo che aggiunge report Intrastat .\n"
-"=====================================\n"
+"=========================================\n"
 "\n"
 "Questo modulo restituisce i dettagli dei beni scambiati tra nazioni\n"
 "dell'Unione Europea. "
@@ -330,7 +330,7 @@ msgid ""
 msgstr ""
 "\n"
 "Diritti di accesso contabilità\n"
-"========================\n"
+"==============================\n"
 "Da all'utente amministratore accesso a tutte le caratteristiche contabili, come elementi del giornale, piano dei conti.\n"
 "\n"
 "Assegna manager e diritti di accesso utente all'amministratore e solamente diritti utente all'utente Demo. \n"
@@ -378,10 +378,10 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione Contabile e Finanziaria.\n"
-"====================================\n"
+"=================================\n"
 "\n"
 "Modulo per la gestione contabile e finanziaria che copre:\n"
-"--------------------------------------------\n"
+"---------------------------------------------------------\n"
 "    * Contabilità generale\n"
 "    * Contabilità analitica\n"
 "    * Contabilità di terze parti\n"
@@ -392,7 +392,7 @@ msgstr ""
 "    * Processi di riconciliazione per partner\n"
 "\n"
 "Crea un Dashboard per contabili che include:\n"
-"--------------------------------------------------\n"
+"--------------------------------------------\n"
 "    * Lista delle fatture cliente da provare\n"
 "    * Analisi aziendale\n"
 "    * Grafico tesoreria\n"
@@ -415,10 +415,10 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiungi informazioni relative alla data nell'ordine di vendita.\n"
-"===================================================\n"
+"================================================================\n"
 "\n"
 "Puoi aggiungere le seguenti date aggiuntive in un ordine di vendita::\n"
-"------------------------------------------------------------\n"
+"---------------------------------------------------------------------\n"
 "    * Data Richiesta (verrà utilizzata come data prevista nella Presa)\n"
 "    * Data Impegno\n"
 "    * Data Effettiva\n"
@@ -440,7 +440,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge tutte le informazioni nel modulo collaboratore per gestire i contratti.\n"
-"=============================================================\n"
+"================================================================================\n"
 "\n"
 "    * Contratto\n"
 "    * Luogo di Nascita,\n"
@@ -463,7 +463,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge ai prodotti modelli di e-mail da inviare alla conferma della fattura\n"
-"==================================================================\n"
+"=============================================================================\n"
 "\n"
 "Con questo modulo puoi collegare i tuoi prodotti ad un modello di e-mail con cui inviare informazioni complete ai tuoi clienti.\n"
 "Per esempio, quando fatturi una sessione di formazione, il programma didattico ed il materiale verranno inviati automaticamente ai clienti."
@@ -478,8 +478,8 @@ msgid ""
 "The wizard to launch the report has several options to help you get the data you need.\n"
 msgstr ""
 "\n"
-"Aggiunge un menu di reportistica nei prodotti, in grado di analizzare vendite, acquisti, margini ed altri interessanti indicatori basati sulle fatture..\n"
-"=============================================================================================================================\n"
+"Aggiunge un menu di reportistica nei prodotti, in grado di analizzare vendite, acquisti, margini ed altri interessanti indicatori basati sulle fatture.\n"
+"=======================================================================================================================================================\n"
 "\n"
 "La procedura contiene diverse opzioni che ti assisteranno nell'estrarre i dati di cui hai bisogno.\n"
 
@@ -496,7 +496,7 @@ msgid ""
 msgstr ""
 "\n"
 "Supporto avanzato per gli Allegati in EtherPad dal Web Client.\n"
-"===================================================================\n"
+"==============================================================\n"
 "\n"
 "Consente all'azienda di definire a quale installazione collegare i nuovi Pad.\n"
 "(Impostazione Predefinita: http://etherpad.com/).\n"
@@ -511,7 +511,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente agli utenti di accedere attraverso un Provider OAuth2.\n"
-"=============================================\n"
+"===============================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_auth_openid
@@ -522,7 +522,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente agli utenti di accedere attraverso OpenID.\n"
-"====================================\n"
+"===================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_auth_signup
@@ -534,7 +534,7 @@ msgid ""
 msgstr ""
 "\n"
 "Permette agli utenti di registrarsi e reimpostare la password\n"
-"===============================================\n"
+"=============================================================\n"
 "    "
 
 #. module: base
@@ -550,7 +550,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente l'annullamento di registrazioni contabili.\n"
-"====================================\n"
+"===================================================\n"
 "\n"
 "Questo modulo aggiunge il campo 'Consenti Annullamento Registrazione' nella vista modulo di sezionali.\n"
 "Se la casella è spuntata, all'utente verrà permesso di annullare registrazioni e fatture.\n"
@@ -568,7 +568,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente di aggiungere metodi di consegna su ordini di vendita e prelievi.\n"
-"==============================================================\n"
+"==========================================================================\n"
 "\n"
 "Puoi definire i corrieri e la griglia dei prezzi delle spedizioni. Durante la creazione\n"
 "di fatture da prelievi, OpenERP è in grado di aggiungere e calcolare le spese di spedizione.\n"
@@ -586,7 +586,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione argentina.\n"
-"=================================================="
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_forum
@@ -613,7 +613,7 @@ msgid ""
 msgstr ""
 "\n"
 "Immobilizzazioni su Contabilità.\n"
-"======================\n"
+"================================\n"
 "Con questo modulo quei verificare manualmente consistenze ed inconsistenze del modulo di contabilità dal menù Reportistica/Contabilità/Test Contabilità.\n"
 "\n"
 "Puoi scrivere una query per creare un Test di Consistenza. Riceverai il risultato in\n"
@@ -637,7 +637,7 @@ msgid ""
 msgstr ""
 "\n"
 "Traduzioni automatizzate tramite le API di Gengo\n"
-"========================================\n"
+"================================================\n"
 "\n"
 "Questo modulo installerà un pianificatore passivo per la traduzione automatica dei testi\n"
 "tramite le API di Gengo. Per attivarlo devi:\n"
@@ -674,7 +674,7 @@ msgid ""
 msgstr ""
 "\n"
 "Crea automaticamente attività di progetto.\n"
-"===========================================================\n"
+"==========================================\n"
 "\n"
 "Questo modulo creerà automaticamente una nuova attività di progetto per ciascuna riga\n"
 "di un acquisto o una vendita, si corrispondente prodotto incontro le seguenti\n"
@@ -698,7 +698,7 @@ msgstr ""
 msgid ""
 "\n"
 "Barcode Scanner Hardware Driver\n"
-"================================\n"
+"===============================\n"
 "\n"
 "This module allows the point of sale to connect to a scale using a USB HSM Serial Scale Interface,\n"
 "such as the Mettler Toledo Ariva.\n"
@@ -706,7 +706,7 @@ msgid ""
 msgstr ""
 "\n"
 "Driver Hardware Bilancia\n"
-"================================\n"
+"========================\n"
 "\n"
 "Questo modulo consente al POS di collegarsi ad una bilancia utilizzando un'apposita interfaccia seriale USB HSM.\n"
 "come la Mettler Toledo Ariva.\n"
@@ -716,7 +716,7 @@ msgstr ""
 msgid ""
 "\n"
 "Barcode Scanner Hardware Driver\n"
-"================================\n"
+"===============================\n"
 "\n"
 "This module allows the web client to access a remotely installed barcode\n"
 "scanner, and is used by the posbox to provide barcode scanner support to the\n"
@@ -725,7 +725,7 @@ msgid ""
 msgstr ""
 "\n"
 "Driver Hardware Lettore Codici a Barre\n"
-"================================\n"
+"======================================\n"
 "\n"
 "Questo modulo consente al Web Client di accedere ad un lettore di codici a barre remoto.\n"
 "Viene utilizzato dal PosBox per fornire il supporto dei lettori di codici a barre al modulo POS.\n"
@@ -747,7 +747,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione etiope\n"
-"======================================"
+"========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_br
@@ -791,7 +791,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione brasiliana\n"
-"==========================================\n"
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_be_hr_payroll
@@ -813,7 +813,7 @@ msgid ""
 msgstr ""
 "\n"
 "Regole Buste Paga Belga.\n"
-"======================\n"
+"========================\n"
 "\n"
 "    *Dettagli collaboratore\n"
 "    *Contratti collaboratore\n"
@@ -838,7 +838,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione boliviana.\n"
-"=============================="
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_marketing_crm
@@ -882,7 +882,7 @@ msgstr ""
 "Consente all'utente di leggere ed inviare messaggi ed e-mail. Fornisce inoltre una pagina di discussione collegata ad un meccanismo di iscrizione, che consente gli utenti di seguire un determinato documento e di essere costantemente aggiornati sulle notizie più recenti.\n"
 "\n"
 "Caratteristiche principali\n"
-"---------------------------\n"
+"--------------------------\n"
 "* Storico delle comunicazioni per ogni documento che possa essere oggetto di discussione\n"
 "* Strumento di iscrizione per essere aggiornati su nuovi messaggi o documenti interessanti\n"
 "* Feed unificati per visualizzare messaggi ed attività recenti nelle discussioni a cui si è iscritti\n"
@@ -925,7 +925,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione venezuelana.\n"
-"===============================\n"
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_th
@@ -939,7 +939,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione thailandese.\n"
-"==============================="
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_cr
@@ -962,7 +962,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione costaricana.\n"
-"================================="
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_cl
@@ -992,7 +992,7 @@ msgid ""
 msgstr ""
 "\n"
 "Configura l'accuratezza del prezzo per differenti tipi di uso: contabilità, vendite, acquisti.\n"
-"=================================================================================================\n"
+"==============================================================================================\n"
 "\n"
 "La precisione decimale viene configurata per l'azienda.\n"
 
@@ -1007,7 +1007,7 @@ msgid ""
 msgstr ""
 "\n"
 "Crea un Reclamo da un ordine di consegna.\n"
-"=====================================\n"
+"=========================================\n"
 "\n"
 "Aggiunge un collegamento 'Reclamo' all'ordine di consegna.\n"
 
@@ -1027,7 +1027,7 @@ msgid ""
 msgstr ""
 "\n"
 "Crea bellissimi questionari e visualizza i risultati\n"
-"==================================================\n"
+"====================================================\n"
 "\n"
 "Dipende dalle risposte o dalle valutazioni di alcune domande da parte dei diversi utenti.\n"
 "Un questionario può avere pagine multiple. Ciascuna pagina può contenere più domande e\n"
@@ -1053,12 +1053,12 @@ msgid ""
 msgstr ""
 "\n"
 "Crea documenti ricorrenti.\n"
-"===========================\n"
+"==========================\n"
 "\n"
 "Questo modulo consente la creazione di nuovi documenti ed aggiunge l'iscrizione a quei documenti.\n"
 "\n"
 "Esempio. Per generare in modo automatico una fattura periodica:\n"
-"-------------------------------------------------------------\n"
+"---------------------------------------------------------------\n"
 "    * Definisci un tipo di documento basato sull'oggetto Fattura\n"
 "    * Definisci un iscrizione in cui documento d'origine è il documento come definito al punto precedente.\n"
 "    * Specifica le informazioni relative all'intervallo ed al partner a cui intestare la fattura.\n"
@@ -1082,7 +1082,7 @@ msgid ""
 msgstr ""
 "\n"
 "Creazione di registrazioni ad un evento tramite gli ordini di vendita.\n"
-"=======================================\n"
+"======================================================================\n"
 "\n"
 "Questo modulo consente di automatizzare e collegare la creazione di registrazioni con\n"
 "il tuo processo di vendita, e pertanto abilità la fatturazione di registrazioni.\n"
@@ -1125,7 +1125,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione croata.\n"
-"============================\n"
+"=========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal
@@ -1145,7 +1145,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente l'accesso ad utenti esterni creando un portale.\n"
-"================================================================================"
+"========================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_sale_delivery
@@ -1156,7 +1156,7 @@ msgid ""
 msgstr ""
 "\n"
 "Costi di Spedizione\n"
-"==============\n"
+"===================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_marketing_campaign_crm_demo
@@ -1170,7 +1170,7 @@ msgid ""
 msgstr ""
 "\n"
 "Dati dimostrativi per il modulo marketing_campaign.\n"
-"============================================"
+"===================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_de
@@ -1184,20 +1184,20 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione tedesca.\n"
-"=============================================================================="
+"==========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_twitter
 msgid ""
 "\n"
 "Display best tweets\n"
-"========================\n"
+"===================\n"
 "\n"
 "        "
 msgstr ""
 "\n"
 "Visualizza i migliori tweet\n"
-"========================"
+"===========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_forum_doc
@@ -1222,7 +1222,7 @@ msgid ""
 msgstr ""
 "\n"
 "Doppia validazione per acquisti che eccedono un determinato importo.\n"
-"========================================================="
+"====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hw_escpos
@@ -1299,7 +1299,7 @@ msgid ""
 msgstr ""
 "\n"
 "EU Mini One Stop Shop (MOSS) IVA per telecomunicazioni, broadcasting e servizi elettronici\n"
-"============================================================================================="
+"==========================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_mass_mailing
@@ -1349,7 +1349,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modelli Email (Versione semplificata del modulo Power Email di Openlabs).\n"
-"=============================================================================="
+"=========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_auth_crypt
@@ -1383,7 +1383,7 @@ msgid ""
 msgstr ""
 "\n"
 "Password criptate\n"
-"===================\n"
+"=================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_asset
@@ -1400,7 +1400,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione immobilizzazioni finanziaria e contabile.\n"
-"==========================================\n"
+"==================================================\n"
 "\n"
 "Questo Modulo gestisce le immobilizzazioni possedute da un'azienda o da un'individuo. Tiene \n"
 "traccia dei deprezzamenti subiti da queste immobilizzazioni. E permette di creare Movimenti \n"
@@ -1433,7 +1433,7 @@ msgid ""
 msgstr ""
 "\n"
 "Regole Buste Paga francesi.\n"
-"====================="
+"============================="
 
 #. module: base
 #: model:ir.module.module,description:base.module_gamification
@@ -1452,7 +1452,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gamification\n"
-"====================\n"
+"============\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_uy
@@ -1466,7 +1466,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione uruguaiana.\n"
-"===============================\n"
+"=============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_timesheet_invoice
@@ -1482,7 +1482,7 @@ msgid ""
 msgstr ""
 "\n"
 "Genera le vostre fatture da spese ed entrate del timesheet.\n"
-"========================================================\n"
+"===========================================================\n"
 "\n"
 "Modulo per generare fattura basate su costi (risorse umane, spese, ...).\n"
 "\n"
@@ -1516,7 +1516,7 @@ msgid ""
 msgstr ""
 "\n"
 "Generico sistema di Buste Paga integrato con la contabilità\n"
-"=================================================="
+"============================================================="
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_payroll
@@ -1537,7 +1537,7 @@ msgid ""
 msgstr ""
 "\n"
 "Generico sistema di Buste Paga.\n"
-"======================="
+"===============================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_analytics
@@ -1551,7 +1551,7 @@ msgid ""
 msgstr ""
 "\n"
 "Google Analytics.\n"
-"================="
+"=================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_graph
@@ -1569,7 +1569,7 @@ msgid ""
 msgstr ""
 "\n"
 "Vista Grafico per il Web Client.\n"
-"===========================\n"
+"================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hw_proxy
@@ -1630,7 +1630,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione Risorse Umane\n"
-"=========================="
+"======================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_import_module
@@ -1644,7 +1644,7 @@ msgid ""
 msgstr ""
 "\n"
 "Importa un modulo di dati personalizzati\n"
-"===========================\n"
+"========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_in
@@ -1664,7 +1664,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione indiana.\n"
-"===================================="
+"============================================"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_in_hr_payroll
@@ -1688,7 +1688,7 @@ msgid ""
 msgstr ""
 "\n"
 "Regole Buste Paga indiane.\n"
-"============================"
+"==========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_knowledge
@@ -1703,7 +1703,7 @@ msgid ""
 msgstr ""
 "\n"
 "Installer per il modulo documentazione nascosto.\n"
-"=====================================\n"
+"================================================\n"
 "\n"
 "Rende la configurazione della funzionalità documentazione disponibile quando nascosta.\n"
 "    "
@@ -1721,7 +1721,7 @@ msgid ""
 msgstr ""
 "\n"
 "Messaggistica Istantanea\n"
-"================="
+"========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_google_drive
@@ -1735,7 +1735,7 @@ msgid ""
 msgstr ""
 "\n"
 "Integrazione di Google Documents.\n"
-"============================================\n"
+"=================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_stock_invoice_directly
@@ -1750,7 +1750,7 @@ msgid ""
 msgstr ""
 "\n"
 "Procedura Fattura per Spedizione.\n"
-"============================"
+"=================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_voucher
@@ -1773,7 +1773,7 @@ msgid ""
 msgstr ""
 "\n"
 "Fatturazione e Pagamenti con Voucher & Ricevute\n"
-"====================================================="
+"===============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_stock_landed_costs
@@ -1786,7 +1786,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione dei Landed Cost\n"
-"======================="
+"========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_crm_project_issue
@@ -1800,7 +1800,7 @@ msgid ""
 msgstr ""
 "\n"
 "Collega Lead a Problematiche\n"
-"=========================="
+"============================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_board
@@ -1814,7 +1814,7 @@ msgid ""
 msgstr ""
 "\n"
 "Permette di creare all'utente una dashboard personalizzata.\n"
-"========================================\n"
+"===========================================================\n"
 "\n"
 "Permette agli utenti di creare dashboard personalizzate.\n"
 "    "
@@ -1834,7 +1834,7 @@ msgid ""
 msgstr ""
 "\n"
 "Supporto Live Chat Sito Web\n"
-"==================="
+"===========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_stock_dropshipping
@@ -1855,7 +1855,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione degli ordini in Drop Shipping\n"
-"===========================\n"
+"======================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_expense
@@ -1880,7 +1880,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione delle Spese dei Collaboratori\n"
-"============================"
+"======================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_purchase
@@ -1905,7 +1905,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione del fabbisogno di prodotti per facilitare la creazione di Ordini d'Acquisto\n"
-"======================================================="
+"====================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_recruitment
@@ -1921,7 +1921,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione delle posizioni lavorative e del processo di reclutamento.\n"
-"================================================\n"
+"===================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_holidays
@@ -1944,7 +1944,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione di permessi e richieste di assegnazione\n"
-"=====================================\n"
+"================================================\n"
 "\n"
 "Questa applicazione controlla la programmazione delle ferie dell'azienda. Consente ai dipendenti di richiedere ferie. Poi, i manager possono valutare le richieste ed approvarle o rifiutarle. In questo modo è possibile controllare la pianificazione delle ferie per l'intera azienda o un singolo dipartimento.\n"
 "\n"
@@ -1990,7 +1990,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione multi-magazzino e posizioni multiple\n"
-"=============================================================="
+"=============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale
@@ -2029,7 +2029,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione Preventivi di vendita ed ordini\n"
-"====================================\n"
+"========================================\n"
 "\n"
 "Questa applicazione permette ti di gestire gli obiettivi di vendita in modo effettivo ed efficiente tenendo traccia di tutti gli ordini di vendita e della cronologia.\n"
 "\n"
@@ -2038,7 +2038,7 @@ msgstr ""
 "* **Preventivi**->**Ordini di vendita**->**Fattura**\n"
 "\n"
 "Preferenze (solo con il modulo Gestione magazzino installato)\n"
-"..............................................................\n"
+".............................................................\n"
 "\n"
 "Nel caso sia stata installata anche la gestione magazzino, è possibile gestire le seguenti preferenze:\n"
 "\n"
@@ -2054,7 +2054,7 @@ msgstr ""
 "\n"
 "\n"
 "La Dashboard del manager di vendita includerà\n"
-"..............................................................\n"
+".............................................\n"
 "* Miei preventivi\n"
 "* Turnover mensile (grafico)\n"
 "    "
@@ -2082,7 +2082,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestisce preventivi di vendita ed ordini\n"
-"==================================\n"
+"========================================\n"
 "\n"
 "Questo modulo mette in relazione il modulo delle vendite con la gestione acquisti.\n"
 "\n"
@@ -2127,14 +2127,14 @@ msgid ""
 msgstr ""
 "\n"
 "Gestisce il processo di produzione in OpenERP\n"
-"============================================\n"
+"=============================================\n"
 "\n"
 "Il modulo produzione permette di coprire la pianificazione, gli ordini, lo stoccaggio e la produzione o l'assemblaggio di prodotti da materiali e componenti. Gestisce il consumo e la produzione di prodotti secondo una distinta di materiali e le necessarie lavorazioni su macchinari, strumenti o risorse umane in accordo alle routings.\n"
 "\n"
 "Supporta una completa integrazione e pianificazione dei prodotti stoccabili, consumabili o servizi. I servizi sono completamente integrati con il resto del software. Per esempio è possibile settare un servizio di subcontratto nella distinta dei materiali per acquistare automaticamente su ordine l'assemblaggio della produzione.\n"
 "\n"
 "Caratteristiche principali\n"
-".......................\n"
+"..........................\n"
 "* Produrre per Magazzino/Produrre su Ordine\n"
 "* Distinta base multi livello, senza limiti\n"
 "* Routing multi livello, senza limiti\n"
@@ -2143,7 +2143,7 @@ msgstr ""
 "* Permette di sfogliare la Distinta Base in una struttura completa che comprende figli e distinte base fantasma\n"
 "\n"
 "Dashboard / Report per MRP comprende:\n"
-".........................................................\n"
+".....................................\n"
 "* Acquisti in eccezione (grafico)\n"
 "* Variazione del valore del Magazzino (grafico)\n"
 "* Analisi degli ordini di lavoro\n"
@@ -2161,21 +2161,21 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione dei Report di Vendita\n"
-"========================="
+"==============================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_crm_mass_mailing
 msgid ""
 "\n"
 "Mass Mailing with Crm Marketing\n"
-"================================\n"
+"===============================\n"
 "\n"
 "Link module mass mailing with the marketing mixin from crm.\n"
 "        "
 msgstr ""
 "\n"
 "Mass Mailing con il Marketing del CRM\n"
-"================================"
+"=====================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_marketing
@@ -2189,7 +2189,7 @@ msgid ""
 msgstr ""
 "\n"
 "Menu per il Marketing\n"
-"===================\n"
+"=====================\n"
 "\n"
 "Contiene l'installer per moduli relativi al marketing\n"
 "    "
@@ -2219,7 +2219,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione messicana.\n"
-"============================================"
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_analytic
@@ -2235,7 +2235,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo per definire gli oggetti di contabilità analitica.\n"
-"===============================================\n"
+"=========================================================\n"
 "\n"
 "In OpenERP, i conti analitici sono collegati ai conti generali ma sono trattati\n"
 "in modo totalmente indipendente. Potete inserire divverenti varietà di operazioni \n"
@@ -2256,7 +2256,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione delle Risorse.\n"
-"==============================="
+"=======================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_check_writing
@@ -2268,7 +2268,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo per la compilazione e la stampa di assegni.\n"
-"================================================\n"
+"==================================================\n"
 "    "
 
 #. module: base
@@ -2293,7 +2293,7 @@ msgid ""
 msgstr ""
 "\n"
 "Estensione dell'oggetto standard account_bank_statement_line per il supporto all'e-banking avanzato.\n"
-"==================================================================================================="
+"====================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_followup
@@ -2320,7 +2320,7 @@ msgid ""
 msgstr ""
 "\n"
 "Automatizzazione di solleciti di pagamento, con ripetizioni multi livello.\n"
-"=========================================================================\n"
+"==========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_be_coda
@@ -2374,7 +2374,7 @@ msgid ""
 msgstr ""
 "\n"
 "Importazione Estratti Conto Bancari CODA.\n"
-"======================================\n"
+"=========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_payment
@@ -2384,7 +2384,7 @@ msgid ""
 "=======================================================\n"
 "\n"
 "This module allows you to create and manage your payment orders, with purposes to\n"
-"--------------------------------------------------------------------------------- \n"
+"---------------------------------------------------------------------------------\n"
 "    * serve as base for an easy plug-in of various automated payment mechanisms.\n"
 "    * provide a more efficient way to manage invoice payment.\n"
 "\n"
@@ -2400,7 +2400,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione dei pagamenti delle fatture fornitore\n"
-"======================================================="
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_warning
@@ -2415,7 +2415,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione degli Avvisi.\n"
-"=============================================="
+"======================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_import
@@ -2443,7 +2443,7 @@ msgid ""
 msgstr ""
 "\n"
 "Importazione file per SimplERP.\n"
-"======================================\n"
+"===============================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_sa
@@ -2457,7 +2457,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione araba.\n"
-"============================================\n"
+"========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_im_odoo_support
@@ -2472,20 +2472,20 @@ msgid ""
 msgstr ""
 "\n"
 "Odoo Live Support\n"
-"================="
+"=================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_livechat
 msgid ""
 "\n"
 "Odoo Website LiveChat\n"
-"========================\n"
+"=====================\n"
 "For website built with Odoo CMS, this module include a chat button on your Website, and allow your visitors to chat with your collabarators.\n"
 "        "
 msgstr ""
 "\n"
 "Website LiveChat\n"
-"========================"
+"================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_event_track
@@ -2505,7 +2505,7 @@ msgid ""
 msgstr ""
 "\n"
 "Eventi Avanzati Online\n"
-"======================"
+"======================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_event_sale
@@ -2518,7 +2518,7 @@ msgid ""
 msgstr ""
 "\n"
 "Biglietti Eventi Online\n"
-"======================"
+"=======================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_event
@@ -2541,7 +2541,7 @@ msgid ""
 msgstr ""
 "\n"
 "Blog\n"
-"============"
+"====\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_crm
@@ -2555,7 +2555,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo di Contatto\n"
-"===================="
+"==================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_customer
@@ -2566,7 +2566,7 @@ msgid ""
 msgstr ""
 "\n"
 "Riferimento Cliente\n"
-"===========================\n"
+"===================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_sale
@@ -2580,7 +2580,7 @@ msgid ""
 msgstr ""
 "\n"
 "E-Commerce\n"
-"==================\n"
+"==========\n"
 "\n"
 "        "
 
@@ -2595,7 +2595,7 @@ msgid ""
 msgstr ""
 "\n"
 "Mail Group: Archivi Mailing List\n"
-"=========================================="
+"================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_project
@@ -2608,7 +2608,7 @@ msgid ""
 msgstr ""
 "\n"
 "Progetti\n"
-"================\n"
+"========\n"
 "\n"
 "        "
 
@@ -2623,7 +2623,7 @@ msgid ""
 msgstr ""
 "\n"
 "Rotazione Preventivi di Vendita\n"
-"=========================\n"
+"===============================\n"
 "\n"
 "        "
 
@@ -2637,7 +2637,7 @@ msgid ""
 msgstr ""
 "\n"
 "Vista Calendario OpenERP web\n"
-"==========================\n"
+"============================\n"
 "\n"
 
 #. module: base
@@ -2650,7 +2650,7 @@ msgid ""
 msgstr ""
 "\n"
 "Vista Grafico Gannt.\n"
-"=============================\n"
+"====================\n"
 "\n"
 
 #. module: base
@@ -2680,7 +2680,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo Web.\n"
-"========================"
+"===========\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_tests_demo
@@ -2694,7 +2694,7 @@ msgid ""
 msgstr ""
 "\n"
 "Test Demo Web\n"
-"================================"
+"=============\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_kanban
@@ -2705,7 +2705,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Vista Kanban Web OpenERP \n"
+"Vista Kanban Web OpenERP\n"
 "========================\n"
 "\n"
 
@@ -2733,7 +2733,7 @@ msgid ""
 msgstr ""
 "\n"
 "Web per modificare le Viste.\n"
-"==========================\n"
+"============================\n"
 "\n"
 "        "
 
@@ -2748,7 +2748,7 @@ msgid ""
 msgstr ""
 "\n"
 "Website CMS\n"
-"===================\n"
+"===========\n"
 "\n"
 "        "
 
@@ -2763,7 +2763,7 @@ msgid ""
 msgstr ""
 "\n"
 "Website Google Map\n"
-"==========================\n"
+"==================\n"
 "\n"
 "        "
 
@@ -2777,7 +2777,7 @@ msgid ""
 msgstr ""
 "\n"
 "API Web OpenERP\n"
-"================\n"
+"===============\n"
 "\n"
 
 #. module: base
@@ -2790,7 +2790,7 @@ msgid ""
 msgstr ""
 "\n"
 "Vista Web Diagram.\n"
-"=========================\n"
+"==================\n"
 "\n"
 
 #. module: base
@@ -2810,12 +2810,12 @@ msgid ""
 msgstr ""
 "\n"
 "Organizzazione e gestione di Eventi.\n"
-"======================================\n"
+"====================================\n"
 "\n"
 "Il modulo Eventi consente di organizzare eventi e tutte le attività collegate: pianificazione, tracciamento delle registrazioni, presenze ecc...\n"
 "\n"
 "Caratteristiche principali\n"
-"------------\n"
+"--------------------------\n"
 "* Gestione di Eventi e Registrazioni\n"
 "* Utilizzo di email per confermare ed inviare automaticamente ringraziamenti per ciascuna registrazione ad un evento\n"
 
@@ -2830,7 +2830,7 @@ msgid ""
 msgstr ""
 "\n"
 "La Pagina 'Il Nostro Team'\n"
-"=============\n"
+"==========================\n"
 "\n"
 "      "
 
@@ -2849,7 +2849,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione panamense.\n"
-"============================================"
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_geolocalize
@@ -2861,7 +2861,7 @@ msgid ""
 msgstr ""
 "\n"
 "Geolocalizzazione Partner\n"
-"========================\n"
+"=========================\n"
 "    "
 
 #. module: base
@@ -2887,7 +2887,7 @@ msgid ""
 msgstr ""
 "\n"
 "Valutazione Periodica dei Collaboratori\n"
-"==============================================\n"
+"=======================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_pe
@@ -2903,7 +2903,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione peruviana.\n"
-"============================================"
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_it
@@ -2958,7 +2958,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiornamento Software PosBox\n"
-"========================\n"
+"=============================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_instantclick
@@ -2971,7 +2971,7 @@ msgid ""
 msgstr ""
 "\n"
 "Precarica i dati in modo anonimo dal sito web\n"
-"=========================================="
+"=============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_product_extended
@@ -2983,7 +2983,7 @@ msgid ""
 msgstr ""
 "\n"
 "Estensione Prodotto - Prezzo Standard da Distinta Base\n"
-"==========================================\n"
+"======================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_edi
@@ -3001,7 +3001,7 @@ msgid ""
 msgstr ""
 "\n"
 "Piattaforma EDI.\n"
-"==============================================================="
+"================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_crm_partner_assign
@@ -3043,7 +3043,7 @@ msgid ""
 msgstr ""
 "\n"
 "Vendite Semplici e Veloci\n"
-"==========================="
+"=========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_timesheet_sheet
@@ -3068,18 +3068,18 @@ msgid ""
 msgstr ""
 "\n"
 "Compilare e validare facilmente il foglio presenze\n"
-"=====================================================\n"
+"==================================================\n"
 "\n"
 "Questa applicazione fornisce una nuova schermata in cui gestire sia le presenze (entrata/uscita) sia l'effettivo lavoro svolto (foglio delle presenze) per uno specifico periodo di tempo. Le voci del foglio delle presenze vengono compilate quotidianamente dai dipendenti. Al termine di un determinato periodo, i dipendenti valideranno il proprio foglio presenze ed il responsabile dovrà approvare le presenze del proprio team. I periodi possono essere definiti nei moduli aziendali e possono essere processati mensilmente o settimanalmente.\n"
 "\n"
 "Il processo di validazione completo consiste in:\n"
-"---------------------------------------------\n"
+"------------------------------------------------\n"
 "* Bozza del foglio\n"
 "* Conferma da parte del dipendente al termine del periodo\n"
 "* Validazione da parte del responsabile di progetto\n"
 "\n"
 "La validazione può essere configurata a livello di azienda:\n"
-"------------------------------------------------\n"
+"-----------------------------------------------------------\n"
 "* Per Periodo (Giorno, Settimana, Mese)\n"
 "* Per differenza massima tra il foglio e le presenze\n"
 "    "
@@ -3095,7 +3095,7 @@ msgid ""
 msgstr ""
 "\n"
 "Rimuove il Piano dei Conti minimo.\n"
-"=============================\n"
+"==================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_report
@@ -3142,7 +3142,7 @@ msgid ""
 msgstr ""
 "\n"
 "Recupera posta in entrata da server POP3/IMAP.\n"
-"============================================"
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_analytic_default
@@ -3162,10 +3162,10 @@ msgid ""
 msgstr ""
 "\n"
 "Imposta il valore di default per i conti analitici.\n"
-"==============================================\n"
+"===================================================\n"
 "\n"
 "Permette di selezionare automaticamente i conti analitici basandosi sui seguenti criteri:\n"
-"---------------------------------------------------------------------\n"
+"-----------------------------------------------------------------------------------------\n"
 "    * Prodotto\n"
 "    * Partner\n"
 "    * Utente\n"
@@ -3178,7 +3178,7 @@ msgstr ""
 msgid ""
 "\n"
 "Singapore accounting chart and localization.\n"
-"=======================================================\n"
+"============================================\n"
 "\n"
 "After installing this module, the Configuration wizard for accounting is launched.\n"
 "    * The Chart of Accounts consists of the list of all the general ledger accounts\n"
@@ -3196,14 +3196,14 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione di Singapore.\n"
-"======================================================="
+"===============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_es
 msgid ""
 "\n"
 "Spanish charts of accounts (PGCE 2008).\n"
-"========================================\n"
+"=======================================\n"
 "\n"
 "    * Defines the following chart of account templates:\n"
 "        * Spanish general chart of accounts 2008\n"
@@ -3215,19 +3215,19 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione spagnola.\n"
-"========================================\n"
+"===========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_survey_crm
 msgid ""
 "\n"
 "Survey - CRM (bridge module)\n"
-"=================================================================================\n"
+"============================\n"
 "This module adds a Survey mass mailing button inside the more option of lead/customers views\n"
 msgstr ""
 "\n"
 "Questionario - CRM (modulo di collegamento)\n"
-"=================================================================================\n"
+"===========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ch
@@ -3265,7 +3265,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione svizzera\n"
-"=============================\n"
+"==========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_project_timesheet
@@ -3281,7 +3281,7 @@ msgid ""
 msgstr ""
 "\n"
 "Sincronizzazione delle attività di progetto con le attività del foglio presenze\n"
-"====================================================================\n"
+"===============================================================================\n"
 "\n"
 "Questo modulo consente il trasferimento delle voci relative alle attività nella gestione\n"
 "Progetti, per data o per utente, nel foglio delle presenze e viceversa.\n"
@@ -3306,7 +3306,7 @@ msgid ""
 msgstr ""
 "\n"
 "Gestione delle Riparazioni\n"
-"====================================================================\n"
+"==========================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_purchase_analytic_plans
@@ -3321,7 +3321,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo base per gestire la distribuzione analitica e gli ordini di acquisto.\n"
-"==================================Q=================================\n"
+"==================================Q============================================\n"
 "\n"
 "Permette all'unte di gestire diversi piani contabili analitici. Questi permetto di suddividere una riga\n"
 "di un ordine d'acquisto a fornitore in diversi conti e piani contabili analitici.\n"
@@ -3339,7 +3339,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo base per gestire la distribuzione analitica e gli ordini di vendita.\n"
-"=================================================================\n"
+"==============================================================================\n"
 "\n"
 "Usando questo modulo sarà possibile collegare i conti analitici con gli ordini di vendita.\n"
 "    "
@@ -3364,7 +3364,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo base per la gestione dei pasti\n"
-"================================\n"
+"========================================\n"
 "\n"
 "Diverse aziende ordinano panini, pizze o altro, da fornitori abituali, per offrire agevolazioni ai propri dipendenti. \n"
 "\n"
@@ -3402,7 +3402,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo generico di OpenERP per il Customer Relationship Management\n"
-"====================================================\n"
+"=====================================================================\n"
 "\n"
 "Questa applicazione consente ad un gruppo di utenti di gestire in modo razionale ed efficiente i propri lead, opportunità, incontri e telefonate.\n"
 "\n"
@@ -3416,7 +3416,7 @@ msgstr ""
 "\n"
 "\n"
 "Il Dashboard CRM comprende:\n"
-"-------------------------------\n"
+"---------------------------\n"
 "* Entrate programmate filtrate per stadio e per utente (grafico)\n"
 "* Opportunità per ciascuno stadio (grafico)\n"
 
@@ -3429,7 +3429,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il kernel SimplERP, necessario a tutte le installazioni.\n"
-"===================================================\n"
+"========================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_google_account
@@ -3440,7 +3440,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge lo username Google a res.user.\n"
-"========================================\n"
+"=======================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_google_spreadsheet
@@ -3451,7 +3451,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo consente di visualizzare i dati di SimplERP in un Foglio Google in tempo reale.\n"
-"=================================================================================================\n"
+"=========================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_google_calendar
@@ -3462,7 +3462,7 @@ msgid ""
 msgstr ""
 "\n"
 "il modulo consente di sincronizzare un Calendario Google con SimplERP\n"
-"===========================================================================\n"
+"=====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale_journal
@@ -3495,7 +3495,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo consente di categorizzare le vendite e le spedizioni (picking list) tra diversi sezionali.\n"
-"========================================================================================================================"
+"====================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_document
@@ -3513,7 +3513,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo e' un completo sistema di gestione documenti.\n"
-"=================================================\n"
+"====================================================\n"
 "    * Autenticazione utenti\n"
 "    * Indicizzazione documenti:- .pptx e .docx sono file non supportati sulla piattaforma Windows.\n"
 "    * Dashboard per Documento che comprende:\n"
@@ -3575,13 +3575,13 @@ msgid ""
 msgstr ""
 "\n"
 "Questo e' il modulo base per la gestione dei prodotti e listini in OpenERP.\n"
-"================================================================\n"
+"===========================================================================\n"
 "\n"
 "Supporta le varianti di prodotto, differenti metodi di prezzo, informazioni del fornitore,\n"
 "Produzione per magazzino/ordine, differenti unità di misura, confezionamento e proprietà.\n"
 "\n"
 "I listini prezzo supportano:\n"
-".....................\n"
+"............................\n"
 "    * multi livello di sconto (per prodotto, categoria, quantità)\n"
 "    * Computa il prezzo su diversi criteri:\n"
 "        * Altro listino\n"
@@ -3629,7 +3629,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti Belga.\n"
-"=============================================================================="
+"==================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_do
@@ -3645,7 +3645,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti della Repubblica Dominicana.\n"
-"=============================================================================="
+"========================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ec
@@ -3675,7 +3675,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti greco.\n"
-"=============================================================================="
+"==================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_gt
@@ -3690,7 +3690,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti guatemalteca.\n"
-"=============================================================================="
+"=========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_hn
@@ -3705,7 +3705,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti honduregno.\n"
-"=============================================================================="
+"=======================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_lu
@@ -3726,7 +3726,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti lussenburghese.\n"
-"==============================================================================\n"
+"===========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ma
@@ -3743,7 +3743,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti marocchino.\n"
-"=============================================================================="
+"=======================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_uk
@@ -3758,7 +3758,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione britannica.\n"
-"=============================================================================="
+"=============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_procurement
@@ -3787,7 +3787,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo per la gestione degli approvvigionamenti.\n"
-"==============================================\n"
+"============================================================\n"
 "Questo modulo dipende esclusivamente dal modulo 'Prodotto' e non ha alcuna utilità di per sé."
 
 #. module: base
@@ -3796,14 +3796,14 @@ msgid ""
 "\n"
 "This is the module to manage the Accounting Chart, VAT structure, Fiscal Position and Tax Mapping.\n"
 "It also adds the Registration Number for Romania in OpenERP.\n"
-"================================================================================================================\n"
+"============================================================\n"
 "\n"
 "Romanian accounting chart and localization.\n"
 "    "
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti e la localizzazione rumena.\n"
-"=============================================================================="
+"=======================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ca
@@ -3839,7 +3839,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti Inglese e Franco - Canadese.\n"
-"=============================================================================="
+"========================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_pl
@@ -3858,7 +3858,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti polacco.\n"
-"=============================================================================="
+"====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_fr
@@ -3887,7 +3887,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti francese.\n"
-"==============================================================================\n"
+"=====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_nl
@@ -3921,7 +3921,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti olandese.\n"
-"=============================================================================="
+"=====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_vn
@@ -3936,14 +3936,14 @@ msgid ""
 msgstr ""
 "\n"
 "Questo è il modulo base per la gestione del Piano dei Conti vietnamita.\n"
-"==============================================================================\n"
+"=======================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_crm_partner_assign
 msgid ""
 "\n"
 "This is the module used by OpenERP SA to redirect customers to its partners, based on geolocation.\n"
-"======================================================================================================\n"
+"==================================================================================================\n"
 "\n"
 "This modules lets you geolocate Leads, Opportunities and Partners based on their address.\n"
 "\n"
@@ -3953,7 +3953,7 @@ msgid ""
 msgstr ""
 "\n"
 "Inoltra i clienti ai partner più vicini tramite la geolocalizzazione.\n"
-"======================================================================================================"
+"=====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_pad_project
@@ -3965,7 +3965,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiunge un PAD in tutte le viste kanban dei progetti.\n"
-"==================================================="
+"====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal_sale
@@ -3991,7 +3991,7 @@ msgid ""
 msgstr ""
 "\n"
 "ggiunge un menu 'Vendite' al Portale.\n"
-"======================================================================================"
+"=====================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_report_webkit
@@ -4045,7 +4045,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiunge un motore di reportistica basato sulla libreria Webkit (wkhtml2pdf) per supportare report disegnati in HTML e CSS\n"
-"=====================================================================================================================\n"
+"========================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale_crm
@@ -4064,19 +4064,19 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge un collegamento a diverse opportunità nel CRM.\n"
-"==========================================================================="
+"=======================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal_stock
 msgid ""
 "\n"
 "This module adds access rules to your portal if stock and portal are installed.\n"
-"==========================================================================================\n"
+"===============================================================================\n"
 "    "
 msgstr ""
 "\n"
 "Aggiunge regole d'accesso al Portale.\n"
-"=========================================================================================="
+"=====================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal_claim
@@ -4088,7 +4088,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiunge un menù reclami ed altre caratteristiche al vostro portale, se sono installati i moduli reclami e portale .\n"
-"==========================================================================================\n"
+"==================================================================================================================================\n"
 "    "
 
 #. module: base
@@ -4111,7 +4111,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiunge alcuni strumenti di condivisione al database di OpenERP\n"
-"========================================================================\n"
+"==============================================================================\n"
 "\n"
 "Nel client web viene aggiunto un pulsante \"Condividi\" per\n"
 "condividere i dati con collaboratori, amici o clienti.\n"
@@ -4134,7 +4134,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge il menu 'Supporto' al Portale.\n"
-"=================================================================================================="
+"=======================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal_project
@@ -4146,7 +4146,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge il menu Progetti e Attività al Portale\n"
-"======================================================================================================"
+"===============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_portal_gamification
@@ -4158,7 +4158,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge regole di sicurezza per la gamification in modo da consentire agli utenti del portale di partecipare alle sfide\n"
-"==================================================================================================="
+"========================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_mrp_operations
@@ -4194,7 +4194,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge stato, data_inizio, data_fine nelle righe degli ordini di produzione (nella scheda 'Ordini di Produzione').\n"
-"================================================================================================================"
+"====================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale_margin
@@ -4209,7 +4209,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiunge il 'Margine' sugli ordini di vendita.\n"
-"=============================================\n"
+"============================================================\n"
 "\n"
 "Visualizza il profitto calcolando la differenza tra il prezzo di\n"
 "vendita ed il prezzo di costo.\n"
@@ -4227,7 +4227,7 @@ msgid ""
 msgstr ""
 "\n"
 "Supporto ai Timesheet per le Problematiche/Bugs nei progetti.\n"
-"================================================================================="
+"=============================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_stock_picking_wave
@@ -4239,7 +4239,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aggiunge l'opzione del Picking Wave nella Gestione del magazzino\n"
-"=================================================================\n"
+"================================================================\n"
 "    "
 
 #. module: base
@@ -4255,7 +4255,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente la gestione delle presenza dei dipendenti\n"
-"==================================================\n"
+"================================================================\n"
 "\n"
 "E' possibile tracciare le presenze dei dipendenti sulla base delle\n"
 "azioni svolte da essi (entrata/uscita).\n"
@@ -4281,7 +4281,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente il calcolo Just In Time degli ordini di approvvigionamento.\n"
-"=================================================================="
+"====================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_budget
@@ -4311,7 +4311,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente ai contabili di gestire budget analitici e di crossover.\n"
-"==========================================================================\n"
+"=================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_action_rule
@@ -4329,7 +4329,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente l'implementazione di regole d'azione per tutti gli oggetti.\n"
-"============================================================\n"
+"====================================================================\n"
 "    "
 
 #. module: base
@@ -4377,7 +4377,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente l'utilizzo di diversi piani analitici, in base al registro generale.\n"
-"=================================================================================="
+"=============================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_note
@@ -4396,7 +4396,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente agli utenti di creare le proprie note in SimplERP.\n"
-"=================================================================\n"
+"===========================================================\n"
 "\n"
 
 #. module: base
@@ -4418,7 +4418,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente agli utenti di eseguire operazioni di segmentazione sui partner\n"
-"================================================================="
+"========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_anonymization
@@ -4438,7 +4438,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente di anonimizzare un database.\n"
-"==============================================="
+"=====================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_analytic_user_function
@@ -4459,7 +4459,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente di definire la funzione predefinita di uno specifico utente su uno specifico conto.\n"
-"===================================================================================================="
+"============================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_membership
@@ -4481,7 +4481,7 @@ msgid ""
 msgstr ""
 "\n"
 "Consente di gestire le operazioni di iscrizione (membership).\n"
-"========================================================================="
+"=============================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_purchase_requisition
@@ -4496,7 +4496,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo permette di gestire le proprie Richieste di acquisto.\n"
-"==========================================================\n"
+"===================================================================\n"
 "\n"
 "Quando un ordine di acquisto viene creato, è possibile salvare la relativa richiesta. Questo nuovo oggetto raggruppa e permette di tenere facilmente traccia e di ordinare tutti i propri ordini di acquisto.\n"
 
@@ -4520,7 +4520,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente la produzione di prodotti diversi partendo da un unico ordine di produzione\n"
-"=============================================================================\n"
+"==================================================================================================\n"
 "\n"
 "La configurazione per prodotti è disponibile nella distinta base.\n"
 "\n"
@@ -4529,7 +4529,7 @@ msgstr ""
 "    A + B + C -> D\n"
 "\n"
 "Con questo modulo:\n"
-"--------------------\n"
+"------------------\n"
 "    A + B + C -> D + E\n"
 "    "
 
@@ -4556,8 +4556,8 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"Questo modulo ti consente di configurare il sistema durante l'installazione di un nuovo database..\n"
-"================================================================================"
+"Questo modulo ti consente di configurare il sistema durante l'installazione di un nuovo database.\n"
+"=================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_timesheet
@@ -4578,7 +4578,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo implementa il sistema dei timesheet.\n"
-"=========================================="
+"==================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_syscohada
@@ -4600,7 +4600,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo implementa il piano dei conti OHADA (Africa Centrale e Occidentale.\n"
-"==========================================================="
+"=================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_iban
@@ -4615,7 +4615,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo installa la base per i conti bancari IBAN(International Bank Account Number) ed i controlli per la loro validità.\n"
-"======================================================================================================================\n"
+"===============================================================================================================================\n"
 "\n"
 "La capacità di extrapolare il conto bancario corretto dal codice IBAN \n"
 "con una sola operazione.\n"
@@ -4633,7 +4633,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente la gestione multi-aziendale.\n"
-"======================================================="
+"===================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_analytic_analysis
@@ -4646,7 +4646,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo modifica la vista della contabilità analitica in modo da visualizzare importanti informazioni per il progetto manager nelle aziende di servizi.\n"
-"===================================================================================================================\n"
+"=============================================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_analytic_contract_hr_expense
@@ -4657,7 +4657,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo modifica alla vista della contabilità analitica per visualizzare alcuni dati relativi alla gestione delle spese del personale.\n"
-"======================================================================================================\n"
+"============================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_association
@@ -4672,7 +4672,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente di configurare le opzioni relative ad una Associazione.\n"
-"=============================================================="
+"==============================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_report_designer
@@ -4686,7 +4686,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo viene utilizzato assieme alla plugin di OpenOffice.\n"
-"=========================================================\n"
+"=================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_fr_rib
@@ -4698,7 +4698,7 @@ msgid ""
 "RIB Bank Accounts can be entered in the \"Accounting\" tab of the Partner form by specifying the account type \"RIB\". \n"
 "\n"
 "The four standard RIB fields will then become mandatory:\n"
-"--------------------------------------------------------    \n"
+"--------------------------------------------------------\n"
 "    - Bank Code\n"
 "    - Office Code\n"
 "    - Account number\n"
@@ -4719,7 +4719,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente agli utenti di inserire dettagli bancari relativi ad una Partner nel formato RIB (lo standard francese per i dettagli bancari).\n"
-"===========================================================================================================================\n"
+"======================================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_product_visible_discount
@@ -4740,7 +4740,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente il calcolo degli sconti sulle righe di ciascun ordine di vendita o fattura sulla base del listino prezzi assegnato al partner.\n"
-"==============================================================================================================="
+"=====================================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_sequence
@@ -4762,7 +4762,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo conserva i numeri di sequenza interni delle registrazioni contabili.\n"
-"======================================================================"
+"==================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale_mrp
@@ -4777,7 +4777,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo assiste l'utente nell'installazione contemporanea dei moduli dedicati alla produzione ed alle vendite.\n"
-"===================================================================================="
+"====================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_marketing_campaign
@@ -4809,19 +4809,19 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente di automatizzare la creazione di Lead attraverso campagne di marketing (le campagne potranno essere definite su ogni possibile risorsa e non solo sui Lead).\n"
-"======================================================================================================================================"
+"===================================================================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_at
 msgid ""
 "\n"
 "This module provides the standard Accounting Chart for Austria which is based on the Template from BMF.gv.at.\n"
-"============================================================================================================= \n"
+"=============================================================================================================\n"
 "Please keep in mind that you should review and adapt it with your Accountant, before using it in a live Environment.\n"
 msgstr ""
 "\n"
 "Modulo base per la localizzazione austriaca.\n"
-"============================================================================================================= \n"
+"============================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_anglo_saxon
@@ -4845,7 +4845,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo supporta la contabilità di tipo anglosassone, sostituendo alla logica delle scritture contabili quella dei movimenti di magazzino.\n"
-"====================================================================================================================="
+"================================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_note_pad
@@ -4859,7 +4859,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo aggiorna il sistema delle Note per utilizzare un Pad esterno.\n"
-"=================================================================\n"
+"===========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_web_kanban_gauge
@@ -4892,7 +4892,7 @@ msgid ""
 msgstr ""
 "\n"
 "Traccia la gestione di Problematiche/Bug nei Progetti.\n"
-"========================================="
+"======================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_product_expiry
@@ -4912,7 +4912,7 @@ msgid ""
 msgstr ""
 "\n"
 "Traccia differenti date per prodotti e lotti di produzione.\n"
-"======================================================\n"
+"===========================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_project
@@ -4935,7 +4935,7 @@ msgid ""
 msgstr ""
 "\n"
 "Traccia progetti multi-livello, attività e lavoro svolto sulle attività.\n"
-"====================================================="
+"========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_tr
@@ -4951,7 +4951,7 @@ msgid ""
 msgstr ""
 "\n"
 "Il modulo base per la localizzazione turca.\n"
-"=========================================================="
+"===========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ae
@@ -4964,7 +4964,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo base per la localizzazione degli Emirati Arabi.\n"
-"======================================================="
+"======================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_us
@@ -4976,7 +4976,7 @@ msgid ""
 msgstr ""
 "\n"
 "Piano dei conti - USA\n"
-"==================================\n"
+"=====================\n"
 "    "
 
 #. module: base
@@ -4995,12 +4995,12 @@ msgstr ""
 msgid ""
 "\n"
 "Using this application you can manage Sales Team  with CRM and/or Sales \n"
-"=======================================================================\n"
+"========================================================================\n"
 " "
 msgstr ""
 "\n"
 "Utilizzando quest'applicazione è possibile gestire i Team di vendita per il CRM e le Vendite.\n"
-"======================================================================="
+"=============================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_base_vat
@@ -5037,7 +5037,7 @@ msgid ""
 msgstr ""
 "\n"
 "Validazione della Partita Iva dei Partner.\n"
-"========================================="
+"==========================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_fleet
@@ -5061,14 +5061,14 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo dedicato ai veicoli, alle assicurazioni ed alla gestione dei costi.\n"
-"================================================\n"
+"==========================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_stock_account
 msgid ""
 "\n"
 "WMS Accounting module\n"
-"======================\n"
+"=====================\n"
 "This module makes the link between the 'stock' and 'account' modules and allows you to create accounting entries to value your stock movements\n"
 "\n"
 "Key Features\n"
@@ -5083,7 +5083,7 @@ msgid ""
 msgstr ""
 "\n"
 "Questo modulo consente di collegare il magazzino alla contabilità per creare registrazioni in grado di valorizzare i movimenti di magazzino.\n"
-"======================"
+"============================================================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_gengo
@@ -5096,7 +5096,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo per la traduzione del sito web tramite Gengo\n"
-"========================\n"
+"===================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_membership
@@ -5107,7 +5107,7 @@ msgid ""
 msgstr ""
 "\n"
 "Modulo per il sito Web dedicato alla visualizzazione di informazioni relative ad associazioni, gruppi e membri.\n"
-"==========================================================================\n"
+"===============================================================================================================\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_payment_sips
@@ -6001,7 +6001,7 @@ msgid ""
 "         user to a username that does not exist in LDAP, and setup its groups\n"
 msgstr ""
 "Consente l'autenticazione tramite server LDAP.\n"
-"===============================================\n"
+"==============================================\n"
 
 #. module: base
 #: model:ir.module.category,name:base.module_category_administration

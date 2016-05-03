@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2013-2014 Didotech Srl (<http://www.didotech.com>)
+#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,17 +18,20 @@
 #
 #
 {
-    'name': 'l10n_it_account_asset_management DEPRECATED',
-    'version': '1.0.0.0',
+    'name': 'Aeroo purchase order report',
+    'version': '8.1.0.0.0',
     'category': 'other',
-    'author': 'SimplERP SRL',
+    'author': 'Sergio Corato - SimplERP SRL, Didotech Srl',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
-        'account_asset_management',
+        'account',
+        'report_aeroo',
+        'report_branding',
+        'invoice_report_aeroo_simplerp',
     ],
     'data': [
-        'views/account_asset_view.xml',
+        'data/reports.xml',
     ],
-    'installable': False
+    'installable': True
 }

@@ -3,61 +3,89 @@
 <data>
 
 <template id="report_account_smart">
-    <t t-call="report.html_container">
-    <t t-call="l10n_it_account.internal_layout">
+     <style type="text/css">
+        .left_with_line {
+            text-align:left; vertical-align:text-top; border-top:1px solid #A1A1A1; padding:5px;
+        }
+        .right_with_line {
+            text-align:right; vertical-align:text-top; border-top:1px solid #A1A1A1; padding:5px;
+        }
+        .left_with_line {
+            text-align:left; vertical-align:text-top; padding:5px;
+        }
+        .right_with_line {
+            text-align:right; vertical-align:text-top; padding:5px;
+        }
+        .left_with_line_bottom {
+            text-align:left; vertical-align:text-top; border-bottom:1px solid #A1A1A1; padding:5px;
+        }
+        .right_with_line_bottom {
+            text-align:right; vertical-align:text-top; border-bottom:1px solid #A1A1A1; padding:5px;
+        }
+        .left_with_line_bold {
+            text-align:left; vertical-align:text-top; padding:5px; font-weight: bold;
+        }
+        .right_with_line_bold {
+            text-align:right; vertical-align:text-top; padding:5px; font-weight: bold;
+        }
+
+        .first_th_row {
+            border-style:solid;border-width:1px;border-color:#A1A1A1; background: #fff;
+        }
+     </style>
      <div class="page">
-        <table style="width:100%; font-size: small; border: 1px solid black;" cellspacing="0">
+        <table class="table" cellspacing="0">
             <thead>
                 <tr class="first_th_row">
                    <td colspan="7" style="padding:10;">Report Fatture dettagliato</td>
+                    <span t-if="doc_type == 'out'">Vendite</span>
+                    <span t-if="doc_type == 'in'">Acquisti</span>
                 </tr>
                     <tr style="page-break-inside: avoid">
-                        <th class="left_without_line">DATA FT.</th>
-                        <th class="left_without_line">NUM. FT.</th>
-                        <th class="left_without_line">RAGIONE SOCIALE</th>
-                        <th class="left_without_line">P.IVA</th>
-                        <th class="right_without_line">IMPONIBILE</th>
-                        <th class="right_without_line">IVA</th>
-                        <th class="right_without_line">TOTALE</th>
+                        <th class="left_with_line">DATA FT.</th>
+                        <th class="left_with_line">NUM. FT.</th>
+                        <th class="left_with_line">RAGIONE SOCIALE</th>
+                        <th class="left_with_line">P.IVA</th>
+                        <th class="right_with_line">IMPONIBILE</th>
+                        <th class="right_with_line">IVA</th>
+                        <th class="right_with_line">TOTALE</th>
                     </tr>
                     <tr style="page-break-inside: avoid">
-                        <th class="left_without_line"></th>
-                        <th class="left_without_line"></th>
-                        <th class="left_without_line">DESCRIZIONE</th>
-                        <th class="left_without_line">CONTO</th>
-                        <th class="right_without_line">IMPONIBILE</th>
-                        <th class="right_without_line">QUANTITÀ</th>
-                        <th class="right_without_line"></th>
+                        <th class="left_with_line"></th>
+                        <th class="left_with_line"></th>
+                        <th class="left_with_line">DESCRIZIONE</th>
+                        <th class="left_with_line">CONTO</th>
+                        <th class="right_with_line">IMPONIBILE</th>
+                        <th class="right_with_line">QUANTITÀ</th>
+                        <th class="right_with_line"></th>
                     </tr>
             </thead>
             <tbody>
                 <t t-foreach="docs" t-as="o">
                     <tr>
-                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-field="o.date_invoice"/></td>
-                        <td class="left_without_line"><span t-field="o.number"/></td>
-                        <td class="left_without_line"><span t-field="o.partner_id.name"/></td>
-                        <td class="left_without_line"><span t-field="o.partner_id.vat"/></td>
-                        <td class="right_without_line"><span t-field="o.amount_untaxed"/></td>
-                        <td class="right_without_line"><span t-field="o.amount_tax"/></td>
-                        <td class="right_without_line"><span t-field="o.amount_total"/></td>
+                        <td class="left_with_line_bold"><div style="page-break-inside: avoid" t-field="o.date_invoice"/></td>
+                        <td class="left_with_line"><span t-field="o.number"/></td>
+                        <td class="left_with_line"><span t-field="o.partner_id.name"/></td>
+                        <td class="left_with_line"><span t-field="o.partner_id.vat"/></td>
+                        <td class="right_with_line"><span t-field="o.amount_untaxed"/></td>
+                        <td class="right_with_line"><span t-field="o.amount_tax"/></td>
+                        <td class="right_with_line"><span t-field="o.amount_total"/></td>
                     </tr>
                     <t t-foreach="o.invoice_line" t-as="line">
                         <tr>
-                            <td class="left_without_line_bold"><div style="page-break-inside: avoid"/></td>
-                            <td class="left_without_line"></td>
-                            <td class="left_without_line"><span t-field="line.name"/></td>
-                            <td class="left_without_line"><span t-field="line.account_id.name"/></td>
-                            <td class="right_without_line"><span t-field="line.price_subtotal"/></td>
-                            <td class="right_without_line"><span t-field="line.quantity"/></td>
-                            <td class="right_without_line"></td>
+                            <td class="left_with_line_bold"><div style="page-break-inside: avoid"/></td>
+                            <td class="left_with_line"></td>
+                            <td class="left_with_line"><span t-field="line.name"/></td>
+                            <td class="left_with_line"><span t-field="line.account_id.name"/></td>
+                            <td class="right_with_line"><span t-field="line.price_subtotal"/></td>
+                            <td class="right_with_line"><span t-field="line.quantity"/></td>
+                            <td class="right_with_line"></td>
                         </tr>
                     </t>
                 </t>
             </tbody>
         </table>
      </div>
-    </t>
-    </t>
 </template>     
 
 </data>

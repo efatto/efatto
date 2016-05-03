@@ -5,3 +5,4 @@
 from . import account
 from . import account_config
 from . import account_report
+from . import mail

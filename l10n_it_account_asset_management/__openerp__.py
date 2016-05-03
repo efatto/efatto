@@ -18,7 +18,7 @@
 #
 #
 {
-    'name': 'l10n_it_account_asset_management',
+    'name': 'l10n_it_account_asset_management DEPRECATED',
     'version': '1.0.0.0',
     'category': 'other',
     'author': 'SimplERP SRL',

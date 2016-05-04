@@ -27,6 +27,7 @@
     'depends': [
         'account',
         'report',
+        'document',
         'l10n_it_account',
     ],
     'data': [

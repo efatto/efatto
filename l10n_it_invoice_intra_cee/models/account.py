@@ -222,7 +222,7 @@ class account_invoice(orm.Model):
             'partner_id': partner_id,
             'account_id': prop_ar_id,
             'journal_id': fiscal_position.journal_auto_invoice_id.id,
-            'date_invoice': invoice.date_invoice,
+            'date_invoice': invoice.registration_date,
             'registration_date': invoice.registration_date,
         })
         new_line = []
@@ -454,76 +454,6 @@ class account_invoice(orm.Model):
             account_move.unlink(cr, uid, move_ids, context)
         return super(account_invoice, self).action_cancel(
             cr, uid, ids, context)
-
-    def action_move_create(self, cr, uid, ids, context=None):
-
-        if not context:
-            context = {}
-
-        super(account_invoice, self).action_move_create(
-            cr, uid, ids, context=context)
-
-        for inv in self.browse(cr, uid, ids):
-            date_invoice = inv.date_invoice
-            reg_date = inv.registration_date
-            today = time.strftime('%Y-%m-%d')
-            if not inv.registration_date:
-                if not inv.date_invoice:
-                    reg_date = today
-                else:
-                    reg_date = inv.date_invoice
-
-            if date_invoice and reg_date:
-                if (date_invoice > reg_date):
-                    raise Warning(_("The invoice date cannot be later than the"
-                                    " date of registration!"))
-
-            if inv.type in ['in_invoice', 'in_refund']:
-                if inv.fiscal_position.active_reverse_charge:
-                    date_start = inv.date_invoice or inv.registration_date or today
-                    date_stop = inv.date_invoice or inv.registration_date or today
-                else:
-                    date_start = inv.registration_date or inv.date_invoice or today
-                    date_stop = inv.registration_date or inv.date_invoice or today
-                    
-            elif inv.type in ['out_invoice', 'out_refund']:
-                date_start = inv.date_invoice or today
-                date_stop = inv.date_invoice or today
-
-            period_ids = self.pool.get('account.period').search(
-                cr, uid,
-                [
-                    ('date_start', '<=', date_start),
-                    ('date_stop', '>=', date_stop),
-                    ('company_id', '=', inv.company_id.id)
-                    ])
-            if period_ids:
-                period_id = period_ids[0]
-
-            self.write(
-                cr, uid, [inv.id], {
-                    'registration_date': reg_date, 'period_id': period_id})
-
-            mov_date = reg_date or inv.date_invoice or today
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'draft'})
-
-            sql = "update account_move_line set period_id="+str(
-                period_id) + ",date='" + mov_date + "' where move_id = " + str(
-                inv.move_id.id)
-
-            cr.execute(sql)
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id],
-                {'period_id': period_id, 'date': mov_date})
-
-            self.pool.get('account.move').write(
-                cr, uid, [inv.move_id.id], {'state': 'posted'})
-
-        self._log_event(cr, uid, ids)
-        return True
 
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:

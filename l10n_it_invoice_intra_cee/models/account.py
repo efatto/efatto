@@ -413,38 +413,28 @@ class account_invoice(orm.Model):
         for inv in invoices:
             # ----- Delete Auto Invoice
             if inv.auto_invoice_id:
-                # ----- Delete Payments for suppier invoice
+                # if more than 1, invoice is paid manually
                 if len(inv.payment_ids) > 1:
                     raise orm.except_orm(
                         _('Error!'),
                         _('You cannot cancel an invoice which is partially \
                         paid. You need to unreconcile related payment entries \
                         first.'))
-                payment_ids = []
-                for payment in inv.payment_ids:
-                    voucher_ids = voucher_obj.search(
-                        cr, uid, [('move_id', '=', payment.move_id.id)])
-                    if not voucher_ids:
-                        continue
-                    payment_ids = payment_ids + voucher_ids
-                # ----- Delete Payments for auto invoice
+                # ----- Delete Payments for auto invoice and invoice
                 for payment in inv.auto_invoice_id.payment_ids:
-                    voucher_ids = voucher_obj.search(
-                        cr, uid, [('move_id', '=', payment.move_id.id)])
-                    if not voucher_ids:
-                        continue
-                    payment_ids = payment_ids + voucher_ids
-                if payment_ids:
-                    voucher_obj.cancel_voucher(
-                        cr, uid, payment_ids, context)
-                    voucher_obj.unlink(cr, uid, payment_ids, context)
-
+                    if payment.reconcile_id:
+                        payment.reconcile_id.unlink()
                 wf_service.trg_validate(uid, 'account.invoice',
                                         inv.auto_invoice_id.id,
                                         'invoice_cancel', cr)
                 self.action_cancel_draft(
                     cr, uid, [inv.auto_invoice_id.id])
+                self.write(cr, uid, [inv.auto_invoice_id.id], {'internal_number': ''})
                 self.unlink(cr, uid, [inv.auto_invoice_id.id], context)
+                # ----- Delete Payments for invoice and invoice
+                for payment in inv.payment_ids:
+                    if payment.reconcile_partial_id:
+                        payment.reconcile_partial_id.unlink()
             # ----- Save account move ids
             if inv.transfer_entry_id:
                 move_ids.append(inv.transfer_entry_id.id)

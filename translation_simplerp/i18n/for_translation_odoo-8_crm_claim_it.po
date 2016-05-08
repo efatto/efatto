@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * crm_claim
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-21 14:07+0000\n"
-"PO-Revision-Date: 2015-11-07 14:51+0000\n"
+"PO-Revision-Date: 2016-05-08 19:07+0200\n"
 "Last-Translator: Martin Trigaux\n"
 "Language-Team: Italian (http://www.transifex.com/odoo/odoo-8/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #. module: crm_claim
 #: field:res.partner,claim_count:0
@@ -46,7 +47,14 @@ msgid ""
 "                    Record and track your customers' claims. Claims may be linked to a sales order or a lot.You can send emails with attachments and keep the full history for a claim (emails sent, intervention type and so on).Claims may automatically be linked to an email address using the mail gateway module.\n"
 "                </p>\n"
 "            "
-msgstr "Copy text \t\n<p class=\"oe_view_nocontent_create\">\nRecord e traccie dei reclami cliente. I reclami possono essere collegati a ordini di ventia o a un lotto. Potrete inviare mail con allegati e tenere traccia della completa storia di un reclamo (e-mails spedite, tipi di interventi e via dicendo) . I reclami possono automaticamente essere collegati ad un indirizzo e-mail utilizzando il modulo Mail Gateway.\n</p>\n            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                  Inserisci e Traccia i Reclami dei Clienti.\n"
+"                  I reclami possono essere collegati a ordini di ventia o ad un lotto di produzione. \n"
+"                  A partire dall'invio di una mail è possibile tenere traccia della completa storia di un reclamo (messaggi inviati, tipi di interventi ecc...) .\n"
+"                  I reclami possono essere automaticamente collegati ad un indirizzo e-mail utilizzando il modulo Mail Gateway.\n"
+"</p>\n"
+"            "
 
 #. module: crm_claim
 #: model:ir.actions.act_window,help:crm_claim.crm_claim_categ_action
@@ -59,7 +67,14 @@ msgid ""
 "                corrective action.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\nClick per creare una categoria di reclamo.\n</p><p>\nCrea una categoria di raclamo per gestire meglio e classificare i propri\nreclami. Alcuni esempi di reclamo possono essere: azioni preventive, \nazioni correttive.</p>\n            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                  Fai clic qui per creare una nuova categoria di reclamo.\n"
+"                  </p><p>\n"
+"                  Crea una categoria di reclamo per gestire meglio e classificare le rimostranze\n"
+"                  dei propri clienti. Alcuni esempi di categorie di reclamo possono essere: azioni preventive, \n"
+"                  azioni correttive.</p>\n"
+"            "
 
 #. module: crm_claim
 #: model:ir.actions.act_window,help:crm_claim.crm_claim_stage_act
@@ -72,7 +87,14 @@ msgid ""
 "                required for the resolution of a claim.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\nClick per importare un nuovo stage nel processo per i reclami.\n</p><p>\nPotete creare uno stage di reclamo per categorizzare lo stato di ogni\nreclamo inserito nel sistema. Gli stage definiscono tutti i passi\nrichiesti per una risoluzione del reclamo.</p>\n            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Fai clic qui per impostare un nuovo stadio nel processo di gestione dei reclami.\n"
+"                </p><p>\n"
+"                E' possibile creare uno stadio del reclamo per categorizzare lo stato di ogni\n"
+"                reclamo inserito nel sistema. Gli stadi definiscono tutti i passi\n"
+"                richiesti per una risoluzione del reclamo.</p>\n"
+"            "
 
 #. module: crm_claim
 #: view:crm.claim:crm_claim.crm_case_claims_form_view
@@ -105,18 +127,14 @@ msgid "Categories"
 msgstr "Categorie"
 
 #. module: crm_claim
-#: field:crm.claim,categ_id:0
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
-#: field:crm.claim.report,categ_id:0
+#: field:crm.claim,categ_id:0 view:crm.claim.report:crm_claim.view_report_crm_claim_filter field:crm.claim.report,categ_id:0
 msgid "Category"
 msgstr "Categoria"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.crm_case_claims_form_view
-#: model:ir.model,name:crm_claim.model_crm_claim
-#: model:ir.ui.menu,name:crm_claim.menu_config_claim
+#: view:crm.claim:crm_claim.crm_case_claims_form_view model:ir.model,name:crm_claim.model_crm_claim model:ir.ui.menu,name:crm_claim.menu_config_claim
 msgid "Claim"
-msgstr "Reclamo"
+msgstr "Reclami"
 
 #. module: crm_claim
 #: model:ir.actions.act_window,name:crm_claim.crm_claim_categ_action
@@ -139,8 +157,7 @@ msgid "Claim Description"
 msgstr "Descrizione del reclamo"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
+#: view:crm.claim:crm_claim.view_crm_case_claims_filter view:crm.claim.report:crm_claim.view_report_crm_claim_filter
 msgid "Claim Month"
 msgstr "Mese reclamo"
 
@@ -155,8 +172,7 @@ msgid "Claim Stage"
 msgstr "Fase reclamo"
 
 #. module: crm_claim
-#: view:crm.claim.stage:crm_claim.crm_claim_stage_tree
-#: model:ir.actions.act_window,name:crm_claim.crm_claim_stage_act
+#: view:crm.claim.stage:crm_claim.crm_claim_stage_tree model:ir.actions.act_window,name:crm_claim.crm_claim_stage_act
 msgid "Claim Stages"
 msgstr "Fasi del Reclamo"
 
@@ -176,20 +192,13 @@ msgid "Claim/Action Description"
 msgstr "Descrizione reclamo/azione"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.crm_case_claims_calendar_view
-#: view:crm.claim:crm_claim.crm_case_claims_form_view
-#: view:crm.claim:crm_claim.crm_case_claims_tree_view
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_graph
-#: model:ir.actions.act_window,name:crm_claim.crm_case_categ_claim0
-#: model:ir.ui.menu,name:crm_claim.menu_crm_case_claims
+#: view:crm.claim:crm_claim.crm_case_claims_calendar_view view:crm.claim:crm_claim.crm_case_claims_form_view view:crm.claim:crm_claim.crm_case_claims_tree_view view:crm.claim:crm_claim.view_crm_case_claims_filter view:crm.claim.report:crm_claim.view_report_crm_claim_graph model:ir.actions.act_window,name:crm_claim.crm_case_categ_claim0 model:ir.ui.menu,name:crm_claim.menu_crm_case_claims
 #: view:res.partner:crm_claim.view_claim_res_partner_info_form
 msgid "Claims"
 msgstr "Reclami"
 
 #. module: crm_claim
-#: model:ir.actions.act_window,name:crm_claim.action_report_crm_claim
-#: model:ir.ui.menu,name:crm_claim.menu_report_crm_claim_tree
+#: model:ir.actions.act_window,name:crm_claim.action_report_crm_claim model:ir.ui.menu,name:crm_claim.menu_report_crm_claim_tree
 msgid "Claims Analysis"
 msgstr "Analisi reclami"
 
@@ -214,9 +223,7 @@ msgid "Common to All Teams"
 msgstr "Comune a Tutti i Teams"
 
 #. module: crm_claim
-#: field:crm.claim,company_id:0
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
-#: field:crm.claim.report,company_id:0
+#: field:crm.claim,company_id:0 view:crm.claim.report:crm_claim.view_report_crm_claim_filter field:crm.claim.report,company_id:0
 msgid "Company"
 msgstr "Azienda"
 
@@ -266,8 +273,7 @@ msgid "Dates"
 msgstr "Date"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: field:crm.claim,date_deadline:0 field:crm.claim.report,date_deadline:0
+#: view:crm.claim:crm_claim.view_crm_case_claims_filter field:crm.claim,date_deadline:0 field:crm.claim.report,date_deadline:0
 msgid "Deadline"
 msgstr "Scadenza"
 
@@ -312,16 +318,13 @@ msgid "Followers"
 msgstr "Followers"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
+#: view:crm.claim:crm_claim.view_crm_case_claims_filter view:crm.claim.report:crm_claim.view_report_crm_claim_filter
 msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: crm_claim
 #: model:ir.actions.act_window,help:crm_claim.action_report_crm_claim
-msgid ""
-"Have a general overview of all claims processed in the system by sorting "
-"them with specific criteria."
+msgid "Have a general overview of all claims processed in the system by sorting them with specific criteria."
 msgstr "Per avere una visione generale di tutti i reclami processati nel sistema ordinando gli stesso per specifici criteri"
 
 #. module: crm_claim
@@ -331,9 +334,7 @@ msgstr "Alto"
 
 #. module: crm_claim
 #: help:crm.claim,message_summary:0
-msgid ""
-"Holds the Chatter summary (number of messages, ...). This summary is "
-"directly in html format in order to be inserted in kanban views."
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
 msgstr "Gestisce il sommario (numero di messaggi, ...) di Chatter. Questo sommario è direttamente in html così da poter essere inserito nelle viste kanban."
 
 #. module: crm_claim
@@ -348,9 +349,7 @@ msgstr "Se selezionato, nuovi messaggi richiedono la tua attenzione"
 
 #. module: crm_claim
 #: help:crm.claim.stage,case_default:0
-msgid ""
-"If you check this field, this stage will be proposed by default on each "
-"sales team. It will not assign this stage to existing teams."
+msgid "If you check this field, this stage will be proposed by default on each sales team. It will not assign this stage to existing teams."
 msgstr "Se si abilita questo campo, questa fase verrà proposta automaticamente per ogni team di vendita. Non verrà assegnata ai team esistenti."
 
 #. module: crm_claim
@@ -380,9 +379,7 @@ msgstr "Ultima modifica il"
 
 #. module: crm_claim
 #: help:crm.claim.stage,section_ids:0
-msgid ""
-"Link between stages and sales teams. When set, this limitate the current "
-"stage to the selected sales teams."
+msgid "Link between stages and sales teams. When set, this limitate the current stage to the selected sales teams."
 msgstr "Collegamento tra fasi e team di vendita. Quando impostato, limita la fase corrente al team di vendita selezionato."
 
 #. module: crm_claim
@@ -457,12 +454,7 @@ msgid "Overpassed Deadline"
 msgstr "Scadenza superata"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.crm_case_claims_form_view
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: field:crm.claim,partner_id:0
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
-#: field:crm.claim.report,partner_id:0
-#: model:ir.model,name:crm_claim.model_res_partner
+#: view:crm.claim:crm_claim.crm_case_claims_form_view view:crm.claim:crm_claim.view_crm_case_claims_filter field:crm.claim,partner_id:0 view:crm.claim.report:crm_claim.view_report_crm_claim_filter field:crm.claim.report,partner_id:0 model:ir.model,name:crm_claim.model_res_partner
 msgid "Partner"
 msgstr "Partner"
 
@@ -517,8 +509,7 @@ msgid "Responsibilities"
 msgstr "Responsabilità"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: field:crm.claim,user_id:0
+#: view:crm.claim:crm_claim.view_crm_case_claims_filter field:crm.claim,user_id:0
 msgid "Responsible"
 msgstr "Responsabile"
 
@@ -529,9 +520,7 @@ msgstr "Utente Responsabile"
 
 #. module: crm_claim
 #: help:crm.claim,section_id:0
-msgid ""
-"Responsible sales team. Define Responsible user and Email account for mail "
-"gateway."
+msgid "Responsible sales team. Define Responsible user and Email account for mail gateway."
 msgstr "Responsabile del team delle vendite. Definire l'utente responsabile ed un account email per il gateway email."
 
 #. module: crm_claim
@@ -545,8 +534,7 @@ msgid "Root Causes"
 msgstr "Cause principali"
 
 #. module: crm_claim
-#: field:crm.claim,section_id:0
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
+#: field:crm.claim,section_id:0 view:crm.claim.report:crm_claim.view_report_crm_claim_filter
 msgid "Sales Team"
 msgstr "Team di vendita"
 
@@ -586,10 +574,7 @@ msgid "Settled"
 msgstr "Risolto"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
-#: field:crm.claim,stage_id:0
-#: view:crm.claim.report:crm_claim.view_report_crm_claim_filter
-#: field:crm.claim.report,stage_id:0
+#: view:crm.claim:crm_claim.view_crm_case_claims_filter field:crm.claim,stage_id:0 view:crm.claim.report:crm_claim.view_report_crm_claim_filter field:crm.claim.report,stage_id:0
 msgid "Stage"
 msgstr "Fase"
 
@@ -610,10 +595,7 @@ msgstr "Riepilogo"
 
 #. module: crm_claim
 #: help:crm.claim,email_cc:0
-msgid ""
-"These email addresses will be added to the CC field of all inbound and "
-"outbound emails for this record before being sent. Separate multiple email "
-"addresses with a comma"
+msgid "These email addresses will be added to the CC field of all inbound and outbound emails for this record before being sent. Separate multiple email addresses with a comma"
 msgstr "Questi indirizzi email verranno aggiunti nel campo CC di tutte le email, in entrate e uscita, prima di essere spedite. E' necessario separare gli indirizzi con una virgola"
 
 #. module: crm_claim
@@ -622,8 +604,7 @@ msgid "Trouble Responsible"
 msgstr "Responsabile Problematiche"
 
 #. module: crm_claim
-#: view:crm.claim:crm_claim.crm_case_claims_tree_view
-#: view:crm.claim:crm_claim.view_crm_case_claims_filter
+#: view:crm.claim:crm_claim.crm_case_claims_tree_view view:crm.claim:crm_claim.view_crm_case_claims_filter
 msgid "Type"
 msgstr "Tipo"
 

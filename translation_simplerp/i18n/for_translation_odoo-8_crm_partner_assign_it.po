@@ -67,8 +67,8 @@ msgstr ""
 "<p>Buongiorno,</p>\n"
 "\n"
 "\n"
-"<p>Siamo stati contattati da alcuni potenziali clienti nella tua zona. Pertanto le seguenti segnalazioni sono "
-"state affidate a   ${ctx['partner_id'].name}:</p>\n"
+"<p>Siamo stati contattati da alcuni potenziali clienti nella tua zona. Pertanto i seguenti Lead sono "
+"stati affidati a   ${ctx['partner_id'].name}:</p>\n"
 "\n"
 "<ol>\n"
 "% for lead in ctx['partner_leads']:\n"
@@ -81,7 +81,7 @@ msgstr ""
 "\n"
 "% if ctx.get('partner_in_portal'):\n"
 "<p>Collegati al nostro <a href=\"${object.get_portal_url()}\">Portale dei Partner</a> per visualizzare i "
-"dettagli. Ciascuna segnalazione presenta due pulsanti (in alto a sinistra) da utilizzare dopo aver effettuato "
+"dettagli. Ciascun Lead presenta due pulsanti (in alto a sinistra) da utilizzare dopo aver effettuato "
 "il primo contattato : \"Interessato\" & \"Non Interessato\".</p>\n"
 "% else:\n"
 "<p>\n"
@@ -90,7 +90,7 @@ msgstr ""
 "(ctx['partner_id'].user_id.name,ctx['partner_id'].user_id.email) or 'SimplERP'}.\n"
 "</p>\n"
 "% endif\n"
-"<p>La segnalazione verrà assegnata ad un altro partner se non lo contatterai entro 20 giorni.</p>\n"
+"<p>Il Lead verrà assegnata ad un altro partner se non lo contatterai entro 20 giorni.</p>\n"
 "\n"
 "<p>Grazie,</p>\n"
 "\n"
@@ -116,19 +116,19 @@ msgstr "# di opportunità"
 #: code:addons/crm_partner_assign/wizard/crm_channel_interested.py:48
 #, python-format
 msgid "<p>I am interested by this lead.</p>"
-msgstr "<p>Questa segnalazione mi interessa.</p>"
+msgstr "<p>Questo Lead mi interessa.</p>"
 
 #. module: crm_partner_assign
 #: code:addons/crm_partner_assign/wizard/crm_channel_interested.py:53
 #, python-format
 msgid "<p>I am not interested by this lead. I %scontacted the lead.</p>"
-msgstr "<p>Questa segnalazione non mi interessa. Già %scontacted.</p>"
+msgstr "<p>Questo Lead non mi interessa. Già %scontacted.</p>"
 
 #. module: crm_partner_assign
 #: code:addons/crm_partner_assign/wizard/crm_channel_interested.py:55
 #, python-format
 msgid "<p>I am not interested by this lead. I have not contacted the lead.</p>"
-msgstr "<p>Questa segnalazione non mi interessa. Non lo contatterò.</p>"
+msgstr "<p>Questo Lead non mi interessa. Non lo contatterò.</p>"
 
 #. module: crm_partner_assign
 #: field:crm.partner.report.assign,activation:0
@@ -375,12 +375,12 @@ msgstr "Filtri estesi..."
 #. module: crm_partner_assign
 #: field:crm.lead.forward.to.partner,partner_id:0
 msgid "Forward Leads To"
-msgstr "Inoltra Segnalazione A"
+msgstr "Inoltra Lead A"
 
 #. module: crm_partner_assign
 #: field:crm.lead.forward.to.partner,forward_type:0
 msgid "Forward selected leads to"
-msgstr "Inoltra segnalazioni selezionate a"
+msgstr "Inoltra Lead selezionate a"
 
 #. module: crm_partner_assign
 #: model:ir.actions.act_window,name:crm_partner_assign.action_crm_send_mass_forward
@@ -391,7 +391,7 @@ msgstr "Inoltra a Partner"
 #. module: crm_partner_assign
 #: model:email.template,subject:crm_partner_assign.email_template_lead_forward_mail
 msgid "Fwd: Lead: ${ctx['partner_id'].name}"
-msgstr "Fwd: Segnalazione ${ctx['partner_id'].name}"
+msgstr "Fwd: Lead ${ctx['partner_id'].name}"
 
 #. module: crm_partner_assign
 #: field:crm.lead,partner_latitude:0
@@ -481,7 +481,7 @@ msgstr "Implementato da"
 #. module: crm_partner_assign
 #: field:crm.lead.channel.interested,interested:0
 msgid "Interested by this lead"
-msgstr "Interessato in questa segnalazione"
+msgstr "Interessato a questo Lead"
 
 #. module: crm_partner_assign
 #: field:crm.partner.report.assign,period_id:0
@@ -520,7 +520,7 @@ msgstr "Iniziativa"
 #. module: crm_partner_assign
 #: field:crm.lead.assignation,lead_link:0
 msgid "Lead  Single Links"
-msgstr "Collegamenti Unici Segnalazione"
+msgstr "Collegamenti Unici Lead"
 
 #. module: crm_partner_assign
 #: view:crm.lead.report.assign:crm_partner_assign.view_report_crm_lead_assign_graph
@@ -530,12 +530,12 @@ msgstr "Assegnazione lead"
 #. module: crm_partner_assign
 #: model:ir.actions.act_window,name:crm_partner_assign.crm_lead_channel_interested_act
 msgid "Lead Feedback"
-msgstr "Feedback Segnalazione"
+msgstr "Feedback Lead"
 
 #. module: crm_partner_assign
 #: field:crm.lead.assignation,lead_location:0
 msgid "Lead Location"
-msgstr "Location Segnalazione"
+msgstr "Location Lead"
 
 #. module: crm_partner_assign
 #: model:ir.model,name:crm_partner_assign.model_crm_lead
@@ -549,12 +549,12 @@ msgstr "Lead/Opportunità"
 #: model:ir.actions.act_window,name:crm_partner_assign.action_portal_leads
 #: model:ir.ui.menu,name:crm_partner_assign.openerp_portal_menu_sales_leads_current
 msgid "Leads"
-msgstr "Segnalazione"
+msgstr "Lead"
 
 #. module: crm_partner_assign
 #: model:ir.ui.menu,name:crm_partner_assign.portal_leads
 msgid "Leads & Opportunities"
-msgstr "Segnalazioni e Opportunità"
+msgstr "Lead e Opportunità"
 
 #. module: crm_partner_assign
 #: view:crm.lead.report.assign:crm_partner_assign.view_report_crm_lead_assign_filter
@@ -605,7 +605,7 @@ msgstr "Numero di giorni per aprire il caso"
 #. module: crm_partner_assign
 #: view:crm.lead.channel.interested:crm_partner_assign.crm_lead_channel_interested_form
 msgid "Once the lead is processed, it will be in your \"Opportunities\" menu."
-msgstr "Una volta processata la Segnalazione, si troverà nel tuo menu \"Opportunità\"."
+msgstr "Una volta processato il Lead, si troverà nel tuo menu \"Opportunità\"."
 
 #. module: crm_partner_assign
 #: field:crm.lead.report.assign,opening_date:0
@@ -850,7 +850,7 @@ msgstr "Qual è la prossima azione? Quando? Qual è l'entrata prevista?"
 #. module: crm_partner_assign
 #: view:crm.lead.channel.interested:crm_partner_assign.crm_lead_channel_interested_form
 msgid "Why aren't you interested by this lead?"
-msgstr "Perché non sei interessato in questa segnalazione?"
+msgstr "Perché non sei interessato a questo Lead?"
 
 #. module: crm_partner_assign
 #: code:addons/crm_partner_assign/wizard/crm_channel_interested.py:44

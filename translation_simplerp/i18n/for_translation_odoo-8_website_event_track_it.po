@@ -69,7 +69,7 @@ msgstr "Tag Accettati"
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track19
 msgid "Advanced lead management with Odoo: tips and tricks from the fields"
-msgstr "Gestione avanzata delle segnalazioni con SimplERP: tips & tricks dai campi"
+msgstr "Gestione avanzata dei Lead con SimplERP: tips & tricks dai campi"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track13
@@ -339,7 +339,7 @@ msgstr "Gestisce il sommario (numero di messaggi, ...) di Chatter. Questo sommar
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track18
 msgid "How to build your marketing strategy for the purpose of generating leads with Odoo."
-msgstr "Come costruire la tua strategia di marketing per generare segnalazioni e opportunità con SimplERP."
+msgstr "Come costruire la tua strategia di marketing per generare Lead e opportunità con SimplERP."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track1

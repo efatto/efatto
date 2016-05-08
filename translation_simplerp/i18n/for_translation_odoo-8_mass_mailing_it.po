@@ -185,7 +185,7 @@ msgstr ""
 "                    Fai clic qui per creare un nuovo Mailing\n"
 "                   </p><p>\n"
 "                    Lo strumento di Mass Mailing che consente di comporre ed inviare messaggi e-mail\n"
-"                    ai tuoi contatti, clienti o segnalazioni utilizzando una mailing list. \n"
+"                    ai tuoi contatti, clienti o Lead utilizzando una mailing list. \n"
 "</p>"
 
 #. module: mass_mailing

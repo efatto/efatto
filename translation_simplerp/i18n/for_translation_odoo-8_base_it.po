@@ -10985,7 +10985,7 @@ msgstr "Launchpad"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_crm_project_issue
 msgid "Lead to Issue"
-msgstr "Da Segnalazione a Problematica"
+msgstr "Da Lead a Problematica"
 
 #. module: base
 #: model:ir.ui.menu,name:base.menu_crm_config_lead

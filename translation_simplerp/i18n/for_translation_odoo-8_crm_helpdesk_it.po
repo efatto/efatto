@@ -42,7 +42,7 @@ msgid ""
 "                history of the conversation with the customer.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\nClick per creare una nuova richiesta.\n</p><p>\nL'helpdesk e il supporto permettono di tracciare i vostri interventi.\n</p><p>\nUtilizzare il sistema di gestione problematiche di ODOO per le attività di \nsupporto. I problemi possono essere collegati ad un server di posta: \nNuove mail possono creare problemi, ognuna di esse automaticamente\nfornisce lo storico della conversazione con il cliente.\n</p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nFai click qui per creare una nuova Richiesta di Supporto.\n</p><p>\nL'helpdesk e il servizio di supporto permettono di conservare traccia dei tuoi interventi.\n</p><p>\nUtilizza il sistema di Helpdesk integrato in SimplERP per le attività di \nsupporto. Le richieste di supporto possono essere inoltre collegate ad una casella e ad un server di posta: \nLa ricezione di una mail in una specifica casella di posta può generare una nuova richieste. Ciascuna richiesta conserva\ne traccia automaticamente lo storico della conversazione con il cliente.\n</p>\n            "
 
 #. module: crm_helpdesk
 #: field:crm.helpdesk,active:0
@@ -275,7 +275,7 @@ msgstr "Supporti helpdesk"
 #. module: crm_helpdesk
 #: model:ir.ui.menu,name:crm_helpdesk.menu_help_support_main
 msgid "Helpdesk and Support"
-msgstr "Helpdesk e supporto"
+msgstr "Helpdesk e Supporto"
 
 #. module: crm_helpdesk
 #: model:ir.model,name:crm_helpdesk.model_crm_helpdesk_report
@@ -489,7 +489,7 @@ msgstr "Probabilità (%)"
 #: view:crm.helpdesk:crm_helpdesk.crm_case_tree_view_helpdesk
 #: view:crm.helpdesk:crm_helpdesk.view_crm_case_helpdesk_filter
 msgid "Query"
-msgstr "Query"
+msgstr "Richiesta"
 
 #. module: crm_helpdesk
 #: field:crm.helpdesk,ref:0

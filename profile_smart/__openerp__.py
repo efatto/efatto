@@ -55,5 +55,5 @@
         'views/smart_view.xml',
         'data/account_journal.xml',
     ],
-    "installable": True,
+    "installable": False,
 }

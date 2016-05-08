@@ -173,11 +173,10 @@ class wizard_multi_charts_accounts(models.TransientModel):
             obj_tax = self.env['account.tax']
             tax_template_ids = self.env['account.tax.template'].search([])
             for tax_template in tax_template_ids:
-                tax_id = obj_tax.search([
-                    ('description', '=', tax_template.description),
-                    ('company_id', '=', company_id)])
-                if tax_id:
-                    tax_id.write({
-                        'auto_invoice_tax_id': tax_template.auto_invoice_tax_id.id,
-                    })
+                if tax_template.auto_invoice_tax_id:
+                    tax_id = obj_tax.search([
+                        ('description', '=', tax_template.auto_invoice_tax_id.description),
+                        ('company_id', '=', company_id)])
+                    if tax_id:
+                        obj_tax.search([('description', '=', tax_template.description)]).auto_invoice_tax_id = tax_id.id
         return True

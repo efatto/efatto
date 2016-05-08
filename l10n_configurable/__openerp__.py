@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (C) 2015 Sergio Corato
+#    Copyright (C) 2015-2016 Sergio Corato
 #    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 
 {
     "name": 'Account chart autoconfigurable',
-    "version": "8.0.0.1.2",
+    "version": "8.0.0.2.2",
     "depends": [
         'base_vat',
         'account',

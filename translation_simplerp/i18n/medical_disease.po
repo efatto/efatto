@@ -1,0 +1,475 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_disease
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-08 23:31+0000\n"
+"PO-Revision-Date: 2016-05-09 01:44+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#. module: medical_disease
+#: field:medical.patient.disease,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,state:0
+msgid "Acute"
+msgstr "Acuto"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+#: field:medical.pathology,chromosome:0
+msgid "Affected Chromosome"
+msgstr "Cromosoma Interessato"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,age:0
+msgid "Age when diagnosed"
+msgstr "Età alla Diagnosi"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,is_allergy:0
+msgid "Allergic Disease"
+msgstr "Allergia"
+
+#. module: medical_disease
+#: field:medical.patient.disease,allergy_type:0
+msgid "Allergy type"
+msgstr "Tipo di Allergia"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+msgid "Category"
+msgstr "Categoria"
+
+#. module: medical_disease
+#: field:medical.pathology,category_id:0
+msgid "Category of Pathology"
+msgstr "Categoria di Patologia"
+
+#. module: medical_disease
+#: field:medical.pathology.category,child_ids:0
+msgid "Children Categories"
+msgstr "Sottocategorie"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,state:0
+msgid "Chronic"
+msgstr "Cronico"
+
+#. module: medical_disease
+#: field:medical.pathology,code:0 field:medical.pathology.group,code:0
+msgid "Code"
+msgstr "Codice"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Contracted in pregnancy week #"
+msgstr "Contratta in gravidanza alla settimana n."
+
+#. module: medical_disease
+#: field:medical.pathology,create_uid:0
+#: field:medical.pathology.category,create_uid:0
+#: field:medical.pathology.group,create_uid:0
+#: field:medical.patient.disease,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: medical_disease
+#: field:medical.pathology,create_date:0
+#: field:medical.pathology.category,create_date:0
+#: field:medical.pathology.group,create_date:0
+#: field:medical.patient.disease,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,is_on_treatment:0
+msgid "Currently on Treatment"
+msgstr "Attualmente in Terapia"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,diagnosed_date:0
+msgid "Date of Diagnosis"
+msgstr "Data Diagnosi"
+
+#. module: medical_disease
+#: field:medical.patient.disease,healed_date:0
+msgid "Date of Healing"
+msgstr "Data Guarigione"
+
+#. module: medical_disease
+#: model:ir.ui.menu,name:medical_disease.medical_root_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Disease"
+msgstr "Malattia"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_form
+msgid "Disease Groups"
+msgstr "Gruppi di Malattie"
+
+#. module: medical_disease
+#: view:medical.patient:medical_disease.medical_patient_view_form
+#: field:medical.patient,disease_ids:0
+msgid "Diseases"
+msgstr "Malattie"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,allergy_type:0
+msgid "Drug Allergy"
+msgstr "Allergie ai Farmaci"
+
+#. module: medical_disease
+#: field:medical.patient.disease,expire_date:0
+msgid "Expire date"
+msgstr "Data Scadenza"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,allergy_type:0
+msgid "Food Allergy"
+msgstr "Allergie Alimentari"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+#: field:medical.pathology,gene:0
+msgid "Gene"
+msgstr "Gene"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_search
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Group By..."
+msgstr "Raggruppa Per..."
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: selection:medical.patient.disease,state:0
+msgid "Healed"
+msgstr "Guarito"
+
+#. module: medical_disease
+#: field:medical.pathology,id:0 field:medical.pathology.category,id:0
+#: field:medical.pathology.group,id:0 field:medical.patient.disease,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,state:0
+msgid "Improving"
+msgstr "Miglioramento"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Inactive"
+msgstr "Inattivo"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,is_infectious:0
+msgid "Infectious Disease"
+msgstr "Malattia Infettiva"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "Invalidate"
+msgstr "Invalido"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "Invalidate Disease: proceed anyway?"
+msgstr "Malattia Invalidante: procedere ugualmente?"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Is Allergy"
+msgstr "E' Allergico"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Is Infectious"
+msgstr "E' Infettivo"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Is on Treatment"
+msgstr "E' in Terapia"
+
+#. module: medical_disease
+#: field:medical.pathology,write_uid:0
+#: field:medical.pathology.category,write_uid:0
+#: field:medical.pathology.group,write_uid:0
+#: field:medical.patient.disease,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: medical_disease
+#: field:medical.pathology,write_date:0
+#: field:medical.pathology.category,write_date:0
+#: field:medical.pathology.group,write_date:0
+#: field:medical.patient.disease,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: medical_disease
+#: model:ir.model,name:medical_disease.model_medical_pathology
+#: view:medical.pathology:medical_disease.medical_pathology_view_form
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+#: view:medical.pathology:medical_disease.medical_pathology_view_tree
+msgid "Medical Pathology"
+msgstr "Patologia Medica"
+
+#. module: medical_disease
+#: model:ir.model,name:medical_disease.model_medical_pathology_category
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_form
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_search
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_tree
+msgid "Medical Pathology Category"
+msgstr "Categoria Patologia Medica"
+
+#. module: medical_disease
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_form
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_search
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_tree
+msgid "Medical Pathology Group"
+msgstr "Gruppo Patologia Medica"
+
+#. module: medical_disease
+#: field:medical.pathology,medical_pathology_group_m2m_ids:0
+msgid "Medical Pathology Groups"
+msgstr "Gruppi Patologia Medica"
+
+#. module: medical_disease
+#: model:ir.model,name:medical_disease.model_medical_patient
+msgid "Medical Patient"
+msgstr "Paziente"
+
+#. module: medical_disease
+#: model:ir.model,name:medical_disease.model_medical_patient_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_tree
+msgid "Medical Patient Disease"
+msgstr "Malattia Paziente"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,disease_severity:0
+msgid "Mild"
+msgstr "Lieve"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,allergy_type:0
+msgid "Misc Allergy"
+msgstr "Allergie Varie"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,allergy_type:0
+msgid "Misc Contraindication"
+msgstr "Controindicazioni Varie"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,disease_severity:0
+msgid "Moderate"
+msgstr "Moderato"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_form
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_form
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_form
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "More Info"
+msgstr "Ulteriori informazioni"
+
+#. module: medical_disease
+#: field:medical.pathology,name:0 field:medical.pathology.category,name:0
+#: field:medical.pathology.group,name:0 field:medical.patient.disease,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Not Infectious"
+msgstr "Non INfettivo"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_form
+#: field:medical.pathology,notes:0
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_form
+#: field:medical.pathology.group,notes:0
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+#: field:medical.patient.disease,notes:0
+msgid "Notes"
+msgstr "Note"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_form
+#: view:medical.pathology.group:medical_disease.medical_pathology_view_group_form
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "Others"
+msgstr "Altri"
+
+#. module: medical_disease
+#: view:medical.pathology.category:medical_disease.medical_pathology_view_category_search
+#: field:medical.pathology.category,parent_id:0
+msgid "Parent Category"
+msgstr "Categoria Superiore"
+
+#. module: medical_disease
+#: model:ir.actions.act_window,name:medical_disease.medical_pathology_action
+#: model:ir.ui.menu,name:medical_disease.medical_pathology
+msgid "Pathologies"
+msgstr "Patologie"
+
+#. module: medical_disease
+#: field:medical.patient.disease,pathology_id:0
+msgid "Pathology"
+msgstr "Patologia"
+
+#. module: medical_disease
+#: model:ir.actions.act_window,name:medical_disease.medical_pathology_category_action
+#: model:ir.ui.menu,name:medical_disease.medical_pathology_category
+msgid "Pathology Categories"
+msgstr "Categoria di Patologia"
+
+#. module: medical_disease
+#: model:ir.actions.act_window,name:medical_disease.medical_pathology_group_action
+#: model:ir.ui.menu,name:medical_disease.medical_pathology_group
+msgid "Pathology Group"
+msgstr "Gruppo Patologia"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,patient_id:0
+msgid "Patient"
+msgstr "Paziente"
+
+#. module: medical_disease
+#: model:ir.actions.act_window,name:medical_disease.medical_patient_disease_action
+#: model:ir.ui.menu,name:medical_disease.medical_sub_disease
+msgid "Patient Diseases"
+msgstr "Malattie Paziente"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,physician_id:0
+msgid "Physician"
+msgstr "Medico"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Pregnancy Warning"
+msgstr "Avviso Gravidanza"
+
+#. module: medical_disease
+#: field:medical.patient.disease,weeks_of_pregnancy:0
+msgid "Pregnancy Week#"
+msgstr "Settimana di Gravidanza #"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+#: field:medical.patient.disease,is_pregnant:0
+#: field:medical.patient.disease,pregnancy_warning:0
+msgid "Pregnancy warning"
+msgstr "Avviso Gravidanza"
+
+#. module: medical_disease
+#: view:medical.pathology:medical_disease.medical_pathology_view_search
+#: field:medical.pathology,protein:0
+msgid "Protein involved"
+msgstr "Proteina Coinvolta"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "Reactivate"
+msgstr "Riattivare"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_form
+msgid "Reactivate document: proceed anyway?"
+msgstr "Documento in fase di riattivazione: procedere ?"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,disease_severity:0
+msgid "Severe"
+msgstr "Grave"
+
+#. module: medical_disease
+#: field:medical.patient.disease,disease_severity:0
+msgid "Severity"
+msgstr "Gravità"
+
+#. module: medical_disease
+#: field:medical.pathology.group,description:0
+msgid "Short Description"
+msgstr "Breve Descrizione"
+
+#. module: medical_disease
+#: field:medical.patient.disease,short_comment:0
+msgid "Short comment"
+msgstr "Breve Commento"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "Start"
+msgstr "Inizio"
+
+#. module: medical_disease
+#: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
+msgid "State"
+msgstr "Stato"
+
+#. module: medical_disease
+#: field:medical.patient.disease,state:0
+msgid "Status of the disease"
+msgstr "Stato della malattia"
+
+#. module: medical_disease
+#: field:medical.patient.disease,treatment_description:0
+msgid "Treatment description"
+msgstr "Descrizione Trattamento"
+
+#. module: medical_disease
+#: field:medical.patient.disease,treatment_end_date:0
+msgid "Treatment end date"
+msgstr "Data Fine Trattamento"
+
+#. module: medical_disease
+#: field:medical.patient.disease,treatment_start_date:0
+msgid "Treatment start date"
+msgstr "Data Inizio Trattamento"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,state:0
+msgid "Unchanged"
+msgstr "Invariato"
+
+#. module: medical_disease
+#: help:medical.patient.disease,weeks_of_pregnancy:0
+msgid "Week number of pregnancy when disease contracted"
+msgstr "Settimana di Gravidanza in cui è stata contratta la Malattia"
+
+#. module: medical_disease
+#: selection:medical.patient.disease,state:0
+msgid "Worsening"
+msgstr "Peggioramento"
+
+#. module: medical_disease
+#: help:medical.pathology.group,code:0
+msgid "for example MDG6 code will contain the Millennium Development Goals # 6 diseases : Tuberculosis, Malaria and HIV/AIDS"
+msgstr "per esempio il codice MDG6 conterrà le malattie del \"Millennium Development Goals # 6\": Tubercolosi, Malaria e HIV/AIDS"

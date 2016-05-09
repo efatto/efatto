@@ -1,0 +1,234 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_prescription_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-09 12:04+0000\n"
+"PO-Revision-Date: 2016-05-09 15:02+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order,kanban_state:0
+msgid ""
+"An Rx's kanban state indicates special situations affecting it:\n"
+" * Normal is the default situation\n"
+" * Blocked indicates something is preventing the progress of this Rx\n"
+" * Ready for next stage indicates the Rx is ready to be pulled to the next stage"
+msgstr ""
+"Lo stato della vista  kanban per una Prescrizione indica situazioni particolari:\n"
+" * Normale è la situazione predefinita\n"
+" * Bloccato indica che qualcosa impedisce l'avanzamento di questa Prescrizione\n"
+" * Pronto per il prossimo stadio indica che la Prescrizione è pronta per avanzare allo stadio successivo"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,date_assign:0
+msgid "Assigned Date"
+msgstr "Data Assegnazione"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,user_id:0
+msgid "Assigned To"
+msgstr "Assegnato a"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,kanban_state:0
+msgid "Blocked"
+msgstr "Bloccato"
+
+#. module: medical_prescription_state
+#: view:medical.prescription.order:medical_prescription_state.medical_prescription_order_kanban_view
+msgid "By:"
+msgstr "Da:"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,color:0
+#: field:medical.prescription.order.state,color:0
+msgid "Color Index"
+msgstr "Indice Colore"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,color:0
+msgid "Color index to be used if the Rx does not have one defined"
+msgstr "Indice di colore da utilizzare se la Prescrizione non ne ha uno definito"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,create_date:0
+msgid "Created on"
+msgstr "Created il"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,description:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,legend_priority:0
+msgid "Explanation text to help users using the star and priority mechanism on stages or RXs that are in this stage."
+msgstr "Spiegazione che supporta gli utenti nell'uso di stelle e priorità per gli Stadi o per le Prescrizioni che si trovano in questo Stadio."
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,fold:0
+msgid "Folded in RX Pipeline"
+msgstr "Chiuso nel processo della Prescrizione"
+
+#. module: medical_prescription_state
+#: view:medical.prescription.order:medical_prescription_state.medical_prescription_order_kanban_view
+msgid "For:"
+msgstr "Per :"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,priority:0
+msgid "High"
+msgstr "Alta"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,kanban_state:0
+msgid "In Progress"
+msgstr "In Corso"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,legend_blocked:0
+msgid "Kanban Blocked Explanation"
+msgstr "Motivazione Blocco"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,legend_normal:0
+msgid "Kanban Ongoing Explanation"
+msgstr "Motivazione Avanzamento"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,kanban_state:0
+msgid "Kanban State"
+msgstr "Stato Kanban"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,legend_done:0
+msgid "Kanban Valid Explanation"
+msgstr "Motivi Validità"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: medical_prescription_state
+#: model:ir.model,name:medical_prescription_state.model_medical_prescription_order
+msgid "Medical Prescription Order"
+msgstr "Ordine Prescrizione"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,priority:0
+msgid "Medium"
+msgstr "Media"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,priority:0
+msgid "Normal"
+msgstr "Normale"
+
+#. module: medical_prescription_state
+#: model:ir.ui.menu,name:medical_prescription_state.medical_prescription_order_state
+msgid "Order States"
+msgstr "Stati Ordini"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,legend_blocked:0
+msgid "Override the default value displayed for the blocked state for kanban selection, when the RX is in that stage."
+msgstr "Sovrascrivi il valore predefinito per lo stato \"Bloccato\" nella seleziona Kanban quando la Prescrizione si trova in questo stadio"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,legend_done:0
+msgid "Override the default value displayed for the done state for kanban selection, when the RX is in that stage."
+msgstr "Sovrascrivi il valore predefinito per lo stato \"Completato\" nella seleziona Kanban quando la Prescrizione si trova in questo stadio"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,legend_normal:0
+msgid "Override the default value displayed for the normal state for kanban selection, when the RX is in that stage."
+msgstr "Sovrascrivi il valore predefinito per lo stato \"Normale\" nella seleziona Kanban quando la Prescrizione si trova in questo stadio"
+
+#. module: medical_prescription_state
+#: model:ir.ui.menu,name:medical_prescription_state.medical_root_prescription
+msgid "Prescription"
+msgstr "Prescrizione"
+
+#. module: medical_prescription_state
+#: model:ir.model,name:medical_prescription_state.model_medical_prescription_order_state
+msgid "Prescription Order States"
+msgstr "Stati Ordini Prescrizione"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,priority:0
+msgid "Priority"
+msgstr "Priorità"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,legend_priority:0
+msgid "Priority Management Explanation"
+msgstr "Spiegazione Gestione Priorità"
+
+#. module: medical_prescription_state
+#: selection:medical.prescription.order,kanban_state:0
+msgid "Ready for next stage"
+msgstr "Pronto per il prossimo stadio"
+
+#. module: medical_prescription_state
+#: view:medical.prescription.order.state:medical_prescription_state.medical_prescription_order_state_view_form
+msgid "Rx State"
+msgstr "Stato Prescrizione"
+
+#. module: medical_prescription_state
+#: model:ir.actions.act_window,name:medical_prescription_state.medical_prescription_order_state_action
+#: view:medical.prescription.order.state:medical_prescription_state.medical_prescription_order_state_view_tree
+msgid "Rx States"
+msgstr "Stati Prescrizione"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,sequence:0
+#: field:medical.prescription.order.state,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order,sequence:0
+msgid "Sequence order when displaying a list of Rxs"
+msgstr "Sequenza di visualizzazione della lista di Prescrizioni"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order,state_id:0
+msgid "State"
+msgstr "Stato"
+
+#. module: medical_prescription_state
+#: field:medical.prescription.order.state,name:0
+msgid "State Name"
+msgstr "Nome Stato"
+
+#. module: medical_prescription_state
+#: help:medical.prescription.order.state,fold:0
+msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgstr "Questo stadio è chiuso nella vista Kanban se non vi sono record al suo interno da visualizzare."

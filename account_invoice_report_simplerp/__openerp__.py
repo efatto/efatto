@@ -42,5 +42,5 @@
         'views/account.report_invoice_document.xml',
         'views/account_invoice_report.xml',
     ],
-    "installable": True,
+    "installable": False,
 }

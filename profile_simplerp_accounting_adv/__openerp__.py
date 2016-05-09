@@ -28,7 +28,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_fiscal_year_closing_template',
+        # 'account_fiscal_year_closing_template',
         'l10n_it_invoice_intra_cee',
         'l10n_it_fatturapa_out',
         'l10n_it_ricevute_bancarie_data',

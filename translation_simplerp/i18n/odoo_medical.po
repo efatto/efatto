@@ -1,26 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical
+#	* medical
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-08 22:54+0000\n"
-"PO-Revision-Date: 2016-05-09 01:30+0200\n"
+"POT-Creation-Date: 2016-05-10 15:42+0000\n"
+"PO-Revision-Date: 2016-05-10 15:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical
 #: model:email.template,body_html:medical.email_template_appointment_confirmation
-msgid ""
-"\n"
+msgid "\n"
 "                <div class=\"content-wrapper\" style=\"max-width:650px;\">\n"
 "                    <div class=\"col-sm-12 highlight\">\n"
 "                        <p> <b>Dear ${object.patient_id.name}</b> </p>\n"
@@ -38,8 +35,7 @@ msgid ""
 "                    </div>\n"
 "                </div>\n"
 "            "
-msgstr ""
-"\n"
+msgstr "\n"
 "                <div class=\"content-wrapper\" style=\"max-width:650px;\">\n"
 "                    <div class=\"col-sm-12 highlight\">\n"
 "                        <p> <b>Egr. ${object.patient_id.name}</b> </p>\n"
@@ -60,12 +56,10 @@ msgstr ""
 
 #. module: medical
 #: model:email.template,body_html:medical.sms_template_appointment_confirmation
-msgid ""
-"\n"
+msgid "\n"
 "<p>Your appointment with Dr. ${object.physician_id.lastname} on ${ctx.get('appointment_date') or object.appointment_date[:10]} ${ctx.get('appointment_time') or object.appointment_date[11:]} has been confirmed.</p>\n"
 "            "
-msgstr ""
-"\n"
+msgstr "\n"
 "<p>Il suo appuntamento con il Dr. ${object.physician_id.lastname} del ${ctx.get('appointment_date') or object.appointment_date[:10]} ${ctx.get('appointment_time') or object.appointment_date[11:]} è stato confermato.</p>\n"
 "            "
 
@@ -78,32 +72,32 @@ msgstr " (deceased)(deceduto)"
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_appointment
 msgid " Appointment"
-msgstr "Appuntamento"
+msgstr "Appuntamenti"
 
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_specialty
 msgid " Medical Specialty"
-msgstr "Specializzazione"
+msgstr "Specializzazioni"
 
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_patient
 msgid " Patient"
-msgstr "Paziente"
+msgstr "Pazienti"
 
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_physician_admin
 msgid " Physician [Admin]"
-msgstr " Medico [Admin]"
+msgstr "Primari"
 
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_physician_assistant
 msgid " Physician [Asistant]"
-msgstr " Medico [Asistant]"
+msgstr "Infermieri e Operatori"
 
 #. module: medical
 #: model:ir.ui.menu,name:medical.medical_physician_self
 msgid " Physician [Self]"
-msgstr " Medico [Self]"
+msgstr "Medici"
 
 #. module: medical
 #: model:email.template,subject:medical.sms_template_appointment_confirmation
@@ -346,7 +340,8 @@ msgid "Activation date"
 msgstr "Data Attivazione"
 
 #. module: medical
-#: field:medical.patient,active:0 field:medical.physician,active:0
+#: field:medical.patient,active:0
+#: field:medical.physician,active:0
 msgid "Active"
 msgstr "Attivo"
 
@@ -364,10 +359,11 @@ msgstr "Età"
 #. module: medical
 #: view:medical.patient:medical.medical_patient_view_kanban
 msgid "Age:"
-msgstr "Età:"
+msgstr "Age:"
 
 #. module: medical
-#: field:medical.appointment,alias:0 field:res.partner,alias:0
+#: field:medical.appointment,alias:0
+#: field:res.partner,alias:0
 msgid "Alias"
 msgstr "Alias"
 
@@ -381,7 +377,7 @@ msgstr "Ambulatorio"
 #: model:ir.ui.menu,name:medical.medical_appointment_root
 #: view:medical.appointment:medical.medical_appointment_view_form
 msgid "Appointment"
-msgstr "Appuntamento"
+msgstr "Appuntamenti"
 
 #. module: medical
 #: view:medical.appointment:medical.medical_appointment_view_search
@@ -425,7 +421,8 @@ msgid "Check if the party is a health professional"
 msgstr "Spunta se il Partner è un Professionista"
 
 #. module: medical
-#: help:res.partner,is_insurance_company:0 help:res.partner,is_patient:0
+#: help:res.partner,is_insurance_company:0
+#: help:res.partner,is_patient:0
 msgid "Check if the party is a patient"
 msgstr "Spunta se il Partner è un Paziente"
 
@@ -485,7 +482,7 @@ msgstr "Configurazione"
 #. module: medical
 #: model:medical.appointment.stage,name:medical.stage_appointment_confirm
 msgid "Confirm"
-msgstr "Conferma"
+msgstr "Confermato"
 
 #. module: medical
 #: view:medical.appointment:medical.medical_appointment_view_search
@@ -514,7 +511,8 @@ msgstr "Nazione"
 #: field:medical.appointment,create_uid:0
 #: field:medical.appointment.history,create_uid:0
 #: field:medical.appointment.stage,create_uid:0
-#: field:medical.patient,create_uid:0 field:medical.physician,create_uid:0
+#: field:medical.patient,create_uid:0
+#: field:medical.physician,create_uid:0
 #: field:medical.physician.schedule.template,create_uid:0
 #: field:medical.physician.services,create_uid:0
 #: field:medical.physician.unavailable.wizard,create_uid:0
@@ -526,7 +524,8 @@ msgstr "Creato da"
 #: field:medical.appointment,create_date:0
 #: field:medical.appointment.history,create_date:0
 #: field:medical.appointment.stage,create_date:0
-#: field:medical.patient,create_date:0 field:medical.physician,create_date:0
+#: field:medical.patient,create_date:0
+#: field:medical.physician,create_date:0
 #: field:medical.physician.schedule.template,create_date:0
 #: field:medical.physician.services,create_date:0
 #: field:medical.physician.unavailable.wizard,create_date:0
@@ -600,11 +599,6 @@ msgstr "Data di Nascita"
 #: model:medical.appointment.stage,name:medical.stage_appointment_done
 msgid "Done"
 msgstr "Completato"
-
-#. module: medical
-#: model:medical.appointment.stage,name:medical.stage_appointment_new
-msgid "Draft"
-msgstr "Bozza"
 
 #. module: medical
 #: field:medical.appointment,duration:0
@@ -685,7 +679,7 @@ msgstr "Raggruppa Per..."
 #: view:medical.appointment:medical.medical_appointment_view_search
 #: field:medical.appointment,institution_id:0
 msgid "Health Center"
-msgstr "Centro per la Salute"
+msgstr "Struttura"
 
 #. module: medical
 #: field:res.partner,is_doctor:0
@@ -721,12 +715,16 @@ msgid "I don't want to receive comercial messages"
 msgstr "Non voglio ricevere comunicazioni commerciali"
 
 #. module: medical
-#: field:medical.appointment,id:0 field:medical.appointment.history,id:0
-#: field:medical.appointment.stage,id:0 field:medical.patient,id:0
-#: field:medical.physician,code:0 field:medical.physician,id:0
+#: field:medical.appointment,id:0
+#: field:medical.appointment.history,id:0
+#: field:medical.appointment.stage,id:0
+#: field:medical.patient,id:0
+#: field:medical.physician,code:0
+#: field:medical.physician,id:0
 #: field:medical.physician.schedule.template,id:0
 #: field:medical.physician.services,id:0
-#: field:medical.physician.unavailable.wizard,id:0 field:medical.specialty,id:0
+#: field:medical.physician.unavailable.wizard,id:0
+#: field:medical.specialty,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -743,12 +741,12 @@ msgstr "Se NON selezionato, consente di nascondere il medico senza rimuoverlo."
 #. module: medical
 #: model:medical.appointment.stage,name:medical.stage_appointment_in_consultation
 msgid "In Consultation"
-msgstr "In Consulto"
+msgstr "In Corso"
 
 #. module: medical
 #: selection:medical.appointment,appointment_type:0
 msgid "Inpatient"
-msgstr "Degente"
+msgstr "Paziente"
 
 #. module: medical
 #: view:medical.physician:medical.medical_physician_view_search
@@ -777,7 +775,8 @@ msgid "Internal Identification"
 msgstr "Identificazione Interna"
 
 #. module: medical
-#: field:res.partner,last_name:0 help:res.partner,last_name:0
+#: field:res.partner,last_name:0
+#: help:res.partner,last_name:0
 msgid "Last Name"
 msgstr "Cognome"
 
@@ -785,7 +784,8 @@ msgstr "Cognome"
 #: field:medical.appointment,write_uid:0
 #: field:medical.appointment.history,write_uid:0
 #: field:medical.appointment.stage,write_uid:0
-#: field:medical.patient,write_uid:0 field:medical.physician,write_uid:0
+#: field:medical.patient,write_uid:0
+#: field:medical.physician,write_uid:0
 #: field:medical.physician.schedule.template,write_uid:0
 #: field:medical.physician.services,write_uid:0
 #: field:medical.physician.unavailable.wizard,write_uid:0
@@ -797,7 +797,8 @@ msgstr "Ultimo aggiornamento di"
 #: field:medical.appointment,write_date:0
 #: field:medical.appointment.history,write_date:0
 #: field:medical.appointment.stage,write_date:0
-#: field:medical.patient,write_date:0 field:medical.physician,write_date:0
+#: field:medical.patient,write_date:0
+#: field:medical.physician,write_date:0
 #: field:medical.physician.schedule.template,write_date:0
 #: field:medical.physician.services,write_date:0
 #: field:medical.physician.unavailable.wizard,write_date:0
@@ -840,7 +841,7 @@ msgstr "Coniugato/a"
 #: model:ir.ui.menu,name:medical.medical_root
 #: view:res.partner:medical.view_res_partner_form
 msgid "Medical"
-msgstr "Medico"
+msgstr "Casa di Cura"
 
 #. module: medical
 #: view:medical.appointment:medical.medical_appointment_view_form
@@ -1008,7 +1009,7 @@ msgstr "Dati relativi al Medico del Partner"
 #: view:medical.patient:medical.medical_patient_view_form
 #: field:res.partner,is_patient:0
 msgid "Patient"
-msgstr "Degente"
+msgstr "Pazienti"
 
 #. module: medical
 #: help:medical.patient,identification_code:0
@@ -1024,11 +1025,6 @@ msgstr "Nome Paziente"
 #: view:medical.appointment:medical.medical_appointment_view_kanban
 msgid "Patient:"
 msgstr "Paziente:"
-
-#. module: medical
-#: model:medical.appointment.stage,name:medical.stage_appointment_in_review
-msgid "Pending Review"
-msgstr "In attesa di Revisione"
 
 #. module: medical
 #: field:res.partner,is_person:0
@@ -1054,7 +1050,7 @@ msgstr "Telefono:"
 #: field:medical.physician.services,physician_id:0
 #: field:medical.physician.unavailable.wizard,physician_id:0
 msgid "Physician"
-msgstr "Medico"
+msgstr "Personale Sanitario"
 
 #. module: medical
 #: help:medical.appointment,physician_id:0
@@ -1156,7 +1152,7 @@ msgstr "Celibe/Nubile"
 #: view:medical.specialty:medical.medical_specialty_view_search
 #: field:medical.specialty,name:0
 msgid "Specialty"
-msgstr "Specializzazione"
+msgstr "Specializzazioni"
 
 #. module: medical
 #: help:medical.physician,specialty_id:0
@@ -1226,11 +1222,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: medical
-#: model:medical.appointment.stage,name:medical.stage_unavailable
-msgid "Unavailable"
-msgstr "Non Disponibile"
-
-#. module: medical
 #: field:medical.appointment,urgency:0
 msgid "Urgency Level"
 msgstr "Livello Urgenza"
@@ -1258,7 +1249,7 @@ msgstr "Vaccino"
 #. module: medical
 #: model:medical.appointment.stage,name:medical.stage_appointment_waiting
 msgid "Waiting"
-msgstr "In Attesa"
+msgstr "In Attesa di Conferma"
 
 #. module: medical
 #: selection:medical.physician.schedule.template,day:0
@@ -1315,3 +1306,4 @@ msgstr "Es: www.simplerp.it"
 #: selection:medical.patient,marital_status:0
 msgid "law marriage"
 msgstr "Convivenza"
+

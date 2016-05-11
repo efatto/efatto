@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_his
+#	* medical_his
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 08:43+0000\n"
-"PO-Revision-Date: 2016-05-09 10:53+0200\n"
+"POT-Creation-Date: 2016-05-10 15:45+0000\n"
+"PO-Revision-Date: 2016-05-10 15:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_his
 #: model:ir.model,name:medical_his.model_abstract_medical_hospital
@@ -23,9 +21,12 @@ msgid "Abstract Medical Hospital"
 msgstr "Estratto"
 
 #. module: medical_his
-#: field:abstract.medical.hospital,active:0 field:medical.hospital.bed,active:0
-#: field:medical.hospital.or,active:0 field:medical.hospital.room,active:0
-#: field:medical.hospital.unit,active:0 field:medical.hospital.zone,active:0
+#: field:abstract.medical.hospital,active:0
+#: field:medical.hospital.bed,active:0
+#: field:medical.hospital.or,active:0
+#: field:medical.hospital.room,active:0
+#: field:medical.hospital.unit,active:0
+#: field:medical.hospital.zone,active:0
 msgid "Active"
 msgstr "Attivo"
 
@@ -135,19 +136,19 @@ msgstr "Raggruppa Per..."
 #: model:ir.actions.act_window,name:medical_his.medical_hospital_bed_action
 #: model:ir.ui.menu,name:medical_his.medical_hospital_bed
 msgid "Hospital Bed"
-msgstr "Letto"
+msgstr "Letti"
 
 #. module: medical_his
 #: model:ir.actions.act_window,name:medical_his.medical_hospital_or_action
 #: model:ir.ui.menu,name:medical_his.medical_hospital_or
 msgid "Hospital Operating Room"
-msgstr "Sala Operatoria"
+msgstr "Sale Operatorie"
 
 #. module: medical_his
 #: model:ir.actions.act_window,name:medical_his.medical_hospital_room_action
 #: model:ir.ui.menu,name:medical_his.medical_hospital_room
 msgid "Hospital Room"
-msgstr "Camera"
+msgstr "Camere"
 
 #. module: medical_his
 #: model:ir.actions.act_window,name:medical_his.medical_hospital_unit_action
@@ -159,12 +160,15 @@ msgstr "Unità"
 #: model:ir.actions.act_window,name:medical_his.medical_hospital_zone_action
 #: model:ir.ui.menu,name:medical_his.medical_hospital_zone
 msgid "Hospital Zone"
-msgstr "Area"
+msgstr "Aree"
 
 #. module: medical_his
-#: field:abstract.medical.hospital,id:0 field:medical.hospital.bed,id:0
-#: field:medical.hospital.bed.type,id:0 field:medical.hospital.or,id:0
-#: field:medical.hospital.room,id:0 field:medical.hospital.unit,id:0
+#: field:abstract.medical.hospital,id:0
+#: field:medical.hospital.bed,id:0
+#: field:medical.hospital.bed.type,id:0
+#: field:medical.hospital.or,id:0
+#: field:medical.hospital.room,id:0
+#: field:medical.hospital.unit,id:0
 #: field:medical.hospital.zone,id:0
 msgid "ID"
 msgstr "ID"
@@ -214,8 +218,10 @@ msgid "Invalidate Zone: proceed anyway?"
 msgstr "Disattivazione Zona: procedere ?"
 
 #. module: medical_his
-#: field:medical.hospital.or,label:0 field:medical.hospital.room,label:0
-#: field:medical.hospital.unit,label:0 field:medical.hospital.zone,label:0
+#: field:medical.hospital.or,label:0
+#: field:medical.hospital.room,label:0
+#: field:medical.hospital.unit,label:0
+#: field:medical.hospital.zone,label:0
 msgid "Label"
 msgstr "Etichetta"
 
@@ -295,7 +301,8 @@ msgstr "Ulteriori Informazioni"
 
 #. module: medical_his
 #: view:medical.hospital.bed:medical_his.medical_hospital_bed_form_view
-#: field:medical.hospital.bed,name:0 field:medical.hospital.bed.type,name:0
+#: field:medical.hospital.bed,name:0
+#: field:medical.hospital.bed.type,name:0
 #: view:medical.hospital.or:medical_his.medical_hospital_or_form_view
 #: field:medical.hospital.or,name:0
 #: view:medical.hospital.room:medical_his.medical_hospital_room_form_view
@@ -362,7 +369,8 @@ msgid "Parent Zone"
 msgstr "Area Superiore"
 
 #. module: medical_his
-#: field:medical.hospital.bed,phone:0 field:medical.hospital.room,phone:0
+#: field:medical.hospital.bed,phone:0
+#: field:medical.hospital.room,phone:0
 msgid "Phone"
 msgstr "Telefono"
 
@@ -431,3 +439,4 @@ msgstr "Unità"
 #: field:medical.hospital.room,zone_id:0
 msgid "Zone"
 msgstr "Area"
+

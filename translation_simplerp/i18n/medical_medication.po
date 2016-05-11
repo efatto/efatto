@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_medication
+#	* medical_medication
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 11:23+0000\n"
-"PO-Revision-Date: 2016-05-09 13:48+0200\n"
+"POT-Creation-Date: 2016-05-10 15:46+0000\n"
+"PO-Revision-Date: 2016-05-10 15:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_medication
 #: model:medical.medication.dosage,name:medical_medication.422114001
@@ -252,8 +250,10 @@ msgid "Hours"
 msgstr "Ore"
 
 #. module: medical_medication
-#: field:abstract.medical.medication,id:0 field:medical.medication.dosage,id:0
-#: field:medical.medication.template,id:0 field:medical.patient.medication,id:0
+#: field:abstract.medical.medication,id:0
+#: field:medical.medication.dosage,id:0
+#: field:medical.medication.template,id:0
+#: field:medical.patient.medication,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -333,7 +333,7 @@ msgstr "Farmaco"
 #: model:ir.actions.act_window,name:medical_medication.medical_medication_dosage_action
 #: model:ir.ui.menu,name:medical_medication.medical_medication_dosage
 msgid "Medication Dosage"
-msgstr "Dosaggio Farmaco"
+msgstr "Posologie"
 
 #. module: medical_medication
 #: model:ir.actions.act_window,name:medical_medication.medical_medication_template_action
@@ -341,7 +341,7 @@ msgstr "Dosaggio Farmaco"
 #: view:medical.patient.medication:medical_medication.medical_patient_medication_search_view
 #: field:medical.patient.medication,medication_template_id:0
 msgid "Medication Template"
-msgstr "Modello Farmaco"
+msgstr "Modelli"
 
 #. module: medical_medication
 #: model:ir.actions.act_window,name:medical_medication.medical_patient_medication_action
@@ -571,3 +571,4 @@ msgstr "settimane"
 #: selection:medical.patient.medication,frequency_unit:0
 msgid "when required"
 msgstr "quando richiesto"
+

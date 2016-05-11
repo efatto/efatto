@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_disease
+#	* medical_disease
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-08 23:31+0000\n"
-"PO-Revision-Date: 2016-05-09 01:44+0200\n"
+"POT-Creation-Date: 2016-05-10 15:44+0000\n"
+"PO-Revision-Date: 2016-05-10 15:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_disease
 #: field:medical.patient.disease,active:0
@@ -71,7 +69,8 @@ msgid "Chronic"
 msgstr "Cronico"
 
 #. module: medical_disease
-#: field:medical.pathology,code:0 field:medical.pathology.group,code:0
+#: field:medical.pathology,code:0
+#: field:medical.pathology.group,code:0
 msgid "Code"
 msgstr "Codice"
 
@@ -117,7 +116,7 @@ msgstr "Data Guarigione"
 #: model:ir.ui.menu,name:medical_disease.medical_root_disease
 #: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
 msgid "Disease"
-msgstr "Malattia"
+msgstr "Malattie"
 
 #. module: medical_disease
 #: view:medical.pathology:medical_disease.medical_pathology_view_form
@@ -165,8 +164,10 @@ msgid "Healed"
 msgstr "Guarito"
 
 #. module: medical_disease
-#: field:medical.pathology,id:0 field:medical.pathology.category,id:0
-#: field:medical.pathology.group,id:0 field:medical.patient.disease,id:0
+#: field:medical.pathology,id:0
+#: field:medical.pathology.category,id:0
+#: field:medical.pathology.group,id:0
+#: field:medical.patient.disease,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -297,8 +298,10 @@ msgid "More Info"
 msgstr "Ulteriori informazioni"
 
 #. module: medical_disease
-#: field:medical.pathology,name:0 field:medical.pathology.category,name:0
-#: field:medical.pathology.group,name:0 field:medical.patient.disease,name:0
+#: field:medical.pathology,name:0
+#: field:medical.pathology.category,name:0
+#: field:medical.pathology.group,name:0
+#: field:medical.patient.disease,name:0
 msgid "Name"
 msgstr "Nome"
 
@@ -345,13 +348,13 @@ msgstr "Patologia"
 #: model:ir.actions.act_window,name:medical_disease.medical_pathology_category_action
 #: model:ir.ui.menu,name:medical_disease.medical_pathology_category
 msgid "Pathology Categories"
-msgstr "Categoria di Patologia"
+msgstr "Categorie Patologia"
 
 #. module: medical_disease
 #: model:ir.actions.act_window,name:medical_disease.medical_pathology_group_action
 #: model:ir.ui.menu,name:medical_disease.medical_pathology_group
 msgid "Pathology Group"
-msgstr "Gruppo Patologia"
+msgstr "Gruppi Patologia"
 
 #. module: medical_disease
 #: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
@@ -363,7 +366,7 @@ msgstr "Paziente"
 #: model:ir.actions.act_window,name:medical_disease.medical_patient_disease_action
 #: model:ir.ui.menu,name:medical_disease.medical_sub_disease
 msgid "Patient Diseases"
-msgstr "Malattie Paziente"
+msgstr "Malattie"
 
 #. module: medical_disease
 #: view:medical.patient.disease:medical_disease.medical_patient_view_disease_search
@@ -473,3 +476,4 @@ msgstr "Peggioramento"
 #: help:medical.pathology.group,code:0
 msgid "for example MDG6 code will contain the Millennium Development Goals # 6 diseases : Tuberculosis, Malaria and HIV/AIDS"
 msgstr "per esempio il codice MDG6 conterrà le malattie del \"Millennium Development Goals # 6\": Tubercolosi, Malaria e HIV/AIDS"
+

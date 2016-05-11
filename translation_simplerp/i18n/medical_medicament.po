@@ -1,26 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_medicament
+#	* medical_medicament
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 10:52+0000\n"
-"PO-Revision-Date: 2016-05-09 13:49+0200\n"
+"POT-Creation-Date: 2016-05-10 15:46+0000\n"
+"PO-Revision-Date: 2016-05-10 15:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_medicament
 #: help:medical.medicament,pregnancy_category:0
-msgid ""
-"** FDA Pregancy Categories ***\n"
+msgid "** FDA Pregancy Categories ***\n"
 "CATEGORY A :Adequate and well-controlled human studies havefailed to demonstrate a risk to the fetus in the firsttrimester of pregnancy (and there is no evidence of risk in later trimesters).\n"
 "\n"
 "CATEGORY B : Animal reproduction studies have failed to demonstrate a risk to the fetus and there are no adequate and well-controlled studies in pregnant women OR Animal studies have shown an adverse effect, but adequate and well-controlled studies in pregnant women have failed to demonstrate a risk to the fetus in any trimester.\n"
@@ -32,8 +29,7 @@ msgid ""
 "CATEGORY X : Studies in animals or humans have demonstrated fetal abnormalities and/or there is positive evidence of human fetal risk based on adverse reaction data from investigational or marketing experience, and the risks involved in use of the drug in pregnant women clearly outweigh potential benefits.\n"
 "\n"
 "CATEGORY N : Not yet classified"
-msgstr ""
-"** FDA Pregancy Categories ***\n"
+msgstr "** FDA Pregancy Categories ***\n"
 "CATEGORY A :Adequate and well-controlled human studies havefailed to demonstrate a risk to the fetus in the firsttrimester of pregnancy (and there is no evidence of risk in later trimesters).\n"
 "\n"
 "CATEGORY B : Animal reproduction studies have failed to demonstrate a risk to the fetus and there are no adequate and well-controlled studies in pregnant women OR Animal studies have shown an adverse effect, but adequate and well-controlled studies in pregnant women have failed to demonstrate a risk to the fetus in any trimester.\n"
@@ -134,7 +130,8 @@ msgid "Cement"
 msgstr "Cemento"
 
 #. module: medical_medicament
-#: field:medical.drug.form,code:0 field:medical.drug.route,code:0
+#: field:medical.drug.form,code:0
+#: field:medical.drug.route,code:0
 msgid "Code"
 msgstr "Codice"
 
@@ -156,13 +153,15 @@ msgid "Cream"
 msgstr "Crema"
 
 #. module: medical_medicament
-#: field:medical.drug.form,create_uid:0 field:medical.drug.route,create_uid:0
+#: field:medical.drug.form,create_uid:0
+#: field:medical.drug.route,create_uid:0
 #: field:medical.medicament,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: medical_medicament
-#: field:medical.drug.form,create_date:0 field:medical.drug.route,create_date:0
+#: field:medical.drug.form,create_date:0
+#: field:medical.drug.route,create_date:0
 #: field:medical.medicament,create_date:0
 msgid "Created on"
 msgstr "Created il"
@@ -211,18 +210,18 @@ msgstr "Gocce"
 #. module: medical_medicament
 #: model:ir.ui.menu,name:medical_medicament.medical_drug_route
 msgid "Drug Admin Route"
-msgstr "Percorso Amministrazione Farmaco"
+msgstr "Somministrazioni"
 
 #. module: medical_medicament
 #: model:ir.ui.menu,name:medical_medicament.medical_drug_form
 #: field:medical.medicament,drug_form_id:0
 msgid "Drug Form"
-msgstr "Drug FormModulo Farmaco"
+msgstr "Formati"
 
 #. module: medical_medicament
 #: model:ir.actions.act_window,name:medical_medicament.medical_drug_form_action
 msgid "Drug Forms"
-msgstr "Moduli Farmaco"
+msgstr "Formati"
 
 #. module: medical_medicament
 #: view:medical.medicament:medical_medicament.medical_medicament_view_form
@@ -242,7 +241,7 @@ msgstr "Il nome del percorso del farmaco deve essere univoco!"
 #. module: medical_medicament
 #: model:ir.actions.act_window,name:medical_medicament.medical_drug_route_action
 msgid "Drug Routes"
-msgstr "Percorsi Farmcao"
+msgstr "Tipi di Somministrazione"
 
 #. module: medical_medicament
 #: sql_constraint:medical.drug.form:0
@@ -262,7 +261,7 @@ msgstr "Elisir"
 #. module: medical_medicament
 #: model:ir.model,name:medical_medicament.model_medical_medicament
 msgid "Email Thread"
-msgstr "Discussione"
+msgstr "Thread Email"
 
 #. module: medical_medicament
 #: model:medical.drug.form,name:medical_medicament.EML
@@ -360,7 +359,8 @@ msgid "Holds the Chatter summary (number of messages, ...). This summary is dire
 msgstr "Gestisce il riepilogo (numero di messaggi ecc...) della chat. Questo riepilogo è generato in html per poter essere inserito nelle viste kanban."
 
 #. module: medical_medicament
-#: field:medical.drug.form,id:0 field:medical.drug.route,id:0
+#: field:medical.drug.form,id:0
+#: field:medical.drug.route,id:0
 #: field:medical.medicament,id:0
 msgid "ID"
 msgstr "ID"
@@ -507,13 +507,15 @@ msgid "Last Message Date"
 msgstr "Data ultimo messaggio"
 
 #. module: medical_medicament
-#: field:medical.drug.form,write_uid:0 field:medical.drug.route,write_uid:0
+#: field:medical.drug.form,write_uid:0
+#: field:medical.drug.route,write_uid:0
 #: field:medical.medicament,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultimo Aggiornamento di"
 
 #. module: medical_medicament
-#: field:medical.drug.form,write_date:0 field:medical.drug.route,write_date:0
+#: field:medical.drug.form,write_date:0
+#: field:medical.drug.route,write_date:0
 #: field:medical.medicament,write_date:0
 msgid "Last Updated on"
 msgstr "Ultimo Aggiornamento il"
@@ -1068,3 +1070,4 @@ msgstr "Cancella"
 #: model:medical.drug.route,name:medical_medicament.route_47
 msgid "Wound"
 msgstr "Ferita"
+

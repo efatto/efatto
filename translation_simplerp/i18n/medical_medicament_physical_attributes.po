@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_medicament_attributes
+#	* medical_medicament_attributes
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 10:47+0000\n"
-"PO-Revision-Date: 2016-05-09 12:50+0200\n"
+"POT-Creation-Date: 2016-05-10 15:46+0000\n"
+"PO-Revision-Date: 2016-05-10 15:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_medicament_attributes
 #: sql_constraint:medical.medicament.attribute.abstract:0
@@ -64,7 +62,7 @@ msgstr "Created il"
 #. module: medical_medicament_attributes
 #: model:ir.model,name:medical_medicament_attributes.model_medical_medicament
 msgid "Email Thread"
-msgstr "Discussione"
+msgstr "Thread Email"
 
 #. module: medical_medicament_attributes
 #: view:medical.medicament:medical_medicament_attributes.medical_medicament_view_form
@@ -138,3 +136,4 @@ msgstr "Forma"
 #: help:medical.medicament.attribute.shape,code:0
 msgid "Short Code of Attribute"
 msgstr "Codice Abbreviato Attributo"
+

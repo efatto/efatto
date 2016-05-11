@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_family
+#	* medical_family
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 08:32+0000\n"
-"PO-Revision-Date: 2016-05-09 10:42+0200\n"
+"POT-Creation-Date: 2016-05-10 15:44+0000\n"
+"PO-Revision-Date: 2016-05-10 15:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
-"X-Generator: Poedit 1.8.7\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: medical_family
 #: view:medical.patient:medical_family.medical_patient_view_form
@@ -33,12 +31,14 @@ msgid "Country"
 msgstr "Nazione"
 
 #. module: medical_family
-#: field:medical.family,create_uid:0 field:medical.family.role,create_uid:0
+#: field:medical.family,create_uid:0
+#: field:medical.family.role,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: medical_family
-#: field:medical.family,create_date:0 field:medical.family.role,create_date:0
+#: field:medical.family,create_date:0
+#: field:medical.family.role,create_date:0
 msgid "Created on"
 msgstr "Creato il"
 
@@ -62,7 +62,7 @@ msgstr "Famiglie"
 #: field:medical.family,name:0
 #: view:medical.patient:medical_family.medical_patient_view_form
 msgid "Family"
-msgstr "Famiglia"
+msgstr "Famiglie"
 
 #. module: medical_family
 #: view:medical.patient:medical_family.medical_patient_view_form
@@ -100,7 +100,8 @@ msgid "Fully Dependent"
 msgstr "Completamente Dipendente"
 
 #. module: medical_family
-#: field:medical.family,id:0 field:medical.family.role,id:0
+#: field:medical.family,id:0
+#: field:medical.family.role,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -110,12 +111,14 @@ msgid "Info"
 msgstr "Info"
 
 #. module: medical_family
-#: field:medical.family,write_uid:0 field:medical.family.role,write_uid:0
+#: field:medical.family,write_uid:0
+#: field:medical.family.role,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultimo Aggiornamento di"
 
 #. module: medical_family
-#: field:medical.family,write_date:0 field:medical.family.role,write_date:0
+#: field:medical.family,write_date:0
+#: field:medical.family.role,write_date:0
 msgid "Last Updated on"
 msgstr "Ultimo Aggiornamento il"
 
@@ -195,3 +198,4 @@ msgstr "Tag..."
 #: view:medical.patient:medical_family.medical_patient_view_form
 msgid "ZIP"
 msgstr "CAP"
+

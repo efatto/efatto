@@ -229,54 +229,57 @@ class AccountAssetAsset(orm.Model):
             res = {'purchase_value': 0.0, 'increase_value': 0.0,
                    'decrease_value': 0.0, 'remove_value': 0.0}
         for dl in ids:
-            if dl[2]['type'] == 'purchase':
-                res['increase_value'] += dl[2]['amount']
-            if dl[2]['type'] == 'sale':
-                res['decrease_value'] -= dl[2]['amount']
-            if dl[2]['type'] == 'remove':
-                res['remove_value'] += dl[2]['amount']
-            if dl[2]['type'] == 'create':
-                res['purchase_value'] += dl[2]['amount']
+            if dl[2].get('type', False):
+                if dl[2]['type'] == 'purchase':
+                    res['increase_value'] += dl[2]['amount']
+                if dl[2]['type'] == 'sale':
+                    res['decrease_value'] -= dl[2]['amount']
+                if dl[2]['type'] == 'remove':
+                    res['remove_value'] += dl[2]['amount']
+                if dl[2]['type'] == 'create':
+                    res['purchase_value'] += dl[2]['amount']
         return res
 
-    def create(self, cr, uid, vals, context=None):
-        if not context:
-            context = {}
-        if vals.get('method_time') != 'year' and not vals.get('prorata'):
-            vals['prorata'] = True
-        #SC not using super() to not create first line anyway ?
-        asset_id = super(AccountAssetAsset, self).create(
-            cr, uid, vals, context=context)
-        if context.get('create_asset_from_move_line'):
-            # Trigger compute of asset_value
-            self.write(cr, uid, [asset_id], {'salvage_value': 0.0})
-        asset = self.browse(cr, uid, asset_id, context)
-        if asset.type == 'normal':
-            #SC not create first line if set manually
-            if vals.get('depreciation_line_ids', False):
-                values = self._compute_asset_value_from_dl(cr, uid, vals[
-                    'depreciation_line_ids'], context)
-                self.write(cr, uid, [asset_id], values)
-            else:
-                # create first asset line
-                asset_line_obj = self.pool.get(
-                    'account.asset.depreciation.line')
-                line_name = self._get_depreciation_entry_name(
-                    cr, uid, asset, 0, context=context)
-                asset_line_vals = {
-                    'amount': asset.asset_value,
-                    'asset_id': asset_id,
-                    'name': line_name,
-                    'line_date': asset.date_start,
-                    'init_entry': True,
-                    'type': 'create',
-                }
-                asset_line_id = asset_line_obj.create(
-                    cr, uid, asset_line_vals, context=context)
-                if context.get('create_asset_from_move_line'):
-                    asset_line_obj.write(cr, uid, [asset_line_id],
-                                         {'move_id': context['move_id']})
-        return asset_id
+    # TODO if create a line of 'purchase' or 'create' value, it will not be considered
+    # UNTIL NOW it must let it create row of create and after link to invoice
+    # def create(self, cr, uid, vals, context=None):
+    #     if not context:
+    #         context = {}
+    #     if vals.get('method_time') != 'year' and not vals.get('prorata'):
+    #         vals['prorata'] = True
+    #     #SC not using super() to not create first line anyway ?
+    #     asset_id = super(AccountAssetAsset, self).create(
+    #         cr, uid, vals, context=context)
+    #     if context.get('create_asset_from_move_line'):
+    #         # Trigger compute of asset_value
+    #         self.write(cr, uid, [asset_id], {'salvage_value': 0.0})
+    #     asset = self.browse(cr, uid, asset_id, context)
+    #     if asset.type == 'normal':
+    #         #SC not create first line if set manually
+    #         if vals.get('depreciation_line_ids', False):
+    #             values = self._compute_asset_value_from_dl(cr, uid, vals[
+    #                 'depreciation_line_ids'], context)
+    #             self.write(cr, uid, [asset_id], values)
+    #         else: #TODO if not context.get('invoice', False):
+    #             # create first asset line
+    #             asset_line_obj = self.pool.get(
+    #                 'account.asset.depreciation.line')
+    #             line_name = self._get_depreciation_entry_name(
+    #                 cr, uid, asset, 0, context=context)
+    #             asset_line_vals = {
+    #                 'amount': asset.asset_value,
+    #                 'asset_id': asset_id,
+    #                 'name': line_name,
+    #                 'line_date': asset.date_start,
+    #                 'init_entry': True,
+    #                 'type': 'create',
+    #             }
+    #             asset_line_id = asset_line_obj.create(
+    #                 cr, uid, asset_line_vals, context=context)
+    #             if context.get('create_asset_from_move_line'):
+    #                 asset_line_obj.write(cr, uid, [asset_line_id],
+    #                                      {'move_id': context['move_id']})
+    #     return asset_id
 
     def write(self, cr, uid, ids, vals, context=None):
         if not context:
@@ -378,6 +381,8 @@ class AccountAssetDepreciationLine(orm.Model):
     }
 
     def write(self, cr, uid, ids, vals, context=None):
+        if not context:
+            context = {}
         res = super(AccountAssetDepreciationLine, self).write(
             cr, uid, ids, vals, context)
         for dl in self.browse(cr, uid, ids, context):

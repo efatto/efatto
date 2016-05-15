@@ -8,12 +8,15 @@
                <field name="method_number" position="replace">
                     <field name="method_number" attrs="{'invisible': True}"/>
                </field>
-                <field name="method_number" position="after">
-                    <field name="method_percent" />
-                </field>
-                <field name="prorata" position="after">
-                    <field name="first_year_half"/>
-                </field>
+               <field name="method_period" position="replace">
+                   <field name="method_period" attrs="{'invisible': True}"/>
+               </field>
+               <field name="method_number" position="after">
+                   <field name="method_percent" />
+               </field>
+               <field name="prorata" position="after">
+                   <field name="first_year_half"/>
+               </field>
             </field>
         </record>
 
@@ -25,9 +28,15 @@
                <field name="method_number" position="replace">
                     <field name="method_number" attrs="{'invisible': True}"/>
                </field>
+               <field name="method_period" position="replace">
+                   <field name="method_period" attrs="{'invisible': True}"/>
+               </field>
                <field name="method_number" position="after">
                     <field name="method_percent" />
                </field>
+               <button name="%(account_asset_management.action_asset_modify)d" position="replace">
+                   <button name="%(account_asset_management.action_asset_modify)d" attrs="{'invisible': True}"/>
+               </button>
                <field name="prorata" position="after">
                     <field name="first_year_half"/>
                </field>

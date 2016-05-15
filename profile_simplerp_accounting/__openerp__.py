@@ -29,7 +29,6 @@
     'license': 'AGPL-3',
     "depends": [
         'account_analytic_analysis',
-        'account_invoice_entry_date_ext',
         # 'account_tax_simplified',
         'account_vat_statement_endyear',
         'account_withholding_tax',

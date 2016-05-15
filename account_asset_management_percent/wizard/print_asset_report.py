@@ -19,7 +19,7 @@ class wizard_print_asset_report(orm.TransientModel):
         'date_start': fields.date('Date start asset'),
         'state': fields.selection([
             ('draft', 'Draft'),
-            ('open', 'Running'),
+            ('open', 'Running (and draft if simulated)'),
             ('close', 'Close'),
             ('removed', 'Removed'),
             ], 'Status', required=True,

@@ -8,11 +8,15 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Asset Report">
+                    <group>
                     <field name="type" />
-                    <field name="fiscal_page_base"/>
-                    <field name="fy_id"/>
                     <field name="date_start"/>
                     <field name="state"/>
+                    </group>
+                    <group>
+                    <field name="fy_id"/>
+                    <field name="fiscal_page_base"/>
+                    </group>
                     <separator string="Categories" colspan="4"/>
                     <field name="category_ids"/>
                     <!--separator string="Journals" colspan="4"/-->

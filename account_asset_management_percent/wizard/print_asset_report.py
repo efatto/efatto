@@ -24,11 +24,16 @@ class wizard_print_asset_report(orm.TransientModel):
             ('removed', 'Removed'),
             ], 'Status', required=True,
             help="When an asset is created, the status is 'Draft'.\n"
-                 "If the asset is confirmed, the status goes in 'Running' and the depreciation lines can be posted to the accounting.\n"
-                 "If the last depreciation line is posted, the asset goes into the 'Close' status.\n"
-                 "When the removal entries are generated, the asset goes into the 'Removed' status."),
+                 "If the asset is confirmed, the status goes in 'Running' and "
+                 "the depreciation lines can be posted to the accounting.\n"
+                 "If the last depreciation line is posted, the asset goes into"
+                 " the 'Close' status.\n"
+                 "When the removal entries are generated, the asset goes into"
+                 " the 'Removed' status."),
         'category_ids': fields.many2many(
-             'account.asset.category', 'asset_report_ctg_rel', 'category_id', 'report_id', 'Categories', help='Select categories of assets', required=True),
+            'account.asset.category', 'report_asset_ctg_rel', 'category_id',
+            'registro_id', 'Categories', help='Select categories of assets',
+            required=True),
         'fy_id': fields.many2one('account.fiscalyear', 'Fiscal Year', required=True),
     }
     _defaults = {
@@ -82,9 +87,18 @@ class wizard_print_asset_report(orm.TransientModel):
         datas['fy_name'] = wizard.fy_id.name
         datas['fy_id'] = [wizard.fy_id.id]
         datas['state'] = wizard.state
-        res = {
-            'type': 'ir.actions.report.xml',
-            'datas': datas,
-            'report_name': 'asset_report',
-        }
-        return res
+        # res = {
+        #     'type': 'ir.actions.report.xml',
+        #     'datas': datas,
+        #     'report_name': 'report_asset',
+        # }
+        # return res
+
+        report_name = 'account_asset_management_percent.report_asset'
+        # datas = {
+        #     'ids': move_ids,
+        #     'model': 'account.move',
+        #     'form': datas_form
+        # }
+        return self.pool['report'].get_action(
+            cr, uid, [], report_name, data=datas, context=context)

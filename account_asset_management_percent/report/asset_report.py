@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp.report import report_sxw
+from openerp.osv import osv
 import logging
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -129,9 +130,15 @@ class Parser(report_sxw.rml_parse):
                     res['total']['value_residual'] += depr_amount[asset.id]['remaining_value']
         return res
 
+    def _get_asset(self, asset_ids):
+        asset_list = self.pool.get(
+            'account.asset.asset').browse(self.cr, self.uid, asset_ids)
+        return asset_list
+
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
+            'get_asset': self._get_asset,
             'invoiced_asset_lines': self._get_invoiced_account_move_lines,
             'asset_start_year': self._get_asset_start_year,
             'asset_fy_increase_decrease_amount': self._get_asset_fy_increase_decrease_amount,
@@ -143,7 +150,7 @@ class Parser(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
         self.localcontext.update({
-            'fiscal_page_base': data.get('fiscal_page_base'),
+            'l10n_it_count_fiscal_page_base': data.get('fiscal_page_base'),
             'start_date': data.get('date_start'),
             'fy_name': data.get('fy_name'),
             'type': data.get('type'),
@@ -152,8 +159,10 @@ class Parser(report_sxw.rml_parse):
             'category_ids': data.get('category_ids'),
         })
         return super(Parser, self).set_context(objects, data, ids, report_type=report_type)
-#
-# report_sxw.report_sxw('report.asset_report',
-#                       'asset_report',
-#                       'addons/account_asset_management_percent/data/asset_report.odt',
-#                       parser=Parser)
+
+
+class ReportAsset(osv.AbstractModel):
+    _name = 'report.account_asset_management_percent.report_asset'
+    _inherit = 'report.abstract_report'
+    _template = 'account_asset_management_percent.report_asset'
+    _wrapped_report_class = Parser

@@ -26,13 +26,15 @@
     'license': 'AGPL-3',
     'description': 'Italian customization for asset',
     'depends': [
+        'account',
         'account_asset_management',
-        'report_aeroo',
+        'l10n_it_account',
     ],
     'data': [
-        'views/account_asset_view.xml',
         'data/reports.xml',
         'report/print_asset_report.xml',
+        'views/account_asset_view.xml',
+        'views/report_asset.xml',
     ],
     'installable': True
 }

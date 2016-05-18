@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+      <record id="act_res_partner_3_sale_order" model="ir.actions.act_window">
+            <field name="name">Sales</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_partner_id': active_id}</field>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Offer for this customer.
+              </p><p>
+                Odoo will help you efficiently handle the complete sale flow:
+                quotation, sales order, delivery, invoicing and
+                payment.
+              </p><p>
+                The social feature helps you organize discussions on each sales
+                order, and allow your customer to keep track of the evolution
+                of the sales order.
+              </p>
+            </field>
+      </record>
+      <record id="res_partner_view_buttons_offer" model="ir.ui.view">
+            <field name="name">res.partner.view.buttons.offer</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button class="oe_inline oe_stat_button" type="action" name="%(sale_partner_button_view.act_res_partner_3_sale_order)d"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        icon="fa-strikethrough">
+                        <field string="Offers" name="draft_sale_order_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+      </record>
+
+      <!-- Partner kanban view inherte -->
+      <record model="ir.ui.view" id="crm_lead_partner_kanban_view_offer">
+            <field name="name">res.partner.kanban.saleorder.inherit.offer</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale.crm_lead_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="mobile" position="after">
+                    <field name="draft_sale_order_count"/>
+                </field>
+                <xpath expr="//div[@class='oe_kanban_partner_links']" position="inside">
+                    <a name="%(sale_partner_button_view.act_res_partner_3_sale_order)d" type="action" t-if="record.draft_sale_order_count.value>0">
+                        <t t-esc="record.draft_sale_order_count.value"/> Offers
+                    </a>
+                </xpath>
+            </field>
+      </record>
+
+  </data>
+</openerp>

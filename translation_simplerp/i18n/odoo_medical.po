@@ -848,24 +848,24 @@ msgstr "Casa di Cura"
 #: view:medical.appointment:medical.medical_appointment_view_search
 #: view:medical.appointment:medical.medical_appointment_view_tree
 msgid "Medical Appointment"
-msgstr "Appuntamento Medico"
+msgstr "Appuntamento"
 
 #. module: medical
 #: model:res.groups,name:medical.group_medical_assistant
 msgid "Medical Assistant"
-msgstr "Assistente Medico"
+msgstr "Operatore"
 
 #. module: medical
 #: help:medical.appointment,institution_id:0
 #: field:medical.patient,medical_center_id:0
 #: field:medical.physician.unavailable.wizard,institution_id:0
 msgid "Medical Center"
-msgstr "Centro Medico"
+msgstr "Struttura"
 
 #. module: medical
 #: model:res.groups,name:medical.group_medical_center_manager
 msgid "Medical Center Manager"
-msgstr "Dirigente Centro Medico"
+msgstr "Responsabile Sanitario"
 
 #. module: medical
 #: model:res.groups,name:medical.group_medical_configurator
@@ -885,7 +885,7 @@ msgstr "Emergenza Medica"
 #. module: medical
 #: model:res.groups,name:medical.group_medical_manager
 msgid "Medical Manager"
-msgstr "Dirigente Medico"
+msgstr "Primario"
 
 #. module: medical
 #: model:ir.model,name:medical.model_medical_patient
@@ -899,7 +899,7 @@ msgstr "Paziente"
 #: view:medical.physician:medical.medical_physician_view_search
 #: view:medical.physician:medical.medical_physician_view_tree
 msgid "Medical Physician"
-msgstr "Medico"
+msgstr "Operatore"
 
 #. module: medical
 #: view:medical.specialty:medical.medical_specialty_view_form

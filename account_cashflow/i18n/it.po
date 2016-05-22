@@ -23,13 +23,13 @@ msgstr "Registrazione Contabile one"
 #. module: account_cashflow
 #: field:res.company,cashflow_account_id:0
 msgid "Account for cash flow temporary moves"
-msgstr "Conto per movimenti temporanei di cash flow one"
+msgstr "Conto per movimenti temporanei di cash flow"
 
 #. module: account_cashflow
 #: model:ir.actions.act_window,name:account_cashflow.action_account_move_line_cash_flow
 #: model:ir.ui.menu,name:account_cashflow.menu_account_move_line_cashflow
 msgid "Cash Flow"
-msgstr "Cash Flow one"
+msgstr "Cash Flow"
 
 #. module: account_cashflow
 #: field:account.move,is_cashflow:0

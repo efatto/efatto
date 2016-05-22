@@ -19,12 +19,12 @@
 #
 {
     'name': 'Simplerp translations',
-    'version': '8.1.0.0.0',
+    'version': '8.1.1.0.0',
     'category': 'other',
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
-    'depends': [
-    ],
+    'summary': 'Simplerp translations, not need to be installed',
+    'depends': [],
     'installable': False,
 }

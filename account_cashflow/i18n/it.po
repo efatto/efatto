@@ -18,7 +18,7 @@ msgstr ""
 #. module: account_cashflow
 #: model:ir.model,name:account_cashflow.model_account_move
 msgid "Account Entry"
-msgstr "Registrazione Contabile one"
+msgstr "Registrazione Contabile"
 
 #. module: account_cashflow
 #: field:res.company,cashflow_account_id:0
@@ -45,7 +45,7 @@ msgstr "Aziende"
 #. module: account_cashflow
 #: field:account.move.line,date_cashflow:0
 msgid "Date cashflow"
-msgstr "Data cashflow one"
+msgstr "Data cashflow"
 
 #. module: account_cashflow
 #: view:account.move.line:account_cashflow.view_move_line_tree_cash_flow

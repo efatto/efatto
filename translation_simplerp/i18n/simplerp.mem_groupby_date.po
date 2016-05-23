@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mem_groupby_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-09 17:45+0000\n"
+"PO-Revision-Date: 2016-05-09 19:45+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#. module: mem_groupby_date
+#: view:mem.vehicle.log.fuel:mem_groupby_date.mem_vehicle_log_fuel_search
+#: view:mem.vehicle.odometer:mem_groupby_date.mem_vehicle_odometer_search
+msgid "Month"
+msgstr "Mese"
+
+#. module: mem_groupby_date
+#: view:mem.vehicle.log.fuel:mem_groupby_date.mem_vehicle_log_fuel_search
+#: view:mem.vehicle.odometer:mem_groupby_date.mem_vehicle_odometer_search
+msgid "Week"
+msgstr "Settimana"
+
+#. module: mem_groupby_date
+#: view:mem.vehicle.log.fuel:mem_groupby_date.mem_vehicle_log_fuel_search
+#: view:mem.vehicle.odometer:mem_groupby_date.mem_vehicle_odometer_search
+msgid "Year"
+msgstr "Anno"

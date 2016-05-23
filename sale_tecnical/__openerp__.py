@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright (C) 2013-2014 Didotech Srl (<http://www.didotech.com>)
+#
 #    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,21 +18,18 @@
 #
 #
 {
-    'name': 'Aeroo sale order report Simplerp',
+    'name': 'Sale tecnical manager',
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
+    'summary': 'Sale tecnical manager',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
-        'account',
-        'report_aeroo',
-        'report_branding',
-        'invoice_report_aeroo_simplerp',
-        'sale_tecnical',
+        'sale',
     ],
     'data': [
-        'data/reports.xml',
+        'views/sale_view.xml',
     ],
     'installable': True
 }

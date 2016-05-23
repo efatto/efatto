@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright (C) 2013-2014 Didotech Srl (<http://www.didotech.com>)
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#
+#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,22 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Aeroo sale order report Simplerp',
-    'version': '8.1.0.0.0',
-    'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    'depends': [
-        'account',
-        'report_aeroo',
-        'report_branding',
-        'invoice_report_aeroo_simplerp',
-        'sale_tecnical',
-    ],
-    'data': [
-        'data/reports.xml',
-    ],
-    'installable': True
-}
+from . import sale

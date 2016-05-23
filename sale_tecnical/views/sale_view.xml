@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_order_form_tecnical" model="ir.ui.view">
+      <field name="name">Sale order tecnical manager</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <field name="user_id" position="after">
+          <field name="tecnical_user_id"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

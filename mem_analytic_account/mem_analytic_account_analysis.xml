@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id = "mem_vehicle_form_view">
+            <field name="name">mem.vehicle.form</field>
+            <field name="model">mem.vehicle</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mem.mem_vehicle_form"/>
+            <field name="arch" type = "xml">
+                <xpath expr="/form/sheet/group[2]" position="after">
+                    <group>
+                        <group string="Analytic accounts">
+                            <field name="analytic_account_id" readonly="0"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="/form/sheet/div[2]/button[4]" position="before">
+                    <button name="return_analytic_journal_items"
+                            class="oe_stat_button"
+                            type="object"
+                            icon="fa-book"
+                            help="Show journal items for this account" >
+                            <field name="analytic_journal_count" widget="statinfo" string="Analytic Journal Items"/>
+                    </button>
+                </xpath> 
+            </field>
+        </record>
+
+<record model="ir.ui.view" id = "mem_vehicle_log_services_form_view">
+            <field name="name">mem.vehicle.log.services.form</field>
+            <field name="model">mem.vehicle.log.services</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mem.mem_vehicle_log_services_form"/>
+            <field name="arch" type = "xml">
+                <xpath expr="/form/sheet/group[2]/group/field[4]" position="after">
+                            <field name="invoice_id" readonly="0"/>
+                </xpath>
+            </field>
+        </record>
+
+   
+    </data>
+</openerp>

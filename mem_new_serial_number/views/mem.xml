@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id='mem_vehicle_form' model='ir.ui.view'>
+            <field name="name">mem.vehicle.form</field>
+            <field name="model">mem.vehicle</field>
+            <field name="inherit_id" ref="mem.mem_vehicle_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vin_sn']" position="after">
+                    <field name="engine_no"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id='mem_vehicle_tree' model='ir.ui.view'>
+            <field name="name">mem.vehicle.form</field>
+            <field name="model">mem.vehicle</field>
+            <field name="inherit_id" ref="mem.mem_vehicle_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vin_sn']" position="after">
+                    <field name="engine_no"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

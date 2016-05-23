@@ -22,5 +22,5 @@ from openerp import models, fields
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    name = fields.Text('Description', required=True, readonly=True,
+    name = fields.Char('Description', required=True, readonly=True,
                         states={'draft': [('readonly', False)]}, size=300)

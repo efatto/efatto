@@ -4,3 +4,4 @@
 ##############################################################################
 from . import print_asset_report
 from . import wizard_asset_compute
+from . import wizard_asset_confirm

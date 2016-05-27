@@ -30,6 +30,7 @@
     'data': [
         'views/sale.xml',
         'views/stock.xml',
+        'views/config.xml',
     ],
     'installable': True
 }

@@ -2,17 +2,26 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class SaleOrder(models.Model):
 
     _inherit = 'sale.order'
 
+    @api.model
+    def default_get(self, fields):
+        res = super(SaleOrder, self).default_get(fields)
+        if res:
+            company = self.env.user.company_id
+            res['create_ddt'] = company.create_ddt \
+                    if company.create_ddt \
+                    else False
+        return res
+
     def _default_ddt_type(self):
         return self.env['stock.ddt.type'].search([], limit=1)
 
-    create_ddt = fields.Boolean('Automatically create the DDT', default=True)
     ddt_type_id = fields.Many2one(
         'stock.ddt.type',
         'Type of DDT', default=_default_ddt_type)

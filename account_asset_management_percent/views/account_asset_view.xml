@@ -1,24 +1,40 @@
 <openerp>
   <data>
-        <record model="ir.ui.view" id="view_account_asset_category_form_percent">
-            <field name="name">account.asset.asset.form.percent</field>
-            <field name="model">account.asset.category</field>
-            <field name="inherit_id" ref="account_asset_management.view_account_asset_category_form"/>
-            <field name="arch" type="xml">
-               <field name="method_number" position="replace">
-                    <field name="method_number" attrs="{'invisible': True}"/>
-               </field>
-               <field name="method_period" position="replace">
-                   <field name="method_period" attrs="{'invisible': True}"/>
-               </field>
-               <field name="method_number" position="after">
-                   <field name="method_percent" />
-               </field>
-               <field name="prorata" position="after">
-                   <field name="first_year_half"/>
-               </field>
-            </field>
-        </record>
+          <!--Asset depreciation lines-->
+    <record model="ir.ui.view" id="view_account_asset_depreciation_line_tree">
+      <field name="name">account.asset.depreciation.line.tree</field>
+      <field name="model">account.asset.depreciation.line</field>
+      <field name="arch" type="xml">
+        <tree string="Assets Depreciation Lines" colors="blue:(move_id != False)">
+          <field name="name"/>
+          <field name="init_entry"/>
+          <field name="move_id"/>
+          <field name="amount"/>
+          <field name="factor"/>
+          <field name="asset_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_asset_category_form_percent">
+        <field name="name">account.asset.asset.form.percent</field>
+        <field name="model">account.asset.category</field>
+        <field name="inherit_id" ref="account_asset_management.view_account_asset_category_form"/>
+        <field name="arch" type="xml">
+           <field name="method_number" position="replace">
+                <field name="method_number" attrs="{'invisible': True}"/>
+           </field>
+           <field name="method_period" position="replace">
+               <field name="method_period" attrs="{'invisible': True}"/>
+           </field>
+           <field name="method_number" position="after">
+               <field name="method_percent" />
+           </field>
+           <field name="prorata" position="after">
+               <field name="first_year_half"/>
+           </field>
+        </field>
+    </record>
 
         <record model="ir.ui.view" id="view_account_asset_asset_form_percent">
           <field name="name">account.asset.asset.form.percent</field>

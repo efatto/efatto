@@ -35,6 +35,7 @@
         'report/print_asset_report.xml',
         'views/account_asset_view.xml',
         'views/report_asset.xml',
+        'views/wizard_asset_compute_view.xml',
     ],
     'installable': True
 }

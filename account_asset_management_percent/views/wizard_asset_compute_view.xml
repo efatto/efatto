@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_asset_depreciation_confirmation_wizard_init" model="ir.ui.view">
+            <field name="name">asset.depreciation.confirmation.wizard.init</field>
+            <field name="model">asset.depreciation.confirmation.wizard</field>
+            <field name="inherit_id" ref="account_asset_management.view_asset_depreciation_confirmation_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/footer/button[@name='asset_compute']" position="after">
+                    <button string="Set Init" name="asset_set_init" type="object" class="oe_highlight"/>
+                </xpath>
+             </field>
+        </record>
+    </data>
+</openerp>

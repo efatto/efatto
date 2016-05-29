@@ -17,7 +17,7 @@ def post_init_hook(cr, registry):
     logging.getLogger('openerp.addons.account_bank_import').info(
         'Importing Italian banks')
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-    file_name = 'res.bank.csv'
+    file_name = 'res.bank.may2016.csv'
     data = open(os.path.join(path, 'data_it', file_name), 'r').read()
     delimeter = ','
     file_input = cStringIO.StringIO(data)

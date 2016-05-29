@@ -35,6 +35,10 @@ class AccountMoveLine(models.Model):
     is_cashflow = fields.Boolean('Cashflow temporary line')
     date_cashflow = fields.Date(
         compute='_get_date_cashflow', store=True, string='Date cashflow')
+    account_short_name = fields.Char(
+        related='account_id.name', string="Account", size=30)
+    journal_short_name = fields.Char(
+        related='journal_id.name', string="Journal", size=30)
 
     _order = 'date_cashflow, id'
 

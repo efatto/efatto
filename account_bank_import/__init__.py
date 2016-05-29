@@ -44,7 +44,7 @@ def post_init_hook(cr, registry):
         values = dict(zip(keys, field))
         if not bank_dict.has_key(values['abi'] + values['cab']):
             state = state_obj.search(cr, SUPERUSER_ID,
-                    [('code', '=', values['state'])])[0]
+                    [('code', '=', values['state'])]) or [False]
             bank_obj.create(cr, SUPERUSER_ID, {
                 'name': values['name'],
                 'street': values['street'],
@@ -52,7 +52,7 @@ def post_init_hook(cr, registry):
                 'zip': values['zip'],
                 'abi': values['abi'],
                 'cab': values['cab'],
-                'state': state,
+                'state': state[0],
             })
         if i*100.0/len(reader_info) > step:
             logging.getLogger('openerp.addons.account_bank_import').info(

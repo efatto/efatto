@@ -5,6 +5,7 @@
 from openerp import fields, models, api, exceptions, _
 import base64
 import cStringIO
+import logging
 try:
     import unicodecsv
 except ImportError:
@@ -46,10 +47,12 @@ class ImportBankFile(models.TransientModel):
             if not isinstance(keys, list):
                 raise exceptions.Warning(_("Not a valid file!"))
             del reader_info[0]
-
+            step = 1
             for i in range(len(reader_info)):
                 field = reader_info[i]
                 values = dict(zip(keys, field))
+                state = self.env['res.country.state'].search(
+                    [('code', '=', values['state'])], limit=1).id
                 if not bank_dict.has_key(values['abi'] + values['cab']):
                     bank_obj.create({
                         'name': values['name'],
@@ -58,8 +61,7 @@ class ImportBankFile(models.TransientModel):
                         'zip': values['zip'],
                         'abi': values['abi'],
                         'cab': values['cab'],
-                        'state': self.env['res.country.state'].search(
-                            [('code', '=', values['state'])], limit=1).id,
+                        'state': state,
                     })
                 else:
                     bank = bank_obj.search([('abi', '=', values['abi']),
@@ -72,8 +74,11 @@ class ImportBankFile(models.TransientModel):
                         'zip': values['zip'],
                         'abi': values['abi'],
                         'cab': values['cab'],
-                        'state': self.env['res.country.state'].search(
-                            [('code', '=', values['state'])], limit=1).id,
+                        'state': state,
                     })
-
+                if i * 100.0 / len(reader_info) > step:
+                    logging.getLogger(
+                        'openerp.addons.account_bank_import').info(
+                        'Esecution {0}% '.format(i * 100.0 / len(reader_info)))
+                    step += 1
             return

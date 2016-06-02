@@ -21,6 +21,7 @@ msgid "Account Entry"
 msgstr "Registrazione Contabile"
 
 #. module: account_move_template_ext
+#: view:account.move:account_move_template_ext.view_account_move_filter_model
 #: field:account.move,template_id:0
 msgid "Account Move Template"
 msgstr "Causale"
@@ -36,4 +37,3 @@ msgstr "Errore! Non è possible utilizzare una causale multi-giornale. Creare il
 #, python-format
 msgid "You have to define an analytic journal on the '%s' journal!"
 msgstr "E' necessario definire un giornale analitico sul giornale '%s'"
-

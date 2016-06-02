@@ -32,5 +32,15 @@
             </xpath>
         </field>
     </record>
+    <record id="view_move_template_line_form_model" model="ir.ui.view">
+        <field name="name">account.move.template.line.form</field>
+        <field name="model">account.move.template.line</field>
+        <field name="inherit_id" ref="account_move_template.view_move_template_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="amount" attrs="{'invisible': [('type', '!=', 'amount')]}" />
+            </xpath>
+        </field>
+    </record>
   </data>
 </openerp>

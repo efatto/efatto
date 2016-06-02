@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, exceptions, _, workflow
+from openerp import models, fields, api, exceptions, _
 
 
 class AccountMove(models.Model):
@@ -38,7 +38,9 @@ class AccountMove(models.Model):
                 'account_id': line.account_id.id,
                 'date': self.date,
                 'account_tax_id': line.account_tax_id.id,
-                'credit': line.move_line_type == 'cr' and 1.0 or 0.0,
-                'debit': line.move_line_type == 'dr' and 1.0 or 0.0,
+                'credit': line.move_line_type == 'cr' and (
+                    line.type == 'amount' and line.amount or 1.0) or 0.0,
+                'debit': line.move_line_type == 'dr' and (
+                    line.type == 'amount' and line.amount or 1.0) or 0.0,
             })
         self.line_id = lines

@@ -11,7 +11,7 @@ class AccountMoveTemplateLine(models.Model):
     amount = fields.Float(string="Fixed Amount")
     type = fields.Selection(
         [('computed', 'Computed'), ('input', 'User input'),
-        ('amount', 'Fixed amount')],
+         ('amount', 'Fixed amount')],
         string='Type',
         required=True
     )

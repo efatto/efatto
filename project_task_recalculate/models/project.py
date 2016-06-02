@@ -5,6 +5,8 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning, ValidationError
 from datetime import datetime
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from dateutil import relativedelta
 
 
 class ProjectProject(models.Model):
@@ -14,7 +16,8 @@ class ProjectProject(models.Model):
     def project_recalculate(self):
         """
             Recalculate project tasks start and end dates.
-            After that, recalculate new project start or end date
+            After that,
+            recalculate new project start or end date
         """
         for project in self:
             if not project.calculation_type:
@@ -104,7 +107,7 @@ class ProjectTask(models.Model):
                     # TODO impostare la data dei childs
                     date_start = self._get_max_date_from_parents(task, date_start)
                     end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)[1]
+                        task.estimated_days, date_start, resource, calendar)
                     if end:
                         date_end = end[1]
 
@@ -112,18 +115,19 @@ class ProjectTask(models.Model):
                     date_start = self._get_max_date_from_parents(task, date_start)
 
                     end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)[1]
+                        task.estimated_days, date_start, resource, calendar)
                     if end:
                         date_end = end[1]
 
             task.with_context(task.env.context, task_recalculate=True).write({
                 'date_start': date_start and to_string(date_start) or False,
                 'date_end': date_end and to_string(date_end) or False,
-                'date_deadline': date_end and to_string(date_end) or False,
+                # 'date_deadline': date_end and to_string(date_end) or False,
             })
 
         return True
 
+    @api.multi
     def _get_max_date_from_parents(self, task, date_start):
         max_date = date_start
 
@@ -135,3 +139,52 @@ class ProjectTask(models.Model):
                         parent.date_end[:10], '%Y-%m-%d')
 
         return max_date
+
+    @api.onchange('date_end')
+    def onchange_date_end(self):
+        def recurse_child_task(task):
+            for child_task in task.child_ids:
+                if child_task.date_end and child_task.date_start:
+                    duration = datetime.strptime(
+                        child_task.date_end, DEFAULT_SERVER_DATETIME_FORMAT
+                    ) - datetime.strptime(
+                        child_task.date_start, DEFAULT_SERVER_DATETIME_FORMAT)
+                else:
+                    duration = datetime.strptime(
+                        task.date_end, DEFAULT_SERVER_DATETIME_FORMAT
+                    ) - datetime.strptime(
+                        task.date_end, DEFAULT_SERVER_DATETIME_FORMAT)
+                child_task.write({
+                    'date_end': (datetime.strptime(
+                        task.date_end, DEFAULT_SERVER_DATETIME_FORMAT) +
+                                 relativedelta.relativedelta(
+                                     days=duration.days or 0)).strftime(
+                        DEFAULT_SERVER_DATETIME_FORMAT),
+                    'date_start': task.date_end})
+
+        if self.date_end:
+            lap = datetime.strptime(
+                self.date_end, DEFAULT_SERVER_DATETIME_FORMAT
+            ) - datetime.strptime(
+                self._origin['date_end'], DEFAULT_SERVER_DATETIME_FORMAT)
+            if lap:
+                for child in self.child_ids:
+                    if child.date_end and child.date_start:
+                        duration = datetime.strptime(
+                            child.date_end, DEFAULT_SERVER_DATETIME_FORMAT
+                        ) - datetime.strptime(
+                            child.date_start, DEFAULT_SERVER_DATETIME_FORMAT)
+                    else:
+                        duration = datetime.strptime(
+                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT
+                        ) - datetime.strptime(
+                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT)
+                    child.write({
+                        'date_end': (datetime.strptime(
+                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT) +
+                            relativedelta.relativedelta(
+                                days=duration.days or 0)).strftime(
+                                    DEFAULT_SERVER_DATETIME_FORMAT),
+                        'date_start': self.date_end})
+                    if child.child_ids:
+                        recurse_child_task(child)

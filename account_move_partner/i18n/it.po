@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_move_template_ext
+#	* account_move_partner
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-02 10:22+0000\n"
-"PO-Revision-Date: 2016-06-02 10:22+0000\n"
+"POT-Creation-Date: 2016-06-02 17:04+0000\n"
+"PO-Revision-Date: 2016-06-02 17:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,31 +15,28 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: account_move_template_ext
-#: model:ir.model,name:account_move_template_ext.model_account_move
-msgid "Account Entry"
-msgstr "Registrazione Contabile"
+#. module: account_move_partner
+#: model:ir.model,name:account_move_partner.model_res_partner_account
+msgid "Account"
+msgstr "Conto"
 
-#. module: account_move_template_ext
-#: view:account.move:account_move_template_ext.view_account_move_filter_model
-#: view:account.move:account_move_template_ext.view_move_tree_model
-#: field:account.move,template_id:0
-msgid "Account Move Template"
-msgstr "Causale"
+#. module: account_move_partner
+#: model:ir.model,name:account_move_partner.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
 
-#. module: account_move_template_ext
-#: code:addons/account_move_template_ext/models/account.py:19
-#, python-format
-msgid "Error! Not possible in more than one journal. Create from wizard"
-msgstr "Errore! Non è possible utilizzare una causale multi-giornale. Creare il movimento dalla procedura."
+#. module: account_move_partner
+#: model:ir.model,name:account_move_partner.model_res_partner
+msgid "Partner"
+msgstr "Partner"
 
-#. module: account_move_template_ext
-#: field:account.move.template.line,amount:0
-msgid "Fixed Amount"
-msgstr "Fixed Amount"
+#. module: account_move_partner
+#: field:res.partner,purchase_account_ids:0
+msgid "Purchase account ids"
+msgstr "Conti default acquisto"
 
-#. module: account_move_template_ext
-#: code:addons/account_move_template_ext/models/account.py:28
-#, python-format
-msgid "You have to define an analytic journal on the '%s' journal!"
-msgstr "E' necessario definire un giornale analitico sul giornale '%s'"
+#. module: account_move_partner
+#: field:res.partner,sale_account_ids:0
+msgid "Sale account ids"
+msgstr "Conti default vendita"
+

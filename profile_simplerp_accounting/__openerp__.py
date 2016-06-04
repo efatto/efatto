@@ -29,7 +29,7 @@
     'license': 'AGPL-3',
     "depends": [
         'account_analytic_analysis',
-        # 'account_tax_simplified',
+        'account_tax_simplified',
         'account_vat_statement_endyear',
         'account_withholding_tax',
         'l10n_it_vat_registries',

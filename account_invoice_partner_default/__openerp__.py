@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Account Move Partner default',
+    'name': 'Account Invoice Partner default',
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Account Move Partner default',
+    'description': 'Account Invoice Partner default',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

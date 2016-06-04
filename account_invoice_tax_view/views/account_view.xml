@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_invoice_tax_tree" model="ir.ui.view">
+        <field name="name">account.invoice.tax.tree.view</field>
+        <field name="model">account.invoice.tax</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice Taxes">
+                <field name="invoice_id"/>
+                <field name="name"/>
+                <field name="account_id" groups="base.group_account_user"/>
+                <field name="partner_id"/>
+                <field name="vat"/>
+                <field name="fiscalcode"/>
+                <field name="journal_id"/>
+                <field name="base"/>
+                <field name="amount"/>
+                <field name="base_code_id"/>
+                <field name="base_esclusa"/>
+                <field name="base_amount"/>
+                <field name="tax_code_id"/>
+                <field name="vat_esclusa"/>
+                <field name="tax_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_invoice_tax_search" model="ir.ui.view">
+        <field name="name">account.invoice.tax.search.view</field>
+        <field name="model">account.invoice.tax</field>
+        <field name="arch" type="xml">
+            <search string="Search Account Invoice Taxes">
+                <!--<field name="name" filter_domain="['|', ('name','ilike',self), ('code','ilike',self)]" string="Fiscal Year"/>-->
+                <filter string="Purchase" domain="[('journal_id.type', 'in', ['purchase', 'purchase_refund'])]" icon="terp-camera_test"/>
+                <filter string="Sale" domain="[('journal_id.type', 'in', ['sale', 'sale_refund'])]" icon="terp-camera_test"/>
+                <!--<filter string="Closed" domain="[('state','=','done')]" icon="terp-dialog-close"/>-->
+                <!--<field name="state"/>-->
+                <!--<group expand="0" string="Group By">-->
+                    <!--<filter string="Status" context="{'group_by': 'state'}" icon="terp-stock_effects-object-colorize"/>-->
+                <!--</group>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="action_account_invoice_tax_view" model="ir.actions.act_window">
+      <field name="name">Tax Invoice Lines</field>
+      <field name="res_model">account.invoice.tax</field>
+      <field name="view_id" ref="view_invoice_tax_tree"/>
+      <field name="view_mode">form,tree</field>
+      <field name="domain">[('base_esclusa', '!=', True), ('vat_esclusa', '!=', True)]</field>
+    </record>
+
+    <menuitem
+        action="action_account_invoice_tax_view"
+        icon="STOCK_JUSTIFY_FILL"
+        id="menu_action_account_invoice_tax_view"
+        parent="account.menu_finance_entries"
+        sequence="3"
+        groups="account.group_account_user"
+        />
+
+  </data>
+</openerp>

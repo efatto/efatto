@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italy - SimplERP Srl profile Accounting Advanced',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
     Profilo applicazioni Contabilità Avanzata SimplERP
@@ -30,10 +30,13 @@
     "depends": [
         'account_fy_closing_template_7',
         'account_asset_management_percent',
+        'account_cashflow',
+        'account_move_report_xls',
         'l10n_it_invoice_intra_cee',
         'l10n_it_fatturapa_out',
         'l10n_it_ricevute_bancarie_data',
         'l10n_it_ricevute_bancarie_ext',
+        'l10n_it_vat_registries_ext',
     ],
     "installable": True,
 }

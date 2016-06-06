@@ -29,6 +29,9 @@
     'license': 'AGPL-3',
     "depends": [
         'account_analytic_analysis',
+        'account_bank_import',
+        'account_move_template_ext',
+        'account_invoice_partner_default',
         'account_tax_simplified',
         'account_vat_statement_endyear',
         'account_withholding_tax',

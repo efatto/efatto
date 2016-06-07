@@ -29,6 +29,7 @@
         'report_aeroo',
         'report_branding',
         'invoice_report_aeroo_simplerp',
+        'purchase',
     ],
     'data': [
         'data/reports.xml',

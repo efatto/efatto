@@ -30,7 +30,10 @@
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
-    'depends': ['account'],
+    'depends': [
+        'account',
+        'l10n_it_abicab',
+    ],
     'data': [
         'wizard/import_bank_file_view.xml',
      ],

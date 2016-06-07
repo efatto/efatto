@@ -31,6 +31,8 @@
         'account_fy_closing_template_7',
         'account_asset_management_percent',
         'account_cashflow',
+        'account_financial_report_webkit',
+        'account_financial_report_webkit_xls',
         'account_move_report_xls',
         'l10n_it_invoice_intra_cee',
         'l10n_it_fatturapa_out',

@@ -9,7 +9,7 @@ openerp.pos_fiscal = function(instance) {
 
     module.Order = module.Order.extend({
         addPaymentline: function(cashregister) {
-            res = OrderSuper.prototype.addPaymentline.call(this, cashregister);
+//            res = OrderSuper.prototype.addPaymentline.call(this, cashregister);
             var paymentLines = this.get('paymentLines');
             var newPaymentline = new module.Paymentline({},{cashregister:cashregister, pos:this.pos});
             if(cashregister.journal.type === 'cash'){
@@ -17,7 +17,7 @@ openerp.pos_fiscal = function(instance) {
             }
             paymentLines.add(newPaymentline);
             this.selectPaymentline(newPaymentline);
-            return res
+//            return res
         },
     });
 

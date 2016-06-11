@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <template id="index" name="point_of_sale assets" inherit_id="point_of_sale.index">
+            <xpath expr="." position="inside">
+                <script src="/pos_hotel/static/src/css/pos_hotel.css"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

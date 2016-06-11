@@ -13,7 +13,8 @@ class ResPartner(models.Model):
         self.folio_id = False
         self.room_id = False
         folio_ids = self.env['hotel.folio'].search(
-            [('partner_id', '=', self.id),
+            [('state', 'not in', ['draft', 'sent', 'cancel', 'done']),
+             ('partner_id', '=', self.id),
              ('checkin_date', '<=', fields.Datetime.now()),
              ('checkout_date', '>=', fields.Datetime.now()),
              ])

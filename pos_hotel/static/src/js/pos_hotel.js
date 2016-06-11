@@ -7,13 +7,12 @@ openerp.pos_hotel = function(instance) {
 /* ********************************************************
 Overload: point_of_sale.PosModel
 - Overload module.PosModel.initialize function to load extra-data
-     - Load 'name' field of model product.product;
-     - Load product.template model;
+     - Load 'folio' and 'room' field of model res.partner;
 *********************************************************** */
     var _initialize_ = module.PosModel.prototype.initialize;
     module.PosModel.prototype.initialize = function(session, attributes){
         self = this;
-        // Add the load of the field product_product.name
+        // Add the load of the field res_partner.room_id
         // that is the name of the template
         // Add the load of attribute values
         for (var i = 0 ; i < this.models.length; i++){

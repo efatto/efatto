@@ -28,7 +28,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'material_backend_theme',
+        # 'material_backend_theme',
         'support_branding_ext',
     ],
     "installable": True,

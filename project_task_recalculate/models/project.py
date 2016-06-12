@@ -4,7 +4,7 @@
 ##############################################################################
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning, ValidationError
-from datetime import datetime
+from datetime import datetime, timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from dateutil import relativedelta
 
@@ -149,11 +149,10 @@ class ProjectTask(models.Model):
                         child_task.date_end, DEFAULT_SERVER_DATETIME_FORMAT
                     ) - datetime.strptime(
                         child_task.date_start, DEFAULT_SERVER_DATETIME_FORMAT)
+                elif child_task.estimated_days:
+                    duration = timedelta(child_task.estimated_days)
                 else:
-                    duration = datetime.strptime(
-                        task.date_end, DEFAULT_SERVER_DATETIME_FORMAT
-                    ) - datetime.strptime(
-                        task.date_end, DEFAULT_SERVER_DATETIME_FORMAT)
+                    duration = timedelta(0)
                 child_task.write({
                     'date_end': (datetime.strptime(
                         task.date_end, DEFAULT_SERVER_DATETIME_FORMAT) +
@@ -161,30 +160,7 @@ class ProjectTask(models.Model):
                                      days=duration.days or 0)).strftime(
                         DEFAULT_SERVER_DATETIME_FORMAT),
                     'date_start': task.date_end})
+                if child_task.child_ids:
+                    recurse_child_task(child_task)
 
-        if self.date_end:
-            lap = datetime.strptime(
-                self.date_end, DEFAULT_SERVER_DATETIME_FORMAT
-            ) - datetime.strptime(
-                self._origin['date_end'], DEFAULT_SERVER_DATETIME_FORMAT)
-            if lap:
-                for child in self.child_ids:
-                    if child.date_end and child.date_start:
-                        duration = datetime.strptime(
-                            child.date_end, DEFAULT_SERVER_DATETIME_FORMAT
-                        ) - datetime.strptime(
-                            child.date_start, DEFAULT_SERVER_DATETIME_FORMAT)
-                    else:
-                        duration = datetime.strptime(
-                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT
-                        ) - datetime.strptime(
-                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT)
-                    child.write({
-                        'date_end': (datetime.strptime(
-                            self.date_end, DEFAULT_SERVER_DATETIME_FORMAT) +
-                            relativedelta.relativedelta(
-                                days=duration.days or 0)).strftime(
-                                    DEFAULT_SERVER_DATETIME_FORMAT),
-                        'date_start': self.date_end})
-                    if child.child_ids:
-                        recurse_child_task(child)
+        recurse_child_task(self)

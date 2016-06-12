@@ -9,9 +9,11 @@
             <field name="arch" type="xml">
                 <field name="property_payment_term" position="after">
                     <field name="sale_account_ids" domain="[('type','not in',['consolidation', 'closed', 'view'])]" widget="many2many_tags"/>
+                    <field name="sale_product_ids" domain="[('sale_ok','=',True)]" widget="many2many_tags"/>
                 </field>
                 <field name="property_supplier_payment_term" position="after">
                     <field name="purchase_account_ids" domain="[('type','not in',['consolidation', 'closed', 'view'])]" widget="many2many_tags"/>
+                    <field name="purchase_product_ids" domain="[('purchase_ok','=',True)]" widget="many2many_tags"/>
                 </field>
             </field>
         </record>

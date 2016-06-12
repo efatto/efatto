@@ -18,3 +18,13 @@ class ResPartner(models.Model):
         relation='sale_account_partner_rel',
         column1='partner_id', column2='account_id',
     )
+    purchase_product_ids = fields.Many2many(
+        comodel_name='product.product',
+        relation='purchase_product_partner_rel',
+        column1='partner_id', column2='product_id',
+    )
+    sale_product_ids = fields.Many2many(
+        comodel_name='product.product',
+        relation='sale_product_partner_rel',
+        column1='partner_id', column2='product_id',
+    )

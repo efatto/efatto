@@ -20,18 +20,37 @@ class AccountInvoice(models.Model):
             return res
         lines = []
         account_ids = []
+        product_ids = []
+        partner_type = 'supplier'
         partner = self.env['res.partner'].browse(partner_id)
         if type in ['out_invoice', 'out_refund']:
+            partner_type = 'customer'
             account_ids = partner.sale_account_ids
+            product_ids = partner.sale_product_ids
         if type in ['in_invoice', 'in_refund']:
             account_ids = partner.purchase_account_ids
+            product_ids = partner.purchase_product_ids
         for line in account_ids:
+            # TODO if not tax_ids, get standard tax for partner fp
             lines.append({
                 'name': line.name,
                 'account_id': line.id,
                 'invoice_line_tax_id': line.tax_ids,
                 'quantity': 1,
                 'price_unit': 1,
+            })
+        for pline in product_ids:
+            lines.append({
+                'name': pline.name,
+                'product_id': pline.id,
+                'account_id': partner_type == 'customer' and
+                pline.property_account_income.id or
+                pline.property_account_expense.id,
+                'invoice_line_tax_id': partner_type == 'customer' and
+                pline.taxes_id or pline.supplier_taxes_id,
+                'quantity': 1,
+                'price_unit': 1,
+                'uos_id': pline.uom_id,
             })
         if lines:
             res['value'].update({'invoice_line': lines})

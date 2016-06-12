@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+ <!-- expenses smart -->
+        <record id="view_expenses_form" model="ir.ui.view">
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+            <field name="name">view_expenses_form_smart</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="arch" type="xml">
+                <page string="Accounting" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </page>
+                <field name="department_id" position="attributes">
+                    <attribute name="groups">base.group_account_user</attribute>
+                </field>
+                <xpath expr="//tree[@string='Expense Lines']/field[@name='date_value']" position="after">
+                    <field name="date_maturity"/>
+                    <field name="partner_id"/>
+                </xpath>
+                <button name="confirm" position="replace">
+                </button>
+                <button name="validate" position="replace">
+                    <button name="validate" states="draft,confirm" string="Approve" type="workflow" groups="base.group_hr_user" class="oe_highlight"/>
+                </button>
+                <button name="refuse" position="replace">
+                </button>
+                <button name="draft" position="replace">
+                    <button name="draft" states="confirm,accepted,cancelled" string="Set to Draft" type="workflow"  />
+                </button>
+            </field>
+        </record>
+         <record id="hr_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree.smart</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="arch" type="xml">
+                 <field name="account_id" position="replace">
+                    <field domain="[('type','=','normal'),('use_timesheets','=',1)]" name="account_id" context="{'default_use_timesheets': 1, 'default_type': 'contract'}"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_hr_expense_filter_smart" model="ir.ui.view">
+            <field name="name">hr.expense.expense.filter.smart</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_filter"/>
+            <field name="model">hr.expense.expense</field>
+            <field name="arch" type="xml">
+                <xpath expr="//search[@string='Expense']/filter[@string='To Pay']" position="after">
+                    <filter icon="terp-dolar"
+                    domain="[('date','&lt;',context_today().strftime('%%Y-%%m-01')),('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01'))]"
+                    string="Last month" name="last_month" help="Expenses of last month"/>
+                    <filter icon="terp-dolar"
+                    domain="[('date','&gt;=',context_today().strftime('%%Y-%%m-01')),('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01'))]"
+                    string="This month" name="current_month" help="Expenses of current month"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_expense.expense_all" model="ir.actions.act_window">
+            <field name="context">{'search_default_current_month': 1}</field>
+        </record>
+
+   </data>
+</openerp>

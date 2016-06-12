@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+        <record id="hr_timesheet_line_tree_smart" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree.smart</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="replace">
+                    <field domain="[('type','in',['normal','contract']),('use_timesheets','=',1)]" name="account_id" context="{'default_use_timesheets': 1}" options="{'no_open': True, 'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+
+      <record id="hr_timesheet_line_form" model="ir.ui.view">
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+            <field name="name">hr.analytic.timesheet.form.smart</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="arch" type="xml">
+                <field name="account_id" position="replace">
+                    <field domain="[('type','in',['normal','contract']),('state', '&lt;&gt;', 'close'),('parent_id','!=',False)]" name="account_id" select="1" options="{'no_open': True, 'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+        
+ <!-- invoice smart -->   
+        <record id="invoice_form_smart" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="journal_id" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="account_id" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="payment_term" position="replace">
+                </field>
+                <field name="date_invoice" position="after">
+                    <field name="payment_term" class="oe_inline" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice)"/>
+                </field>
+                <page string="Other Info" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </page>
+                <page string="Payments" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </page>
+            </field>
+        </record>
+ 
+ <!-- supplier invoice smart -->   
+        <record id="supplier_invoice_form_smart" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="journal_id" position="replace">
+                </field>
+                <xpath expr="//sheet[@string='Supplier Invoice']/div[@class='oe_title']" position="before">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="journal_id" groups="account.group_account_user,profile_smart.group_hidden"
+                                on_change="onchange_journal_id(journal_id)" options="{'no_create': True}"
+                                attrs="{'readonly':[('internal_number','!=',False)]}"/>
+                        </h1>
+                    </div>
+                </xpath>
+                <field name="account_id" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </field>
+                <field name="payment_term" position="replace">
+                </field>
+                <field name="date_invoice" position="after">
+                    <field name="payment_term" class="oe_inline" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice)"/>
+                </field>
+                <page string="Other Info" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </page>
+                <page string="Payments" position="attributes">
+                    <attribute name="groups">base.group_account_user,profile_smart.group_hidden</attribute>
+                </page>
+                <field name="reference_type" position="replace">
+                </field>
+                <field name="reference" position="replace">
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_journal_form_smart" model="ir.ui.view">
+            <field name="name">account.journal.form.smart</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="group_invoice_lines" position="after">
+                    <field name="generic_expense"/>
+                </field>
+                <field name="default_credit_account_id" position="after">
+                    <field name="default_partner_id"/>
+                </field>
+            </field>
+        </record>
+
+<!-- hide main menu -->
+<record id="account.menu_finance" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="account.menu_finance_receivables" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="account.menu_finance_payables" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="hr.menu_hr_root" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="base.menu_base_partner" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="base.menu_main_pm" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="base.menu_reporting" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="document.menu_document_management_configuration" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="hr.menu_hr_main" model="ir.ui.menu">
+    <field name="name">Human Resources</field>
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+<record id="hr.menu_open_view_employee_list_my" model="ir.ui.menu">
+    <field name="groups_id" eval="[(6,0,[ref('group_hidden'),])]"/>
+</record>
+    
+    <!-- add inline menu smart -->
+    
+        <menuitem name="Sales" action="account.action_invoice_tree1" id="menu_action_invoice_tree1_smart" sequence="2" groups="group_smart"/>
+        <menuitem action="project.action_view_task" id="menu_action_view_task_smart" sequence="3" groups="group_smart"/>
+        <menuitem name="Calendar" action="calendar.action_calendar_event" id="mail_menu_calendar_smart" sequence="3" groups="group_smart"/>
+        <menuitem name="Expenses" action="account.action_invoice_tree2" id="menu_action_invoice_tree2_smart" sequence="4" groups="group_smart"/>
+        <menuitem name="Due list" action="account_due_list.action_invoice_payments" id="menu_action_invoice_payments_smart" sequence="5"/>
+        <!--menuitem action="hr_expense.expense_all" id="menu_expense_all_h" name="Expenses" sequence="4" groups="group_smart"/-->
+        <!--menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_h" sequence="5" groups="group_smart"/-->
+        <!--menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_h" sequence="6" groups="group_smart"/-->
+        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart" sequence="7" groups="group_smart"/>
+    
+    <!-- add drop down menu smart -->
+    
+        <menuitem name="Smart" id="base.menu_main_sm" sequence="1" groups="group_smart"/>
+        
+        <menuitem name="Customers" id="menu_customers_smart" parent="base.menu_main_sm" sequence="1"/>
+        <menuitem action="base.action_partner_form" id="action_partner_form_smart_dd" parent="menu_customers_smart" sequence="2"/>
+        <menuitem action="account.action_invoice_tree1" id="menu_action_invoice_tree1_smart_dd" parent="menu_customers_smart" sequence="3"/>
+        <menuitem action="account.action_account_analytic_account_form" id="account_analytic_def_account_smart_dd" parent="menu_customers_smart" sequence="4"/>
+        <menuitem action="account_analytic_analysis.action_hr_tree_invoiced_all" id="menu_action_hr_tree_invoiced_all_smart_dd" parent="menu_customers_smart" sequence="5"/>
+        
+        <menuitem name="Tasks" id="menu_tasks_smart" parent="base.menu_main_sm" sequence="5"/>
+        <menuitem action="project.action_view_task" id="menu_action_view_task_smart_dd" parent="menu_tasks_smart" sequence="5"/>
+        <menuitem action="calendar.action_calendar_event" id="mail_menu_calendar_smart_dd" name="Calendar" parent="menu_tasks_smart" sequence="5" />
+        
+        <menuitem name="Expenses" id="menu_expenses_smart" sequence="15" parent="base.menu_main_sm"/>
+        <menuitem action="base.action_partner_supplier_form" id="action_partner_supplier_form_smart_dd" parent="menu_expenses_smart" sequence="1" />
+        <menuitem action="account.action_invoice_tree2" id="menu_action_invoice_tree2_smart_dd" parent="menu_expenses_smart" sequence="2" />
+        <menuitem action="hr_expense.expense_all" id="menu_expense_all_smart_dd" name="Expenses" parent="menu_expenses_smart" sequence="3" />
+        <menuitem action="hr_timesheet.act_hr_timesheet_line_evry1_all_form" id="menu_hr_working_hours_smart_dd" parent="menu_expenses_smart" sequence="4" />
+        
+   </data>
+</openerp>

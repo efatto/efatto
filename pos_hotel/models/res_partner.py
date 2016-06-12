@@ -21,7 +21,13 @@ class ResPartner(models.Model):
         if folio_ids:
             self.folio_id = folio_ids[0].id
             if folio_ids[0].room_lines:
-                self.room_id = folio_ids[0].room_lines[0].product_id.id
+                if len(folio_ids[0].room_lines) == 1:
+                    self.room_id = folio_ids[0].room_lines[0].product_id.id
+                else:
+                    for room in folio_ids[0].room_lines:
+                        if room.checkin_date <= fields.Datetime.now() <= \
+                                room.checkout_date:
+                            self.room_id = room.product_id.id
 
     folio_id = fields.Many2one(
         comodel_name='hotel.folio',

@@ -4,3 +4,4 @@
 ##############################################################################
 from . import res_partner
 from . import res_partner_folio
+from . import pos_order

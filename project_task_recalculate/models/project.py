@@ -107,7 +107,7 @@ class ProjectTask(models.Model):
                     # TODO impostare la data dei childs
                     date_start = self._get_max_date_from_parents(task, date_start)
                     end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)
+                        task.estimated_days, date_start, resource, calendar)[1]
                     if end:
                         date_end = end[1]
 
@@ -115,7 +115,7 @@ class ProjectTask(models.Model):
                     date_start = self._get_max_date_from_parents(task, date_start)
 
                     end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)
+                        task.estimated_days, date_start, resource, calendar)[1]
                     if end:
                         date_end = end[1]
 

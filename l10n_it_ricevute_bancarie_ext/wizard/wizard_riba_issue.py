@@ -100,15 +100,17 @@ class RibaIssue(models.TransientModel):
                         if bank_riba_id:
                             rdl_id = create_rdl(
                                 countme, None, rd_id,
-                                move_line.date_maturity, move_line.partner_id.id,
+                                move_line.date_maturity,
+                                move_line.partner_id.id,
                                 self.configuration_id.acceptance_account_id.id,
-                                bank_riba_id.id)
+                                bank_riba_id.id).id
                         else:
                             rdl_id = create_rdl(
                                 countme, bank_id.id, rd_id,
-                                move_line.date_maturity, move_line.partner_id.id,
-                                self.configuration_id.acceptance_account_id.id
-                                , None)
+                                move_line.date_maturity,
+                                move_line.partner_id.id,
+                                self.configuration_id.acceptance_account_id.id,
+                                None).id
                         # total = 0.0
                         # invoice_date_group = ''
                         for grouped_line in grouped_lines[key]:
@@ -124,14 +126,14 @@ class RibaIssue(models.TransientModel):
                     rdl_id = create_rdl(
                         countme, None, rd_id, move_line.date_maturity,
                         move_line.partner_id.id,
-                        self.configuration_id.acceptance_account_id.id
-                        , bank_riba_id.id).id
+                        self.configuration_id.acceptance_account_id.id,
+                        bank_riba_id.id).id
                 else:
                     rdl_id = create_rdl(
                         countme, bank_id.id, rd_id, move_line.date_maturity,
                         move_line.partner_id.id,
-                        self.configuration_id.acceptance_account_id.id
-                        , None).id
+                        self.configuration_id.acceptance_account_id.id,
+                        None).id
                 riba_list_move_line.create({
                     'riba_line_id': rdl_id,
                     'amount': move_line.amount_residual,

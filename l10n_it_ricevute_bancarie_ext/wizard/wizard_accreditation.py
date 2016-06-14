@@ -23,13 +23,14 @@ class RibaAccreditation(models.TransientModel):
                     raise UserError(
                         _('Error'),
                         _('Accredit only one bank configuration is possible'))
-                if line.state in ['confirmed', 'accredited']:
+                if line.state in ['confirmed', ]:  # why was 'accredited' too?
                     amount += line.amount
         elif self._context.get('active_model', False) == 'riba.distinta':
             for line in self.env['riba.distinta'].browse(
                     self._context['active_id']).line_ids:
                 if line.tobe_accredited and \
-                        line.state in ['confirmed', 'accredited']:
+                        line.state in ['confirmed', ]:
+                    # why was 'accredited' too?
                     amount += line.amount
         return amount
 

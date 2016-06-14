@@ -71,7 +71,15 @@ class RibaList(models.Model):
         'riba.distinta.line', 'distinta_id', 'Riba deadlines', readonly=False,
         states={'paid': [('readonly', True)],
                 'cancel': [('readonly', True)]})
-
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('accepted', 'Accepted'),
+        ('accredited', 'Accredited'),
+        ('accrued', 'Accrued'),
+        ('paid', 'Paid'),
+        ('unsolved', 'Unsolved'),
+        ('cancel', 'Canceled')], 'State', select=True, readonly=True,
+        default='draft')
 
 class RibaListLine(models.Model):
     _inherit = 'riba.distinta.line'

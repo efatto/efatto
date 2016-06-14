@@ -20,12 +20,23 @@
                     <separator colspan="4" string="Accruement Entry"/>
                     <field name='accruement_move_ids' colspan="4" nolabel="1"/>
                 </field>
-                <field name="date_accepted" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','!=','draft')]}</attribute>
-                </field>
-                <field name="date_accreditation" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','not in',['draft','accepted'])]}</attribute>
-                </field>
+                <field name="date_accepted" position="replace"/>
+                <field name="date_accreditation" position="replace"/>
+                <field name="date_paid" position="replace"/>
+                <xpath expr="//form/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="config_id" widget="selection"/>
+                            <field name="registration_date" />
+                        </group>
+                        <group>
+                            <field name="date_accepted" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="date_accreditation" attrs="{'readonly':[('state','not in',['draft','accepted'])]}"/>
+                            <field name="date_paid"/>
+                        </group>
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>

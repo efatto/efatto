@@ -5,6 +5,27 @@ openerp.pos_hotel = function(instance) {
 
 
 /* ********************************************************
+Overload: point_of_sale.PosDB
+- Overload module.PosModel._partner_search_string function to search room_id
+*********************************************************** */
+    var PosDBSuper = module.PosDB;
+
+    module.PosDB = module.PosDB.extend({
+//            res = OrderSuper.prototype.addPaymentline.call(this, cashregister);
+//            return res
+        _partner_search_string: function(partner){
+            var str =  partner.name;
+            if(partner.ean13){
+                str += '|' + partner.ean13;
+            }
+            if(partner.room_id){
+                str += '|' + partner.room_id;
+            }
+            str = '' + partner.id + ':' + str.replace(':','') + '\n';
+            return str;
+        },
+    });
+/* ********************************************************
 Overload: point_of_sale.PosModel
 - Overload module.PosModel.initialize function to load extra-data
      - Load 'folio' and 'room' field of model res.partner;

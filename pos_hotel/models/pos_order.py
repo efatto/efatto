@@ -57,4 +57,6 @@ class PosOrder(models.Model):
                             order_obj.partner_id.folio_id.id)
                         hf_rec.write({'folio_pos_order_ids':
                                       [(4, order_obj.id)]})
+                    #     line.state = 'invoiced'  TODO WIP ?
+                    # order_obj.state = 'invoiced' TODO WIP ?
         return super(PosOrder, self).action_paid()

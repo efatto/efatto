@@ -4,7 +4,9 @@
 Ricevute Bancarie extension
 ====================================
 
-This module add custom logic to ricevute bancarie
+This module add to ricevute bancarie:
+- accrue workflow
+- single ri.ba. accreditation in distinta
 
 Contributors
 ------------

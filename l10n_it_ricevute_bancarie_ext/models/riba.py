@@ -1,22 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import models, fields, api
 from openerp.exceptions import Warning as UserError
 from openerp.tools.translate import _
@@ -25,15 +10,17 @@ from openerp.tools.translate import _
 class RibaList(models.Model):
     _inherit = 'riba.distinta'
 
-    @api.one
+    @api.multi
     def _get_accreditation_move_ids(self):
+        self.ensure_one()
         move_ids = self.env['account.move']
         for line in self.line_ids:
             move_ids |= line.accreditation_move_id
         self.accreditation_move_ids = move_ids
 
-    @api.one
+    @api.multi
     def _get_accruement_move_ids(self):
+        self.ensure_one()
         move_ids = self.env['account.move']
         for line in self.line_ids:
             move_ids |= line.accruement_move_id
@@ -47,14 +34,16 @@ class RibaList(models.Model):
                 if line.accreditation_move_id:
                     line.accreditation_move_id.unlink()
 
-    @api.one
+    @api.multi
     def riba_accepted(self):
+        self.ensure_one()
         super(RibaList, self).riba_accepted()
         self.date_accepted = self.date_accepted or \
             fields.Date.context_today(self)
 
-    @api.one
+    @api.multi
     def riba_accredited(self):
+        self.ensure_one()
         super(RibaList, self).riba_accredited()
         self.date_accreditation = self.date_accreditation or \
             fields.Date.context_today(self)
@@ -80,6 +69,7 @@ class RibaList(models.Model):
         ('unsolved', 'Unsolved'),
         ('cancel', 'Canceled')], 'State', select=True, readonly=True,
         default='draft')
+
 
 class RibaListLine(models.Model):
     _inherit = 'riba.distinta.line'
@@ -137,7 +127,8 @@ class RibaListLine(models.Model):
                     self._cr, self.env.user.id, {
                         'name': riba_move_line_name,
                         'partner_id': line.partner_id.id,
-                        'account_id': riba_move_line.move_line_id.account_id.id,
+                        'account_id':
+                        riba_move_line.move_line_id.account_id.id,
                         'credit': riba_move_line.amount,
                         'debit': 0.0,
                         'move_id': move_id,

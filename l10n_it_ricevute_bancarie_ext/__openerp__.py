@@ -27,6 +27,7 @@
     'depends': [
         'account_bank',
         'account_payment_term_month',
+        'l10n_it_abicab',
         'l10n_it_ricevute_bancarie',
     ],
     'data': [

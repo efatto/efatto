@@ -10,8 +10,58 @@ class RibaAccreditation(models.TransientModel):
     _inherit = "riba.accreditation"
 
     @api.multi
+    def _get_accreditation_journal_id(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            res = self.env['riba.configuration'].\
+                get_default_value_by_list_line('accreditation_journal_id')
+        else:
+            res = super(RibaAccreditation,
+                        self)._get_accreditation_journal_id()
+        return res
+
+    @api.multi
+    def _get_accreditation_account_id(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            res = (self.env['riba.configuration'].
+                   get_default_value_by_list_line(
+                        'accreditation_account_id') or
+                   self.env['riba.configuration'].
+                   get_default_value_by_list_line(
+                       'acceptance_account_id'))
+        else:
+            res = super(RibaAccreditation,
+                        self)._get_accreditation_account_id()
+        return res
+
+    @api.multi
+    def _get_acceptance_account_id(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            res = self.env['riba.configuration'].\
+                get_default_value_by_list_line('acceptance_account_id')
+        else:
+            res = super(RibaAccreditation, self)._get_acceptance_account_id()
+        return res
+
+    @api.multi
+    def _get_bank_account_id(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            res = self.env['riba.configuration'].\
+                get_default_value_by_list_line('bank_account_id')
+        else:
+            res = super(RibaAccreditation, self)._get_bank_account_id()
+        return res
+
+    @api.multi
+    def _get_bank_expense_account_id(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            res = self.env['riba.configuration'].\
+                get_default_value_by_list_line('bank_expense_account_id')
+        else:
+            res = super(RibaAccreditation, self)._get_bank_expense_account_id()
+        return res
+
+    @api.multi
     def _get_accreditation_amount(self):
-        super(RibaAccreditation, self)._get_accreditation_amount()
         amount = 0.0
         config = False
         if self._context.get('active_model', False) == 'riba.distinta.line':
@@ -26,6 +76,7 @@ class RibaAccreditation(models.TransientModel):
                 if line.state in ['confirmed', ]:  # why was 'accredited' too?
                     amount += line.amount
         elif self._context.get('active_model', False) == 'riba.distinta':
+            super(RibaAccreditation, self)._get_accreditation_amount()
             for line in self.env['riba.distinta'].browse(
                     self._context['active_id']).line_ids:
                 if line.tobe_accredited and \
@@ -33,6 +84,20 @@ class RibaAccreditation(models.TransientModel):
                     # why was 'accredited' too?
                     amount += line.amount
         return amount
+
+    @api.multi
+    def skip(self):
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            active_ids = self._context.get('active_ids', False)
+            if not active_ids:
+                raise UserError(_('Error'), _('No active IDS found'))
+            distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
+            for line in distinta_lines:
+                if not line.state == "accredited":
+                    line.write({'state': 'accredited'})
+            return {'type': 'ir.actions.act_window_close'}
+        else:
+            return super(RibaAccreditation, self).skip()
 
     @api.multi
     def _get_accreditation_date(self):
@@ -46,6 +111,7 @@ class RibaAccreditation(models.TransientModel):
     def create_move(self):
         self.ensure_one()
         ref = ''
+        context = {}
         if self._context.get('active_model', False) == 'riba.distinta':
             active_id = self._context.get('active_id', False)
             if not active_id:
@@ -54,8 +120,8 @@ class RibaAccreditation(models.TransientModel):
             if not self._context.get(
                     'accruement', False) and not \
                     distinta.config_id.accreditation_account_id:
-                self.with_context(
-                    accruement=True, accreditation_accruement=True)
+                context.update({
+                    'accruement': True, 'accreditation_accruement': True})
             ref = distinta.name
 
         if self._context.get('active_model', False) == 'riba.distinta.line':
@@ -71,17 +137,17 @@ class RibaAccreditation(models.TransientModel):
             if not self._context.get(
                     'accruement', False) and not \
                     line.distinta_id.config_id.accreditation_account_id:
-                self.with_context(
-                    accruement=True, accreditation_accruement=True)
+                context.update({
+                    'accruement': True, 'accreditation_accruement': True})
 
         if not (self.accreditation_journal_id or self.date_accreditation):
             raise UserError(
                 _('Error'), _('Missing accreditation date or journal'))
-        if not self._context.get('accruement', False):
+        if not context.get('accruement', False):
             if not (self.bank_account_id or self.accreditation_account_id):
                 raise UserError(_('Error'), _(
                     'Missing bank account or accreditation account'))
-        if self._context.get('accruement', False):
+        if context.get('accruement', False):
             if not (self.acceptance_account_id and
                     self.accreditation_account_id):
                 raise UserError(_('Error'), _(
@@ -96,8 +162,8 @@ class RibaAccreditation(models.TransientModel):
             'line_id': [
                 (0, 0, {
                     'name': _('Bank'),
-                    'account_id': self._context.get(
-                        'accruement', False) and not self._context.get(
+                    'account_id': context.get(
+                        'accruement', False) and not context.get(
                             'accreditation_accruement', False) and
                     self.accreditation_account_id.id or
                     self.bank_account_id.id,
@@ -107,7 +173,7 @@ class RibaAccreditation(models.TransientModel):
                 }),
                 (0, 0, {
                     'name': _('Credit'),
-                    'account_id': self._context.get('accruement', False) and
+                    'account_id': context.get('accruement', False) and
                     self.acceptance_account_id.id or
                     self.accreditation_account_id.id,
                     'credit': self.accreditation_amount,
@@ -122,7 +188,7 @@ class RibaAccreditation(models.TransientModel):
         accredited = True
         accrued = True
         if self._context.get('active_model', False) == 'riba.distinta':
-            if self._context.get('accruement', False):
+            if context.get('accruement', False):
                 for line in distinta.line_ids:
                     if line.tobe_accredited and not line.state == "accrued":
                         line.write({'accruement_move_id': move_id.id,
@@ -145,7 +211,7 @@ class RibaAccreditation(models.TransientModel):
                         self._uid, 'riba.distinta', active_id,
                         'accredited', self._cr)
         if self._context.get('active_model', False) == 'riba.distinta.line':
-            if self._context.get('accruement', False):
+            if context.get('accruement', False):
                 for line in distinta_lines:
                     if not line.state == "accrued":
                         line.write({'accruement_move_id': move_id.id,
@@ -182,3 +248,21 @@ class RibaAccreditation(models.TransientModel):
         string='Versed amount',
         default=_get_accreditation_amount,
     )
+    bank_expense_account_id = fields.Many2one(
+        comodel_name='account.account',
+        default=_get_bank_expense_account_id,
+        string="Bank Expenses account")
+    accreditation_journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        default=_get_accreditation_journal_id,
+        string="Accreditation journal",
+        domain=[('type', '=', 'bank')])
+    accreditation_account_id = fields.Many2one(
+        comodel_name='account.account',
+        default=_get_accreditation_account_id,
+        string="Ri.Ba. bank account")
+    bank_account_id = fields.Many2one(
+        comodel_name='account.account',
+        default=_get_bank_account_id,
+        string="Bank account",
+        domain=[('type', '=', 'liquidity')])

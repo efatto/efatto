@@ -18,7 +18,7 @@
 #
 #
 import base64
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp.tools.translate import _
 import datetime
 
@@ -48,8 +48,8 @@ class RibaFileExport(orm.TransientModel):
         creditor_address = order_obj.config_id.company_id.partner_id
         creditor_city = creditor_address.city or ''
         if (
-            not order_obj.config_id.company_id.partner_id.vat
-            and not order_obj.config_id.company_id.partner_id.fiscalcode
+            not order_obj.config_id.company_id.partner_id.vat and not
+            order_obj.config_id.company_id.partner_id.fiscalcode
         ):
             raise orm.except_orm(
                 'Error',
@@ -67,9 +67,9 @@ class RibaFileExport(orm.TransientModel):
             creditor_address.zip or '' + ' ' + creditor_city,
             order_obj.config_id.company_id.partner_id.ref or '',
             (
-                order_obj.config_id.company_id.partner_id.vat
-                and order_obj.config_id.company_id.partner_id.vat[2:]
-                or order_obj.config_id.company_id.partner_id.fiscalcode),
+                order_obj.config_id.company_id.partner_id.vat and
+                order_obj.config_id.company_id.partner_id.vat[2:] or
+                order_obj.config_id.company_id.partner_id.fiscalcode),
         ]
         arrayRiba = []
         for line in order_obj.line_ids:
@@ -92,11 +92,14 @@ class RibaFileExport(orm.TransientModel):
                 debit_bank_name = debit_bank.bank.name or debit_bank.bank_name
             else:
                 raise orm.except_orm(
-                    'Error',
-                    _('No bank or IBAN specified for ') + line.partner_id.name)
+                    _('Error'),
+                    _('No IBAN or ABI/CAB specified for ') +
+                    line.partner_id.name)
             debitor_city = debitor_address.city and debitor_address.city.ljust(
                 23)[0:23] or ''
-            debitor_province = debitor_address.state_id.code or ''
+            debitor_province = (
+                debitor_address.state_id and debitor_address.state_id.code or
+                '')
             if not line.due_date:  # ??? VERIFICARE
                 due_date = '000000'
             else:
@@ -106,10 +109,11 @@ class RibaFileExport(orm.TransientModel):
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise orm.except_orm(
                     'Error',
-                    _('No VAT or Fiscal code specified for: ')
-                    + line.partner_id.name)
+                    _('No VAT or Fiscal code specified for: ') +
+                    line.partner_id.name)
             if not debit_bank_name:
-                #  removed: bank and debit_bank.bank.name or debit_bank.bank_name):
+                #  removed: bank and debit_bank.bank.name or
+                #  debit_bank.bank_name):
                 raise orm.except_orm(
                     'Error',
                     _('No debit_bank specified for ') + line.partner_id.name)
@@ -139,9 +143,9 @@ class RibaFileExport(orm.TransientModel):
                 debitor_province,
                 debit_abi,
                 debit_cab,
-                debit_bank_name, #.bank and debit_bank.bank.name or debit_bank.bank_name,
+                debit_bank_name,  # changed
                 line.partner_id.ref or '',
-                invoice_ref,
+                invoice_ref,  # changed
                 line.invoice_date,
 #                 cup,
 #                 cig,
@@ -151,7 +155,11 @@ class RibaFileExport(orm.TransientModel):
         out = base64.encodestring(
             self._creaFile(array_testata, arrayRiba).encode("utf8"))
         self.write(
-            cr, uid, ids, {'state': 'get', 'riba_': out}, context=context)
+            cr, uid, ids, {
+                'state': 'get',
+                'riba_txt': out,
+                'file_name': '%s.txt' % order_obj.name
+                }, context=context)
 
         model_data_obj = self.pool.get('ir.model.data')
         view_rec = model_data_obj.get_object_reference(

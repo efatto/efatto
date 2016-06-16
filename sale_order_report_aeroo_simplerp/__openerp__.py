@@ -26,6 +26,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'aeroo_report_signature',
         'report_aeroo',
         'report_branding',
         'invoice_report_aeroo_simplerp',

@@ -16,7 +16,6 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('complex_discount', 'discount')
     def onchange_sconti(self):
-        res = {}
         net = 0.0
         if self.complex_discount:
             complex_discount = self.complex_discount.replace(
@@ -28,5 +27,4 @@ class SaleOrderLine(models.Model):
                     UserError(_('Bad discount format'))
         else:
             net = self.discount
-        res['discount'] = net
-        return {'value': res}
+        self.discount = net

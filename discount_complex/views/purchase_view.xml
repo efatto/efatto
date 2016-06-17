@@ -65,7 +65,8 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree"/>
         <field name="arch" type="xml">
-            <field name="price_unit" position="after">
+            <field name="price_subtotal" position="before">
+                <field name="price_unit"/>
                 <field name="complex_discount"/>
             </field>
         </field>

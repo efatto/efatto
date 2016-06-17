@@ -37,7 +37,7 @@
                                             </t>
                                         </div>
                                         <div class="text-center" style="margin-top:10px;">
-                                            <a name="print_weekly_hours_report" type="object">
+                                            <a name="print_weekly_hours_report" type="object" groups="base.group_hr_user">
                                                 Print Weekly Hours
                                             </a>
                                         </div>

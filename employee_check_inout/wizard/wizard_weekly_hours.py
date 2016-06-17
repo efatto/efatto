@@ -6,7 +6,7 @@ from openerp import fields, models, api, _
 from datetime import date, timedelta
 
 
-class wizard_weekly_hours(models.TransientModel):
+class WizardWeeklyHours(models.TransientModel):
     _name = "wizard.weekly.hours"
 
     @api.model
@@ -15,7 +15,7 @@ class wizard_weekly_hours(models.TransientModel):
 
     @api.model
     def get_current_date(self):
-         return date.today()
+        return date.today()
 
     start_date = fields.Date(
         string="Start Date", default=get_week_first_day, required=True)
@@ -32,6 +32,6 @@ class wizard_weekly_hours(models.TransientModel):
             'model': 'wizard.weekly.hours',
             'form': data
         }
-        return  self.env['report'].get_action(
+        return self.env['report'].get_action(
             self, 'employee_check_inout.print_weekly_hours_template',
             data=datas,)

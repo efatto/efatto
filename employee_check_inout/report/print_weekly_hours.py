@@ -7,7 +7,7 @@ from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class print_weekly_hours_template(models.AbstractModel):
+class PrintWeeklyHoursTemplate(models.AbstractModel):
     _name = 'report.employee_check_inout.print_weekly_hours_template'
 
     @api.multi
@@ -27,11 +27,13 @@ class print_weekly_hours_template(models.AbstractModel):
         return report_obj.render(
             'employee_check_inout.print_weekly_hours_template', docargs)
 
-    def _get_date(self, date):
+    @staticmethod
+    def _get_date(date):
         if date:
             date = (datetime.strptime(date, "%Y-%m-%d")).strftime('%d/%m/%Y')
         return date
 
+    @api.multi
     def _get_employee_data(self, data):
         employee_data = []
         if data.get('form') and data.get('form').get('employee_id'):
@@ -41,17 +43,17 @@ class print_weekly_hours_template(models.AbstractModel):
                 {'name': employee_id.name, 'image': employee_id.image_medium})
         return employee_data
 
+    @api.multi
     def _get_attendance_list(self, data):
+        attendance_list = []
         if data.get('form') and data.get('form').get('start_date') and \
                 data.get('form').get('end_date') and \
                 data.get('form').get('employee_id'):
             attendance_obj = self.env['hr.attendance']
-            attendance_ids = attendance_obj.search(
-                [('employee_id', '=', data.get('form').get('employee_id')),
+            attendance_ids = attendance_obj.search([
+                ('employee_id', '=', data.get('form').get('employee_id')),
                 ('name', '>=', data.get('form').get('start_date')),
-                ('name', '<=', data.get('form').get('end_date'))],
-                order='id')
-            attendance_list = []
+                ('name', '<=', data.get('form').get('end_date'))], order='id')
             check_in = ''
             for attendance in attendance_ids:
                 if attendance.action == 'sign_in':
@@ -66,6 +68,7 @@ class print_weekly_hours_template(models.AbstractModel):
                         duration_hours = ('%.2f' % (duration_minuts/60.0))
                         attendance_list.append({
                             'total_hours_worked': duration_hours,
+                            'total_minuts_worked': duration_minuts,
                             'check_in': check_in.strftime(
                                 DEFAULT_SERVER_DATETIME_FORMAT) or '',
                             'check_out': check_out.strftime(

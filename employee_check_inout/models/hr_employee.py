@@ -6,7 +6,7 @@ from openerp import models, api, _
 from openerp.exceptions import Warning
 
 
-class hr_employee(models.Model):
+class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
     @api.multi

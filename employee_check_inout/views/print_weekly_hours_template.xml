@@ -23,6 +23,7 @@
                                             <th>Check In</th>
                                             <th>Check Out</th>
                                             <th>Total Hours Worked</th>
+                                            <th>Total Minuts Worked</th>
                                         </tr>
                                     </thead>
                                     <tbody class="invoice_tbody">
@@ -40,6 +41,11 @@
                                             <td>
                                                 <t t-if="f['total_hours_worked']">
                                                     <span t-esc="f['total_hours_worked']"/>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if="f['total_minuts_worked']">
+                                                    <span t-esc="f['total_minuts_worked']"/>
                                                 </t>
                                             </td>
                                         </tr>

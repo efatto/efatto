@@ -19,10 +19,10 @@
 #
 {
     'name': 'MRP operation tree',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'MRP operation tree',
+    'description': 'MRP operation tree',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

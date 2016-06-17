@@ -22,7 +22,7 @@
     'version': '8.0.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Hr timesheet readonly date',
+    'description': 'Hr timesheet readonly date',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

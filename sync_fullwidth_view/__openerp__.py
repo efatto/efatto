@@ -24,7 +24,7 @@
     "author": "Synconics Technologies Pvt. Ltd.",
     "website": "www.synconics.com",
     "version": "1.0",
-    "catagory": "Tools",
+    "category": "Tools",
     "complexity": "easy",
     "summary": "Odoo Fullscreen View Using Sliding Sidebars",
     "description": """
@@ -36,5 +36,3 @@
     "installable": True,
     "auto_install": False
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

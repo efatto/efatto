@@ -22,7 +22,7 @@
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Custom fields for Area Industries',
+    'description': 'Custom fields for Area Industries',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

@@ -19,7 +19,7 @@
 #
 {
     "name": "Project Tasks Start/Stop",
-    "summary": "Starts and stops the project tasks easily",
+    "description": "Starts and stops the project tasks easily",
     "version": "8.0.0.1",
     "author": "SimplERP SRL, Opencloud",
     "license": "LGPL-3",
@@ -37,4 +37,3 @@
     'installable': True,
     'images': ['images/imagem_project_extension.png'],
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

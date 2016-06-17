@@ -21,7 +21,7 @@
     'name': 'Product version',
     'version': '8.0.1.0.0',
     'category': 'Product Management',
-    'summary': "Make product versionable",
+    'description': "Make product versionable",
     'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://simplerp.it',
     'depends': [

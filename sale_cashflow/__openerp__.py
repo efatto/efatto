@@ -19,10 +19,10 @@
 #
 {
     'name': 'Sale cashflow',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Sale cashflow automation',
+    'description': 'Sale cashflow automation',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

@@ -19,8 +19,8 @@
 #
 {
     'name': 'Support branding extension',
-    "summary": "Adds your branding to an Odoo instance extension",
-    'version': '8.1.0.0.0',
+    "description": "Adds your branding to an Odoo instance extension",
+    'version': '8.0.0.0.0',
     'category': 'Dependecy/Hidden',
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

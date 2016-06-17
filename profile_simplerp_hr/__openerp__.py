@@ -28,10 +28,8 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'project',
-        'project_timesheet',
         'hr_timesheet_sheet',
         'hr_expense',
     ],
-    "installable": True,
+    "installable": False,
 }

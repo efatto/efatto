@@ -19,10 +19,10 @@
 #
 {
     'name': 'Sale tecnical manager',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Sale tecnical manager',
+    'description': 'Sale tecnical manager - only for report usage',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

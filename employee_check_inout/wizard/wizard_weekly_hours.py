@@ -1,25 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
-#    Copyright (c) 2012 - Present Acespritech Solutions Pvt. Ltd. All Rights Reserved
-#    Author: <info@acespritech.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    A copy of the GNU General Public License is available at:
-#    <http://www.gnu.org/licenses/gpl.html>.
-#
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-
 from openerp import fields, models, api, _
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 
 class wizard_weekly_hours(models.TransientModel):
@@ -33,8 +17,10 @@ class wizard_weekly_hours(models.TransientModel):
     def get_current_date(self):
          return date.today()
 
-    start_date = fields.Date(string="Start Date", default=get_week_first_day, required=True)
-    end_date = fields.Date(string="End Date", default=get_current_date, required=True)
+    start_date = fields.Date(
+        string="Start Date", default=get_week_first_day, required=True)
+    end_date = fields.Date(
+        string="End Date", default=get_current_date, required=True)
 
     @api.multi
     def print_weekly_hours_report(self):
@@ -46,6 +32,6 @@ class wizard_weekly_hours(models.TransientModel):
             'model': 'wizard.weekly.hours',
             'form': data
         }
-        return  self.env['report'].get_action(self, 'employee_check_inout.print_weekly_hours_template', data=datas,)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        return  self.env['report'].get_action(
+            self, 'employee_check_inout.print_weekly_hours_template',
+            data=datas,)

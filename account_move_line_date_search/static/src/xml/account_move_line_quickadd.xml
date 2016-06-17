@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="AccountMoveLineQuickAdd" >
+        <t t-jquery="div.oe_account_quickadd" t-operation="append">
+            <div class="oe_datepicker_container">
+                <h4>Date from :</h4>
+                <select class="oe_account_select_date_from">
+
+                </select>
+
+                <h4>Date to :</h4>
+                <select class="oe_account_select_date_to">
+
+                </select>
+            </div>
+
+        </t>
+    </t>
+
+</templates>

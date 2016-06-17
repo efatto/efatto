@@ -4,7 +4,6 @@
     'name': 'Ditron Hardware Driver',
     'version': '8.0.0.2.0',
     'category': 'Hardware Drivers',
-    'summary': 'Hardware Driver for Italian Fiscal Ditron',
     'website': 'https://www.simplerp.it',
     'author': 'Sergio Corato - SimplERP Srl',
     'description': 'Hardware Driver for Italian Fiscal Ditron',

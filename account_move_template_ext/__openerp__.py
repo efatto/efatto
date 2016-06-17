@@ -19,10 +19,10 @@
 #
 {
     'name': 'Account Move Template as Models',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Account Move Template as Models',
+    'description': 'Account Move Template as Models',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

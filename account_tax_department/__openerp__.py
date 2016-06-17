@@ -22,7 +22,7 @@
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Account tax department for Point of Sale',
+    'description': 'Account tax department for Point of Sale',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

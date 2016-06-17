@@ -22,7 +22,7 @@
     'version': '8.0.0.1.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Brand reports',
+    'description': 'Brand reports',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

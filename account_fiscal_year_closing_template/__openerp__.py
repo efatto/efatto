@@ -21,11 +21,11 @@
 
 {
     "name" : "Fiscal Year Closing Template",
-    "version" : "8.1.0.0.0",
+    "version" : "8.0.1.0.0",
     "author" : "Sergio Corato",
     "website" : "http://www.simplerp.it",
     "category" : "Generic Modules/Accounting",
-    "summary": """
+    "description": """
     Fiscal Year Closing Wizard Template
     """,
     "license": "AGPL-3",

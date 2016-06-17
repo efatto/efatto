@@ -4,7 +4,6 @@
     'name': 'POS Fiscal',
     'version': '8.0.0.2.1',
     'category': 'other',
-    'summary': 'POS Fiscal',
     'website': 'https://www.simplerp.it',
     'author': 'Sergio Corato - SimplERP Srl',
     'description': 'POS Fiscal',

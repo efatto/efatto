@@ -2,7 +2,7 @@
 {
     'name': "Apparecchiature Medicali - Data Ultima Revisione",
 
-    'summary': """Aggiunge il campo Data Ultima Revisione""",
+    'description': """Aggiunge il campo Data Ultima Revisione""",
 
 
     'author': "IT-Projects LLC, Ivan Yelizariev, SimplERP Srl",

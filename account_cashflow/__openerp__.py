@@ -19,10 +19,10 @@
 #
 {
     'name': 'Account cashflow',
-    'version': '8.1.0.2.0',
+    'version': '8.0.1.2.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'summary': 'Account cashflow',
+    'description': 'Account cashflow',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

@@ -25,7 +25,9 @@
     'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'Allows to set repetition of project tasks',
-    'description': 'With this module you are able to repeat project tasks pretty much in the same way as you repeat calendar events.',
+    'description':
+        'With this module you are able to repeat project tasks'
+        ' pretty much in the same way as you repeat calendar events.',
     'author': 'Rui Pedrosa Franco',
     'website': 'http://pt.linkedin.com/in/ruipedrosafranco',
     'depends': ['project'],

@@ -238,31 +238,31 @@ class RibaAccreditation(models.TransientModel):
         string="Ri.Ba. acceptance account")
     date_accreditation = fields.Date(
         string='Accreditation date',
-        default=_get_accreditation_date,
+        default=lambda self: self._get_accreditation_date(),
     )
     accreditation_amount = fields.Float(
         string='Credit amount',
-        default=_get_accreditation_amount,
+        default=lambda self: self._get_accreditation_amount(),
     )
     bank_amount = fields.Float(
         string='Versed amount',
-        default=_get_accreditation_amount,
+        default=lambda self: self._get_accreditation_amount(),
     )
     bank_expense_account_id = fields.Many2one(
         comodel_name='account.account',
-        default=_get_bank_expense_account_id,
+        default=lambda self: self._get_bank_expense_account_id(),
         string="Bank Expenses account")
     accreditation_journal_id = fields.Many2one(
         comodel_name='account.journal',
-        default=_get_accreditation_journal_id,
+        default=lambda self: self._get_accreditation_journal_id(),
         string="Accreditation journal",
         domain=[('type', '=', 'bank')])
     accreditation_account_id = fields.Many2one(
         comodel_name='account.account',
-        default=_get_accreditation_account_id,
+        default=lambda self: self._get_accreditation_account_id(),
         string="Ri.Ba. bank account")
     bank_account_id = fields.Many2one(
         comodel_name='account.account',
-        default=_get_bank_account_id,
+        default=lambda self: self._get_bank_account_id(),
         string="Bank account",
         domain=[('type', '=', 'liquidity')])

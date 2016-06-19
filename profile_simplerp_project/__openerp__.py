@@ -18,7 +18,7 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl profile hr & project apps',
+    'name': 'Italy - SimplERP Srl profile project apps',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
@@ -33,8 +33,7 @@
         'project',
         'project_extenssion',
         'project_timesheet',
-
-        # 'hr_expense',
+        'reminder_task_deadline',
     ],
     "installable": True,
 }

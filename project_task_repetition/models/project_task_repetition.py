@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 Rui Pedrosa Franco All Rights Reserved
-#    http://pt.linkedin.com/in/ruipedrosafranco
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-
 from openerp import models, fields, api, _
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -32,7 +13,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class project_task(models.Model):
+class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     @api.multi
@@ -98,7 +79,7 @@ class project_task(models.Model):
         return True
 
 
-class project_task_repetition_wizard(models.TransientModel):
+class ProjectTaskRepetitionWizard(models.TransientModel):
     _name = 'project.task.repetition.wizard'
 
     DAYS_IN_MONTH = []
@@ -203,8 +184,9 @@ class project_task_repetition_wizard(models.TransientModel):
     @api.multi
     def create_repetition(self):
 
-        #date of the original task deadline
-        task_id = self.env['project.task'].browse(self._context['active_id'])[0]
+        # date of the original task deadline
+        task_id = self.env['project.task'].browse(
+            self._context['active_id'])
         deadline = task_id.date_deadline
         if deadline:
             deadline = datetime.datetime.strptime(deadline, "%Y-%m-%d")
@@ -233,8 +215,7 @@ class project_task_repetition_wizard(models.TransientModel):
 
             if (self.rrule_type in ['daily', 'yearly'] or
                     (self.rrule_type == 'weekly' and not days_chosen) or
-                    (self.rrule_type == 'monthly' and not self.month_by)
-            ):
+                    (self.rrule_type == 'monthly' and not self.month_by)):
 
                 if self.end_type == 'count':
                     deadline = self.calculate_date(

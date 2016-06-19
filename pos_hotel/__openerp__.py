@@ -27,6 +27,7 @@
     'depends': [
         'point_of_sale',
         'hotel',
+        'hotel_ext',
     ],
     'data': [
         'views/hotel_partner_view.xml',

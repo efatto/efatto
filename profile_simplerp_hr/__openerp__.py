@@ -28,8 +28,10 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
+        'employee_check_inout',
         'hr_timesheet_sheet',
-        'hr_expense',
+        # 'hr_expense',
+        'hr_timesheet_sheet_date_readonly',
     ],
     "installable": False,
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_fiscal_journal" model="ir.ui.view">
+            <field name="name">Fiscal Journal</field>
+            <field name="model">wizard.fiscal.journal</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fiscal Journal">
+                    <group>
+                        <separator string="Periods" colspan="4"/>
+                        <field name="period_ids" colspan="4" nolabel="1" height="250"/>
+                        <separator string="Journals" colspan="4"/>
+                        <field name="journal_ids" colspan="4" nolabel="1" height="250" domain="[('type', 'not in', ('sale','purchase','sale_refund','purchase_refund'))]"/>
+                        <separator string="Layout" colspan="4"/>
+                        <field name="type"/>
+                        <field name="fiscal_page_base"/>
+                        <newline/>
+                        <field name="message" nolabel="1" colspan="4"/>
+                    </group>
+                    <footer>
+                        <button string="Print" name="print_journal" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fiscal_journal" model="ir.actions.act_window">
+            <field name="name">Fiscal Journal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.fiscal.journal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+          id="menu_finance_legal_statement_taxes"
+          name="Fiscal Journal Report"
+          parent="account.menu_finance_legal_statement"/>
+
+        <menuitem
+            name="Fiscal Journal Report"
+            parent="menu_finance_legal_statement_taxes"
+            action="action_fiscal_journal"
+            id="menu_fiscal_journal"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>

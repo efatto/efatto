@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <report
+            id="action_report_fiscal_journal"
+            model="account.move"
+            string="Fiscal Journal Report"
+            report_type="qweb-pdf"
+            name="l10n_it_fiscal_journal.report_fiscal_journal"
+            file="l10n_it_fiscal_journal.report_fiscal_journal"
+            menu="False"
+            auto="False"
+        />
+        <record id="l10n_it_fiscal_journal.action_report_fiscal_journal" model="ir.actions.report.xml">
+            <field name="paperformat_id"
+            ref="l10n_it_account.l10n_it_account_a4_portrait"/>
+       </record>
+    </data>
+</openerp>
+

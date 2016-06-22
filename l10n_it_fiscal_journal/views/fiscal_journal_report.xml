@@ -9,14 +9,14 @@
                 <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
                         <tr class="first_th_row">
-                            <td colspan="7" style="padding:10;" t-esc="'LIBRO GIORNALE - Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
+                            <td colspan="6" style="padding:10;" t-esc="'LIBRO GIORNALE - Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>
                         </tr>
                         <tr style="page-break-inside: avoid; border:1px solid #A1A1A1; ">
                             <th class="left_without_line">DATA REG.</th>
                             <th class="left_without_line">NUM. REG.</th>
                             <th class="left_without_line">DESCRIZIONE</th>
                             <th class="left_without_line">CONTO</th>
-                            <th class="left_without_line">SEZIONALE</th>
+                            <!--<th class="left_without_line">SEZIONALE</th>-->
                             <th class="left_without_line">DARE</th>
                             <th class="left_without_line">AVERE</th>
                         </tr>
@@ -26,82 +26,45 @@
                     <tbody>
                         <t t-foreach="get_move(data['ids'])" t-as="move">
                             <t t-set="counter" t-value="counter + 1"/>
-                                <t t-set="line_class_left" t-value="left_without_line"/>
-                                <t t-set="line_class_right" t-value="right_without_line"/>
-                                <t t-if="counter%2 == 0">
-                                    <t t-set="tcolor" t-value="'#F5F5F5'" />
-                                </t>
-                                <t t-if="counter%2 == 1">
-                                    <t t-set="tcolor" t-value="'white'" />
-                                </t>
-                                <t t-foreach="move.line_id" t-as="move_line">
-                                    <!--t-attf-style="#{line.display_mode == 'progress' ? 'width: '+line.completeness+'%;' : 'width:0;'}"-->
-                                    <tr t-attf-style="#{'page-break-inside: avoid; border:1px solid #A1A1A1; ' + 'background-color: ' + tcolor + ';'}">
-                                        <!-- Data registrazione -->
-                                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
-                                        <!-- Numero registrazione -->
-                                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
-                                        <!-- Descrizione -->
-                                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move_line.name"/></td>
-                                        <!-- Conto -->
-                                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move_line.account_id.name"/></td>
-                                        <!-- Sezionale -->
-                                        <td class="left_without_line_bold"><div style="page-break-inside: avoid" t-esc="move.journal_id.name"/></td>
-                                        <!-- DARE -->
-                                        <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="move_line.debit"/></td>
-                                        <!-- AVERE -->
-                                        <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="move_line.credit"/></td>
-                                    </tr>
-                                </t>
+                            <t t-set="line_class_left" t-value="left_without_line"/>
+                            <t t-set="line_class_right" t-value="right_without_line"/>
+                            <t t-if="counter%2 == 0">
+                                <t t-set="tcolor" t-value="'#F5F5F5'" />
+                            </t>
+                            <t t-if="counter%2 == 1">
+                                <t t-set="tcolor" t-value="'white'" />
+                            </t>
+                            <t t-foreach="move.line_id" t-as="move_line">
+                                <tr t-attf-style="#{'page-break-inside: avoid; border:1px solid #A1A1A1; ' + 'background-color: ' + tcolor + ';'}">
+                                    <!-- Data registrazione -->
+                                    <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(move.date, date=True)"/></td>
+                                    <!-- Numero registrazione -->
+                                    <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.name"/></td>
+                                    <!-- Descrizione -->
+                                    <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move_line.name"/></td>
+                                    <!-- Conto -->
+                                    <td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move_line.account_id.name"/></td>
+                                    <!-- Sezionale -->
+                                    <!--<td class="left_without_line"><div style="page-break-inside: avoid" t-esc="move.journal_id.code"/></td>-->
+                                    <!-- DARE -->
+                                    <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(move_line.debit)"/></td>
+                                    <!-- AVERE -->
+                                    <td class="right_without_line"><div style="page-break-inside: avoid" t-esc="formatLang(move_line.credit)"/></td>
+                                </tr>
+                            </t>
                         </t>
+                        <t t-set="totals" t-value="get_totals(data['ids'])"/>
+                            <tr t-attf-style="#{'page-break-inside: avoid; border:1px solid #A1A1A1;'}">
+                                    <td colspan="4" class="left_without_line_bold">TOTALI</td>
+                                    <!-- DARE -->
+                                    <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(totals['debit'])"/></td>
+                                    <!-- AVERE -->
+                                    <td class="right_without_line_bold"><div style="page-break-inside: avoid" t-esc="formatLang(totals['credit'])"/></td>
+                                </tr>
                     </tbody>
                 </table>
                 <br/>
 
-                <!--<t t-set="tot_base" t-value="0"/>-->
-                <!--<t t-set="tot_tax" t-value="0"/>-->
-                <!--<t t-set="tot_ded" t-value="0"/>-->
-                <!--<t t-set="tot_unded" t-value="0"/>-->
-                <!--<div style="page-break-inside: avoid;">-->
-                    <!--<table style="width:100%;" >-->
-                       <!--<tr>-->
-                            <!--<td colspan="2" style="vertical-align:text-top;padding:10">-->
-                                <!--<h3>Totali</h3>-->
-                                <!--<table style="width:100%;">-->
-                                    <!--<thead>-->
-                                        <!--<tr>-->
-                                            <!--<th class="left_without_line_bold">Descrizione</th>-->
-                                            <!--<th class="right_without_line_bold">Imponibile</th>-->
-                                            <!--<th class="right_without_line_bold">Imposta</th>-->
-                                            <!--<th class="right_without_line_bold">Detraibile</th>-->
-                                            <!--<th class="right_without_line_bold">Indetraibile</th>-->
-                                        <!--</tr>-->
-                                    <!--</thead>-->
-                                    <!--<t t-foreach="tax_codes()" t-as="tax_code_tuple">-->
-                                        <!--<t t-set="tot_base" t-value="tot_base + tax_code_tuple[1]"/>-->
-                                        <!--<t t-set="tot_tax" t-value="tot_tax + tax_code_tuple[2]"/>-->
-                                        <!--<t t-set="tot_ded" t-value="tot_ded + tax_code_tuple[3]"/>-->
-                                        <!--<t t-set="tot_unded" t-value="tot_unded + tax_code_tuple[4]"/>-->
-                                        <!--<tr>-->
-                                            <!--<td class="left_with_line" t-esc="tax_code_tuple[0]"/>-->
-                                            <!--<td class="right_with_line" t-esc="formatLang(tax_code_tuple[1])"/>-->
-                                            <!--<td class="right_with_line" t-esc="formatLang(tax_code_tuple[2])"/>-->
-                                            <!--<td class="right_with_line" t-esc="formatLang(tax_code_tuple[3])"/>-->
-                                            <!--<td class="right_with_line" t-esc="formatLang(tax_code_tuple[4])"/>-->
-                                        <!--</tr>-->
-                                    <!--</t>-->
-                                    <!--<tr style="border:1px solid #A1A1A1; background-color:#F5F5F5;'">-->
-                                        <!--<td class="left_without_line_bold">Totale generale euro</td>-->
-                                        <!--<td class="right_without_line_bold" t-esc="formatLang(tot_base)"/>-->
-                                        <!--<td class="right_without_line_bold" t-esc="formatLang(tot_tax)"/>-->
-                                        <!--<td class="right_without_line_bold" t-esc="formatLang(tot_ded)"/>-->
-                                        <!--<td class="right_without_line_bold" t-esc="formatLang(tot_unded)"/>-->
-                                    <!--</tr>-->
-                                <!--</table>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                    <!--</table>-->
-                <!--</div>-->
             </div>
         </t>
     </t>

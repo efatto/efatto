@@ -36,6 +36,16 @@ class Parser(report_sxw.rml_parse):
             'account.move').browse(self.cr, self.uid, move_ids)
         return move_list
 
+    def _get_totals(self, move_ids):
+        move_list = self.pool.get(
+            'account.move').browse(self.cr, self.uid, move_ids)
+        totals = {'credit': 0, 'debit': 0}
+        for move in move_list:
+            for move_line in move.line_id:
+                totals['credit'] += move_line.credit
+                totals['debit'] += move_line.debit
+        return totals
+
     def _get_start_date(self):
         period_obj = self.pool.get('account.period')
         start_date = False
@@ -66,6 +76,7 @@ class Parser(report_sxw.rml_parse):
             'get_move': self._get_move,
             'start_date': self._get_start_date,
             'end_date': self._get_end_date,
+            'get_totals': self._get_totals,
         })
 
     def set_context(self, objects, data, ids):

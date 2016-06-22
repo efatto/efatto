@@ -1,0 +1,41 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_task
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 15:37+0000\n"
+"PO-Revision-Date: 2016-06-22 19:08+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:0 view:hr_timesheet_sheet.sheet:0
+msgid "Current Week"
+msgstr "Settimana Corrente"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:0 view:hr_timesheet_sheet.sheet:0
+msgid "Current Year"
+msgstr "Anno Corrente"
+
+#. module: hr_timesheet_task
+#. openerp-web
+#: code:addons/hr_timesheet_task/static/src/xml/timesheet.xml:8
+#: view:hr.analytic.timesheet:0
+#, python-format
+msgid "Task"
+msgstr "Attività"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:0 view:hr_timesheet_sheet.sheet:0
+msgid "Current Month"
+msgstr "Mese Corrente"

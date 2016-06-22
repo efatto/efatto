@@ -54,7 +54,7 @@ class account_bank_statement(orm.Model):
             'journal_id': st.journal_id.id,
             'period_id': st.period_id.id,
             'currency_id': st.currency.id,
-            'analytic_account_id': st_line.analytic_account_id and st_line.analytic_account_id.id or False
+            # 'analytic_account_id': st_line.analytic_account_id and st_line.analytic_account_id.id or False
         }
 
         if st.currency.id <> company_currency_id:
@@ -118,9 +118,9 @@ class account_bank_statement(orm.Model):
             to_be_reconciled = []
             st_line_sum = 0.0
             for st_line in st.line_ids:
-                if st_line.analytic_account_id:
-                    if not st.journal_id.analytic_journal_id:
-                        raise orm.except_orm(_('No Analytic Journal !'),_("You have to assign an analytic journal on the '%s' journal!") % (st.journal_id.name,))
+                # if st_line.analytic_account_id:
+                #     if not st.journal_id.analytic_journal_id:
+                #         raise orm.except_orm(_('No Analytic Journal !'),_("You have to assign an analytic journal on the '%s' journal!") % (st.journal_id.name,))
                 if not st_line.amount:
                     continue
                 st_line_number = st_number + '/' + str(st_line.sequence)

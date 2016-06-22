@@ -6,7 +6,6 @@
         <record id="view_account_statement_multi_pay" model="ir.ui.view">
             <field name="name">account.statement.from.invoice.lines.form.multi.pay</field>
             <field name="model">account.statement.from.invoice.lines</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Import Entries">
                     <group colspan="4" expand="1">
@@ -37,7 +36,6 @@
         <record id="view_bank_statement_tree_multi_pay" model="ir.ui.view">
             <field name="name">account.bank.statement.tree.multi.pay</field>
             <field name="model">account.bank.statement</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree colors="red:balance_end_real!=balance_end and state=='draft';blue:state=='draft' and (balance_end_real==balance_end);black:state=='confirm'" string="Statement">
                     <field name="name"/>
@@ -57,7 +55,6 @@
         <record id="view_bank_statement_form_multi_pay" model="ir.ui.view">
             <field name="name">account.bank.statement.form.multi.pay</field>
             <field name="model">account.bank.statement</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Pagamenti cumulativi">
                     <group col="7" colspan="4">
@@ -83,9 +80,9 @@
                                     <field name="name"/>
                                     <field name="ref"/>
                                     <field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
-                                    <field name="type" on_change="onchange_type(partner_id, type)"/>
+                                    <!--<field name="type" on_change="onchange_type(partner_id, type)"/> FIELD REMOVED-->
                                     <field domain="[('journal_id','=',parent.journal_id), ('company_id', '=', parent.company_id)]" name="account_id"/>
-                                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>
+                                    <!--<field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>-->
                                     <field name="amount"/>
                                 </tree>
                                 <form string="Statement lines">
@@ -93,9 +90,9 @@
                                     <field name="name"/>
                                     <field name="ref"/>
                                     <field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
-                                    <field name="type" on_change="onchange_type(partner_id, type)"/>
+                                    <!--<field name="type" on_change="onchange_type(partner_id, type)"/> FIELD REMOVED-->
                                     <field domain="[('journal_id', '=', parent.journal_id), ('type', '&lt;&gt;', 'view'), ('company_id', '=', parent.company_id)]" name="account_id"/>
-                                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>
+                                    <!--<field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>-->
                                     <field name="amount"/>
                                     <field name="sequence" readonly="0"/>
                                     <separator colspan="4" string="Notes"/>
@@ -121,7 +118,6 @@
         <record id="view_bank_statement_search_multi_pay" model="ir.ui.view">
             <field name="name">account.bank.statement.search.multi.pay</field>
             <field name="model">account.bank.statement</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Multi Payments">
                     <group>
@@ -152,7 +148,7 @@
             <field name="domain">[('journal_id.type', '=', 'bank')]</field>
             <field name="context">{'journal_type':'bank'}</field>
             <field name="search_view_id" ref="view_bank_statement_search_multi_pay"/>
-            <field name="help">Un pagamento multiplo avviene solitamente a fine mese per il pagamento dei fornitori, può avvenire anche quando si incassa una distinta di ri.ba. di più clienti.</field>
+            <field name="help">Multiple payment is usually done at the end of the month to pay suppliers, it can be done receiving payment from customers too.</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="action_bank_statement_tree_multi_pay_bank">

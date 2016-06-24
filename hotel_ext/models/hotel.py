@@ -25,3 +25,15 @@ class HotelFolio(models.Model):
             if self.checkin_date >= self.checkout_date:
                 raise ValidationError(_('Check in Date Should be \
                 less than the Check Out Date!'))
+
+
+class HotelFolioLine(models.Model):
+    _inherit = 'hotel.folio.line'
+
+    @api.constrains('checkin_date', 'checkout_date')
+    def check_dates(self):
+        self.ensure_one()
+        if self.checkin_date and self.checkout_date:
+            if self.checkin_date >= self.checkout_date:
+                raise ValidationError(_('Check in Date Should be \
+                less than the Check Out Date!'))

@@ -12,4 +12,14 @@
              <th>Room</th>
          </t>
     </t>
+
+    <t t-extend="XmlReceipt">
+        <t t-jquery="t[t-if='receipt.cashier'] > div:last" t-operation="append">
+            <t t-if="receipt.room">
+                <div>--------------------------------</div>
+                <div>Room: <t t-esc="receipt.room"/></div>
+            </t>
+        </t>
+    </t>
+
 </templates>

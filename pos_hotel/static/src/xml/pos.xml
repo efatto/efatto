@@ -17,9 +17,25 @@
         <t t-jquery="t[t-if='receipt.cashier'] > div:last" t-operation="append">
             <t t-if="receipt.room">
                 <div>--------------------------------</div>
+                <t t-if="receipt.client">
+                    <div>Client: <t t-esc='receipt.client'/></div>
+                </t>
                 <div>Room: <t t-esc="receipt.room"/></div>
             </t>
         </t>
     </t>
+
+    <t t-extend="BillReceipt">
+        <t t-jquery="t[t-if='receipt.cashier'] > div:last" t-operation="append">
+            <t t-if="receipt.room">
+                <div>--------------------------------</div>
+                <t t-if="receipt.client">
+                    <div>Client: <t t-esc='receipt.client'/></div>
+                </t>
+                <div>Room: <t t-esc="receipt.room"/></div>
+            </t>
+        </t>
+    </t>
+
 
 </templates>

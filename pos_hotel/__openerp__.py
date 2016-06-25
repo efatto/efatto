@@ -28,6 +28,7 @@
         'point_of_sale',
         'hotel',
         'hotel_ext',
+        'pos_restaurant',
     ],
     'data': [
         'views/hotel_partner_view.xml',

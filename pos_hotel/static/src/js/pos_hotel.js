@@ -53,7 +53,6 @@ Overload: point_of_sale.module.Order
     module.Order = module.Order.extend({
         export_for_printing:function(){
             var res = ModuleOrderSuper.prototype.export_for_printing.call(this);
-            debugger;
             var client  = this.get('client');
             var room = '';
             if (client){

@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* pos_hotel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-27 20:46+0000\n"
+"PO-Revision-Date: 2016-06-27 20:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_hotel
+#. openerp-web
+#: code:addons/pos_hotel/static/src/xml/pos.xml:19
+#: code:addons/pos_hotel/static/src/xml/pos.xml:31
+#, python-format
+msgid "--------------------------------"
+msgstr "--------------------------------"
+
+#. module: pos_hotel
+#: model:ir.actions.act_window,help:pos_hotel.act_res_partner_3_hotel_folio
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a Offer for this customer.\n"
+"              </p><p>\n"
+"                Odoo will help you efficiently handle the complete sale flow:\n"
+"                quotation, sales order, delivery, invoicing and\n"
+"                payment.\n"
+"              </p><p>\n"
+"                The social feature helps you organize discussions on each sales\n"
+"                order, and allow your customer to keep track of the evolution\n"
+"                of the sales order.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Crea un'offerta per questo cliente.\n"
+"              </p><p>\n"
+"                SimplERP permetterà di gestire efficacemente il completo flusso di vendita:\n"
+"                offerte, ordini di vendita, consegne, fatture e\n"
+"                pagamenti.\n"
+"              </p><p>\n"
+"                Le funzionalità social permettono di organizzare discussioni in ogni\n"
+"                ordine di vendita, e permettono ai clienti di tener traccia dell'evoluzione\n"
+"                degli ordini di vendita.\n"
+"              </p>\n"
+"            "
+
+#. module: pos_hotel
+#. openerp-web
+#: code:addons/pos_hotel/static/src/xml/pos.xml:21
+#: code:addons/pos_hotel/static/src/xml/pos.xml:33
+#, python-format
+msgid "Client:"
+msgstr "Cliente:"
+
+#. module: pos_hotel
+#: model:ir.actions.act_window,name:pos_hotel.act_res_partner_3_hotel_folio
+#: view:res.partner:pos_hotel.crm_lead_partner_kanban_view_hotel
+#: view:res.partner:pos_hotel.res_partner_view_buttons_folio
+msgid "Folios"
+msgstr "Folio"
+
+#. module: pos_hotel
+#: field:res.partner,hotel_folio_ids:0
+msgid "Hotel Folio"
+msgstr "Hotel Folio"
+
+#. module: pos_hotel
+#: model:ir.model,name:pos_hotel.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pos_hotel
+#: model:ir.model,name:pos_hotel.model_pos_order
+msgid "Point of Sale"
+msgstr "Punto Vendita"
+
+#. module: pos_hotel
+#. openerp-web
+#: code:addons/pos_hotel/static/src/xml/pos.xml:12
+#, python-format
+msgid "Room"
+msgstr "Stanza"
+
+#. module: pos_hotel
+#. openerp-web
+#: code:addons/pos_hotel/static/src/xml/pos.xml:23
+#: code:addons/pos_hotel/static/src/xml/pos.xml:35
+#, python-format
+msgid "Room:"
+msgstr "Stanza:"
+

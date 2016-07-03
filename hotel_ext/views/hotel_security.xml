@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+   <!--<delete id="hotel.group_hotel_user" model="res.groups"/>-->
+   <!--<delete id="hotel.group_hotel_manager" model="res.groups"/>-->
+
+    <record model="ir.module.category" id="hotel.module_category_hotel">
+	    <field name="name">Hotel</field>
+	    <field name="description">Groups for Hotel</field>
+	    <field name="sequence">35</field>
+	</record>
+
+
+    <!--Group for hotel user -->
+    <record id="hotel.group_hotel_user" model="res.groups">
+        <field name="name">Hotel Management / User</field>
+        <field name="category_id" ref="hotel.module_category_hotel"/>
+    </record>
+
+    <!--Group for hotel manager -->
+    <record id="hotel.group_hotel_manager" model="res.groups">
+        <field name="name">Hotel Management/ Manager</field>
+        <field name="category_id" ref="hotel.module_category_hotel"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('hotel.group_hotel_user'))]"/>
+    </record>
+
+</data>
+</openerp>

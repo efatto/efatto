@@ -19,7 +19,7 @@
 #
 {
     'name': 'Hotel defaults',
-    'version': '8.0.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'description': 'Hotel defaults',
     'website': 'https://www.simplerp.it',
@@ -28,6 +28,7 @@
         'hotel',
     ],
     'data': [
+        'views/hotel_security.xml',
         'views/hotel_view.xml',
     ],
     'installable': True,

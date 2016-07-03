@@ -4,7 +4,7 @@
 Hotel defaults
 ==============
 
-This module add defaults for product linked to room: service and no purchase.
+This module customize hotel management for Italian habits.
 
 
 Contributors

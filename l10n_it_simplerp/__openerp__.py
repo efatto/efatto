@@ -19,19 +19,16 @@
 ##############################################################################
 {
     'name': 'Italy - SimplERP Srl',
-    'version': '8.0.0.0.1',
+    'version': '8.0.0.1.0',
     'category': 'Localization/Account Charts',
     'description': """
-    Profilatura SimplERP
+    PDC SimplERP 7 number
 
     """,
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'base_vat',
-        'account_chart',
-        'base_iban',
         'l10n_configurable',
         'partner_subaccount',
         'account_accountant',
@@ -39,7 +36,7 @@
         #  'account_tax_simplified', da installare dopo perchè nel csv delle imposte non sono definiti i campi base_tax ecc.
     ],
     "data": [
-        'data/payment_data.xml',
+        'data/payment_data_first.xml',
         'data/account.account.type.csv',
         'data/account.account.template.csv',
         'data/account.tax.code.template.csv',
@@ -48,8 +45,7 @@
         'data/account.fiscal.position.template.csv',
         'data/account.fiscal.position.tax.template.csv',
         'data/l10n_chart_it_generic.xml',
+        'data/payment_data.xml',
     ],
-    "demo": [],
-    "active": False,
     "installable": True,
 }

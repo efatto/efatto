@@ -23,7 +23,7 @@
     'version': '8.0.0.0.0',
     'category': 'Hidden',
     'description': "Pos create MRP procurement",
-    'author': 'SimplERP Srl',
+    'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://simplerp.it',
     'depends': ['mrp', 'point_of_sale', 'sale'],
     'data': [

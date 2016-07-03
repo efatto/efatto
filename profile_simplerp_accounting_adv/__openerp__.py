@@ -39,6 +39,7 @@
         'l10n_it_ricevute_bancarie_data',
         'l10n_it_ricevute_bancarie_ext',
         'l10n_it_vat_registries_ext',
+        'web_advanced_search_x2x',
     ],
     "installable": True,
 }

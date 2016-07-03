@@ -29,10 +29,12 @@
         'hotel',
         'hotel_ext',
         'pos_restaurant',
+        'pos_discount',
     ],
     'data': [
         'views/hotel_partner_view.xml',
         'views/point_of_sale.xml',
+        'views/hotel_view.xml',
     ],
     'qweb': ['static/src/xml/pos.xml'],
     'installable': True,

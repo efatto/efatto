@@ -48,6 +48,7 @@ class PosOrder(models.Model):
                                   'price_unit': line.price_unit,
                                   'price_subtotal': line.price_subtotal,
                                   'state': 'confirmed',
+                                  'discount': line.discount,
                                   }
                         sol_rec = so_line_obj.create(values)
                         hsl_obj.create({

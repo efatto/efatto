@@ -33,7 +33,15 @@ class ProjectTaskMaterials(models.Model):
                     self.amount_unit = - amount_dic['value']['amount']
         return res
 
-    @api.onchange('quantity')
-    @api.depends('amount_unit')
+    @api.onchange('quantity', 'amount_unit')
+    @api.depends('amount_unit', 'quantity')
     def _onchange_quantity(self):
         self.amount_total = self.amount_unit * self.quantity
+
+    def _prepare_analytic_line(self):
+        res = super(ProjectTaskMaterials, self)._prepare_analytic_line()
+        res.update({'name': self.product_id.name})
+        if res['amount'] != - self.amount_total:
+            res.update({'amount': - self.amount_total})
+            # TODO: ask the user to update the product price?
+        return res

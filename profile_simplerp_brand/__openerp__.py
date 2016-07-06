@@ -30,6 +30,7 @@
     "depends": [
         # 'material_backend_theme',
         'support_branding_ext',
+        'web_debranding_ext',
     ],
     "installable": True,
 }

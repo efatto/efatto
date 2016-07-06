@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_task_recalculate
+#	* project_task_materials_stock_ext
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-04 20:45+0000\n"
-"PO-Revision-Date: 2016-07-04 20:45+0000\n"
+"POT-Creation-Date: 2016-07-06 09:21+0000\n"
+"PO-Revision-Date: 2016-07-06 09:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,31 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: project_task_recalculate
-#: code:addons/project_task_recalculate/models/project.py:24
-#, python-format
-msgid "Cannot recalculate project because your project don't have calculation type."
-msgstr "Non è possibile ricalcolare il progetto perchè non è impostato il tipo di calcolo."
+#. module: project_task_materials_stock_ext
+#: field:project.task.materials,amount_unit:0
+msgid "Cost"
+msgstr "Costo"
 
-#. module: project_task_recalculate
-#: code:addons/project_task_recalculate/models/project.py:32
-#, python-format
-msgid "Cannot recalculate project because your project don't have date end."
-msgstr "Non è possibile ricalcolare il projecto perchè non è impostata la data finale."
+#. module: project_task_materials_stock_ext
+#: field:project.task.materials,amount_total:0
+msgid "Cost Total"
+msgstr "Costo Totale"
 
-#. module: project_task_recalculate
-#: code:addons/project_task_recalculate/models/project.py:28
-#, python-format
-msgid "Cannot recalculate project because your project don't have date start."
-msgstr "Non è possibile ricalcolare il projecto perchè non è impostata la data iniziale."
-
-#. module: project_task_recalculate
-#: model:ir.model,name:project_task_recalculate.model_project_project
-msgid "Project"
-msgstr "Progetto"
-
-#. module: project_task_recalculate
-#: model:ir.model,name:project_task_recalculate.model_project_task
-msgid "Task"
-msgstr "Attività"
+#. module: project_task_materials_stock_ext
+#: model:ir.model,name:project_task_materials_stock_ext.model_project_task_materials
+msgid "Task Materials Used"
+msgstr "Materiale usato per l'attività"
 

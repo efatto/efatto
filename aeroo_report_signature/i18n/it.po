@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* aeroo_report_signature
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-06 09:37+0000\n"
+"PO-Revision-Date: 2016-07-06 09:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: aeroo_report_signature
+#: field:res.users,signature_logo:0
+msgid "Image for signature"
+msgstr "Immagine per firma"
+
+#. module: aeroo_report_signature
+#: help:res.users,signature_logo:0
+msgid "Set image for signature on reports"
+msgstr "Importa l'immagine per la firma nei report"
+
+#. module: aeroo_report_signature
+#: model:ir.model,name:aeroo_report_signature.model_res_users
+msgid "Users"
+msgstr "Utenti"
+

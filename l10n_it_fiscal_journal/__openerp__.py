@@ -33,5 +33,5 @@
         'report/reports.xml',
         'wizard/print_fiscal_journal.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

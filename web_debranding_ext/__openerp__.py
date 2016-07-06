@@ -18,11 +18,12 @@
 #
 #
 {
-    'name': 'SimplERP web debranding extend',
+    'name': 'Web debranding extend',
     'version': '8.0.0.0.1',
     'category': 'other',
     'description': """
-    Web debranding extension
+    Web debranding extension - remove standard icon and logo and put Simplerp
+    name in web ref.
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

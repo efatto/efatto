@@ -41,7 +41,7 @@ class sale_order(models.Model):
                 "given date.")
             )
         move_data = {
-            'name': _('Cash flow temporary move') + ' - ' + order.date_order,
+            'name': _('Cashflow temporary move') + ' - ' + order.date_order,
             'date': order.date_order,
             'journal_id': journal_id,
             'period_id': period_ids[0].id,

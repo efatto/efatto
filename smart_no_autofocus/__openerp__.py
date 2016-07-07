@@ -29,5 +29,5 @@
     'data': [
         'views/focus.xml',
     ],
-    'installable': True
+    'installable': False,
 }

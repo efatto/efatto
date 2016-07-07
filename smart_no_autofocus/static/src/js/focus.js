@@ -1,4 +1,5 @@
 openerp.project = function(openerp) {
+//    if is a mobile device, ...
     openerp.web_kanban.KanbanView.include({
         project_remove_focus: function() {
             var self = this;

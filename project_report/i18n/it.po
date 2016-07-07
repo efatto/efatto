@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* project_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-07 08:24+0000\n"
+"PO-Revision-Date: 2016-07-07 08:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+#: view:website:project_report.report_project_task_overview
+msgid "Assegnata a"
+msgstr "Assegnata a"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Assegnate a"
+msgstr "Assegnate a"
+
+#. module: project_report
+#: view:website:project_report.report_project_issue_overview
+msgid "Assegnato a"
+msgstr "Assegnato a"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+#: view:website:project_report.report_project_task_overview
+msgid "Attività"
+msgstr "Attività"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Attività Aperte"
+msgstr "Attività Aperte"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Cliente:"
+msgstr "Cliente:"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Data Fine:"
+msgstr "Data Fine:"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Data Inizio:"
+msgstr "Data Inizio:"
+
+#. module: project_report
+#: view:website:project_report.report_project_task_overview
+msgid "Panoramica Attività"
+msgstr "Panoramica Attività"
+
+#. module: project_report
+#: view:website:project_report.report_project_issue_overview
+msgid "Panoramica Problematiche"
+msgstr "Panoramica Problematiche"
+
+#. module: project_report
+#: view:website:project_report.report_project_issue_overview
+#: view:website:project_report.report_project_overview
+msgid "Problematica"
+msgstr "Problematica"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Problematiche Aperte"
+msgstr "Problematiche Aperte"
+
+#. module: project_report
+#: view:website:project_report.report_project_issue_overview
+#: view:website:project_report.report_project_overview
+#: view:website:project_report.report_project_task_overview
+msgid "Progetto"
+msgstr "Progetto"
+
+#. module: project_report
+#: model:ir.actions.report.xml,name:project_report.report_project_overview_action
+msgid "Project Tasks & Issues"
+msgstr "Project Tasks & Issues"
+
+#. module: project_report
+#: view:website:project_report.report_project_overview
+msgid "Responsabile:"
+msgstr "Responsabile:"
+
+#. module: project_report
+#: model:ir.actions.report.xml,name:project_report.report_project_issues_overview_action
+msgid "Selected Issues"
+msgstr "Problematiche Selezionate"
+
+#. module: project_report
+#: model:ir.actions.report.xml,name:project_report.report_project_tasks_overview_action
+msgid "Selected Tasks"
+msgstr "Attività Selezionate"
+
+#. module: project_report
+#: view:project.project:project_report.project_view_kanban_inherit_reporting
+msgid "Stampa"
+msgstr "Stampa"
+
+#. module: project_report
+#: view:website:project_report.report_project_issue_overview
+#: view:website:project_report.report_project_overview
+#: view:website:project_report.report_project_task_overview
+msgid "Stato"
+msgstr "Stato"
+

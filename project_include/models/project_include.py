@@ -3,10 +3,6 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning, ValidationError
-from datetime import datetime, timedelta
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from dateutil import relativedelta
 
 
 class WizardProjectInclude(models.TransientModel):
@@ -21,31 +17,12 @@ class WizardProjectInclude(models.TransientModel):
         for task in self.env['project.task'].search(
                 [('project_id', '=', self._context['active_id'])]):
             task.project_id = self.parent_project_id
-        #
-        #     new_date_start = datetime.strftime('%Y-%m-%d')
-        #     new_date_end = False
-        #     if proj.date_start and proj.date:
-        #         start_date = datetime(*datetime.strptime(proj.date_start, '%Y-%m-%d')[:3])
-        #         end_date = datetime(*datetime.strptime(proj.date, '%Y-%m-%d')[:3])
-        #         new_date_end = (
-        #         datetime(*datetime.strptime(new_date_start, '%Y-%m-%d')[:3]) + (
-        #         end_date - start_date)).strftime('%Y-%m-%d')
-        #
-        #     new_id = self.with_env({'copy': True, 'analytic_project_copy': True}).copy(proj.id, default={
-        #         'name': _("%s (copy)") % proj.name,
-        #         'state': 'open',
-        #         'date_start': new_date_start,
-        #         'date': new_date_end,
-        #         'parent_id': parent_id})
-        #     result.append(new_id.id)
-        #
-        #     child_ids = self.search([
-        #         ('parent_id', '=', proj.analytic_account_id.id)])
-        #     parent_id = self.read(self._cr, self._uid, new_id, ['analytic_account_id'])[
-        #         'analytic_account_id'][0]
-        #     if child_ids:
-        #         self.duplicate_template(self._cr, self._uid, child_ids,
-        #                                 context={'parent_id': parent_id})
+            task.parent_ids += self.parent_task_id
+            task.date_start = self.parent_task_id.date_end and \
+                self.parent_task_id.date_end or \
+                self.parent_task_id.date_start and \
+                self.parent_task_id.date_start or fields.Date.today()
+        # self.env['project.project'].browse(self._context['active_id']).unlink()
         #
         # data_obj = self.env['ir.model.data']
         # if result and len(result):

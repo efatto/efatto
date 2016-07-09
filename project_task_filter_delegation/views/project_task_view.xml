@@ -10,6 +10,9 @@
                 <xpath expr="//form/sheet/notebook/page[@string='Delegation']/field[@name='parent_ids']" position="attributes">
                     <attribute name="context">{'search_default_project_id': project_id}</attribute>
                 </xpath>
+                <xpath expr="//form/sheet/notebook/page[@string='Delegation']/field[@name='child_ids']" position="attributes">
+                    <attribute name="context">{'search_default_project_id': project_id}</attribute>
+                </xpath>
             </field>
         </record>
 

@@ -11,6 +11,7 @@
                     <group>
                     <field name="parent_project_id" />
                     <field name="parent_task_id" domain="[('project_id','=',parent_project_id)]"/>
+                    <field name="duplicate"/>
                     </group>
                     <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
                     <button string="Include" name="project_include" type="object" icon="gtk-ok" colspan="2"/>

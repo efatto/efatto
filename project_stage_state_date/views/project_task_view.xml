@@ -22,7 +22,7 @@
             <field name="inherit_id" ref="project.view_task_tree2"/>
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="attributes">
-                    <attribute name="colors">red:date_end and (date_end&lt;current_date and state not in ['done','cancelled']);yellow:date_start and (date_start&lt;current_date and state in ['draft','open','pending'])</attribute>
+                    <attribute name="colors">red:date_end and (date_end&lt;current_date and state not in ['done','cancelled']);orange:date_start and (date_start&lt;current_date and state in ['draft','pending'])</attribute>
                 </xpath>
                 <field name="date_end" position="after">
                     <field name="date_deadline"/>
@@ -43,9 +43,10 @@
                     <field name="state"/>
                 </field>
                 <xpath expr="/kanban/templates/t/div/div[2]/div[2]/field[@name='project_id']" position="after">
+                    <t t-if="record.state and record.state.raw_value != 'open'">
                     <t t-if="record.state and record.state.raw_value != 'done'">
                     <t t-if="record.state and record.state.raw_value != 'cancelled'">
-                    <t t-if="record.date_start.raw_value and record.date_start.raw_value lt (new Date())" t-set="yellow">oe_kanban_text_yellow</t></t></t>
+                    <t t-if="record.date_start.raw_value and record.date_start.raw_value lt (new Date())" t-set="yellow">oe_kanban_text_yellow</t></t></t></t>
                         <br/><span t-attf-class="#{yellow || ''}"><i><field name="date_start"/></i></span>
                     <t t-if="record.state and record.state.raw_value != 'done'">
                     <t t-if="record.state and record.state.raw_value != 'cancelled'">

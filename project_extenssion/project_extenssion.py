@@ -8,9 +8,6 @@ from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-_TASK_STATE = [('draft', 'New'),('open', 'In Progress'),('pending', 'Pending'), ('done', 'Done'), ('cancelled', 'Cancelled')]
-
-
 class task(osv.osv):
     _inherit = 'project.task'
 
@@ -49,13 +46,6 @@ class task(osv.osv):
         'date_work_started': fields.datetime('New work start date'),
         'done': fields.text('Done'),
         'work_started': fields.boolean('Work Started'),
-        'state': fields.related('stage_id', 'state', type="selection", store=True,
-                selection=_TASK_STATE, string="Status", readonly=True,
-                help='The status is set to \'Draft\', when a case is created.\
-                      If the case is in progress the status is set to \'Open\'.\
-                      When the case is over, the status is set to \'Done\'.\
-                      If the case needs to be reviewed then the status is \
-                      set to \'Pending\'.'),
     }
     _defaults = {
         'work_started': False,
@@ -106,15 +96,3 @@ class project_task_history(osv.osv):
     _columns = {
         'state': fields.selection([('draft', 'New'), ('cancelled', 'Cancelled'),('open', 'In Progress'),('pending', 'Pending'), ('done', 'Done')], 'Status'),
     }
-
-
-class project_task_type(osv.osv):
-    _inherit = 'project.task.type'
-
-    _columns = {
-        'state': fields.selection(
-            _TASK_STATE, 'Related Status', required=False,
-            help="The status of your document is automatically changed regarding the selected stage. "
-            "For example, if a stage is related to the status 'Close', when your document reaches this stage, it is automatically closed."),
-    }
-

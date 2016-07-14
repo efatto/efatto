@@ -27,6 +27,7 @@
     "category": "Project",
     "depends": [
         "project",
+        'project_stage_state',
         'web_kanban',
         'web'
     ],

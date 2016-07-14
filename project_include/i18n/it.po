@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 15:17+0000\n"
-"PO-Revision-Date: 2016-07-09 15:17+0000\n"
+"POT-Creation-Date: 2016-07-13 12:00+0000\n"
+"PO-Revision-Date: 2016-07-13 12:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,11 @@ msgstr "Includi"
 #: model:ir.actions.act_window,name:project_include.action_project_include
 #: view:project.include:project_include.project_include_wizard
 msgid "Include Project"
+msgstr "Includi il Progetto"
+
+#. module: project_include
+#: view:project.project:project_include.edit_project_recalculate
+msgid "Include project"
 msgstr "Includi il Progetto"
 
 #. module: project_include

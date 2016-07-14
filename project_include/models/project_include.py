@@ -19,7 +19,8 @@ class WizardProjectInclude(models.TransientModel):
             self._context['active_id'])
         if self.duplicate:
             for task in self.env['project.task'].search(
-                    [('project_id', '=', self._context['active_id'])]):
+                    [('project_id', '=', self._context['active_id']),
+                     ('active', '=', False)]):
                 new_task = task.copy(default={
                     'name': task.name,
                     'project_id': self.parent_project_id.id,

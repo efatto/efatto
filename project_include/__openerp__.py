@@ -2,9 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 Rui Pedrosa Franco All Rights Reserved
-#    http://pt.linkedin.com/in/ruipedrosafranco
-#    $Id$
+#    Copyright (C) 2016 Sergio Corato - SimplERP SRL
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as

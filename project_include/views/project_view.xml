@@ -2,30 +2,45 @@
 <openerp>
     <data>
 
-        <record id="project_include_wizard" model="ir.ui.view">
-            <field name="name">project_include_wizard</field>
-            <field name="model">project.include</field>
-            <field name="arch" type="xml">
-                <form string="Include Project">
-                    <separator string="This wizard include the current project in another project" colspan="4"/>
-                    <group>
-                    <field name="parent_project_id" />
-                    <field name="parent_task_id" domain="[('project_id','=',parent_project_id)]"/>
-                    <field name="duplicate"/>
-                    </group>
-                    <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
-                    <button string="Include" name="project_include" type="object" icon="gtk-ok" colspan="2"/>
-                </form>
-            </field>
-        </record>
+    <record id="edit_project_recalculate" model="ir.ui.view">
+    <field name="name">project.project.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+        <button name="set_template" position="after">
+            <button name="%(action_project_include)d"
+                    type="action"
+                    string="Include project"
+                    attrs="{'invisible': [('state', 'not in', 'template')]}"/>
+        </button>
+    </field>
+    </record>
 
-       <act_window name="Include Project"
-            res_model="project.include"
-            src_model="project.project"
-            view_mode="form"
-            view_type="form"
-            target="new"
-            id="action_project_include"
-            view_id="project_include_wizard"/>
+    <record id="project_include_wizard" model="ir.ui.view">
+        <field name="name">project_include_wizard</field>
+        <field name="model">project.include</field>
+        <field name="arch" type="xml">
+            <form string="Include Project">
+                <separator string="This wizard include the current project in another project" colspan="4"/>
+                <group>
+                <field name="parent_project_id" />
+                <field name="parent_task_id" domain="[('project_id','=',parent_project_id)]"/>
+                <field name="duplicate"/>
+                </group>
+                <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
+                <button string="Include" name="project_include" type="object" icon="gtk-ok" colspan="2"/>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="Include Project"
+        res_model="project.include"
+        multi="True"
+        target="new"
+        view_mode="form"
+        view_type="form"
+        id="action_project_include"
+        view_id="project_include_wizard"/>
+
     </data>
 </openerp>

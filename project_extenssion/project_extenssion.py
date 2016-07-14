@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import _
+from openerp.exceptions import Warning
 from openerp.osv import fields, osv
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -46,6 +47,7 @@ class task(osv.osv):
         'date_work_started': fields.datetime('New work start date'),
         'done': fields.text('Done'),
         'work_started': fields.boolean('Work Started'),
+        'work_user_id': fields.many2one('res.users', 'Working User'),
     }
     _defaults = {
         'work_started': False,
@@ -55,12 +57,17 @@ class task(osv.osv):
         for task in self.browse(cr, uid, ids, context):
             if not task.work_started:
                 self.write(cr, uid, ids, {
-                    'work_started': True, 'date_work_started': datetime.now()
+                    'work_started': True, 'date_work_started': datetime.now(),
+                    'work_user_id': uid,
                 })
         return True
 
     def do_close_work(self, cr, uid, ids, context=None):
         for task in self.browse(cr, uid, ids):
+            if uid != task.work_user_id.id:
+                raise Warning(_('Task can be stopped only from creator user: %s')
+                              % task.work_user_id.name)
+                return False
             self.write(cr, uid, [task.id], {'work_started': False})
             duration = datetime.now() - datetime.strptime(task.date_work_started, DEFAULT_SERVER_DATETIME_FORMAT)
             duration_minuts = int(duration.total_seconds()/60)

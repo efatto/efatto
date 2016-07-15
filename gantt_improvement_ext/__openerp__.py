@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'gantt_improvement',
+        'project',
     ],
     'data': [
         'views/web_gantt.xml',

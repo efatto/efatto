@@ -71,7 +71,7 @@ openerp.gantt_improvement_ext = function (instance) {
                         item_parent_name = 'Gantt View';
                     } else if (item[group_bys[0]] !== undefined) { /* se c'è un progetto, è un figlio del progetto*/
                         for (var j = 0;j < item.parent_ids.length;j++){
-                            links.push({id:i, source:item.parent_ids[j], target:item.id, type:"0"});
+                            links.push({id:i*1000+j, source:item.parent_ids[j], target:item.id, type:"0"});
                         }
                         item_parent_id = 'p' + item[group_bys][0];
                         item_parent_name = item[group_bys][1];

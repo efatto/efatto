@@ -68,7 +68,6 @@ class ProjectTask(models.Model):
 
     @api.multi
     def task_recalculate(self):
-        # super(ProjectTask, self).task_recalculate()
         to_string = fields.Datetime.to_string
 
         for task in self:
@@ -90,34 +89,12 @@ class ProjectTask(models.Model):
                 if first:
                     date_start = first[0]
             if date_start:
-                if task.child_ids and not task.parent_ids or (
-                    not task.child_ids and not task.parent_ids
-                ):
-                    end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)[1]
-                    if end:
-                        date_end = end[1]
-
-                    for child in task.child_ids:
-                        child.date_end = child.date_start = False
-                        child.date_start = date_end
-
-                elif task.child_ids and task.parent_ids: # raggruppare con elif successivo se si può
-                    # prendo la max data dei parents e la imposto come data iniziale e finale
-                    # TODO impostare la data dei childs
+                if task.parent_ids:
                     date_start = self._get_max_date_from_parents(task, date_start)
-                    end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)[1]
-                    if end:
-                        date_end = end[1]
-
-                elif not task.child_ids and task.parent_ids: # solo genitori
-                    date_start = self._get_max_date_from_parents(task, date_start)
-
-                    end = self._calendar_schedule_days(
-                        task.estimated_days, date_start, resource, calendar)[1]
-                    if end:
-                        date_end = end[1]
+                end = self._calendar_schedule_days(
+                    task.estimated_days + 0.001, date_start, resource, calendar)[1]
+                if end:
+                    date_end = end[1]
 
             task.with_context(task.env.context, task_recalculate=True).write({
                 'date_start': date_start and to_string(date_start) or False,
@@ -134,9 +111,9 @@ class ProjectTask(models.Model):
         for parent in task.parent_ids:
             if parent.date_end:
                 if datetime.strptime(
-                        parent.date_end[:10], '%Y-%m-%d') > max_date:
+                        parent.date_end, DEFAULT_SERVER_DATETIME_FORMAT) > max_date:
                     max_date = datetime.strptime(
-                        parent.date_end[:10], '%Y-%m-%d')
+                        parent.date_end, DEFAULT_SERVER_DATETIME_FORMAT)
 
         return max_date
 

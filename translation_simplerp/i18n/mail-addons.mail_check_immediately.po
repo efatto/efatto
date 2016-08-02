@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_check_immediately
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-20 16:47+0000\n"
+"PO-Revision-Date: 2016-07-20 18:50+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: mail_check_immediately
+#. openerp-web
+#: code:addons/mail_check_immediately/static/src/xml/main.xml:9
+#, python-format
+msgid "Click to fetch mails now"
+msgstr "Scarica Posta"
+
+#. module: mail_check_immediately
+#: code:addons/mail_check_immediately/models.py:37
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: mail_check_immediately
+#: field:fetch_mail.imm,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mail_check_immediately
+#: field:fetchmail.server,run_time:0
+msgid "Launch time"
+msgstr "Ora esecuzione"
+
+#. module: mail_check_immediately
+#. openerp-web
+#: code:addons/mail_check_immediately/static/src/xml/main.xml:8
+#, python-format
+msgid "Mails fetched:"
+msgstr "E-mail recuperate:"
+
+#. module: mail_check_immediately
+#: model:ir.model,name:mail_check_immediately.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "Server POP/IMAP"
+
+#. module: mail_check_immediately
+#: code:addons/mail_check_immediately/models.py:37
+#, python-format
+msgid "Task can be started no earlier than 5 seconds."
+msgstr "L'operazione non può essere eseguita prima di 5 secondi."

@@ -29,9 +29,11 @@
     'license': 'AGPL-3',
     "depends": [
         'hr_timesheet_sheet',
+        'hr_timesheet_improvement',
         'hr_timesheet_invoice',
         'gantt_improvement_ext',
         'project',
+        'project_baseuser',
         'project_extenssion',
         'project_timesheet',
         'project_task_materials_stock_ext',

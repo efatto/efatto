@@ -203,7 +203,9 @@ class Parser(report_sxw.rml_parse):
                                 sale_order_date = picking.sale_id.date_order
                 else:
                     sale_order = line.origin
-                    sale_order_date = line.invoice_id.date_invoice #TODO search date order
+                    sale_order_date = line.invoice_id.date_invoice or \
+                        datetime.now().strftime('%Y-%m-%d')
+                    #TODO search date order
             # Order lines by date and by ddt, so first create date_ddt key:
             if ddt:
                 if ddt in keys:

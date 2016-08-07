@@ -8,19 +8,19 @@ from openerp import models, fields, api, _
 class AccountFiscalPositionRule(models.Model):
     _inherit = 'account.fiscal.position.rule'
 
-    number_protocol = fields.Integer('Exemption declaration protocol Number')
+    number_protocol = fields.Integer('VAT Exemption declaration protocol Number')
     partner_id = fields.Many2one('res.partner', 'Partner')
-    date_issue = fields.Date('Exemption declaration Issue Date')
-    date_reception = fields.Date('Exemption declaratione Reception Date')
+    date_issue = fields.Date('VAT Exemption declaration Issue Date')
+    date_reception = fields.Date('VAT Exemption declaratione Reception Date')
     exemption_type = fields.Selection([
         ('S', 'Single Operation'),
         ('P', 'Period'),
         ('I', 'Import')
-    ], 'Exemption Type')
+    ], 'VAT Exemption Type')
     amount_max = fields.Float('Max Amount')
     inactive = fields.Boolean('Inactive')
     exemption_proof = fields.Binary(
-        'Exemption proof of posting',)
+        'VAT Exemption proof of posting',)
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
         default=lambda self: self.env['res.company']._company_default_get(
@@ -48,8 +48,12 @@ class AccountFiscalPositionRule(models.Model):
         fsc_pos = self.search(domain)
         if fsc_pos:
             result['fiscal_position'] = fsc_pos[0].fiscal_position_id.id
+            result.update({'account_fiscal_position_rule_id': fsc_pos[0].id})
         elif partner.property_account_position:
             result['fiscal_position'] = partner.property_account_position.id
+            result.update({'account_fiscal_position_rule_id': False})
+        else:
+            result.update({'account_fiscal_position_rule_id': False})
         return result
 
 
@@ -61,3 +65,18 @@ class ResPartner(models.Model):
         inverse_name='partner_id',
         string="Vat exemption declarations",
     )
+
+
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    account_fiscal_position_rule_id = fields.Many2one(
+        comodel_name='account.fiscal.position.rule',
+    )
+
+    @api.onchange('fiscal_position')
+    def onchange_fiscal_position(self):
+        if self.account_fiscal_position_rule_id and self.fiscal_position:
+            if self.fiscal_position != \
+                    self.account_fiscal_position_rule_id.fiscal_position_id:
+                self.account_fiscal_position_rule_id = False

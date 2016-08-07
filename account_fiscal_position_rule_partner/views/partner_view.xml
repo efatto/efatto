@@ -73,5 +73,17 @@
                 </field>
             </field>
         </record>
+
+        <record id="invoice_customer_form_fiscal_rule" model="ir.ui.view">
+            <field name="name">account.invoice.customer.form.fiscal.rule</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="account_fiscal_position_rule_id" attrs="{'invisible': [('account_fiscal_position_rule_id', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>

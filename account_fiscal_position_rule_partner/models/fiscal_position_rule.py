@@ -21,10 +21,10 @@ class AccountFiscalPositionRule(models.Model):
     inactive = fields.Boolean('Inactive')
     exemption_proof = fields.Binary(
         'VAT Exemption proof of posting',)
-    company_id = fields.Many2one(
-        'res.company', 'Company', required=True,
-        default=lambda self: self.env['res.company']._company_default_get(
-            'account.fiscal.position.rule'))
+    # company_id = fields.Many2one(
+    #     'res.company', 'Company', required=True,
+    #     default=lambda self: self.env['res.company']._company_default_get(
+    #         'account.fiscal.position.rule'))
 
     def _map_domain(self, partner, addrs, company, **kwargs):
         domain = super(AccountFiscalPositionRule, self)._map_domain(
@@ -72,6 +72,7 @@ class AccountInvoice(models.Model):
 
     account_fiscal_position_rule_id = fields.Many2one(
         comodel_name='account.fiscal.position.rule',
+        string='Fiscal Position Rule',
     )
 
     @api.onchange('fiscal_position')
@@ -80,3 +81,12 @@ class AccountInvoice(models.Model):
             if self.fiscal_position != \
                     self.account_fiscal_position_rule_id.fiscal_position_id:
                 self.account_fiscal_position_rule_id = False
+
+
+# class AccountFiscalPosition(models.Model):
+#     _inherit = 'account.fiscal.position'
+#
+#     company_id = fields.Many2one(
+#         'res.company', 'Company', required=False,
+#         default=lambda self: self.env['res.company']._company_default_get(
+#             'account.fiscal.position.rule.partner'))

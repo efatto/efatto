@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <template id="assets_backend" name="portal assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script src="/mail_compose_message/static/src/js/portal.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

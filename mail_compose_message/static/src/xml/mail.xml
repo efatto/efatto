@@ -2,7 +2,7 @@
 <template>
      <t t-name="mail.wall" t-extend="mail.wall">
     	<t t-jquery="tr.oe_header_row" t-operation="after">
-            <tr class="oe_header_row">
+            <tr class="oe_header_row mail_compose_message">
                 <td colspan="2">
                     <button type="button" class="oe_write_full oe_highlight">
                         Scrivi una Mail

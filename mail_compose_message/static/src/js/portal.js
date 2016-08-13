@@ -27,6 +27,13 @@ Overload: mail.Wall
             this.hide_composeElement();
             return res;
         },
+// Only to test if hideable before, but not possible
+//        init: function (parent, action) {
+//            self = this;
+//            var res = MailWallSuper.prototype.init.call(this, parent, action);
+//            this.hide_composeElement();
+//            return res;
+//        },
     });
 
 };

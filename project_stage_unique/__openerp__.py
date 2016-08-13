@@ -24,9 +24,9 @@
     'category': 'Extra Tools',
     'summary': 'Set project task type name (aka "stage") unique',
     'description':
-        'With this module the task type name does not accept duplicates.'
+        'With this module the task type name does not accept duplicates. '
         'For better result, rename task with the same function but different '
-        'name with the same name before installation.',
+        'name with the same name ("source" name) before installation.',
     'author': 'Sergio Corato - Simplerp srl',
     'website': 'http://www.simplerp.it',
     'depends': [

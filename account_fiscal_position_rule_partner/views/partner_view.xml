@@ -27,9 +27,9 @@
                             <field name="inactive"/>
                         </group>
                         <group string="VAT type" colspan="4">
-                            <field name="fiscal_position_id"/>
+                            <field name="fiscal_position_id" options="{'no_create': True}"/>
                             <field name="vat_rule"/>
-                            <field name="company_id" invisible="0"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                         <group string="Usage" colspan="4">
                               <field name="use_sale"/>
@@ -67,7 +67,7 @@
                             <!--<field name="use_picking"/>-->
                             <field name="vat_rule"/>
                             <field name="inactive"/>
-                            <field name="company_id" invisible="0"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </tree>
                     </field>
                 </field>

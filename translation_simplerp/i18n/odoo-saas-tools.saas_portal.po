@@ -1,0 +1,1640 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:50+0000\n"
+"PO-Revision-Date: 2016-08-26 19:29+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_portal
+#: model:email.template,body_html:saas_portal.email_template_has_expired_notify
+msgid ""
+"\n"
+"\n"
+"            <p>\n"
+"            % if object.trial:\n"
+"            Your trial service ${object.name} has expired\n"
+"            % endif\n"
+"            % if object.block_on_expiration:\n"
+"            and blocked!\n"
+"            % else:\n"
+"            you have to pay in order to continue using the service!\n"
+"            % endif\n"
+"            </p>\n"
+"\n"
+"            "
+msgstr ""
+"\n"
+"\n"
+"            <p>\n"
+"            % if object.trial:\n"
+"            Il periodo di prova per il servizio ${object.name} è scaduto\n"
+"            % endif\n"
+"            % if object.block_on_expiration:\n"
+"            and blocked!\n"
+"            % else:\n"
+"            Per continuare ad utilizzare il servizio è necessario acquistarlo online o presso i nostri partner!\n"
+"            % endif\n"
+"            </p>\n"
+"\n"
+"            "
+
+#. module: saas_portal
+#: model:email.template,body_html:saas_portal.email_template_expiration_notify
+msgid ""
+"\n"
+"\n"
+"            <p>\n"
+"            Less than ${ctx[\"days\"]} day(s) left before expiration.\n"
+"            </p>\n"
+"\n"
+"            "
+msgstr ""
+"\n"
+"\n"
+"            <p>\n"
+"            Mancano meno di ${ctx[\"days\"]} day(s) giorni alla scadenza del periodo di prova.\n"
+"            </p>\n"
+"\n"
+"            "
+
+#. module: saas_portal
+#: model:email.template,body_html:saas_portal.email_template_storage_exceed
+msgid ""
+"\n"
+"\n"
+"            <p>\n"
+"            Storage limit ${object.total_storage_limit} of ${object.name} has been exceeded.\n"
+"            Contact your system administrator in order to resume using your service.\n"
+"            </p>\n"
+"\n"
+"            "
+msgstr ""
+"\n"
+"\n"
+"            <p>\n"
+"            Il limite di ${object.total_storage_limit} per il servizio ${object.name} è stato superato.\n"
+"            Contatta il servizio di supporto tecnico per continuare ad utilizzare l'istanza.\n"
+"            </p>\n"
+"\n"
+"            "
+
+#. module: saas_portal
+#: model:email.template,body_html:saas_portal.email_template_create_saas
+msgid ""
+"\n"
+"\n"
+"            <p>Web:\n"
+"            <a href=\"http://${object.name}\">http://${object.name}</a>\n"
+"            </p>\n"
+"\n"
+"            "
+msgstr ""
+"\n"
+"\n"
+"            <p>Indirizzo Web:\n"
+"            <a href=\"http://${object.name}\">http://${object.name}</a>\n"
+"            </p>\n"
+"\n"
+"            "
+
+#. module: saas_portal
+#: model:email.template,body_html:saas_portal.email_template_expiration_datetime_updated
+msgid ""
+"\n"
+"\n"
+"            <p>You expiration date is now: ${object.expiration_datetime}</p>\n"
+"            <p>${format_tz(object.expiration_datetime, tz=object.partner_id.tz, context={'lang':object.partner_id.lang})}</p>\n"
+"            "
+msgstr ""
+"\n"
+"\n"
+"            <p>La nuova data di scadenza è ora: ${object.expiration_datetime}</p>\n"
+"            <p>${format_tz(object.expiration_datetime, tz=object.partner_id.tz, context={'lang':object.partner_id.lang})}</p>\n"
+"            "
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Access rights"
+msgstr "Diritti di accesso"
+
+#. module: saas_portal
+#: field:saas.config,action:0
+msgid "Action"
+msgstr "Azione"
+
+#. module: saas_portal
+#: field:saas_portal.client,active:0 field:saas_portal.server,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Addons"
+msgstr "Componenti aggiuntivi"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Affected Database(s)"
+msgstr "Database interessati"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Albanian / Shqip"
+msgstr "Albanese / Shqip"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Amharic / አምሃርኛ"
+msgstr "Etiope / አምሃርኛ"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Apply"
+msgstr "Applica"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Arabic / الْعَرَبيّة"
+msgstr "Arabo / الْعَرَبيّة"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_form
+#: view:saas_portal.client:saas_portal.view_clients_tree
+msgid "Are you sure to delete this database?"
+msgstr "Sei sicuro di voler eliminare questo database?"
+
+#. module: saas_portal
+#: field:saas_portal.create_client,async_creation:0
+msgid "Asynchronous"
+msgstr "Asincrono"
+
+#. module: saas_portal
+#: help:saas_portal.create_client,async_creation:0
+msgid "Asynchronous creation of client base"
+msgstr "Creazione asincrona del DB"
+
+#. module: saas_portal
+#: field:saas_portal.duplicate_client,client_id:0
+#: field:saas_portal.rename_database,client_id:0
+msgid "Base Client"
+msgstr "Client di Base"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,base_saas_domain:0
+msgid "Base SaaS domain"
+msgstr "Dominio SaaS di Base"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Basque / Euskara"
+msgstr "Basco / Euskara"
+
+#. module: saas_portal
+#: field:saas_portal.client,block_on_expiration:0
+#: field:saas_portal.plan,block_on_expiration:0
+msgid "Block clients on expiration"
+msgstr "Blocca Client alla Scadenza"
+
+#. module: saas_portal
+#: field:saas_portal.client,block_on_storage_exceed:0
+#: field:saas_portal.plan,block_on_storage_exceed:0
+msgid "Block clients on storage exceed"
+msgstr "Blocca Client oltre lo Storage consentito"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Bosnian / bosanski jezik"
+msgstr "Bosniaco / bosanski jezik"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Bulgarian / български език"
+msgstr "Bulgaro / български език"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Burmese / မြန်မာဘာသာ"
+msgstr "Birmano / မြန်မာဘာသာ"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: saas_portal
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Catalan / Català"
+msgstr "Catalan / Català"
+
+#. module: saas_portal
+#: view:saas_portal.rename_database:saas_portal.saas_portal_rename_database_view_form
+msgid "Change Domain"
+msgstr "Cambia Dominio"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Chinese (CN) / 简体中文"
+msgstr "Cinese (CN) / 简体中文"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Chinese (HK)"
+msgstr "Cinese (Hong Kong)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Chinese (TW) / 正體字"
+msgstr "Cinese (TW) / 正體字"
+
+#. module: saas_portal
+#: model:ir.model,name:saas_portal.model_saas_portal_client
+msgid "Client"
+msgstr "Client"
+
+#. module: saas_portal
+#: view:oauth.application:saas_portal.oauth_application_form
+#: field:oauth.application,client_db_ids:0
+msgid "Client Database"
+msgstr "Database Client"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Client Settings"
+msgstr "Impostazioni Client"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_clients
+#: model:ir.ui.menu,name:saas_portal.menu_clients
+#: view:saas_portal.client:saas_portal.view_clients_form
+#: view:saas_portal.client:saas_portal.view_clients_tree
+#: field:saas_portal.server,client_ids:0
+msgid "Clients"
+msgstr "Client"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+#: view:saas_portal.create_client:saas_portal.saas_portal_create_client_view_form
+#: view:saas_portal.duplicate_client:saas_portal.saas_portal_duplicate_client_view_form
+#: view:saas_portal.rename_database:saas_portal.saas_portal_rename_database_view_form
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Comma-separated list of addons to Update, Install or Uninstall, e.g."
+msgstr "Lista (separata da virgole) di addon da Aggiornare, Installare o Rimuovere. Es:"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Comma-separated list of references to res.groups, e.g."
+msgstr "Lista (separata da virgole) di riferimenti a res.groups, Es:"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Commands"
+msgstr "Comandi"
+
+#. module: saas_portal
+#: field:saas.config.fix,config_id:0 field:saas.config.param,config_id:0
+msgid "Config"
+msgstr "Configurazione"
+
+#. module: saas_portal
+#: selection:saas.config,action:0
+#: view:saas_portal.client:saas_portal.view_clients_form
+msgid "Configure"
+msgstr "Configura"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.act_configure_clients
+msgid "Configure Clients"
+msgstr "Configura Client"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Configure Database"
+msgstr "Configura Database"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_updb
+msgid "Configure Databases"
+msgstr "Configura Database"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Configure Saas portal"
+msgstr "Configura Portale Saas"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_tree
+msgid "Configure client database"
+msgstr "Configura DB Client"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,state:0
+msgid "Confirmed"
+msgstr "Confermato"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_saas_portal_client_filter
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: saas_portal
+#: field:saas_portal.client,users_len:0
+msgid "Count users"
+msgstr "Conteggio Utenti"
+
+#. module: saas_portal
+#: view:saas_portal.create_client:saas_portal.saas_portal_create_client_view_form
+msgid "Create"
+msgstr "Crea"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Create Client"
+msgstr "Crea Client"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_duplicate_client
+msgid "Create More Like This"
+msgstr "Crea Altri come Questo"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_create_client
+#: view:saas_portal.create_client:saas_portal.saas_portal_create_client_view_form
+msgid "Create client"
+msgstr "Crea Client"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Create template DB"
+msgstr "Creare il Modello di DB"
+
+#. module: saas_portal
+#: field:saas.config,create_uid:0 field:saas.config.fix,create_uid:0
+#: field:saas.config.param,create_uid:0 field:saas_portal.client,create_uid:0
+#: field:saas_portal.config.settings,create_uid:0
+#: field:saas_portal.create_client,create_uid:0
+#: field:saas_portal.database,create_uid:0
+#: field:saas_portal.duplicate_client,create_uid:0
+#: field:saas_portal.plan,create_uid:0
+#: field:saas_portal.rename_database,create_uid:0
+#: field:saas_portal.server,create_uid:0
+#: field:saas_portal.support_team,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: saas_portal
+#: field:saas.config,create_date:0 field:saas.config.fix,create_date:0
+#: field:saas.config.param,create_date:0 field:saas_portal.client,create_date:0
+#: field:saas_portal.config.settings,create_date:0
+#: field:saas_portal.create_client,create_date:0
+#: field:saas_portal.database,create_date:0
+#: field:saas_portal.duplicate_client,create_date:0
+#: field:saas_portal.plan,create_date:0
+#: field:saas_portal.rename_database,create_date:0
+#: field:saas_portal.server,create_date:0
+#: field:saas_portal.support_team,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: saas_portal
+#: model:email.template,subject:saas_portal.email_template_create_saas
+msgid "Credentials:"
+msgstr "Credenziali:"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Croatian / hrvatski jezik"
+msgstr "Croato / hrvatski jezik"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Czech / Čeština"
+msgstr "Ceco / Čeština"
+
+#. module: saas_portal
+#: field:saas_portal.plan,dbname_template:0
+msgid "DB Names"
+msgstr "Nomi DB"
+
+#. module: saas_portal
+#: field:saas_portal.client,db_storage:0
+msgid "DB storage (MB)"
+msgstr "DB storage (MB)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Danish / Dansk"
+msgstr "Danese / Danimarca"
+
+#. module: saas_portal
+#: field:saas.config,database_ids:0
+msgid "Database"
+msgstr "Database"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_saas_portal_client_filter
+#: view:saas_portal.database:saas_portal.view_databases_filter
+#: field:saas_portal.duplicate_client,name:0
+msgid "Database Name"
+msgstr "Nome Database"
+
+#. module: saas_portal
+#: field:saas_portal.client,name:0 field:saas_portal.create_client,name:0
+#: field:saas_portal.database,name:0 field:saas_portal.server,name:0
+msgid "Database name"
+msgstr "Nome Database"
+
+#. module: saas_portal
+#: help:saas_portal.client,message_last_post:0
+#: help:saas_portal.server,message_last_post:0
+#: help:saas_portal.support_team,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Data dell'ultimo messaggio inviato per questo Record"
+
+#. module: saas_portal
+#: selection:saas.config,action:0
+#: view:saas_portal.client:saas_portal.view_clients_form
+msgid "Delete"
+msgstr "Elimina"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_tree
+msgid "Delete client database"
+msgstr "Elimina Client DB"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Delete template DB"
+msgstr "Elimina Modello DB"
+
+#. module: saas_portal
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+msgid "Deleted"
+msgstr "Eliminato"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Domain"
+msgstr "Dominio"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,state:0
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: saas_portal
+#: view:saas_portal.duplicate_client:saas_portal.saas_portal_duplicate_client_view_form
+msgid "Duplicate"
+msgstr "Duplica"
+
+#. module: saas_portal
+#: view:saas_portal.duplicate_client:saas_portal.saas_portal_duplicate_client_view_form
+msgid "Duplicate client"
+msgstr "Duplica Client"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Dutch (BE) / Nederlands (BE)"
+msgstr "Olandese (BE) / Nederlands (BE)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Dutch / Nederlands"
+msgstr "Olandese / Nederlands"
+
+#. module: saas_portal
+#: selection:saas.config,action:0
+msgid "Edit"
+msgstr "Modifica"
+
+#. module: saas_portal
+#: model:ir.model,name:saas_portal.model_saas_portal_support_team
+msgid "Email Thread"
+msgstr "Discussione"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "English (AU)"
+msgstr "Inglese (AU)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "English (UK)"
+msgstr "Inglese (UK)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "English (US)"
+msgstr "Inglese (US)"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Error pages"
+msgstr "Pagine di Errore"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Estonian / Eesti keel"
+msgstr "Estone / Eesti keel"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "Execute"
+msgstr "Esegui"
+
+#. module: saas_portal
+#: field:saas_portal.client,expiration_datetime:0
+#: field:saas_portal.duplicate_client,expiration:0
+msgid "Expiration"
+msgstr "Scadenza"
+
+#. module: saas_portal
+#: field:saas_portal.plan,expiration:0
+msgid "Expiration (hours)"
+msgstr "Scadenza (ore)"
+
+#. module: saas_portal
+#: field:saas_portal.client,expiration_datetime_sent:0
+msgid "Expiration datetime sent"
+msgstr "Scadenza - Messaggio Inviato"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,expiration_notify_in_advance:0
+msgid "Expiration notify in advance"
+msgstr "Scadenza - Anticipo Notifica"
+
+#. module: saas_portal
+#: model:email.template,subject:saas_portal.email_template_expiration_datetime_updated
+msgid "Expiration updated"
+msgstr "Scadenza Aggiornata"
+
+#. module: saas_portal
+#: field:saas_portal.client,expired:0
+msgid "Expired"
+msgstr "Scaduto"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Features"
+msgstr "Caratteristiche"
+
+#. module: saas_portal
+#: field:saas_portal.client,file_storage:0
+msgid "File storage (MB)"
+msgstr "File storage (MB)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Finnish / Suomi"
+msgstr "Finlandese / Suomi"
+
+#. module: saas_portal
+#: field:saas.config,fix_ids:0
+msgid "Fixes"
+msgstr "Correzioni"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_follower_ids:0
+#: field:saas_portal.server,message_follower_ids:0
+#: field:saas_portal.support_team,message_follower_ids:0
+msgid "Followers"
+msgstr "Follower"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "French (BE) / Français (BE)"
+msgstr "Francese (BE) / Français (BE)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "French (CA) / Français (CA)"
+msgstr "Francese (CA) / Français (CA)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "French (CH) / Français (CH)"
+msgstr "Francese (CH) / Français (CH)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "French / Français"
+msgstr "Francese / Français"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Galician / Galego"
+msgstr "Galiziano / Galego"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Georgian / ქართული ენა"
+msgstr "Georgiano / ქართული ენა"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "German (CH) / Deutsch (CH)"
+msgstr "Tedesco (CH) / Deutsch (CH)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "German / Deutsch"
+msgstr "Tedesco / Deutsch"
+
+#. module: saas_portal
+#: field:saas.config,access_owner_add:0
+msgid "Grant access to Owner"
+msgstr "Consenti Accesso al Titolare"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Greek / Ελληνικά"
+msgstr "Greco / Ελληνικά"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Gujarati / ગુજરાતી"
+msgstr "Gujarati / ગુજરાતી"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Hebrew / עִבְרִי"
+msgstr "Ebraico / עִבְרִי"
+
+#. module: saas_portal
+#: field:saas.config.param,hidden:0
+msgid "Hidden parameter"
+msgstr "Parametro Nascosto"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Hindi / हिंदी"
+msgstr "Hindi / हिंदी"
+
+#. module: saas_portal
+#: help:saas_portal.client,message_summary:0
+#: help:saas_portal.server,message_summary:0
+#: help:saas_portal.support_team,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Gestisce il sommario (numero di messaggi, ...) del Chatter. Questo sommario è in html così da poter essere inserito nelle viste Kanban."
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Hungarian / Magyar"
+msgstr "Ungherese / Magyar"
+
+#. module: saas_portal
+#: field:saas.config,id:0 field:saas.config.fix,id:0
+#: field:saas.config.param,id:0 field:saas_portal.client,id:0
+#: field:saas_portal.config.settings,id:0 field:saas_portal.create_client,id:0
+#: field:saas_portal.database,id:0 field:saas_portal.duplicate_client,id:0
+#: field:saas_portal.plan,id:0 field:saas_portal.rename_database,id:0
+#: field:saas_portal.server,id:0 field:saas_portal.support_team,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: saas_portal
+#: help:saas_portal.client,message_unread:0
+#: help:saas_portal.server,message_unread:0
+#: help:saas_portal.support_team,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Se spuntato, i nuovi messaggi richiederanno la vostra attenzione"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_saas_portal_client_filter
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+msgid "In Progress"
+msgstr "In Corso"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Indonesian / Bahasa Indonesia"
+msgstr "Indonesiano / Bahasa Indonesiano"
+
+#. module: saas_portal
+#: field:saas_portal.plan,max_users:0
+msgid "Initial Max users"
+msgstr "Numero Massimo Iniziale di Utenti"
+
+#. module: saas_portal
+#: field:saas.config,install_addons:0
+msgid "Install Addons"
+msgstr "Installa Componenti Aggiuntivi"
+
+#. module: saas_portal
+#: field:saas_portal.plan,demo:0
+msgid "Install Demo Data"
+msgstr "Installa Dati Demo"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_is_follower:0
+#: field:saas_portal.server,message_is_follower:0
+#: field:saas_portal.support_team,message_is_follower:0
+msgid "Is a Follower"
+msgstr "E' un Follower"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Italian / Italiano"
+msgstr "Italiano / Italiano"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Japanese / 日本語"
+msgstr "Giapponese / 日本語"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Kabyle / Taqbaylit"
+msgstr "Berbero / Taqbaylit"
+
+#. module: saas_portal
+#: field:saas.config.param,key:0
+msgid "Key"
+msgstr "Chiave"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Korean (KP) / 한국어 (KP)"
+msgstr "Coreano (KP) / 한국어 (KP)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Korean (KR) / 한국어 (KR)"
+msgstr "Coreano (KR) / 한국어 (KR)"
+
+#. module: saas_portal
+#: field:saas_portal.plan,lang:0
+msgid "Language"
+msgstr "Lingua"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Lao / ພາສາລາວ"
+msgstr "Vietnamita / ພາສາລາວ"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_last_post:0
+#: field:saas_portal.server,message_last_post:0
+#: field:saas_portal.support_team,message_last_post:0
+msgid "Last Message Date"
+msgstr "Data Ultimo Messaggio"
+
+#. module: saas_portal
+#: field:saas.config,write_uid:0 field:saas.config.fix,write_uid:0
+#: field:saas.config.param,write_uid:0 field:saas_portal.client,write_uid:0
+#: field:saas_portal.config.settings,write_uid:0
+#: field:saas_portal.create_client,write_uid:0
+#: field:saas_portal.database,write_uid:0
+#: field:saas_portal.duplicate_client,write_uid:0
+#: field:saas_portal.plan,write_uid:0
+#: field:saas_portal.rename_database,write_uid:0
+#: field:saas_portal.server,write_uid:0
+#: field:saas_portal.support_team,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: saas_portal
+#: field:saas.config,write_date:0 field:saas.config.fix,write_date:0
+#: field:saas.config.param,write_date:0 field:saas_portal.client,write_date:0
+#: field:saas_portal.config.settings,write_date:0
+#: field:saas_portal.create_client,write_date:0
+#: field:saas_portal.database,write_date:0
+#: field:saas_portal.duplicate_client,write_date:0
+#: field:saas_portal.plan,write_date:0
+#: field:saas_portal.rename_database,write_date:0
+#: field:saas_portal.server,write_date:0
+#: field:saas_portal.support_team,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Latvian / latviešu valoda"
+msgstr "Lettone / latviešu valoda"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Lithuanian / Lietuvių kalba"
+msgstr "Lituano / Lietuvių kalba"
+
+#. module: saas_portal
+#: field:saas_portal.server,local_host:0
+msgid "Local host"
+msgstr "Host Locale"
+
+#. module: saas_portal
+#: field:saas_portal.server,local_port:0
+msgid "Local port"
+msgstr "Porta Locale"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_form
+msgid "Log in"
+msgstr "Accedi"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_tree
+msgid "Log in client database. Make sure that your browser allows popup windows from SaaS Portal"
+msgstr "Accedi al DB del Client. Accertati che sia consentito l'uso delle finestre Popup dal Portale Saas"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Log in to template DB"
+msgstr "Accedi al DB del Modello"
+
+#. module: saas_portal
+#: field:saas_portal.plan,logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Macedonian / македонски јазик"
+msgstr "Macedone / македонски јазик"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_form
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Make sure that your browser allows popup windows from SaaS Portal"
+msgstr "Accertati che sia consentito l'uso delle finestre Popup dal Portale Saas"
+
+#. module: saas_portal
+#: field:saas_portal.client,max_users:0
+msgid "Max users allowed"
+msgstr "Numero massimo di utenti consentiti"
+
+#. module: saas_portal
+#: field:saas_portal.plan,maximum_allowed_dbs_per_partner:0
+msgid "Maximum allowed dbs per partner"
+msgstr "Numero Massimo di DB per partner"
+
+#. module: saas_portal
+#: field:saas_portal.plan,maximum_allowed_trial_dbs_per_partner:0
+msgid "Maximum allowed trial dbs per partner"
+msgstr "Numero massimo di DB di prova (Trial) per partner"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_ids:0
+#: field:saas_portal.server,message_ids:0
+#: field:saas_portal.support_team,message_ids:0
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: saas_portal
+#: help:saas_portal.client,message_ids:0 help:saas_portal.server,message_ids:0
+#: help:saas_portal.support_team,message_ids:0
+msgid "Messages and communication history"
+msgstr "Storico messaggi e comunicazioni"
+
+#. module: saas_portal
+#: field:saas.config.fix,method:0
+msgid "Method"
+msgstr "Metodo"
+
+#. module: saas_portal
+#: field:saas.config.fix,model:0
+msgid "Model"
+msgstr "Modello"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Mongolian / монгол"
+msgstr "Mongolo / монгол"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Name"
+msgstr "Nome"
+
+#. module: saas_portal
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+msgid "New"
+msgstr "Nuovo"
+
+#. module: saas_portal
+#: field:saas_portal.rename_database,name:0
+msgid "New Name"
+msgstr "Nuovo Nome"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Norwegian Bokmål / Norsk bokmål"
+msgstr "Norvegese Bokmål / Norsk bokmål"
+
+#. module: saas_portal
+#: model:email.template,subject:saas_portal.email_template_expiration_notify
+#: model:email.template,subject:saas_portal.email_template_has_expired_notify
+#: model:email.template,subject:saas_portal.email_template_storage_exceed
+msgid "Notification"
+msgstr "Notifica"
+
+#. module: saas_portal
+#: field:saas_portal.client,notification_sent:0
+msgid "Notification sent"
+msgstr "Notifica Inviata"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "Notifications"
+msgstr "Notifiche"
+
+#. module: saas_portal
+#: help:saas_portal.config.settings,expiration_notify_in_advance:0
+msgid "Notify partners when less then defined number of days left befor expiration"
+msgstr "Notifica i partner quando mancano meno di un numero definito di giorni alla scadenza"
+
+#. module: saas_portal
+#: field:saas_portal.create_client,notify_user:0
+msgid "Notify user"
+msgstr "Notifica Utente"
+
+#. module: saas_portal
+#: help:saas_portal.create_client,notify_user:0
+msgid "Notify user by email when database will have been created"
+msgstr "Notifica l'utente via Email quando la creazione del DB è stata completata"
+
+#. module: saas_portal
+#: field:saas_portal.client,oauth_application_id:0
+#: field:saas_portal.database,oauth_application_id:0
+#: field:saas_portal.server,oauth_application_id:0
+msgid "OAuth Application"
+msgstr "Applicazione OAuth"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.oauth_applications
+#: model:ir.ui.menu,name:saas_portal.menu_oauth_applications
+msgid "OAuth Applications"
+msgstr "Applicazioni OAuth"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Odoo DB Settings"
+msgstr "Impostazioni DB SimplERP"
+
+#. module: saas_portal
+#: view:saas_portal.server:saas_portal.view_server_form
+msgid "Open Server"
+msgstr "Apri Server"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,page_for_maximumdb:0
+msgid "Page for maximumdb"
+msgstr "Pagina per Numero Massimo di DB"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,page_for_maximumtrialdb:0
+msgid "Page for maximumtrialdb"
+msgstr "Pagina per Numero Massimo di DB di Prova"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,page_for_nonfree_subdomains:0
+msgid "Page for nonfree subdomains"
+msgstr "Pagina per Sotto-domini non gratuiti"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+#: field:saas.config,param_ids:0
+msgid "Parameters"
+msgstr "Parametri"
+
+#. module: saas_portal
+#: field:saas_portal.client,partner_id:0
+#: field:saas_portal.create_client,partner_id:0
+#: field:saas_portal.duplicate_client,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: saas_portal
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+msgid "Pending"
+msgstr "Sospeso"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Persian / فارس"
+msgstr "Persiano / فارس"
+
+#. module: saas_portal
+#: field:saas_portal.client,plan_id:0 field:saas_portal.create_client,plan_id:0
+#: field:saas_portal.plan,name:0
+msgid "Plan"
+msgstr "Piano"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Plan Settings"
+msgstr "Impostazioni Piano"
+
+#. module: saas_portal
+#: view:website:saas_portal.try_trial
+msgid "Plan:"
+msgstr "Piano:"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_plans
+#: model:ir.ui.menu,name:saas_portal.menu_plans
+#: view:saas_portal.database:saas_portal.view_databases_tree
+#: view:saas_portal.plan:saas_portal.view_plans_tree
+msgid "Plans"
+msgstr "Piani"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Polish / Język polski"
+msgstr "Polacco / Język polski"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Portuguese (BR) / Português (BR)"
+msgstr "Portuguese (BR) / Português (BR)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Portuguese / Português"
+msgstr "Portoghese / Português"
+
+#. module: saas_portal
+#: help:saas_portal.config.settings,page_for_maximumdb:0
+msgid "Redirection url for maximum non-trial databases limit exception"
+msgstr "URL in caso di Numero Massimo di DB (non di prova) superato"
+
+#. module: saas_portal
+#: help:saas_portal.config.settings,page_for_maximumtrialdb:0
+msgid "Redirection url for maximum trial databases limit exception"
+msgstr "URL in caso di Numero Massimo di DB di Prova superato"
+
+#. module: saas_portal
+#: help:saas_portal.config.settings,page_for_nonfree_subdomains:0
+msgid "Redirection url from /page/start when subdomains is not free and not paid"
+msgstr "URL da /page/start in caso di sotto-domini non gratuiti e non pagati"
+
+#. module: saas_portal
+#: view:saas_portal.rename_database:saas_portal.saas_portal_rename_database_view_form
+msgid "Rename"
+msgstr "Rinomina"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_rename_database
+#: view:saas_portal.client:saas_portal.view_clients_form
+msgid "Rename Database"
+msgstr "Rinomina DB"
+
+#. module: saas_portal
+#: field:saas_portal.server,request_port:0
+msgid "Request Port"
+msgstr "Porta per le Richieste"
+
+#. module: saas_portal
+#: field:saas.config,access_remove:0
+msgid "Restrict access"
+msgstr "Limita Accesso"
+
+#. module: saas_portal
+#: help:saas.config,access_remove:0
+msgid ""
+"Restrict access for all users except super-user.\n"
+"Note, that "
+msgstr ""
+"Limita l'accesso a tutti gli utenti tranne che al Super User.\n"
+"Nota che  "
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+#: field:saas.config,description:0
+msgid "Result"
+msgstr "Risultato"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Romanian / română"
+msgstr "Rumeno / română"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Russian / русский язык"
+msgstr "Russo / русский язык"
+
+#. module: saas_portal
+#: model:ir.ui.menu,name:saas_portal.menu_base_saas
+#: model:ir.ui.menu,name:saas_portal.menu_saas
+msgid "SaaS"
+msgstr "SaaS"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_saas_portal_configuration
+#: model:ir.ui.menu,name:saas_portal.menu_saas_portal_configuration
+msgid "SaaS Portal Settings"
+msgstr "Impostazioni Portale SaaS"
+
+#. module: saas_portal
+#: model:ir.model,name:saas_portal.model_saas_portal_server
+#: field:saas_portal.plan,server_id:0
+msgid "SaaS Server"
+msgstr "SaaS Server"
+
+#. module: saas_portal
+#: field:saas_portal.config.settings,module_saas_portal_sale_online:0
+msgid "Sale SaaS from website shop"
+msgstr "Vendi il servizio Saas dal Negozio On Line"
+
+#. module: saas_portal
+#: field:saas_portal.client,user_id:0
+msgid "Salesperson"
+msgstr "Venditore"
+
+#. module: saas_portal
+#: field:saas_portal.server,local_request_scheme:0
+#: field:saas_portal.server,request_scheme:0
+msgid "Scheme"
+msgstr "Schema"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_saas_portal_client_filter
+msgid "Search Client"
+msgstr "Cerca Client"
+
+#. module: saas_portal
+#: view:saas_portal.database:saas_portal.view_databases_filter
+msgid "Search Databases"
+msgstr "Cerca DB"
+
+#. module: saas_portal
+#: model:ir.actions.server,name:saas_portal.send_saas_expiration_info_action
+msgid "Send SaaS expiration info"
+msgstr "Invia informazioni scadenza servizio Saas"
+
+#. module: saas_portal
+#: field:saas_portal.plan,sequence:0 field:saas_portal.server,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Serbian (Cyrillic) / српски"
+msgstr "Serbo (Cirillico) / српски"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Serbian (Latin) / srpski"
+msgstr "Serbo (Latino) / srpski"
+
+#. module: saas_portal
+#: field:saas_portal.client,server_id:0 field:saas_portal.database,server_id:0
+#: view:saas_portal.server:saas_portal.view_server_form
+#: view:saas_portal.server:saas_portal.view_server_tree
+msgid "Server"
+msgstr "Server"
+
+#. module: saas_portal
+#: view:oauth.application:saas_portal.oauth_application_form
+#: field:oauth.application,server_db_ids:0
+msgid "Server Database"
+msgstr "Database Server"
+
+#. module: saas_portal
+#: view:saas_portal.server:saas_portal.view_server_form
+msgid "Server-side requests"
+msgstr "Richieste lato server"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_server
+#: model:ir.ui.menu,name:saas_portal.menu_server
+msgid "Servers"
+msgstr "Server"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_form
+msgid "Settings"
+msgstr "Impostazioni"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Slovak / Slovenský jazyk"
+msgstr "Slovacco / Slovenský jazyk"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Slovenian / slovenščina"
+msgstr "Sloveno / slovenščina"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (AR) / Español (AR)"
+msgstr "Spagnolo (AR) / Español (AR)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (BO) / Español (BO)"
+msgstr "Spagnolo (BO) / Español (BO)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (CL) / Español (CL)"
+msgstr "Spagnolo (CL) / Español (CL)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (CO) / Español (CO)"
+msgstr "Spagnolo (CO) / Español (CO)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (CR) / Español (CR)"
+msgstr "Spagnolo (CR) / Español (CR)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (DO) / Español (DO)"
+msgstr "Spagnolo (DO) / Español (DO)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (EC) / Español (EC)"
+msgstr "Spagnolo (EC) / Español (EC)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (GT) / Español (GT)"
+msgstr "Spagnolo (GT) / Español (GT)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (MX) / Español (MX)"
+msgstr "Spagnolo (MX) / Español (MX)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (PA) / Español (PA)"
+msgstr "Spagnolo (PA) / Español (PA)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (PE) / Español (PE)"
+msgstr "Spagnolo (PE) / Español (PE)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (PY) / Español (PY)"
+msgstr "Spagnolo (PY) / Español (PY)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (UY) / Español (UY)"
+msgstr "Spagnolo (UY) / Español (UY)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish (VE) / Español (VE)"
+msgstr "Spagnolo (VE) / Español (VE)"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Spanish / Español"
+msgstr "Spagnolo / Español"
+
+#. module: saas_portal
+#: field:saas_portal.client,state:0 field:saas_portal.database,state:0
+#: field:saas_portal.plan,state:0
+msgid "State"
+msgstr "Stato"
+
+#. module: saas_portal
+#: field:saas_portal.client,storage_exceed:0
+msgid "Storage limit has been exceed"
+msgstr "È stato superato il limite di archiviazione"
+
+#. module: saas_portal
+#: model:mail.message.subtype,description:saas_portal.mt_expired
+#: model:mail.message.subtype,name:saas_portal.mt_expired
+#: model:mail.message.subtype,name:saas_portal.mt_support_team_expired
+msgid "Subscription expired"
+msgstr "Sottoscrizione scaduta"
+
+#. module: saas_portal
+#: help:saas_portal.client,expiration_datetime:0
+msgid "Subscription start plus all paid days from related invoices"
+msgstr "Inizio sottoscrizione più tutti i giorni pagati dalle relative fatture"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_summary:0
+#: view:saas_portal.plan:saas_portal.view_plans_form
+#: field:saas_portal.plan,summary:0 field:saas_portal.server,message_summary:0
+#: field:saas_portal.support_team,message_summary:0
+msgid "Summary"
+msgstr "Riassunto"
+
+#. module: saas_portal
+#: field:res.users,support_team_id:0 field:saas_portal.client,support_team_id:0
+#: field:saas_portal.create_client,support_team_id:0
+#: view:saas_portal.support_team:saas_portal.view_support_team_form
+msgid "Support Team"
+msgstr "Team Assistenza"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.saas_portal_support_teams
+#: model:ir.ui.menu,name:saas_portal.menu_saas_portal_support_teams
+#: view:saas_portal.support_team:saas_portal.view_support_team_tree
+msgid "Support Teams"
+msgstr "Team Assistenza"
+
+#. module: saas_portal
+#: help:res.users,support_team_id:0
+msgid "Support team for SaaS"
+msgstr "Team Assistenza per i servizi Saas"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Swedish / svenska"
+msgstr "Svedese / svenska"
+
+#. module: saas_portal
+#: view:saas_portal.client:saas_portal.view_clients_form
+#: view:saas_portal.plan:saas_portal.view_plans_form
+#: view:saas_portal.server:saas_portal.view_server_form
+msgid "Sync server"
+msgstr "Sincronizza Server"
+
+#. module: saas_portal
+#: field:saas_portal.support_team,name:0
+msgid "Team name"
+msgstr "Nome Team"
+
+#. module: saas_portal
+#: model:ir.ui.menu,name:saas_portal.menu_saas_tech
+msgid "Technical Records"
+msgstr "Documentazione Tecnica"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Technical Settings"
+msgstr "Configurazioni Tecniche"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Telugu / తెలుగు"
+msgstr "Telugu / తెలుగు"
+
+#. module: saas_portal
+#: selection:saas_portal.client,state:0 selection:saas_portal.database,state:0
+#: field:saas_portal.plan,template_id:0
+msgid "Template"
+msgstr "Modello"
+
+#. module: saas_portal
+#: view:oauth.application:saas_portal.oauth_application_form
+#: field:oauth.application,template_db_ids:0
+msgid "Template Database"
+msgstr "Database Modello"
+
+#. module: saas_portal
+#: code:addons/saas_portal/models/saas_portal.py:327
+#, python-format
+msgid "Template for db name is not configured"
+msgstr "Il Modello per questo DB non è configurato"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_templates
+#: model:ir.ui.menu,name:saas_portal.menu_templates
+#: view:saas_portal.database:saas_portal.view_databases_filter
+msgid "Templates"
+msgstr "Modelli"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Thai / ภาษาไทย"
+msgstr "Thai / ภาษาไทย"
+
+#. module: saas_portal
+#: view:website:saas_portal.try_trial
+msgid "The database is creating..."
+msgstr "Creazione del DB in corso..."
+
+#. module: saas_portal
+#: code:addons/saas_portal/controllers/main.py:64
+#, python-format
+msgid "There is no plan configured"
+msgstr "Non c'è nessun piano configurato"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "This sections allows execute special commands on client. Ask developers for instructions."
+msgstr "Questa sezione consente di eseguire comandi speciali sul client. Chiedi agli sviluppatori per ulteriori istruzioni."
+
+#. module: saas_portal
+#: field:saas_portal.plan,tz:0
+msgid "TimeZone"
+msgstr "Fuso orario "
+
+#. module: saas_portal
+#: field:saas_portal.client,total_storage_limit:0
+#: field:saas_portal.plan,total_storage_limit:0
+msgid "Total storage limit (MB)"
+msgstr "Limite Storage Totale (MB)"
+
+#. module: saas_portal
+#: field:saas_portal.client,trial:0
+msgid "Trial"
+msgstr "Trial"
+
+#. module: saas_portal
+#: view:website:saas_portal.try_trial
+msgid "Try trial"
+msgstr "Prova Gratuita"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Turkish / Türkçe"
+msgstr "Turco / Türkçe"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Ukrainian / українська"
+msgstr "Ucraino / українська"
+
+#. module: saas_portal
+#: field:saas.config,uninstall_addons:0
+msgid "Uninstall Addons"
+msgstr "Disinstalla Componenti Aggiuntivi"
+
+#. module: saas_portal
+#: field:saas_portal.client,message_unread:0
+#: field:saas_portal.server,message_unread:0
+#: field:saas_portal.support_team,message_unread:0
+msgid "Unread Messages"
+msgstr "Messaggi Non Letti"
+
+#. module: saas_portal
+#: field:saas.config,update_addons_list:0
+msgid "Update Addon List"
+msgstr "Aggiornamento elenco Addon"
+
+#. module: saas_portal
+#: field:saas.config,update_addons:0
+msgid "Update Addons"
+msgstr "Aggiorna Addon"
+
+#. module: saas_portal
+#: model:ir.actions.act_window,name:saas_portal.action_upgrade_clients
+msgid "Upgrade Clients"
+msgstr "Aggiorna Client"
+
+#. module: saas_portal
+#: help:saas_portal.config.settings,module_saas_portal_sale_online:0
+msgid "Use saas_portal_sale_online module"
+msgstr "Utilizza il modulo saas_portal_sale_online"
+
+#. module: saas_portal
+#: help:saas_portal.plan,dbname_template:0
+msgid "Used for generating client database domain name. Use %i for numbering. Ignore if you use manually created db names"
+msgstr "Viene utilizzato per generare nomi di dominio per DB dei client. Utilizza %i per la numerazione automatica. Ignora questo campo se i nomi dei DB vengono creati manualmente."
+
+#. module: saas_portal
+#: field:saas_portal.create_client,user_id:0
+msgid "User"
+msgstr "Utente"
+
+#. module: saas_portal
+#: help:saas_portal.plan,server_id:0
+msgid "User this saas server or choose random"
+msgstr "Utilizza questo Server Saas o procedi ad una scelta casuale"
+
+#. module: saas_portal
+#: model:ir.model,name:saas_portal.model_res_users
+msgid "Users"
+msgstr "Utenti"
+
+#. module: saas_portal
+#: field:saas.config.param,value:0
+msgid "Value"
+msgstr "Valore"
+
+#. module: saas_portal
+#: field:saas_portal.server,verify_ssl:0
+msgid "Verify SSL"
+msgstr "Verificare SSL"
+
+#. module: saas_portal
+#: selection:saas_portal.plan,lang:0
+msgid "Vietnamese / Tiếng Việt"
+msgstr "Vietnamita / Tiếng Việt"
+
+#. module: saas_portal
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "Website Settings"
+msgstr "Impostazioni Sito Web"
+
+#. module: saas_portal
+#: field:saas_portal.plan,website_description:0
+msgid "Website description"
+msgstr "Descrizione Sito Web"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "base.group_sale_manager,stock.group_stock_manager"
+msgstr "base.group_sale_manager,stock.group_stock_manager"
+
+#. module: saas_portal
+#: selection:saas_portal.server,local_request_scheme:0
+#: selection:saas_portal.server,request_scheme:0
+msgid "http"
+msgstr "http"
+
+#. module: saas_portal
+#: selection:saas_portal.server,local_request_scheme:0
+#: selection:saas_portal.server,request_scheme:0
+msgid "https"
+msgstr "https"
+
+#. module: saas_portal
+#: help:saas_portal.client,trial:0
+msgid "indication of trial clients"
+msgstr "Indicazione dei Client di Prova"
+
+#. module: saas_portal
+#: view:website:saas_portal.try_trial
+msgid "it takes only a few minutes. Please check your email now for further instructions on how to login."
+msgstr "Ci vogliono solo pochi minuti. Controlla la tua e-mail ora per ulteriori istruzioni su come effettuare il login."
+
+#. module: saas_portal
+#: help:saas_portal.server,local_host:0
+msgid "local host or ip address of server for server-side requests"
+msgstr "Indirizzo host o IP locale del server per le richieste lato server"
+
+#. module: saas_portal
+#: help:saas_portal.server,local_port:0
+msgid "local tcp port of server for server-side requests"
+msgstr "Porta locale TCP del server per le richieste lato server"
+
+#. module: saas_portal
+#: help:saas_portal.plan,maximum_allowed_dbs_per_partner:0
+msgid "maximum allowed non-trial databases per customer"
+msgstr "Numero Massimo di DB (non di prova) consentiti per cliente"
+
+#. module: saas_portal
+#: help:saas_portal.plan,maximum_allowed_trial_dbs_per_partner:0
+msgid "maximum allowed trial databases per customer"
+msgstr "Numero Massimo di DB di Prova consentiti per cliente"
+
+#. module: saas_portal
+#: help:saas_portal.client,notification_sent:0
+msgid "notification about oncoming expiration has sent"
+msgstr "La notifica di scadenza imminente + stata inviata"
+
+#. module: saas_portal
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+msgid "odoo.com"
+msgstr "simplerp.it"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+#: view:saas_portal.config.settings:saas_portal.view_saas_portal__config_settings
+#: view:saas_portal.create_client:saas_portal.saas_portal_create_client_view_form
+#: view:saas_portal.duplicate_client:saas_portal.saas_portal_duplicate_client_view_form
+#: view:saas_portal.rename_database:saas_portal.saas_portal_rename_database_view_form
+msgid "or"
+msgstr "o"
+
+#. module: saas_portal
+#: view:saas_portal.database:saas_portal.view_databases_form
+#: view:saas_portal.plan:saas_portal.view_plans_form
+msgid "plans"
+msgstr "piani"
+
+#. module: saas_portal
+#: view:saas.config:saas_portal.action_database_form
+msgid "point_of_sale,website_sale"
+msgstr "point_of_sale,website_sale"
+
+#. module: saas_portal
+#: help:saas_portal.plan,expiration:0
+msgid "time to delete database. Use for demo"
+msgstr "Tempo entro cui eliminare il DB. Viene utilizzato per i DB di Prova."
+
+#. module: saas_portal
+#: help:saas_portal.client,expiration_datetime_sent:0
+msgid "updates every time send_expiration_info is executed"
+msgstr "Viene aggiornato ogni volta che viene eseguita l'azione send_expiration_info"
+
+#. module: saas_portal
+#: help:saas_portal.server,verify_ssl:0
+msgid "verify SSL certificates for server-side HTTPS requests, just like a web browser"
+msgstr "Verifica i certificati SSL per le richieste HTTPS sul lato server, come ogni browser web."

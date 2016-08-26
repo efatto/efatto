@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_portal_backup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:51+0000\n"
+"PO-Revision-Date: 2016-08-26 19:30+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_portal_backup
+#: help:saas_portal.client,backup:0
+msgid "Backs up first before deleting                              or upgrading"
+msgstr "Esegui il Backup prima di eliminare                              o aggiornare"
+
+#. module: saas_portal_backup
+#: view:saas_portal.client:saas_portal_backup.view_clients_form
+msgid "Backup DB"
+msgstr "Esegui Backup"
+
+#. module: saas_portal_backup
+#: field:saas_portal.client,backup:0
+msgid "Backup on Modify"
+msgstr "Backup su Modifica"
+
+#. module: saas_portal_backup
+#: model:ir.model,name:saas_portal_backup.model_saas_portal_client
+msgid "Client"
+msgstr "Client"
+
+#. module: saas_portal_backup
+#: view:saas_portal.client:saas_portal_backup.view_clients_form
+msgid "Database settings"
+msgstr "Impostazioni DB"

@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_client
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:49+0000\n"
+"PO-Revision-Date: 2016-08-26 18:12+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_client
+#: code:addons/saas_client/models/res_user.py:44
+#, python-format
+msgid "Maximimum allowed users is %(max_users)s, while you already have %(cur_users)s"
+msgstr "Il numero massimo di utenti consentiti è %(max_users)s. Hai già attivato %(cur_users)s utenti."
+
+#. module: saas_client
+#: model:ir.actions.server,name:saas_client.saas_action_run_ir_action_todo
+msgid "SaaS Run Remaining Action Todo"
+msgstr "Azioni SaaS rimanenti da eseguire"
+
+#. module: saas_client
+#: model:res.groups,name:saas_client.group_saas_support
+msgid "SaaS Support"
+msgstr "Supporto SaaS"
+
+#. module: saas_client
+#: model:res.groups,comment:saas_client.group_saas_support
+msgid "Special group for superuser. Should not be used for client users"
+msgstr "Gruppo speciale per Super Users. Non dovrebbe essere utilizzato per gli utenti dei clienti."
+
+#. module: saas_client
+#: model:ir.model,name:saas_client.model_res_users
+msgid "Users"
+msgstr "Utenti"

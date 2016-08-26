@@ -1,0 +1,266 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_server
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:55+0000\n"
+"PO-Revision-Date: 2016-08-26 19:50+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_server
+#: code:addons/saas_server/controllers/main.py:300
+#, python-format
+msgid "'You use a live preview. The database will be destroyed after %s hour%s.'"
+msgstr "'Stai utilizzando un'anteprima. Il DB verrà distrutto tra %s ore%s'"
+
+#. module: saas_server
+#: view:saas_server.config.settings:saas_server.view_saas_server_config_settings
+msgid "Apply"
+msgstr "Applica"
+
+#. module: saas_server
+#: view:saas_server.config.settings:saas_server.view_saas_server_config_settings
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: saas_server
+#: selection:saas_server.client,state:0
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: saas_server
+#: view:saas_server.config.settings:saas_server.view_saas_server_config_settings
+msgid "Configure Saas Server"
+msgstr "Configura Server SaaS"
+
+#. module: saas_server
+#: field:saas_server.client,users_len:0
+msgid "Count users"
+msgstr "Conteggio Utenti"
+
+#. module: saas_server
+#: field:saas_server.client,create_uid:0
+#: field:saas_server.config.settings,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: saas_server
+#: field:saas_server.client,create_date:0
+#: field:saas_server.config.settings,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: saas_server
+#: field:saas_server.client,db_storage:0
+msgid "DB storage (MB)"
+msgstr "DB storage (MB)"
+
+#. module: saas_server
+#: view:saas_server.client:saas_server.view_clients_form
+msgid "Database"
+msgstr "Database"
+
+#. module: saas_server
+#: view:saas_server.client:saas_server.view_saas_server_client_filter
+msgid "Database Name"
+msgstr "Nome Database"
+
+#. module: saas_server
+#: field:saas_server.client,client_id:0
+msgid "Database UUID"
+msgstr "UUID Database"
+
+#. module: saas_server
+#: field:saas_server.client,name:0
+msgid "Database name"
+msgstr "Nome Database"
+
+#. module: saas_server
+#: model:ir.actions.act_window,name:saas_server.action_clients
+#: model:ir.ui.menu,name:saas_server.menu_clients
+#: view:saas_server.client:saas_server.view_clients_tree
+msgid "Databases"
+msgstr "Database"
+
+#. module: saas_server
+#: help:saas_server.client,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Data dell'ultimo messaggio inviato per questo Record"
+
+#. module: saas_server
+#: selection:saas_server.client,state:0
+msgid "Deleted"
+msgstr "Eliminato"
+
+#. module: saas_server
+#: model:ir.model,name:saas_server.model_saas_server_client
+msgid "Email Thread"
+msgstr "Discussione"
+
+#. module: saas_server
+#: field:saas_server.client,expiration_datetime:0
+msgid "Expiration"
+msgstr "Scadenza"
+
+#. module: saas_server
+#: field:saas_server.client,file_storage:0
+msgid "File storage (MB)"
+msgstr "File storage (MB)"
+
+#. module: saas_server
+#: field:saas_server.client,message_follower_ids:0
+msgid "Followers"
+msgstr "Follower"
+
+#. module: saas_server
+#: help:saas_server.client,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Gestisce il sommario (numero di messaggi, ...) del Chatter. Questo sommario è in html così da poter essere inserito nelle viste Kanban."
+
+#. module: saas_server
+#: field:saas_server.client,id:0 field:saas_server.config.settings,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: saas_server
+#: help:saas_server.client,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Se spuntato, i nuovi messaggi richiederanno la vostra attenzione"
+
+#. module: saas_server
+#: view:saas_server.client:saas_server.view_saas_server_client_filter
+#: selection:saas_server.client,state:0
+msgid "In Progress"
+msgstr "In Corso"
+
+#. module: saas_server
+#: field:saas_server.client,message_is_follower:0
+msgid "Is a Follower"
+msgstr "E' un Follower"
+
+#. module: saas_server
+#: field:saas_server.client,message_last_post:0
+msgid "Last Message Date"
+msgstr "Data Ultimo Messaggio"
+
+#. module: saas_server
+#: field:saas_server.client,write_uid:0
+#: field:saas_server.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: saas_server
+#: field:saas_server.client,write_date:0
+#: field:saas_server.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: saas_server
+#: field:saas_server.client,max_users:0
+msgid "Max users allowed"
+msgstr "Numero massimo di utenti consentiti"
+
+#. module: saas_server
+#: field:saas_server.client,message_ids:0
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: saas_server
+#: help:saas_server.client,message_ids:0
+msgid "Messages and communication history"
+msgstr "Storico messaggi e comunicazioni"
+
+#. module: saas_server
+#: selection:saas_server.client,state:0
+msgid "New"
+msgstr "Nuovo"
+
+#. module: saas_server
+#: selection:saas_server.client,state:0
+msgid "Pending"
+msgstr "Sospeso"
+
+#. module: saas_server
+#: model:ir.ui.menu,name:saas_server.menu_saas
+msgid "SaaS"
+msgstr "SaaS"
+
+#. module: saas_server
+#: model:ir.ui.menu,name:saas_server.menu_base_saas
+msgid "SaaS Server"
+msgstr "SaaS Server"
+
+#. module: saas_server
+#: model:ir.actions.act_window,name:saas_server.action_saas_server_configuration
+#: model:ir.ui.menu,name:saas_server.menu_saas_server_configuration
+msgid "SaaS Server Settings"
+msgstr "Impostazioni Server SaaS"
+
+#. module: saas_server
+#: view:saas_server.client:saas_server.view_saas_server_client_filter
+msgid "Search Client"
+msgstr "Cerca Client"
+
+#. module: saas_server
+#: field:saas_server.client,state:0
+msgid "State"
+msgstr "Stato"
+
+#. module: saas_server
+#: field:saas_server.client,message_summary:0
+msgid "Summary"
+msgstr "Riassunto"
+
+#. module: saas_server
+#: selection:saas_server.client,state:0
+msgid "Template"
+msgstr "Modello"
+
+#. module: saas_server
+#: field:saas_server.client,total_storage_limit:0
+msgid "Total storage limit (MB)"
+msgstr "Limite Storage Totale (MB)"
+
+#. module: saas_server
+#: field:saas_server.client,trial:0
+msgid "Trial"
+msgstr "Trial"
+
+#. module: saas_server
+#: field:saas_server.client,message_unread:0
+msgid "Unread Messages"
+msgstr "Messaggi Non Letti"
+
+#. module: saas_server
+#: field:saas_server.client,website_message_ids:0
+msgid "Website Messages"
+msgstr "Messaggi del Sito Web"
+
+#. module: saas_server
+#: help:saas_server.client,website_message_ids:0
+msgid "Website communication history"
+msgstr "Storico Comunicazioni Sito Web"
+
+#. module: saas_server
+#: sql_constraint:saas_server.client:0
+msgid "client_id should be unique!"
+msgstr "L'ID del client deve essere univoco!"
+
+#. module: saas_server
+#: help:saas_server.client,trial:0
+msgid "indication of trial clients"
+msgstr "Indicazione dei Client di Prova"
+
+#. module: saas_server
+#: view:saas_server.config.settings:saas_server.view_saas_server_config_settings
+msgid "or"
+msgstr "o"

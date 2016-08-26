@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_sysadmin_aws_route53
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 16:01+0000\n"
+"PO-Revision-Date: 2016-08-26 20:05+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_portal.server,aws_hosted_zone_id:0
+msgid "AWS Hosted Zone"
+msgstr "AWS Hosted Zone"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,create_zone:0
+msgid "Create Zone"
+msgstr "Crea Zona"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,name:0
+msgid "Domain Name"
+msgstr "Nome Dominio"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,hosted_zone_ID:0
+msgid "Hosted Zone ID"
+msgstr "Hosted Zone ID"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: saas_sysadmin_aws_route53
+#: field:saas_sysadmin.route53.zone,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: saas_sysadmin_aws_route53
+#: model:ir.model,name:saas_sysadmin_aws_route53.model_saas_portal_server
+msgid "SaaS Server"
+msgstr "Server Saas"
+
+#. module: saas_sysadmin_aws_route53
+#: help:saas_sysadmin.route53.zone,create_zone:0
+msgid "True if you want zone to be created for you. Leave unchecked if zone has already been created manually"
+msgstr "Spunta questa voce se preferisci che la Zona venga creata automaticamente. Lascia questa voce senza spunta se la Zona è già stata creata manualmente"
+
+#. module: saas_sysadmin_aws_route53
+#: view:saas_portal.server:saas_sysadmin_aws_route53.view_server_form
+msgid "example.com."
+msgstr "esempio.com."

@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_portal_demo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:51+0000\n"
+"PO-Revision-Date: 2016-08-26 19:32+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,author:0
+msgid "Author"
+msgstr "Autore"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: saas_portal_demo
+#: view:saas_portal.module:saas_portal_demo.view_plan_modules_form
+msgid "Ivan Yelizariev"
+msgstr "Ivan Yelizariev"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: saas_portal_demo
+#: view:website:saas_portal_demo.show_plan
+msgid "Live Preview"
+msgstr "Anteprima Live"
+
+#. module: saas_portal_demo
+#: view:saas_portal.module:saas_portal_demo.view_plan_modules_form
+msgid "Module"
+msgstr "Modulo"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,module_id:0
+msgid "Module id"
+msgstr "ID Modulo"
+
+#. module: saas_portal_demo
+#: view:saas_portal.plan:saas_portal_demo.view_plans_demo_form
+#: field:saas_portal.plan,app_store_module_ids:0
+msgid "Modules"
+msgstr "Moduli"
+
+#. module: saas_portal_demo
+#: view:website:saas_portal_demo.show_plan
+msgid "Modules:"
+msgstr "Moduli:"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: saas_portal_demo
+#: field:saas_portal.plan,odoo_version:0
+msgid "Odoo Version"
+msgstr "Versione SimplERP"
+
+#. module: saas_portal_demo
+#: field:saas_portal.plan,page_url:0
+msgid "Plan URL"
+msgstr "URL Piano"
+
+#. module: saas_portal_demo
+#: view:saas_portal.module:saas_portal_demo.view_plan_modules_form
+msgid "Reminders and Agenda (technical core)"
+msgstr "Reminders and Agenda (technical core)"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,summary:0
+msgid "Summary"
+msgstr "Riassunto"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,technical_name:0
+msgid "Technical Name"
+msgstr "Nome Tecnico"
+
+#. module: saas_portal_demo
+#: view:website:saas_portal_demo.unavailable_plan
+msgid "The Plan you asked for is not available!"
+msgstr "Il piano richiesto non è disponibile!"
+
+#. module: saas_portal_demo
+#: sql_constraint:saas_portal.module:0
+msgid "The module already exists!"
+msgstr "Il modulo esiste già!"
+
+#. module: saas_portal_demo
+#: field:saas_portal.module,url:0
+msgid "URL"
+msgstr "UEL"
+
+#. module: saas_portal_demo
+#: view:saas_portal.module:saas_portal_demo.view_plan_modules_form
+msgid "https://apps.odoo.com/apps/modules/8.0/reminder_base"
+msgstr "https://apps.odoo.com/apps/modules/8.0/reminder_base"
+
+#. module: saas_portal_demo
+#: view:saas_portal.module:saas_portal_demo.view_plan_modules_form
+msgid "reminder_base"
+msgstr "reminder_base"

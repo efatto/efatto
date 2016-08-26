@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_portal_tagging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:54+0000\n"
+"PO-Revision-Date: 2016-08-26 19:45+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,child_ids:0
+msgid "Child Categories"
+msgstr "Categorie Figlie"
+
+#. module: saas_portal_tagging
+#: model:ir.model,name:saas_portal_tagging.model_saas_portal_client
+msgid "Client"
+msgstr "Client"
+
+#. module: saas_portal_tagging
+#: field:saas_portal.plan,category_ids:0
+msgid "Client Tags"
+msgstr "Tag Client"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.tag_client:saas_portal_tagging.saas_portal_tag_client_view_form
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,create_uid:0
+#: field:saas_portal.tag_client,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,create_date:0
+#: field:saas_portal.tag_client,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,name:0
+msgid "Employee Tag"
+msgstr "Tag Dipendente"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,id:0 field:saas_portal.tag_client,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,write_uid:0
+#: field:saas_portal.tag_client,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,write_date:0
+#: field:saas_portal.tag_client,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: saas_portal_tagging
+#: model:ir.actions.act_window,name:saas_portal_tagging.action_tag_client
+msgid "Modify Tag"
+msgstr "Modify Tag"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,display_name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: saas_portal_tagging
+#: field:saas.portal.category,parent_id:0
+msgid "Parent Employee Tag"
+msgstr "Tag Superiore Dipendente"
+
+#. module: saas_portal_tagging
+#: model:ir.model,name:saas_portal_tagging.model_saas_portal_category
+msgid "SaaS Client  Category"
+msgstr "Categoria Client Saas"
+
+#. module: saas_portal_tagging
+#: view:saas.portal.category:saas_portal_tagging.view_saas_client_category_list
+#: view:saas.portal.category:saas_portal_tagging.view_saas_client_category_tree
+msgid "SaaS Client Categories"
+msgstr "Categorie Client Saas"
+
+#. module: saas_portal_tagging
+#: view:saas.portal.category:saas_portal_tagging.view_saas_client_category_form
+msgid "SaaS Client Category"
+msgstr "Categoria Client Saas"
+
+#. module: saas_portal_tagging
+#: model:ir.actions.act_window,name:saas_portal_tagging.open_view_saas_categ_form
+#: model:ir.ui.menu,name:saas_portal_tagging.menu_view_saas_client_category_form
+msgid "Saas Client Tags"
+msgstr "Tag Client Saas"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.client:saas_portal_tagging.view_clients_form
+#: field:saas_portal.client,category_ids:0
+#: view:saas_portal.tag_client:saas_portal_tagging.saas_portal_tag_client_view_form
+#: field:saas_portal.tag_client,category_ids:0
+msgid "Tags"
+msgstr "Tag"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.plan:saas_portal_tagging.view_plans_form
+msgid "e.g. Bronze Package"
+msgstr "Es: Premium Pack"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.tag_client:saas_portal_tagging.saas_portal_tag_client_view_form
+msgid "or"
+msgstr "o"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.tag_client:saas_portal_tagging.saas_portal_tag_client_view_form
+msgid "tag"
+msgstr "Tag"
+
+#. module: saas_portal_tagging
+#: view:saas_portal.tag_client:saas_portal_tagging.saas_portal_tag_client_view_form
+msgid "tag client"
+msgstr "Tag Client"

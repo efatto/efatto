@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_server_backup_rotate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 15:56+0000\n"
+"PO-Revision-Date: 2016-08-26 20:00+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_server_backup_rotate
+#: view:saas_server.config.settings:saas_server_backup_rotate.view_saas_server_config_settings
+msgid "Backup Rotate Strategy"
+msgstr "Politiche di Rotazione Backup"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_daily:0
+msgid "Daily Count"
+msgstr "Conteggio Giornaliero"
+
+#. module: saas_server_backup_rotate
+#: model:ir.model,name:saas_server_backup_rotate.model_saas_server_client
+msgid "Email Thread"
+msgstr "Discussione"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_hourly:0
+msgid "Hourly Count"
+msgstr "Conteggio Orario"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_monthly:0
+msgid "Monthly Count"
+msgstr "Conteggio Mensile"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_unlimited:0
+msgid "Unlimited Backup"
+msgstr "Backup Illimitato"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_weekly:0
+msgid "Weekly Count"
+msgstr "Conteggio Settimanale"
+
+#. module: saas_server_backup_rotate
+#: field:saas_server.config.settings,backup_rotate_yearly:0
+msgid "Yearly Count"
+msgstr "Conteggio Annuale"

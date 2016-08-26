@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saas_sysadmin_mailgun
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 16:01+0000\n"
+"PO-Revision-Date: 2016-08-26 20:06+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: saas_sysadmin_mailgun
+#: model:ir.model,name:saas_sysadmin_mailgun.model_saas_portal_client
+msgid "Client"
+msgstr "Client"
+
+#. module: saas_sysadmin_mailgun
+#: field:saas_portal.client,mail_domain:0
+msgid "Mail domain"
+msgstr "Dominio di posta"
+
+#. module: saas_sysadmin_mailgun
+#: field:saas_portal.config.settings,saas_mailgun_api_key:0
+msgid "Mailgun API Key"
+msgstr "Chiave API Mailgun"
+
+#. module: saas_sysadmin_mailgun
+#: view:saas_portal.config.settings:saas_sysadmin_mailgun.view_saas_portal_config_settings
+msgid "Mailgun Access"
+msgstr "Accesso Mailgun"

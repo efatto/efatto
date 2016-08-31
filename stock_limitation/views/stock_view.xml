@@ -1,0 +1,27 @@
+<openerp>
+    <data>
+        <record id="view_location_form_stock_limit" model="ir.ui.view">
+            <field name="name">stock.location.form</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+
+                    <field name="user_ids" widget="many2many_tags"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+
+    <data noupdate="1">
+    	<delete id="stock.stock_location_comp_rule" model="ir.rule"/>
+
+    	<record model="ir.rule" id="stock_location_comp_rule">
+	        <field name="name">Location multi-company</field>
+	        <field name="model_id" ref="model_stock_location"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[ '|', ('company_id','=',False), '|', ('company_id','child_of',[user.company_id.id]),('company_id.id','in',user.company_ids.ids),'|',('user_ids','=',False),('user_ids','=',user.id)]</field>
+	    </record>
+    </data>
+</openerp>

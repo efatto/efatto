@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data> 
+
+<!-- Sale Order Report -->
+    <template id="wk_report_sale_modified" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[@class='table table-condensed']/thead/tr/th[position() = 1]" position="before">
+            <th t-if="o.wk_show_image">Image</th>
+        </xpath>
+
+        <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[position() = 1]" position="before">
+            <td t-if="o.wk_show_image">
+                <img  t-att-src="'data:image/png;base64,%s' % l.wk_image_small" style="max-height:60px;align:left"/>   
+            </td>
+        </xpath>
+    </template>
+
+
+</data>
+</openerp>
+
+
+
+

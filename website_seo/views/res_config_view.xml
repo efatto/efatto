@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id = "view_wk_website_seo_config_settings" model = "ir.ui.view">
+            <field name = "name">Website SEO Settings</field>
+            <field name = "model">website.seo.config.settings</field>
+            <field name = "arch" type = "xml">
+            <form string = "Website SEO Settings" class = "oe_form_configuration"> 
+            <sheet>  
+                <separator string = "Image Alternative Text('Alt Text') for your Images."/>                         
+                <group>  
+                    <label for= "wk_seo_website_meta_image_alt_text_size" />
+                        <div name = "wk_seo_website_meta_image_alt_text_size" >
+                            <div class = "oe_inline">
+                                <field name = "wk_seo_website_meta_image_alt_text_size" />
+                            </div>
+                        </div>                           
+                </group>
+                <p class="oe_grey">
+                            <strong>NOTE:</strong> By default, there is no way in ODOO to put alternative text(alt text) for an image. This option enables alt-text for all your images on ODOO.
+                        </p>
+                <!-- <separator string = "Default Parameters"/>                          -->
+  <!--               <group>  
+                    <label for= "default_multi_attribute_seperator" />
+                        <div name = "default_multi_attribute_seperator" >
+                            <div class = "oe_inline">
+                                <field name = "default_multi_attribute_seperator" />
+                            </div>
+                        </div>                           
+                        <label for = "default_multi_value_seperator" />
+                        <div name = "default_multi_value_seperator">
+                            <div class = "oe_inline">
+                                <field name = "default_multi_value_seperator" />
+                            </div>
+                        </div>
+                </group>  -->          
+                <separator string = "Meta Tags Limits"/>
+                <group>
+                    <label for="id" string="Meta Title"/>
+                    <div name="Meta Title">
+                        <field name = "wk_seo_website_meta_title_size" class="oe_inline"/>
+                        <label string="Set the maximum length of 'Title' meta-tag." for = "wk_seo_website_meta_title_size"/>
+                    </div>  
+                    <label for="id" string="Meta Description"/>
+                    <div name = "Meta Description">
+                        <field name = "wk_seo_website_meta_description_size" class="oe_inline"/>
+                        <label string="Set the maximum length of 'Description' meta-tag." for = "wk_seo_website_meta_description_size"/>
+                    
+                    </div>
+                    <label for="id" string="Meta Keywords"/>
+                    <div name="meta_keywords">
+                        <div name='wk_seo_website_meta_keywords_number'>
+                            <field name="wk_seo_website_meta_keywords_number" class="oe_inline"/>
+                            <label string="Set the maximum number of keywords for 'Keywords' meta-tag." for="wk_seo_website_meta_keywords_number"/>
+                        </div>
+                        <div name='wk_seo_website_meta_keywords_size'>
+                            <field name="wk_seo_website_meta_keywords_size" class="oe_inline"/>
+                            <label string="Set the maximum number of letters in words used for 'Keywords' meta-tag." for="wk_seo_website_meta_keywords_size"/>
+                        </div>
+                    </div>
+             
+                </group>
+             
+
+        </sheet>
+           
+        <footer>
+            <button string = "Apply" type = "object" name = "execute" class = "oe_highlight"/>
+            or
+            <button string = "Cancel" class = "oe_link" special = "cancel" />
+        </footer>   
+            
+        </form> 
+            </field>
+        </record>
+
+        <record id = "action_module_website_seo_configuration" model = "ir.actions.act_window">
+            <field name = "name">Here you can set/change Website SEO operation parameters.</field>
+            <field name = "res_model">website.seo.config.settings</field>
+            <field name = "view_mode">form</field>
+            <field name = "target">new</field>
+        </record>
+
+        <record id = "website_seo_configuration_installer_todo" model = "ir.actions.todo">
+            <field name = "action_id" ref = "action_module_website_seo_configuration"/>
+            <field name = "sequence">13</field>
+            <field name = "type">automatic</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <openerp>
+ 	<data>
+		<record id="website_seo_wizard_form" model="ir.ui.view">
+			<field name="name">website.seo.wizard.form</field>
+			<field name="model">website.seo.wizard</field>
+			<field name="arch" type="xml">
+				<form string="" version="7.0">
+				<sheet>
+					<p><h2>Notes :</h2><h3>You can changes  your seo meta values here!</h3></p>  <br/><br/>       
+					<group col="4">		
+					<field name = "meta_value"/>	<button string = "Add" type = "object" name = "add_meta_value" class = "oe_highlight oe_inline"/>
+						<button string="Remove" type = "object" name = "remove_meta_value" class = "oe_highlight oe_inline"/>	
+					
+					
+					</group>
+					<group>						
+						<field name = "updated_meta_info"/>
+					</group>
+					<footer>
+						<button string = "Cancel" class = "oe_highlight" special = "cancel" />						
+						<button string = "Update" type = "object" name = "add_meta_value" class = "oe_highlight"/> 
+					</footer>	
+				</sheet>
+				</form>
+			</field>
+		</record> 
+		<record id="action_website_seo_wizard" model="ir.actions.act_window">
+			<field name="name">ADD Meta Value</field>
+			<field name="res_model">website.seo.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="website_seo_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+	</data>
+</openerp>

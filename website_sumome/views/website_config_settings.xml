@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_website_config_settings" model="ir.ui.view">
+	    <field name="name">SumoMe settings</field>
+            <field name="model">website.config.settings</field>
+            <field name="inherit_id" ref="website.view_website_config_settings" />
+            <field name="arch" type="xml">
+		<xpath expr="//group[@string='Social Media']" position="inside">
+			<!--
+			<div name="google_analytics_key" position="after">
+			-->
+			    <field name="sumome_site_id" placeholder="SumoMe site ID" />
+			<!--
+			</div>
+			-->
+		</xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

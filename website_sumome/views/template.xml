@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="website_sumome_layout" inherit_id="website.layout">
+            <xpath expr="//head//title" position="after">
+		<t t-if="website and website.sumome_site_id">	
+                	<script 
+			    src="//load.sumome.com/" 
+			    t-att-data-sumo-site-id="website.sumome_site_id"
+			    async="async">
+			</script>
+		</t>
+            </xpath>
+        </template>
+    </data>
+</openerp>

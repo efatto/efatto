@@ -1,0 +1,289 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_seo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-01 16:53+0000\n"
+"PO-Revision-Date: 2016-09-01 19:07+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: website_seo
+#: model:ir.model,name:website_seo.model_website_seo
+msgid ""
+"\n"
+"\t\t\t\t\t\tThis is the main class of this module WebsiteSeo !.\n"
+"\t\t\t\t\t\tThis Class have to methods :\n"
+"\t\t\t\t\t\tadd_virtual_product AND remove_virtual_product\n"
+"\t\t\t\t\t"
+msgstr ""
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+msgid ""
+":  If you un-check this option to “Enable Auto Update during Automatic "
+"Generation of SEO information”, then SEO Information for such Category  will "
+"not be updated*"
+msgstr ""
+": Se rimuovi la spunta per questa opzione per \"Abilitare l'aggiornamento "
+"automatico durante la generazione delle informazioni SEO\". le informazioni "
+"SEO per questa categoria non verranno aggiornate."
+
+#. module: website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid ""
+":  If you un-check this option to “Enable Auto Update during Automatic "
+"Generation of SEO information”, then SEO Information for such product(s) "
+"will not be updated*"
+msgstr ""
+": Se rimuovi la spunta per questa opzione per \"Abilitare l'aggiornamento "
+"automatico durante la generazione delle informazioni SEO\". le informazioni "
+"SEO per questo/i prodotto/i non verranno aggiornate."
+
+#. module: website_seo
+#: code:addons/website_seo/models/website_seo.py:214
+#, python-format
+msgid ""
+"<h2>The SEO information for  Categories has been Updated successfully...!</"
+"h2><h4>Total %d categories  are influence  by this SEO Updation.</"
+"h4><h4>NOTE: SEO information for those Categories will not update where you "
+"unchecked   \"Auto Update\". </h4>"
+msgstr ""
+"Le informazioni SEO per le categorie sono state aggiornate correttamente...!"
+"</h2><h4>In totale %d categorie sono state interessate da questo "
+"aggiornamento SEO.</h4><h4>NOTA: Le informazioni SEO per le categorie in cu "
+"è stata disabilitata l'opzione di \"Aggiornamento Automatico\" non sono "
+"state aggiornate. </h4>"
+
+#. module: website_seo
+#: code:addons/website_seo/models/website_seo.py:203
+#, python-format
+msgid ""
+"<h2>The SEO information for  products has been Updated successfully...!</"
+"h2><h4>Total %d products items is now influence  by this SEO Updation.</"
+"h4><h4>NOTE: SEO information for those products will not update in which you "
+"ticked  off \"Auto Update\". </h4> "
+msgstr ""
+"Le informazioni SEO per i prodotti sono state aggiornate correttamente...!</"
+"h2><h4>In totale %d prodotti sono stati interessati da questo aggiornamento "
+"SEO.</h4><h4>NOTA: Le informazioni SEO per i prodotti in cu è stata "
+"disabilitata l'opzione di \"Aggiornamento Automatico\" non sono state "
+"aggiornate. </h4>"
+
+#. module: website_seo
+#: sql_constraint:website.seo:0
+msgid "A single seo can be configure for a model!"
+msgstr "Un singolo SEO può essere configurato come un modello!"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Apply"
+msgstr "Applica"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid "Auto Update meta-tags during Automatic Generation of Meta Tags"
+msgstr ""
+"Aggiornamento Automatico dei Meta Tag durante la generazione automatica dei "
+"Meta Tag"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid ""
+"By default, there is no way in ODOO to put alternative text(alt text) for an "
+"image. This option enables alt-text for all your images on ODOO."
+msgstr ""
+"Questa opzione abilita la creazione automatica di testo alternativo per "
+"tutte le immagini in SimplERP."
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+msgid "Category Description"
+msgstr "Descrizione Categoria"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_tree_view
+msgid "Configuration for"
+msgstr "Configurazione per"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+msgid "Description (About this category)"
+msgstr "Descrizione (per questa categoria)"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+msgid "Generate Now"
+msgstr "Generare Adesso"
+
+#. module: website_seo
+#: model:ir.actions.act_window,name:website_seo.action_module_website_seo_configuration
+msgid "Here you can set/change Website SEO operation parameters."
+msgstr ""
+"Da qui si possono impostare o modificare i parametri di funzionamento SEO "
+"per il sito web."
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Image Alternative Text('Alt Text') for your Images."
+msgstr "Testo alternativo ('Alt Text') per le immagini.."
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+#: view:website.seo:website_seo.website_seo_tree_view
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Meta Description"
+msgstr "Meta Description"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Meta Keywords"
+msgstr "Meta Keywords"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid "Meta Keywords( seperated by comma )"
+msgstr "Meta Keywords (separate da virgola)"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+msgid "Meta Tags"
+msgstr "Meta Tags"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Meta Tags Limits"
+msgstr "Limiti Meta Tags"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+msgid "Meta Tags Settings"
+msgstr "Configurazione Meta Tags"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+#: view:website.seo:website_seo.website_seo_tree_view
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Meta Title"
+msgstr "Meta Title"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid "Meta-tags editing:"
+msgstr "Modifica Meta Tags"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "NOTE:"
+msgstr "NOTA:"
+
+#. module: website_seo
+#: model:ir.model,name:website_seo.model_product_template
+msgid "Product Template"
+msgstr "Modello Prodotto"
+
+#. module: website_seo
+#: model:ir.model,name:website_seo.model_product_public_category
+msgid "Public Category"
+msgstr "Categoria Pubblica"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid "SEO"
+msgstr "SEO"
+
+#. module: website_seo
+#: view:website.seo:website_seo.website_seo_form_view
+msgid "Seo"
+msgstr "Seo"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Set the maximum length of 'Description' meta-tag."
+msgstr "Imposta la lunghezza massima del meta-tag 'Description'."
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Set the maximum length of 'Title' meta-tag."
+msgstr "Imposta la lunghezza massima del meta-tag 'Title'."
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Set the maximum number of keywords for 'Keywords' meta-tag."
+msgstr "Imposta il numero massimo di parole per il meta-tag 'Keywords'."
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid ""
+"Set the maximum number of letters in words used for 'Keywords' meta-tag."
+msgstr ""
+"Imposta il numero massimo di lettere nelle parole utilizzate per il meta-tag "
+"'Keywords'."
+
+#. module: website_seo
+#: model:ir.model,name:website_seo.model_website_seo_attribute
+msgid ""
+"This Class provide the attribute to WebsiteSeo using Many2many relation! "
+msgstr ""
+"Questa classe fornisce l'attributo di WebsiteSeo utilizzando una relazione "
+"Many2many!"
+
+#. module: website_seo
+#: view:product.public.category:website_seo.wk_inherited_product_public_category_form_view_website_seo
+#: view:product.template:website_seo.wk_inherited_product_template_website_seo
+msgid "Warning"
+msgstr "Attenzione"
+
+#. module: website_seo
+#: model:ir.actions.act_window,name:website_seo.action__website_seo
+msgid "Website  SEO"
+msgstr "Website  SEO"
+
+#. module: website_seo
+#: model:ir.ui.menu,name:website_seo.menu_website_seo_root
+#: model:ir.ui.menu,name:website_seo.menu_website_seo_submenu
+msgid "Website SEO "
+msgstr "Website SEO "
+
+#. module: website_seo
+#: view:webkul.website.addons:website_seo.wk_addons_website_seo_config
+msgid "Website SEO Configuration"
+msgstr "Configurazione Website SEO"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "Website SEO Settings"
+msgstr "Impostazioni Website SEO"
+
+#. module: website_seo
+#: view:website.seo.config.settings:website_seo.view_wk_website_seo_config_settings
+msgid "or"
+msgstr "o"
+
+#. module: website_seo
+#: view:website:website_sale.products_item
+msgid "product.name"
+msgstr "product.name"

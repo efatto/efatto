@@ -18,12 +18,16 @@
 #
 #
 {
-    'name': 'DDT extra',
+    'name': 'DDT template and fiscal sequence',
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
+    'description': '''This module add:
+    - possibility to create template ddt,
+    - assign via company if create_ddt is default,
+    - use of fiscal sequence for ddt.''',
     'depends': [
         'l10n_it_ddt',
     ],

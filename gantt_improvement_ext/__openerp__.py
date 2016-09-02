@@ -19,10 +19,13 @@
 #
 {
     'name': 'Gantt improvement ext',
-    'version': '8.0.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Gantt improvement ext',
+    'description': '''With this module you will be able to:
+                   - set links between tasks,
+                   - order tasks and projects by priority in gantt and tree,
+                   - print a decent report of gantt (using Chrome).''',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
@@ -31,6 +34,7 @@
     ],
     'data': [
         'views/web_gantt.xml',
+        'views/project_view.xml',
     ],
     'installable': True
 }

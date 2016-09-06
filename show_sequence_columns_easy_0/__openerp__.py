@@ -10,6 +10,7 @@
     'website': 'http://www.hanelsoft.vn/',
     'depends': ['web'],
     'data': [
+        'security/ir.model.access.csv',
         'templates.xml',
         'view.xml'
     ],

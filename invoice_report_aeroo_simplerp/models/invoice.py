@@ -31,11 +31,20 @@ class Parser(report_sxw.rml_parse):
             'total_fiscal': self._get_total_fiscal,
             'total_tax_fiscal': self._get_total_tax_fiscal,
             'address_invoice_id': self._get_invoice_address,
+            'account_fiscal_position_rule_id':
+                self._get_account_fiscal_position_rule_id,
         })
         self.cache = {}
 
+    def _get_account_fiscal_position_rule_id(self):
+        invoice = self.pool['account.invoice'].browse(self.cr, self.uid,
+                                                      self.ids[0])
+        if invoice.account_fiscal_position_rule_id:
+            return invoice.account_fiscal_position_rule_id
+
     def _get_invoice_address(self):
-        invoice = self.pool['account.invoice'].browse(self.cr, self.uid, self.ids[0])
+        invoice = self.pool['account.invoice'].browse(self.cr, self.uid,
+                                                      self.ids[0])
         invoice_address = invoice.partner_id
         for address in invoice.partner_id.child_ids:
             if address.type == 'invoice':

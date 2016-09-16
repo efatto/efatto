@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C)  Sergio Corato - SimplERP srl (<http://www.simplerp.it>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -17,21 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Italian Fiscal Journal Report',
-    'version': '8.0.1.0.0',
-    'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    'description': 'Italian Fiscal Journal Report',
-    'depends': [
-        'l10n_it_account',
-    ],
-    'data': [
-        'views/fiscal_journal_report.xml',
-        'report/reports.xml',
-        'wizard/print_fiscal_journal.xml',
-    ],
-    'installable': False,
-}
+from . import models

@@ -11,6 +11,9 @@
                         <field name="stock_picking_package_preparation_ids"/>
                     </group>
                 </group>
+                <field name="comment" position="after">
+                    <field name="tax_stamp_image" widget="image" class="oe_left oe_avatar"/>
+                </field>
             </field>
         </record>
     </data>

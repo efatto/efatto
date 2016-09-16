@@ -2,4 +2,4 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from . import fiscal_journal
+from . import vat_registry

@@ -10,3 +10,4 @@ class AccountInvoice(models.Model):
 
     stock_picking_package_preparation_ids = fields.One2many(
         'stock.picking.package.preparation', 'invoice_id', 'Pickings')
+    tax_stamp_image = fields.Binary('Tax stamp')

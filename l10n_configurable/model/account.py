@@ -70,18 +70,6 @@ class account_tax_code_template(models.Model):
 class account_tax_code(models.Model):
     _inherit = "account.tax.code"
 
-    # is_base = fields.Boolean(
-    #     'Is base',
-    #     help="This tax code is used for \
-    #     base amounts (field used by VAT registries)"
-    # )
-    # vat_statement_type = fields.Selection(
-    #     [('credit', 'Credit'),
-    #      ('debit', 'Debit')],
-    #     'Type',
-    #     help="This establish whether amount will be \
-    #     loaded as debit or credit"
-    # )
     vat_statement_sign = fields.Integer(
         'Sign used in statement',
         help="If tax code period sum is usually negative, set '-1' here"
@@ -115,18 +103,13 @@ class account_tax(models.Model):
         'account.tax',
         string='Tax code for reverse charge invoice'
     )
-    # ref_base_code_id = fields.Many2one(
-    #     # 'account.tax.code',
-    #     string='Refund Base Code',
-    #     related='base_code_id',
-    #     copy=False, store=True, readonly=True
-    # )
-    # ref_tax_code_id = fields.Many2one(
-    #     # 'account.tax.code',
-    #     string='Refund Tax Code',
-    #     related='tax_code_id',
-    #     copy=False, store=True, readonly=True
-    # )
+
+class account_chart_template(models.Model):
+    _inherit = "account.chart.template"
+
+    _defaults = {
+        'code_digits': 7,
+    }
 
 
 class wizard_multi_charts_accounts(models.TransientModel):
@@ -161,22 +144,34 @@ class wizard_multi_charts_accounts(models.TransientModel):
                         'withholding_payment_term_id':
                         tax_code_template.withholding_payment_term_id.id, })
 
-            # get id with code, as id is not correct in table because of configurable_account_chart auto install
+            # get id with code, as id is not correct in table because of
+            # configurable_account_chart auto install
             obj_account_account = self.env['account.account']
-            tax_code_template_ids = self.env['account.tax.code.template'].search([])
+            tax_code_template_ids = self.env['account.tax.code.template'
+            ].search([])
             for tax_code_template in tax_code_template_ids:
                 if tax_code_template.vat_statement_account_id:
-                    account_id = obj_account_account.search([('code', '=', tax_code_template.vat_statement_account_id.code)])
+                    account_id = obj_account_account.search(
+                        [('code', '=', tax_code_template.\
+                          vat_statement_account_id.code),
+                         ('company_id', '=', company_id)])
                     if account_id:
-                        obj_tax_code.search([('code', '=', tax_code_template.code)]).vat_statement_account_id = account_id.id
+                        obj_tax_code.search([
+                            ('code', '=', tax_code_template.code),
+                            ('company_id', '=', company_id)]
+                        ).vat_statement_account_id = account_id.id
 
             obj_tax = self.env['account.tax']
             tax_template_ids = self.env['account.tax.template'].search([])
             for tax_template in tax_template_ids:
                 if tax_template.auto_invoice_tax_id:
                     tax_id = obj_tax.search([
-                        ('description', '=', tax_template.auto_invoice_tax_id.description),
+                        ('description', '=',
+                         tax_template.auto_invoice_tax_id.description),
                         ('company_id', '=', company_id)])
                     if tax_id:
-                        obj_tax.search([('description', '=', tax_template.description)]).auto_invoice_tax_id = tax_id.id
+                        obj_tax.search([
+                            ('description', '=', tax_template.description),
+                            ('company_id', '=', company_id)]
+                        ).auto_invoice_tax_id = tax_id.id
         return True

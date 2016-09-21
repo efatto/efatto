@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+   <data>
+
+<template id="INVOICE_5_document" name="Odoo Invoice Template">
+    <t t-call="account.report_invoice_document" t-lang="o.partner_id.lang"/>
+</template>
+
+<!--This template is to take care of duplicates priting for invoices already validated before installation of this module -->
+<!-- <template id="account.report_invoice_duplicate" name="Odoo Duplicate">
+     <t t-call="account.account_invoice_report_duplicate" t-lang="o.partner_id.lang"/>
+</template>-->
+
+<template id="odoo_duplicate" inherit_id="account.report_invoice_document" primary="True" name="Odoo Duplicate">
+    <xpath expr="//h2" position="replace">
+        <h2>
+            <span>Duplicate# </span>
+            <span t-field="o.number"/>
+        </h2>
+    </xpath>
+</template>
+
+<template id="INVOICE_5_duplicate" name="Odoo Duplicate">
+   <t t-call="professional_templates.odoo_duplicate" t-lang="o.partner_id.lang"/>
+</template>
+<!--Add payment information to odoo template -->
+
+<template id="inherit_account__report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='col-xs-4 pull-right']//table[@class='table table-condensed']" position="inside">
+                        <tr class="border-black">
+                            <td><strong>Amount Due</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.residual" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Payment Status</strong></td>
+			    <td class="text-right">
+                              <strong>
+                                <span t-if="o.state == 'paid'" class="label label-info orders_label_text_align"><i class="fa fa-fw fa-check"/> Paid</span>
+                                <span t-if="o.state != 'paid'" class="label label-info orders_label_text_align"><i class="fa fa-fw fa-clock-o"/> Uncleared</span>
+                              </strong>
+			   </td>
+                        </tr>
+	</xpath>
+        <xpath expr="//p[@t-if='o.comment']" position="before">
+                 <div t-if="o.payment_ids" class="col-xs-12" style="padding-left:0px; padding-right:0px;">
+                    <!--<t t-set="payments" t-value="json.loads(o.payments_widget)"/>-->
+                    <p><strong>Payment Information:</strong></p>
+                   <div class="col-xs-7 pull-left" style="padding-left:0px; padding-right:0px; page-break-inside: avoid !important;">
+                    <table class="table table-condensed">
+
+                        <thead t-attf-style="page-break-inside: avoid;">
+                            <tr t-attf-style="page-break-inside: avoid !important; border-bottom: 1px solid !important;">
+                                <th t-attf-style="border-bottom: 1px solid  !important;">No.</th>
+                                <th t-attf-style="border-bottom: 1px solid !important;">Date</th>
+                                <th t-attf-style="border-bottom: 1px solid  !important;">Method</th>
+                                <th t-attf-style="border-bottom: 1px solid  !important;">Ref.</th>
+                                <th class="text-right" t-attf-style="border-bottom: 1px solid !important;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <t t-foreach="o.payment_ids" t-as="p">
+                             <tr t-attf-style="page-break-inside: avoid !important;">
+                                <td><span t-esc="p_index + 1"/></td>
+                                <td><span t-field="p.date"/></td>
+                                <td><span t-field="p.journal_id"/></td>
+                                <td><span t-field="p.ref"/></td>
+                                <td class="text-right"><span t-field="p.credit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></td>
+                             </tr>
+                          </t>
+                        </tbody>
+                    </table>
+                   </div>
+                 </div>
+        </xpath>
+</template>
+
+</data>
+</openerp>
+

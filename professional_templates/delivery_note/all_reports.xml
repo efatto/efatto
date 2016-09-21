@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+<template id="report_deliveryslip">
+   <t t-call="report.html_container">
+     <t t-foreach="docs" t-as="o">
+	<t t-raw="translate_doc(o.id, doc_model, 'partner_id.lang', o.templ_id.xml_id or 'stock.report_picking')"/>
+     </t>
+   </t>
+</template>
+</data>
+</openerp>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="Delivery_note_inherited_customized" model="ir.ui.view">
+            <field name="name">DNOTE CUSTOMIZED</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+		 <xpath expr="//field[@name='origin']" position="after">
+			<field name="templ_id"/>
+		 </xpath>
+		 <xpath expr="//notebook" position="inside">
+                         <page string="Delivery Report Settings">
+			     <group>
+				<group>
+				   <field name="dn_logo"  widget="image" 
+					class="oe_avatar" string="Delivery Slip Logo"/>
+				   <field name="odd"/>
+				   <field name="even"/>
+				   <field name="text_color"/>
+				</group>
+				<group>
+				   <field name="theme_color"/>
+				   <field name="theme_txt_color"/>
+				   <field name="name_color"/>
+				   <field name="cust_color"/>
+                                   <field name="header_font"/>
+                                   <field name="body_font"/>
+                                   <field name="footer_font"/>
+                                   <field name="font_family"/>
+                                   <div>
+                                     <i class="fa fa-info-circle" aria-hidden="true">
+                                                <strong> NOTE:</strong>
+                                     </i>
+                                     <p style="margin-top:0px;">Please make sure the font family you are specifying is already installed in your Odoo Server.</p>
+                                   </div>
+				</group>
+			     </group>
+			 </page>
+		 </xpath>
+	    </field>
+	</record>
+<!--<record id="stock.report_picking" model="ir.ui.view">
+  <field name="name"></field>
+</record>-->
+    </data>
+</openerp>
+

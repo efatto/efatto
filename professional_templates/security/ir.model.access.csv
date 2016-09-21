@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+__export__.ir_model_access_579,Portla_user_read_access_payment_term,account.model_account_payment_term,base.group_portal,True,False,False,False
+__export__.ir_model_access_578,Portal_user_read_access_to_account_move,account.model_account_move_line,base.group_portal,True,False,False,False

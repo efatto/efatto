@@ -1,0 +1,2085 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* professional_templates
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-23 23:45+0000\n"
+"PO-Revision-Date: 2016-05-23 23:45+0000\n"
+"Last-Translator: Bernard K Too<bernard.too@optima.co.ke>\n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: \n"
+
+#. module: professional_templates
+#: view:website:professional_templates.category_template
+#: view:website:professional_templates.company_footer
+msgid "&bull;"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Item"
+msgstr "ít"
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "NOTE:"
+msgstr "Nota:"
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "Please make sure the font family you are specifying is already installed in your Odoo Server."
+msgstr "Por favor asegúrese de que la familia de fuentes que se han especificado ya está instalado en su servidor Openerp."
+
+#. module: professional_templates
+#: field:account.invoice,font_family:0
+#: field:purchase.order,font_family:0
+#: field:res.company,font_family:0
+#: field:sale.order,font_family:0
+#: field:stock.picking,font_family:0
+msgid "Font Family:"
+msgstr "familia de fuentes:"
+
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "10"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "11"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "12"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "13"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "14"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "15"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "16"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "17"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "18"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "19"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "20"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "21"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "22"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "23"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "24"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "25"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "26"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "27"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "28"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "29"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "30"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "31"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "32"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "33"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "34"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "35"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "36"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "37"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "38"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "39"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "40"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "41"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "42"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "43"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "44"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "45"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "46"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "47"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "48"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "49"
+msgstr ""
+
+#. module: professional_templates
+#: selection:account.invoice,body_font:0
+#: selection:account.invoice,footer_font:0
+#: selection:account.invoice,header_font:0
+#: selection:purchase.order,body_font:0
+#: selection:purchase.order,footer_font:0
+#: selection:purchase.order,header_font:0
+#: selection:res.company,body_font:0
+#: selection:res.company,footer_font:0
+#: selection:res.company,header_font:0
+#: selection:sale.order,body_font:0
+#: selection:sale.order,footer_font:0
+#: selection:sale.order,header_font:0
+#: selection:stock.picking,body_font:0
+#: selection:stock.picking,footer_font:0
+#: selection:stock.picking,header_font:0
+msgid "50"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "</tbody>\n"
+"                    		</table>\n"
+"				<p style=\"page-break-before:always;\"> </p>\n"
+"                    		<table class=\"table table-condensed\" style=\"page-break-before:always;\">"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.order_data
+msgid "</tbody>\n"
+"                            </table>\n"
+"                            <p style=\"page-break-before:always;\"> </p>\n"
+"                            <table class=\"table table-condensed\">"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "<tbody>"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Amount"
+msgstr "Importe"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Amount Due"
+msgstr "Importe a pagar"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Approved By:"
+msgstr "Aprobado por:"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: professional_templates
+#: view:website:professional_templates.picking_data
+msgid "Barcode / Serial No."
+msgstr "Código de barras"
+
+#. module: professional_templates
+#: field:account.invoice,body_font:0
+#: field:purchase.order,body_font:0
+#: field:res.company,body_font:0
+#: field:sale.order,body_font:0
+#: field:stock.picking,body_font:0
+msgid "Body Font-Size(px):"
+msgstr "Tamaño de la página de fuentes(px):"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Cancelled Invoice"
+msgstr "Factura Cancelado"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Carrier:"
+msgstr "Portador:"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Client Reference:"
+msgstr "Referencia Cliente:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Commitment Date:"
+msgstr "Fecha del Compromiso:"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: professional_templates
+#: field:account.invoice,name_color:0
+#: field:purchase.order,name_color:0
+#: field:res.company,name_color:0
+#: field:sale.order,name_color:0
+#: field:stock.picking,name_color:0
+msgid "Company Name Color"
+msgstr "Nombre de compañía en color"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.PICK_1_document
+msgid "Customer Address"
+msgstr "Dirección del Cliente"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Customer Address:"
+msgstr "Dirección del Cliente:"
+
+#. module: professional_templates
+#: field:account.invoice,cust_color:0
+#: field:purchase.order,cust_color:0
+#: field:res.company,cust_color:0
+#: field:sale.order,cust_color:0
+#: field:stock.picking,cust_color:0
+msgid "Customer Name Color"
+msgstr "Cliente Nombre del color"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Date"
+msgstr "Fecha"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Date Approved:"
+msgstr "Fecha de aprobación:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Date Expected:"
+msgstr "Fecha prevista:"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Date Ordered:"
+msgstr "Fecha del pedido:"
+
+#. module: professional_templates
+#: view:website:professional_templates.purchase_data
+msgid "Date Req."
+msgstr "Fecha solicitada"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+msgid "Date of Transfer:"
+msgstr "Fecha de transferencia:"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_4_document
+#: view:website:professional_templates.INVOICE_4_document
+#: view:website:professional_templates.PICK_4_document
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.RFQ_4_document
+msgid "Date:"
+msgstr "Fecha:"
+
+#. module: professional_templates
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+msgid "Default Report Settings"
+msgstr "Configuración de informe por defecto"
+
+#. module: professional_templates
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+msgid "Default Report Templates"
+msgstr "Por defecto plantillas de informes"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.PICK_1_document
+msgid "Delivery Address"
+msgstr "Dirección de entrega"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Delivery Address:"
+msgstr "Dirección de entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+msgid "Delivery Note"
+msgstr "Nota de entrega"
+
+#. module: professional_templates
+#: field:res.company,template_dn:0
+msgid "Delivery Note Template"
+msgstr "Plantilla de entrega Nota"
+
+#. module: professional_templates
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "Delivery Report Settings"
+msgstr "Ajustes del informe de entrega"
+
+#. module: professional_templates
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "Delivery Slip Logo"
+msgstr "Entrega Slip Logo"
+
+#. module: professional_templates
+#: field:stock.picking,templ_id:0
+msgid "Delivery Slip Template"
+msgstr "Plantilla albarán de entrega"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_4_document
+msgid "Delivery address:"
+msgstr "Dirección de entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Description"
+msgstr "Descripción"
+
+#. module: professional_templates
+#: view:website:professional_templates.picking_data
+msgid "Destination"
+msgstr "Destino"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Discount(%)"
+msgstr "Descuento(%)"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Draft Invoice"
+msgstr "Proyecto de Factura"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Due Date:"
+msgstr "Fecha de vencimiento:"
+
+#. module: professional_templates
+#: model:ir.actions.report.xml,name:professional_templates.account_invoice_action_report_duplicate
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_duplicate
+#: view:website:professional_templates.INVOICE_2_duplicate
+#: view:website:professional_templates.INVOICE_3_duplicate
+#: view:website:professional_templates.INVOICE_4_duplicate
+#: view:website:professional_templates.odoo_duplicate
+msgid "Duplicate#"
+msgstr "Duplicar"
+
+#. module: professional_templates
+#: field:account.invoice,even:0
+#: field:purchase.order,even:0
+#: field:res.company,even:0
+#: field:sale.order,even:0
+#: field:stock.picking,even:0
+msgid "Even parity Color"
+msgstr "Incluso en color de paridad"
+
+#. module: professional_templates
+#: view:website:professional_templates.rfq_data
+msgid "Expected Date"
+msgstr "Fecha Esperada"
+
+#. module: professional_templates
+#: field:res.company,facebook:0
+msgid "Facebook ID"
+msgstr "Facebook ID"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Fiscal Position Remark:"
+msgstr "Observación Posición fiscal"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Fiscal Position:"
+msgstr "Posición Fiscal:"
+
+#. module: professional_templates
+#: field:account.invoice,footer_font:0
+#: field:purchase.order,footer_font:0
+#: field:res.company,footer_font:0
+#: field:sale.order,footer_font:0
+#: field:stock.picking,footer_font:0
+msgid "Footer Font-Size(px):"
+msgstr "Pie de página tamaño de fuente(px)"
+
+#. module: professional_templates
+#: field:res.company,googleplus:0
+msgid "Google-Plus ID"
+msgstr "Google-Plus ID"
+
+#. module: professional_templates
+#: field:account.invoice,header_font:0
+#: field:purchase.order,header_font:0
+#: field:res.company,header_font:0
+#: field:sale.order,header_font:0
+#: field:stock.picking,header_font:0
+msgid "Header Font-Size(px):"
+msgstr "Tamaño de fuente(px)"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Invoice Date:"
+msgstr "Fecha de la factura:"
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+msgid "Invoice Logo"
+msgstr "Logo de la factura"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Invoice No."
+msgstr "Factura"
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+msgid "Invoice Report Settings"
+msgstr "Configuración de informes de factura"
+
+#. module: professional_templates
+#: field:account.invoice,template_id:0
+#: field:res.company,template_invoice:0
+msgid "Invoice Template"
+msgstr "Plantilla de factura"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+msgid "Invoice#"
+msgstr "Factura#"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+msgid "Invoiced To:"
+msgstr "Para facturado:"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_4_document
+msgid "Invoicing &"
+msgstr "Facturación y"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+msgid "Invoicing & Shipping Address:"
+msgstr "Facturación y dirección de entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+msgid "Invoicing Address"
+msgstr "Dirección de facturación"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Invoicing Address:"
+msgstr "Dirección de facturación:"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: professional_templates
+#: field:account.invoice,invoice_logo:0
+#: field:purchase.order,po_logo:0
+#: field:purchase.order,rfq_logo:0
+#: field:res.company,invoice_logo:0
+#: field:sale.order,order_logo:0
+#: field:stock.picking,dn_logo:0
+#: field:stock.picking,pk_logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Method"
+msgstr "Método"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+msgid "No."
+msgstr "No."
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Note:"
+msgstr "Nota:"
+
+#. module: professional_templates
+#: field:account.invoice,odd:0
+#: field:purchase.order,odd:0
+#: field:res.company,odd:0
+#: field:sale.order,odd:0
+#: field:stock.picking,odd:0
+msgid "Odd parity Color"
+msgstr "Extraño color de paridad"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Open"
+msgstr "Abierto"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Order"
+msgstr "Orden"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+msgid "Order (Origin):"
+msgstr "Orden (Origen):"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Order (origin):"
+msgstr "Orden (Origen):"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Order Date:"
+msgstr "Fecha del pedido:"
+
+#. module: professional_templates
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+msgid "Order Report Settings"
+msgstr "Configuración de informes"
+
+#. module: professional_templates
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+msgid "Order/Quotation Logo"
+msgstr "Logo de la Pedido / Cotización "
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Our Reference:"
+msgstr "Nuestra referencia:"
+
+#. module: professional_templates
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+msgid "PO & RFQ Report Settings"
+msgstr "Configuración de informes"
+
+#. module: professional_templates
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+msgid "PO Logo"
+msgstr "Logo"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "PRO-FORMA"
+msgstr "PRO-FORMA"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+msgid "Packages:"
+msgstr "Paquetes:"
+
+#. module: professional_templates
+#: view:website:professional_templates.company_footer
+msgid "Page:"
+msgstr "Página:"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+msgid "Payment Information:"
+msgstr "Información del pago:"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Payment Status"
+msgstr "Estado de pago"
+
+#. module: professional_templates
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Payment Term Notes:"
+msgstr "Notas Plazo de pago:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+#: view:website:professional_templates.invoice_data
+msgid "Payment Terms:"
+msgstr "Plazo de pago"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Payments:"
+msgstr "Pagos:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Picking"
+msgstr "Albarán"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: professional_templates
+#: view:stock.picking:professional_templates.view_picking_inherit_dn
+msgid "Picking Logo"
+msgstr "Logo de Albarán"
+
+#. module: professional_templates
+#: field:stock.picking,templ_pk_id:0
+msgid "Picking Slip Template"
+msgstr "Plantilla de Albarán"
+
+#. module: professional_templates
+#: field:res.company,template_pk:0
+msgid "Picking Template"
+msgstr "Plantilla de Albarán"
+
+#. module: professional_templates
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+msgid "Price"
+msgstr "Precio"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.picking_data
+msgid "Product"
+msgstr "Producto"
+
+#. module: professional_templates
+#: field:account.invoice,project_title:0
+#: field:sale.order,project_title:0
+msgid "Project Title"
+msgstr "Título del Proyecto"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_purchase_order
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: professional_templates
+#: field:purchase.order,templ_id:0
+#: field:res.company,template_po:0
+msgid "Purchase Order Template"
+msgstr "Plantilla de Pedido de compra"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Quotation Date:"
+msgstr "Fecha de Presupuesto:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.RFQ_4_document
+msgid "R.F.Q"
+msgstr "Solicitud de presupuesto"
+
+#. module: professional_templates
+#: view:purchase.order:professional_templates.view_rfq_inherit_po
+msgid "RFQ Logo"
+msgstr "Logo de Solicitud de presupuesto"
+
+#. module: professional_templates
+#: field:purchase.order,templ_rfq_id:0
+#: field:res.company,template_rfq:0
+msgid "RFQ Template"
+msgstr "Plantilla de Solicitud de presupuesto"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+#: view:website:professional_templates.invoice_data
+msgid "Ref."
+msgstr "Ref."
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Reference:"
+msgstr "Referencia:"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Refund"
+msgstr "Reembolso"
+
+#. module: professional_templates
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+msgid "Report Logo"
+msgstr "Logo para el Informe"
+
+#. module: professional_templates
+#: view:website:professional_templates.RFQ_3_document
+msgid "Request For Quotation"
+msgstr "Solicitud de presupuesto"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.RFQ_2_document
+msgid "Request for Quotation"
+msgstr "Solicitud de presupuesto"
+
+#. module: professional_templates
+#: view:website:professional_templates.RFQ_1_document
+msgid "Request for Quotation #"
+msgstr "Solicitud de presupuesto"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+msgid "Sale Order"
+msgstr "Orden de Venta"
+
+#. module: professional_templates
+#: field:sale.order,templ_id:0
+msgid "Sale Order Report Template"
+msgstr "Plantilla para Orden de Venta"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de Venta"
+
+#. module: professional_templates
+#: field:res.company,template_so:0
+msgid "Sales Order Template"
+msgstr "Plantilla para Orden de Venta"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Salesperson:"
+msgstr "Vendedor"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_4_document
+msgid "Scheduled Date"
+msgstr "Fecha prevista"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Scheduled Date:"
+msgstr "Fecha prevista:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.RFQ_1_document
+#: view:website:professional_templates.SO_1_document
+msgid "Shipping Address"
+msgstr "Dirección de entrega"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.RFQ_2_document
+#: view:website:professional_templates.RFQ_3_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+msgid "Shipping Address:"
+msgstr "Dirección de entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.rfq_data
+msgid "Shipping Terms:"
+msgstr "Terminos de entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.RFQ_4_document
+msgid "Shipping address:"
+msgstr "Dirección de entrega"
+
+#. module: professional_templates
+#: view:website:professional_templates.purchase_data
+msgid "Shipping:"
+msgstr "Entrega:"
+
+#. module: professional_templates
+#: view:website:professional_templates.picking_data
+msgid "Source"
+msgstr "Fuente"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Source Doc.:"
+msgstr "Documento origen:"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+msgid "Source Doc:"
+msgstr "Documento origen"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Source Document:"
+msgstr "Documento origen"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+msgid "Status"
+msgstr "Estado"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Status:"
+msgstr "Estado:"
+
+#. module: professional_templates
+#: view:website:professional_templates.subtotal_template
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Supplier Invoice"
+msgstr "Factura proveedor"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+msgid "Supplier Refund"
+msgstr "Facturas rectificativas de proveedor"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+#: view:website:professional_templates.INVOICE_1_document
+#: view:website:professional_templates.INVOICE_2_document
+#: view:website:professional_templates.INVOICE_3_document
+#: view:website:professional_templates.INVOICE_4_document
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+#: view:website:professional_templates.RFQ_1_document
+#: view:website:professional_templates.RFQ_2_document
+#: view:website:professional_templates.RFQ_3_document
+#: view:website:professional_templates.RFQ_4_document
+#: view:website:professional_templates.SO_1_document
+#: view:website:professional_templates.SO_2_document
+#: view:website:professional_templates.SO_3_document
+#: view:website:professional_templates.SO_4_document
+#: view:website:professional_templates.company_address
+msgid "TIN:"
+msgstr "NIF:"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: professional_templates
+#: field:account.invoice,text_color:0
+#: field:purchase.order,text_color:0
+#: field:res.company,text_color:0
+#: field:sale.order,text_color:0
+#: field:stock.picking,text_color:0
+msgid "Text Color"
+msgstr "Color de texto"
+
+#. module: professional_templates
+#: help:stock.picking,theme_color:0
+msgid "The Main Theme color of the Delivery Slip. Normally this should be one of your official company colors"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,theme_color:0
+msgid "The Main Theme color of the invoice. Normally this			 should be one of your official company colors"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,theme_color:0
+msgid "The Main Theme color of the invoice. Normally this                         should be one of your official company colors"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,theme_color:0
+msgid "The Main Theme color of the purchase order/quaotation. Normally this should be one of your official company colors"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,theme_color:0
+msgid "The Main Theme color of the sale order/quaotation. Normally this should be one of your official company colors"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,name_color:0
+#: help:purchase.order,name_color:0
+#: help:sale.order,name_color:0
+#: help:stock.picking,name_color:0
+msgid "The Text color of the Company Name. 			Normally thisshould be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,name_color:0
+msgid "The Text color of the Company Name. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,cust_color:0
+#: help:purchase.order,cust_color:0
+#: help:sale.order,cust_color:0
+#: help:stock.picking,cust_color:0
+msgid "The Text color of the Customer Name. 			Normally this should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,cust_color:0
+msgid "The Text color of the Customer Name. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,theme_txt_color:0
+msgid "The Text color of the areas bearing the theme color. Normally this should NOT be the same color as the                                theme color. Otherwise the text will not be visible"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,theme_txt_color:0
+#: help:purchase.order,theme_txt_color:0
+#: help:sale.order,theme_txt_color:0
+#: help:stock.picking,theme_txt_color:0
+msgid "The Text color of the areas with theme color. This should not be the same the theme color"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,text_color:0
+msgid "The Text color of the invoice. Normally this			 should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,text_color:0
+msgid "The Text color of the invoice. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,text_color:0
+msgid "The Text color of the order. Normally this			 should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,even:0
+msgid "The background color for Even invoice lines in the invoice"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,even:0
+msgid "The background color for Even lines in the invoice"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,even:0
+msgid "The background color for Even lines in the order"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,odd:0
+msgid "The background color for Odd invoice lines in the invoice"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,odd:0
+msgid "The background color for Odd lines in the invoice"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,odd:0
+msgid "The background color for Odd lines in the order"
+msgstr ""
+
+#. module: professional_templates
+#: help:stock.picking,even:0
+msgid "The background color for even lines in the delivery slip"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,even:0
+msgid "The background color for even lines in the purchase order"
+msgstr ""
+
+#. module: professional_templates
+#: help:stock.picking,odd:0
+msgid "The background color for odd lines in the delivery slip"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,odd:0
+msgid "The background color for odd lines in the purchase order"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,text_color:0
+#: help:stock.picking,text_color:0
+msgid "The text color of the order. Normally this			 should be one of your official company colors or default HTML text color"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,project_title:0
+#: help:sale.order,project_title:0
+msgid "The title of your customer project or work you are doing for your customer"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,theme_color:0
+#: field:purchase.order,theme_color:0
+#: field:res.company,theme_color:0
+#: field:sale.order,theme_color:0
+#: field:stock.picking,theme_color:0
+msgid "Theme Color"
+msgstr "Tema de color"
+
+#. module: professional_templates
+#: field:account.invoice,theme_txt_color:0
+#: field:purchase.order,theme_txt_color:0
+#: field:res.company,theme_txt_color:0
+#: field:sale.order,theme_txt_color:0
+#: field:stock.picking,theme_txt_color:0
+msgid "Theme Text Color"
+msgstr "Tema de color de texto"
+
+#. module: professional_templates
+#: help:stock.picking,pk_logo:0
+msgid "This field holds the image used as logo for the Picking, if non is uploaded, the default logo set in the company settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,rfq_logo:0
+msgid "This field holds the image used as logo for the RFQ, if non is uploaded, the default logo define in the company settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:stock.picking,dn_logo:0
+msgid "This field holds the image used as logo for the delivery slip, if non is uploaded, the default logo set in the company settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,invoice_logo:0
+msgid "This field holds the image used as logo for the invoice, if non is uploaded, the company logo will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,invoice_logo:0
+msgid "This field holds the image used as logo for the invoice, if non is uploaded, the default logo define in the copmany settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,order_logo:0
+msgid "This field holds the image used as logo for the order, if non is uploaded, the default logo define in the company settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,po_logo:0
+msgid "This field holds the image used as logo for the purchase order, if non is uploaded, the default logo set in the company settings will be used"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+msgid "Total"
+msgstr "Total"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+msgid "Total Without Taxes"
+msgstr "Base imponible"
+
+#. module: professional_templates
+#: field:res.company,twitter:0
+msgid "Twitter Handle"
+msgstr "Twitter Handle"
+
+#. module: professional_templates
+#: view:website:professional_templates.category_template
+msgid "Uncategorized"
+msgstr "Sin categoría"
+
+#. module: professional_templates
+#: view:website:account.report_invoice_document
+msgid "Uncleared"
+msgstr "No compensada"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.purchase_data
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: professional_templates
+#: view:website:professional_templates.SO_2_document
+msgid "Valid Until:"
+msgstr "Fecha de caducidad:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.RFQ_1_document
+msgid "Vendor Address"
+msgstr "Dirección proveedor"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.RFQ_2_document
+#: view:website:professional_templates.RFQ_3_document
+msgid "Vendor Address:"
+msgstr "Dirección proveedor:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_1_document
+msgid "Warehouse Address"
+msgstr "Dirección del almacén"
+
+#. module: professional_templates
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Warehouse Address:"
+msgstr "Dirección del almacén:"
+
+#. module: professional_templates
+#: view:website:professional_templates.DN_1_document
+#: view:website:professional_templates.DN_2_document
+#: view:website:professional_templates.DN_3_document
+#: view:website:professional_templates.DN_4_document
+#: view:website:professional_templates.PICK_1_document
+#: view:website:professional_templates.PICK_2_document
+#: view:website:professional_templates.PICK_3_document
+#: view:website:professional_templates.PICK_4_document
+msgid "Weight:"
+msgstr "Peso:"
+
+#. module: professional_templates
+#: view:website:professional_templates.PO_1_document
+#: view:website:professional_templates.PO_2_document
+#: view:website:professional_templates.PO_3_document
+#: view:website:professional_templates.PO_4_document
+msgid "Your Reference:"
+msgstr "Tu referencia"
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_1_duplicate
+msgid "professional_templates.INVOICE_1_duplicate"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_2_duplicate
+msgid "professional_templates.INVOICE_2_duplicate"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_3_duplicate
+msgid "professional_templates.INVOICE_3_duplicate"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.INVOICE_4_duplicate
+msgid "professional_templates.INVOICE_4_duplicate"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.odoo_duplicate
+msgid "professional_templates.odoo_duplicate"
+msgstr ""
+

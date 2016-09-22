@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_inherit_customized" model="ir.ui.view">
+            <field name="name">sale.order.customized</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//h1" position="after">
+                        <h2>
+                          <label for="project_title" class="oe_edit_only"/>
+                          <field name="project_title" class="oe_inline"/>
+                        </h2>
+                 </xpath>
+
+		 <xpath expr="//field[@name='pricelist_id']" position="after">
+			<field name="templ_id"/>
+		 </xpath>
+		 <xpath expr="//notebook" position="inside">
+                         <page string="Order Report Settings">
+			     <group>
+				<group>
+				   <field name="order_logo" widget="image" class="oe_avatar" string="Order/Quotation Logo"/>
+				   <field name="odd"/>
+				   <field name="even"/>
+				   <field name="text_color"/>
+				</group>
+				<group>
+				   <field name="theme_color"/>
+				   <field name="theme_txt_color"/>
+				   <field name="name_color"/>
+				   <field name="cust_color"/>
+                                   <field name="header_font"/>
+                                   <field name="body_font"/>
+                                   <field name="footer_font"/>
+                                   <field name="font_family"/>
+                                   <div>
+                                     <i class="fa fa-info-circle" aria-hidden="true">
+                                                <strong> NOTE:</strong>
+                                     </i>
+                                     <p style="margin-top:0px;">Please make sure the font family you are specifying is already installed in your Odoo Server.</p>
+                                   </div>
+				</group>
+			     </group>
+			 </page>
+		 </xpath>
+	    </field>
+	</record>
+<!--<record id="sale.report_saleorder_document" model="ir.ui.view">
+  <field name="name"></field>
+</record>-->
+    </data>
+</openerp>
+

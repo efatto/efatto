@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_quote_image
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-01 17:16+0000\n"
+"PO-Revision-Date: 2016-09-01 19:17+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: website_quote_image
+#: view:website:website_quote.optional_products
+#: view:website:website_quote.pricing
+msgid "% discount"
+msgstr "% Sconto"
+
+#. module: website_quote_image
+#: view:website:website_quote.optional_products
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: website_quote_image
+#: view:website:sale.report_saleorder_document
+msgid "Image"
+msgstr "Immagine"
+
+#. module: website_quote_image
+#: view:website:website_quote.optional_products
+#: view:website:website_quote.pricing
+msgid "Price"
+msgstr "Prezzo"
+
+#. module: website_quote_image
+#: field:sale.order.line,wk_image_small:0
+#: field:sale.order.option,wk_image_small:0
+#: view:website:website_quote.optional_products
+#: view:website:website_quote.pricing
+msgid "Product Image"
+msgstr "Immagine Prodotto"
+
+#. module: website_quote_image
+#: view:website:website_quote.optional_products
+#: view:website:website_quote.pricing
+msgid "Products"
+msgstr "Prodotti"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: website_quote_image
+#: model:ir.model,name:website_quote_image.model_sale_order_option
+msgid "Sale Options"
+msgstr "Opzioni di Vendita"
+
+#. module: website_quote_image
+#: model:ir.model,name:website_quote_image.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di Vendita"
+
+#. module: website_quote_image
+#: model:ir.model,name:website_quote_image.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga Ordine"
+
+#. module: website_quote_image
+#: field:sale.order,wk_show_image:0
+msgid "Show Image on Report"
+msgstr "Visualizza immagine nel Report"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Subtotal:"
+msgstr "Subtotale:"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Taxes"
+msgstr "Imposte"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Taxes:"
+msgstr "Imposte:"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Total:"
+msgstr "Totale:"
+
+#. module: website_quote_image
+#: view:website:website_quote.pricing
+msgid "Unit Price"
+msgstr "Prezzo Unitario"

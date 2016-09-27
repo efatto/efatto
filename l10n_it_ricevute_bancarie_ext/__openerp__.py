@@ -19,9 +19,9 @@
 #
 {
     'name': 'l10n_it_ricevute_bancarie_ext',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'SimplERP SRL',
+    'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

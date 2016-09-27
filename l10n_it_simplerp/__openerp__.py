@@ -25,7 +25,7 @@
     PDC SimplERP 7 number
 
     """,
-    'author': 'SimplERP SRL',
+    'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [

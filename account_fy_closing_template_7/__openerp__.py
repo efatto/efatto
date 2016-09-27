@@ -22,7 +22,7 @@
 {
     "name" : "Fiscal Year Closing Template for pdc with 7 number",
     "version" : "8.0.1.0.0",
-    "author" : "Sergio Corato",
+    "author" : "Sergio Corato - SimplERP SRL",
     "website" : "http://www.simplerp.it",
     "category" : "Generic Modules/Accounting",
     "description": "Fiscal Year Closing Wizard Template for pdc with 7 number",

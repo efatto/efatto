@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- DdT Sequence c/visione-->
+        <record id="seq_type_ddt_cvisione" model="ir.sequence.type">
+            <field name="name">DDT C/visione</field>
+            <field name="code">stock.ddt.cvisione</field>
+        </record>
+        <record id="seq_ddt_cvisione" model="ir.sequence">
+            <field name="name">DDT C/visione</field>
+            <field name="code">stock.ddt.cvisione</field>
+            <field name="prefix">DDTV/</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <!-- DdT Type c/visione-->
+        <record id="ddt_type_ddt_cvisione" model="stock.ddt.type">
+            <field name="name">DdT C/visione</field>
+            <field name="sequence_id" ref="seq_ddt_cvisione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_VIS"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type c/lavorazione-->
+        <record id="l10n_it_ddt.transportation_reason_MAN" model="stock.picking.transportation_reason">
+            <field name="name">Manufacturing</field>
+        </record>
+        <record id="seq_type_ddt_clavorazione" model="ir.sequence.type">
+            <field name="name">DDT C/lavorazione</field>
+            <field name="code">stock.ddt.clavorazione</field>
+        </record>
+        <record id="seq_ddt_clavorazione" model="ir.sequence">
+            <field name="name">DDT C/lavorazione</field>
+            <field name="code">stock.ddt.clavorazione</field>
+            <field name="prefix">DDTL/</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_clavorazione" model="stock.ddt.type">
+            <field name="name">DdT C/lavorazione</field>
+            <field name="sequence_id" ref="seq_ddt_clavorazione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_MAN"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type c/riparazione-->
+        <record id="l10n_it_ddt.transportation_reason_REP" model="stock.picking.transportation_reason">
+            <field name="name">Repair</field>
+        </record>
+        <record id="seq_type_ddt_criparazione" model="ir.sequence.type">
+            <field name="name">DDT C/riparazione</field>
+            <field name="code">stock.ddt.criparazione</field>
+        </record>
+        <record id="seq_ddt_criparazione" model="ir.sequence">
+            <field name="name">DDT C/riparazione</field>
+            <field name="code">stock.ddt.criparazione</field>
+            <field name="prefix">DDTR/</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_criparazione" model="stock.ddt.type">
+            <field name="name">DdT C/riparazione</field>
+            <field name="sequence_id" ref="seq_ddt_criparazione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_REP"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type c/riparazione in garanzia-->
+        <record id="l10n_it_ddt.transportation_reason_REPW" model="stock.picking.transportation_reason">
+            <field name="name">Repair under warranty</field>
+        </record>
+        <record id="seq_type_ddt_criparazione_garanzia" model="ir.sequence.type">
+            <field name="name">DDT C/riparazione in garanzia</field>
+            <field name="code">stock.ddt.criparazione_garanzia</field>
+        </record>
+        <record id="seq_ddt_criparazione_garanzia" model="ir.sequence">
+            <field name="name">DDT C/riparazione in garanzia</field>
+            <field name="code">stock.ddt.criparazione_garanzia</field>
+            <field name="prefix">DDTG/</field>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_criparazione_garanzia" model="stock.ddt.type">
+            <field name="name">DdT C/riparazione in garanzia</field>
+            <field name="sequence_id" ref="seq_ddt_criparazione_garanzia" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_REPW"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+    </data>
+</openerp>

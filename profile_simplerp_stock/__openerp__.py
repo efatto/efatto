@@ -29,6 +29,13 @@
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_ddt_ext',
+        'sale',
+        'stock_account',
+        'stock',
+    ],
+    "data": [
+        'data/groups.xml',
+        'data/ddt_type.xml',
     ],
     "installable": True,
 }

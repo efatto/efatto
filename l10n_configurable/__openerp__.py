@@ -29,7 +29,7 @@
         'account',
         'l10n_it_account',
     ],
-    "author": "Sergio Corato",
+    "author": "Sergio Corato - SimplERP SRL",
     "description": """
     Autoconfigure tax pdc.
 

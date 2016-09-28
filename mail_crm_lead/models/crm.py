@@ -36,16 +36,18 @@ class crm_lead(format_address, osv.osv):
             'partner_id': msg.get('author_id', False) != company.id and
             msg.get('author_id', False) or False,
             'user_id': False,
-            #'contact_name':
-            #'description':
-            #'referred':
+            'contact_name': msg.get('reply_to')[:msg.get('reply_to').
+                                                rfind('<')] or False,
+            'description': msg.get('body', False),
         }
         if msg.get('author_id') and msg.get('author_id') != company.id:
-            defaults.update(self.on_change_partner_id(cr, uid, None, msg.get('author_id'), context=context)['value'])
+            defaults.update(self.on_change_partner_id(
+                cr, uid, None, msg.get('author_id'), context=context)['value'])
         if msg.get('priority') in dict(AVAILABLE_PRIORITIES):
             defaults['priority'] = msg.get('priority')
         defaults.update(custom_values)
-        return super(crm_lead, self).message_new(cr, uid, msg, custom_values=defaults, context=context)
+        return super(crm_lead, self).message_new(
+            cr, uid, msg, custom_values=defaults, context=context)
 
 
 class MailThread(osv.AbstractModel):

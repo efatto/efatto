@@ -54,7 +54,7 @@ class MailThread(osv.AbstractModel):
     _inherit = 'mail.thread'
 
     def message_parse(self, cr, uid, message, save_original=False, context=None):
-        msg_dict = super(self, MailThread).message_parse(
+        msg_dict = super(MailThread, self).message_parse(
             cr, uid, message, save_original=save_original, context=context)
 
         if message.get('Reply-To'):

@@ -99,7 +99,7 @@ class ProjectTask(models.Model):
             task.with_context(task.env.context, task_recalculate=True).write({
                 'date_start': date_start and to_string(date_start) or False,
                 'date_end': date_end and to_string(date_end) or False,
-                # 'date_deadline': date_end and to_string(date_end) or False,
+                'date_deadline': task.priority == u'2' and date_start and to_string(date_start) or False,
             })
 
         return True

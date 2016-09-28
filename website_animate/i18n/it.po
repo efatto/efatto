@@ -1,0 +1,228 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_animate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-17 19:45+0100\n"
+"PO-Revision-Date: 2016-03-17 19:52+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "1000ms"
+msgstr "1000ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "1000ms (default)"
+msgstr "1000ms (impostazione predefinita)"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "1500ms"
+msgstr "1500ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "2000ms"
+msgstr "2000ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "2500ms"
+msgstr "2500ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "3000ms"
+msgstr "3000ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "500ms"
+msgstr "500ms"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Animate when visible"
+msgstr "Anima quando visibile"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Animation Delay"
+msgstr "Ritardo Animazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Animation Duration"
+msgstr "Durata Animazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Animation Options"
+msgstr "Opzioni Animazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Attention Seekers"
+msgstr "Marcatori Attenzione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Bounce In"
+msgstr "Rimbalzo in Entrata"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Bounce In-Down"
+msgstr "Rimbalzo In Entrata verso il Basso"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Bounce In-Left"
+msgstr "Rimbalzo In Entrata verso Sinistra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Bounce In-Right"
+msgstr "Rimbalzo In Entrata verso Destra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Bouncing"
+msgstr "Rimbalzo"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Disable animation"
+msgstr "Disabilitare Animazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Each time it becomes visible"
+msgstr "Ogni volta che diventa visibile"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fade In"
+msgstr "Dissolvenza in Entrata"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fade In-Down"
+msgstr "Dissolvenza in Entrata verso il Basso"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fade In-Left"
+msgstr "Dissolvenza in Entrata verso Sinistra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fade In-Right"
+msgstr "Dissolvenza in Entrata verso Destra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fade In-Up"
+msgstr "Dissolvenza in Entrata verso l'Alto"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Fading"
+msgstr "Dissolvenza"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Flash"
+msgstr "Flash"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Flip-In-X"
+msgstr "Capovolgi Orizzontalmente in Entrata "
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Flip-In-Y"
+msgstr "Capovolgi Verticalmente in Entrata "
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Flippers"
+msgstr "Capovolgimenti"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "No delay (default)"
+msgstr "Nessun ritardo (impostazione predefinita)"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Pulse"
+msgstr "Oulsazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Rotate In"
+msgstr "Rotazione in Entrata"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Rotate In-Down-Left"
+msgstr "Rotazione in Entrata verso Sinistra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Rotate In-Down-Right"
+msgstr "Rotazione in Entrata verso Destra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Rotating"
+msgstr "Rotazione"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Shake"
+msgstr "Shake"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Tada"
+msgstr "Tada"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Zoom"
+msgstr "Zoom"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Zoom In"
+msgstr "Zoom in Entrata"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Zoom In-Down"
+msgstr "Zoom in Entrata verso il Basso"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Zoom In-Left"
+msgstr "Zoom in Entrata verso Sinistra"
+
+#. module: website_animate
+#: view:website:website.snippet_options
+msgid "Zoom In-Right"
+msgstr "Zoom in Entrata verso Destra"

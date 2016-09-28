@@ -24,6 +24,7 @@ class crm_lead(format_address, osv.osv):
             through message_process.
             This override updates the document according to the email.
         """
+        company = self.pool['res.users'].browse(cr, uid, uid).company_id
         if custom_values is None:
             custom_values = {}
         defaults = {
@@ -31,13 +32,14 @@ class crm_lead(format_address, osv.osv):
             'email_from': msg.get('reply_to', False) and msg.get('reply_to') or
             msg.get('from'),
             'email_cc': msg.get('cc'),
-            'partner_id': msg.get('author_id', False),
+            'partner_id': msg.get('author_id', False) != company.id and
+            msg.get('author_id', False) or False,
             'user_id': False,
             #'contact_name':
             #'description':
             #'referred':
         }
-        if msg.get('author_id'):
+        if msg.get('author_id') and msg.get('author_id') != company.id:
             defaults.update(self.on_change_partner_id(cr, uid, None, msg.get('author_id'), context=context)['value'])
         if msg.get('priority') in dict(AVAILABLE_PRIORITIES):
             defaults['priority'] = msg.get('priority')

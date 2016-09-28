@@ -26,10 +26,8 @@ class crm_lead(format_address, osv.osv):
         """
         if custom_values is None:
             custom_values = {}
-        email_from = False
-        if msg.get('from') != msg.get('to'):
-            email_from == msg.get('from')
-        elif msg.get('reply_to'):
+        email_from = msg.get('from')
+        if msg.get('from') == msg.get('to') and msg.get('reply_to'):
             email_from == msg.get('reply_to')
 
         defaults = {

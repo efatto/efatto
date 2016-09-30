@@ -40,7 +40,7 @@ class crm_lead(format_address, osv.osv):
             'contact_name': msg.get('reply_to') and msg.get('reply_to')[
                                                     :msg.get('reply_to').
                                                 rfind('<')] or False,
-            'description': msg.get('body', False),
+            #'description': msg.get('body', False),
         }
         if msg.get('author_id') and msg.get('author_id') != company.id:
             defaults.update(self.on_change_partner_id(

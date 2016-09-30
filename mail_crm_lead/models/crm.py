@@ -28,7 +28,8 @@ class crm_lead(format_address, osv.osv):
         if custom_values is None:
             custom_values = {}
         defaults = {
-            'name': msg.get('reply_to')[:msg.get('reply_to').rfind('<')]
+            'name': msg.get('reply_to') and msg.get('reply_to')[
+                                            :msg.get('reply_to').rfind('<')]
                     or msg.get('subject') or _("No Subject"),
             'email_from': msg.get('reply_to', False) and msg.get('reply_to') or
             msg.get('from'),
@@ -36,7 +37,8 @@ class crm_lead(format_address, osv.osv):
             'partner_id': msg.get('author_id', False) != company.id and
             msg.get('author_id', False) or False,
             'user_id': False,
-            'contact_name': msg.get('reply_to')[:msg.get('reply_to').
+            'contact_name': msg.get('reply_to') and msg.get('reply_to')[
+                                                    :msg.get('reply_to').
                                                 rfind('<')] or False,
             'description': msg.get('body', False),
         }

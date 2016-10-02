@@ -53,7 +53,7 @@ class account_bank_statement(orm.Model):
             'statement_id': st.id,
             'journal_id': st.journal_id.id,
             'period_id': st.period_id.id,
-            'currency_id': st.currency.id,
+            'currency_id': st.currency.id != company_currency_id and st.currency.id or False,
             # 'analytic_account_id': st_line.analytic_account_id and st_line.analytic_account_id.id or False
         }
 

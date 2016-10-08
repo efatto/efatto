@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ir_mail_server_per_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-06 11:23+0200\n"
+"PO-Revision-Date: 2016-10-06 11:27+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.9\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: ir_mail_server_per_user
+#: model:ir.model,name:ir_mail_server_per_user.model_mail_notification
+msgid "Notifications"
+msgstr "Notifiche"
+
+#. module: ir_mail_server_per_user
+#: field:base.config.settings,group_visible_outgoing_mail_per_user:0
+msgid "Send Userwise Outgoing emails?"
+msgstr "Consenti scelta server SMTP per ciascun utente?"
+
+#. module: ir_mail_server_per_user
+#: field:ir.mail_server,user_id_ept:0
+msgid "User"
+msgstr "Utente"
+
+#. module: ir_mail_server_per_user
+#: help:ir.mail_server,user_id_ept:0
+msgid ""
+"When user is assigned then at the time of email sending from Odoo if no "
+"outgoing server found then                                     system will "
+"take the server which is assigned to this user."
+msgstr ""
+"Indica il server che verrà utilizzato per l'invio della posta di questo "
+"utente."
+
+#. module: ir_mail_server_per_user
+#: help:base.config.settings,group_visible_outgoing_mail_per_user:0
+msgid "You can allow user to set user in Outgoing server."
+msgstr ""
+"Consente di definire un server della posta in uscita per ciascun utente."

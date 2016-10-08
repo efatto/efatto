@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+<t t-name="WebClient.needaction_systray">
+    <li class="oe_topbar_item needaction_systray" title="All unread mails.">
+        <a href="#"><i class="fa fa-bell-o"></i></a>
+    </li>
+</t>
+<t t-name="WebClient.needaction_list">
+    <div class="oe_webclient_notification_action">
+        <br/>
+        <dl>
+            <t t-foreach="result" t-as="res">
+                <dt>
+                    <a href="#" t-att-id="result[res].action_id">
+                        <t t-esc="result[res].name"/> (<t t-esc="result[res].need_action"/>)
+                    </a>
+                </dt>
+            </t>
+        </dl>
+    </div>
+</t>
+</template>

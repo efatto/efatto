@@ -258,8 +258,9 @@ class mail_thread(osv.AbstractModel):
         # 6. Last fallback for unrouted mail to unrouted_forward_alias:
         unrouted_alias = self.pool['ir.config_parameter'].get_param(
             cr, uid, 'mail.unrouted_forward_alias', default=True)
-        alias_ids = mail_alias.search(cr, uid,
-                                      [('alias_name', '=', unrouted_alias)])
+        if unrouted_alias:
+            alias_ids = mail_alias.search(
+                cr, uid, [('alias_name', '=', unrouted_alias)])
         if alias_ids:
             routes = []
             for alias in mail_alias.browse(cr, uid, alias_ids,

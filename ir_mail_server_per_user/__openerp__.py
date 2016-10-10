@@ -36,6 +36,5 @@ For more information about us, visit www.emiprotechnologies.com \n
              ],
     'images': ['static/description/main_screen.png'],
     "installable": True,
-    "auto_install": False,
     'application' : True,
 }

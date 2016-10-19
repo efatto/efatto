@@ -18,6 +18,7 @@ class WizardProjectInclude(models.TransientModel):
         active_project_id = self.env['project.project'].browse(
             self._context['active_id'])
         if self.duplicate:
+            # duplicate tasks setting new parent_project_id
             for task in self.env['project.task'].search(
                     [('project_id', '=', self._context['active_id']),
                      ('active', '=', False)]):
@@ -30,6 +31,7 @@ class WizardProjectInclude(models.TransientModel):
                                   self.parent_task_id.date_start or fields.Date.today(),
                 })
                 new_task.parent_ids += self.parent_task_id
+            # remove template project delegation from created tasks
             for task in self.env['project.task'].search(
                     [('project_id', '=', self.parent_project_id.id)]):
                 for parent_task in task.parent_ids:

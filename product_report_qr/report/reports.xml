@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>  
+        <record id="report_product_labels" model="ir.actions.report.xml">
+            <field name="name">Labels QR Code 12</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">product.product</field>
+            <field name="report_name">product_labels</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
+            <field name="parser_loc">product_report_qr/models/product.py</field>
+            <field name="report_rml">product_report_qr/report/report_12.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"/>
+            <field name="attachment_use" eval="0"/>
+        </record>
+    </data>
+</openerp>
+
+
+
+<!--<report id="report_product_label"-->
+        <!--model="product.product"-->
+        <!--name="product.product.label" -->
+        <!--string="Products Labels" -->
+        <!--xml="product/report/product_label.xml"-->
+        <!--xsl="product/report/product_label.xsl"/>-->

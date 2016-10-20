@@ -21,13 +21,18 @@
     'name': 'Product label qr code',
     'version': '8.0.1.0.0',
     'category': 'Product Management',
-    'description': "Make Product label qr code",
+    'description': "Make Product label QRCode and Data Matrix",
     'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://simplerp.it',
     'depends': [
         'report_aeroo',
         'report_branding',
     ],
+    'external_dependencies': {
+        'python': [
+            'elaphe',
+        ],
+    },
     'data': [
         'report/reports.xml',
     ],

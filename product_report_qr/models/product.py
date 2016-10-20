@@ -8,7 +8,10 @@ try:
 except ImportError:
     qrcode = None
 import StringIO
-
+try:
+    from elaphe import barcode
+except ImportError:
+    barcode = None
 
 class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
@@ -19,17 +22,21 @@ class Parser(report_sxw.rml_parse):
         self.cache = {}
 
     def _qr(self, text):
-        qr_code = qrcode.QRCode(version=1, box_size=1, border=1)
-        qr_code.add_data(text)
-        qr_code.make(fit=True)
-        qr_img = qr_code.make_image()
-        draw = qr_img._img.convert("RGB")
-        # Convert the RGB image in printable image
-        #self._convert_image(im)
+        text = text.encode('utf-8')
+        if self.name == 'product.product.labels.data.matrix':
+            img = barcode(
+                'datamatrix', text,
+                options = dict(version=None, eclevel='M'),
+                margin = 1, data_mode = '8bits')
+            draw = img.convert("RGB")
+        else:
+            qr_code = qrcode.QRCode(version=None, box_size=1, border=1)
+            qr_code.add_data(text)
+            qr_code.make(fit=True)
+            qr_img = qr_code.make_image()
+            draw = qr_img._img.convert("RGB")
 
         encoding = 'base64'
-        #im = qrcode.make(text)
-        #draw = im.convert('RGB')
         background_stream = StringIO.StringIO()
         draw.save(background_stream, 'PNG')
         return background_stream.getvalue().encode(encoding)

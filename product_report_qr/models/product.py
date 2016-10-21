@@ -9,7 +9,7 @@ except ImportError:
     qrcode = None
 import StringIO
 try:
-    from elaphe import barcode
+    import elaphe
 except ImportError:
     barcode = None
 
@@ -24,10 +24,10 @@ class Parser(report_sxw.rml_parse):
     def _qr(self, text):
         text = text.encode('utf-8')
         if self.name == 'product.product.labels.data.matrix':
-            img = barcode(
-                'datamatrix', text,
-                options = dict(version=None, eclevel='M'),
-                margin = 1, data_mode = '8bits')
+            img = elaphe.barcode(
+                'datamatrix', text,)
+                # options = dict(version=None, eclevel='M'),
+                # margin = 1, data_mode = '8bits')
             draw = img.convert("RGB")
         else:
             qr_code = qrcode.QRCode(version=None, box_size=1, border=1)

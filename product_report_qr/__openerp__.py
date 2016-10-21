@@ -28,11 +28,6 @@
         'report_aeroo',
         'report_branding',
     ],
-    'external_dependencies': {
-        'python': [
-            'elaphe',
-        ],
-    },
     'data': [
         'report/reports.xml',
     ],

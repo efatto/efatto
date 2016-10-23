@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data>  
-        <record id="product.report_product_labels" model="ir.actions.report.xml">
+        <record id="report_product_labels" model="ir.actions.report.xml">
             <field name="name">Product label with QR Code 12 pc</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">product.product</field>
@@ -9,27 +9,44 @@
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
-            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_odt_odt')"></field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_doc_odt')"></field>
             <field name="parser_loc">product_report_qr/models/product.py</field>
             <field name="report_rml">product_report_qr/report/report12.odt</field>
             <field name="parser_state">loc</field>
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>
         </record>
-        <record id="product.report_product_labels_matrix" model="ir.actions.report.xml">
+        <record id="report_product_labels_matrix" model="ir.actions.report.xml">
             <field name="name">Product label with Data Matrix 12 pc</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">product.product</field>
-            <field name="report_name">product.product.labels.data.matrix</field>
+            <field name="report_name">product.product.labels.datamatrix</field>
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
-            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_odt_odt')"></field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_doc_odt')"></field>
             <field name="parser_loc">product_report_qr/models/product.py</field>
             <field name="report_rml">product_report_qr/report/report12.odt</field>
             <field name="parser_state">loc</field>
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>
         </record>
+
+        <record model="ir.values" id="report_product_labels_action">
+            <field name="name">Product label with QR Code 12 pc</field>
+            <field name="key">action</field>
+            <field name="key2">client_print_multi</field>
+            <field name="model">product.product</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_product_labels'))"/>
+        </record>
+
+        <record model="ir.values" id="report_product_labels_matrix_action">
+            <field name="name">Product label with Data Matrix Code 12 pc</field>
+            <field name="key">action</field>
+            <field name="key2">client_print_multi</field>
+            <field name="model">product.product</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_product_labels_matrix'))"/>
+        </record>
+
     </data>
 </openerp>

@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* add_product_via_barcode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-18 15:04+0000\n"
+"PO-Revision-Date: 2016-10-18 17:07+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.10\n"
+"Last-Translator: \n"
+"Language: it_IT\n"
+
+#. module: add_product_via_barcode
+#: sql_constraint:product.product:0
+msgid "EAN13 Barcode must be unique!!"
+msgstr "Il Codice a Barre deve essere univoco!"
+
+#. module: add_product_via_barcode
+#: sql_constraint:product.product:0
+msgid "Internal Reference must be unique!!"
+msgstr "Il riferimento interno deve essere univoco!"
+
+#. module: add_product_via_barcode
+#: model:ir.model,name:add_product_via_barcode.model_product_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: add_product_via_barcode
+#: model:ir.model,name:add_product_via_barcode.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine d'Acquisto"
+
+#. module: add_product_via_barcode
+#: model:ir.model,name:add_product_via_barcode.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di Vendita"
+
+#. module: add_product_via_barcode
+#: field:purchase.order,scan:0 field:sale.order,scan:0
+msgid "Scan"
+msgstr "Scansione"
+
+#. module: add_product_via_barcode
+#: code:addons/add_product_via_barcode/models/models.py:121
+#, python-format
+msgid "Unknown Barcode OR Product can not be purchase!!"
+msgstr "Codice sconosciuto OPPURE il prodotto non può essere acquistato!"
+
+#. module: add_product_via_barcode
+#: code:addons/add_product_via_barcode/models/models.py:63
+#, python-format
+msgid "Unknown Barcode OR Product can not be sale!!"
+msgstr "Codice sconosciuto OPPURE il prodotto non può essere venduto!"

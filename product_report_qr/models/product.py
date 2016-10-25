@@ -26,10 +26,7 @@ class Parser(report_sxw.rml_parse):
         text = text.encode('utf-8')
         if self.name == 'product.product.labels.datamatrix' and elaphe:
             img = elaphe.barcode(
-                'datamatrix', text,
-                options=dict(version=None, eclevel='M'),
-                margin=1,)
-                # data_mode='8bits')
+                'datamatrix', text, margin=1)
             draw = img.convert("RGB")
         else:
             qr_code = qrcode.QRCode(version=None, box_size=1, border=1)

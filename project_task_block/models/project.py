@@ -23,6 +23,7 @@ class ProjectTask(models.Model):
                                 parent_task.name)
                             return False
                         get_recursive_parent(parent_task)
-        get_recursive_parent(self)
+        for task in self:
+            get_recursive_parent(task)
 
         return super(ProjectTask, self).write(vals)

@@ -4,4 +4,3 @@
 ##############################################################################
 from . import product
 from . import sale_service
-from . import sale

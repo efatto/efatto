@@ -27,10 +27,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
-        'project',
-        'procurement',
-        'procurement_jit',
+        'sale_service_project',
     ],
     'data': [
         'views/sale_service_view.xml',

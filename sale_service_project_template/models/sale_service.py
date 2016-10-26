@@ -40,23 +40,16 @@ class ProcurementOrder(models.Model):
                 procurement.sale_line_id.order_id.partner_id.id or
                 procurement.partner_dest_id.id,
                 'project_id': project.id,
+                'company_id': procurement.company_id.id,
+                'procurement_id': procurement.id,
+                'date_deadline': procurement.date_planned,
             })
         project_temp.unlink()
         #project.task_ids.partner_id = project.partner_id
         #project.task_ids.procurement_id = procurement.id
         # planned_hours = self._convert_qty_company_hours(cr, uid, procurement, context=context)
-        # task_id = project_task.create(cr, uid, {
-        #     'name': '%s:%s' % (procurement.origin or '', procurement.product_id.name),
-        #     'date_deadline': procurement.date_planned,
-        #     'planned_hours': planned_hours,
-        #     'remaining_hours': planned_hours,
-        #     'partner_id': procurement.sale_line_id and procurement.sale_line_id.order_id.partner_id.id or procurement.partner_dest_id.id,
         #     'user_id': procurement.product_id.product_manager.id,
-        #     'procurement_id': procurement.id,
-        #     'description': procurement.name + '\n',
-        #     'project_id': project and project.id or False,
-        #     'company_id': procurement.company_id.id,
-        # },context=context)
+
         self.write({'sale_project_id': project.id})
         self.project_task_create_note()
         return project.task_ids[0]

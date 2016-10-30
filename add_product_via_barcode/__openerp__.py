@@ -17,19 +17,12 @@
     # for the full list
     'category': 'Sale',
     'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'purchase'],
-
-    # always loaded
+    'depends': [
+        'sale', 'purchase'],
     'data': [
         'views/templates.xml',
     ],
 
     'images': ['static/description/barcode-scanner.jpg'],
     'installable': True,
-    'auto_install': False,
-    'price':'35',
-    'currency':'EUR',
-
 }

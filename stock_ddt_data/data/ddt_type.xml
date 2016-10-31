@@ -24,7 +24,7 @@
         </record>
 
         <!-- DdT Type c/lavorazione-->
-        <record id="l10n_it_ddt.transportation_reason_MAN" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_MAN" model="stock.picking.transportation_reason">
             <field name="name">Manufacturing</field>
         </record>
         <record id="seq_type_ddt_clavorazione" model="ir.sequence.type">
@@ -47,7 +47,7 @@
         </record>
 
         <!-- DdT Type c/riparazione-->
-        <record id="l10n_it_ddt.transportation_reason_REP" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_REP" model="stock.picking.transportation_reason">
             <field name="name">Repair</field>
         </record>
         <record id="seq_type_ddt_criparazione" model="ir.sequence.type">
@@ -70,7 +70,7 @@
         </record>
 
         <!-- DdT Type c/riparazione in garanzia-->
-        <record id="l10n_it_ddt.transportation_reason_REPW" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_REPW" model="stock.picking.transportation_reason">
             <field name="name">Repair under warranty</field>
         </record>
         <record id="seq_type_ddt_criparazione_garanzia" model="ir.sequence.type">
@@ -93,7 +93,7 @@
         </record>
 
         <!-- DdT Type c/sostituzione in garanzia-->
-        <record id="l10n_it_ddt.transportation_reason_RELW" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_RELW" model="stock.picking.transportation_reason">
             <field name="name">Replacement under warranty</field>
         </record>
         <record id="seq_type_ddt_csostituzione_garanzia" model="ir.sequence.type">
@@ -116,7 +116,7 @@
         </record>
 
         <!-- DdT Type c/omaggio-->
-        <record id="l10n_it_ddt.transportation_reason_FREE" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_FREE" model="stock.picking.transportation_reason">
             <field name="name">Free</field>
         </record>
         <record id="seq_type_ddt_omaggio" model="ir.sequence.type">
@@ -139,7 +139,7 @@
         </record>
 
         <!-- DdT Type c/installazione-->
-        <record id="l10n_it_ddt.transportation_reason_INS" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_INS" model="stock.picking.transportation_reason">
             <field name="name">Installation</field>
         </record>
         <record id="seq_type_ddt_installazione" model="ir.sequence.type">
@@ -162,7 +162,7 @@
         </record>
 
         <!-- DdT Type c/noleggio-->
-        <record id="l10n_it_ddt.transportation_reason_NOL" model="stock.picking.transportation_reason">
+        <record id="transportation_reason_NOL" model="stock.picking.transportation_reason">
             <field name="name">Rent</field>
         </record>
         <record id="seq_type_ddt_noleggio" model="ir.sequence.type">

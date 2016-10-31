@@ -56,7 +56,7 @@ class wizard_print_asset_report(orm.TransientModel):
         asset_ids = asset_obj.search(cr, uid, [
             ('category_id', 'in', [j.id for j in wizard.category_ids]),
             ('state', 'in', state),
-            #('date_start
+            ('date_start', '<=', wizard.fy_id.date_stop)
             #TODO other conditions
         ], order='category_id, date_start')
         if not asset_ids:

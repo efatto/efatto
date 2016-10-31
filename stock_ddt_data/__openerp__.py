@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Italy - SimplERP Srl Stock data',
+    'name': 'Italy - Default DDT data',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Dati standard per stock
+    Dati standard per DDT
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',

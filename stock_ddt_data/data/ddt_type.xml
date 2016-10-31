@@ -42,7 +42,7 @@
             <field name="sequence_id" ref="seq_ddt_clavorazione" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_MAN"/>
+            <field name="transportation_reason_id" ref="transportation_reason_MAN"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -65,7 +65,7 @@
             <field name="sequence_id" ref="seq_ddt_criparazione" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_REP"/>
+            <field name="transportation_reason_id" ref="transportation_reason_REP"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -88,7 +88,7 @@
             <field name="sequence_id" ref="seq_ddt_criparazione_garanzia" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_REPW"/>
+            <field name="transportation_reason_id" ref="transportation_reason_REPW"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -111,7 +111,7 @@
             <field name="sequence_id" ref="seq_ddt_csostituzione_garanzia" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_RELW"/>
+            <field name="transportation_reason_id" ref="transportation_reason_RELW"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -134,7 +134,7 @@
             <field name="sequence_id" ref="seq_ddt_omaggio" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_FREE"/>
+            <field name="transportation_reason_id" ref="transportation_reason_FREE"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -157,7 +157,7 @@
             <field name="sequence_id" ref="seq_ddt_installazione" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_INS"/>
+            <field name="transportation_reason_id" ref="transportation_reason_INS"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -180,7 +180,7 @@
             <field name="sequence_id" ref="seq_ddt_noleggio" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
-            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_NOL"/>
+            <field name="transportation_reason_id" ref="transportation_reason_NOL"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 

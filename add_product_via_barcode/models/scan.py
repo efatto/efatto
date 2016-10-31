@@ -103,7 +103,8 @@ class SaleOrder(models.Model):
                 self.scan = ''
             else:
                 self.scan = ''
-                #raise Warning(_('Unknown Barcode OR Product can not be sale!!'))
+                #raise Warning(_('Unknown Barcode OR
+                # Product can not be sale!!'))
             Tlock.release()
 
     # @api.onchange('scan')

@@ -30,6 +30,7 @@ if true, raise an error.
     'license': 'AGPL-3',
     "depends": [
         'account',
+        'account_vat_period_end_statement',
     ],
     "data": [
     ],

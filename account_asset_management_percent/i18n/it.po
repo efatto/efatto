@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-17 21:20+0000\n"
-"PO-Revision-Date: 2016-05-17 21:20+0000\n"
+"POT-Creation-Date: 2016-11-02 23:01+0000\n"
+"PO-Revision-Date: 2016-11-02 23:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,20 @@ msgid "Active"
 msgstr "Attivo"
 
 #. module: account_asset_management_percent
+#: selection:wizard.print.asset.report,state:0
+msgid "All (and draft if simulated)"
+msgstr "Tutti (e in bozza se simulato)"
+
+#. module: account_asset_management_percent
 #: model:ir.model,name:account_asset_management_percent.model_account_asset_asset
 msgid "Asset"
 msgstr "Immobilizzazione"
+
+#. module: account_asset_management_percent
+#: code:addons/account_asset_management_percent/wizard/wizard_asset_compute.py:59
+#, python-format
+msgid "Asset Moves Confirmed as Init entry"
+msgstr "Righe di ammortamento calcolate"
 
 #. module: account_asset_management_percent
 #: model:ir.ui.menu,name:account_asset_management_percent.menu_print_asset_report
@@ -57,11 +68,27 @@ msgid "Asset depreciation line"
 msgstr "Riga ammortamento immobilizzazione"
 
 #. module: account_asset_management_percent
+#: model:ir.model,name:account_asset_management_percent.model_asset_asset_report
+msgid "Assets Analysis"
+msgstr "Analisi Immobilizzazioni"
+
+#. module: account_asset_management_percent
+#: view:account.asset.depreciation.line:account_asset_management_percent.view_account_asset_depreciation_line_tree
+msgid "Assets Depreciation Lines"
+msgstr "Righe di Ammortamento"
+
+#. module: account_asset_management_percent
 #: view:website:account_asset_management_percent.report_asset
 msgid "COSTO STORICO"
 msgstr "COSTO STORICO"
 
 #. module: account_asset_management_percent
+#: help:asset.depreciation.confirmation.wizard,fy_id:0
+msgid "Calculate depreciation table for asset acquired in this Fiscal Year"
+msgstr "Calcola gli ammortamenti per gli asset acquisiti nell'anno fiscale selezionato"
+
+#. module: account_asset_management_percent
+#: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
 #: view:wizard.print.asset.report:account_asset_management_percent.wizard_print_asset_report
 msgid "Cancel"
 msgstr "Annulla"
@@ -83,11 +110,33 @@ msgid "Close"
 msgstr "Chiudi"
 
 #. module: account_asset_management_percent
+#: view:asset.depreciation.confirmation.wizard:account_asset_management_percent.view_asset_depreciation_confirmation_wizard_init
+msgid "Compute and do not create account moves"
+msgstr "Compute and do not create account moves"
+
+#. module: account_asset_management_percent
+#: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
+msgid "Confirm Assets"
+msgstr "Conferma i Cespiti"
+
+#. module: account_asset_management_percent
+#: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
+msgid "Confirm or Set Draft Asset"
+msgstr "Conferma o Imposta a bozza i Cespiti"
+
+#. module: account_asset_management_percent
+#: model:ir.actions.act_window,name:account_asset_management_percent.action_wizard_asset_confirm
+msgid "Confirm or set draft asset"
+msgstr "Conferma o Imposta a bozza i Cespiti"
+
+#. module: account_asset_management_percent
+#: field:account.asset.confirm,create_uid:0
 #: field:wizard.print.asset.report,create_uid:0
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: account_asset_management_percent
+#: field:account.asset.confirm,create_date:0
 #: field:wizard.print.asset.report,create_date:0
 msgid "Created on"
 msgstr "Creato il"
@@ -118,17 +167,12 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_asset_management_percent
-#: selection:wizard.print.asset.report,state:0
-msgid "All (and draft if simulated)"
-msgstr "Tutti (e in bozza se simulato)"
-
-#. module: account_asset_management_percent
 #: view:website:account_asset_management_percent.report_asset
 msgid "ELIMINAZIONE"
 msgstr "ELIMINAZIONE"
 
 #. module: account_asset_management_percent
-#: code:addons/account_asset_management_percent/models/account_asset.py:351
+#: code:addons/account_asset_management_percent/models/account_asset.py:364
 #, python-format
 msgid "Error!"
 msgstr "Errore!"
@@ -155,11 +199,13 @@ msgid "First Year 50%"
 msgstr "50% Primo Anno"
 
 #. module: account_asset_management_percent
+#: field:asset.depreciation.confirmation.wizard,fy_id:0
 #: field:wizard.print.asset.report,fy_id:0
 msgid "Fiscal Year"
 msgstr "Anno Fiscale"
 
 #. module: account_asset_management_percent
+#: field:account.asset.confirm,id:0
 #: field:report.account_asset_management_percent.report_asset,id:0
 #: field:wizard.print.asset.report,id:0
 msgid "ID"
@@ -171,11 +217,13 @@ msgid "Increase Value"
 msgstr "Valore Incremento"
 
 #. module: account_asset_management_percent
+#: field:account.asset.confirm,write_uid:0
 #: field:wizard.print.asset.report,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultimo Aggiornamento da"
 
 #. module: account_asset_management_percent
+#: field:account.asset.confirm,write_date:0
 #: field:wizard.print.asset.report,write_date:0
 msgid "Last Updated on"
 msgstr "Ultimo Aggiornamento il"
@@ -191,13 +239,13 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: account_asset_management_percent
-#: code:addons/account_asset_management_percent/wizard/print_asset_report.py:71
+#: code:addons/account_asset_management_percent/wizard/print_asset_report.py:74
 #, python-format
 msgid "No documents"
 msgstr "Nessun documento"
 
 #. module: account_asset_management_percent
-#: code:addons/account_asset_management_percent/wizard/print_asset_report.py:64
+#: code:addons/account_asset_management_percent/wizard/print_asset_report.py:67
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun documento trovato nella selezione"
@@ -271,6 +319,21 @@ msgid "Select categories of assets"
 msgstr "Selezionare categoria dei cespiti"
 
 #. module: account_asset_management_percent
+#: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
+msgid "Set Draft Assets"
+msgstr "Imposta a bozza i Cespiti"
+
+#. module: account_asset_management_percent
+#: help:asset.depreciation.confirmation.wizard,set_init:0
+msgid "Set depreciation as init for current fiscal year."
+msgstr "Imposta l'ammortamento come manuale per l'anno fiscale selezionato."
+
+#. module: account_asset_management_percent
+#: field:asset.depreciation.confirmation.wizard,set_init:0
+msgid "Set init"
+msgstr "Imposta come ammortamento manuale"
+
+#. module: account_asset_management_percent
 #: selection:wizard.print.asset.report,type:0
 msgid "Simulated Asset Report"
 msgstr "Registro Cespiti Simulato"
@@ -313,7 +376,7 @@ msgstr "Quanto un cespite viene creato, lo stato è 'Bozza'.\n"
 "Quando vengono create le registrazioni di eliminazione, il cespite passa in stato 'Eliminato'."
 
 #. module: account_asset_management_percent
-#: code:addons/account_asset_management_percent/models/account_asset.py:352
+#: code:addons/account_asset_management_percent/models/account_asset.py:365
 #, python-format
 msgid "You cannot change a depreciation line with an associated accounting entry."
 msgstr "Non è possibile modificare una riga di ammortamento con una registrazione collegata."

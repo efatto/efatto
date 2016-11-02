@@ -11,6 +11,7 @@
                 </xpath>
                 <field name="period_id" position="replace">
                     <field name="fy_id"/>
+                    <separator colspan="2"/>
                     <field name="set_init"/>
                 </field>
              </field>

@@ -10,7 +10,9 @@ class AssetDepreciationConfirmationWizard(models.TransientModel):
 
     def _get_default_fiscalyear(self):
         fiscalyear_id = self.env['account.fiscalyear'].find()
-        return fiscalyear_id
+        if fiscalyear_id:
+            fy = self.env['account.fiscalyear'].browse(fiscalyear_id)
+        return fy and fy or False
 
     set_init = fields.Boolean(
         'Set init',

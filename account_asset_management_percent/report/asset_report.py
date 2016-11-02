@@ -148,6 +148,14 @@ class Parser(report_sxw.rml_parse):
         })
         self.cache = {}
 
+    def _get_fy(self, fy_id):
+        code = False
+        if fy_id:
+            fiscalyear = self.pool.get('account.fiscalyear').browse(
+                self.cr, self.uid, fy_id[0])
+            code = fiscalyear.code
+        return code
+
     def set_context(self, objects, data, ids, report_type=None):
         self.localcontext.update({
             'l10n_it_count_fiscal_page_base': data.get('fiscal_page_base'),
@@ -157,6 +165,8 @@ class Parser(report_sxw.rml_parse):
             'fy_id': data.get('fy_id'),
             'state': data.get('state'),
             'category_ids': data.get('category_ids'),
+            'l10n_it_fiscalyear_code': self._get_fy(
+                data.get('fy_id')),
         })
         return super(Parser, self).set_context(objects, data, ids, report_type=report_type)
 

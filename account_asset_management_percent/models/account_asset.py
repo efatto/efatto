@@ -159,7 +159,7 @@ class AccountAssetAsset(orm.Model):
                 if not adl.move_check and not adl.init_entry and \
                         adl.type == 'depreciate' and adl.amount > 0.0:
                     factor = asset.method_percent / (
-                        asset.first_year_half and 2.0)
+                        asset.first_year_half and 2.0 or 1)
                     if int(adl.amount / asset.asset_value * 10000)/100 \
                             > factor:
                         factor = asset.method_percent
@@ -187,7 +187,7 @@ class AccountAssetAsset(orm.Model):
                             depreciation_start_date, '%Y-%m-%d'), context)
                     if depreciation_stop_date > last_depreciation_date:
                         factor = asset.method_percent / (
-                            asset.first_year_half and 2.0)
+                            asset.first_year_half and 2.0 or 1)
                         if int(adl.amount / asset.asset_value * 10000) / 100 \
                                 > factor:
                             factor = asset.method_percent

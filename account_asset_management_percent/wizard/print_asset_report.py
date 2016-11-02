@@ -19,6 +19,7 @@ class wizard_print_asset_report(orm.TransientModel):
         'date_start': fields.date('Date start asset'),
         'state': fields.selection([
             ('draft', 'Draft'),
+            ('all', 'All (and draft if simulated)'),
             ('open', 'Running (and draft if simulated)'),
             ('close', 'Close'),
             ('removed', 'Removed'),
@@ -51,6 +52,8 @@ class wizard_print_asset_report(orm.TransientModel):
         asset_obj = self.pool.get('account.asset.asset')
         obj_model_data = self.pool.get('ir.model.data')
         state = [wizard.state]
+        if state[0] == 'all':
+            state = ['open', 'close', 'removed']
         if wizard.type == 'simulated' and state[0] == 'open':
             state.append('draft')
         asset_ids = asset_obj.search(cr, uid, [

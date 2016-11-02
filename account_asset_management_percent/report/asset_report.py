@@ -84,6 +84,8 @@ class Parser(report_sxw.rml_parse):
         res = {}
         asset_obj = self.pool['account.asset.asset']
         state = [self.localcontext['state']]
+        if state[0] == 'all':
+            state = ['open', 'close', 'removed']
         if self.localcontext['type'] == 'simulated' and state[0] == 'open':
             state.append('draft')
         res.update({

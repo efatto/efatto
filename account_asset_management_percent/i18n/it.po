@@ -118,6 +118,11 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: account_asset_management_percent
+#: selection:wizard.print.asset.report,state:0
+msgid "All (and draft if simulated)"
+msgstr "Tutti (e in bozza se simulato)"
+
+#. module: account_asset_management_percent
 #: view:website:account_asset_management_percent.report_asset
 msgid "ELIMINAZIONE"
 msgstr "ELIMINAZIONE"

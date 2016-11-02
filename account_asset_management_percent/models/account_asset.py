@@ -156,8 +156,14 @@ class AccountAssetAsset(orm.Model):
         for asset in self.browse(cr, uid, ids, context):
             #compute factor of draft adl and write
             for adl in asset.depreciation_line_ids:
-                if not adl.move_check and not adl.init_entry and adl.type == 'depreciate':
-                    adl.write({'factor': adl.amount / asset.asset_value * 100})
+                if not adl.move_check and not adl.init_entry and \
+                        adl.type == 'depreciate' and adl.amount > 0.0:
+                    factor = asset.method_percent / (
+                        asset.first_year_half and 2.0)
+                    if int(adl.amount / asset.asset_value * 10000)/100 \
+                            > factor:
+                        factor = asset.method_percent
+                    adl.write({'factor': factor})
             #check initial moves
             depreciation_start_line_id = adl_obj.search(
                 cr, uid, [
@@ -172,21 +178,28 @@ class AccountAssetAsset(orm.Model):
                               ('type', '=', 'depreciate'),
                               ], order='line_date desc', limit=1)
                 if last_depreciation_id:
-                    adl = adl_obj.browse(cr, uid, last_depreciation_id, context)[0]
+                    adl = adl_obj.browse(
+                        cr, uid, last_depreciation_id, context)[0]
                     last_depreciation_date = datetime.strptime(
                         (adl.line_date), '%Y-%m-%d')
                     depreciation_stop_date = self._get_depreciation_stop_date(
                         cr, uid, asset, datetime.strptime(
                             depreciation_start_date, '%Y-%m-%d'), context)
                     if depreciation_stop_date > last_depreciation_date:
+                        factor = asset.method_percent / (
+                            asset.first_year_half and 2.0)
+                        if int(adl.amount / asset.asset_value * 10000) / 100 \
+                                > factor:
+                            factor = asset.method_percent
                         vals = {
                             'previous_id': adl.id,
                             'amount': adl.amount,
                             'asset_id': asset.id,
                             'name': adl.name,
                             'line_date': adl.line_date,
-                            'factor': adl.amount / asset.asset_value * 100,
-                            #TODO .strftime('%Y-%m-%d'), # mettere l'anno successivo
+                            'factor': factor,
+                            #TODO .strftime('%Y-%m-%d'),
+                            #TODO  mettere l'anno successivo
                         }
                         depr_line_id = depreciation_lin_obj.create(
                             cr, uid, vals, context=context)

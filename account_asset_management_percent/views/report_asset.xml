@@ -4,20 +4,16 @@
 
 <template id="account_asset_management_percent.report_asset">
     <t t-call="report.html_container">
+        <span t-if="type == 'simulated'">
+            <t t-set="title" t-value="'Stampa registro cespiti SIMULATO ' + fy_name"/>
+        </span>
+        <span t-if="type != 'simulated'">
+            <t t-set="title" t-value="'Stampa registro cespiti ' + fy_name"/>
+        </span>
         <t t-call="l10n_it_account.internal_layout">
             <div class="page">
                 <table style="width:100%; font-size: small;" cellspacing="0">
                     <thead>
-                        <tr class="first_th_row">
-                            <t t-if="type != 'simulated'">
-                                <td colspan="12" style="padding:10;" t-esc="'Registro Cespiti anno ' + fy_name"/>
-                            </t>
-                            <t t-if="type == 'simulated'">
-                                <td colspan="12" style="padding:10;" t-esc="'Registro Cespiti SIMULATO anno ' + fy_name"/>
-                                <!--' Periodo di stampa dal ' + formatLang(start_date(), date=True) + ' al ' + formatLang(end_date(), date=True)"/>-->
-                            </t>
-                        </tr>
-
                         <tr style="page-break-inside: avoid">
                             <th class="left_with_line">RIF.</th>
                             <th class="left_with_line">DESCRIZIONE</th>

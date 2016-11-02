@@ -16,5 +16,10 @@
             <field name="paperformat_id"
             ref="l10n_it_account.l10n_it_account_a4_landscape"/>
        </record>
+      <record id="l10n_it_account.l10n_it_account_a4_landscape" model="report.paperformat">
+        <field name="margin_top">25</field>
+        <field name="margin_bottom">15</field>
+        <field name="header_spacing">20</field>
+      </record>
     </data>
 </openerp>

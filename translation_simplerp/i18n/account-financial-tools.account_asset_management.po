@@ -397,6 +397,10 @@ msgstr "Metodo di calcolo"
 
 #. module: account_asset_management
 #: view:account.asset.asset:account_asset_management.view_account_asset_asset_form
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: account_asset_management
 #: view:asset.depreciation.confirmation.wizard:account_asset_management.view_asset_depreciation_confirmation_wizard
 msgid "Compute"
 msgstr "Crea le scritture di ammortamento"

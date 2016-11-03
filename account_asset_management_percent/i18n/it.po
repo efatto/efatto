@@ -112,7 +112,7 @@ msgstr "Chiudi"
 #. module: account_asset_management_percent
 #: view:asset.depreciation.confirmation.wizard:account_asset_management_percent.view_asset_depreciation_confirmation_wizard_init
 msgid "Compute and do not create account moves"
-msgstr "Compute and do not create account moves"
+msgstr "Calcola solo gli ammortamenti per tutti i cespiti"
 
 #. module: account_asset_management_percent
 #: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form

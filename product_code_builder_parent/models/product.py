@@ -8,6 +8,15 @@ import psycopg2
 from openerp import tools
 
 
+class product_product(osv.osv):
+    _inherit = "product.product"
+
+    _columns = {
+        'att_image': fields.related(
+            'attribute_value_ids', 'image', string="Attribute Image",
+            type='binary', store=False),
+    }
+
 class product_template(osv.osv):
     _inherit = "product.template"
 

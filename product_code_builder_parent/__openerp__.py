@@ -18,15 +18,14 @@
 #
 #
 {
-    'name': 'Add parent to product template for variant creation',
+    'name': 'Compute variants on product template using only parent attribute',
     'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
-If an attribute has a parent, variants are created only if product template
-has this parent in attributes.
-E.g.: a template has an attribute "Leather Sand" which is the parent of
- attribute "Leather Sand colors": only variant of Leather Sand colors will be
- computed for this template.
+With this module variants are created only for product attribute values,
+without mixing all possibility.
+E.g.: a template has an attribute "Leather Sand" which has three colors:
+only 3 variant of Leather Sand colors will be computed for this template.
 """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
@@ -35,7 +34,7 @@ E.g.: a template has an attribute "Leather Sand" which is the parent of
         'product_code_builder',
     ],
     "data": [
-        # 'views/product_view.xml',
+        'views/product_view.xml',
     ],
     "installable": True
 }

@@ -34,16 +34,16 @@ class product_template(osv.osv):
 
             # list of values combination
             variant_alone = []
-            all_variants = []
+            all_variants = [[]]
+            temp_variants = []
             for variant_id in tmpl_id.attribute_line_ids:
                 if len(variant_id.value_ids) == 1:
                     variant_alone.append(variant_id.value_ids[0])
-                # temp_variants = []
-                # for variant in all_variants:
                 for value_id in variant_id.value_ids:
-                    all_variants.append(sorted([int(value_id)]))
-                # if temp_variants:
-                #     all_variants = temp_variants
+                    temp_variants.append(sorted([int(value_id)]))
+
+            if temp_variants:
+                all_variants = temp_variants
 
             # adding an attribute with only one value should not recreate product
             # write this attribute on every product to make sure we don't lose them

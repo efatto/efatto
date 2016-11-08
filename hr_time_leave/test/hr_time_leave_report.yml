@@ -1,0 +1,22 @@
+-
+ Print the HR time_leave(Summary Department) Report through the wizard
+-
+  !python {model: hr.time_leave}: |
+    import time
+    ctx={}
+    ctx.update({'model': 'hr.department','active_ids': [ref('hr.employee_fp'),ref('hr.employee_qdp'),ref('hr.employee_al')]})
+    data_dict = {'date_from': time.strftime('%Y-%m-01'), 'depts' : [(6,0,[ref('hr.dep_sales')])],'holiday_type' : 'Approved'}
+    from openerp.tools import test_reports
+    test_reports.try_report_action(cr, uid, 'action_hr_time_leave_summary_dept',wiz_data=data_dict, context=ctx, our_module='hr_time_leave')
+
+-
+ Print the HR time_leave(Summary Employee) Report through the wizard
+-
+  !python {model: hr.time_leave}: |
+    import time
+    ctx={}
+    ctx.update({'model': 'hr.employee','active_ids': [ref('hr.employee_fp'),ref('hr.employee_qdp'),ref('hr.employee_al')]})
+    data_dict = {'date_from': time.strftime('%Y-%m-01'), 'emp' : [(6,0,[ref('hr.employee_fp'),ref('hr.employee_qdp'),ref('hr.employee_al')])],'holiday_type' : 'Approved'}
+    from openerp.tools import test_reports
+    test_reports.try_report_action(cr, uid, 'action_hr_time_leave_summary_employee',wiz_data=data_dict, context=ctx, our_module='hr_time_leave')
+

@@ -22,7 +22,9 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Sale partner button view improvement',
+    'description': 'With this module partner will have a new button with'
+                   'only Offers, and button with Sales will be linked only to'
+                   'real sales.',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

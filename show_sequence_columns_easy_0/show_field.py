@@ -1,6 +1,5 @@
 # __author__ = 'truongdung'
 from openerp import fields, api, models
-import json
 
 
 class ShowFieldS(models.Model):
@@ -16,29 +15,43 @@ class ShowFieldS(models.Model):
 
     @api.model
     def action(self, vals, action):
-        data = self.search([('user_id', '=', vals['user_id']), ('model_name', '=', vals['model_name'])])
+        data = self.search([('user_id', '=', vals['user_id']),
+                            ('model_name', '=', vals['model_name'])])
         if action == 'update':
             if 'fields_show' in vals:
                 vals['fields_show'] = str(vals['fields_show'])
                 if len(data) > 0:
-                    data[0].write({'fields_show': vals['fields_show'], 'fields_sequence': vals['fields_sequence']})
+                    data[0].write({'fields_show': vals['fields_show'],
+                                   'fields_sequence': vals['fields_sequence']})
                 else:
                     self.create(vals)
             else:
                 if len(data) > 0:
-                    data[0].write({'color': vals['color'], 'fix_header_list_view': vals['fix_header_list_view']})
+                    data[0].write({'color': vals['color'],
+                                   'fix_header_list_view':
+                                       vals['fix_header_list_view']})
                 else:
                     self.create(vals)
         elif action == 'select':
-            all_field_obj = self.env[vals['model_name']].fields_get()
+            all_field_obj = {}
+            if isinstance(vals['model_name'], dict):
+                if vals['model_name']['name']:
+                    all_field_obj = self.env[
+                        vals['model_name']['name']].fields_get()
+            elif isinstance(vals['model_name'], str):
+                all_field_obj = self.env[vals['model_name']].fields_get()
             if len(data) > 0:
                 data = data[0]
-                return {'data': {'user_id': data.user_id.id, 'color': data.color, 'model_name': data.model_name,
-                                 'fields_show': data.fields_show, 'id': data.id, 'name': data.name,
-                                 'fields_sequence': data.fields_sequence,
-                                 'fix_header_list_view': data.fix_header_list_view},
-                        'fields': all_field_obj}
+                return {
+                    'data': {
+                        'user_id': data.user_id.id,
+                        'color': data.color,
+                        'model_name': data.model_name,
+                        'fields_show': data.fields_show,
+                        'id': data.id,
+                        'name': data.name,
+                        'fields_sequence': data.fields_sequence,
+                        'fix_header_list_view': data.fix_header_list_view},
+                    'fields': all_field_obj}
             else:
                 return {'data': {}, 'fields': all_field_obj}
-
-ShowFieldS()

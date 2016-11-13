@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-02 23:01+0000\n"
-"PO-Revision-Date: 2016-11-02 23:01+0000\n"
+"POT-Creation-Date: 2016-11-13 22:11+0000\n"
+"PO-Revision-Date: 2016-11-13 22:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,10 +46,10 @@ msgid "Asset"
 msgstr "Immobilizzazione"
 
 #. module: account_asset_management_percent
-#: code:addons/account_asset_management_percent/wizard/wizard_asset_compute.py:59
+#: code:addons/account_asset_management_percent/wizard/wizard_asset_compute.py:77
 #, python-format
-msgid "Asset Moves Confirmed as Init entry"
-msgstr "Righe di ammortamento calcolate"
+msgid "Asset Moves Created"
+msgstr "Movimenti Cespiti Creati"
 
 #. module: account_asset_management_percent
 #: model:ir.ui.menu,name:account_asset_management_percent.menu_print_asset_report
@@ -75,7 +75,7 @@ msgstr "Analisi Immobilizzazioni"
 #. module: account_asset_management_percent
 #: view:account.asset.depreciation.line:account_asset_management_percent.view_account_asset_depreciation_line_tree
 msgid "Assets Depreciation Lines"
-msgstr "Righe di Ammortamento"
+msgstr "Righe Ammortamento Cespiti"
 
 #. module: account_asset_management_percent
 #: view:website:account_asset_management_percent.report_asset
@@ -84,8 +84,8 @@ msgstr "COSTO STORICO"
 
 #. module: account_asset_management_percent
 #: help:asset.depreciation.confirmation.wizard,fy_id:0
-msgid "Calculate depreciation table for asset acquired in this Fiscal Year"
-msgstr "Calcola gli ammortamenti per gli asset acquisiti nell'anno fiscale selezionato"
+msgid "Calculate depreciation table for asset started in selected Fiscal Year (in open or draft state)."
+msgstr "Calcola la tabella di ammortamento per i cespiti avviati nell'anno fiscale selezionato (in stato attivo o bozza)."
 
 #. module: account_asset_management_percent
 #: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
@@ -111,8 +111,8 @@ msgstr "Chiudi"
 
 #. module: account_asset_management_percent
 #: view:asset.depreciation.confirmation.wizard:account_asset_management_percent.view_asset_depreciation_confirmation_wizard_init
-msgid "Compute and do not create account moves"
-msgstr "Calcola solo gli ammortamenti per tutti i cespiti"
+msgid "Compute depreciation table and set manual for selected Fiscal Year if flagged as init"
+msgstr "Calcola la tabella di ammortamento e imposta come manuale per l'anno fiscale selezionato se c'è il flag 'Manuale'"
 
 #. module: account_asset_management_percent
 #: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
@@ -122,12 +122,12 @@ msgstr "Conferma i Cespiti"
 #. module: account_asset_management_percent
 #: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
 msgid "Confirm or Set Draft Asset"
-msgstr "Conferma o Imposta a bozza i Cespiti"
+msgstr "Conferma o imposta a Bozza i Cespiti"
 
 #. module: account_asset_management_percent
 #: model:ir.actions.act_window,name:account_asset_management_percent.action_wizard_asset_confirm
 msgid "Confirm or set draft asset"
-msgstr "Conferma o Imposta a bozza i Cespiti"
+msgstr "Conferma o imposta a Bozza i Cespiti"
 
 #. module: account_asset_management_percent
 #: field:account.asset.confirm,create_uid:0
@@ -217,6 +217,16 @@ msgid "Increase Value"
 msgstr "Valore Incremento"
 
 #. module: account_asset_management_percent
+#: model:ir.model,name:account_asset_management_percent.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: account_asset_management_percent
+#: model:ir.model,name:account_asset_management_percent.model_account_move_line
+msgid "Journal Items"
+msgstr "Voci Sezionale"
+
+#. module: account_asset_management_percent
 #: field:account.asset.confirm,write_uid:0
 #: field:wizard.print.asset.report,write_uid:0
 msgid "Last Updated by"
@@ -267,6 +277,11 @@ msgstr "Percentuale di Ammortamento"
 #: help:account.asset.category,method_percent:0
 msgid "Percentage depreciation."
 msgstr "Percentuale di Ammortamento."
+
+#. module: account_asset_management_percent
+#: view:asset.depreciation.confirmation.wizard:account_asset_management_percent.view_asset_depreciation_confirmation_wizard_init
+msgid "Post depreciation line for selected period for open assets"
+msgstr "Posta le righe di ammortamento per il periodo selezionato per i cespiti attivi"
 
 #. module: account_asset_management_percent
 #: selection:wizard.print.asset.report,type:0
@@ -321,17 +336,17 @@ msgstr "Selezionare categoria dei cespiti"
 #. module: account_asset_management_percent
 #: view:account.asset.confirm:account_asset_management_percent.account_asset_confirm_form
 msgid "Set Draft Assets"
-msgstr "Imposta a bozza i Cespiti"
+msgstr "Imposta i cespiti come Bozza"
 
 #. module: account_asset_management_percent
 #: help:asset.depreciation.confirmation.wizard,set_init:0
-msgid "Set depreciation as init for current fiscal year."
-msgstr "Imposta l'ammortamento come manuale per l'anno fiscale selezionato."
+msgid "Set depreciation as manual for selected Fiscal Year."
+msgstr "Imposta l'ammortamento manuale per l'anno fiscale selezionato."
 
 #. module: account_asset_management_percent
 #: field:asset.depreciation.confirmation.wizard,set_init:0
-msgid "Set init"
-msgstr "Imposta come ammortamento manuale"
+msgid "Set manual"
+msgstr "Manuale"
 
 #. module: account_asset_management_percent
 #: selection:wizard.print.asset.report,type:0

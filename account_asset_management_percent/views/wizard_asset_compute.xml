@@ -6,13 +6,14 @@
             <field name="model">asset.depreciation.confirmation.wizard</field>
             <field name="inherit_id" ref="account_asset_management.view_asset_depreciation_confirmation_wizard"/>
             <field name="arch" type="xml">
-                <xpath expr="//form/footer/button[@name='asset_compute']" position="after">
-                    <button string="Compute and do not create account moves" name="asset_set_init" type="object" class="oe_highlight"/>
+                <xpath expr="//form/footer/button[@name='asset_compute']" position="attributes">
+                    <attribute name="string">Post depreciation line for selected period for open assets</attribute>
                 </xpath>
-                <field name="period_id" position="replace">
+                <field name="period_id" position="after">
                     <field name="fy_id"/>
                     <separator colspan="2"/>
                     <field name="set_init"/>
+                    <button colspan="2" string="Compute depreciation table and set manual for selected Fiscal Year if flagged as init" name="asset_set_init" type="object" class="oe_highlight"/>
                 </field>
              </field>
         </record>

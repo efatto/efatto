@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (C) 2015-2016 Sergio Corato
+#    Copyright (C) 2015-2016 Sergio Corato - SimplERP srl
 #    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify

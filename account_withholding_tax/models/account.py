@@ -32,15 +32,9 @@ class res_company(orm.Model):
         'withholding_journal_id': fields.many2one('account.journal', \
         'Withholding journal', help="Journal used for registration of \
         withholding amounts to be paid"),
+        'withholding_partner_id': fields.many2one('res.partner',
+                                                  string='Partner for tax to be paid')
         }
-
-#class account_tax(orm.Model):  # moved to l10n_configurable_v2
-#    _inherit = 'account.tax.code'
-#    _columns = {
-#        'withholding_type': fields.boolean("Ritenuta d'acconto"),
-#        'withholding_payment_term_id': fields.many2one('account.payment.term',\
-#        "Termine di pagamento ritenuta d'acconto"),
-#    }
 
 
 class account_voucher(orm.Model):
@@ -86,6 +80,8 @@ class account_voucher(orm.Model):
                                     raise orm.except_orm(_('Error'), _('The tax does not have an associated Withholding Payment Term'))
                                 if not invoice.company_id.withholding_journal_id:
                                     raise orm.except_orm(_('Error'), _('The company does not have an associated Withholding journal'))
+                                if not invoice.company_id.withholding_partner_id:
+                                    raise orm.except_orm(_('Error'), _('The company does not have an associated Withholding partner'))
                                 due_list = term_pool.compute(
                                     cr, uid, tax_line.tax_code_id.withholding_payment_term_id.id, line.amount,
                                     date_ref=voucher.date or invoice.date_invoice, context=context)
@@ -113,8 +109,8 @@ class account_voucher(orm.Model):
                                             'credit': 0.0,
                                             }),
                                         (0, 0, {
-                                            'name': _('Giro contabile ritenuta acconto - ') + invoice.number,
-                                            'account_id': tax_line.account_collected_id.id,
+                                            'name': _('Ritenuta acconto - ') + invoice.number,
+                                            'account_id': invoice.company_id.withholding_partner_id.property_account_payable.id,
                                             'debit': 0.0,
                                             'credit': new_line_amount,
                                             'date_maturity': due_list[0][0],

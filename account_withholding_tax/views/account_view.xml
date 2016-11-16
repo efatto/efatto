@@ -11,6 +11,7 @@
                 <field name="vat_check_vies" position="after">
                     <separator colspan="4"></separator>
                     <field name="withholding_journal_id" />
+                    <field name="withholding_partner_id"/>
                     <separator colspan="4"></separator>
                 </field>
             </field>

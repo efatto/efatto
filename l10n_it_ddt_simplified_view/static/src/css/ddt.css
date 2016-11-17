@@ -1,5 +1,10 @@
-.openerp .oe_form_sheet_width {
-	min-width: 100px;
-	max-width: 860px;
-	margin: 0 auto;
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*=".oe_"] {
+        width: 100%;
+        min-width: 100px;
+        max-width: 860px;
+        margin: 0 auto;
+    }
 }

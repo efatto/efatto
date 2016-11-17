@@ -51,15 +51,15 @@
                         </tree>
                     </field>
                 <group>
-                    <field name="carriage_condition_id"
+                    <field name="carriage_condition_id" nolabel="1" placeholder="Carriage condition"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                    <field name="goods_description_id"
+                    <field name="goods_description_id" nolabel="1" placeholder="Goods description"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                    <field name="transportation_reason_id"
+                    <field name="transportation_reason_id" nolabel="1" placeholder="Transportation reason"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                    <field name="transportation_method_id"
+                    <field name="transportation_method_id" nolabel="1" placeholder="Transportation method"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                    <field name="carrier_id"/>
+                    <field name="carrier_id" nolabel="1" placeholder="Carrier"/>
                     <field name="parcels"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                     <field name="volume"/>
@@ -69,10 +69,6 @@
               </page>
             </notebook>
           </sheet>
-          <!--<div class="oe_chatter">-->
-            <!--<field name="message_follower_ids" widget="mail_followers"/>-->
-            <!--<field name="message_ids" widget="mail_thread"/>-->
-          <!--</div>-->
         </form>
       </field>
     </record>

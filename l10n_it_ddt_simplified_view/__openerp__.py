@@ -29,7 +29,7 @@
         'l10n_it_ddt_ext',
     ],
     'data': [
-        # 'views/ddt.xml',
+        'views/ddt.xml',
         'views/stock_picking_simplified_view.xml',
     ],
     'installable': True

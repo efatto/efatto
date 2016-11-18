@@ -7,7 +7,7 @@ from openerp import models, fields, api, _
 
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
-    _order = 'sequence,code'
+    _order = 'sequence'
 
     sequence = fields.Integer(
         string='Sequence',

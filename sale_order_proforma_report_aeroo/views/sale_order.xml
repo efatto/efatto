@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="view_sale_order_form_proforma" model="ir.ui.view">
+            <field name="name">sale.order.form.proforma</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header//button[@name='invoice_recreate']" position="after">
+                    <button name="%(report_sale_order_proforma)d" string="Stampa Proforma" type="action" class="oe_highlight" />
+                </xpath>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

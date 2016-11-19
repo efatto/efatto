@@ -33,6 +33,7 @@ class Parser(report_sxw.rml_parse):
             'address_invoice_id': self._get_invoice_address,
             'account_fiscal_position_rule_id':
                 self._get_account_fiscal_position_rule_id,
+            'variant_images': self._variant_images,
         })
         self.cache = {}
 
@@ -249,3 +250,10 @@ class Parser(report_sxw.rml_parse):
         return self.pool['res.partner.address'].browse(
             self.cr, self.uid, address['invoice'] or address['default'])
 
+    def _variant_images(self):
+        res = False
+        if self.pool['ir.config_parameter'].get_param(
+                self.cr, self.uid, 'product.print_variant_images',
+                default=False):
+            res = True
+        return res

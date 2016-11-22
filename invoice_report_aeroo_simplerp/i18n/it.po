@@ -31,3 +31,42 @@ msgstr "Consegne"
 msgid "Shipping Informations"
 msgstr "Informazioni spedizione"
 
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Page"
+msgstr "Pag."
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Date"
+msgstr "Data"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "description"
+msgstr "descrizione"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "UoM"
+msgstr "u.m."
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "code"
+msgstr "cod."
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "q.ty"
+msgstr "q.tà"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "amount"
+msgstr "imponibile"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "VAT"
+msgstr "IVA"

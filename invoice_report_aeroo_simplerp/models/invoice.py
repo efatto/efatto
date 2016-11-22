@@ -10,7 +10,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
 from openerp.osv import orm
-from openerp.tools.translate import _
+from openerp.tools import translate
 from collections import defaultdict, Mapping, OrderedDict
 
 
@@ -34,6 +34,7 @@ class Parser(report_sxw.rml_parse):
             'account_fiscal_position_rule_id':
                 self._get_account_fiscal_position_rule_id,
             'variant_images': self._variant_images,
+            'translate': self._translate_text,
         })
         self.cache = {}
 
@@ -257,3 +258,11 @@ class Parser(report_sxw.rml_parse):
                 default=False):
             res = True
         return res
+
+    def _translate_text(self, source):
+        trans_obj = self.pool['ir.translation']
+        model = self.datas.get('model')
+        report = self.pool[model].browse(self.cr, self.uid, self.ids[0])
+        lang = report.partner_id.lang
+        return trans_obj._get_source(
+            self.cr, self.uid, 'ir.actions.report.xml', 'report', lang, source)

@@ -31,6 +31,7 @@ only 3 variant of Leather Sand colors will be computed for this template.
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
+        'product_attribute_value_image',
         'product_code_builder',
         'product_variants_no_automatic_creation',
         'sale_order_recalculate_prices_variants',

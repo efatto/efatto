@@ -224,6 +224,8 @@ class account_invoice(orm.Model):
             'journal_id': fiscal_position.journal_auto_invoice_id.id,
             'date_invoice': invoice.registration_date,
             'registration_date': invoice.registration_date,
+            'payment_term': '',
+            'date_due': invoice.registration_date,
         })
         new_line = []
         tax_relation = self._get_tax_relation(cr, uid, invoice_id, context)

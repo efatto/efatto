@@ -2,89 +2,72 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-import psycopg2
-from openerp import tools
+from openerp import api, models, fields
+import openerp.addons.decimal_precision as dp
 
 
-class product_product(osv.osv):
-    _inherit = "product.product"
-
-    _columns = {
-        'att_image': fields.related(
-            'attribute_value_ids', 'image', string="Attribute Image",
-            type='binary', store=False),
-    }
-
-class product_template(osv.osv):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    def create_variant_ids(self, cr, uid, ids, context=None):
-        product_obj = self.pool.get("product.product")
-        ctx = context and context.copy() or {}
+    prefix_code = fields.Char(
+        string='Internal Reference',
+        required=True,
+        help="This is the code of the product model"
+             "If Automatic Reference is checked, "
+             "this field is used as a prefix for "
+             "the product variant reference.\n"
+             "In case that there is only one variant "
+             "this code is the same as the code of the uniq variant")
 
-        if ctx.get("create_product_variant"):
-            return None
 
-        ctx.update(active_test=False, create_product_variant=True)
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
-        tmpl_ids = self.browse(cr, uid, ids, context=ctx)
-        for tmpl_id in tmpl_ids:
+    @api.multi
+    def _get_price_extra(self):
+        # result = dict.fromkeys(ids, False)
+        for product in self:
+            price_extra = 0.0
+            for variant_id in product.attribute_value_ids:
+                for price_id in variant_id.price_ids:
+                    if price_id.product_tmpl_id.id == product.product_tmpl_id.id:
+                        price_extra += price_id.price_extra
+                        # ADD extra price for attribute
+                        attribute_line = product.product_tmpl_id.\
+                            attribute_line_ids.filtered(lambda r:
+                                                        r.attribute_id ==
+                                                        price_id.attribute_id)
+                        if attribute_line:
+                            price_extra += attribute_line.price_extra
+            product.price_extra = price_extra
 
-            # list of values combination
-            variant_alone = []
-            all_variants = [[]]
-            temp_variants = []
-            for variant_id in tmpl_id.attribute_line_ids:
-                if len(variant_id.value_ids) == 1:
-                    variant_alone.append(variant_id.value_ids[0])
-                for value_id in variant_id.value_ids:
-                    temp_variants.append(sorted([int(value_id)]))
+    att_image = fields.Binary(
+        string="Attribute Image",
+        related='attribute_value_ids.image',
+        store=False)
+    price_extra = fields.Float(
+        compute=_get_price_extra,
+        string='Variant Extra Price',
+        help="This is the sum of the extra price of all attributes",
+        digits_compute=dp.get_precision('Product Price')
+    )
 
-            if temp_variants:
-                all_variants = temp_variants
 
-            # adding an attribute with only one value should not recreate product
-            # write this attribute on every product to make sure we don't lose them
-            for variant_id in variant_alone:
-                product_ids = []
-                for product_id in tmpl_id.product_variant_ids:
-                    if variant_id.id not in map(int, product_id.attribute_value_ids):
-                        product_ids.append(product_id.id)
-                product_obj.write(cr, uid, product_ids, {'attribute_value_ids': [(4, variant_id.id)]}, context=ctx)
+class ProductAttributeLine(models.Model):
+    _inherit = "product.attribute.line"
 
-            # check product
-            variant_ids_to_active = []
-            variants_active_ids = []
-            variants_inactive = []
-            for product_id in tmpl_id.product_variant_ids:
-                variants = sorted(map(int,product_id.attribute_value_ids))
-                if variants in all_variants:
-                    variants_active_ids.append(product_id.id)
-                    all_variants.pop(all_variants.index(variants))
-                    if not product_id.active:
-                        variant_ids_to_active.append(product_id.id)
-                else:
-                    variants_inactive.append(product_id)
-            if variant_ids_to_active:
-                product_obj.write(cr, uid, variant_ids_to_active, {'active': True}, context=ctx)
+    price_extra = fields.Float(
+            'Price Extra', digits_compute=dp.get_precision('Product Price')
+    )
 
-            # create new product
-            for variant_ids in all_variants:
-                values = {
-                    'product_tmpl_id': tmpl_id.id,
-                    'attribute_value_ids': [(6, 0, variant_ids)]
-                }
-                id = product_obj.create(cr, uid, values, context=ctx)
-                variants_active_ids.append(id)
 
-            # unlink or inactive product
-            for variant_id in map(int,variants_inactive):
-                try:
-                    with cr.savepoint(), tools.mute_logger('openerp.sql_db'):
-                        product_obj.unlink(cr, uid, [variant_id], context=ctx)
-                except (psycopg2.Error, osv.except_osv):
-                    product_obj.write(cr, uid, [variant_id], {'active': False}, context=ctx)
-                    pass
-        return True
+class ProductAttribute(models.Model):
+    _inherit = "product.attribute"
+
+    code = fields.Char('Code', required=True)
+
+
+class ProductAttributeValue(models.Model):
+    _inherit = "product.attribute.value"
+
+    code = fields.Char('Code', required=True)

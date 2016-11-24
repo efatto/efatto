@@ -19,12 +19,13 @@ class ProductProduct(models.Model):
                     if price_id.product_tmpl_id.id == product.product_tmpl_id.id:
                         price_extra += price_id.price_extra
                         # ADD extra price for attribute
-                        attribute_line = product.product_tmpl_id.\
-                            attribute_line_ids.filtered(lambda r:
-                                                        r.attribute_id ==
-                                                        price_id.attribute_id)
-                        if attribute_line:
-                            price_extra += attribute_line.price_extra
+                    attribute_line = product.product_tmpl_id.\
+                        attribute_line_ids.filtered(lambda r:
+                                                    r.attribute_id ==
+                                                    price_id.attribute_id)
+                    if attribute_line:
+                        price_attribute = attribute_line.price_extra
+            price_extra += price_attribute
             product.price_extra = price_extra
 
     price_extra = fields.Float(

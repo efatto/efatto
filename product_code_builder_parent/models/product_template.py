@@ -10,10 +10,6 @@ from openerp import tools
 class product_template(osv.osv):
     _inherit = "product.template"
 
-# TODO RISOLVERE BUG
-# La creazione di un prodotto con varianti se non fatta in 2 passaggi dà errore
-# 1. creare prodotto senza prefix_code con le varianti
-# 2. aggiungere il prefix_code
     def create_variant_ids(self, cr, uid, ids, context=None):
         product_obj = self.pool.get("product.product")
         ctx = context and context.copy() or {}

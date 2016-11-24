@@ -2974,7 +2974,7 @@ msgstr "Unità di Vendita"
 #. module: product
 #: model:product.uom,name:product.product_uom_unit
 msgid "Unit(s)"
-msgstr "Unità"
+msgstr "N°"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_uom_form_action model:ir.ui.menu,name:product.menu_product_uom_form_action model:ir.ui.menu,name:product.next_id_16 view:product.uom:product.product_uom_form_view view:product.uom:product.product_uom_tree_view

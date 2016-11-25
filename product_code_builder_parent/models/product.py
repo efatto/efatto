@@ -5,20 +5,6 @@
 from openerp import models, fields
 
 
-class ProductTemplate(models.Model):
-    _inherit = "product.template"
-
-    prefix_code = fields.Char(
-        string='Internal Reference',
-        required=True,
-        help="This is the code of the product model"
-             "If Automatic Reference is checked, "
-             "this field is used as a prefix for "
-             "the product variant reference.\n"
-             "In case that there is only one variant "
-             "this code is the same as the code of the uniq variant")
-
-
 class ProductProduct(models.Model):
     _inherit = "product.product"
 

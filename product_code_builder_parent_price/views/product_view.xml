@@ -8,8 +8,20 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='attribute_id']" position="after">
                     <field name="price_extra"/>
+                    <field name="cost_extra"/>
                 </xpath>
             </field>
         </record>
+        <!--<record id="variants_template_tree_view_cost" model="ir.ui.view">-->
+            <!--<field name="name">variants.template.tree.cost</field>-->
+            <!--<field name="model">product.attribute.value</field>-->
+            <!--<field name="inherit_id" ref="product.variants_template_tree_view"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//field[@name='price_extra']" position="after">-->
+                    <!--<field name="cost_extra"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
      </data>
 </openerp>

@@ -24,7 +24,7 @@
      </data>
     <data noupdate="1">
         <record forcecreate="True" id="config_parameter_product_code_builder_parent" model="ir.config_parameter">
-            <field name="key">product.code.builder.parent</field>
+            <field name="key">product.print_variant_images</field>
             <field name="value" eval="True"/>
         </record>
     </data>

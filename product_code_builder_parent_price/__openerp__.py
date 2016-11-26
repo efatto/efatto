@@ -29,6 +29,7 @@ With this module price of attribute can be summed to variant prices.
     'license': 'AGPL-3',
     "depends": [
         'product_code_builder_parent',
+        'sale_product_variants',
     ],
     "data": [
         'views/product_view.xml',

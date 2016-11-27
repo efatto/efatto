@@ -12,6 +12,15 @@
                 </xpath>
             </field>
         </record>
+        <record model="ir.ui.view" id="sale_order_extended_form_view">
+            <field name="name">sale.order.extended.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_product_variants.sale_order_extended_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='update_price_unit']" position="replace">
+                </xpath>
+            </field>
+        </record>
         <!--<record id="variants_template_tree_view_cost" model="ir.ui.view">-->
             <!--<field name="name">variants.template.tree.cost</field>-->
             <!--<field name="model">product.attribute.value</field>-->

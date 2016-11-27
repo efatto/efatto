@@ -10,10 +10,12 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
 
     @api.multi
-    def update_price_unit(self):
+    @api.onchange('product_attribute_ids')
+    def onchange_price_unit(self):
         self.ensure_one()
         if not self.product_id:
             price_extra = 0.0
+            attribute_id = False
             for attr_line in self.product_attribute_ids:
                 price_extra += attr_line.price_extra
                 if attr_line.value_id:

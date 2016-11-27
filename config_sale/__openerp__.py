@@ -28,6 +28,7 @@ Module to configure sale.
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
+        'account',
         'sale',
     ],
     "data": [

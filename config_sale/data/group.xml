@@ -11,6 +11,9 @@
             <field name="implied_ids" eval="[(4, ref('sale.group_delivery_invoice_address'))]"/>
         </record>
         <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('account.group_proforma_invoices'))]"/>
+        </record>
+        <record model="res.groups" id="base.group_user">
             <field name="implied_ids" eval="[(4, ref('product.group_sale_pricelist'))]"/>
         </record>
         <function id="sale_order_order_pol_default_set" model="ir.values" name="set_default" eval="('sale.order','order_policy', 'manual')"/>

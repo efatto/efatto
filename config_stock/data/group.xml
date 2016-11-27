@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('stock_account.group_inventory_valuation'))]"/>
+        </record>
+        <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('product.group_stock_packaging'))]"/>
+        </record>
+        <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('stock.group_locations'))]"/>
+        </record>
+    </data>
+</openerp>
+
+        <!--# decimal_precision stock 3-->
+
+

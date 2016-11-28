@@ -11,9 +11,10 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     @api.onchange('product_attribute_ids')
+    @api.depends('product_tmpl_id')
     def onchange_price_unit(self):
         self.ensure_one()
-        if not self.product_id:
+        if not self.product_id and self.product_tmpl_id:
             price_extra = 0.0
             attribute_id = False
             for attr_line in self.product_attribute_ids:

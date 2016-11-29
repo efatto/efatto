@@ -11,7 +11,7 @@
             <field name="in_format">oo-odt</field>
             <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
             <field name="parser_loc">invoice_report_aeroo_simplerp/models/invoice.py</field>
-            <field name="report_rml">sale_order_proforma_report_aeroo/data/sale_order_proforma.odt</field>
+            <field name="report_rml">sale_order_report_aeroo/data/sale_order.odt</field>
             <field name="parser_state">loc</field>
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>

@@ -12,7 +12,12 @@ from datetime import datetime
 from openerp.osv import orm
 from openerp.tools import translate
 from collections import defaultdict, Mapping, OrderedDict
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
 
+from PIL import Image
 
 class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
@@ -35,6 +40,7 @@ class Parser(report_sxw.rml_parse):
                 self._get_account_fiscal_position_rule_id,
             'variant_images': self._variant_images,
             'translate': self._translate_text,
+            'img_gray': self._convert_to_gray_scale,
         })
         self.cache = {}
 
@@ -266,3 +272,12 @@ class Parser(report_sxw.rml_parse):
         lang = report.partner_id.lang
         return trans_obj._get_source(
             self.cr, self.uid, 'ir.actions.report.xml', 'report', lang, source)
+
+    def _convert_to_gray_scale(self, base64_source, encoding='base64'):
+        if not base64_source:
+            return False
+        image_stream = StringIO.StringIO(base64_source.decode(encoding))
+        image = Image.open(image_stream).convert('LA')
+        background_stream = StringIO.StringIO()
+        image.save(background_stream, 'PNG')
+        return background_stream.getvalue().encode(encoding)

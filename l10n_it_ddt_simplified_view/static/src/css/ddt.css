@@ -1,10 +1,24 @@
+@media screen and (max-device-width: 768px){
+.navbar-collapse {
+    width: 100%;
+    border-top: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*=".oe_"] {
-        width: 100%;
-        min-width: 100px;
-        max-width: 860px;
-        margin: 0 auto;
-    }
+.openerp .oe_view_manager table.oe_view_manager_header h2 {
+    line-height: 0px !important;
+}
+.openerp .oe_form_sheet_width {
+    min-width: 300px;
+}
+.openerp .oe_leftbar a.oe_logo img { width: 20px; height: 20px; transition: 1s ease-in-out 1s;}
+.openerp .oe_leftbar:hover a.oe_logo img { width: 50px; height: 50px; transition: .25s ease-in-out .5s; }
+.openerp .oe_leftbar, .openerp .oe_leftbar > div {width:20px; transition: 1s ease-in-out 1s;}
+.openerp .oe_leftbar:hover, .openerp .oe_leftbar:hover > div {width:200px; transition: .25s ease-in-out .5s; }
+.openerp .oe_leftbar .oe_secondary_menus_container, .openerp .oe_leftbar > div > div > div > div.oe_secondary_menus_container
+{width:20px; overflow: hidden; background-color: #bbf; transition: 1s ease-in-out 1s;}
+.openerp .oe_leftbar:hover .oe_secondary_menus_container
+{width:200px; overflow: auto; background-color: initial; transition: .25s ease-in-out .5s;}
+.openerp .oe_secondary_submenu .oe_menu_text { overflow:visible; }
+.openerp .oe_secondary_menu_section {white-space:nowrap;}
 }

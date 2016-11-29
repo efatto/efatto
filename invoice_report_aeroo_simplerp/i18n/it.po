@@ -64,7 +64,7 @@ msgstr "q.tà"
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "amount"
-msgstr "imponibile"
+msgstr "importo"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
@@ -105,3 +105,13 @@ msgstr "Sede Legale"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "VAT"
 msgstr "P.I."
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Quotation"
+msgstr "Preventivo"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Order"
+msgstr "Ordine"

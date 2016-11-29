@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api
-import threading
 import math
-Tlock = threading.RLock()
 
 
 def ean_checksum(eancode):
@@ -49,7 +47,6 @@ class SaleOrder(models.Model):
     @api.onchange('scan')
     def _sale_scan_calculation(self):
         if self.scan:
-            Tlock.acquire()
             res = check_ean(self.scan)
             product_obj = None
 
@@ -105,15 +102,6 @@ class SaleOrder(models.Model):
                 self.scan = ''
                 #raise Warning(_('Unknown Barcode OR
                 # Product can not be sale!!'))
-            Tlock.release()
-
-    # @api.onchange('scan')
-    # def add_product_via_scan(self):
-    #     threaded_calculation = threading.Thread(
-    #         target=self._sale_scan_calculation,
-    #         args=self,
-    #     )
-    #     threaded_calculation.start()
 
 
 class PurchaseOrder(models.Model):
@@ -124,7 +112,6 @@ class PurchaseOrder(models.Model):
     @api.onchange('scan')
     def _purchase_scan_calculation(self):
         if self.scan:
-            Tlock.acquire()
             res = check_ean(self.scan)
             product_obj = None
 
@@ -182,15 +169,6 @@ class PurchaseOrder(models.Model):
                 self.scan= ''
                 #raise Warning(_('Unknown Barcode
                 # OR Product can not be purchase!!'))
-            Tlock.release()
-
-    # @api.onchange('scan')
-    # def add_product_via_scan(self):
-    #     threaded_calculation = threading.Thread(
-    #         target=self._purchase_scan_calculation,
-    #         args=self,
-    #     )
-    #     threaded_calculation.start()
 
 
 class ProductProduct(models.Model):

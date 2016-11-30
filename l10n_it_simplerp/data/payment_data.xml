@@ -6,8 +6,8 @@
 
 	<!-- Direct payment -->
         <record id="payment_direct" model="account.payment.term">
-            <field name="name">Rimessa Diretta</field>
-            <field name="note">Rimessa Diretta</field>
+            <field name="name">Direct Payment</field>
+            <field name="note">Direct Payment</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_line" model="account.payment.term.line">
@@ -20,8 +20,8 @@
         </record>
 
         <record id="payment_direct_30" model="account.payment.term">
-            <field name="name">Rimessa Diretta 30 GG D.F.</field>
-            <field name="note">Rimessa Diretta 30 Giorni Data Fattura</field>
+            <field name="name">Direct Payment 30 days inv.</field>
+            <field name="note">Direct Payment 30 days invoice</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_line_30" model="account.payment.term.line">
@@ -34,8 +34,8 @@
         </record>
 
         <record id="payment_direct_60" model="account.payment.term">
-            <field name="name">Rimessa Diretta 60 GG D.F.</field>
-            <field name="note">Rimessa Diretta 60 Giorni Data Fattura</field>
+            <field name="name">Direct Payment 60 days inv.</field>
+            <field name="note">Direct Payment 60 days invoice</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_line_60" model="account.payment.term.line">
@@ -48,8 +48,8 @@
         </record>
 
         <record id="payment_direct_90" model="account.payment.term">
-            <field name="name">Rimessa Diretta 90 GG D.F.</field>
-            <field name="note">Rimessa Diretta 90 Giorni Data Fattura</field>
+            <field name="name">Direct Payment 90 Days Inv.</field>
+            <field name="note">Direct Payment 90 days invoice</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_line_90" model="account.payment.term.line">
@@ -62,8 +62,8 @@
         </record>
 
         <record id="payment_direct_30_days" model="account.payment.term">
-            <field name="name">Rimessa Diretta 30 GG D.F.F.M.</field>
-            <field name="note">Rimessa Diretta 30 Giorni Fine Mese</field>
+            <field name="name">Direct Payment 30 Days Inv. End Month</field>
+            <field name="note">Direct Payment 30 Days End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_30_days_line" model="account.payment.term.line">
@@ -76,8 +76,8 @@
         </record>
 
         <record id="payment_direct_60_days" model="account.payment.term">
-            <field name="name">Rimessa Diretta 60 GG D.F.F.M.</field>
-            <field name="note">Rimessa Diretta 60 Giorni Fine Mese</field>
+            <field name="name">Direct Payment 60 Days Inv. End Month</field>
+            <field name="note">Direct Payment 60 Days End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_60_days_line" model="account.payment.term.line">
@@ -90,8 +90,8 @@
         </record>
 
         <record id="payment_direct_90_days" model="account.payment.term">
-            <field name="name">Rimessa Diretta 90 GG D.F.F.M.</field>
-            <field name="note">Rimessa Diretta 90 Giorni Fine Mese</field>
+            <field name="name">Direct Payment 90 Days Inv. End Month</field>
+            <field name="note">Direct Payment 90 Days End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_90_days_line" model="account.payment.term.line">
@@ -104,8 +104,8 @@
         </record>
 
         <record id="payment_direct_180_days" model="account.payment.term">
-            <field name="name">Rimessa Diretta 180 GG D.F.F.M.</field>
-            <field name="note">Rimessa Diretta 180 Giorni Fine Mese</field>
+            <field name="name">Direct Payment 180 Days Inv. End Month</field>
+            <field name="note">Direct Payment 180 Days End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_180_days_line" model="account.payment.term.line">
@@ -118,8 +118,8 @@
         </record>
 
         <record id="payment_direct_30_60_days" model="account.payment.term">
-            <field name="name">R.D. 30/60 GG D.F. F.M.</field>
-            <field name="note">R.D. 30/60 Giorni Data fattura Fine Mese</field>
+            <field name="name">Direct Payment 30/60 Days Inv. End Month</field>
+            <field name="note">Direct Payment 30/60 Days Date invoice End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_30_60_days_line1" model="account.payment.term.line">
@@ -141,8 +141,8 @@
         </record>
 
         <record id="payment_direct_60_90_days" model="account.payment.term">
-            <field name="name">R.D. 60/90 GG D.F. F.M.</field>
-            <field name="note">R.D. 60/90 Giorni Data fattura Fine Mese</field>
+            <field name="name">Direct Payment 60/90 Days Inv. End Month</field>
+            <field name="note">Direct Payment 60/90 Days Date invoice End of Month</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_60_90_days_line1" model="account.payment.term.line">
@@ -164,8 +164,8 @@
         </record>
 
         <record id="payment_consignment" model="account.payment.term">
-            <field name="name">Alla consegna</field>
-            <field name="note">Alla consegna</field>
+            <field name="name">On Delivery</field>
+            <field name="note">On Delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_consignment_line" model="account.payment.term.line">
@@ -178,8 +178,8 @@
         </record>
 
         <record id="payment_direct_30order_70beforeshipment" model="account.payment.term">
-            <field name="name">30% all'ordine 70% prima della spedizione</field>
-            <field name="note">30% all'ordine 70% prima della spedizione</field>
+            <field name="name">30% on order 70% before shipping</field>
+            <field name="note">30% on order 70% before shipping</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_30order_70beforeshipment_line1" model="account.payment.term.line">
@@ -201,8 +201,8 @@
         </record>
 
         <record id="payment_direct_50order_50beforeshipment" model="account.payment.term">
-            <field name="name">50% all'ordine 50% prima della spedizione</field>
-            <field name="note">50% all'ordine 50% prima della spedizione</field>
+            <field name="name">50% on order 50% before shipping</field>
+            <field name="note">50% on order 50% before shipping</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_50order_50beforeshipment_line1" model="account.payment.term.line">
@@ -224,8 +224,8 @@
         </record>
 
         <record id="payment_direct_30order_70beforedelivery" model="account.payment.term">
-            <field name="name">30% all'ordine 70% prima della consegna</field>
-            <field name="note">30% all'ordine 70% prima della consegna</field>
+            <field name="name">30% on order 70% before delivery</field>
+            <field name="note">30% on order 70% before delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_30order_70beforedelivery_line1" model="account.payment.term.line">
@@ -247,8 +247,8 @@
         </record>
 
         <record id="payment_direct_50proforma_50beforedelivery" model="account.payment.term">
-            <field name="name">50% alla proforma 50% prima della consegna</field>
-            <field name="note">50% alla proforma 50% prima della consegna</field>
+            <field name="name">50% on proforma 50% before delivery</field>
+            <field name="note">50% on proforma 50% before delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_50proforma_50beforedelivery_line1" model="account.payment.term.line">
@@ -270,8 +270,8 @@
         </record>
 
         <record id="payment_direct_50proforma_50delivery" model="account.payment.term">
-            <field name="name">50% alla proforma 50% alla consegna</field>
-            <field name="note">50% alla proforma 50% alla consegna</field>
+            <field name="name">50% on proforma 50% on delivery</field>
+            <field name="note">50% on proforma 50% on delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_50proforma_50delivery_line1" model="account.payment.term.line">
@@ -293,8 +293,8 @@
         </record>
 
         <record id="payment_consignment_7_days" model="account.payment.term">
-            <field name="name">7 GG dalla consegna</field>
-            <field name="note">7 GG dalla consegna</field>
+            <field name="name">7 Days after delivery</field>
+            <field name="note">7 Days after delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_consignment_7_days_line" model="account.payment.term.line">
@@ -307,8 +307,8 @@
         </record>
 
         <record id="payment_consignment_6_weeks" model="account.payment.term">
-            <field name="name">6 settimane dalla consegna</field>
-            <field name="note">6 settimane dalla consegna</field>
+            <field name="name">6 weeks after delivery</field>
+            <field name="note">6 weeks after delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_consignment_6_weeks_line" model="account.payment.term.line">
@@ -321,8 +321,8 @@
         </record>
 
         <record id="payment_consignment_30_days" model="account.payment.term">
-            <field name="name">30 GG dalla consegna</field>
-            <field name="note">30 GG dalla consegna</field>
+            <field name="name">30 Days after delivery</field>
+            <field name="note">30 Days after delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_consignment_30_days_line" model="account.payment.term.line">
@@ -349,8 +349,8 @@
         </record>
 
         <record id="payment_delivery" model="account.payment.term">
-            <field name="name">Contrassegno</field>
-            <field name="note">Contrassegno</field>
+            <field name="name">Cash on delivery</field>
+            <field name="note">Cash on delivery</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_delivery_line" model="account.payment.term.line">
@@ -364,8 +364,8 @@
 
 	<!-- Payment Same day of Month -->
 		<record id="payment_term_advance" model="account.payment.term">
-            <field name="name">B.B. Anticipato</field>
-            <field name="note">B.B. Anticipato all'ordine</field>
+            <field name="name">B.T. on Order</field>
+            <field name="note">B.T. in Advance on order</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_advance_line" model="account.payment.term.line">
@@ -378,8 +378,8 @@
         </record>
 
 		<record id="payment_term_proforma" model="account.payment.term">
-            <field name="name">B.B. Proforma</field>
-            <field name="note">B.B. Anticipato alla proforma</field>
+            <field name="name">B.T. on Proforma</field>
+            <field name="note">B.T. in Advance on proforma</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_proforma_line" model="account.payment.term.line">
@@ -392,8 +392,8 @@
         </record>
 
 		<record id="payment_term_creditcard" model="account.payment.term">
-            <field name="name">Carta di Credito</field>
-            <field name="note">Carta di Credito</field>
+            <field name="name">Credit Card</field>
+            <field name="note">Credit Card</field>
             <field name="type">CC</field>
         </record>
         <record id="payment_term_creditcard_line" model="account.payment.term.line">
@@ -406,8 +406,8 @@
         </record>
 
 		<record id="payment_term_sight" model="account.payment.term">
-            <field name="name">B.B. A Vista</field>
-            <field name="note">B.B. A Vista</field>
+            <field name="name">B.T. At Sight</field>
+            <field name="note">B.T. At Sight</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_sight_line" model="account.payment.term.line">
@@ -420,8 +420,8 @@
         </record>
 
 		<record id="payment_term_15_net_1" model="account.payment.term">
-            <field name="name">B.B. 15 GG D.F.</field>
-            <field name="note">B.B. 15 Giorni Data Fattura</field>
+            <field name="name">B.T. 15 Days Inv.</field>
+            <field name="note">B.T. 15 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_15_net_line" model="account.payment.term.line">
@@ -433,8 +433,8 @@
         </record>
 
 		<record id="payment_term_45_net_1" model="account.payment.term">
-            <field name="name">B.B. 45 GG D.F.</field>
-            <field name="note">B.B. 45 Giorni Data Fattura</field>
+            <field name="name">B.T. 45 Days Inv.</field>
+            <field name="note">B.T. 45 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_45_net_line" model="account.payment.term.line">
@@ -447,8 +447,8 @@
         </record>
 		
         <record id="payment_term_60_net_1" model="account.payment.term">
-            <field name="name">B.B. 60 GG D.F.</field>
-            <field name="note">B.B. 60 Giorni Data Fattura</field>
+            <field name="name">B.T. 60 Days Inv.</field>
+            <field name="note">B.T. 60 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_60_net_line" model="account.payment.term.line">
@@ -461,8 +461,8 @@
         </record>
 
         <record id="payment_term_90_net_1" model="account.payment.term">
-            <field name="name">B.B. 90 GG D.F.</field>
-            <field name="note">B.B. 90 Giorni Data Fattura</field>
+            <field name="name">B.T. 90 Days Inv.</field>
+            <field name="note">B.T. 90 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_90_net_line" model="account.payment.term.line">
@@ -475,8 +475,8 @@
         </record>
 
         <record id="payment_term_120_net_1" model="account.payment.term">
-            <field name="name">B.B. 120 GG D.F.</field>
-            <field name="note">B.B. 120 Giorni Data Fattura</field>
+            <field name="name">B.T. 120 Days Inv.</field>
+            <field name="note">B.T. 120 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_120_net_line" model="account.payment.term.line">
@@ -489,8 +489,8 @@
         </record>
 
         <record id="payment_term_180_net_1" model="account.payment.term">
-            <field name="name">B.B. 180 GG D.F.</field>
-            <field name="note">B.B. 180 Giorni Data Fattura</field>
+            <field name="name">B.T. 180 Days Inv.</field>
+            <field name="note">B.T. 180 days invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_180_net_line" model="account.payment.term.line">
@@ -503,8 +503,8 @@
         </record>
 
         <record id="payment_term_50order_50_net" model="account.payment.term">
-            <field name="name">50% all'ordine, 50% B.B. 30 GG F.M.</field>
-            <field name="note">50% all'ordine, 50% B.B. 30 GG Fine Mese</field>
+            <field name="name">50% on order, 50% B.T. 30 Days End Month</field>
+            <field name="note">50% on order, 50% B.T. 30 Days End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_50order_50_net_line1" model="account.payment.term.line">
@@ -528,8 +528,8 @@
         </record>
 
         <record id="payment_term_30_60_net_2" model="account.payment.term">
-            <field name="name">B.B. 30/60 GG D.F.</field>
-            <field name="note">B.B. 30/60 GG Data Fattura</field>
+            <field name="name">B.T. 30/60 Days Inv.</field>
+            <field name="note">B.T. 30/60 Days Date Invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_30_60_net_line1" model="account.payment.term.line">
@@ -551,8 +551,8 @@
         </record>
 
         <record id="payment_term_60_90_net_2" model="account.payment.term">
-            <field name="name">B.B. 60/90 GG D.F.</field>
-            <field name="note">B.B. 60/90 GG Data Fattura</field>
+            <field name="name">B.T. 60/90 Days Inv.</field>
+            <field name="note">B.T. 60/90 Days Date Invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_60_90_net_line1" model="account.payment.term.line">
@@ -574,8 +574,8 @@
         </record>
 
         <record id="payment_term_90_120_net_2" model="account.payment.term">
-            <field name="name">B.B. 90/120 GG D.F.</field>
-            <field name="note">B.B. 90/120 GG Data Fattura</field>
+            <field name="name">B.T. 90/120 Days Inv.</field>
+            <field name="note">B.T. 90/120 Days Date Invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_90_120_net_line1" model="account.payment.term.line">
@@ -597,8 +597,8 @@
         </record>
 
         <record id="payment_term_30_60_90_net_3" model="account.payment.term">
-            <field name="name">B.B. 30/60/90 GG D.F.</field>
-            <field name="note">B.B 30/60/90 GG Data Fattura</field>
+            <field name="name">B.T. 30/60/90 Days Inv.</field>
+            <field name="note">B.B 30/60/90 Days Date Invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_30_60_90_net_line1" model="account.payment.term.line">
@@ -629,8 +629,8 @@
         </record>
 
         <record id="payment_term_60_90_120_net_3" model="account.payment.term">
-            <field name="name">B.B. 60/90/120 GG D.F.</field>
-            <field name="note">B.B. 60/90/120 GG Data Fattura</field>
+            <field name="name">B.T. 60/90/120 Days Inv.</field>
+            <field name="note">B.T. 60/90/120 Days Date Invoice</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_60_90_120_net_line1" model="account.payment.term.line">
@@ -662,8 +662,8 @@
 
 	<!-- Payment End of Month -->
         <record id="payment_term_dffm" model="account.payment.term">
-            <field name="name">B.B. D.F.F.M.</field>
-            <field name="note">B.B. Data Fattura Fine Mese</field>
+            <field name="name">B.T. Date Invoice End Month</field>
+            <field name="note">B.T. Date Invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_dffm_line" model="account.payment.term.line">
@@ -676,8 +676,8 @@
         </record>
 	
 	<record id="payment_term_30_days_1" model="account.payment.term">
-            <field name="name">B.B. 30 GG D.F. F.M.</field>
-            <field name="note">B.B. 30 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 30 Days Inv. End Month</field>
+            <field name="note">B.T. 30 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_30_days_line" model="account.payment.term.line">
@@ -690,8 +690,8 @@
         </record>
 
 	<record id="payment_term_60_days_1" model="account.payment.term">
-            <field name="name">B.B. 60 GG D.F. F.M.</field>
-            <field name="note">B.B. 60 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 60 Days Inv. End Month</field>
+            <field name="note">B.T. 60 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_60_days_line" model="account.payment.term.line">
@@ -704,8 +704,8 @@
         </record>
 
         <record id="payment_term_90_days_1" model="account.payment.term">
-            <field name="name">B.B. 90 GG D.F. F.M.</field>
-            <field name="note">B.B. 90 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 90 Days Inv. End Month</field>
+            <field name="note">B.T. 90 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_90_days_line" model="account.payment.term.line">
@@ -718,8 +718,8 @@
         </record>
 
         <record id="payment_term_120_days_1" model="account.payment.term">
-            <field name="name">B.B. 120 GG D.F. F.M.</field>
-            <field name="note">B.B. 120 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 120 Days Inv. End Month</field>
+            <field name="note">B.T. 120 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_120_days_line" model="account.payment.term.line">
@@ -732,8 +732,8 @@
         </record>
 
         <record id="payment_term_180_days_1" model="account.payment.term">
-            <field name="name">B.B. 180 GG D.F. F.M.</field>
-            <field name="note">B.B. 180 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 180 Days Inv. End Month</field>
+            <field name="note">B.T. 180 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_180_days_line" model="account.payment.term.line">
@@ -746,8 +746,8 @@
         </record>
 
         <record id="payment_term_30_60_days_2" model="account.payment.term">
-            <field name="name">B.B. 30/60 GG D.F. F.M.</field>
-            <field name="note">B.B. 30/60 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 30/60 Days Inv. End Month</field>
+            <field name="note">B.T. 30/60 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_30_60_days_line1" model="account.payment.term.line">
@@ -769,8 +769,8 @@
         </record>
 
         <record id="payment_term_60_90_days_2" model="account.payment.term">
-            <field name="name">B.B. 60/90 GG D.F. F.M.</field>
-            <field name="note">B.B. 60/90 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 60/90 Days Inv. End Month</field>
+            <field name="note">B.T. 60/90 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_60_90_days_line1" model="account.payment.term.line">
@@ -792,8 +792,8 @@
         </record>
 
         <record id="payment_term_90_120_days_2" model="account.payment.term">
-            <field name="name">B.B. 90/120 GG D.F. F.M.</field>
-            <field name="note">B.B. 90/120 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 90/120 Days Inv. End Month</field>
+            <field name="note">B.T. 90/120 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_90_120_days_line1" model="account.payment.term.line">
@@ -815,8 +815,8 @@
         </record>
 
         <record id="payment_term_30_60_90_days_3" model="account.payment.term">
-            <field name="name">B.B. 30/60/90 GG D.F. F.M.</field>
-            <field name="note">B.B. 30/60/90 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 30/60/90 Days Inv. End Month</field>
+            <field name="note">B.T. 30/60/90 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_30_60_90_days_line1" model="account.payment.term.line">
@@ -847,8 +847,8 @@
         </record>
 
         <record id="payment_term_60_90_120_days_3" model="account.payment.term">
-            <field name="name">B.B. 60/90/120 GG D.F. F.M.</field>
-            <field name="note">B.B. 60/90/120 Giorni Data fattura Fine Mese</field>
+            <field name="name">B.T. 60/90/120 Days Inv. End Month</field>
+            <field name="note">B.T. 60/90/120 Days Date invoice End of Month</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_60_90_120_days_line1" model="account.payment.term.line">
@@ -880,8 +880,8 @@
 
 	<!-- Payment Day 10 of Month -->
         <record id="payment_term_30_days_10_monthly_1" model="account.payment.term">
-            <field name="name">B.B. 30 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 30 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 30 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_30_days_10_monthly_line1" model="account.payment.term.line">
@@ -894,8 +894,8 @@
         </record>
 
         <record id="payment_term_60_days_10_monthly_1" model="account.payment.term">
-            <field name="name">B.B. 60 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 60 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 60 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_60_days_10_monthly_line1" model="account.payment.term.line">
@@ -908,8 +908,8 @@
         </record>
 
         <record id="payment_term_90_days_10_monthly_1" model="account.payment.term">
-            <field name="name">B.B. 90 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 90 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 90 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_90_days_10_monthly_line1" model="account.payment.term.line">
@@ -922,8 +922,8 @@
         </record>
 
         <record id="payment_term_120_days_10_monthly_1" model="account.payment.term">
-            <field name="name">B.B. 120 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 120 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 120 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_120_days_10_monthly_line1" model="account.payment.term.line">
@@ -936,8 +936,8 @@
         </record>
 
         <record id="payment_term_30_60_days_10_monthly_2" model="account.payment.term">
-            <field name="name">B.B. 30/60 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 30/60 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 30/60 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30/60 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_30_60_days_10_monthly_line1" model="account.payment.term.line">
@@ -959,8 +959,8 @@
         </record>
 
         <record id="payment_term_60_90_days_10_monthly_2" model="account.payment.term">
-            <field name="name">B.B. 60/90 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 60/90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60/90 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_60_90_days_10_monthly_line1" model="account.payment.term.line">
@@ -982,8 +982,8 @@
         </record>
 
         <record id="payment_term_90_120_days_10_monthly_2" model="account.payment.term">
-            <field name="name">B.B. 90/120 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 90/120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 90/120 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="2_payment_term_90_120_days_10_monthly_line1" model="account.payment.term.line">
@@ -1005,8 +1005,8 @@
         </record>
 
         <record id="payment_term_30_60_90_days_10_monthly_3" model="account.payment.term">
-            <field name="name">B.B. 30/60/90 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 30/60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 30/60/90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30/60/90 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_30_60_90_days_10_monthly_line1" model="account.payment.term.line">
@@ -1037,8 +1037,8 @@
         </record>
 
         <record id="payment_term_60_90_120_days_10_monthly_3" model="account.payment.term">
-            <field name="name">B.B. 60/90/120 GG D.F. F.M. AL 10 MESE SUCC.</field>
-            <field name="note">B.B. 60/90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo</field>
+            <field name="name">B.T. 60/90/120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60/90/120 days invoice End of Month at 10 of next month</field>
             <field name="type">BB</field>
         </record>
         <record id="3_payment_term_60_90_120_days_10_monthly_line1" model="account.payment.term.line">

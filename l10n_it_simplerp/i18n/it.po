@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-08 16:12+0000\n"
-"PO-Revision-Date: 2015-12-08 16:12+0000\n"
+"POT-Creation-Date: 2016-11-30 09:12+0000\n"
+"PO-Revision-Date: 2016-11-30 09:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,316 +16,404 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_simplerp
-#: model:account.payment.term,name:l10n_it_simplerp.payment_consignment
-#: model:account.payment.term,note:l10n_it_simplerp.payment_consignment
-msgid "Alla consegna"
-msgstr "Alla consegna"
+#: model:account.payment.term,name:l10n_it_simplerp.payment_consignment_30_days
+#: model:account.payment.term,note:l10n_it_simplerp.payment_consignment_30_days
+msgid "30 Days after delivery"
+msgstr "30 Giorni dalla consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30order_70beforedelivery
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30order_70beforedelivery
+msgid "30% on order 70% before delivery"
+msgstr "30% all'ordine 70% prima della consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30order_70beforeshipment
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30order_70beforeshipment
+msgid "30% on order 70% before shipping"
+msgstr "30% all'ordine 70% prima della spedizione"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_50order_50beforeshipment
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_50order_50beforeshipment
+msgid "50% on order 50% before shipping"
+msgstr "50% all'ordine 50% prima della spedizione"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_50order_50_net
+msgid "50% on order, 50% B.T. 30 Days End Month"
+msgstr "50% all'ordine, 50% B.B. 30 GG F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_50order_50_net
+msgid "50% on order, 50% B.T. 30 Days End of Month"
+msgstr "50% all'ordine, 50% B.B. 30 Giorni Fine Mese"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_50proforma_50beforedelivery
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_50proforma_50beforedelivery
+msgid "50% on proforma 50% before delivery"
+msgstr "50% alla proforma 50% prima della consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_50proforma_50delivery
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_50proforma_50delivery
+msgid "50% on proforma 50% on delivery"
+msgstr "50% alla proforma 50% alla consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_consignment_6_weeks
+#: model:account.payment.term,note:l10n_it_simplerp.payment_consignment_6_weeks
+msgid "6 weeks after delivery"
+msgstr "6 settimane dalla consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_consignment_7_days
+#: model:account.payment.term,note:l10n_it_simplerp.payment_consignment_7_days
+msgid "7 Days after delivery"
+msgstr "7 Giorni dalla consegna"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_90_net_3
-msgid "B.B 30/60/90 GG Data Fattura"
+msgid "B.B 30/60/90 Days Date Invoice"
 msgstr "B.B 30/60/90 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_net_1
-msgid "B.B. 120 GG D.F."
+msgid "B.T. 120 Days Inv."
 msgstr "B.B. 120 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_1
-msgid "B.B. 120 GG D.F. F.M."
+msgid "B.T. 120 Days Inv. End Month"
 msgstr "B.B. 120 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_10_monthly_1
-msgid "B.B. 120 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 120 Days Inv. 10 Next Month"
 msgstr "B.B. 120 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_120_net_1
-msgid "B.B. 120 Giorni Data Fattura"
+msgid "B.T. 120 days invoice"
 msgstr "B.B. 120 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_120_days_10_monthly_1
-msgid "B.B. 120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 120 days invoice End of Month at 10 of next month"
 msgstr "B.B. 120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_120_days_1
-msgid "B.B. 120 Giorni Data fattura Fine Mese"
+msgid "B.T. 120 Days Date invoice End of Month"
 msgstr "B.B. 120 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_15_net_1
-msgid "B.B. 15 GG D.F."
+msgid "B.T. 15 Days Inv."
 msgstr "B.B. 15 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_15_net_1
-msgid "B.B. 15 Giorni Data Fattura"
+msgid "B.T. 15 days invoice"
 msgstr "B.B. 15 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_180_net_1
+msgid "B.T. 180 Days Inv."
+msgstr "B.B. 180 GG D.F."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_180_net_1
+msgid "B.T. 180 days invoice"
+msgstr "B.B. 180 Giorni Data Fattura"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_180_days_1
+msgid "B.T. 180 Days Inv. End Month"
+msgstr "B.B. 180 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_180_days_1
+msgid "B.T. 180 Days Date invoice End of Month"
+msgstr "B.B. 180 Giorni Data Fattura Fine Mese"
+
+#. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_days_1
-msgid "B.B. 30 GG D.F. F.M."
+msgid "B.T. 30 Days Inv. End Month"
 msgstr "B.B. 30 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_days_10_monthly_1
-msgid "B.B. 30 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 30 Days Inv. 10 Next Month"
 msgstr "B.B. 30 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_days_10_monthly_1
-msgid "B.B. 30 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 30 days invoice End of Month at 10 of next month"
 msgstr "B.B. 30 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_days_1
-msgid "B.B. 30 Giorni Data fattura Fine Mese"
+msgid "B.T. 30 Days Date invoice End of Month"
 msgstr "B.B. 30 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_net_2
-msgid "B.B. 30/60 GG D.F."
+msgid "B.T. 30/60 Days Inv."
 msgstr "B.B. 30/60 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_days_2
-msgid "B.B. 30/60 GG D.F. F.M."
+msgid "B.T. 30/60 Days Inv. End Month"
 msgstr "B.B. 30/60 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_days_10_monthly_2
-msgid "B.B. 30/60 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 30/60 Days Inv. 10 Next Month"
 msgstr "B.B. 30/60 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_net_2
-msgid "B.B. 30/60 GG Data Fattura"
+msgid "B.T. 30/60 Days Date Invoice"
 msgstr "B.B. 30/60 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_days_10_monthly_2
-msgid "B.B. 30/60 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 30/60 days invoice End of Month at 10 of next month"
 msgstr "B.B. 30/60 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_days_2
-msgid "B.B. 30/60 Giorni Data fattura Fine Mese"
+msgid "B.T. 30/60 Days Date invoice End of Month"
 msgstr "B.B. 30/60 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_90_net_3
-msgid "B.B. 30/60/90 GG D.F."
+msgid "B.T. 30/60/90 Days Inv."
 msgstr "B.B. 30/60/90 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_90_days_3
-msgid "B.B. 30/60/90 GG D.F. F.M."
+msgid "B.T. 30/60/90 Days Inv. End Month"
 msgstr "B.B. 30/60/90 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_30_60_90_days_10_monthly_3
-msgid "B.B. 30/60/90 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 30/60/90 Days Inv. 10 Next Month"
 msgstr "B.B. 30/60/90 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_90_days_10_monthly_3
-msgid "B.B. 30/60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 30/60/90 days invoice End of Month at 10 of next month"
 msgstr "B.B. 30/60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_30_60_90_days_3
-msgid "B.B. 30/60/90 Giorni Data fattura Fine Mese"
+msgid "B.T. 30/60/90 Days Date invoice End of Month"
 msgstr "B.B. 30/60/90 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_45_net_1
-msgid "B.B. 45 GG D.F."
+msgid "B.T. 45 Days Inv."
 msgstr "B.B. 45 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_45_net_1
-msgid "B.B. 45 Giorni Data Fattura"
+msgid "B.T. 45 days invoice"
 msgstr "B.B. 45 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_net_1
-msgid "B.B. 60 GG D.F."
+msgid "B.T. 60 Days Inv."
 msgstr "B.B. 60 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_days_1
-msgid "B.B. 60 GG D.F. F.M."
+msgid "B.T. 60 Days Inv. End Month"
 msgstr "B.B. 60 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_days_10_monthly_1
-msgid "B.B. 60 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 60 Days Inv. 10 Next Month"
 msgstr "B.B. 60 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_net_1
-msgid "B.B. 60 Giorni Data Fattura"
+msgid "B.T. 60 days invoice"
 msgstr "B.B. 60 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_days_10_monthly_1
-msgid "B.B. 60 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 60 days invoice End of Month at 10 of next month"
 msgstr "B.B. 60 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_days_1
-msgid "B.B. 60 Giorni Data fattura Fine Mese"
+msgid "B.T. 60 Days Date invoice End of Month"
 msgstr "B.B. 60 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_net_2
-msgid "B.B. 60/90 GG D.F."
+msgid "B.T. 60/90 Days Inv."
 msgstr "B.B. 60/90 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_days_2
-msgid "B.B. 60/90 GG D.F. F.M."
+msgid "B.T. 60/90 Days Inv. End Month"
 msgstr "B.B. 60/90 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_days_10_monthly_2
-msgid "B.B. 60/90 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 60/90 Days Inv. 10 Next Month"
 msgstr "B.B. 60/90 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_net_2
-msgid "B.B. 60/90 GG Data Fattura"
+msgid "B.T. 60/90 Days Date Invoice"
 msgstr "B.B. 60/90 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_days_10_monthly_2
-msgid "B.B. 60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 60/90 days invoice End of Month at 10 of next month"
 msgstr "B.B. 60/90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_days_2
-msgid "B.B. 60/90 Giorni Data fattura Fine Mese"
+msgid "B.T. 60/90 Days Date invoice End of Month"
 msgstr "B.B. 60/90 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_120_net_3
-msgid "B.B. 60/90/120 GG D.F."
+msgid "B.T. 60/90/120 Days Inv."
 msgstr "B.B. 60/90/120 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_120_days_3
-msgid "B.B. 60/90/120 GG D.F. F.M."
+msgid "B.T. 60/90/120 Days Inv. End Month"
 msgstr "B.B. 60/90/120 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_60_90_120_days_10_monthly_3
-msgid "B.B. 60/90/120 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 60/90/120 Days Inv. 10 Next Month"
 msgstr "B.B. 60/90/120 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_120_net_3
-msgid "B.B. 60/90/120 GG Data Fattura"
+msgid "B.T. 60/90/120 Days Date Invoice"
 msgstr "B.B. 60/90/120 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_120_days_10_monthly_3
-msgid "B.B. 60/90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 60/90/120 days invoice End of Month at 10 of next month"
 msgstr "B.B. 60/90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_60_90_120_days_3
-msgid "B.B. 60/90/120 Giorni Data fattura Fine Mese"
+msgid "B.T. 60/90/120 Days Date invoice End of Month"
 msgstr "B.B. 60/90/120 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_net_1
-msgid "B.B. 90 GG D.F."
+msgid "B.T. 90 Days Inv."
 msgstr "B.B. 90 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_days_1
-msgid "B.B. 90 GG D.F. F.M."
+msgid "B.T. 90 Days Inv. End Month"
 msgstr "B.B. 90 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_days_10_monthly_1
-msgid "B.B. 90 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 90 Days Inv. 10 Next Month"
 msgstr "B.B. 90 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_net_1
-msgid "B.B. 90 Giorni Data Fattura"
+msgid "B.T. 90 days invoice"
 msgstr "B.B. 90 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_days_10_monthly_1
-msgid "B.B. 90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 90 days invoice End of Month at 10 of next month"
 msgstr "B.B. 90 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_days_1
-msgid "B.B. 90 Giorni Data fattura Fine Mese"
+msgid "B.T. 90 Days Date invoice End of Month"
 msgstr "B.B. 90 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_120_net_2
-msgid "B.B. 90/120 GG D.F."
+msgid "B.T. 90/120 Days Inv."
 msgstr "B.B. 90/120 GG D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_120_days_2
-msgid "B.B. 90/120 GG D.F. F.M."
+msgid "B.T. 90/120 Days Inv. End Month"
 msgstr "B.B. 90/120 GG D.F. F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_90_120_days_10_monthly_2
-msgid "B.B. 90/120 GG D.F. F.M. AL 10 MESE SUCC."
+msgid "B.T. 90/120 Days Inv. 10 Next Month"
 msgstr "B.B. 90/120 GG D.F. F.M. AL 10 MESE SUCC."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_120_net_2
-msgid "B.B. 90/120 GG Data Fattura"
+msgid "B.T. 90/120 Days Date Invoice"
 msgstr "B.B. 90/120 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_120_days_10_monthly_2
-msgid "B.B. 90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
+msgid "B.T. 90/120 days invoice End of Month at 10 of next month"
 msgstr "B.B. 90/120 Giorni Data Fattura Fine Mese al 10 del mese successivo"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_90_120_days_2
-msgid "B.B. 90/120 Giorni Data fattura Fine Mese"
+msgid "B.T. 90/120 Days Date invoice End of Month"
 msgstr "B.B. 90/120 Giorni Data fattura Fine Mese"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_sight
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_sight
-msgid "B.B. A Vista"
+msgid "B.T. At Sight"
 msgstr "B.B. A Vista"
 
 #. module: l10n_it_simplerp
-#: model:account.payment.term,name:l10n_it_simplerp.payment_term_advance
-msgid "B.B. Anticipato"
-msgstr "B.B. Anticipato"
-
-#. module: l10n_it_simplerp
-#: model:account.payment.term,note:l10n_it_simplerp.payment_term_advance
-msgid "B.B. Anticipato all'ordine"
-msgstr "B.B. Anticipato all'ordine"
-
-#. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_dffm
-msgid "B.B. D.F.F.M."
+msgid "B.T. Date Invoice End Month"
 msgstr "B.B. D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_dffm
-msgid "B.B. Data Fattura Fine Mese"
+msgid "B.T. Date Invoice End of Month"
 msgstr "B.B. Data Fattura Fine Mese"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_advance
+msgid "B.T. in Advance on order"
+msgstr "B.B. Anticipato all'ordine"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_proforma
+msgid "B.T. in Advance on proforma"
+msgstr "B.B. Anticipato alla proforma"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_advance
+msgid "B.T. on Order"
+msgstr "B.B. all'Ordine"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_proforma
+msgid "B.T. on Proforma"
+msgstr "B.B. alla Proforma"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_delivery
+#: model:account.payment.term,note:l10n_it_simplerp.payment_delivery
+msgid "Cash on delivery"
+msgstr "Contrassegno"
 
 #. module: l10n_it_simplerp
 #: model:account.account.type,name:l10n_it_simplerp.account_type_memo
@@ -333,10 +421,106 @@ msgid "Conti d'ordine"
 msgstr "Conti d'ordine"
 
 #. module: l10n_it_simplerp
-#: model:account.payment.term,name:l10n_it_simplerp.payment_delivery
-#: model:account.payment.term,note:l10n_it_simplerp.payment_delivery
-msgid "Contrassegno"
-msgstr "Contrassegno"
+#: model:account.payment.term,name:l10n_it_simplerp.payment_term_creditcard
+#: model:account.payment.term,note:l10n_it_simplerp.payment_term_creditcard
+msgid "Credit Card"
+msgstr "Carta di Credito"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct
+msgid "Direct Payment"
+msgstr "Rimessa Diretta"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_180_days
+msgid "Direct Payment 180 Days End of Month"
+msgstr "Rimessa Diretta 180 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_180_days
+msgid "Direct Payment 180 Days Inv. End Month"
+msgstr "Rimessa Diretta 180 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30_days
+msgid "Direct Payment 30 Days End of Month"
+msgstr "Rimessa Diretta 30 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30_days
+msgid "Direct Payment 30 Days Inv. End Month"
+msgstr "Rimessa Diretta 30 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30
+msgid "Direct Payment 30 days inv."
+msgstr "Rimessa Diretta 30 GG D.F."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30
+msgid "Direct Payment 30 days invoice"
+msgstr "Rimessa Diretta 30 GG D.F."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30_60_days
+msgid "Direct Payment 30/60 Days Date invoice End of Month"
+msgstr "Rimessa Diretta 30/60 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30_60_days
+msgid "Direct Payment 30/60 Days Inv. End Month"
+msgstr "Rimessa Diretta 30/60 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_60_days
+msgid "Direct Payment 60 Days End of Month"
+msgstr "Rimessa Diretta 60 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60_days
+msgid "Direct Payment 60 Days Inv. End Month"
+msgstr "Rimessa Diretta 60 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60
+msgid "Direct Payment 60 days inv."
+msgstr "Rimessa Diretta 60 GG D.F."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_60
+msgid "Direct Payment 60 days invoice"
+msgstr "Rimessa Diretta 60 giorni data fattura"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_60_90_days
+msgid "Direct Payment 60/90 Days Date invoice End of Month"
+msgstr "Rimessa Diretta 60/90 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60_90_days
+msgid "Direct Payment 60/90 Days Inv. End Month"
+msgstr "Rimessa Diretta 60/90 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_90_days
+msgid "Direct Payment 90 Days End of Month"
+msgstr "Rimessa Diretta 90 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_90
+msgid "Direct Payment 90 Days Inv."
+msgstr "Rimessa Diretta 90 GG D.F."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_90_days
+msgid "Direct Payment 90 Days Inv. End Month"
+msgstr "Rimessa Diretta 90 GG D.F.F.M."
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_90
+msgid "Direct Payment 90 days invoice"
+msgstr "Rimessa Diretta 90 giorni data fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_16_MS
@@ -349,6 +533,18 @@ msgid "F24 16 Giorni Mese Successivo"
 msgstr "F24 16 Giorni Mese Successivo"
 
 #. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_consignment
+#: model:account.payment.term,note:l10n_it_simplerp.payment_consignment
+msgid "On Delivery"
+msgstr "Alla Consegna"
+
+#. module: l10n_it_simplerp
+#: model:account.payment.term,name:l10n_it_simplerp.payment_paid
+#: model:account.payment.term,note:l10n_it_simplerp.payment_paid
+msgid "Pagamento effettuato"
+msgstr "Pagamento effettuato"
+
+#. module: l10n_it_simplerp
 #: model:account.account.type,name:l10n_it_simplerp.account_type_correction_expense
 msgid "Rettifiche di costi"
 msgstr "Rettifiche di costi"
@@ -357,22 +553,6 @@ msgstr "Rettifiche di costi"
 #: model:account.account.type,name:l10n_it_simplerp.account_type_correction_income
 msgid "Rettifiche di ricavi"
 msgstr "Rettifiche di ricavi"
-
-#. module: l10n_it_simplerp
-#: model:account.payment.term,name:l10n_it_simplerp.payment_direct
-#: model:account.payment.term,note:l10n_it_simplerp.payment_direct
-msgid "Rimessa Diretta"
-msgstr "Rimessa Diretta"
-
-#. module: l10n_it_simplerp
-#: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60
-msgid "Rimessa Diretta 60 GG D.F."
-msgstr "Rimessa Diretta 60 GG D.F."
-
-#. module: l10n_it_simplerp
-#: model:account.payment.term,note:l10n_it_simplerp.payment_direct_60
-msgid "Rimessa Diretta 60 Giorni Data Fattura"
-msgstr "Rimessa Diretta 60 Giorni Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.account.type,name:l10n_it_simplerp.account_type_view_assets

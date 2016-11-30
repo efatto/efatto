@@ -115,3 +115,8 @@ msgstr "Preventivo"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "Order"
 msgstr "Ordine"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Discount"
+msgstr "Sconto"

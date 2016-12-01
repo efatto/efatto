@@ -10,11 +10,12 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _sale_order_count(self):
-        count = 0.0
-        for line in self.order_line:
-            if line.product_id.type in ['product', 'consu']:
-                count += line.product_uom_qty
-        self.sale_order_count = count
+        for order in self:
+            count = 0.0
+            for line in order.order_line:
+                if line.product_id.type in ['product', 'consu']:
+                    count += line.product_uom_qty
+            order.sale_order_count = count
 
     sale_order_count = fields.Float(
         string='Total products of Sale Order',

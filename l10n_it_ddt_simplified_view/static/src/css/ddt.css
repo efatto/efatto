@@ -11,14 +11,36 @@
 .openerp .oe_form_sheet_width {
     min-width: 300px;
 }
-.openerp .oe_leftbar a.oe_logo img { width: 20px; height: 20px; transition: 1s ease-in-out 1s;}
-.openerp .oe_leftbar:hover a.oe_logo img { width: 50px; height: 50px; transition: .25s ease-in-out .5s; }
-.openerp .oe_leftbar, .openerp .oe_leftbar > div {width:20px; transition: 1s ease-in-out 1s;}
-.openerp .oe_leftbar:hover, .openerp .oe_leftbar:hover > div {width:200px; transition: .25s ease-in-out .5s; }
-.openerp .oe_leftbar .oe_secondary_menus_container, .openerp .oe_leftbar > div > div > div > div.oe_secondary_menus_container
-{width:20px; overflow: hidden; background-color: #bbf; transition: 1s ease-in-out 1s;}
-.openerp .oe_leftbar:hover .oe_secondary_menus_container
-{width:200px; overflow: auto; background-color: initial; transition: .25s ease-in-out .5s;}
-.openerp .oe_secondary_submenu .oe_menu_text { overflow:visible; }
-.openerp .oe_secondary_menu_section {white-space:nowrap;}
+.openerp .oe_list_content .oe_list_header_columns {
+    font-size: 20px;
+}
+.openerp table { height: 42px; font-size: 33px;}
+.openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"], .openerp .oe_form input[type="file"], .openerp .oe_form select {
+	height: 42px;
+}
+.openerp a.button, .openerp button, .openerp .oe_button, .openerp input[type='submit'] {
+    height: 42px;
+    font-size: 33px;}
+.openerp a.button:active, .openerp a.button.active, .openerp button:active, .openerp .oe_button:active, .openerp .oe_button.active, .openerp input[type='submit']:active, .openerp input[type='submit'].active{
+    display: none;
+}
+.openerp .oe_dropdown_toggle oe_dropdown_arrow oe_opened {
+    display: none;
+}
+.openerp .oe_application a { font-size: 33px;}
+.openerp .oe_form_editable .oe_form .oe_form_field_date input {
+    font-size: 33px;
+    width: auto;
+}
+.ui-autocomplete-input, .uneditable-input {
+	display: inline-block;
+	padding: 4px;
+	font-size: 33px;
+	line-height: 18px;
+	color: #808080;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
 }

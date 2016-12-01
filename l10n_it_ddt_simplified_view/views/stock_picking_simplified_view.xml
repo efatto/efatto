@@ -7,7 +7,6 @@
       <field name="model">stock.picking.package.preparation</field>
       <field name="arch" type="xml">
         <form string="Package Preparation">
-             <!--class="no_min_width"-->
           <header>
             <button name="action_put_in_pack" states="draft" string="Put in pack" type="object" class="oe_highlight" groups="base.group_user"/>
             <button name="action_done" states="draft,in_pack" string="Package done" type="object" class="oe_highlight" groups="base.group_user"/>
@@ -27,18 +26,12 @@
                 <field name="date" nolabel="1"/>
                 <field name="ddt_type_id" widget="selection" nolabel="1"/>
                 <field name="partner_id" nolabel="1" placeholder="Partner"/>
-                <field name="partner_invoice_id" nolabel="1" placeholder="Invoice Partner"
-                       domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
-                       attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
-                <field name="partner_shipping_id" nolabel="1" placeholder="Shipping Partner"
-                       domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
-                       attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
                 <field name="date_done" attrs="{'invisible': [('state', '!=', 'done')]}"/>
                 <field name="package_id" attrs="{'invisible': [('package_id', '=', False)]}"/>
                 <field name="company_id" invisible="1"/>
             </group>
-            <notebook>
-              <page string="Rows">
+            <!--<notebook>-->
+              <!--<page string="Rows">-->
                     <field name="line_ids" >
                         <tree string="Product lines" editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -60,17 +53,25 @@
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
                     <field name="carrier_id" nolabel="1" placeholder="Carrier"/>
                 </group>
-                <group colspan="2" col="1">
+                <group>
                     <field name="parcels"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                        <!--<field name="volume"/>-->
-                        <!--<field name="weight"/>-->
-                        <!--<field name="net_weight"/>-->
+                        <field name="volume"/>
+                        <field name="weight"/>
+                        <field name="net_weight"/>
                         <!--<field name="invoice_id" />-->
                     <field name="ddt_date_start" nolabel="1"/>
                 </group>
-              </page>
-            </notebook>
+                  <group>
+                    <field name="partner_invoice_id" nolabel="1" placeholder="Invoice Partner"
+                       domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
+                       attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+                    <field name="partner_shipping_id" nolabel="1" placeholder="Shipping Partner"
+                       domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
+                       attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+                  </group>
+              <!--</page>-->
+            <!--</notebook>-->
           </sheet>
         </form>
       </field>

@@ -15,6 +15,9 @@
                     <field name="weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                     <field name="net_weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                 </field>
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='th_weight']" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
             </field>
         </record>
   </data>

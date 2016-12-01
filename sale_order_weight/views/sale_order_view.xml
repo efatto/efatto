@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+        <record id="view_order_form_weight" model="ir.ui.view">
+            <field name="name">sale.order.form.weight</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
+            <field name="arch" type="xml">
+                <field name="parcels" position="after">
+                    <field name="compute_weight"/>
+                    <field name="volume" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="net_weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="volume_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
+                    <field name="weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
+                    <field name="net_weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
+                </field>
+            </field>
+        </record>
+  </data>
+  <data noupdate="0">
+        <record forcecreate="True" id="config_parameter_sale_order_weight" model="ir.config_parameter">
+            <field name="key">sale.print_weight</field>
+            <field name="value" eval="True"/>
+        </record>
+  </data>
+</openerp>

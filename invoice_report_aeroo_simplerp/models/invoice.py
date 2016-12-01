@@ -39,6 +39,7 @@ class Parser(report_sxw.rml_parse):
             'account_fiscal_position_rule_id':
                 self._get_account_fiscal_position_rule_id,
             'variant_images': self._variant_images,
+            'sale_weight': self._sale_weight,
             'translate': self._translate_text,
             'img_gray': self._convert_to_gray_scale,
         })
@@ -261,6 +262,14 @@ class Parser(report_sxw.rml_parse):
         res = False
         if self.pool['ir.config_parameter'].get_param(
                 self.cr, self.uid, 'product.print_variant_images',
+                default=False):
+            res = True
+        return res
+
+    def _sale_weight(self):
+        res = False
+        if self.pool['ir.config_parameter'].get_param(
+                self.cr, self.uid, 'sale.print_weight',
                 default=False):
             res = True
         return res

@@ -18,7 +18,7 @@
             </field>
         </record>
   </data>
-  <data noupdate="0">
+  <data noupdate="1">
         <record forcecreate="True" id="config_parameter_sale_order_weight" model="ir.config_parameter">
             <field name="key">sale.print_weight</field>
             <field name="value" eval="True"/>

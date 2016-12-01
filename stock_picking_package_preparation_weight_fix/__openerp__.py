@@ -29,8 +29,10 @@
     'license': 'AGPL-3',
     "depends": [
         'stock_picking_package_preparation',
+        'l10n_it_ddt',
     ],
     "data": [
+        'views/stock_picking.xml',
     ],
     "installable": True,
 }

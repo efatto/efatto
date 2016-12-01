@@ -37,20 +37,21 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _compute_weight(self):
-        if self.compute_weight:
-            self.net_weight = sum(
-                l.product_id and l.product_id.weight_net or
-                l.product_tmpl_id and l.product_tmpl_id.weight_net
-                * l.product_uom_qty for l in self.order_line)
-            self.weight = sum(
-                l.product_id and l.product_id.weight or
-                l.product_tmpl_id and l.product_tmpl_id.weight
-                * l.product_uom_qty for l in self.order_line)
-            self.volume = sum(
-                l.product_id and l.product_id.volume or
-                l.product_tmpl_id and l.product_tmpl_id.volume
-                * l.product_uom_qty for l in self.order_line)
-        else:
-            self.net_weight = self.net_weight_custom
-            self.weight = self.weight_custom
-            self.volume = self.volume_custom
+        for order in self:
+            if order.compute_weight:
+                order.net_weight = sum(
+                    l.product_id.weight_net and l.product_id.weight_net or
+                    l.product_tmpl_id.weight_net and l.product_tmpl_id.weight_net
+                    * l.product_uom_qty for l in order.order_line)
+                order.weight = sum(
+                    l.product_id.weight and l.product_id.weight or
+                    l.product_tmpl_id.weight and l.product_tmpl_id.weight
+                    * l.product_uom_qty for l in order.order_line)
+                order.volume = sum(
+                    l.product_id.volume and l.product_id.volume or
+                    l.product_tmpl_id.volume and l.product_tmpl_id.volume
+                    * l.product_uom_qty for l in order.order_line)
+            else:
+                order.net_weight = order.net_weight_custom
+                order.weight = order.weight_custom
+                order.volume = order.volume_custom

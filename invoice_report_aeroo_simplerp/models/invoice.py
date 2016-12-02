@@ -43,6 +43,7 @@ class Parser(report_sxw.rml_parse):
             'translate': self._translate_text,
             'img_gray': self._convert_to_gray_scale,
             'get_total_discount': self._get_total_discount,
+            'check_installed_module': self._check_installed_module,
         })
         self.cache = {}
 
@@ -298,3 +299,11 @@ class Parser(report_sxw.rml_parse):
             total_amount += line.product_uom_qty * line.price_unit
             total_subprices += line.price_subtotal
         return total_amount - total_subprices
+
+    def _check_installed_module(self, module):
+        res = False
+        if self.pool['ir.module.module'].search(self.cr, self.uid,
+                                                [('name', '=', module),
+                                                 ('state', '=', 'installed')]):
+            res = True
+        return res

@@ -118,5 +118,20 @@ msgstr "Ordine"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
-msgid "Discount"
-msgstr "Sconto"
+msgid "discount"
+msgstr "sconto"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "goods amount"
+msgstr "importo beni"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "image"
+msgstr "foto"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "ordered color"
+msgstr "colore"

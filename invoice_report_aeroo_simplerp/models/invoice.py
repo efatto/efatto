@@ -42,6 +42,7 @@ class Parser(report_sxw.rml_parse):
             'sale_weight': self._sale_weight,
             'translate': self._translate_text,
             'img_gray': self._convert_to_gray_scale,
+            'get_total_discount': self._get_total_discount,
         })
         self.cache = {}
 
@@ -290,3 +291,10 @@ class Parser(report_sxw.rml_parse):
         background_stream = StringIO.StringIO()
         image.save(background_stream, 'PNG')
         return background_stream.getvalue().encode(encoding)
+
+    def _get_total_discount(self, lines):
+        total_subprices = total_amount = 0.0
+        for line in (l for l in lines if l.discount):
+            total_amount += line.product_uom_qty * line.price_unit
+            total_subprices += line.price_subtotal
+        return total_amount - total_subprices

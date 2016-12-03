@@ -1,46 +1,84 @@
 @media screen and (max-device-width: 768px){
-.navbar-collapse {
-    width: 100%;
-    border-top: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
+/* hide header */
 .openerp .oe_view_manager table.oe_view_manager_header h2 {
-    line-height: 0px !important;
+    display: none !important;
 }
+/* hide print-attachments button, todo: add print button */
+.openerp .oe_view_manager table.oe_view_manager_header .oe_view_manager_sidebar {
+    display: none !important;
+}
+/* reduce sheet width */
 .openerp .oe_form_sheet_width {
     min-width: 300px;
 }
-.openerp .oe_list_content .oe_list_header_columns {
-    font-size: 20px;
+/* ok wide all input boxes but not when compiled*/
+.openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"],
+.openerp .oe_form input[type="file"], .openerp .oe_form select {
+	height: 56px;
+	font-size: 40px;
 }
-.openerp table { height: 42px; font-size: 33px;}
-.openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"], .openerp .oe_form input[type="file"], .openerp .oe_form select {
-	height: 42px;
+/* ok wide all input boxes when compiled and text inside*/
+.openerp .oe_form_char_content, .openerp .oe_form .oe_form_field_selection,
+.openerp .oe_form .oe_form_uri, .openerp .oe_form .oe_form_field_monetary,
+.openerp .oe_form .oe_form_field_file, .openerp .oe_form .oe_form_field_password,
+.openerp .oe_form .oe_form_field_text, .openerp .oe_form .oe_form_field_date,
+.openerp .oe_form .oe_form_field_datetime {
+	height: 56px;
+	font-size: 40px;
 }
-.openerp a.button, .openerp button, .openerp .oe_button, .openerp input[type='submit'] {
-    height: 42px;
-    font-size: 33px;}
-.openerp a.button:active, .openerp a.button.active, .openerp button:active, .openerp .oe_button:active, .openerp .oe_button.active, .openerp input[type='submit']:active, .openerp input[type='submit'].active{
-    display: none;
+/* date label and other*/
+.openerp .oe_form .oe_form_label_help[for], .openerp .oe_form .oe_form_label[for]{
+	height: 56px;
+	font-size: 40px;
+	width: auto;
 }
-.openerp .oe_dropdown_toggle oe_dropdown_arrow oe_opened {
-    display: none;
+/* tree view header*/
+.openerp .oe_list_content .oe_list_header_columns,
+.openerp .oe_list_context .ui-sortable,
+.openerp .oe_form_field_one2many .oe_form_field_one2many_list_row_add,
+.openerp .oe_form_field_many2many .oe_form_field_one2many_list_row_add {
+    font-size: 40px;
+    height: 56px;
 }
-.openerp .oe_application a { font-size: 33px;}
+/* tree view content*/
+.openerp .oe_list_editable .oe_list_content td.oe_list_field_cell {
+    font-size: 34px;
+}
+.openerp .oe_list_content td, .openerp .oe_list_content th {
+    line-height: 56px;
+}
+/* remove limit of 150px to datetime and date picker fields */
+.openerp .oe_form_editable .oe_form .oe_form_field_datetime input,
 .openerp .oe_form_editable .oe_form .oe_form_field_date input {
-    font-size: 33px;
     width: auto;
 }
-.ui-autocomplete-input, .uneditable-input {
-	display: inline-block;
-	padding: 4px;
-	font-size: 33px;
-	line-height: 18px;
-	color: #808080;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+/* drop button */
+.openerp .oe_i {
+    font-family: "mnmliconsRegular" !important;
+    font-size: 63px;
+    font-weight: 900 !important;
+}
+/* open button */
+.openerp .oe_e {
+    font-family: "entypoRegular" !important;
+    font-size: 102px;
+    font-weight: 900 !important;
+    line-height: 100%;
+}
+/* datepicker button */
+.openerp .oe_form .oe_input_icon {
+    cursor: pointer;
+    margin: 3px 0 0 -41px;
+    vertical-align: top;
+    height: 40px;
+    width: 40px;
+}
+/* arrow button in fields */
+.openerp .oe_view_manager_view_form .oe_form_container .oe_m2o_drop_down_button img {
+    height: 50px;
+}
+/* WIP arrow button in selection field - not works */
+.openerp .oe_form_char_content, .openerp .oe_form .oe_form_field_selection img {
+    height: 50px;
 }
 }

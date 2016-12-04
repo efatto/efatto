@@ -26,6 +26,11 @@
 	height: 56px;
 	font-size: 40px;
 }
+/* text in drop-down many2one fields*/
+.ui-autocomplete {
+  font-size: 33px;
+  line-height: 38px;
+}
 /* date label and other*/
 .openerp .oe_form .oe_form_label_help[for], .openerp .oe_form .oe_form_label[for]{
 	height: 56px;

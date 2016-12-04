@@ -27,9 +27,9 @@
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_ddt_ext',
+        'web_mobile_view',
     ],
     'data': [
-        'views/ddt.xml',
         'views/stock_picking_simplified_view.xml',
     ],
     'installable': True

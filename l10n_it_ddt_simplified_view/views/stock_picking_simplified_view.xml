@@ -12,6 +12,7 @@
             <button name="action_done" states="draft,in_pack" string="Package done" type="object" class="oe_highlight" groups="base.group_user"/>
             <button name="action_cancel" states="draft,in_pack" string="Cancel" groups="base.group_user" type="object"/>
             <button name="action_draft" states="cancel,done" string="Reset to draft" type="object" class="oe_highlight" groups="base.group_user"/>
+            <button name="%(l10n_it_ddt.action_report_ddt)d" string="Print DDT" type="action" class="oe_highlight" groups="base.group_user"/>
             <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,partially_available,assigned,done" statusbar_colors='{"shipping_except":"red","invoice_except":"red","waiting_date":"blue"}'/>
           </header>
           <sheet>

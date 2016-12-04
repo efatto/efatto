@@ -64,11 +64,9 @@
     font-weight: 900 !important;
 }
 /* open button */
-.openerp .oe_e {
-    font-family: "entypoRegular" !important;
+.openerp .oe_form_field_many2one .oe_m2o_cm_button {
     font-size: 102px;
     font-weight: 900 !important;
-    line-height: 100%;
 }
 /* datepicker button */
 .openerp .oe_form .oe_input_icon {

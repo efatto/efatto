@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Web base css for simplified view',
+    'name': 'Web base css for mobile view',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Web base css for simplified view',
+    'description': 'Web base css for mobile view',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

@@ -58,10 +58,8 @@
     width: auto;
 }
 /* drop button */
-.openerp .oe_i {
-    font-family: "mnmliconsRegular" !important;
-    font-size: 63px;
-    font-weight: 900 !important;
+.openerp .oe_list_record_delete .oe_i {
+    font-size: 50px;
 }
 /* open button */
 .openerp .oe_form_field_many2one .oe_m2o_cm_button {

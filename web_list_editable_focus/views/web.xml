@@ -3,7 +3,7 @@
     <data>
         <template id="assets_backend" name="list_editable assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script src="/web_mobile_view/static/src/js/list_editable.js"></script>
+                <script src="/web_list_editable_focus/static/src/js/list_editable.js"></script>
             </xpath>
         </template>
     </data>

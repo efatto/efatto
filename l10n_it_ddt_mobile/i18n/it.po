@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_cashflow
+#	* l10n_it_ddt_mobile
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-22 19:32+0000\n"
-"PO-Revision-Date: 2016-05-22 19:32+0000\n"
+"POT-Creation-Date: 2016-12-09 08:56+0000\n"
+"PO-Revision-Date: 2016-12-09 08:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,51 +15,100 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: account_cashflow
-#: model:ir.model,name:account_cashflow.model_account_move
-msgid "Account Entry"
-msgstr "Registrazione Contabile"
+#. module: l10n_it_ddt_mobile
+#: model:ir.actions.act_window,help:l10n_it_ddt_mobile.action_stock_picking_package_preparation_simplified
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"          Click to prepare a new package preparation.\n"
+"        </p>\n"
+"      "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"          Clicca per preparare un nuovo DDT.\n"
+"        </p>\n"
+"      "
 
-#. module: account_cashflow
-#: field:res.company,cashflow_account_id:0
-msgid "Account for cash flow temporary moves"
-msgstr "Conto per movimenti temporanei di cash flow"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Cancel"
+msgstr "Annulla"
 
-#. module: account_cashflow
-#: model:ir.actions.act_window,name:account_cashflow.action_account_move_line_cash_flow
-#: model:ir.ui.menu,name:account_cashflow.menu_account_move_line_cashflow
-msgid "Cash Flow"
-msgstr "Cash Flow"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Carriage condition"
+msgstr "Condizioni di consegna"
 
-#. module: account_cashflow
-#: field:account.move,is_cashflow:0
-#: field:account.move.line,is_cashflow:0
-msgid "Cashflow temporary line"
-msgstr "Riga temporanea di Cashflow"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Carrier"
+msgstr "Vettore"
 
-#. module: account_cashflow
-#: model:ir.model,name:account_cashflow.model_res_company
-msgid "Companies"
-msgstr "Aziende"
+#. module: l10n_it_ddt_mobile
+#: model:ir.actions.act_window,name:l10n_it_ddt_mobile.action_stock_picking_package_preparation_simplified
+#: model:ir.ui.menu,name:l10n_it_ddt_mobile.menu_stock_picking_package_preparation_simplified
+msgid "DDT Fast"
+msgstr "DDT Immediato"
 
-#. module: account_cashflow
-#: field:account.move.line,date_cashflow:0
-msgid "Date cashflow"
-msgstr "Data cashflow"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Goods description"
+msgstr "Descrizione merci"
 
-#. module: account_cashflow
-#: view:account.move.line:account_cashflow.view_move_line_tree_cash_flow
-#: model:ir.model,name:account_cashflow.model_account_move_line
-msgid "Journal Items"
-msgstr "Voci sezionale"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Invoice Partner"
+msgstr "Fatturazione"
 
-#. module: account_cashflow
-#: view:account.move.line:account_cashflow.view_move_line_tree_cash_flow
-msgid "Total Credit"
-msgstr "Credito Totale"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Package Preparation"
+msgstr "DDT"
 
-#. module: account_cashflow
-#: view:account.move.line:account_cashflow.view_move_line_tree_cash_flow
-msgid "Total Debit"
-msgstr "Debito Totale"
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Package done"
+msgstr "DDT completato"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Print DDT"
+msgstr "Stampa DDT"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Product lines"
+msgstr "Movimenti"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Put in pack"
+msgstr "Inserisci nel DDT"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Q.ty"
+msgstr "Q.tà"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Reset to draft"
+msgstr "Reimposta a Bozza"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Shipping Partner"
+msgstr "Destinatario"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Transportation method"
+msgstr "Metodo di Trasporto"
+
+#. module: l10n_it_ddt_mobile
+#: view:stock.picking.package.preparation:l10n_it_ddt_mobile.stock_picking_package_preparation_simplified_form
+msgid "Transportation reason"
+msgstr "Causale di trasporto"
 

@@ -41,8 +41,9 @@
                     <group colspan="2" col="2">
                         <group colspan="1" col="1">
                             <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
-                            <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product line"/>
-                            <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
+                            <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
+                            <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
+                            <field name="product_attribute_value_ids" invisible="1"/>
                         </group>
                         <group colspan="1" col="2">
                             <field name="product_template_image" widget="image" options="{'no_create': True}" nolabel="1" placeholder="Template Image"/>

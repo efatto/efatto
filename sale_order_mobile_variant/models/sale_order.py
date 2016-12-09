@@ -15,9 +15,11 @@ class SaleOrder(models.Model):
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
         )
+    product_attribute_value_ids = fields.Many2many(
+        string='Values', related='product_attribute_line_id.value_ids', readonly=True)
     product_attribute_value_id = fields.Many2one(
         'product.attribute.value',
-        domain="[('attribute_id','=',product_attribute_line_id.attribute_id)]"
-        )
+        domain="[('id', 'in', product_attribute_value_ids[0][2])]"
+    )
     product_attribute_image = fields.Binary(
         related='product_attribute_value_id.image')

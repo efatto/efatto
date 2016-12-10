@@ -12,12 +12,13 @@
             <!-- Is there a discount on at least one line? -->
             <t t-set="display_discount" t-value="any([l.discount for l in o.order_line])"/>
             <t t-set="display_taxes" t-value="any([l.tax_id for l in o.order_line])"/>
-            <t t-set="col_span" t-value="7 if display_discount else 6"/>
+            <t t-set="col_span" t-value="8 if display_discount else 7"/>
             <t t-set="th_style" t-value="'border-bottom: 1px solid #ddd !important;white-space:nowrap;'"/>
                     <table class="table  table-condensed" t-attf-style="color:{{o.text_color}};" >
                         <thead t-attf-style="background-color:{{o.theme_color}}; page-break-inside: avoid; color:{{o.theme_txt_color}};">
                             <tr t-attf-style="page-break-inside: avoid !important; border-bottom: 1px solid {{o.text_color}} !important;font-size:{{o.body_font+2}}px;">
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-list-ol"/> Item</th>
+                                <th t-if="o.show_img" t-attf-style="{{th_style}}"><i class="fa fa-camera"/> Image</th>
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-th-large"/> Description</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-sort-amount-asc"/> Quantity</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-tags"/> Unit Price</th>
@@ -40,6 +41,7 @@
                              <tr t-attf-style="color:{{o.text_color}};background-color:{{o.odd if l_parity in 'odd' else o.even}};
 				 page-break-inside: avoid">
                                 <td><span t-esc="l_index + 1"/></td>
+                                <td t-if="o.show_img"><span itemprop="image" t-field="l.product_id.image_small" t-field-options='{"widget": "image"}'/></td>
                                 <td><span t-field="l.name"/></td>
                                 <td class="text-right">
                                     <span t-field="l.product_uom_qty"/>
@@ -80,6 +82,7 @@
                             <thead t-attf-style="background-color:{{o.theme_color}}; page-break-inside: avoid; color:{{o.theme_txt_color}};">
                               <tr t-attf-style="page-break-inside: avoid !important; border-bottom: 1px solid #ddd !important;font-size:{{o.body_font+2}}px;">
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-list-ol"/> Item</th>
+                                <th t-if="o.show_img" t-attf-style="{{th_style}}"><i class="fa fa-camera"/> Image</th>
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-th-large"/> Description</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-sort-amount-asc"/> Quantity</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-money"/> Unit Price</th>
@@ -139,10 +142,24 @@
                      <p t-if="o.fiscal_position.note">
                          <strong>Fiscal Position Remark:</strong> <span t-field="o.fiscal_position.note"/>
                      </p>
-                     <p t-if="o.note">
+                    <p t-if="o.aiw_report">
+                        <strong>Amount in Words:</strong><span style="text-decoration:underline;" t-field="o.amount_words"/>
+                    </p>
+                </div>
+                <div class="col-xs-12" style="padding-left:0px; padding-right:0px; page-break-inside: avoid ! important;">
+                    <p t-if="o.note">
                         <span t-field="o.note"/>
-                     </p>
-
+                    </p>
+                    <div class="col-xs-6 pull-left mt16 row">
+                        <p>
+                            <strong>Customer Signature:</strong><span t-esc="35*'.'"/>
+                        </p>
+                    </div>
+                    <div class="col-xs-6 pull-right mt16 row">
+                        <p class="text-right">
+                            <strong>Stamp:</strong><span t-esc="45*'.'"/>
+                        </p>
+                    </div>
                 </div>
 
     </template>

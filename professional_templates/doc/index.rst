@@ -1,33 +1,39 @@
 Professional Report Templates Documentation
 ===========================================
-
 Installation
 ------------
-
+NOTE: Before you proceed to install this module, please check the `Pre-Installation Requirements` section below.
 This Module is a standard Odoo Module. Once you purchase it, please follow the following steps to install it:
 
 - A download link will appear on the module description page.
 
 - You need to extract the downloaded file into Odoo 'addons' directory where all other modules are kept.
 
-- You then need to click on `Update Apps list` for the new module to appear on the list of Apps. 
+- You then need to click on ``Updates Apps list`` for the new module to appear on the list of Apps.
 
-- Then you click on `Install` and wait for it to finish
+- Then you click on ``Install`` and wait for it to finish
 
-- After that you can go to configure the Logos, colors and your favorite templates as the default templates ...refer to Module `Description` for configuration
+- After that you can go to configure the Logos, colors and your favorite templates as the default templates ...refer to Module ``Description`` for configuration
+
 
 
 Configuration
 -------------
 Please refer to `Module Description` for illustrated steps on how to configure the default templates, colors and logos for your reports
 
+Pre-Installation Requirements
+---------------------------
 
-Requirements & Compatibility
+- Download and install python module called ``num2words`` version ``0.5.3``. Download link:`https://github.com/savoirfairelinux/num2words`. We recommend that you download the source package and then      execute: `python setup.py install` while inside the package directory.
+
+- Download and install ``wkhtmltopdf`` version ``0.12.1 (with patched qt)`` or higher. Version 0.12.3 (with patched qt) is recommended for excellent results
+
+
+Compatibility
 ------------
 
-- wkhtmltopdf version ``0.12.1 (with patched qt)`` or higher. Version 0.12.3 (with patched qt) is recommended for excellent results.
+- Fully Supports Odoo Version 8.0 standard installation
 
-- Supports any standard Odoo Version 8.0 installation 
 
 
 Frequently Asked Questions (FAQs)

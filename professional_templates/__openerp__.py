@@ -38,11 +38,12 @@
     'category': 'Accounting & Finance',
     'images': ['static/description/main.png'],
 
-    'version': '0.5',
+    'version': '0.7',
     'price': 129,
     'currency': 'EUR',
     # any module necessary for this one to work correctly
     'depends': ['base', 'account', 'sale', 'purchase', 'stock', 'delivery', 'sale_layout'],
+    'external_dependencies': {'python': ['num2words']},
 
     # always loaded
     'data': [
@@ -52,6 +53,7 @@
         'views/company_footer.xml',
         'views/company_address.xml',
         'views/category.xml',
+        'views/res_currency.xml',
 
         'reports/invoice_reports.xml',
         'reports/sale_order_reports.xml',
@@ -124,6 +126,8 @@
 
         'carrier/delivery_report.xml',
         'carrier/picking_report.xml',
+
+        'data/res_currency_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

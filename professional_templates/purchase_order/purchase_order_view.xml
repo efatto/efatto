@@ -9,6 +9,12 @@
 		 <xpath expr="//field[@name='date_order']" position="after">
 			<field name="templ_id" attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"/>
 		 </xpath>
+                <xpath expr="//field[@name='notes']" position="before">
+                    <group>
+                        <field name="amount_words"/>
+                        <field name="aiw_report"/>
+                    </group>
+                </xpath>
 		 <xpath expr="//notebook" position="inside">
                          <page string="PO &amp; RFQ Report Settings">
 			     <group>

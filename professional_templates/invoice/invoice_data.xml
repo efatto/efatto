@@ -12,13 +12,14 @@
             <!-- Is there a discount on at least one line? -->
             <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line])"/>
             <t t-set="display_taxes" t-value="any([l.invoice_line_tax_id for l in o.invoice_line])"/>
-            <t t-set="col_span" t-value="7 if display_discount else 6"/>
+            <t t-set="col_span" t-value="8 if display_discount else 7"/>
 
                     <table class="table  table-condensed" t-attf-style="color:{{o.text_color}};" >
                         <thead t-attf-style="color:{{o.theme_txt_color}};">
                              <t t-set="th_style" t-value="'border-bottom: 1px solid #ddd !important;white-space:nowrap;'"></t>
                             <tr t-attf-style="background-color:{{o.theme_color}};font-size:{{o.body_font+2}}px;">
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-list-ol"/> Item</th>
+                                <th t-if="o.show_img" t-attf-style="{{th_style}}"><i class="fa fa-camera"/> Image</th>
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-th-large"/> Description</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-sort-amount-asc"/> Quantity</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-tags"/> Unit Price</th>
@@ -33,13 +34,14 @@
 		            <!-- Name of the category -->
             		  <t t-call="professional_templates.category_template">
                 		<t t-set="doc" t-value="o"/>
-                                <t t-set="cols" t-value="col_span"  />
+                                <t t-set="cols" t-value="col_span"/>
                           </t>
 
                           <!--<t t-foreach="o.invoice_line_ids" t-as="l">-->
                           <t t-foreach="p['lines']" t-as="l">
                              <tr t-attf-style="background-color:{{o.odd if l_parity in 'odd' else o.even}};color:{{o.text_color}};page-break-inside:avoid;">
                                 <td><span t-esc="l_index + 1"/></td>
+                                <td t-if="o.show_img"><span itemprop="image" t-field="l.product_id.image_small" t-field-options='{"widget": "image"}'/></td>
                                 <td><span t-field="l.name"/></td>
                                 <td class="text-right">
                                     <span t-field="l.quantity"/>
@@ -83,6 +85,7 @@
                              <t t-set="th_style" t-value="'border-bottom: 1px solid #ddd !important;white-space:nowrap;'"></t>
                             <tr t-attf-style="background-color:{{o.theme_color}};font-size:{{o.body_font+2}}px;">
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-list-ol"/> Item</th>
+                                <th t-if="o.show_img" t-attf-style="{{th_style}}"><i class="fa fa-camera"/> Image</th>
                                 <th t-attf-style="{{th_style}}"><i class="fa fa-th-large"/> Description</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-sort-amount-asc"/> Quantity</th>
                                 <th class="text-right" t-attf-style="{{th_style}}"><i class="fa fa-tags"/> Unit Price</th>
@@ -131,7 +134,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td t-attf-style="border-top: 1px solid {{o.text_color}} !important;"><strong>Amount Due</strong></td>
+                            <td t-attf-style="border-top: 1px solid {{o.text_color}} !important;"><strong>Balance</strong></td>
                             <td class="text-right" t-attf-style="border-top: 1px solid {{o.text_color}} !important;">
                                  <strong>
 				    <span  style="font-weight:bold;" t-field="o.residual"
@@ -141,14 +144,37 @@
 
                         </tr>
                         <tr>
-                            <td t-attf-style="border-top: 1px solid {{o.text_color}} !important;"><strong>Payment Status</strong></td>
-                            <td class="text-right" t-attf-style="border-top: 1px solid {{o.text_color}} !important;">
-                              <strong>
-                              <span t-if="o.state == 'paid'" class="label label-info orders_label_text_align"><i class="fa fa-fw fa-check"/> Paid</span>
-                              <span t-if="o.state != 'paid'" class="label label-info orders_label_text_align"><i class="fa fa-fw fa-clock-o"/> Open</span>
-			      </strong>
+                            <t t-set="stl" t-value="'padding-top:3px;'"/>
+                            <td t-attf-style="border-top: 1px solid {{o.text_color}} !important;"><strong>Status</strong></td>
+                            <td class="text-right" t-attf-style="border-top: 1px solid {{o.text_color}} !important;white-space:nowrap;" t-if="o.type in ['out_invoice', 'in_invoice']">
+                                <span t-attf-style="{{stl}}" t-if="o.state in ['proforma', 'proforma2']" class="label label-warning orders_label_text_align"><i class="fa fa-fw fa-asterisk"/> Pro-Forma</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'paid' and o.amount_total != 0.0" class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> Fully Paid</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state in ['paid','open'] and o.amount_total == 0.0" class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> No Charge</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and o.residual == o.amount_total and o.amount_total != 0.0" class="label label-info orders_label_text_align">
+                                <i class="fa fa-fw fa-times"/> Unpaid</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and o.residual &lt; o.amount_total" class="label label-info orders_label_text_align">
+                                <i class="fa fa-fw fa-times-circle-o"/> Partially Paid</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'draft'" class="label label-warning orders_label_text_align"><i class="fa fa-fw fa-asterisk"/> Not Issued</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'cancel'" class="label label-danger orders_label_text_align"><i class="fa fa-fw fa-ban"/> Cancelled</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and datetime.datetime.strptime((o.date_due or '{:%Y-%m-%d}'.format(datetime.datetime.now() + datetime.timedelta(days=1))), '%Y-%m-%d') &lt; datetime.datetime.now() and o.amount_total != 0.0" 
+                                class="label label-warning orders_label_text_align"> <i class="fa fa-fw fa-clock-o"/>Overdue</span>
+                            <!-- the addition of one day to time is basically to take care of a case where date_due is missing
+                            ...this will avoid errors and also avoid showing overdue status when date_due is missing..it make sense --> 
                             </td>
-
+                            <td class="text-right" t-attf-style="border-top: 1px solid {{o.text_color}} !important;white-space:nowrap;" t-if="o.type in ['out_refund', 'in_refund']">
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'paid' and o.amount_total != 0.0" class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> Fully Refunded</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state in ['paid','open'] and o.amount_total == 0.0" class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> No Charge</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and o.residual == o.amount_total and o.amount_total != 0.0" class="label label-info orders_label_text_align">
+                                    <i class="fa fa-fw fa-times"/> Not Refunded</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and o.residual &lt; o.amount_total" class="label label-info orders_label_text_align">
+                                    <i class="fa fa-fw fa-times-circle-o"/> Partially Refunded</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'draft'" class="label label-warning orders_label_text_align"><i class="fa fa-fw fa-asterisk"/> Not Issued</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'cancel'" class="label label-danger orders_label_text_align"><i class="fa fa-fw fa-ban"/> Cancelled</span>
+                                <span t-attf-style="{{stl}}" t-if="o.state == 'open' and datetime.datetime.strptime((o.date_due or '{:%Y-%m-%d}'.format(datetime.datetime.now()+ datetime.timedelta(days=1))), '%Y-%m-%d') &lt; datetime.datetime.now() and o.amount_total != 0.0" 
+                                    class="label label-warning orders_label_text_align"> <i class="fa fa-fw fa-clock-o"/>Overdue</span>
+                            <!-- the addition of one day to time is basically to take care of a case where date_due is missing
+                            ...this will avoid errors and also avoid showing overdue status when date_due is missing..it make sense --> 
+                            </td>
                         </tr>
 			</tbody>
                     </table>
@@ -175,9 +201,15 @@
 			   </tbody>
 		         </table>	
 		   </div>
+                    <div  t-if="o.aiw_report" class="col-xs-6 pull-left" style="padding-left:0px; padding-right:0px; page-break-inside: avoid;">
+                        <p>
+                        <strong>Amount in Words:</strong><span style="text-decoration:underline;" t-field="o.amount_words"/>
+                        </p>
+                    </div>
 
                    <div  t-if="o.payment_ids" class="col-xs-6 pull-left" style="padding-top:1px; padding-left:0px; padding-right:0px; page-break-inside: avoid;">
-			<strong>Payments:</strong>
+			<strong t-if="o.type in ['in_refund', 'out_refund']">Refunds:</strong>
+			<strong t-if="o.type in ['in_invoice', 'out_invoice']">Payments:</strong>
                     <table class="table table-condensed" t-attf-style="color:{{o.text_color}};">
 			<thead t-attf-style="background-color:{{o.theme_color}}; page-break-inside: avoid; color:{{o.theme_txt_color}};">
 			  <tr t-attf-style="font-size:{{o.body_font+2}}px;">
@@ -195,9 +227,12 @@
                                 <td><span t-field="p.date"/></td>
                                 <td><span t-field="p.journal_id"/></td>
                                 <td><span t-field="p.ref"/></td>
-                                <td class="text-right"><span t-field="p.credit" 
-					t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-				</td>
+                                <td class="text-right" t-if="o.type in ['in_refund', 'out_invoice']">
+                                    <span t-field="p.credit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                                <td class="text-right" t-if="o.type in ['out_refund', 'in_invoice']">
+                                    <span t-field="p.debit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
 			     </tr>
 			 </t>
 			</tbody>
@@ -207,17 +242,26 @@
                      <p t-if="o.payment_term.note">
                         <strong>Payment Terms:</strong> <span t-field="o.payment_term.note"/>
                      </p>
-                     <!--<p t-if="o.incoterms_id">
-                        <strong>Shipping Terms:</strong> <span t-field="o.incoterms_id"/>
-                     </p>-->
                      <p t-if="o.fiscal_position.note">
                          <strong>Fiscal Position Remark:</strong> <span t-field="o.fiscal_position.note"/>
                      </p>
-                     <p t-if="o.comment">
-                        <strong>Note:</strong> <span t-field="o.comment"/>
-                     </p>
                 </div>
-	</template>
+                <div class="col-xs-12" style="padding-left:0px; padding-right:0px; page-break-inside: avoid;">
+                    <p t-if="o.comment">
+                    <strong>Note:</strong> <span t-field="o.comment"/>
+                    </p>
+                    <div class="col-xs-6 pull-left mt16 row">
+                        <p>
+                            <strong>Customer Signature:</strong><span t-esc="35*'.'"/>
+                        </p>
+                    </div>
+                    <div class="col-xs-6 pull-right mt16 row">
+                        <p class="text-right">
+                            <strong>Stamp:</strong><span t-esc="45*'.'"/>
+                        </p>
+                    </div>
+                </div>
+</template>
 </data>
 </openerp>
                       

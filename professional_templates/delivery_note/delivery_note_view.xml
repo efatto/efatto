@@ -18,6 +18,7 @@
 				   <field name="odd"/>
 				   <field name="even"/>
 				   <field name="text_color"/>
+				   <field name="show_img"/>
 				</group>
 				<group>
 				   <field name="theme_color"/>

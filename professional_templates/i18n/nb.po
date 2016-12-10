@@ -6,14 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-23 23:45+0000\n"
-"PO-Revision-Date: 2016-05-23 23:45+0000\n"
-"Last-Translator: Bernard K Too<bernard.too@optima.co.ke>\n"
-"Language-Team: Norwegian Bokmål\n"
+"POT-Creation-Date: 2016-12-08 20:31+0000\n"
+"PO-Revision-Date: 2016-12-08 20:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nb\n"
 "Plural-Forms: \n"
 
 #. module: professional_templates
@@ -21,45 +20,6 @@ msgstr ""
 #: view:website:professional_templates.company_footer
 msgid "&bull;"
 msgstr ""
-
-#. module: professional_templates
-#: view:website:professional_templates.delivery_data
-#: view:website:professional_templates.invoice_data
-#: view:website:professional_templates.order_data
-#: view:website:professional_templates.picking_data
-#: view:website:professional_templates.purchase_data
-#: view:website:professional_templates.rfq_data
-msgid "Item"
-msgstr "Punkt"
-
-#. module: professional_templates
-#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
-#: view:purchase.order:professional_templates.purchase_order_inherited_customized
-#: view:res.company:professional_templates.res_company_inherit_default_settings
-#: view:sale.order:professional_templates.view_sale_order_inherit_customized
-#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
-msgid "NOTE:"
-msgstr "Notat:"
-
-#. module: professional_templates
-#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
-#: view:purchase.order:professional_templates.purchase_order_inherited_customized
-#: view:res.company:professional_templates.res_company_inherit_default_settings
-#: view:sale.order:professional_templates.view_sale_order_inherit_customized
-#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
-msgid "Please make sure the font family you are specifying is already installed in your Odoo Server."
-msgstr "Vennligst sørg for skriftfamilien du spesifiserte allerede er installert i din Odoo Server."
-
-#. module: professional_templates
-#: field:account.invoice,font_family:0
-#: field:purchase.order,font_family:0
-#: field:res.company,font_family:0
-#: field:sale.order,font_family:0
-#: field:stock.picking,font_family:0
-msgid "Font Family:"
-msgstr "font familie:"
-
-
 
 #. module: professional_templates
 #: selection:account.invoice,body_font:0
@@ -866,13 +826,21 @@ msgstr ""
 #: view:website:account.report_invoice_document
 #: view:website:professional_templates.invoice_data
 msgid "Amount"
-msgstr "Beløp"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Amount Due"
-msgstr "Beløp Due"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,amount_words:0
+#: field:purchase.order,amount_words:0
+#: field:sale.order,amount_words:0
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Amount in Words:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -880,17 +848,22 @@ msgstr "Beløp Due"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Approved By:"
-msgstr "Godkjent av:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Balance"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
 msgid "Barcode"
-msgstr "Serienummer"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.picking_data
 msgid "Barcode / Serial No."
-msgstr "Serienummer"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,body_font:0
@@ -899,7 +872,12 @@ msgstr "Serienummer"
 #: field:sale.order,body_font:0
 #: field:stock.picking,body_font:0
 msgid "Body Font-Size(px):"
-msgstr "side skriftstørrelse(px)"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Cancelled"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -907,7 +885,7 @@ msgstr "side skriftstørrelse(px)"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Cancelled Invoice"
-msgstr "Avbrutt Faktura"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -919,7 +897,32 @@ msgstr "Avbrutt Faktura"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Carrier:"
-msgstr "Bæreren:"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,show_img:0
+msgid "Check this Box to display the product image in the PDF invoice report"
+msgstr ""
+
+#. module: professional_templates
+#: help:stock.picking,show_img:0
+msgid "Check this box in order to display the product image on the Delivery Note and Picking List"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,show_img:0
+msgid "Check this box to display product image in Sales Order, Quotation, Invoice and Delivery Note"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,show_img:0
+msgid "Check this box to display product image in the Sales Order/Quotation"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,aiw_report:0
+msgid "Check this box to enable the display of amount in words in the invoice/quote/sale order reports by default..this means when you create a new report, the amount in words will appear in the report unless you override it in the settings of that particular report"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -927,7 +930,7 @@ msgstr "Bæreren:"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Client Reference:"
-msgstr "Klientreferanse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -935,12 +938,12 @@ msgstr "Klientreferanse:"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Commitment Date:"
-msgstr "Engasjement dato:"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_res_company
 msgid "Companies"
-msgstr "Selskaper"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,name_color:0
@@ -949,19 +952,34 @@ msgstr "Selskaper"
 #: field:sale.order,name_color:0
 #: field:stock.picking,name_color:0
 msgid "Company Name Color"
-msgstr "Firmanavn Color"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.currency,currency_name:0
+msgid "Currecny Full name as known in the world"
+msgstr ""
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_res_currency
+msgid "Currency"
+msgstr ""
+
+#. module: professional_templates
+#: field:res.currency,currency_name:0
+msgid "Currency Name"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 msgid "Customer"
-msgstr "Kunde"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.PICK_1_document
 msgid "Customer Address"
-msgstr "kunde adresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_2_document
@@ -969,7 +987,7 @@ msgstr "kunde adresse"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Customer Address:"
-msgstr "kunde adresse:"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,cust_color:0
@@ -978,13 +996,20 @@ msgstr "kunde adresse:"
 #: field:sale.order,cust_color:0
 #: field:stock.picking,cust_color:0
 msgid "Customer Name Color"
-msgstr "Kundenavn Color"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Customer Signature:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 #: view:website:professional_templates.invoice_data
 msgid "Date"
-msgstr "Dato"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -992,7 +1017,7 @@ msgstr "Dato"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Date Approved:"
-msgstr "Dato Godkjent:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -1000,7 +1025,7 @@ msgstr "Dato Godkjent:"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Date Expected:"
-msgstr "Forventet dato:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -1008,12 +1033,12 @@ msgstr "Forventet dato:"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Date Ordered:"
-msgstr "Dato Bestilt:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.purchase_data
 msgid "Date Req."
-msgstr "Dato Påkrevd"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1021,7 +1046,7 @@ msgstr "Dato Påkrevd"
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.DN_4_document
 msgid "Date of Transfer:"
-msgstr "Overføringstidspunktet:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_4_document
@@ -1030,24 +1055,24 @@ msgstr "Overføringstidspunktet:"
 #: view:website:professional_templates.PO_4_document
 #: view:website:professional_templates.RFQ_4_document
 msgid "Date:"
-msgstr "Dato:"
+msgstr ""
 
 #. module: professional_templates
 #: view:res.company:professional_templates.res_company_inherit_default_settings
 msgid "Default Report Settings"
-msgstr "Standard rapportinnstillinger"
+msgstr ""
 
 #. module: professional_templates
 #: view:res.company:professional_templates.res_company_inherit_default_settings
 msgid "Default Report Templates"
-msgstr "Standard rapportmaler"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.PICK_1_document
 msgid "Delivery Address"
-msgstr "Leveringsadresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_2_document
@@ -1055,7 +1080,7 @@ msgstr "Leveringsadresse:"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Delivery Address:"
-msgstr "Leveringsadresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1063,32 +1088,32 @@ msgstr "Leveringsadresse:"
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.DN_4_document
 msgid "Delivery Note"
-msgstr "Følgeseddelen"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,template_dn:0
 msgid "Delivery Note Template"
-msgstr "Følgeseddelen Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:stock.picking:professional_templates.Delivery_note_inherited_customized
 msgid "Delivery Report Settings"
-msgstr "Levering Rapportinnstillinger"
+msgstr ""
 
 #. module: professional_templates
 #: view:stock.picking:professional_templates.Delivery_note_inherited_customized
 msgid "Delivery Slip Logo"
-msgstr "Følgeseddelen logo"
+msgstr ""
 
 #. module: professional_templates
 #: field:stock.picking,templ_id:0
 msgid "Delivery Slip Template"
-msgstr "Følgeseddelen Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_4_document
 msgid "Delivery address:"
-msgstr "Leveringsadresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
@@ -1096,18 +1121,34 @@ msgstr "Leveringsadresse:"
 #: view:website:professional_templates.purchase_data
 #: view:website:professional_templates.rfq_data
 msgid "Description"
-msgstr "Beskrivelse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.picking_data
 msgid "Destination"
-msgstr "Bestemmelsessted"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 msgid "Discount(%)"
-msgstr "Rabatt(%)"
+msgstr ""
+
+#. module: professional_templates
+#: field:res.company,show_img:0
+msgid "Display Product Image in Reports?"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,show_img:0
+#: field:sale.order,show_img:0
+msgid "Display Product Image?"
+msgstr ""
+
+#. module: professional_templates
+#: field:stock.picking,show_img:0
+msgid "Display image in PDF report?"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1115,7 +1156,7 @@ msgstr "Rabatt(%)"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Draft Invoice"
-msgstr "Utkast Faktura"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1123,12 +1164,12 @@ msgstr "Utkast Faktura"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Due Date:"
-msgstr "Forfallsdato:"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.actions.report.xml,name:professional_templates.account_invoice_action_report_duplicate
 msgid "Duplicate"
-msgstr "Duplisere"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_duplicate
@@ -1137,7 +1178,7 @@ msgstr "Duplisere"
 #: view:website:professional_templates.INVOICE_4_duplicate
 #: view:website:professional_templates.odoo_duplicate
 msgid "Duplicate#"
-msgstr "Duplisere"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,even:0
@@ -1146,12 +1187,12 @@ msgstr "Duplisere"
 #: field:sale.order,even:0
 #: field:stock.picking,even:0
 msgid "Even parity Color"
-msgstr "Selv paritet Color"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.rfq_data
 msgid "Expected Date"
-msgstr "Forventet dato"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,facebook:0
@@ -1164,7 +1205,7 @@ msgstr ""
 #: view:website:professional_templates.purchase_data
 #: view:website:professional_templates.rfq_data
 msgid "Fiscal Position Remark:"
-msgstr "Regnskapsstatus Remark:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1180,7 +1221,16 @@ msgstr "Regnskapsstatus Remark:"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Fiscal Position:"
-msgstr "Regnskapsstatus"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,font_family:0
+#: field:purchase.order,font_family:0
+#: field:res.company,font_family:0
+#: field:sale.order,font_family:0
+#: field:stock.picking,font_family:0
+msgid "Font Family:"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,footer_font:0
@@ -1189,7 +1239,17 @@ msgstr "Regnskapsstatus"
 #: field:sale.order,footer_font:0
 #: field:stock.picking,footer_font:0
 msgid "Footer Font-Size(px):"
-msgstr "footer skriftstørrelsen(px):"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Paid"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Refunded"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,googleplus:0
@@ -1203,12 +1263,35 @@ msgstr ""
 #: field:sale.order,header_font:0
 #: field:stock.picking,header_font:0
 msgid "Header Font-Size(px):"
-msgstr "header skriftstørrelsen(px):"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,aiw_report:0
+msgid "If you want to display the Invoice total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,aiw_report:0
+msgid "If you want to display the Purchase order/RFQ total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,aiw_report:0
+msgid "If you want to display the total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+msgid "Image"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_account_invoice
 msgid "Invoice"
-msgstr "Faktura"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1216,70 +1299,80 @@ msgstr "Faktura"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Invoice Date:"
-msgstr "Fakturadato:"
+msgstr ""
 
 #. module: professional_templates
 #: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
 msgid "Invoice Logo"
-msgstr "Faktura logo"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Invoice No."
-msgstr "Faktura Nei."
+msgstr ""
 
 #. module: professional_templates
 #: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
 msgid "Invoice Report Settings"
-msgstr "Fakturarapportinnstillinger"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,template_id:0
 #: field:res.company,template_invoice:0
 msgid "Invoice Template"
-msgstr "Faktura Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
 msgid "Invoice#"
-msgstr "Faktura"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
 msgid "Invoiced To:"
-msgstr "Fakturert:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
 #: view:website:professional_templates.SO_4_document
 msgid "Invoicing &"
-msgstr "Fakturering og"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_2_document
 #: view:website:professional_templates.SO_3_document
 msgid "Invoicing & Shipping Address:"
-msgstr "Fakturering og Leveringsadresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
 msgid "Invoicing Address"
-msgstr "Fakturaadresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_2_document
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Invoicing Address:"
-msgstr "Fakturaadresse:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+#: view:website:professional_templates.purchase_data
+#: view:website:professional_templates.rfq_data
+msgid "Item"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
 msgid "Location"
-msgstr "Lokasjon"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,invoice_logo:0
@@ -1290,23 +1383,47 @@ msgstr "Lokasjon"
 #: field:stock.picking,dn_logo:0
 #: field:stock.picking,pk_logo:0
 msgid "Logo"
-msgstr "Logo"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 #: view:website:professional_templates.invoice_data
 msgid "Method"
-msgstr "Metode"
+msgstr ""
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "NOTE:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "No Charge"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 msgid "No."
-msgstr "No."
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Issued"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Refunded"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 msgid "Note:"
-msgstr "Notat:"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,odd:0
@@ -1315,19 +1432,14 @@ msgstr "Notat:"
 #: field:sale.order,odd:0
 #: field:stock.picking,odd:0
 msgid "Odd parity Color"
-msgstr "Odde paritet Color"
-
-#. module: professional_templates
-#: view:website:professional_templates.invoice_data
-msgid "Open"
-msgstr "Ikke betalt"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_2_document
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Order"
-msgstr "Salg Rekkefølge"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1335,7 +1447,7 @@ msgstr "Salg Rekkefølge"
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.DN_4_document
 msgid "Order (Origin):"
-msgstr "Rekkefølge (opprinnelse)"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -1343,7 +1455,7 @@ msgstr "Rekkefølge (opprinnelse)"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Order (origin):"
-msgstr "Rekkefølge (opprinnelse)"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -1351,17 +1463,17 @@ msgstr "Rekkefølge (opprinnelse)"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Order Date:"
-msgstr "Dato Bestilt:"
+msgstr ""
 
 #. module: professional_templates
 #: view:sale.order:professional_templates.view_sale_order_inherit_customized
 msgid "Order Report Settings"
-msgstr "rapportkonfigurasjonene"
+msgstr ""
 
 #. module: professional_templates
 #: view:sale.order:professional_templates.view_sale_order_inherit_customized
 msgid "Order/Quotation Logo"
-msgstr "Logo"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -1369,17 +1481,22 @@ msgstr "Logo"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Our Reference:"
-msgstr "Vår referanse:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Overdue"
+msgstr ""
 
 #. module: professional_templates
 #: view:purchase.order:professional_templates.purchase_order_inherited_customized
 msgid "PO & RFQ Report Settings"
-msgstr "Rapportkonfigurasjonene"
+msgstr ""
 
 #. module: professional_templates
 #: view:purchase.order:professional_templates.purchase_order_inherited_customized
 msgid "PO Logo"
-msgstr "Innkjøpsordre Logo"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1387,7 +1504,7 @@ msgstr "Innkjøpsordre Logo"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "PRO-FORMA"
-msgstr "PRO-FORMA"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1395,36 +1512,44 @@ msgstr "PRO-FORMA"
 #: view:website:professional_templates.DN_3_document
 #: view:website:professional_templates.DN_4_document
 msgid "Packages:"
-msgstr "Pakker:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.company_footer
 msgid "Page:"
-msgstr "Side:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Paid"
-msgstr "Betalt"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Paid"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Refunded"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 msgid "Payment Information:"
-msgstr "Betalingsinformasjon:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Payment Status"
-msgstr "Betalingsstatus"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 #: view:website:professional_templates.rfq_data
 msgid "Payment Term Notes:"
-msgstr "Betalingsbetingelser notater:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -1435,12 +1560,12 @@ msgstr "Betalingsbetingelser notater:"
 #: view:website:professional_templates.SO_4_document
 #: view:website:professional_templates.invoice_data
 msgid "Payment Terms:"
-msgstr "Betalingsbetingelser:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 msgid "Payments:"
-msgstr "Betalinger:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -1448,45 +1573,58 @@ msgstr "Betalinger:"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Picking"
-msgstr "Plukking"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_stock_picking
 msgid "Picking List"
-msgstr "Plukkliste"
+msgstr ""
 
 #. module: professional_templates
 #: view:stock.picking:professional_templates.view_picking_inherit_dn
 msgid "Picking Logo"
-msgstr "Plukking logo"
+msgstr ""
 
 #. module: professional_templates
 #: field:stock.picking,templ_pk_id:0
 msgid "Picking Slip Template"
-msgstr "Plukkliste Mal"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,template_pk:0
 msgid "Picking Template"
-msgstr "Plukkliste Mal"
+msgstr ""
+
+#. module: professional_templates
+#: view:account.invoice:professional_templates.view_account_invoice__inherit_customized
+#: view:purchase.order:professional_templates.purchase_order_inherited_customized
+#: view:res.company:professional_templates.res_company_inherit_default_settings
+#: view:sale.order:professional_templates.view_sale_order_inherit_customized
+#: view:stock.picking:professional_templates.Delivery_note_inherited_customized
+msgid "Please make sure the font family you are specifying is already installed in your Odoo Server."
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Price"
-msgstr "Pris"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Pro-Forma"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
 #: view:website:professional_templates.picking_data
 msgid "Product"
-msgstr "Produkt"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,project_title:0
-#: field:sale.order,project_title:0
 msgid "Project Title"
-msgstr "Prosjekt tittel"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_purchase_order
@@ -1495,13 +1633,13 @@ msgstr "Prosjekt tittel"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Purchase Order"
-msgstr "Bestilling"
+msgstr ""
 
 #. module: professional_templates
 #: field:purchase.order,templ_id:0
 #: field:res.company,template_po:0
 msgid "Purchase Order Template"
-msgstr "Innkjøpsordre Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
@@ -1511,7 +1649,7 @@ msgstr "Innkjøpsordre Mal"
 #: view:website:professional_templates.purchase_data
 #: view:website:professional_templates.rfq_data
 msgid "Quantity"
-msgstr "Antall"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -1519,7 +1657,7 @@ msgstr "Antall"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Quotation"
-msgstr "Tilbud"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -1527,30 +1665,30 @@ msgstr "Tilbud"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Quotation Date:"
-msgstr "Tilbud Dato:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_4_document
 #: view:website:professional_templates.RFQ_4_document
 msgid "R.F.Q"
-msgstr "Tilbudsforespørsel"
+msgstr ""
 
 #. module: professional_templates
 #: view:purchase.order:professional_templates.view_rfq_inherit_po
 msgid "RFQ Logo"
-msgstr "Tilbudsforespørsel Logo"
+msgstr ""
 
 #. module: professional_templates
 #: field:purchase.order,templ_rfq_id:0
 #: field:res.company,template_rfq:0
 msgid "RFQ Template"
-msgstr "Tilbudsforespørsel Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 #: view:website:professional_templates.invoice_data
 msgid "Ref."
-msgstr "Ref."
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1558,7 +1696,7 @@ msgstr "Ref."
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Reference:"
-msgstr "Referanse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1566,17 +1704,22 @@ msgstr "Referanse:"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Refund"
-msgstr "Tilbakebetaling"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Refunds:"
+msgstr ""
 
 #. module: professional_templates
 #: view:res.company:professional_templates.res_company_inherit_default_settings
 msgid "Report Logo"
-msgstr "Rapporter Logo"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.RFQ_3_document
 msgid "Request For Quotation"
-msgstr "Tilbudsforespørsel"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -1584,32 +1727,32 @@ msgstr "Tilbudsforespørsel"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.RFQ_2_document
 msgid "Request for Quotation"
-msgstr "Tilbudsforespørsel"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.RFQ_1_document
 msgid "Request for Quotation #"
-msgstr "Tilbudsforespørsel"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
 msgid "Sale Order"
-msgstr "Salgsordre"
+msgstr ""
 
 #. module: professional_templates
 #: field:sale.order,templ_id:0
 msgid "Sale Order Report Template"
-msgstr "Salgsordre Mal"
+msgstr ""
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_sale_order
 msgid "Sales Order"
-msgstr "Salgsordre"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,template_so:0
 msgid "Sales Order Template"
-msgstr "Salgsordre Mal"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -1617,12 +1760,12 @@ msgstr "Salgsordre Mal"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Salesperson:"
-msgstr "Selger:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_4_document
 msgid "Scheduled Date"
-msgstr "planlagte datoen:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1633,14 +1776,14 @@ msgstr "planlagte datoen:"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Scheduled Date:"
-msgstr "planlagte datoen:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
 #: view:website:professional_templates.RFQ_1_document
 #: view:website:professional_templates.SO_1_document
 msgid "Shipping Address"
-msgstr "Leveringsadresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_2_document
@@ -1652,28 +1795,40 @@ msgstr "Leveringsadresse"
 #: view:website:professional_templates.SO_3_document
 #: view:website:professional_templates.SO_4_document
 msgid "Shipping Address:"
-msgstr "Leveringsadresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.rfq_data
 msgid "Shipping Terms:"
-msgstr "Fraktbetingelsene:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.RFQ_4_document
 msgid "Shipping address:"
-msgstr "Leveringsadresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.purchase_data
 msgid "Shipping:"
-msgstr "Fraktbetingelsene:"
+msgstr ""
+
+#. module: professional_templates
+#: field:res.company,aiw_report:0
+msgid "Show amount in words"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,aiw_report:0
+#: field:purchase.order,aiw_report:0
+#: field:sale.order,aiw_report:0
+msgid "Show in report?"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.picking_data
 msgid "Source"
-msgstr "kilde"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -1681,24 +1836,32 @@ msgstr "kilde"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Source Doc.:"
-msgstr "Kildedokument"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 msgid "Source Doc:"
-msgstr "Kildedokument"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Source Document:"
-msgstr "Kildedokument"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Stamp:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
 msgid "Status"
-msgstr "Statusen"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -1706,12 +1869,12 @@ msgstr "Statusen"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Status:"
-msgstr "Statusen:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.subtotal_template
 msgid "Subtotal:"
-msgstr "Subtotal:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1719,7 +1882,7 @@ msgstr "Subtotal:"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Supplier Invoice"
-msgstr "Leverandør Faktura"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1727,7 +1890,7 @@ msgstr "Leverandør Faktura"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Supplier Refund"
-msgstr "Leverandør Tilbakebetaling"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1756,14 +1919,14 @@ msgstr "Leverandør Tilbakebetaling"
 #: view:website:professional_templates.SO_4_document
 #: view:website:professional_templates.company_address
 msgid "TIN:"
-msgstr "MVA:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Taxes"
-msgstr "Avgifter"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,text_color:0
@@ -1772,7 +1935,7 @@ msgstr "Avgifter"
 #: field:sale.order,text_color:0
 #: field:stock.picking,text_color:0
 msgid "Text Color"
-msgstr "Tekstfargen"
+msgstr ""
 
 #. module: professional_templates
 #: help:stock.picking,theme_color:0
@@ -1904,15 +2067,30 @@ msgid "The background color for odd lines in the purchase order"
 msgstr ""
 
 #. module: professional_templates
+#: help:account.invoice,amount_words:0
+msgid "The invoice total amount in words is automatically generated by the system..few languages are supported currently"
+msgstr ""
+
+#. module: professional_templates
 #: help:purchase.order,text_color:0
 #: help:stock.picking,text_color:0
 msgid "The text color of the order. Normally this			 should be one of your official company colors or default HTML text color"
 msgstr ""
 
 #. module: professional_templates
-#: help:account.invoice,project_title:0
 #: help:sale.order,project_title:0
+msgid "The title of Sales order or purpose of the Sale order Or Quote"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,project_title:0
 msgid "The title of your customer project or work you are doing for your customer"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,amount_words:0
+#: help:sale.order,amount_words:0
+msgid "The total amount in words is automatically generated by the system..few languages are supported currently"
 msgstr ""
 
 #. module: professional_templates
@@ -1922,7 +2100,7 @@ msgstr ""
 #: field:sale.order,theme_color:0
 #: field:stock.picking,theme_color:0
 msgid "Theme Color"
-msgstr "Tema farge"
+msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,theme_txt_color:0
@@ -1931,7 +2109,7 @@ msgstr "Tema farge"
 #: field:sale.order,theme_txt_color:0
 #: field:stock.picking,theme_txt_color:0
 msgid "Theme Text Color"
-msgstr "Tema Tekstfarge"
+msgstr ""
 
 #. module: professional_templates
 #: help:stock.picking,pk_logo:0
@@ -1969,18 +2147,23 @@ msgid "This field holds the image used as logo for the purchase order, if non is
 msgstr ""
 
 #. module: professional_templates
+#: field:sale.order,project_title:0
+msgid "Title"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Total"
-msgstr "Totalt"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Total Without Taxes"
-msgstr "Totalsum uten avgift"
+msgstr ""
 
 #. module: professional_templates
 #: field:res.company,twitter:0
@@ -1990,31 +2173,31 @@ msgstr ""
 #. module: professional_templates
 #: view:website:professional_templates.category_template
 msgid "Uncategorized"
-msgstr "ukategorisert"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
 msgid "Uncleared"
-msgstr "Ikke betalt"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Unit Price"
-msgstr "Enhetspris"
+msgstr ""
 
 #. module: professional_templates
-#: view:website:professional_templates.SO_2_document
-msgid "Valid Until:"
-msgstr "Utløpsdato:"
+#: view:website:professional_templates.invoice_data
+msgid "Unpaid"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
 #: view:website:professional_templates.PO_1_document
 #: view:website:professional_templates.RFQ_1_document
 msgid "Vendor Address"
-msgstr "Leverandør Adresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_2_document
@@ -2025,19 +2208,31 @@ msgstr "Leverandør Adresse"
 #: view:website:professional_templates.RFQ_2_document
 #: view:website:professional_templates.RFQ_3_document
 msgid "Vendor Address:"
-msgstr "Leverandør Adresse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
 msgid "Warehouse Address"
-msgstr "Lageret Adresse"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_2_document
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Warehouse Address:"
-msgstr "Lageret Adresse"
+msgstr ""
+
+#. module: professional_templates
+#: field:purchase.order,website_message_ids:0
+#: field:sale.order,website_message_ids:0
+msgid "Website Messages"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,website_message_ids:0
+#: help:sale.order,website_message_ids:0
+msgid "Website communication history"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -2049,7 +2244,7 @@ msgstr "Lageret Adresse"
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Weight:"
-msgstr "Vekt:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -2057,7 +2252,7 @@ msgstr "Vekt:"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Your Reference:"
-msgstr "Din referanse:"
+msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_duplicate

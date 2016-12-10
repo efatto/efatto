@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 20:37+0000\n"
-"PO-Revision-Date: 2016-06-09 20:37+0000\n"
+"POT-Creation-Date: 2016-12-08 20:31+0000\n"
+"PO-Revision-Date: 2016-12-08 20:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -830,8 +830,16 @@ msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Amount Due"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,amount_words:0
+#: field:purchase.order,amount_words:0
+#: field:sale.order,amount_words:0
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Amount in Words:"
 msgstr ""
 
 #. module: professional_templates
@@ -840,6 +848,11 @@ msgstr ""
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Approved By:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Balance"
 msgstr ""
 
 #. module: professional_templates
@@ -862,6 +875,11 @@ msgid "Body Font-Size(px):"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Cancelled"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
@@ -879,6 +897,31 @@ msgstr ""
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Carrier:"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,show_img:0
+msgid "Check this Box to display the product image in the PDF invoice report"
+msgstr ""
+
+#. module: professional_templates
+#: help:stock.picking,show_img:0
+msgid "Check this box in order to display the product image on the Delivery Note and Picking List"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,show_img:0
+msgid "Check this box to display product image in Sales Order, Quotation, Invoice and Delivery Note"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,show_img:0
+msgid "Check this box to display product image in the Sales Order/Quotation"
+msgstr ""
+
+#. module: professional_templates
+#: help:res.company,aiw_report:0
+msgid "Check this box to enable the display of amount in words in the invoice/quote/sale order reports by default..this means when you create a new report, the amount in words will appear in the report unless you override it in the settings of that particular report"
 msgstr ""
 
 #. module: professional_templates
@@ -912,6 +955,21 @@ msgid "Company Name Color"
 msgstr ""
 
 #. module: professional_templates
+#: help:res.currency,currency_name:0
+msgid "Currecny Full name as known in the world"
+msgstr ""
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_res_currency
+msgid "Currency"
+msgstr ""
+
+#. module: professional_templates
+#: field:res.currency,currency_name:0
+msgid "Currency Name"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 msgid "Customer"
 msgstr ""
@@ -938,6 +996,13 @@ msgstr ""
 #: field:sale.order,cust_color:0
 #: field:stock.picking,cust_color:0
 msgid "Customer Name Color"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Customer Signature:"
 msgstr ""
 
 #. module: professional_templates
@@ -1070,6 +1135,22 @@ msgid "Discount(%)"
 msgstr ""
 
 #. module: professional_templates
+#: field:res.company,show_img:0
+msgid "Display Product Image in Reports?"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,show_img:0
+#: field:sale.order,show_img:0
+msgid "Display Product Image?"
+msgstr ""
+
+#. module: professional_templates
+#: field:stock.picking,show_img:0
+msgid "Display image in PDF report?"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
@@ -1161,6 +1242,16 @@ msgid "Footer Font-Size(px):"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Paid"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Refunded"
+msgstr ""
+
+#. module: professional_templates
 #: field:res.company,googleplus:0
 msgid "Google-Plus ID"
 msgstr ""
@@ -1172,6 +1263,29 @@ msgstr ""
 #: field:sale.order,header_font:0
 #: field:stock.picking,header_font:0
 msgid "Header Font-Size(px):"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,aiw_report:0
+msgid "If you want to display the Invoice total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,aiw_report:0
+msgid "If you want to display the Purchase order/RFQ total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: help:sale.order,aiw_report:0
+msgid "If you want to display the total in words in the report, then check this box"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+msgid "Image"
 msgstr ""
 
 #. module: professional_templates
@@ -1287,8 +1401,23 @@ msgid "NOTE:"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "No Charge"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:account.report_invoice_document
 msgid "No."
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Issued"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Refunded"
 msgstr ""
 
 #. module: professional_templates
@@ -1303,11 +1432,6 @@ msgstr ""
 #: field:sale.order,odd:0
 #: field:stock.picking,odd:0
 msgid "Odd parity Color"
-msgstr ""
-
-#. module: professional_templates
-#: view:website:professional_templates.invoice_data
-msgid "Open"
 msgstr ""
 
 #. module: professional_templates
@@ -1360,6 +1484,11 @@ msgid "Our Reference:"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Overdue"
+msgstr ""
+
+#. module: professional_templates
 #: view:purchase.order:professional_templates.purchase_order_inherited_customized
 msgid "PO & RFQ Report Settings"
 msgstr ""
@@ -1392,8 +1521,17 @@ msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Paid"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Paid"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Refunded"
 msgstr ""
 
 #. module: professional_templates
@@ -1403,7 +1541,6 @@ msgstr ""
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Payment Status"
 msgstr ""
 
@@ -1474,6 +1611,11 @@ msgid "Price"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Pro-Forma"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.delivery_data
 #: view:website:professional_templates.picking_data
 msgid "Product"
@@ -1481,7 +1623,6 @@ msgstr ""
 
 #. module: professional_templates
 #: field:account.invoice,project_title:0
-#: field:sale.order,project_title:0
 msgid "Project Title"
 msgstr ""
 
@@ -1563,6 +1704,11 @@ msgstr ""
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Refund"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Refunds:"
 msgstr ""
 
 #. module: professional_templates
@@ -1668,6 +1814,18 @@ msgid "Shipping:"
 msgstr ""
 
 #. module: professional_templates
+#: field:res.company,aiw_report:0
+msgid "Show amount in words"
+msgstr ""
+
+#. module: professional_templates
+#: field:account.invoice,aiw_report:0
+#: field:purchase.order,aiw_report:0
+#: field:sale.order,aiw_report:0
+msgid "Show in report?"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.picking_data
 msgid "Source"
 msgstr ""
@@ -1694,6 +1852,14 @@ msgstr ""
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Stamp:"
+msgstr ""
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
 msgid "Status"
 msgstr ""
 
@@ -1901,15 +2067,30 @@ msgid "The background color for odd lines in the purchase order"
 msgstr ""
 
 #. module: professional_templates
+#: help:account.invoice,amount_words:0
+msgid "The invoice total amount in words is automatically generated by the system..few languages are supported currently"
+msgstr ""
+
+#. module: professional_templates
 #: help:purchase.order,text_color:0
 #: help:stock.picking,text_color:0
 msgid "The text color of the order. Normally this			 should be one of your official company colors or default HTML text color"
 msgstr ""
 
 #. module: professional_templates
-#: help:account.invoice,project_title:0
 #: help:sale.order,project_title:0
+msgid "The title of Sales order or purpose of the Sale order Or Quote"
+msgstr ""
+
+#. module: professional_templates
+#: help:account.invoice,project_title:0
 msgid "The title of your customer project or work you are doing for your customer"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,amount_words:0
+#: help:sale.order,amount_words:0
+msgid "The total amount in words is automatically generated by the system..few languages are supported currently"
 msgstr ""
 
 #. module: professional_templates
@@ -1966,6 +2147,11 @@ msgid "This field holds the image used as logo for the purchase order, if non is
 msgstr ""
 
 #. module: professional_templates
+#: field:sale.order,project_title:0
+msgid "Title"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.invoice_data
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
@@ -2002,6 +2188,11 @@ msgid "Unit Price"
 msgstr ""
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Unpaid"
+msgstr ""
+
+#. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
 #: view:website:professional_templates.PO_1_document
 #: view:website:professional_templates.RFQ_1_document
@@ -2029,6 +2220,18 @@ msgstr ""
 #: view:website:professional_templates.PICK_3_document
 #: view:website:professional_templates.PICK_4_document
 msgid "Warehouse Address:"
+msgstr ""
+
+#. module: professional_templates
+#: field:purchase.order,website_message_ids:0
+#: field:sale.order,website_message_ids:0
+msgid "Website Messages"
+msgstr ""
+
+#. module: professional_templates
+#: help:purchase.order,website_message_ids:0
+#: help:sale.order,website_message_ids:0
+msgid "Website communication history"
 msgstr ""
 
 #. module: professional_templates

@@ -3,6 +3,19 @@
 Changelog
 =========
 
+`Version 0.7 (2016-12-08 22:31)`
+----------------
+- Now it's possible to display product image on Invoice, Sales Order, Quote, Delivery Note and Picking Slip. This feature is enabled by default but you can disable it in report settings (Company Data Form).
+
+
+`Version 0.6 (2016-10-15)`
+----------------
+- Added an ``Amount in Words`` featue to display the Total Amount for Invoice,Purchase Order,Sales Order/Quote in words..You can disable if you dont want it.
+- This ``Amount in Words`` is available in 13 langauges ..check the module description for details
+- Added ``Customer signature`` and ``Stamp`` section just incase its useful to some users but you can request us to remove it if you dont want...support is free
+- Few more bugs fixed and templates optimized to look better
+
+
 `Version 0.5 (2016-06-10)`
 ----------------
 

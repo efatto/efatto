@@ -16,6 +16,12 @@
 		 <xpath expr="//field[@name='pricelist_id']" position="after">
 			<field name="templ_id"/>
 		 </xpath>
+		 <xpath expr="//field[@name='note']" position="before">
+                    <group>
+                        <field name="amount_words"/>
+                        <field name="aiw_report"/>
+                    </group>
+		 </xpath>
 		 <xpath expr="//notebook" position="inside">
                          <page string="Order Report Settings">
 			     <group>
@@ -24,6 +30,7 @@
 				   <field name="odd"/>
 				   <field name="even"/>
 				   <field name="text_color"/>
+				   <field name="show_img"/>
 				</group>
 				<group>
 				   <field name="theme_color"/>

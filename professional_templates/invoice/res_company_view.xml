@@ -20,6 +20,8 @@
 				   <field name="even"/>
                                    <field name="header_font"/>
                                    <field name="body_font"/>
+                                   <field name="aiw_report"/>
+                                   <field name="show_img"/>
 				</group>
 				<group>
 				   <field name="theme_color"/>

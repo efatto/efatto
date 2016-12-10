@@ -93,5 +93,5 @@ class default_report_sett(models.Model):
         body_font = fields.Selection([(x,str(x)) for x in range(1,51)], string="Body Font-Size(px):", default=10,required=True)
         footer_font = fields.Selection([(x,str(x)) for x in range(1,51)], string="Footer Font-Size(px):", default=8,required=True)
         font_family = fields.Char('Font Family:', default="sans-serif", required=True)
-
-
+        aiw_report = fields.Boolean('Show amount in words', default=True, help="Check this box to enable the display of amount in words in the invoice/quote/sale order reports by default..this means when you create a new report, the amount in words will appear in the report unless you override it in the settings of that particular report")
+        show_img = fields.Boolean('Display Product Image in Reports?', default=True, help="Check this box to display product image in Sales Order, Quotation, Invoice and Delivery Note")

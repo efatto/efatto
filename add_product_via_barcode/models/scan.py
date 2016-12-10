@@ -177,6 +177,4 @@ class ProductProduct(models.Model):
     _sql_constraints = [
         ('barcode_uniq', 'unique(ean13)',
          'EAN13 Barcode must be unique!!'),
-        ('default_code_uniq', 'unique(default_code)',
-         'Internal Reference must be unique!!')
     ]

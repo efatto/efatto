@@ -3,7 +3,7 @@
 .openerp .oe_view_manager table.oe_view_manager_header h2 {
     display: none !important;
 }
-/* hide print-attachments button, todo: add print button */
+/* hide print-attachments button */
 .openerp .oe_view_manager table.oe_view_manager_header .oe_view_manager_sidebar {
     display: none !important;
 }
@@ -85,6 +85,14 @@
     height: 56px;
     font-size: 40px;
     display: inherit;
+    margin: 20px 20px 20px;
+}
+/* button margins
+questo non serve .openerp .oe_form > .oe_form_nosheet header .oe_button
+*/
+.openerp .oe_form > :not(.oe_form_nosheet) header .oe_button:first-child,
+.openerp .oe_form > :not(.oe_form_nosheet) header .oe_button {
+    margin: 20px 20px 20px;
 }
 /* status bar */
 .openerp ul.oe_form_status {

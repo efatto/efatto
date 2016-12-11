@@ -1,9 +1,20 @@
+.oe_hidemenu {
+    background-size: auto;
+    display: block;
+    float: left;
+    margin-left: 15px;
+    padding: 15px 10px;
+    border: none;
+}
+.oe_letters {
+}
 @media screen and (max-device-width: 768px){
 /* hide header */
-.openerp .oe_view_manager table.oe_view_manager_header h2 {
-    display: none !important;
+.openerp .oe_view_manager table.oe_view_manager_header h2,
+.openerp .oe_view_manager_view_search {
+    display: none;
 }
-/* hide print-attachments button */
+/* hide print-attachments button
 .openerp .oe_view_manager table.oe_view_manager_header .oe_view_manager_sidebar {
     display: none !important;
 }
@@ -11,13 +22,13 @@
 .openerp .oe_form_sheet_width {
     min-width: 300px;
 }
-/* ok wide all input boxes but not when compiled*/
+/* ok wide all input boxes but not when compiled
 .openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"],
 .openerp .oe_form input[type="file"], .openerp .oe_form select {
 	height: 56px;
 	font-size: 40px;
 }
-/* ok wide all input boxes when compiled and text inside*/
+/* ok wide all input boxes when compiled and text inside
 .openerp .oe_form_char_content, .openerp .oe_form .oe_form_field_selection,
 .openerp .oe_form .oe_form_uri, .openerp .oe_form .oe_form_field_monetary,
 .openerp .oe_form .oe_form_field_file, .openerp .oe_form .oe_form_field_password,
@@ -26,18 +37,18 @@
 	height: 56px;
 	font-size: 40px;
 }
-/* text in drop-down many2one fields*/
+/* text in drop-down many2one fields
 .ui-autocomplete {
   font-size: 33px;
   line-height: 38px;
 }
-/* date label and other*/
+/* date label and other
 .openerp .oe_form .oe_form_label_help[for], .openerp .oe_form .oe_form_label[for]{
 	height: 56px;
 	font-size: 40px;
 	width: auto;
 }
-/* tree view header*/
+/* tree view header
 .openerp .oe_list_content .oe_list_header_columns,
 .openerp .oe_list_context .ui-sortable,
 .openerp .oe_form_field_one2many .oe_form_field_one2many_list_row_add,
@@ -45,28 +56,28 @@
     font-size: 40px;
     height: 56px;
 }
-/* tree view content*/
+/* tree view content
 .openerp .oe_list_editable .oe_list_content td.oe_list_field_cell {
     font-size: 34px;
 }
 .openerp .oe_list_content td, .openerp .oe_list_content th {
     line-height: 56px;
 }
-/* remove limit of 150px to datetime and date picker fields */
+/* remove limit of 150px to datetime and date picker fields
 .openerp .oe_form_editable .oe_form .oe_form_field_datetime input,
 .openerp .oe_form_editable .oe_form .oe_form_field_date input {
     width: auto;
 }
-/* drop button */
+/* drop button
 .openerp .oe_list_record_delete .oe_i {
     font-size: 50px;
 }
-/* open button */
+/* open button
 .openerp .oe_form_field_many2one .oe_m2o_cm_button {
     font-size: 102px;
     font-weight: 900 !important;
 }
-/* datepicker button */
+/* datepicker button
 .openerp .oe_form .oe_input_icon {
     cursor: pointer;
     margin: 3px 0 0 -41px;
@@ -74,11 +85,11 @@
     height: 40px;
     width: 40px;
 }
-/* arrow button in fields */
+/* arrow button in fields
 .openerp .oe_view_manager_view_form .oe_form_container .oe_m2o_drop_down_button img {
     height: 50px;
 }
-/* header buttons */
+/* header buttons
 .openerp a.button, .openerp button,
 .openerp .oe_button, .openerp input[type='submit'],
 .openerp .oe_button, .oe_form_button_cancel {
@@ -89,12 +100,12 @@
 }
 /* button margins
 questo non serve .openerp .oe_form > .oe_form_nosheet header .oe_button
-*/
+
 .openerp .oe_form > :not(.oe_form_nosheet) header .oe_button:first-child,
 .openerp .oe_form > :not(.oe_form_nosheet) header .oe_button {
     margin: 20px 20px 20px;
 }
-/* status bar */
+/* status bar
 .openerp ul.oe_form_status {
     line-height: 50px;
     font-size: 46px;
@@ -111,8 +122,9 @@ questo non serve .openerp .oe_form > .oe_form_nosheet header .oe_button
 .openerp .oe_secondary_submenu .oe_menu_text { overflow:visible; }
 .openerp .oe_secondary_menu_section {white-space:nowrap;}
 .openerp .oe_leftbar > div .oe_footer {display: none;}
-/* WIP arrow button in selection field - not works */
+/*#oe_main_menu_navbar {display: -webkit-inline-box;}
+/* WIP arrow button in selection field - not works
 .openerp .oe_form_char_content, .openerp .oe_form .oe_form_field_selection img {
     height: 50px;
-}
+}*/
 }

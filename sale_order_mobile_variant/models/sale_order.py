@@ -49,6 +49,8 @@ class SaleOrder(models.Model):
             ])
             if len(product) == 1:
                 order.product = product.default_code
+            elif len(product) > 1:
+                order.product = '(error) More than 1 variant found'
 
     @api.multi
     @api.onchange('product_attribute_value_id')

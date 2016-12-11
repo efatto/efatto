@@ -29,6 +29,7 @@
         'add_product_via_barcode',
         'sale',
         'product_code_builder_parent_price',
+        'product_variants_no_automatic_creation',
         'web_mobile_view',
     ],
     'data': [

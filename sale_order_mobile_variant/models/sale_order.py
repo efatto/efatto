@@ -58,13 +58,13 @@ class SaleOrder(models.Model):
         if self.product_template_id:
             price_extra = 0.0
             attribute_id = False
-            for attr_line in self.product_attribute_ids:
+            for attr_line in self.product_attribute_line_id:
                 price_extra += attr_line.price_extra
-                if attr_line.value_id:
-                    attribute_id = attr_line.attribute_id
-            for attribute_line in self.product_tmpl_id.attribute_line_ids:
-                if attribute_line.attribute_id == attribute_id:
-                    price_extra += attribute_line.price_extra
+                # if attr_line.value_id:
+                #     attribute_id = attr_line.attribute_id
+            for attribute_line in self.product_attribute_value_id:
+                # if attribute_line.attribute_id == attribute_id:
+                price_extra += attribute_line.price_extra
             self.price_unit = self.pricelist_id.with_context({
                 'uom': self.product_template_id.uom_id.id,
                 'date': self.date_order,

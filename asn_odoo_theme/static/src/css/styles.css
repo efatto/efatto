@@ -1,7 +1,9 @@
-.openerp .oe_leftbar > div .oe_footer, body.oe_single_form .oe_single_form_footer{
+body.oe_single_form .oe_single_form_footer{
 	display:none !important;
 }
-
+/*.openerp .oe_leftbar > div .oe_footer{
+	display:none !important;
+}*/
 .navbar-inverse{
 	/* background-color:#3D8CFF;#5BD8EB 2DACEF*/
 	background-color:#A4498B;

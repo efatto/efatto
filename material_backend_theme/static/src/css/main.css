@@ -1352,12 +1352,12 @@ button.ui-state-default:hover,
     padding-right: 10px;
     padding-left: 10px;
 }
-.openerp .oe_leftbar.show {
+/*.openerp .oe_leftbar.show {
     display: table-cell !important;
 }
-/*.openerp .oe_leftbar.hide {
+.openerp .oe_leftbar.hide {
     display: none !important;
-}*/
+}
 @media (max-width: 767px) {
     .openerp .oe_leftbar {
         display: none !important;
@@ -1367,7 +1367,7 @@ button.ui-state-default:hover,
     .openerp .oe_leftbar {
         display: table-cell !important;
     }
-} 
+}*/
 .navbar-toggle {
     border: none;
 }

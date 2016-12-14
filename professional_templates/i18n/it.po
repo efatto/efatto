@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:14+0200\n"
-"PO-Revision-Date: 2016-09-21 10:07+0200\n"
+"POT-Creation-Date: 2016-12-14 18:53+0000\n"
+"PO-Revision-Date: 2016-12-14 20:05+0100\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.9\n"
-"Last-Translator: \n"
+"Plural-Forms: \n"
 "Language: it\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #. module: professional_templates
 #: view:website:professional_templates.category_template
@@ -562,14 +562,12 @@ msgid ""
 "</tbody>\n"
 "                    \t\t</table>\n"
 "\t\t\t\t<p style=\"page-break-before:always;\"> </p>\n"
-"                    \t\t<table class=\"table table-condensed\" style=\"page-"
-"break-before:always;\">"
+"                    \t\t<table class=\"table table-condensed\" style=\"page-break-before:always;\">"
 msgstr ""
 "</tbody>\n"
 "                    \t\t</table>\n"
 "\t\t\t\t<p style=\"page-break-before:always;\"> </p>\n"
-"                    \t\t<table class=\"table table-condensed\" style=\"page-"
-"break-before:always;\">"
+"                    \t\t<table class=\"table table-condensed\" style=\"page-break-before:always;\">"
 
 #. module: professional_templates
 #: view:website:professional_templates.order_data
@@ -598,9 +596,14 @@ msgstr "Importo"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Amount Due"
 msgstr "Importo Dovuto"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Amount in Words:"
+msgstr "Amount in Words:"
 
 #. module: professional_templates
 #: view:website:professional_templates.PO_1_document
@@ -609,6 +612,11 @@ msgstr "Importo Dovuto"
 #: view:website:professional_templates.PO_4_document
 msgid "Approved By:"
 msgstr "Approvato Da:"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Balance"
+msgstr "Saldo"
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
@@ -628,12 +636,17 @@ msgid "Body Font-Size(px):"
 msgstr "Dimensione del Carattere (px):"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Cancelled"
+msgstr "Cancelled"
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Cancelled Invoice"
-msgstr "Fattura Annullata"
+msgstr "Fattura annullata"
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -646,6 +659,31 @@ msgstr "Fattura Annullata"
 #: view:website:professional_templates.PICK_4_document
 msgid "Carrier:"
 msgstr "Corriere:"
+
+#. module: professional_templates
+#: help:account.invoice,show_img:0
+msgid "Check this Box to display the product image in the PDF invoice report"
+msgstr "Check this Box to display the product image in the PDF invoice report"
+
+#. module: professional_templates
+#: help:stock.picking,show_img:0
+msgid "Check this box in order to display the product image on the Delivery Note and Picking List"
+msgstr "Check this box in order to display the product image on the Delivery Note and Picking List"
+
+#. module: professional_templates
+#: help:res.company,show_img:0
+msgid "Check this box to display product image in Sales Order, Quotation, Invoice and Delivery Note"
+msgstr "Check this box to display product image in Sales Order, Quotation, Invoice and Delivery Note"
+
+#. module: professional_templates
+#: help:sale.order,show_img:0
+msgid "Check this box to display product image in the Sales Order/Quotation"
+msgstr "Check this box to display product image in the Sales Order/Quotation"
+
+#. module: professional_templates
+#: help:res.company,aiw_report:0
+msgid "Check this box to enable the display of amount in words in the invoice/quote/sale order reports by default..this means when you create a new report, the amount in words will appear in the report unless you override it in the settings of that particular report"
+msgstr "Check this box to enable the display of amount in words in the invoice/quote/sale order reports by default..this means when you create a new report, the amount in words will appear in the report unless you override it in the settings of that particular report"
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_1_document
@@ -676,6 +714,21 @@ msgid "Company Name Color"
 msgstr "Colore Nome Azienda"
 
 #. module: professional_templates
+#: help:res.currency,currency_name:0
+msgid "Currecny Full name as known in the world"
+msgstr "Currecny Full name as known in the world"
+
+#. module: professional_templates
+#: model:ir.model,name:professional_templates.model_res_currency
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: professional_templates
+#: field:res.currency,currency_name:0
+msgid "Currency Name"
+msgstr "Valuta"
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 msgid "Customer"
 msgstr "Cliente"
@@ -701,6 +754,13 @@ msgstr "Indirizzo Cliente:"
 #: field:stock.picking,cust_color:0
 msgid "Customer Name Color"
 msgstr "Colore Nome Cliente"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Customer Signature:"
+msgstr "Firma Cliente:"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
@@ -735,7 +795,7 @@ msgstr "Data Ordine:"
 #. module: professional_templates
 #: view:website:professional_templates.purchase_data
 msgid "Date Req."
-msgstr "Data della Richiesta"
+msgstr "Data richiesta"
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -832,12 +892,27 @@ msgid "Discount(%)"
 msgstr "Sconto (%)"
 
 #. module: professional_templates
+#: field:res.company,show_img:0
+msgid "Display Product Image in Reports?"
+msgstr "Viasualizza Immagini Prodotto nel Report?"
+
+#. module: professional_templates
+#: field:account.invoice,show_img:0 field:sale.order,show_img:0
+msgid "Display Product Image?"
+msgstr "Visualizza Immagini Prodotto?"
+
+#. module: professional_templates
+#: field:stock.picking,show_img:0
+msgid "Display image in PDF report?"
+msgstr "Visualizza Immagini nel Report PDF"
+
+#. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
 #: view:website:professional_templates.INVOICE_2_document
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Draft Invoice"
-msgstr "Bozza Fattura"
+msgstr "Fattura in bozza"
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -870,7 +945,7 @@ msgstr "Colore Righe Pari"
 #. module: professional_templates
 #: view:website:professional_templates.rfq_data
 msgid "Expected Date"
-msgstr "Data Prevista"
+msgstr "Data prevista"
 
 #. module: professional_templates
 #: field:res.company,facebook:0
@@ -883,7 +958,7 @@ msgstr "Facebook ID"
 #: view:website:professional_templates.purchase_data
 #: view:website:professional_templates.rfq_data
 msgid "Fiscal Position Remark:"
-msgstr "Note Posizione Fiscale"
+msgstr "Commento Posizione Fiscale:"
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -916,6 +991,16 @@ msgid "Footer Font-Size(px):"
 msgstr "Dimensione Carattere del Piè di Pagina (px)"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Paid"
+msgstr "Pagato"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Fully Refunded"
+msgstr "Rimborsato"
+
+#. module: professional_templates
 #: field:res.company,googleplus:0
 msgid "Google-Plus ID"
 msgstr "Google-Plus ID"
@@ -926,6 +1011,29 @@ msgstr "Google-Plus ID"
 #: field:stock.picking,header_font:0
 msgid "Header Font-Size(px):"
 msgstr "Dimensione Carattere dell'Intestazione (px)"
+
+#. module: professional_templates
+#: help:account.invoice,aiw_report:0
+msgid "If you want to display the Invoice total in words in the report, then check this box"
+msgstr "Se vuoi visualizzare l'importo totale della fattura espresso in parole, spunta questa casella."
+
+#. module: professional_templates
+#: help:purchase.order,aiw_report:0
+msgid "If you want to display the Purchase order/RFQ total in words in the report, then check this box"
+msgstr "Se vuoi visualizzare l'importo totale dell'ordine d'acquisto/richiesta di quotazione espresso in parole, spunta questa casella."
+
+#. module: professional_templates
+#: help:sale.order,aiw_report:0
+msgid "If you want to display the total in words in the report, then check this box"
+msgstr "Se vuoi visualizzare l'importo totale nel report espresso in parole, spunta questa casella."
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+#: view:website:professional_templates.picking_data
+msgid "Image"
+msgstr "Immagine"
 
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_account_invoice
@@ -1036,9 +1144,24 @@ msgid "NOTE:"
 msgstr "Nota:"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "No Charge"
+msgstr "No Charge"
+
+#. module: professional_templates
 #: view:website:account.report_invoice_document
 msgid "No."
 msgstr "Num."
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Issued"
+msgstr "Non Emesso"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Not Refunded"
+msgstr "Non Rimborsato"
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
@@ -1050,11 +1173,6 @@ msgstr "Nota:"
 #: field:res.company,odd:0 field:sale.order,odd:0 field:stock.picking,odd:0
 msgid "Odd parity Color"
 msgstr "Colore Righe Dispari"
-
-#. module: professional_templates
-#: view:website:professional_templates.invoice_data
-msgid "Open"
-msgstr "Aperto"
 
 #. module: professional_templates
 #: view:website:professional_templates.SO_2_document
@@ -1106,6 +1224,11 @@ msgid "Our Reference:"
 msgstr "Riferimento Interno:"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Overdue"
+msgstr "Scaduto"
+
+#. module: professional_templates
 #: view:purchase.order:professional_templates.purchase_order_inherited_customized
 msgid "PO & RFQ Report Settings"
 msgstr "Impostazioni Modello Ordine d'Acquisto / RFQ"
@@ -1121,7 +1244,7 @@ msgstr "Logo Ordine d'Acquisto / RFQ"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "PRO-FORMA"
-msgstr "Proforma"
+msgstr "Pro-Forma"
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1138,9 +1261,18 @@ msgstr "Pagina:"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Paid"
 msgstr "Pagato"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Paid"
+msgstr "Parzialmente Pagato"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Partially Refunded"
+msgstr "Parzialmente Rimborsato"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
@@ -1149,7 +1281,6 @@ msgstr "Informazioni Pagamento:"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
-#: view:website:professional_templates.invoice_data
 msgid "Payment Status"
 msgstr "Stato Pagamento"
 
@@ -1210,11 +1341,8 @@ msgstr "Modello Picking List"
 #: view:res.company:professional_templates.res_company_inherit_default_settings
 #: view:sale.order:professional_templates.view_sale_order_inherit_customized
 #: view:stock.picking:professional_templates.Delivery_note_inherited_customized
-msgid ""
-"Please make sure the font family you are specifying is already installed in "
-"your Odoo Server."
-msgstr ""
-"Assicurati che la famiglia di font scelta sia già installata sul server!"
+msgid "Please make sure the font family you are specifying is already installed in your Odoo Server."
+msgstr "Assicurati che la famiglia di font scelta sia già installata sul server!"
 
 #. module: professional_templates
 #: view:website:professional_templates.order_data
@@ -1223,13 +1351,18 @@ msgid "Price"
 msgstr "Prezzo"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Pro-Forma"
+msgstr "Pro-Forma"
+
+#. module: professional_templates
 #: view:website:professional_templates.delivery_data
 #: view:website:professional_templates.picking_data
 msgid "Product"
 msgstr "Prodotto"
 
 #. module: professional_templates
-#: field:account.invoice,project_title:0 field:sale.order,project_title:0
+#: field:account.invoice,project_title:0
 msgid "Project Title"
 msgstr "Titolo Progetto"
 
@@ -1312,6 +1445,11 @@ msgid "Refund"
 msgstr "Nota di Credito"
 
 #. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Refunds:"
+msgstr "Refunds:"
+
+#. module: professional_templates
 #: view:res.company:professional_templates.res_company_inherit_default_settings
 msgid "Report Logo"
 msgstr "Logo Report"
@@ -1327,7 +1465,7 @@ msgstr "Richiesta di Preventivo"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.RFQ_2_document
 msgid "Request for Quotation"
-msgstr "Richiesta di Preventivo"
+msgstr "Richiesta Preventivo"
 
 #. module: professional_templates
 #: view:website:professional_templates.RFQ_1_document
@@ -1347,7 +1485,7 @@ msgstr "Modello Ordine di Vendita"
 #. module: professional_templates
 #: model:ir.model,name:professional_templates.model_sale_order
 msgid "Sales Order"
-msgstr "Ordine di Vendita"
+msgstr "Ordine di vendita"
 
 #. module: professional_templates
 #: field:res.company,template_so:0
@@ -1406,12 +1544,23 @@ msgstr "Condizioni Di Spedizione:"
 #. module: professional_templates
 #: view:website:professional_templates.RFQ_4_document
 msgid "Shipping address:"
-msgstr "Indirizzo Spedizione:"
+msgstr "Indirizzo di spedizione:"
 
 #. module: professional_templates
 #: view:website:professional_templates.purchase_data
 msgid "Shipping:"
 msgstr "Spedizione:"
+
+#. module: professional_templates
+#: field:res.company,aiw_report:0
+msgid "Show amount in words"
+msgstr "Visualizza importo in parole"
+
+#. module: professional_templates
+#: field:account.invoice,aiw_report:0 field:purchase.order,aiw_report:0
+#: field:sale.order,aiw_report:0
+msgid "Show in report?"
+msgstr "Visualizza nel Report?"
 
 #. module: professional_templates
 #: view:website:professional_templates.picking_data
@@ -1440,6 +1589,14 @@ msgstr "Documento Origine:"
 
 #. module: professional_templates
 #: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
+#: view:website:professional_templates.order_data
+msgid "Stamp:"
+msgstr "Bollo:"
+
+#. module: professional_templates
+#: view:website:professional_templates.delivery_data
+#: view:website:professional_templates.invoice_data
 msgid "Status"
 msgstr "Stato"
 
@@ -1462,7 +1619,7 @@ msgstr "Subtotale:"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Supplier Invoice"
-msgstr "Fattura Fornitore"
+msgstr "Fattura fornitore"
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_document
@@ -1470,7 +1627,7 @@ msgstr "Fattura Fornitore"
 #: view:website:professional_templates.INVOICE_3_document
 #: view:website:professional_templates.INVOICE_4_document
 msgid "Supplier Refund"
-msgstr "Nota di Credito Fornitore"
+msgstr "Note di Credito Fornitori"
 
 #. module: professional_templates
 #: view:website:professional_templates.DN_1_document
@@ -1506,7 +1663,7 @@ msgstr "P.IVA:"
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Taxes"
-msgstr "Imposte"
+msgstr "Tasse"
 
 #. module: professional_templates
 #: field:account.invoice,text_color:0 field:purchase.order,text_color:0
@@ -1517,141 +1674,76 @@ msgstr "Colore Testo"
 
 #. module: professional_templates
 #: help:stock.picking,theme_color:0
-msgid ""
-"The Main Theme color of the Delivery Slip. Normally this should be one of "
-"your official company colors"
-msgstr ""
-"Il colore principale della bolla di accompagnamento. Generalmente si tratta "
-"di uno dei colori ricorrenti della tua azienda."
+msgid "The Main Theme color of the Delivery Slip. Normally this should be one of your official company colors"
+msgstr "Il colore principale della bolla di accompagnamento. Generalmente si tratta di uno dei colori ricorrenti della tua azienda."
 
 #. module: professional_templates
 #: help:account.invoice,theme_color:0
-msgid ""
-"The Main Theme color of the invoice. Normally this\t\t\t should be one of "
-"your official company colors"
-msgstr ""
-"Il colore principale della fattura. Generalmente si tratta\t\t\t di uno dei "
-"colori ricorrenti della tua azienda."
+msgid "The Main Theme color of the invoice. Normally this\t\t\t should be one of your official company colors"
+msgstr "Il colore principale della Fattura. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda. "
 
 #. module: professional_templates
 #: help:res.company,theme_color:0
-msgid ""
-"The Main Theme color of the invoice. Normally this                         "
-"should be one of your official company colors"
-msgstr ""
-"Il colore principale della fattura. Generalmente si "
-"tratta                         di uno dei colori ricorrenti della tua "
-"azienda."
+msgid "The Main Theme color of the invoice. Normally this                         should be one of your official company colors"
+msgstr "Il colore principale della fattura. Generalmente si tratta                         di uno dei colori ricorrenti della tua azienda."
 
 #. module: professional_templates
 #: help:purchase.order,theme_color:0
-msgid ""
-"The Main Theme color of the purchase order/quaotation. Normally this should "
-"be one of your official company colors"
-msgstr ""
-"Il colore principale dell'ordine d'acquisto / richiesta di preventivo. "
-"Generalmente si tratta di uno dei colori ricorrenti della tua azienda."
+msgid "The Main Theme color of the purchase order/quaotation. Normally this should be one of your official company colors"
+msgstr "Il colore principale dell'ordine d'acquisto / richiesta di preventivo. Generalmente si tratta di uno dei colori ricorrenti della tua azienda."
 
 #. module: professional_templates
 #: help:sale.order,theme_color:0
-msgid ""
-"The Main Theme color of the sale order/quaotation. Normally this should be "
-"one of your official company colors"
-msgstr ""
-"Il colore principale dell'ordine di vendita / preventivo. Generalmente si "
-"tratta di uno dei colori ricorrenti della tua azienda."
+msgid "The Main Theme color of the sale order/quaotation. Normally this should be one of your official company colors"
+msgstr "Il colore principale dell'ordine di vendita / preventivo. Generalmente si tratta di uno dei colori ricorrenti della tua azienda."
 
 #. module: professional_templates
 #: help:account.invoice,name_color:0 help:purchase.order,name_color:0
 #: help:sale.order,name_color:0 help:stock.picking,name_color:0
-msgid ""
-"The Text color of the Company Name. \t\t\tNormally thisshould be one of your "
-"official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per il nome dell'azienda.\t\t\t Generalmente si tratta "
-"di uno dei colori ricorrenti della sua azienda oppure del colore predefinito "
-"del testo."
+msgid "The Text color of the Company Name. \t\t\tNormally thisshould be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per il nome dell'Azienda. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda o del colore predefinito per il test in HTML."
 
 #. module: professional_templates
 #: help:res.company,name_color:0
-msgid ""
-"The Text color of the Company Name. Normally this                         "
-"should be one of your official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per il nome dell'azienda.                        "
-"Generalmente si tratta di uno dei colori ricorrenti della sua azienda oppure "
-"del colore predefinito del testo."
+msgid "The Text color of the Company Name. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per il nome dell'azienda.                        Generalmente si tratta di uno dei colori ricorrenti della sua azienda oppure del colore predefinito del testo."
 
 #. module: professional_templates
 #: help:account.invoice,cust_color:0 help:purchase.order,cust_color:0
 #: help:sale.order,cust_color:0 help:stock.picking,cust_color:0
-msgid ""
-"The Text color of the Customer Name. \t\t\tNormally this should be one of "
-"your official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per il nome del cliente.\t\t\t Generalmente si tratta di "
-"uno dei colori ricorrenti della tua azienda oppure del colore predefinito "
-"del testo."
+msgid "The Text color of the Customer Name. \t\t\tNormally this should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per il nome del Cliente. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda o del colore predefinito per il test in HTML."
 
 #. module: professional_templates
 #: help:res.company,cust_color:0
-msgid ""
-"The Text color of the Customer Name. Normally this                         "
-"should be one of your official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per il nome del cliente.                        "
-"Generalmente si tratta di uno dei colori ricorrenti della tua azienda oppure "
-"del colore predefinito del testo."
+msgid "The Text color of the Customer Name. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per il nome del cliente.                        Generalmente si tratta di uno dei colori ricorrenti della tua azienda oppure del colore predefinito del testo."
 
 #. module: professional_templates
 #: help:res.company,theme_txt_color:0
-msgid ""
-"The Text color of the areas bearing the theme color. Normally this should "
-"NOT be the same color as the                                theme color. "
-"Otherwise the text will not be visible"
-msgstr ""
-"Il colore del testo per le aree che circondano il colore principale del "
-"tema. Generalmente questo  NON deve essere uguale al colore "
-"principale                                del tema, poiché il testo non "
-"sarebbe più visibile."
+msgid "The Text color of the areas bearing the theme color. Normally this should NOT be the same color as the                                theme color. Otherwise the text will not be visible"
+msgstr "Il colore del testo per le aree che circondano il colore principale del tema. Generalmente questo  NON deve essere uguale al colore principale                                del tema, poiché il testo non sarebbe più visibile."
 
 #. module: professional_templates
 #: help:account.invoice,theme_txt_color:0 help:purchase.order,theme_txt_color:0
 #: help:sale.order,theme_txt_color:0 help:stock.picking,theme_txt_color:0
-msgid ""
-"The Text color of the areas with theme color. This should not be the same "
-"the theme color"
-msgstr ""
-"Il colore del testo per le aree contenenti il colore principale del tema. "
-"Questo non dovrebbe essere uguale al colore principale del tema."
+msgid "The Text color of the areas with theme color. This should not be the same the theme color"
+msgstr "Il colore del testo per le aree contenenti il colore principale del tema. Questo non dovrebbe essere uguale al colore principale del tema."
 
 #. module: professional_templates
 #: help:account.invoice,text_color:0
-msgid ""
-"The Text color of the invoice. Normally this\t\t\t should be one of your "
-"official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per la fattura.\t\t\t Generalmente si tratta di uno dei "
-"colori ricorrenti della sua azienda oppure del colore predefinito del testo."
+msgid "The Text color of the invoice. Normally this\t\t\t should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per la Fattura. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda o del colore predefinito per il test in HTML."
 
 #. module: professional_templates
 #: help:res.company,text_color:0
-msgid ""
-"The Text color of the invoice. Normally this                         should "
-"be one of your official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per la fattura.                         Generalmente si "
-"tratta di uno dei colori ricorrenti della sua azienda oppure del colore "
-"predefinito del testo."
+msgid "The Text color of the invoice. Normally this                         should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per la fattura.                         Generalmente si tratta di uno dei colori ricorrenti della sua azienda oppure del colore predefinito del testo."
 
 #. module: professional_templates
 #: help:sale.order,text_color:0
-msgid ""
-"The Text color of the order. Normally this\t\t\t should be one of your "
-"official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per l'ordine.\t\t\t Generalmente si tratta di uno dei "
-"colori ricorrenti della sua azienda oppure del colore predefinito del testo."
+msgid "The Text color of the order. Normally this\t\t\t should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per l'Ordine. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda o del colore predefinito per il test in HTML."
 
 #. module: professional_templates
 #: help:res.company,even:0
@@ -1696,8 +1788,7 @@ msgstr "Il colore di sfondo per le righe pari dell'ordine di acquisto."
 #. module: professional_templates
 #: help:stock.picking,odd:0
 msgid "The background color for odd lines in the delivery slip"
-msgstr ""
-"Il colore di sfondo per le righe dispari della bolla di accompagnamento."
+msgstr "Il colore di sfondo per le righe dispari della bolla di accompagnamento."
 
 #. module: professional_templates
 #: help:purchase.order,odd:0
@@ -1706,20 +1797,18 @@ msgstr "Il colore di sfondo per le righe dispari dell'ordine di acquisto."
 
 #. module: professional_templates
 #: help:purchase.order,text_color:0 help:stock.picking,text_color:0
-msgid ""
-"The text color of the order. Normally this\t\t\t should be one of your "
-"official company colors or default HTML text color"
-msgstr ""
-"Il colore del testo per l'ordine.\t\t\t Generalmente si tratta di uno dei "
-"colori ricorrenti della sua azienda oppure del colore predefinito del testo."
+msgid "The text color of the order. Normally this\t\t\t should be one of your official company colors or default HTML text color"
+msgstr "Il colore del testo per l'Ordine. Generalmente si tratta\t\t\t di uno dei colori ricorrenti dell'azienda o del colore predefinito per il test in HTML."
 
 #. module: professional_templates
-#: help:account.invoice,project_title:0 help:sale.order,project_title:0
-msgid ""
-"The title of your customer project or work you are doing for your customer"
-msgstr ""
-"Il nome della commessa / progetto / lavoro che stai svolgendo per il tuo "
-"cliente."
+#: help:sale.order,project_title:0
+msgid "The title of Sales order or purpose of the Sale order Or Quote"
+msgstr "Il titolo per l'Ordine di Vendita, per la Proposta o per il Preventivo"
+
+#. module: professional_templates
+#: help:account.invoice,project_title:0
+msgid "The title of your customer project or work you are doing for your customer"
+msgstr "Il nome della commessa / progetto / lavoro che stai svolgendo per il tuo cliente."
 
 #. module: professional_templates
 #: field:account.invoice,theme_color:0 field:purchase.order,theme_color:0
@@ -1737,66 +1826,43 @@ msgstr "Colore Testo del Tema"
 
 #. module: professional_templates
 #: help:stock.picking,pk_logo:0
-msgid ""
-"This field holds the image used as logo for the Picking, if non is uploaded, "
-"the default logo set in the company settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per la Picking List. "
-"Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the Picking, if non is uploaded, the default logo set in the company settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per la Picking List. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:purchase.order,rfq_logo:0
-msgid ""
-"This field holds the image used as logo for the RFQ, if non is uploaded, the "
-"default logo define in the company settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per la Richiesta di "
-"Preventivo. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the RFQ, if non is uploaded, the default logo define in the company settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per la Richiesta di Preventivo. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:stock.picking,dn_logo:0
-msgid ""
-"This field holds the image used as logo for the delivery slip, if non is "
-"uploaded, the default logo set in the company settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per la Bolla di "
-"Accompagnamento. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the delivery slip, if non is uploaded, the default logo set in the company settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per la Bolla di Accompagnamento. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:res.company,invoice_logo:0
-msgid ""
-"This field holds the image used as logo for the invoice, if non is uploaded, "
-"the company logo will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per la Fattura. Se "
-"lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the invoice, if non is uploaded, the company logo will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per la Fattura. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:account.invoice,invoice_logo:0
-msgid ""
-"This field holds the image used as logo for the invoice, if non is uploaded, "
-"the default logo define in the copmany settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per la Fattura. Se "
-"lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the invoice, if non is uploaded, the default logo define in the copmany settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per la Fattura. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:sale.order,order_logo:0
-msgid ""
-"This field holds the image used as logo for the order, if non is uploaded, "
-"the default logo define in the company settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per l'Ordine di "
-"Vendita. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the order, if non is uploaded, the default logo define in the company settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per l'Ordine di Vendita. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
 
 #. module: professional_templates
 #: help:purchase.order,po_logo:0
-msgid ""
-"This field holds the image used as logo for the purchase order, if non is "
-"uploaded, the default logo set in the company settings will be used"
-msgstr ""
-"Questo campo contiene l'immagine utilizzata come Logo per l'Ordine "
-"d'Acquisto. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+msgid "This field holds the image used as logo for the purchase order, if non is uploaded, the default logo set in the company settings will be used"
+msgstr "Questo campo contiene l'immagine utilizzata come Logo per l'Ordine d'Acquisto. Se lasciato vuoto, verrà utilizzato il Logo dell'azienda."
+
+#. module: professional_templates
+#: field:sale.order,project_title:0
+msgid "Title"
+msgstr "Title"
 
 #. module: professional_templates
 #: view:website:professional_templates.invoice_data
@@ -1810,7 +1876,7 @@ msgstr "Totale"
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Total Without Taxes"
-msgstr "Totale Imponibile"
+msgstr "Totale imponibile"
 
 #. module: professional_templates
 #: field:res.company,twitter:0
@@ -1820,7 +1886,7 @@ msgstr "Twitter Handle"
 #. module: professional_templates
 #: view:website:professional_templates.category_template
 msgid "Uncategorized"
-msgstr "Senza Categoria"
+msgstr "Senza categoria"
 
 #. module: professional_templates
 #: view:website:account.report_invoice_document
@@ -1832,7 +1898,12 @@ msgstr "Non Definito"
 #: view:website:professional_templates.order_data
 #: view:website:professional_templates.purchase_data
 msgid "Unit Price"
-msgstr "Prezzo Unitario"
+msgstr "Prezzo unitario"
+
+#. module: professional_templates
+#: view:website:professional_templates.invoice_data
+msgid "Unpaid"
+msgstr "Non Pagato"
 
 #. module: professional_templates
 #: view:website:professional_templates.PICK_1_document
@@ -1882,7 +1953,7 @@ msgstr "Peso:"
 #: view:website:professional_templates.PO_3_document
 #: view:website:professional_templates.PO_4_document
 msgid "Your Reference:"
-msgstr "Vostro Riferimento:"
+msgstr "Il tuo Riferimento:"
 
 #. module: professional_templates
 #: view:website:professional_templates.INVOICE_1_duplicate

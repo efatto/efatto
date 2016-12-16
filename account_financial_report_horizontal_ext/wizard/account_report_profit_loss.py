@@ -39,7 +39,6 @@ class account_pl_report(orm.TransientModel):
 
     _defaults = {
         'display_type': True,
-        'target_move': 'all',
     }
 
     def _print_report(self, cr, uid, ids, data, context=None):

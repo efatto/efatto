@@ -43,6 +43,10 @@ class Parser(report_sxw.rml_parse):
             'translate': self._translate_text,
             'img_gray': self._convert_to_gray_scale,
             'get_total_discount': self._get_total_discount,
+            'get_total_other': self._get_total_other_amount,
+            'get_total_contribution': self._get_total_contribution_amount,
+            'get_total_transport': self._get_total_transport_amount,
+            'get_total_goods': self._get_total_goods_amount,
             'check_installed_module': self._check_installed_module,
         })
         self.cache = {}
@@ -298,7 +302,40 @@ class Parser(report_sxw.rml_parse):
         for line in (l for l in lines if l.discount):
             total_amount += line.product_uom_qty * line.price_unit
             total_subprices += line.price_subtotal
+        for line in (l for l in lines if l.product_id.is_discount):
+            total_subprices += line.price_subtotal
         return total_amount - total_subprices
+
+    def _get_total_goods_amount(self, lines):
+        total_goods_amount = 0.0
+        for line in (l for l in lines if not l.is_delivery):
+            if not line.product_id.is_transport and \
+                    not line.product_id.is_contribution and \
+                    not line.product_id.is_other and \
+                    not line.product_id.is_discount:
+                total_goods_amount += line.price_subtotal
+        return total_goods_amount
+
+    def _get_total_other_amount(self, lines):
+        total_other_amount = 0.0
+        for line in (l for l in lines if l.product_id.is_other):
+            total_other_amount += line.price_subtotal
+        return total_other_amount
+
+    def _get_total_contribution_amount(self, lines):
+        total_contribution_amount = 0.0
+        for line in (l for l in lines if l.product_id.is_contribution):
+            total_contribution_amount += line.price_subtotal
+        return total_contribution_amount
+
+    def _get_total_transport_amount(self, lines):
+        total_transport_amount = 0.0
+        for line in (l for l in lines if l.is_delivery):
+            if not line.product_id.is_transport:
+                total_transport_amount += line.price_subtotal
+        for line in (l for l in lines if l.product_id.is_transport):
+            total_transport_amount += line.price_subtotal
+        return total_transport_amount
 
     def _check_installed_module(self, module):
         res = False

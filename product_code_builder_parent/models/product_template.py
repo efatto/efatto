@@ -51,9 +51,12 @@ class product_template(osv.osv):
                     for value_id in standard_variant_id.value_ids:
                         for variant in all_variants:
                             temp_variants.append(sorted(variant + [int(value_id)]))
-            for variant in temp_variants:
-                if len(variant) < 2:
-                    temp_variants.pop(temp_variants.index(variant))
+
+            if attribute_line_with_child_ids:
+                for variant in temp_variants:
+                    if len(variant) < 2:
+                        temp_variants.pop(temp_variants.index(variant))
+
             if temp_variants:
                 all_variants = temp_variants
             # END MODIFICATION

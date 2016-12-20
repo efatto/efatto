@@ -25,17 +25,38 @@ class product_template(osv.osv):
             # list of values combination
             variant_alone = []
             all_variants = [[]]
-            temp_variants = [] #SC MODIFICATION
-            for variant_id in tmpl_id.attribute_line_ids:
-                if len(variant_id.value_ids) == 1:
-                    variant_alone.append(variant_id.value_ids[0])
-                # SC MODIFICATION
-                for value_id in variant_id.value_ids:
-                    temp_variants.append(sorted([int(value_id)]))
-                #END SC MODIFICATION
 
+            # START MODIFICATION
+            attribute_line_with_child_ids = tmpl_id.attribute_line_ids.\
+                filtered("attribute_id.child_ids")
+            attribute_line_ids = tmpl_id.attribute_line_ids - \
+                                 attribute_line_with_child_ids
+            if not attribute_line_with_child_ids:
+                for variant_id in tmpl_id.attribute_line_ids:
+                    if len(variant_id.value_ids) == 1:
+                        variant_alone.append(variant_id.value_ids[0])
+            for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
+                for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
+                    temp_variants = []
+                    # for variant in all_variants:
+                    for value_id in variant_id.value_ids:#aggiungo pelle e tutti i colori della pelle
+                        temp_variants.append(sorted([int(value_id)]))
+
+                    if temp_variants:
+                        all_variants += temp_variants
+            temp_variants = []
+            # aggiungo ad ogni variante pelle/colore l'impuntura (la sequence dell'impuntura dev'essere > 0)
+            if attribute_line_ids:
+                for standard_variant_id in attribute_line_ids:
+                    for value_id in standard_variant_id.value_ids:
+                        for variant in all_variants:
+                            temp_variants.append(sorted(variant + [int(value_id)]))
+            for variant in temp_variants:
+                if len(variant) < 2:
+                    temp_variants.pop(temp_variants.index(variant))
             if temp_variants:
                 all_variants = temp_variants
+            # END MODIFICATION
 
             # adding an attribute with only one value should not recreate product
             # write this attribute on every product to make sure we don't lose them

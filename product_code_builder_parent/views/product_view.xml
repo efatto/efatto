@@ -21,6 +21,18 @@
                 </xpath>
             </field>
         </record>
+        <record id="attribute_tree_view_parent" model="ir.ui.view">
+            <field name="name">product.attribute.tree.parent</field>
+            <field name="model">product.attribute</field>
+            <field name="inherit_id" ref="product.attribute_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="parent_id"/>
+                    <field name="child_ids"/>
+                    <field name="value_ids"/>
+                </field>
+            </field>
+        </record>
      </data>
     <data noupdate="1">
         <record forcecreate="True" id="config_parameter_product_code_builder_parent" model="ir.config_parameter">

@@ -2,14 +2,16 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp.osv import osv
+from openerp import models, fields, api
 import psycopg2
 from openerp import tools
+from openerp.exceptions import Warning as UserError
 
 
-class product_template(osv.osv):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+    @api.cr_uid_ids_context
     def create_variant_ids(self, cr, uid, ids, context=None):
         product_obj = self.pool.get("product.product")
         ctx = context and context.copy() or {}
@@ -100,7 +102,19 @@ class product_template(osv.osv):
                 try:
                     with cr.savepoint(), tools.mute_logger('openerp.sql_db'):
                         product_obj.unlink(cr, uid, [variant_id], context=ctx)
-                except (psycopg2.Error, osv.except_osv):
+                except UserError(psycopg2.Error):
                     product_obj.write(cr, uid, [variant_id], {'active': False}, context=ctx)
                     pass
         return True
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for product_tmpl in self:
+            name = "%s%s" % (
+                product_tmpl.prefix_code and (
+                    product_tmpl.prefix_code + u' - ') or '',
+                product_tmpl.name,
+            )
+            res.append((product_tmpl.id, name))
+        return res

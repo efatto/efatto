@@ -22,7 +22,7 @@
     'version': '8.1.0.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Custom fields for Area Industries',
+    'description': 'Reduce length of description in sale.order.line to 300',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

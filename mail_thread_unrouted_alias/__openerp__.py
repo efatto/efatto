@@ -23,7 +23,9 @@
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
     'description': 'Mail unrouted to alias.'
-                   'Create a mail.unrouted_forward_alias in parameter, wi',
+                   'Create a mail.unrouted_forward_alias in parameter, where '
+                   'unrouted mail will be forwarded.'
+                   'Alias mail is in "Alias" menu, not mails.',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

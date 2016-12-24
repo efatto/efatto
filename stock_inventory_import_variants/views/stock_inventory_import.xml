@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- Import Inventory Wizard form -->
+        <record id="view_import_inventory_variants" model="ir.ui.view">
+            <field name="name">import.inventory.form.variants</field>
+            <field name="model">import.inventory</field>
+            <field name="inherit_id" ref="stock_inventory_import.view_import_inventory"/>
+            <field name="arch" type="xml">
+                <label string="The file must have 2 column keys:
+                'code' => for product reference
+                'quantity' => for product quantity" position="replace">
+                <label string="The file must have 2 column keys:
+                'code' => for product reference
+                'material' => for material reference
+                And 1 or more column keys for attribute values. Column header is the
+                attribute values, the row will be the quantity. E.g. if attribute are
+                '15', '16' and '17', it needs to have 3 column:
+                '15' => for product with attribute '15' quantity
+                '16' => for product with attribute '16' quantity
+                '17' => for product with attribute '17' quantity" colspan="4"/>
+                </label>
+            </field>
+        </record>
+  </data>
+</openerp>

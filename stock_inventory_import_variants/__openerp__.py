@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'Stock inventory import variant',
+    'name': 'Stock inventory import variants',
     'version': '8.0.0.0.0',
     'category': 'other',
     'description': """
-    Stock inventory import variant
+    Stock inventory import variants
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
@@ -31,6 +31,7 @@
         'stock_inventory_import',
     ],
     "data": [
+        'views/stock_inventory_import.xml',
     ],
     "installable": True,
 }

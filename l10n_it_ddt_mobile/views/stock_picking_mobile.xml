@@ -13,7 +13,7 @@
             <button name="action_cancel" states="draft,in_pack" icon="STOCK_CANCEL" groups="base.group_user" type="object"/>
             <button name="action_draft" states="cancel" string="Reset to draft" type="object" class="oe_highlight" groups="base.group_user"/>
             <button name="%(l10n_it_ddt.action_report_ddt)d" icon="STOCK_PRINT" type="action" class="oe_highlight" groups="base.group_user"/>
-            <field name="state" class="oe_inline"/>
+            <field name="state" invisible="1"/>
           </header>
           <sheet>
             <!--<div class="oe_right oe_button_box">-->
@@ -28,7 +28,6 @@
                 <field name="ddt_type_id" widget="selection" nolabel="1"/>
                 <field name="partner_id" nolabel="1" placeholder="Partner" domain="[('is_company','=',True)]"/>
                 <field name="date_done" attrs="{'invisible': [('state', '!=', 'done')]}"/>
-                <field name="package_id" attrs="{'invisible': [('package_id', '=', False)]}"/>
                 <field name="company_id" invisible="1"/>
             </group>
             <!--<notebook>-->

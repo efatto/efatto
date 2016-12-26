@@ -30,6 +30,10 @@
                 <field name="date_done" attrs="{'invisible': [('state', '!=', 'done')]}"/>
                 <field name="company_id" invisible="1"/>
             </group>
+              <field name="product_id" nolabel="1"/>
+              <field name="product_qty" nolabel="1"/>
+              <button name="add_product_in_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
+
             <!--<notebook>-->
               <!--<page string="Rows">-->
                     <field name="line_ids" >

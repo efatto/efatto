@@ -15,23 +15,30 @@ class ProductProduct(models.Model):
             price_extra = price_attribute = cost_extra = cost_attribute = 0.0
             for variant_id in product.attribute_value_ids:
                 for price_id in variant_id.price_ids:
-                    if price_id.product_tmpl_id.id == product.product_tmpl_id.id:
+                    if price_id.product_tmpl_id.id == \
+                            product.product_tmpl_id.id:
                         price_extra += price_id.price_extra
                         cost_extra += price_id.cost_extra
                 # ADD extra price for attribute
-                for attribute_line in product.product_tmpl_id.\
-                        attribute_line_ids.filtered('attribute_id.child_ids'):
-                    if variant_id.attribute_id in attribute_line.attribute_id.child_ids:
+                attribute_line_with_child_ids = product.product_tmpl_id.\
+                    attribute_line_ids.filtered("attribute_id.child_ids")
+                attribute_line_ids = product.product_tmpl_id.\
+                    attribute_line_ids - attribute_line_with_child_ids
+                if attribute_line_with_child_ids:
+                    for attribute_line in attribute_line_with_child_ids:
+                        if variant_id.attribute_id in \
+                                attribute_line.attribute_id.child_ids:
+                            price_attribute = attribute_line.price_extra
+                            cost_attribute = attribute_line.cost_extra
+                            break
+                if not attribute_line_with_child_ids:
+                    attribute_line = product.product_tmpl_id.\
+                        attribute_line_ids.filtered(lambda r:
+                                                    r.attribute_id ==
+                                                    variant_id.attribute_id)
+                    if attribute_line:
                         price_attribute = attribute_line.price_extra
                         cost_attribute = attribute_line.cost_extra
-                        break
-                # attribute_line = product.product_tmpl_id.\
-                #     attribute_line_ids.filtered(lambda r:
-                #                                 r.attribute_id ==
-                #                                 variant_id.attribute_id)
-                # if attribute_line:
-                #     price_attribute = attribute_line.price_extra
-                #     cost_attribute = attribute_line.cost_extra
             price_extra += price_attribute
             product.price_extra = price_extra
             cost_extra += cost_attribute

@@ -15,7 +15,8 @@
         <field name="key">web_debranding.new_title</field>
         <field name="value">SimplERP</field>
     </record>
-
+</data>
+<data>
     <template id="web_debranding.web_layout" inherit_id="web.layout">
        <xpath expr="//title" position="replace"></xpath>
        <xpath expr="//link[@rel='shortcut icon']" position="replace">

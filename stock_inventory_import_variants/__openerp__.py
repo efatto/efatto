@@ -18,20 +18,20 @@
 #
 #
 {
-    'name': 'Mail unrouted to alias',
-    'version': '8.0.1.0.0',
+    'name': 'Stock inventory import variants',
+    'version': '8.0.0.0.0',
     'category': 'other',
+    'description': """
+    Stock inventory import variants
+    """,
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Mail unrouted to alias.'
-                   'Create a mail.unrouted_forward_alias in parameter, where '
-                   'unrouted mail will be forwarded.'
-                   'Alias mail is in "Alias" menu, not mails.',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
-    'depends': [
-        'mail',
+    "depends": [
+        'stock_inventory_import',
     ],
-    'data': [
+    "data": [
+        'views/stock_inventory_import.xml',
     ],
-    'installable': True
+    "installable": True,
 }

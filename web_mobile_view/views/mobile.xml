@@ -6,6 +6,7 @@
                 <link rel="stylesheet" href="/web_mobile_view/static/src/css/mobile.css"/>
                 <script src="/web_mobile_view/static/src/js/lib.js"></script>
                 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+                <meta name="mobile-web-app-capable" content="yes"/>
             </xpath>
         </template>
     </data>

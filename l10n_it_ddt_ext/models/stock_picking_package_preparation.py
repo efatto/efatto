@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _
+from openerp import models, fields, api, exceptions, _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime
 
@@ -53,7 +53,10 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def action_draft(self):
-        # ever possible
+        if any(prep.state == 'done' for prep in self):
+            raise exceptions.Warning(
+                _('Done package preparations cannot be reset to draft.')
+            )
         self.write({'state': 'draft'})
 
     @api.multi

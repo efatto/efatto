@@ -18,18 +18,15 @@
 #
 #
 {
-    'name': 'Mail unrouted to alias',
+    'name': 'Sale stock warning',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Mail unrouted to alias.'
-                   'Create a mail.unrouted_forward_alias in parameter, where '
-                   'unrouted mail will be forwarded.'
-                   'Alias mail is in "Alias" menu, not mails.',
+    'description': 'This module remove stock warning in sale order.',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
-        'mail',
+        'sale_stock',
     ],
     'data': [
     ],

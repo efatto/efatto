@@ -31,4 +31,4 @@ msgstr ""
 #: model:ir.actions.client,name:mail_sent.action
 #: model:ir.ui.menu,name:mail_sent.menu
 msgid "Sent"
-msgstr ""
+msgstr "Posta Inviata"

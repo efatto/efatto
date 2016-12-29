@@ -565,7 +565,7 @@ msgstr "Elenco"
 #: model:ir.ui.menu,name:lunch.menu_lunch
 #: model:ir.ui.menu,name:lunch.menu_lunch_title
 msgid "Lunch"
-msgstr "Pasto"
+msgstr "Pasti e Mensa"
 
 #. module: lunch
 #: model:ir.model,name:lunch.model_lunch_alert

@@ -758,7 +758,7 @@ msgstr "Sostituzione Collettore di Scarico"
 #. module: fleet
 #: model:ir.module.category,name:fleet.module_fleet_category model:ir.ui.menu,name:fleet.menu_fleet_reporting model:ir.ui.menu,name:fleet.menu_root
 msgid "Fleet"
-msgstr "Flotta"
+msgstr "Flotta Auto"
 
 #. module: fleet
 #: field:fleet.vehicle,message_follower_ids:0

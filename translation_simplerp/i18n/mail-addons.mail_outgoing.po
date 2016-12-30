@@ -53,12 +53,12 @@ msgstr "Aprire il Menu della Posta in Uscita"
 #: model:ir.actions.act_window,name:mail_outgoing.action_mail_outgoing
 #: model:ir.ui.menu,name:mail_outgoing.menu_mail_outgoing
 msgid "Outgoing"
-msgstr "In Uscita"
+msgstr "Posta in Uscita"
 
 #. module: mail_outgoing
 #: model:ir.model,name:mail_outgoing.model_mail_mail
 msgid "Outgoing Mails"
-msgstr "Email in Uscita"
+msgstr "Posta in Uscita"
 
 #. module: mail_outgoing
 #: model:res.groups,name:mail_outgoing.group_all_emails

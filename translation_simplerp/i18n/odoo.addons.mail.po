@@ -314,7 +314,7 @@ msgstr "Salva"
 #: model:ir.actions.client,name:mail.action_mail_archives_feeds
 #: model:ir.ui.menu,name:mail.mail_archivesfeeds
 msgid "Archives"
-msgstr "Archivi"
+msgstr "Archivio Posta"
 
 #. module: mail
 #. openerp-web
@@ -1784,7 +1784,7 @@ msgstr "Da leggere"
 #: model:ir.actions.client,name:mail.action_mail_star_feeds
 #: model:ir.ui.menu,name:mail.mail_starfeeds
 msgid "To-do"
-msgstr "Cose da fare"
+msgstr "Posta in Evidenza"
 
 #. module: mail
 #. openerp-web
@@ -1797,7 +1797,7 @@ msgstr "A:"
 #: model:ir.actions.client,name:mail.action_mail_to_me_feeds
 #: model:ir.ui.menu,name:mail.mail_tomefeeds
 msgid "To: me"
-msgstr "A: me"
+msgstr "Posta Per Me"
 
 #. module: mail
 #: view:mail.group:mail.view_group_form

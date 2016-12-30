@@ -96,6 +96,9 @@ class ImportInventory(models.TransientModel):
                                 search([('code', '=', prefix + var)])
                             if prod_lst:
                                 val['product'] = prod_lst[0].id
+                            if not color_attribute_value_id:
+                                raise exceptions.Warning(_(
+                                    'Color not found: %s - %s') % prefix, var)
                             else:
                                 product = product_obj.create({
                                     'product_tmpl_id': prod_tmpl_id,

@@ -83,6 +83,8 @@ class ImportInventory(models.TransientModel):
                         prefix = 'RB'
                         if values['material'] == '10':
                             prefix = 'T'
+                        if values['material'] == '20':
+                            prefix = 'M'
                         val['quantity'] = values[var]
                         val['code'] = values['code'] + \
                             values['material'] + prefix + var

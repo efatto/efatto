@@ -42,6 +42,9 @@ class StockPickingPackagePreparation(models.Model):
         compute='_tobeinvoiced',
         store=True
     )
+    carrier_signature = fields.Binary(string="Carrier's signature")
+    driver_signature = fields.Binary(string="Driver's signature")
+    recipient_signature = fields.Binary(string="Recipient's signature")
 
     @api.multi
     @api.depends('picking_ids')

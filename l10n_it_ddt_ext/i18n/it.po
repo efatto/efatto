@@ -109,7 +109,7 @@ msgstr "Annullato"
 #: code:addons/stock_picking_package_preparation/model/stock_picking_package_preparation.py:171
 #, python-format
 msgid "Cannot cancel a done package preparation."
-msgstr "Cannot cancel a done package preparation."
+msgstr "Non è possibile cancellare una DDT completato."
 
 #. modules: l10n_it_ddt_ext, l10n_it_ddt
 #: field:account.invoice,carriage_condition_id:0
@@ -205,7 +205,7 @@ msgstr "Data consegna"
 #: view:ddt.from.pickings:l10n_it_ddt.view_ddt_from_pickings
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 msgid "DDT from Pickings"
-msgstr "DDT from Pickings"
+msgstr "DDT da Prelievi"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.report_ddt
@@ -237,7 +237,7 @@ msgstr "DdT"
 #. module: l10n_it_ddt
 #: view:ddt.create.invoice:l10n_it_ddt.view_ddt_create_invoice
 msgid "DdT Create Invoice"
-msgstr "Crea Fattura per DdT"
+msgstr "Crea Fattura da DdT"
 
 #. module: l10n_it_ddt
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_stock_ddt_data

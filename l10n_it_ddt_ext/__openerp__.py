@@ -30,6 +30,7 @@
     - use of fiscal sequence for ddt.''',
     'depends': [
         'l10n_it_ddt',
+        'web_widget_digitized_signature',
     ],
     'data': [
         'views/sale.xml',

@@ -28,7 +28,8 @@
         'account',
         'report_aeroo',
         'stock',
-        'l10n_it_ddt',
+        'invoice_report_aeroo_simplerp',
+        'l10n_it_ddt_ext',
         'report_branding',
     ],
     'data': [

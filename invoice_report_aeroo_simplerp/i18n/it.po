@@ -135,3 +135,13 @@ msgstr "foto"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "ordered color"
 msgstr "colore"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Registered office"
+msgstr "Sede legale"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Operational office"
+msgstr "Sede operativa"

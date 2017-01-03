@@ -63,6 +63,19 @@ class StockPickingPackagePreparation(models.Model):
         self.write({'state': 'draft'})
 
     @api.multi
+    def set_done(self):
+        # put fy in context to get fy sequence
+        for package in self:
+            if not package.ddt_number:
+                fy_id = self.env['account.fiscalyear'].find(
+                    dt=datetime.strptime(
+                        package.date, DEFAULT_SERVER_DATE_FORMAT))
+                package.ddt_number = package.ddt_type_id.sequence_id.\
+                    with_context({'fiscalyear_id': fy_id}).get(
+                        package.ddt_type_id.sequence_id.code)
+        return super(StockPickingPackagePreparation, self).set_done()
+
+    @api.multi
     def action_put_in_pack(self):
         # put fy in context to get fy sequence
         for package in self:
@@ -73,7 +86,7 @@ class StockPickingPackagePreparation(models.Model):
                         package.date, DEFAULT_SERVER_DATE_FORMAT))
                 package.ddt_number = package.ddt_type_id.sequence_id.\
                     with_context({'fiscalyear_id': fy_id}).get(
-                    package.ddt_type_id.sequence_id.code)
+                        package.ddt_type_id.sequence_id.code)
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.onchange('partner_id', 'ddt_type_id')

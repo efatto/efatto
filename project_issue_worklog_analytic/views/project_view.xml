@@ -6,7 +6,7 @@
             <field name="model">project.issue</field>
             <field name="inherit_id" ref="project_issue_sheet.project_issue_form_view" />
             <field name="arch" type="xml">
-                <field name="analytic_account_id" position="after">
+                <field name="active" position="after">
                     <field name="analytic_ids" widget="many2many_tags"/>
                 </field>
                 <field name="account_id" position="attributes">

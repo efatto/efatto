@@ -10,8 +10,7 @@
                     <field name="analytic_ids" widget="many2many_tags"/>
                 </field>
                 <field name="account_id" position="attributes">
-                    <attribute name="domain">['|',
-                        ('partner_id', '=', parent.partner_id),
+                    <attribute name="domain">[
                         ('id', 'in', parent.analytic_ids[0][2])]</attribute>
                 </field>
             </field>

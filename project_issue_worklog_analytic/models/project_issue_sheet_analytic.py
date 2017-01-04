@@ -35,7 +35,7 @@ class ProjectIssue(models.Model):
                 result['value']['analytic_ids'] = project.analytic_account_id.\
                     child_ids.mapped('id')
             else:
-                result['value']['analytic_ids'] = []
+                result['value']['analytic_ids'] = [account.id]
             result['value']['analytic_account_id'] = account.id
 
         return result

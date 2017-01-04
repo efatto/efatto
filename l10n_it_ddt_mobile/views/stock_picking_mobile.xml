@@ -76,6 +76,7 @@
                        domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
                   </group>
+                <field name="force_transfer"/>
               <!--</page>-->
             <!--</notebook>-->
           </sheet>

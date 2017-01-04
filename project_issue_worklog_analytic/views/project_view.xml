@@ -9,6 +9,9 @@
                 <field name="active" position="after">
                     <field name="analytic_ids" widget="many2many_tags"/>
                 </field>
+                <field name="timesheet_ids" position="attributes">
+                    <attribute name="context">{'default_user_id' : uid}</attribute>
+                </field>
                 <field name="account_id" position="attributes">
                     <attribute name="domain">[
                         ('id', 'in', parent.analytic_ids[0][2])]</attribute>

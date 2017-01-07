@@ -8,14 +8,12 @@ from openerp import models, api
 class ProjectIssue(models.Model):
     _inherit = 'project.issue'
 
-    @api.multi
-    def write(self, vals):
-        if self.project_id:
-            account = self.project_id.analytic_account_id
-            vals['analytic_account_id'] = account.id
-        if self.ids:
-            # Write works when record backed by real db row:
-            super(ProjectIssue, self).write(vals)
-        else:
-            # Update is needed when called from onchange:
-            self.update(vals)
+    @api.model
+    def create(self, values):
+        if values.get('project_id', False) and not \
+                values.get('analytic_account_id', False):
+            project = self.env['project.project'].browse(
+                values.get('project_id'))
+            if project:
+                values['analytic_account_id'] = project.analytic_account_id.id
+        return super(ProjectIssue, self).create(values)

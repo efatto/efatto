@@ -9,9 +9,13 @@ class ProjectIssue(models.Model):
     _inherit = 'project.issue'
 
     @api.multi
-    @api.onchange('project_id')
-    def on_change_project(self):
+    def write(self, vals):
         if self.project_id:
             account = self.project_id.analytic_account_id
-            if account:
-                self.analytic_account_id = account
+            vals['analytic_account_id'] = account
+        if self.ids:
+            # Write works when record backed by real db row:
+            super(ProjectIssue, self).write(vals)
+        else:
+            # Update is needed when called from onchange:
+            self.update(vals)

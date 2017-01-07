@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _
+from openerp import models, api
 
 
 class ProjectIssue(models.Model):
@@ -12,7 +12,7 @@ class ProjectIssue(models.Model):
     def write(self, vals):
         if self.project_id:
             account = self.project_id.analytic_account_id
-            vals['analytic_account_id'] = account
+            vals['analytic_account_id'] = account.id
         if self.ids:
             # Write works when record backed by real db row:
             super(ProjectIssue, self).write(vals)

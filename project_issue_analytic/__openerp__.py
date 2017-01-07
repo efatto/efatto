@@ -24,7 +24,7 @@
     'category': 'Extra Tools',
     'summary': 'Fix missing analytic account of project in issues',
     'description':
-        'Project worklog analytic',
+        'Fix missing analytic account of project in issues',
     'author': 'Sergio Corato - Simplerp srl',
     'website': 'http://www.simplerp.it',
     'depends': [

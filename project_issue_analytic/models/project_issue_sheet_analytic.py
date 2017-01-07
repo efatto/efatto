@@ -10,12 +10,7 @@ class ProjectIssue(models.Model):
 
     @api.multi
     def write(self, vals):
-        if vals.get('project_id', False) and not vals.get(
-                'analytic_account_id', False):
-            project = self.env['project.project'].browse(
-                vals.get('project_id'))
-            account = project.analytic_account_id
-            if account:
-                vals['analytic_account_id'] = account.id
+        if self.project_id and not self.analytic_account_id:
+            self.analytic_account_id = self.project_id.analytic_account_id
 
         return super(ProjectIssue, self).write(vals)

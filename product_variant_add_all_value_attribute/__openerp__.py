@@ -32,6 +32,7 @@ value are added.
         'product',
     ],
     "data": [
+        'views/product_attribute_view.xml',
     ],
     "installable": True
 }

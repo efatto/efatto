@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="action_product_attribute_add_all" model="ir.actions.server">
+        <field name="name">Add attribute values Wizard</field>
+        <field name="model_id" ref="model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">
+object.product_attribute_add_all()
+        </field>
+    </record>
+    <record model="ir.values" id="product_attribute_values_add_all">
+        <field name="name">Add all values of attributes</field>
+        <field name="key2">client_action_multi</field>
+        <field name="value" eval="'ir.actions.server,%d'%action_product_attribute_add_all"/>
+        <field name="model">product.template</field>
+    </record>
+    </data>
+</openerp>

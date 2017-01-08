@@ -5,11 +5,12 @@
 from openerp import models, api
 
 
-class ProductAttributeLine(models.Model):
-    _inherit = "product.attribute.line"
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
 
-    @api.onchange('attribute_id')
-    def attribute_change(self):
-        self.value_ids = self.env[
-            'product.attribute.value'].search([
-                ('attribute_id', '=', self.attribute_id.id)])
+    @api.multi
+    def product_attribute_add_all(self):
+        for attribute_line in self.attribute_line_ids:
+            attribute_line.value_ids = self.env[
+                'product.attribute.value'].search([
+                    ('attribute_id', '=', attribute_line.attribute_id.id)])

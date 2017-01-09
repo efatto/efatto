@@ -1,0 +1,9 @@
+.openerp .oe_mail .oe_msg .oe_msg_icons .oe_assign:hover a, .openerp .oe_mail .oe_msg .oe_msg_icons .oe_assigned {
+    color: #1fc0ff;
+    text-shadow: 0px 1px #184fc5,0px -1px #184fc5, -1px 0px #184fc5, 1px 0px #184fc5, 0px 3px 3px rgba(0,0,0,0.1);
+}
+
+.openerp .oe_mail .oe_msg .oe_msg_icons .oe_assigned a {
+    color: #04E088;
+    text-shadow: 0px 1px #184fc5,0px -1px #184fc5, -1px 0px #184fc5, 1px 0px #184fc5, 0px 3px 3px rgba(0,0,0,0.1);
+}

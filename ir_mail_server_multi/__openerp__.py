@@ -23,7 +23,7 @@
             ' when sending mail',
     'version': '8.0.1.0.0',
     'category': 'Extra Tools',
-    'summary': 'Check and use mail server corresponding to user domain'
+    'description': 'Check and use mail server corresponding to user domain'
 ' when sending mail. Search is done on name of outgoing mail server, so if it'
 ' is found a server with the exact name it will be used, else it works as '
 'standard. This is a simple workaround for missing feature.',

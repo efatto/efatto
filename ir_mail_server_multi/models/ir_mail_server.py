@@ -13,6 +13,7 @@ class ir_mail_server(models.Model):
                    smtp_server=None, smtp_port=None,
                    smtp_user=None, smtp_password=None, smtp_encryption=None,
                    smtp_debug=False):
+        mail_server = False
         email_from = message['From']
         domain_list = email_from.split('>')[0].split('@')
         if len(domain_list) == 2:

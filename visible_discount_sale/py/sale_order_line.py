@@ -21,7 +21,10 @@ class sale_order_line(models.Model):
             
             product = product_obj.browse( cr, uid, product_id, context )
             product_read = product_obj.read( cr, uid, product_id, [field_name], context=context )
-
+            if field_name == 'list_price' and product.list_price != product.lst_price:
+                field_name = 'lst_price'
+                product_read = product_obj.read(cr, uid, product_id,
+                                                ['lst_price'], context=context)
             factor = 1.0
             if uom and uom != product.uom_id.id:
                 product_uom_obj = self.pool.get( 'product.uom' )

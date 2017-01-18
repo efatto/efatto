@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'sale_product_variants',
+        'product_code_builder_parent',
     ],
     'data': [
     ],

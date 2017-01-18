@@ -42,7 +42,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def update_price_unit(self):
         self.ensure_one()
-        if not self.product_id and self.product_tmpl_id:
+        if self.product_tmpl_id:
             price_extra = discount = 0.0
             attribute_id = False
             for attr_line in self.product_attribute_ids:
@@ -66,3 +66,13 @@ class SaleOrderLine(models.Model):
                     price_unit = total_price
             self.price_unit = price_unit
             self.discount = discount
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.multi
+    def recalculate_prices(self):
+        for line in self.order_line:
+            line.update_price_unit()
+        #super(SaleOrder, self).recalculate_prices()

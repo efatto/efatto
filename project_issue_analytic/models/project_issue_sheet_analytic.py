@@ -17,3 +17,4 @@ class ProjectIssue(models.Model):
             if project:
                 values['analytic_account_id'] = project.analytic_account_id.id
         return super(ProjectIssue, self).create(values)
+        # 'use_analytic_account' ?

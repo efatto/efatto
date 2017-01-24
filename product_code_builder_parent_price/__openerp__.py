@@ -34,8 +34,8 @@ With this module price of attribute can be summed to variant prices.
         'visible_discount_sale',
     ],
     'conflicts': [
-        # 'sale_order_recalculate_prices_variants',
-        # 'sale_order_recalculate_prices',
+        'sale_order_recalculate_prices_variants',
+        'sale_order_recalculate_prices',
     ],
     "data": [
         'views/product_view.xml',

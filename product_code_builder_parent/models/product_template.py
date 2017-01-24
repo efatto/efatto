@@ -23,7 +23,10 @@ class ProductTemplate(models.Model):
 
         tmpl_ids = self.browse(cr, uid, ids, context=ctx)
         for tmpl_id in tmpl_ids:
-
+            if ((tmpl_id.no_create_variants == 'empty' and
+                    tmpl_id.categ_id.no_create_variants) or
+                    tmpl_id.no_create_variants == 'yes'):
+                continue
             # list of values combination
             variant_alone = []
             all_variants = [[]]

@@ -20,6 +20,7 @@
            <field name="type">sale</field>
            <field name="view_id" eval="3"/>
            <field name="sequence_id" ref="auto_invoice_journal_sequence"/>
+           <field name="sequence" eval="30"/>
        </record>
        <record forcecreate="1" id="transfert_entry_invoice_journal" model="account.journal">
            <field name="name">Transfert Entry Journal</field>
@@ -27,6 +28,7 @@
            <field name="type">general</field>
            <field name="view_id" eval="3"/>
            <field name="sequence_id" ref="transfert_entry_journal_sequence"/>
+           <field name="sequence" eval="30"/>
        </record>
 
     </data>

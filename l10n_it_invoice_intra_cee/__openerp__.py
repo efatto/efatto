@@ -32,6 +32,7 @@
         'base',
         'account',
         'account_voucher',
+        'account_journal_sequence',
 #         'account_invoice_entry_date',
 #         'account_payment_term_month',
         #'l10n_it_account',

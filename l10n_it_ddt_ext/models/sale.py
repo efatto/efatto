@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api
+from openerp import fields, models, api, _, exceptions
 
 
 class SaleOrder(models.Model):
@@ -42,4 +42,18 @@ class SaleOrder(models.Model):
                 ddt_type.transportation_method_id.id
         if not res.get('ddt_type_id', False):
             res['ddt_type_id'] = ddt_type.id
+        return res
+
+    @api.multi
+    def action_cancel(self):
+        res = super(SaleOrder, self).action_cancel()
+        for ddt in self.ddt_ids:
+            if ddt.state not in ['cancel', 'draft']:
+                raise exceptions.Warning(_('DDT is already done or in pack.'))
+            for picking in ddt.picking_ids:
+                if picking.state not in ['cancel', 'draft']:
+                    raise exceptions.Warning(
+                        _('Picking is not in draft or cancel state.'))
+                picking.unlink()
+            ddt.unlink()
         return res

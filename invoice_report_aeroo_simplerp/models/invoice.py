@@ -29,15 +29,12 @@ class Parser(report_sxw.rml_parse):
             'invoice_move_lines': self._get_invoice_move_lines,
             'ddt': self._get_ddt,
             'set_picking': self._set_picking,
-            'indirizzo': self._indirizzo,
             'div': self._div,
             'line_description': self._line_description,
             'desc_nocode': self._desc_nocode,
             'total_fiscal': self._get_total_fiscal,
             'total_tax_fiscal': self._get_total_tax_fiscal,
             'address_invoice_id': self._get_invoice_address,
-            'account_fiscal_position_rule_id':
-                self._get_account_fiscal_position_rule_id,
             'variant_images': self._variant_images,
             'sale_weight': self._sale_weight,
             'translate': self._translate_text,
@@ -50,12 +47,6 @@ class Parser(report_sxw.rml_parse):
             'check_installed_module': self._check_installed_module,
         })
         self.cache = {}
-
-    def _get_account_fiscal_position_rule_id(self):
-        invoice = self.pool['account.invoice'].browse(self.cr, self.uid,
-                                                      self.ids[0])
-        if invoice.account_fiscal_position_rule_id:
-            return invoice.account_fiscal_position_rule_id
 
     def _get_invoice_address(self):
         invoice = self.pool['account.invoice'].browse(self.cr, self.uid,
@@ -257,12 +248,6 @@ class Parser(report_sxw.rml_parse):
             return [line for line in move_id.line_id if line.date_maturity]
         else:
             return []
-
-    def _indirizzo(self, partner):
-        address = self.pool['res.partner'].address_get(
-            self.cr, self.uid, [partner.id], ['default', 'invoice'])
-        return self.pool['res.partner.address'].browse(
-            self.cr, self.uid, address['invoice'] or address['default'])
 
     def _variant_images(self):
         res = False

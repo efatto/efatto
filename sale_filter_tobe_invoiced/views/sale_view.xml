@@ -21,9 +21,7 @@
 </record>
 
 <record id="sale.action_quotations" model="ir.actions.act_window">
-    <field name="context">{
-                    'search_default_tobe_invoiced_filter': 1
-                }</field>
+    <field name="context">{}</field>
 </record>
 
 </data>

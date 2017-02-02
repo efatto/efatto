@@ -145,3 +145,8 @@ msgstr "Sede legale"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "Operational office"
 msgstr "Sede operativa"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Out refund"
+msgstr "Nota di credito"

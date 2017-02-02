@@ -86,6 +86,6 @@ class ProjectWork(models.Model):
                         'update project_task set remaining_hours='
                         'remaining_hours - %s + (%s) where id=%s',
                         (vals.get('hours', 0.0), work.hours, work.task_id.id))
-                    self.invalidate_all()
+                    self.invalidate_cache()
             return super(models.Model, self).write(vals)
         return super(ProjectWork, self).write(vals)

@@ -23,10 +23,6 @@ class ProductTemplate(models.Model):
 
         tmpl_ids = self.browse(cr, uid, ids, context=ctx)
         for tmpl_id in tmpl_ids:
-            if ((tmpl_id.no_create_variants == 'empty' and
-                    tmpl_id.categ_id.no_create_variants) or
-                    tmpl_id.no_create_variants == 'yes'):
-                continue
             # list of values combination
             variant_alone = []
             all_variants = [[]]
@@ -40,22 +36,30 @@ class ProductTemplate(models.Model):
                 for variant_id in tmpl_id.attribute_line_ids:
                     if len(variant_id.value_ids) == 1:
                         variant_alone.append(variant_id.value_ids[0])
-            for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
-                for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
-                    temp_variants = []
-                    # for variant in all_variants:
-                    for value_id in variant_id.value_ids:#aggiungo pelle e tutti i colori della pelle
-                        temp_variants.append(sorted([int(value_id)]))
+            #only if requested create variants
+            if ((tmpl_id.no_create_variants == 'empty' and
+                     not tmpl_id.categ_id.no_create_variants) or
+                        tmpl_id.no_create_variants == 'no'):
+                for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
+                    for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
+                        temp_variants = []
+                        # for variant in all_variants:
+                        for value_id in variant_id.value_ids:#aggiungo pelle e tutti i colori della pelle
+                            temp_variants.append(sorted([int(value_id)]))
 
-                    if temp_variants:
-                        all_variants += temp_variants
+                        if temp_variants:
+                            all_variants += temp_variants
             temp_variants = []
-            # aggiungo ad ogni variante pelle/colore l'impuntura (la sequence dell'impuntura dev'essere > 0)
-            if attribute_line_ids:
-                for standard_variant_id in attribute_line_ids:
-                    for value_id in standard_variant_id.value_ids:
-                        for variant in all_variants:
-                            temp_variants.append(sorted(variant + [int(value_id)]))
+            # only if requested create variants
+            if ((tmpl_id.no_create_variants == 'empty' and
+                     not tmpl_id.categ_id.no_create_variants) or
+                        tmpl_id.no_create_variants == 'no'):
+                # aggiungo ad ogni variante pelle/colore l'impuntura (la sequence dell'impuntura dev'essere > 0)
+                if attribute_line_ids:
+                    for standard_variant_id in attribute_line_ids:
+                        for value_id in standard_variant_id.value_ids:
+                            for variant in all_variants:
+                                temp_variants.append(sorted(variant + [int(value_id)]))
 
             if attribute_line_with_child_ids:
                 for variant in temp_variants:

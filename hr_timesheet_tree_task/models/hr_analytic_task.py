@@ -31,6 +31,7 @@ class HrAnalyticTimesheet(models.Model):
                 'user_id': vals['user_id'],
                 'company_id': self.env['res.users'].browse(
                     vals['user_id']).company_id.id,
+                'hr_analytic_timesheet_id': res.id,
             }
             self.env['project.task.work'].with_context(
                 {'no_analytic_entry': True}).create(values)
@@ -47,7 +48,7 @@ class HrAnalyticTimesheet(models.Model):
                 user = vals.get('user_id', False) or line.user_id.id
                 task_work = self.env['project.task.work'].search([
                     ('hr_analytic_timesheet_id', '=', line.id)
-                ], limit=1)
+                ])
                 if task_work:
                     task_work.with_context({'no_analytic_entry': True}).write({
                         'name': vals.get('name', False) or line.name,

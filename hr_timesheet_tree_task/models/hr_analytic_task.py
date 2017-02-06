@@ -68,7 +68,8 @@ class HrAnalyticTimesheet(models.Model):
                 task_work = self.env['project.task.work'].search([
                     ('hr_analytic_timesheet_id', '=', line.id)
                 ])
-                if task_work:
+                if task_work and not self._context.get('active_model', False) \
+                        == 'project.project':
                     task_work.with_context(
                         {'no_analytic_entry': True}).unlink()
         return super(HrAnalyticTimesheet, self).unlink()

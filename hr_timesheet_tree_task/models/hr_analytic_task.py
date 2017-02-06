@@ -13,9 +13,7 @@ class HrAnalyticTimesheet(models.Model):
         string='Task',
     )
 
-    #TODO when create analytic timesheet directly, create project.task.work (be careful
-    #TODO to not recreate analytic timesheet and so on circular!!)
-
+    # when create analytic timesheet directly, create project.task.work
     @api.model
     def create(self, vals):
         res = super(HrAnalyticTimesheet, self).create(vals)
@@ -37,7 +35,7 @@ class HrAnalyticTimesheet(models.Model):
                 {'no_analytic_entry': True}).create(values)
         return res
 
-    #todo when modify, adjust task work
+    # when modify, adjust task work
     @api.multi
     def write(self, vals):
         for line in self:
@@ -61,6 +59,20 @@ class HrAnalyticTimesheet(models.Model):
                             user).company_id.id,
                     })
         return super(HrAnalyticTimesheet, self).write(vals)
+
+    # when unlink, unlink task work
+    @api.multi
+    def unlink(self):
+        for line in self:
+            if line.task_id:
+                task_work = self.env['project.task.work'].search([
+                    ('hr_analytic_timesheet_id', '=', line.id)
+                ])
+                if task_work:
+                    task_work.with_context(
+                        {'no_analytic_entry': True}).unlink()
+        return super(HrAnalyticTimesheet, self).unlink()
+
 
 class ProjectWork(models.Model):
     _inherit = "project.task.work"
@@ -90,3 +102,14 @@ class ProjectWork(models.Model):
                     self.invalidate_cache()
             return super(models.Model, self).write(vals)
         return super(ProjectWork, self).write(vals)
+
+    @api.multi
+    def unlink(self):
+        if self.env.context.get('no_analytic_entry', False):
+            for work in self:
+                self._cr.execute(
+                    'update project_task set remaining_hours=remaining_hours'
+                    ' + %s where id=%s', (work.hours, work.task_id.id))
+                self.invalidate_cache()
+            return super(models.Model, self).unlink()
+        return super(ProjectWork, self).unlink()

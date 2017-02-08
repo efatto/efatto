@@ -23,37 +23,33 @@ class ProductTemplate(models.Model):
 
         tmpl_ids = self.browse(cr, uid, ids, context=ctx)
         for tmpl_id in tmpl_ids:
-            # list of values combination
             variant_alone = []
             all_variants = [[]]
-
-            # START MODIFICATION
-            attribute_line_with_child_ids = tmpl_id.attribute_line_ids.\
-                filtered("attribute_id.child_ids")
-            attribute_line_ids = tmpl_id.attribute_line_ids - \
-                                 attribute_line_with_child_ids
-            if not attribute_line_with_child_ids:
-                for variant_id in tmpl_id.attribute_line_ids:
-                    if len(variant_id.value_ids) == 1:
-                        variant_alone.append(variant_id.value_ids[0])
             #only if requested create variants
             if ((tmpl_id.no_create_variants == 'empty' and
-                     not tmpl_id.categ_id.no_create_variants) or
-                        tmpl_id.no_create_variants == 'no'):
-                for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
-                    for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
-                        temp_variants = []
-                        # for variant in all_variants:
-                        for value_id in variant_id.value_ids:#aggiungo pelle e tutti i colori della pelle
-                            temp_variants.append(sorted([int(value_id)]))
+                    not tmpl_id.categ_id.no_create_variants) or
+                    tmpl_id.no_create_variants == 'no'):
+                # list of values combination
+                # START MODIFICATION
+                attribute_line_with_child_ids = tmpl_id.attribute_line_ids.\
+                    filtered("attribute_id.child_ids")
+                attribute_line_ids = tmpl_id.attribute_line_ids - \
+                                     attribute_line_with_child_ids
+                if not attribute_line_with_child_ids:
+                    for variant_id in tmpl_id.attribute_line_ids:
+                        if len(variant_id.value_ids) == 1:
+                            variant_alone.append(variant_id.value_ids[0])
 
-                        if temp_variants:
-                            all_variants += temp_variants
-            temp_variants = []
-            # only if requested create variants
-            if ((tmpl_id.no_create_variants == 'empty' and
-                     not tmpl_id.categ_id.no_create_variants) or
-                        tmpl_id.no_create_variants == 'no'):
+                    for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
+                        for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
+                            temp_variants = []
+                            # for variant in all_variants:
+                            for value_id in variant_id.value_ids:#aggiungo pelle e tutti i colori della pelle
+                                temp_variants.append(sorted([int(value_id)]))
+
+                            if temp_variants:
+                                all_variants += temp_variants
+                temp_variants = []
                 # aggiungo ad ogni variante pelle/colore l'impuntura (la sequence dell'impuntura dev'essere > 0)
                 if attribute_line_ids:
                     for standard_variant_id in attribute_line_ids:
@@ -61,57 +57,66 @@ class ProductTemplate(models.Model):
                             for variant in all_variants:
                                 temp_variants.append(sorted(variant + [int(value_id)]))
 
-            if attribute_line_with_child_ids:
-                for variant in temp_variants:
-                    if len(variant) < 2:
-                        temp_variants.pop(temp_variants.index(variant))
+                if attribute_line_with_child_ids:
+                    for variant in temp_variants:
+                        if len(variant) < 2:
+                            temp_variants.pop(temp_variants.index(variant))
 
-            if temp_variants:
-                all_variants = temp_variants
-            # END MODIFICATION
+                if temp_variants:
+                    all_variants = temp_variants
+                # END MODIFICATION
 
-            # adding an attribute with only one value should not recreate product
-            # write this attribute on every product to make sure we don't lose them
-            for variant_id in variant_alone:
-                product_ids = []
+                # adding an attribute with only one value should not recreate product
+                # write this attribute on every product to make sure we don't lose them
+                for variant_id in variant_alone:
+                    product_ids = []
+                    for product_id in tmpl_id.product_variant_ids:
+                        if variant_id.id not in map(int, product_id.attribute_value_ids):
+                            product_ids.append(product_id.id)
+                    product_obj.write(cr, uid, product_ids, {'attribute_value_ids': [(4, variant_id.id)]}, context=ctx)
+
+                # check product
+                variant_ids_to_active = []
+                variants_active_ids = []
+                variants_inactive = []
                 for product_id in tmpl_id.product_variant_ids:
-                    if variant_id.id not in map(int, product_id.attribute_value_ids):
-                        product_ids.append(product_id.id)
-                product_obj.write(cr, uid, product_ids, {'attribute_value_ids': [(4, variant_id.id)]}, context=ctx)
+                    variants = sorted(map(int,product_id.attribute_value_ids))
+                    if variants in all_variants:
+                        variants_active_ids.append(product_id.id)
+                        all_variants.pop(all_variants.index(variants))
+                        if not product_id.active:
+                            variant_ids_to_active.append(product_id.id)
+                    else:
+                        variants_inactive.append(product_id)
+                if variant_ids_to_active:
+                    product_obj.write(cr, uid, variant_ids_to_active, {'active': True}, context=ctx)
 
-            # check product
-            variant_ids_to_active = []
-            variants_active_ids = []
-            variants_inactive = []
-            for product_id in tmpl_id.product_variant_ids:
-                variants = sorted(map(int,product_id.attribute_value_ids))
-                if variants in all_variants:
-                    variants_active_ids.append(product_id.id)
-                    all_variants.pop(all_variants.index(variants))
-                    if not product_id.active:
-                        variant_ids_to_active.append(product_id.id)
-                else:
-                    variants_inactive.append(product_id)
-            if variant_ids_to_active:
-                product_obj.write(cr, uid, variant_ids_to_active, {'active': True}, context=ctx)
+                # create new product
+                for variant_ids in all_variants:
+                    values = {
+                        'product_tmpl_id': tmpl_id.id,
+                        'attribute_value_ids': [(6, 0, variant_ids)]
+                    }
+                    id = product_obj.create(cr, uid, values, context=ctx)
+                    variants_active_ids.append(id)
 
-            # create new product
-            for variant_ids in all_variants:
-                values = {
-                    'product_tmpl_id': tmpl_id.id,
-                    'attribute_value_ids': [(6, 0, variant_ids)]
-                }
-                id = product_obj.create(cr, uid, values, context=ctx)
-                variants_active_ids.append(id)
-
-            # unlink or inactive product
-            for variant_id in map(int,variants_inactive):
-                try:
-                    with cr.savepoint(), tools.mute_logger('openerp.sql_db'):
-                        product_obj.unlink(cr, uid, [variant_id], context=ctx)
-                except UserError(psycopg2.Error):
-                    product_obj.write(cr, uid, [variant_id], {'active': False}, context=ctx)
-                    pass
+                # unlink or inactive product
+                for variant_id in map(int,variants_inactive):
+                    try:
+                        with cr.savepoint(), tools.mute_logger('openerp.sql_db'):
+                            product_obj.unlink(cr, uid, [variant_id], context=ctx)
+                    except UserError(psycopg2.Error):
+                        product_obj.write(cr, uid, [variant_id], {'active': False}, context=ctx)
+                        pass
+            else:
+                if not tmpl_id.attribute_line_ids:
+                    # create new product "alone"
+                    for variant_ids in all_variants:
+                        values = {
+                            'product_tmpl_id': tmpl_id.id,
+                            'attribute_value_ids': [(6, 0, variant_ids)]
+                        }
+                        product_obj.create(cr, uid, values, context=ctx)
         return True
 
     @api.multi

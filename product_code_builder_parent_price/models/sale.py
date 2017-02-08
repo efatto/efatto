@@ -14,6 +14,7 @@ class SaleOrderLine(models.Model):
     @api.depends('product_tmpl_id')
     def onchange_price_unit(self):
         self.ensure_one()
+        date = self._context.get('date') or fields.Date.context_today(self)
         if not self.product_id and self.product_tmpl_id:
             price_extra = discount = 0.0
             attribute_id = False
@@ -32,7 +33,46 @@ class SaleOrderLine(models.Model):
                 self.product_tmpl_id.id, self.product_uom_qty or 1.0,
                 self.order_id.partner_id.id)[self.order_id.pricelist_id.id]
             if self.order_id.pricelist_id.visible_discount:
-                total_price = self.product_tmpl_id.list_price + price_extra
+                # get base rule of pricelist price to get price
+                # on which retrieve discount
+                # search valid version
+                for v in self.order_id.pricelist_id.version_id:
+                    if (((v.date_start is False) or (v.date_start <= date)) and
+                            ((v.date_end is False) or (v.date_end >= date))):
+                        version = v
+                        break
+                for rule in version.items_id:
+                    # check what rule is applicable
+                    if rule.min_quantity and self.product_uom_qty < \
+                            rule.min_quantity:
+                        continue
+                    if (rule.product_tmpl_id and
+                                self.product_id.id != rule.product_tmpl_id.id):
+                        continue
+                    if rule.product_id:
+                        continue
+
+                    if rule.categ_id:
+                        cat = self.product_id.categ_id
+                        while cat:
+                            if cat.id == rule.categ_id.id:
+                                break
+                            cat = cat.parent_id
+                        if not cat:
+                            continue
+                    if rule.base == -1:
+                        base_price_list_id = rule.base_pricelist_id
+                        total_price = base_price_list_id.with_context({
+                            'uom': self.product_uom.id,
+                            'date': self.order_id.date_order,
+                            'price_extra': price_extra,
+                        }).template_price_get(
+                            self.product_tmpl_id.id, self.product_uom_qty or
+                            1.0,
+                            self.order_id.partner_id.id)[
+                            base_price_list_id.id]
+                if total_price == 0.0:
+                    total_price = self.product_tmpl_id.list_price + price_extra
                 if total_price != 0.0:
                     discount = (total_price - price_unit) / total_price * 100.0
                     price_unit = total_price
@@ -42,8 +82,9 @@ class SaleOrderLine(models.Model):
     @api.multi
     def update_price_unit(self):
         self.ensure_one()
+        date = self._context.get('date') or fields.Date.context_today(self)
         if self.product_tmpl_id:
-            price_extra = discount = 0.0
+            price_extra = discount = total_price = 0.0
             attribute_id = False
             for attr_line in self.product_attribute_ids:
                 price_extra += attr_line.price_extra
@@ -60,7 +101,46 @@ class SaleOrderLine(models.Model):
                 self.product_tmpl_id.id, self.product_uom_qty or 1.0,
                 self.order_id.partner_id.id)[self.order_id.pricelist_id.id]
             if self.order_id.pricelist_id.visible_discount:
-                total_price = self.product_tmpl_id.list_price + price_extra
+                # get base rule of pricelist price to get price
+                # on which retrieve discount
+                # search valid version
+                for v in self.order_id.pricelist_id.version_id:
+                    if (((v.date_start is False) or (v.date_start <= date)) and
+                            ((v.date_end is False) or (v.date_end >= date))):
+                        version = v
+                        break
+                for rule in version.items_id:
+                    # check what rule is applicable
+                    if rule.min_quantity and self.product_uom_qty < \
+                            rule.min_quantity:
+                        continue
+                    if (rule.product_tmpl_id and
+                                self.product_id.id != rule.product_tmpl_id.id):
+                        continue
+                    if rule.product_id:
+                        continue
+
+                    if rule.categ_id:
+                        cat = self.product_id.categ_id
+                        while cat:
+                            if cat.id == rule.categ_id.id:
+                                break
+                            cat = cat.parent_id
+                        if not cat:
+                            continue
+                    if rule.base == -1:
+                        base_price_list_id = rule.base_pricelist_id
+                        total_price = base_price_list_id.with_context({
+                            'uom': self.product_uom.id,
+                            'date': self.order_id.date_order,
+                            'price_extra': price_extra,
+                        }).template_price_get(
+                            self.product_tmpl_id.id, self.product_uom_qty or
+                            1.0,
+                            self.order_id.partner_id.id)[
+                            base_price_list_id.id]
+                if total_price == 0.0:
+                    total_price = self.product_tmpl_id.list_price + price_extra
                 if total_price != 0.0:
                     discount = (total_price - price_unit) / total_price * 100.0
                     price_unit = total_price
@@ -75,4 +155,4 @@ class SaleOrder(models.Model):
     def recalculate_prices(self):
         for line in self.order_line:
             line.update_price_unit()
-        #super(SaleOrder, self).recalculate_prices()
+        #NO super(SaleOrder, self).recalculate_prices()

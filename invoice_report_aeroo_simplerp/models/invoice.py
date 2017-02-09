@@ -267,9 +267,9 @@ class Parser(report_sxw.rml_parse):
 
     def _translate_text(self, source):
         trans_obj = self.pool['ir.translation']
-        model = self.datas.get('model')
-        report = self.pool[model].browse(self.cr, self.uid, self.ids[0])
-        lang = report.partner_id.lang
+        lang = 'en_US'
+        if self.objects:  # needed?
+            lang = self.objects[0].partner_id.lang
         return trans_obj._get_source(
             self.cr, self.uid, 'ir.actions.report.xml', 'report', lang, source)
 
@@ -285,7 +285,8 @@ class Parser(report_sxw.rml_parse):
     def _get_total_discount(self, lines):
         total_subprices = total_amount = 0.0
         for line in (l for l in lines if l.discount):
-            if self.datas.get('model', False) == 'account.invoice':
+            if isinstance(line._model, type(
+                    self.pool['account.invoice.line'])):
                 total_amount += line.quantity * line.price_unit
             else:
                 total_amount += line.product_uom_qty * line.price_unit

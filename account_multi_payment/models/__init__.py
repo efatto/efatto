@@ -4,4 +4,3 @@
 ##############################################################################
 from . import account_bank_statement
 from . import account_statement_from_invoice_lines
-from . import account_move_line

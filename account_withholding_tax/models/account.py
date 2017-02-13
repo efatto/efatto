@@ -29,11 +29,14 @@ from openerp.tools.translate import _
 class res_company(orm.Model):
     _inherit = 'res.company'
     _columns = {
-        'withholding_journal_id': fields.many2one('account.journal', \
-        'Withholding journal', help="Journal used for registration of \
-        withholding amounts to be paid"),
-        'withholding_partner_id': fields.many2one('res.partner',
-                                                  string='Partner for tax to be paid')
+        'withholding_journal_id': fields.many2one(
+            'account.journal',
+            'Withholding journal',
+            help="Journal used for registration of withholding amounts to be"
+                 " paid"),
+        'withholding_partner_id': fields.many2one(
+            'res.partner',
+            string='Partner for tax to be paid')
         }
 
 
@@ -41,9 +44,12 @@ class account_voucher(orm.Model):
     _inherit = "account.voucher"
     
     _columns = {
-        'withholding_move_ids': fields.many2many('account.move', \
-        'voucher_withholding_move_rel', 'voucher_id', 'move_id', 'Withholding \
-        Tax Entries', readonly=True),
+        'withholding_move_ids': fields.many2many(
+            'account.move',
+            'voucher_withholding_move_rel',
+            'voucher_id',
+            'move_id',
+            'Withholding Tax Entries', readonly=True),
         }
 
     def reconcile_withholding_move(self, cr, uid, invoice, wh_move, context=None):
@@ -109,12 +115,12 @@ class account_voucher(orm.Model):
                                             'credit': 0.0,
                                             }),
                                         (0, 0, {
-                                            'name': _('Ritenuta acconto - ') + invoice.number,
+                                            'name': _('Ritenuta acconto - ') + invoice.number + ' - ' + invoice.partner_id.name,
                                             'account_id': invoice.company_id.withholding_partner_id.property_account_payable.id,
                                             'debit': 0.0,
                                             'credit': new_line_amount,
                                             'date_maturity': due_list[0][0],
-                                            'partner_id': invoice.partner_id.id,
+                                            'partner_id': invoice.company_id.withholding_partner_id.id,
                                             }),
                                         ]
                                     }

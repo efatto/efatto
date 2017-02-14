@@ -69,9 +69,9 @@
         <field name="arch" type="xml">
             <field name="move_id" position="after">
                 <field name="transfer_entry_id" groups="account.group_account_user"
-                    readonly="True"/>
+                    attrs="{'readonly': [('state', 'in', ['done'])]}"/>
                 <field name="auto_invoice_id" groups="account.group_account_user"
-                    readonly="True"/>
+                    attrs="{'readonly': [('state', 'in', ['done'])]}"/>
             </field>
         </field>
     </record>

@@ -403,7 +403,8 @@ class account_invoice(orm.Model):
     def action_number(self, cr, uid, ids, context=None):
         res = super(account_invoice, self).action_number(cr, uid,
                                                          ids, context)
-        self.create_auto_invoice(cr, uid, ids, context)
+        if not self.pool['account.invoice'].browse(cr, uid, ids, context).auto_invoice_id:
+            self.create_auto_invoice(cr, uid, ids, context)
         return res
 
     def action_cancel(self, cr, uid, ids, context=None):

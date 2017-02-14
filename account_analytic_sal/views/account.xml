@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_analytic_account_form_sal" model="ir.ui.view">
+            <field name="name">account.analytic.account.inherit.sal</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <group name='contract' position="after">
+                    <field name="account_analytic_sal_ids">
+                        <tree string="Analytic SAL" editable="top">
+                            <field name="name"/>
+                            <field name="sal_percent"/>
+                            <field name="sal_done"/>
+                        </tree>
+                    </field>
+                </group>
+            </field>
+        </record>
+
+        <record id="account_analytic_account_form_form_sal" model="ir.ui.view">
+            <field name="name">account.analytic.account.inherit.analysis.sal</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form"/>
+            <field name="arch" type="xml">
+                <field name='remaining_hours' position="after">
+                    <div class="oe_grey">
+                        <field name="progress_works_planned" widget="progressbar"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

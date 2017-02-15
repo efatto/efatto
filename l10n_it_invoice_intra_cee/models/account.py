@@ -232,6 +232,10 @@ class account_invoice(orm.Model):
 
         for line in new_inv['invoice_line']:
             vals = line[2].copy()
+            if vals.get('asset_category_id'):
+                vals['asset_category_id'] = False
+            if vals.get('asset_id'):
+                vals['asset_id'] = False
             # ----- Change account in new invoice line
             vals['account_id'] = fiscal_position.account_transient_id.id
             # ----- Change tax in new invoice line

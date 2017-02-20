@@ -12,7 +12,9 @@
                         <tree string="Analytic SAL" editable="top">
                             <field name="name"/>
                             <field name="sal_percent"/>
-                            <field name="sal_done"/>
+                            <field name="sal_action_id"/>
+                            <field name="sal_action_res_model_id"/>
+                            <field name="sal_action_res_id"/>
                         </tree>
                     </field>
                 </group>

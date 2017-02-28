@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="view_calendar_event_form_task">
+        <field name="name">Calendar - Event Form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="project_id"/>
+                <field name="project_task_id" domain="
+                [('project_id', '=', project_id)]"
+                attrs="{'invisible':[('project_id', '=', False)]}"/>
+            </field>
+            <xpath expr="/form/sheet/notebook" position="inside">
+                <page string="Timesheets" groups="base.group_user">
+                    <field name="timesheet_ids" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_form_popup_task">
+        <field name="name">Meetings Popup</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="0"/>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form_popup"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="project_id"/>
+                <field name="project_task_id"/>
+
+            <button name="record_timesheet" type="object"
+                    string="Record time spent for participant" groups="base.group_user"/>
+            </field>
+        </field>
+    </record>
+    </data>
+</openerp>
+
+

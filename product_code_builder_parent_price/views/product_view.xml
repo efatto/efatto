@@ -18,8 +18,8 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='standard_price']" position="after">
-                    <label for="cost_extra"/>
-                    <field name="cost_extra"/>
+                    <label for="cost_custom"/>
+                    <field name="cost_custom"/>
                 </xpath>
             </field>
         </record>

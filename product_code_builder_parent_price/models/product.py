@@ -56,7 +56,10 @@ class ProductProduct(models.Model):
         help="This is the sum of the extra cost of all attributes",
         digits_compute=dp.get_precision('Product Price')
     )
-
+    cost_custom = fields.Float(
+        string='Custom cost',
+        digits_compute=dp.get_precision('Product Price')
+    )
 
 class ProductAttributeLine(models.Model):
     _inherit = "product.attribute.line"

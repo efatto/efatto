@@ -12,6 +12,17 @@
                 </xpath>
             </field>
         </record>
+        <record model="ir.ui.view" id="product_variants_view_extra">
+            <field name="name">product.product.variants.form.extra</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']" position="after">
+                    <label for="cost_extra" string="Costo variante"/>
+                    <field name="cost_extra"/>
+                </xpath>
+            </field>
+        </record>
         <record model="ir.ui.view" id="sale_order_extended_form_view">
             <field name="name">sale.order.extended.form</field>
             <field name="model">sale.order</field>

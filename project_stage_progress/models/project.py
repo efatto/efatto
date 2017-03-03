@@ -32,4 +32,4 @@ class ProjectTask(models.Model):
 
         self.progress_state = progress
 
-    progress_state = fields.Float('Progress', compute='get_progress')
+    progress_state = fields.Float('Progress on date', compute='get_progress')

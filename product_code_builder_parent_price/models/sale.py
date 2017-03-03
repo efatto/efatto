@@ -171,11 +171,11 @@ class SaleOrderLine(models.Model):
                         'product.configurator.attribute'].browse(
                             cr, uid, attribute[2]['attribute_id']):
                         price_extra += attr_line.price_extra
-                        if attr_line.value_id:
-                            attribute_id = attr_line.attribute_id
+                        if attribute[2].get('value_id', False):
+                            attribute_id = attribute[2]['attribute_id']
                 for attribute_line in product_id.product_tmpl_id.\
                         attribute_line_ids:
-                    if attribute_line.attribute_id == attribute_id:
+                    if attribute_line.attribute_id.id == attribute_id:
                         price_extra += attribute_line.price_extra
                 price_unit = pricelist_id.with_context(
                     {'uom': uom,

@@ -15,7 +15,7 @@
             </field>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheets" groups="base.group_user">
-                    <field name="timesheet_ids" />
+                    <field name="task_work_ids" />
                 </page>
             </xpath>
         </field>
@@ -29,10 +29,20 @@
             <field name="partner_ids" position="after">
                 <field name="project_id"/>
                 <field name="project_task_id"/>
-
-            <button name="record_timesheet" type="object"
-                    string="Record time spent for participant" groups="base.group_user"/>
+                <button name="record_task_work" type="object"
+                    string="Record timesheet" icon="gtk-apply"/>
             </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_calendar_no_quick_create">
+        <field name="name">Meetings Calendar</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="2"/>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="quick_add">False</attribute>
+            </calendar>
         </field>
     </record>
     </data>

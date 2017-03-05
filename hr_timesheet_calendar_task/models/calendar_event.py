@@ -16,9 +16,9 @@ class CalendarEvent(models.Model):
         comodel_name='project.task',
         string='Project task'
     )
-    timesheet_ids = fields.One2many(
-        comodel_name='hr.analytic.timesheet',
-        inverse_name='task_id',
+    task_work_ids = fields.One2many(
+        comodel_name='project.task.work',
+        inverse_name='event_id',
         string='Timesheet records'
     )
 
@@ -27,9 +27,10 @@ class CalendarEvent(models.Model):
         self.project_task_id = False
 
     @api.multi
-    def record_timesheet(self):
+    def record_task_work(self):
+        res_ids = []
         for event in self:
-            #  TODO record timesheet for this task for these users
+            #  TODO record task work for this task for these users
             #  no problem if already recorded for same task or same users
             #  but one user can't have more than one timesheet for same time...
             stop_datetime = event.stop_datetime
@@ -42,33 +43,59 @@ class CalendarEvent(models.Model):
             if diff:
                 duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
             for partner_id in event.partner_ids:
+                work = False
                 user = self.env['res.users'].search(
                     [('partner_id', '=', partner_id.id)])
                 if user:
                     employee = self.env['hr.employee'].search(
                         [('user_id', '=', user[0].id)])
                     if employee:
-                        if event.timesheet_ids:
-                            #  if timesheet for this user exists, update it
-                            timesheet = event.timesheet_ids.filtered(
+                        if event.task_work_ids.filtered(
+                                lambda x: x.user_id == user):
+                            #  if works for this user exists, update it
+                            work = event.task_work_ids.filtered(
                                 lambda x: x.user_id == user)
-                            if timesheet:
-                                timesheet.unit_amount = round(duration, 2)
+                            work.hours = round(duration, 2)
                         #  else create
                         else:
-                            timesheet_id = self.env[
-                                'hr.analytic.timesheet'].with_context(
-                                {'no_task_creation': True,
-                                 'user_id': user.id}).create({
+                            work = self.env[
+                                'project.task.work'].create({
                                     'date': event.start_datetime,
                                     'name': event.name,
                                     'user_id': user.id,
-                                    'account_id': event.project_id.
-                                    analytic_account_id.id,
                                     'task_id': event.project_task_id.id,
-                                    'unit_amount': round(duration, 2),
-                                    'to_invoice': False,
-                                    'journal_id': employee.journal_id.id,
-                            })
-                            event.write({
-                                'timesheet_ids': [(4, timesheet_id.id)]})
+                                    'hours': round(duration, 2),
+                                    'event_id': event.id,
+                                    'company_id': user.company_id.id,
+                                })
+                        if work:
+                            res_ids.append(work.id)
+            if res_ids:
+                view = {
+                    'name': _("Task work"),
+                    'view_mode': 'tree',
+                    'view_id': False,
+                    'view_type': 'form',
+                    'res_model': 'project.task.work',
+                    'type': 'ir.actions.act_window',
+                    'nodestroy': False,
+                    'target': 'self',
+                    'domain': [('id', 'in', res_ids)],
+                    'context': self._context
+                }
+                return view
+
+    @api.multi
+    def set_task_completed(self):
+        for event in self:
+            if event.project_task_id:
+                event.project_task_id.kanban_state = 'done'
+
+
+class TaskWork(models.Model):
+    _inherit = 'project.task.work'
+
+    event_id = fields.Many2one(
+        comodel_name='calendar.event',
+        string='Calendar event',
+    )

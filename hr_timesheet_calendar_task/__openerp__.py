@@ -28,7 +28,7 @@
     'website': 'http://www.simplerp.it',
     'depends': [
         'calendar',
-        'timesheet_task',
+        'hr_timesheet_tree_task',
         'project',
     ],
     'data': [

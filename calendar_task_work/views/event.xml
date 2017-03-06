@@ -30,7 +30,9 @@
                 <field name="project_id"/>
                 <field name="project_task_id"/>
                 <button name="record_task_work" type="object"
-                    string="Record time work" icon="gtk-apply"/>
+                    string="Record time work" icon="gtk-apply"
+                    attrs="{'invisible':[('project_task_id', '=', False)]}"/>
+                />
             </field>
         </field>
     </record>

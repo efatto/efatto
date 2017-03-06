@@ -27,6 +27,7 @@ class CalendarEvent(models.Model):
         self.project_task_id = False
 
     @api.multi
+    @api.depends('project_id', 'project_task_id')
     def record_task_work(self):
         res_ids = []
         for event in self:

@@ -87,6 +87,14 @@ class StockPickingPackagePreparation(models.Model):
                 package.ddt_number = package.ddt_type_id.sequence_id.\
                     with_context({'fiscalyear_id': fy_id}).get(
                         package.ddt_type_id.sequence_id.code)
+                ddt = self.search([
+                    ('date', '>', package.date),
+                    ('ddt_number', '<', package.ddt_number),
+                    ],
+                    order='date desc', limit=1,
+                )
+                if ddt:
+                    package.date = ddt.date
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.onchange('partner_id', 'ddt_type_id')

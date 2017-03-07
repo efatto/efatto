@@ -11,28 +11,44 @@
                     <field name="account_analytic_sal_ids">
                         <tree string="Analytic SAL" editable="top">
                             <field name="name"/>
-                            <field name="sal_percent"/>
-                            <field name="sal_action_id"/>
-                            <field name="sal_action_res_model_id"/>
-                            <field name="sal_action_res_id"/>
+                            <field name="percent_status"/>
+                            <field name="percent_toinvoice"/>
+                            <field name="amount_toinvoice"/>
+                            <field name="amount_invoiced" readonly="1"/>
+                            <field name="done"/>
+                            <!--<field name="action_id"/>-->
+                            <!--<field name="action_res_model_id"/>-->
+                            <!--<field name="action_res_id"/>-->
                         </tree>
                     </field>
                 </group>
             </field>
         </record>
 
-        <record id="account_analytic_account_form_form_sal" model="ir.ui.view">
-            <field name="name">account.analytic.account.inherit.analysis.sal</field>
-            <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form"/>
+        <record model="ir.ui.view" id="view_account_invoice_analytic_sal_form">
+            <field name="name">account.invoice.form.analytic.sal</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name='remaining_hours' position="after">
-                    <div class="oe_grey">
-                        <field name="progress_works_planned" widget="progressbar"/>
-                    </div>
+                <field name="account_analytic_id" position="after">
+                    <field name="account_analytic_sal_id"
+                           groups="analytic.group_analytic_accounting"
+                           domain="[('account_analytic_id', '=', account_analytic_id)]"/>
                 </field>
             </field>
         </record>
+        <!--<record id="account_analytic_account_form_form_sal" model="ir.ui.view">-->
+            <!--<field name="name">account.analytic.account.inherit.analysis.sal</field>-->
+            <!--<field name="model">account.analytic.account</field>-->
+            <!--<field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<field name='remaining_hours' position="after">-->
+                    <!--<div class="oe_grey">-->
+                        <!--<field name="progress_works_planned" widget="progressbar"/>-->
+                    <!--</div>-->
+                <!--</field>-->
+            <!--</field>-->
+        <!--</record>-->
 
     </data>
 </openerp>

@@ -24,6 +24,7 @@ class StockDdtType(models.Model):
 
 class StockPickingPackagePreparation(models.Model):
     _inherit = 'stock.picking.package.preparation'
+    _order = 'ddt_number desc'
 
     FIELDS_STATES = {'done': [('readonly', True)],
                      'in_pack': [('readonly', True)],

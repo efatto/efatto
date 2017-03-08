@@ -87,14 +87,25 @@ class StockPickingPackagePreparation(models.Model):
                 package.ddt_number = package.ddt_type_id.sequence_id.\
                     with_context({'fiscalyear_id': fy_id}).get(
                         package.ddt_type_id.sequence_id.code)
-                ddt = self.search([
+                # check date progression
+                ddt_type_ids = self.env['stock.ddt.type'].search([
+                    ('sequence_id', '=', package.ddt_type_id.sequence_id.id)
+                ])
+                last_ddt = self.search([
                     ('date', '>', package.date),
                     ('ddt_number', '<', package.ddt_number),
+                    ('ddt_type_id', 'in', ddt_type_ids.ids),
                     ],
                     order='date desc', limit=1,
                 )
-                if ddt:
-                    package.date = ddt.date
+                # last_ddt has a date > current ddt
+                if last_ddt:
+                    # today can be used
+                    if fields.Date.today() > last_ddt.date:
+                        package.date = fields.Date.today()
+                    # last date is in the future, so use it
+                    else:
+                        package.date = last_ddt.date
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
 
     @api.onchange('partner_id', 'ddt_type_id')

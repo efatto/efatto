@@ -75,15 +75,17 @@ class AccountAnalyticSal(models.Model):
                 if line.invoice_id.state in ['open','done']:
                     amount_invoiced += line.price_subtotal
             if amount_invoiced >= sal.amount_toinvoice:
+                sal.invoiced = True
+            if sal.percent_completion >= sal.percent_toinvoice:
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 
     name = fields.Char('SAL name')
-    percent_status = fields.Float(
-        'SAL percent status',
+    percent_completion = fields.Float(
+        'SAL percent completion',
         digits_compute=dp.get_precision('Account'))
     percent_toinvoice = fields.Float(
-        'SAL percent to invoice',
+        'SAL percent to invoce',
         digits_compute=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
@@ -94,7 +96,12 @@ class AccountAnalyticSal(models.Model):
         digits_compute=dp.get_precision('Account'))
     done = fields.Boolean(
         string='SAL done',
-        help='SAL is marked done when amount invoice lines is superior'
+        help='SAL is marked done when completion percent is superior'
+             ' of SAL percent. It can be marked even manually.'
+    )
+    invoiced = fields.Boolean(
+        string='SAL invoiced',
+        help='SAL is marked invoiced when amount invoice lines is superior'
              ' of SAL amount. It can be marked even manually.'
     )
     account_analytic_id = fields.Many2one(

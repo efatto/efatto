@@ -16,7 +16,6 @@ class WizardCheckData(models.TransientModel):
         periods = self.env['account.period'].search(
             [('fiscalyear_id', '=', self.fy.id)])
         partners = partners_obj.search([
-            '|',
             ('vat', '=', False),
             ('fiscalcode', '=', False),
         ])

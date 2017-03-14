@@ -17,11 +17,11 @@ class StockPickingPackagePreparationLine(models.Model):
                     continue
                 # ----- search if the move is related with a
                 #       PackagePreparationLine, yet. If not, create a new line
-                if self.search([('move_id', '=', move_line.id)],
-                               count=True):
-                    raise exceptions.ValidationError(
-                        'Picking %s is already linked to a ddt' % picking.name
-                    )
+                # if self.search([('move_id', '=', move_line.id)],
+                #                count=True):
+                #     raise exceptions.ValidationError(
+                #         'Picking %s is already linked to a ddt' % picking.name
+                #     )
 
                 if not self.search([('move_id', '=', move_line.id)],
                                    count=True):

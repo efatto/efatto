@@ -50,10 +50,9 @@ class StockPickingPackagePreparation(models.Model):
     @api.multi
     @api.depends('picking_ids')
     def _tobeinvoiced(self):
-        self.ensure_one()
-        if any(picking.invoice_state == '2binvoiced' for picking in \
+        if any(picking.invoice_state == '2binvoiced' for picking in
                self.picking_ids):
-            self.tobeinvoiced = True
+            self.write({'tobeinvoiced': True})
 
     @api.multi
     def action_draft(self):

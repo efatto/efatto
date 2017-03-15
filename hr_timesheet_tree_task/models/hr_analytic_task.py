@@ -84,7 +84,7 @@ class ProjectWork(models.Model):
             vals=vals)
         if vals.get('task_id', False):
             self.env['hr.analytic.timesheet'].browse(timeline_id).task_id = \
-            vals['task_id']
+                vals['task_id']
         return timeline_id
 
     @api.multi

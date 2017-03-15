@@ -211,7 +211,8 @@ class Parser(report_sxw.rml_parse):
                 if picking_preparation_ids:
                     for picking_preparation in picking_preparation_ids:
                         for picking in picking_preparation.picking_ids:
-                            if picking.name == line.origin:
+                            if picking.name == line.origin or \
+                                    picking.origin == line.origin:
                                 ddt = picking_preparation.ddt_number
                                 ddt_date = picking_preparation.date
                                 sale_order = picking.sale_id.name

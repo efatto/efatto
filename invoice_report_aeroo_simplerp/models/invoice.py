@@ -9,8 +9,6 @@ from openerp.report import report_sxw
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
-from openerp.osv import orm
-from openerp.tools import translate
 from collections import defaultdict, Mapping, OrderedDict
 try:
     import cStringIO as StringIO
@@ -28,6 +26,7 @@ class Parser(report_sxw.rml_parse):
             'italian_number': self._get_italian_number,
             'invoice_move_lines': self._get_invoice_move_lines,
             'ddt': self._get_ddt,
+            'ddt_tree': self._get_ddt_tree,
             'set_picking': self._set_picking,
             'div': self._div,
             'line_description': self._line_description,
@@ -243,6 +242,39 @@ class Parser(report_sxw.rml_parse):
                 invoice[key] = {'description': description, 'lines': [line]}
         
         return OrderedDict(sorted(invoice.items(), key=lambda t: t[0])).values()
+
+    def _get_ddt_tree(self, sppp_line):
+        keys = {}
+        order = {}
+        sale_order_name = False
+        sale_order_date = False
+        order_obj = self.pool['sale.order']
+        for line in sppp_line:
+            if line.move_id:
+                sale_order_name = line.move_id.origin
+                sale_order_id = order_obj.search(
+                    self.cr, self.uid, [('name', '=', sale_order_name)])
+                if sale_order_id:
+                    sale_order_date = order_obj.browse(
+                        self.cr, self.uid, sale_order_id[0]).date_order
+            if sale_order_name:
+                if sale_order_name in keys:
+                    key = keys[sale_order_name]
+                else:
+                    key = "{0}_{1}".format(sale_order_date, sale_order_name)
+            else:
+                key = False
+            order_date = datetime.strptime(sale_order_date[:10],
+                                           DEFAULT_SERVER_DATE_FORMAT)
+            description = \
+                'Order ref. %s - %s' % (
+                    sale_order_name,
+                    order_date.strftime("%d/%m/%Y")
+                    )
+            order[key] = {'description': description, 'lines': [line]}
+
+        return OrderedDict(
+            sorted(order.items(), key=lambda t: t[0])).values()
 
     def _get_invoice_move_lines(self, move_id):
         if move_id.line_id:

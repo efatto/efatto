@@ -266,12 +266,15 @@ class Parser(report_sxw.rml_parse):
                 key = False
             order_date = datetime.strptime(sale_order_date[:10],
                                            DEFAULT_SERVER_DATE_FORMAT)
-            description = \
-                'Order ref. %s - %s' % (
-                    sale_order_name,
-                    order_date.strftime("%d/%m/%Y")
-                    )
-            order[key] = {'description': description, 'lines': [line]}
+            if key in order:
+                order[key]['lines'].append(line)
+            else:
+                description = \
+                    'Order ref. %s - %s' % (
+                        sale_order_name,
+                        order_date.strftime("%d/%m/%Y")
+                        )
+                order[key] = {'description': description, 'lines': [line]}
 
         return OrderedDict(
             sorted(order.items(), key=lambda t: t[0])).values()

@@ -246,35 +246,45 @@ class Parser(report_sxw.rml_parse):
     def _get_ddt_tree(self, sppp_line):
         keys = {}
         order = {}
-        sale_order_name = False
-        sale_order_date = False
+        description = False
         order_obj = self.pool['sale.order']
         for line in sppp_line:
             if line.move_id:
-                sale_order_name = line.move_id.origin
-                sale_order_id = order_obj.search(
-                    self.cr, self.uid, [('name', '=', sale_order_name)])
-                if sale_order_id:
-                    sale_order_date = order_obj.browse(
-                        self.cr, self.uid, sale_order_id[0]).date_order
-            if sale_order_name:
-                if sale_order_name in keys:
-                    key = keys[sale_order_name]
+                # if there is origin get order name and date
+                if line.move_id.origin:
+                    sale_order_name = line.move_id.origin
+                    sale_order_id = order_obj.search(
+                        self.cr, self.uid, [('name', '=', sale_order_name)])
+                    if sale_order_id:
+                        order_date = order_obj.browse(
+                            self.cr, self.uid, sale_order_id[0]).date_order
+                    else:
+                        order_date = datetime.now().strftime('%Y-%m-%d')
+                    sale_order_date = datetime.strptime(
+                        order_date[:10], DEFAULT_SERVER_DATE_FORMAT)
+                    if sale_order_name in keys:
+                        key = keys[sale_order_name]
+                    else:
+                        key = "{0}_{1}".format(sale_order_date, sale_order_name)
+                    description = \
+                        'Order ref. %s - %s' % (
+                            sale_order_name,
+                            sale_order_date.strftime("%d/%m/%Y")
+                        )
+                # if there is move_id but not origin
                 else:
-                    key = "{0}_{1}".format(sale_order_date, sale_order_name)
+                    key = False
+            # if there is not move_id
             else:
                 key = False
-            order_date = datetime.strptime(sale_order_date[:10],
-                                           DEFAULT_SERVER_DATE_FORMAT)
+            # append subsequent lines
             if key in order:
                 order[key]['lines'].append(line)
+            # create line
             else:
-                description = \
-                    'Order ref. %s - %s' % (
-                        sale_order_name,
-                        order_date.strftime("%d/%m/%Y")
-                        )
-                order[key] = {'description': description, 'lines': [line]}
+                order[key] = {
+                    'description': description,
+                    'lines': [line]}
 
         return OrderedDict(
             sorted(order.items(), key=lambda t: t[0])).values()

@@ -39,7 +39,7 @@ class ProductTemplate(models.Model):
                     for variant_id in tmpl_id.attribute_line_ids:
                         if len(variant_id.value_ids) == 1:
                             variant_alone.append(variant_id.value_ids[0])
-
+                else:
                     for attribute_line_with_child_id in attribute_line_with_child_ids: # per ogni categoria
                         for variant_id in attribute_line_with_child_id.attribute_id.child_ids: # per ogni materiale ['mat','colore','imp']
                             temp_variants = []

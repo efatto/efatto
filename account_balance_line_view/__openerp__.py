@@ -21,7 +21,7 @@
     'name': 'Account balance line view',
     'version': '8.0.1.0.0',
     'category': 'Account',
-    'description': 'View balance in account line tree.'
+    'description': 'View balance in account line tree. '
     'Instead of module account_balance_line, wich show the balance only of the'
     ' single line, it compute progressive balance'
     ' for the account selected.',

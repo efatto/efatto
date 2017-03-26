@@ -3,6 +3,7 @@
     <data>
         <template id="assets_backend" name="material backend theme assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="stylesheet" href="/material_backend_theme/static/src/css/main.css"/>
                 <script type="text/javascript" src="/material_backend_theme/static/src/js/main.js"/>
             </xpath>

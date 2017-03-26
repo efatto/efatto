@@ -2,7 +2,7 @@
     # Theme information
     'name' : 'Material Backend Theme v8',
     'category' : 'Theme/Backend',
-    'version' : '1.1.18',
+    'version' : '1.1.20',
     'summary': 'Backend, Clean, Modern, Material, Theme',
     'description': """
 Material Backend Theme v8
@@ -14,13 +14,13 @@ Designed in best possible look with flat, clean and clear design.
 
     # Dependencies
     'depends': [
-        'web',
+        'web'
     ],
     'external_dependencies': {},
 
     # Views
     'data': [
-	'views/backend.xml'
+	   'views/backend.xml'
     ],
 
     # Author
@@ -33,6 +33,7 @@ Designed in best possible look with flat, clean and clear design.
     'application': False,
 
     # Market
+    'license': 'Other proprietary',
     'live_test_url': 'http://8cells.com:8088/web/login',
     'currency': 'EUR',
     'price': 129.99

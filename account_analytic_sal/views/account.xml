@@ -31,11 +31,11 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="account_analytic_id" position="after">
+                <xpath expr="/form/sheet[@string='Invoice']/notebook/page[@string='Invoice Lines']/field[@name='invoice_line']/tree/field[@name='account_id']" position="after">
                     <field name="account_analytic_sal_id"
                            groups="analytic.group_analytic_accounting"
                            domain="[('account_analytic_id', '=', account_analytic_id)]"/>
-                </field>
+                </xpath>
             </field>
         </record>
 

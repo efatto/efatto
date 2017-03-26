@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* opencloud_product_cost_from_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0-20150921\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-01 10:21+0000\n"
+"PO-Revision-Date: 2016-04-01 10:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: opencloud_product_cost_from_bom
+#: model:ir.model,name:opencloud_product_cost_from_bom.model_product_product
+msgid "Product"
+msgstr "Artigo"
+
+#. module: opencloud_product_cost_from_bom
+#: model:ir.model,name:opencloud_product_cost_from_bom.model_product_template
+msgid "Product Template"
+msgstr "Modelo de Produto"
+

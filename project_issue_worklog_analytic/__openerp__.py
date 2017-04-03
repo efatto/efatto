@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Project worklog analytic',
+    'name': 'Project worklog analytic DEPRECATED',
     'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'Allows to record worklog in childs analytic account of project',

@@ -94,7 +94,7 @@ class CalendarEvent(models.Model):
                 event.project_task_id.stage_id = state_done
             else:
                 raise exceptions.ValidationError(_(
-                    '%s' % (not state_done and 'Missing state of type done' \
+                    '%s' % (not state_done and 'Missing state of type done'
                             or 'Missing task')
                 ))
         view = {
@@ -109,6 +109,7 @@ class CalendarEvent(models.Model):
             'context': self._context
         }
         return view
+
 
 class TaskWork(models.Model):
     _inherit = 'project.task.work'

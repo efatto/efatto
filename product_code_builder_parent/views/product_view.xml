@@ -41,8 +41,20 @@
                     <field name="code"/>
                     <field name="sequence"/>
                     <field name="parent_id"/>
-                    <field name="child_ids"/>
-                    <field name="value_ids"/>
+                    <field name="child_ids">
+                        <tree string="Childs" editable="top">
+                            <field name="name"/>
+                            <field name="code"/>
+                        </tree>
+                    </field>
+                    <field name="value_ids">
+                        <tree string="Options" editable="top">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="image" widget="image"/>
+                            <field name="comment"/>
+                        </tree>
+                    </field>
                 </group>
                 </form>
             </field>

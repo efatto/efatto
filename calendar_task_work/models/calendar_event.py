@@ -71,27 +71,44 @@ class CalendarEvent(models.Model):
                                 })
                         if work:
                             res_ids.append(work.id)
-            if res_ids:
-                view = {
-                    'name': _("Task work"),
-                    'view_mode': 'tree',
-                    'view_id': False,
-                    'view_type': 'form',
-                    'res_model': 'project.task.work',
-                    'type': 'ir.actions.act_window',
-                    'nodestroy': False,
-                    'target': 'self',
-                    'domain': [('id', 'in', res_ids)],
-                    'context': self._context
-                }
-                return view
+            view = {
+                'name': _("Calendar"),
+                'view_mode': 'calendar',
+                'view_id': False,
+                'view_type': 'calendar',
+                'res_model': 'calendar.event',
+                'type': 'ir.actions.act_window',
+                'nodestroy': False,
+                'target': 'self',
+                'context': self._context
+            }
+            return view
 
     @api.multi
-    def set_task_completed(self):
+    def set_task_done(self):
+        state_done = self.env['project.task.type'].search([
+            ('state', '=', 'done')
+        ], limit=1)
         for event in self:
-            if event.project_task_id:
-                event.project_task_id.kanban_state = 'done'
-
+            if state_done and event.project_task_id:
+                event.project_task_id.stage_id = state_done
+            else:
+                raise exceptions.ValidationError(_(
+                    '%s' % (not state_done and 'Missing state of type done' \
+                            or 'Missing task')
+                ))
+        view = {
+            'name': _("Calendar"),
+            'view_mode': 'calendar',
+            'view_id': False,
+            'view_type': 'calendar',
+            'res_model': 'calendar.event',
+            'type': 'ir.actions.act_window',
+            'nodestroy': False,
+            'target': 'self',
+            'context': self._context
+        }
+        return view
 
 class TaskWork(models.Model):
     _inherit = 'project.task.work'

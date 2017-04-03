@@ -33,6 +33,10 @@
                     string="Record time work" icon="gtk-apply"
                     attrs="{'invisible':[('project_task_id', '=', False)]}"/>
                 />
+                <button name="set_task_done" type="object"
+                    string="Set task done" icon="gtk-apply"
+                    attrs="{'invisible':[('project_task_id', '=', False)]}"/>
+                />
             </field>
         </field>
     </record>

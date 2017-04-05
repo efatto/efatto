@@ -10,9 +10,13 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.model
     def _get_view_type(self):
-        action_id = self.env.ref(
+        action_id = False
+        try:  # because xml views are created after python process
+            action_id = self.env.ref(
             'l10n_it_ddt_mobile.'
             'action_stock_picking_package_preparation_simplified')
+        except ValueError:
+            pass
         if action_id and self._context.get(
                 'params', False):
             if self._context.get(

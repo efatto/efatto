@@ -16,13 +16,9 @@
             <field name="state" invisible="1"/>
           </header>
           <sheet>
-            <!--<div class="oe_right oe_button_box">-->
-            <!--</div>-->
-            <!--<h1>-->
           <field name="name" class="oe_inline" invisible="1" readonly="1"/>
             <field name="ddt_number" readonly="1"
                    attrs="{'invisible':[('ddt_number', '=', ''), ('ddt_type_id', '=', False)]}"/>
-            <!--</h1>-->
             <group col="1" colspan="2">
                 <field name="date" nolabel="1"/>
                 <field name="ddt_type_id" widget="selection" nolabel="1"/>
@@ -34,8 +30,6 @@
               <field name="product_qty" nolabel="1"/>
               <button name="add_product_in_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
 
-            <!--<notebook>-->
-              <!--<page string="Rows">-->
                     <field name="line_ids" >
                         <tree string="Product lines" editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -76,9 +70,7 @@
                        domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
                        attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
                   </group>
-                <field name="force_transfer"/>
-              <!--</page>-->
-            <!--</notebook>-->
+                <field name="force_transfer" invisible="1"/>
           </sheet>
         </form>
       </field>

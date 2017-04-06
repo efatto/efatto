@@ -19,15 +19,16 @@
 #
 {
     'name': 'Italy - Default DDT data',
-    'version': '8.0.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
-    Dati standard per DDT
+    Dati standard per DDT con sequenze pluriennali con anno fiscale.
     """,
     'author': 'Sergio Corato - SimplERP SRL',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
+        'account_auto_fy_sequence',
         'l10n_it_ddt_ext',
         'sale',
         'stock_account',

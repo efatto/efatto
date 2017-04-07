@@ -24,8 +24,8 @@
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': '''This module add:
-    - possibility to add picking type to ddt.''',
+    'description': '''This module add possibility to add picking type and
+    invoiceability to ddt type.''',
     'depends': [
         'l10n_it_ddt',
     ],

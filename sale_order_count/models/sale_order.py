@@ -15,10 +15,9 @@ class SaleOrder(models.Model):
             for line in order.order_line:
                 if line.product_id.type in ['product', 'consu']:
                     count += line.product_uom_qty
-            order.sale_order_count = count
+            order.total_products_order = count
 
-    sale_order_count = fields.Float(
-        string='Total products of Sale Order',
+    total_products_order = fields.Float(
         compute=_sale_order_count,
-        help='Sum of stockable and consumable product of the order',
+        help=_('Sum of stockable and consumable product of the order'),
         )

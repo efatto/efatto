@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
             <field name="arch" type="xml">
                 <field name='parcels' position="after">
-                    <field name="sale_order_count"/>
+                    <field name="total_products_order"/>
                 </field>
             </field>
         </record>

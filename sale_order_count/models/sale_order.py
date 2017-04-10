@@ -20,4 +20,5 @@ class SaleOrder(models.Model):
     sale_order_count = fields.Float(
         string='Total products of Sale Order',
         compute=_sale_order_count,
+        help='Sum of stockable and consumable product of the order',
         )

@@ -20,3 +20,14 @@ msgstr ""
 msgid "Sales Order"
 msgstr "Ordine di vendita"
 
+#. module: sale_order_count
+#: code:addons/sale_order_count/models/sale_order.py:22
+#, python-format
+msgid "Total products of Sale Order"
+msgstr "Totale prodotti dell'ordine"
+
+#. module: sale_order_count
+#: code:addons/sale_order_count/models/sale_order.py:23
+#, python-format
+msgid "Sum of stockable and consumable product of the order"
+msgstr "Somma dei prodotti stoccabili e consumabili dell'ordine"

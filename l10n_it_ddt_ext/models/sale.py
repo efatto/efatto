@@ -42,6 +42,8 @@ class SaleOrder(models.Model):
                 ddt_type.transportation_method_id.id
         if not res.get('ddt_type_id', False):
             res['ddt_type_id'] = ddt_type.id
+        if not res.get('parcels', False):
+            res['parcels'] = order.parcels
         return res
 
     @api.multi

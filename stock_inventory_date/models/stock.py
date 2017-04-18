@@ -29,6 +29,20 @@ class StockInventory(models.Model):
         location_obj = self.env['stock.location']
         location_ids = location_obj.search([
             ('id', 'child_of', [inventory.location_id.id])])
+        # filter for date for now:
+        # 'none' for all products, 'product' for one, 'categories' for some ctg
+        if inventory.filter not in ['none', 'categories', 'product']:
+            raise exceptions.ValidationError(
+                'Filter available by date are:'
+                '"None", "Categories", "Product"')
+        if inventory.filter == 'categories':
+            product_ids = self.env['product.product'].search([
+                ('categ_id', 'in', inventory.categ_ids.ids)
+            ])
+        elif inventory.filter == 'product':
+            product_ids = inventory.product_id
+        else:
+            product_ids = self.env['product.product'].search([])
         res = {}
         flag = False
         move_obj = self.env['stock.move']
@@ -41,6 +55,7 @@ class StockInventory(models.Model):
                     ('location_dest_id', '=', location.id),
                     ('location_id', '=', location.id),
                     ('state', '=', 'done'),
+                    ('product_id', 'in', product_ids.ids),
                     ('date', '<=', inventory.date_inventory)])
             for move in move_ids:
                 lot_id = False

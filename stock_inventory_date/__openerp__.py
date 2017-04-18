@@ -29,6 +29,7 @@
     'license': 'AGPL-3',
     "depends": [
         'stock',
+        'stock_inventory_preparation_filter',
     ],
     "data": [
         'views/stock_inventory.xml',

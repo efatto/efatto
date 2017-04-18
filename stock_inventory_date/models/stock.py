@@ -21,6 +21,7 @@ class StockInventoryLine(models.Model):
 
 class StockInventory(models.Model):
     _inherit = "stock.inventory"
+    _order = 'date DESC'
 
     date_inventory = fields.Date()
 

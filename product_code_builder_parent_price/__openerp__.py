@@ -30,6 +30,7 @@ With this module price of attribute can be summed to variant prices.
     "depends": [
         'sale',
         'product_code_builder_parent',
+        'purchase',
         'sale_product_variants',
         'visible_discount_sale',
     ],

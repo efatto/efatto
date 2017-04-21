@@ -57,7 +57,7 @@ class ProductProduct(models.Model):
         digits_compute=dp.get_precision('Product Price')
     )
     cost_custom = fields.Float(
-        string='Custom cost',
+        string='Custom cost for manual evaluation',
         digits_compute=dp.get_precision('Product Price')
     )
 

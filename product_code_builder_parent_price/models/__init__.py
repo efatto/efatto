@@ -5,3 +5,4 @@
 from . import product
 from . import pricelist
 from . import sale
+from . import purchase

@@ -28,6 +28,7 @@
     'depends': [
         'l10n_it_ddt_ext',
         'web_mobile_view',
+        'stock_picking_package_preparation_weight_fix',
     ],
     'data': [
         'views/stock_picking_mobile.xml',

@@ -33,10 +33,10 @@
                     <field name="line_ids" >
                         <tree string="Product lines" editable="bottom">
                             <field name="sequence" widget="handle"/>
-                            <field name="product_id"/>
-                            <field name="name" invisible="1"/>
+                            <field name="product_id" invisible="1"/>
+                            <field name="name"/>
                             <field name="product_uom_qty" string="Q.ty"  style="width: 20px"/>
-                            <field name="product_uom" groups="product.group_uom" invisible="1"/>
+                            <field name="product_uom" groups="product.group_uom"/>
                             <field name="lot_id" groups="stock.group_production_lot"/>
                         </tree>
                     </field>
@@ -54,10 +54,13 @@
                 <group>
                     <field name="parcels"
                            attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
-                        <field name="volume"/>
-                        <field name="weight"/>
-                        <field name="net_weight"/>
-                        <!--<field name="invoice_id" />-->
+                    <field name="compute_weight"/>
+                    <field name="volume" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="net_weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="volume_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
+                    <field name="weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
+                    <field name="net_weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                 </group>
                 <group colspan="2" col="1">
                     <field name="ddt_date_start" nolabel="1"/>

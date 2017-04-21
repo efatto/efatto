@@ -48,6 +48,7 @@ class StockInventory(models.Model):
         flag = False
         move_obj = self.env['stock.move']
         uom_obj = self.env['product.uom']
+        #todo get cost for product moves
         for location in location_ids:
             datas = {}
             res[location.id] = {}

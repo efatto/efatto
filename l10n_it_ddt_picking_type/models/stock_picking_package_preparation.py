@@ -3,7 +3,6 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, exceptions, _
-from datetime import datetime
 
 
 class StockDdtType(models.Model):
@@ -45,7 +44,7 @@ class StockPickingPackagePreparation(models.Model):
             moves = []
             # add invoiceable from ddt type
             if package.invoiceable:
-                package.line_ids.invoiceable = package.invoiceable
+                package.line_ids.write({'invoiceable': package.invoiceable})
             # end fix
             for line in package.line_ids:
                 # ----- If line has 'move_id' this means we don't need to
@@ -82,7 +81,7 @@ class StockPickingPackagePreparation(models.Model):
                             'lot_id': line.lot_id.id,
                             'location_id': move_data['location_id'],
                             'location_dest_id': move_data['location_dest_id'],
-                            'date': datetime.now(),
+                            'date': fields.Datetime.now(),
                             'picking_id': picking.id
                         })
                 # ----- Set the picking as "To DO" and try to set it as

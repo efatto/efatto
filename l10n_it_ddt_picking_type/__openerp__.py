@@ -25,7 +25,8 @@
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'description': '''This module add possibility to add picking type and
-    invoiceability to ddt type.''',
+    invoiceability to ddt type, so ddt can be created directly using
+    a different route.''',
     'depends': [
         'l10n_it_ddt',
     ],

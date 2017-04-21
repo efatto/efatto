@@ -139,7 +139,10 @@ class AccountAssetAsset(orm.Model):
                     lost_years = int(Decimal(str(
                         diff / standard_depreciation_amount)).quantize(
                         Decimal('0')))
-                #lost_years = int(Decimal(str(initial_depreciation_lines - initial_depreciation_amount / (standard_depreciation_amount))).quantize(Decimal('0'), rounding=ROUND_UP))
+                #lost_years = int(Decimal(str(initial_depreciation_lines -
+                    # initial_depreciation_amount /
+                    # (standard_depreciation_amount))).quantize(Decimal('0'),
+                    # rounding=ROUND_UP))
 
         if asset.method_time == 'year':
             depreciation_stop_date = depreciation_start_date + \

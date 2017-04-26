@@ -30,5 +30,6 @@
     'data': [
         'views/partner_view.xml'
     ],
+    'pre_init_hook': 'pre_init_hook',
     'installable': True,
 }

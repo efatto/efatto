@@ -8,8 +8,9 @@
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <field name="client_order_ref"/>
+                    <field name="note"/>
                 </field>
-                <field name="amount_total" position="replace">
+                <field name="amount_total" position="before">
                     <field name="amount_untaxed"/>
                 </field>
             </field>

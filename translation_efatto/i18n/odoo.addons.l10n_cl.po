@@ -1,0 +1,174 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_cl
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-24 02:53+0000\n"
+"PO-Revision-Date: 2015-11-30 18:32+0100\n"
+"Last-Translator: Martin Trigaux\n"
+"Language-Team: Italian (http://www.transifex.com/odoo/odoo-8/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACN_10
+msgid "Derechos por Cobrar No Corriente"
+msgstr "Crediti non correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_view
+msgid "Vista"
+msgstr "Vista"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACC_60
+msgid "Inventarios"
+msgstr "Inventari"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_050
+msgid "Costos por Distribución"
+msgstr "Costi di distribuzione"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_040
+msgid "Gastos de Administración"
+msgstr "Spese di amministrazione"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACC_10
+msgid "Efectivo y Equivalentes al Efectivo"
+msgstr "Contanti ed equivalenti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_NCLASIFICADO
+msgid "Cuentas No Clasificadas"
+msgstr "Conti non classificati"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_060
+msgid "Ingresos Financieros"
+msgstr "Entrate finanziarie"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_160
+msgid "Ganancia (Pérdida)"
+msgstr "Perdite"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_NA_010
+msgid "Compras de Activo Fijo"
+msgstr "Acquisti di immobilizzazioni"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_080
+msgid "Otros Ingresos"
+msgstr "Altre entrate"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_ORD
+msgid "Cuentas de Orden"
+msgstr "Voci fuori bilancio"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_090
+msgid "Otros Gastos"
+msgstr "Altre spese"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAC_10
+msgid "Otros Pasivos Financieros"
+msgstr "Altri passivi finanziari"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_120
+msgid "Gasto Impuesto a las Renta"
+msgstr "Imposte sul reddito"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACN_40
+msgid "Otros Activos No Financieros"
+msgstr "Altre attività non finanziarie"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAC_45
+msgid "Pasivos por Impuestos Corrientes"
+msgstr "Passività per imposte correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAC_40
+msgid "Otras Provisiones Corrientes"
+msgstr "Altri fondi correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_030
+msgid "Costo de Ventas"
+msgstr "Spese di vendita"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACC_20
+msgid "Otros Activos Financieros Corrientes"
+msgstr "Altre attività finanziarie correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAN_10
+msgid "Otros Pasivos Financieros No Corrientes"
+msgstr "Altre passività finanziarie non correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAN_20
+msgid "Otros Cuentas por Pagar No Corrientes"
+msgstr "Altri conti per pagamenti non corrente"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAC_35
+msgid "Otras Cuentas por Pagar"
+msgstr "Altri conti per pagamenti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACN_50
+msgid "Propiedades, Planta y Equipo"
+msgstr "Immobili, impianti e macchinari"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_070
+msgid "Costos Financieros"
+msgstr "Costi finanziari"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAN_40
+msgid "Otras Provisiones No Corrientes"
+msgstr "Altri fondi non correnti"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACC_30
+msgid "Deudores Comerciales"
+msgstr "Debiti commerciali"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_EGP_FU_010
+msgid "Ingresos por Actividades Ordinarias"
+msgstr "Entrate per attività ordinarie"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_ACC_50
+msgid "Otras Cuentas por Cobrar"
+msgstr "Altri conti in entrata"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PTN_10
+msgid "Patrimonio Neto"
+msgstr "Patrimonio netto"
+
+#. module: l10n_cl
+#: model:account.account.type,name:l10n_cl.account_account_type_BG_PAC_20
+msgid "Cuentas por Pagar Comerciales"
+msgstr "Conti per pagamenti commerciali"

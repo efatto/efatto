@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* geoengine_base_geolocalize
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-19 15:19+0100\n"
+"PO-Revision-Date: 2016-03-19 15:19+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: geoengine_base_geolocalize
+#: code:addons/geoengine_base_geolocalize/models/res_partner.py:63
+#, python-format
+msgid ""
+"Geocoding error. \n"
+" %s"
+msgstr ""
+"Errore Geolocalizzazione.\n"
+"%s"
+
+#. module: geoengine_base_geolocalize
+#: model:ir.model,name:geoengine_base_geolocalize.model_res_partner
+msgid "Partner"
+msgstr "Partner"

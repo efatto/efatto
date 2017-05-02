@@ -1,0 +1,124 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * stock_picking_package_preparation_line
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: stock-logistics-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-28 01:56+0000\n"
+"PO-Revision-Date: 2015-12-15 16:21+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-stock-logistics-"
+"workflow-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: stock_picking_package_preparation_line
+#: view:stock.picking.package.preparation:stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form
+#: field:stock.picking.package.preparation.line,name:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: stock_picking_package_preparation_line
+#: view:stock.picking.package.preparation:stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form
+#: field:stock.picking.package.preparation,line_ids:0
+msgid "Details"
+msgstr "Dettagli"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_picking_package_preparation_line
+#: help:stock.picking.package.preparation.line,product_uom_qty:0
+msgid ""
+"If you change this quantity for a 'ready' picking, the system will not "
+"generate a back order, but will just deliver the new quantity"
+msgstr ""
+"Se si modifica questa quantità per un picking in stato 'Pronto', il "
+"sistema non genererà un ordine, ma spedirà solamente la nuova quantità"
+
+#. module: stock_picking_package_preparation_line
+#: code:addons/stock_picking_package_preparation_line/models/stock_picking_package_preparation_line.py:229
+#: code:addons/stock_picking_package_preparation_line/models/stock_picking_package_preparation_line.py:235
+#, python-format
+msgid ""
+"Impossible to create confirmed picking. Please Check products availability!"
+msgstr ""
+"Impossibile creare un picking in stato 'Confermato'. Controlla la "
+"disponibilità dei prodotti!"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento da"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: stock_picking_package_preparation_line
+#: view:stock.picking.package.preparation:stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form
+#: field:stock.picking.package.preparation.line,note:0
+msgid "Note"
+msgstr "Nota"
+
+#. module: stock_picking_package_preparation_line
+#: model:ir.model,name:stock_picking_package_preparation_line.model_stock_picking_package_preparation
+msgid "Package Preparation"
+msgstr "Preparazione Pacco"
+
+#. module: stock_picking_package_preparation_line
+#: model:ir.model,name:stock_picking_package_preparation_line.model_stock_picking_package_preparation_line
+msgid "Package Preparation Line"
+msgstr "Riga Preparazione Pacco"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,product_id:0
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,product_uom:0
+msgid "Product uom"
+msgstr "Unità di Misura del Prodotto"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,product_uom_qty:0
+msgid "Product uom qty"
+msgstr "Quantità Unita di Misura del Prodotto"
+
+#. module: stock_picking_package_preparation_line
+#: field:stock.picking.package.preparation.line,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: stock_picking_package_preparation_line
+#: model:ir.model,name:stock_picking_package_preparation_line.model_stock_move
+#: field:stock.picking.package.preparation.line,move_id:0
+#: field:stock.picking.package.preparation.line,package_preparation_id:0
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: stock_picking_package_preparation_line
+#: view:stock.picking.package.preparation:stock_picking_package_preparation_line.sppp_line_stock_picking_package_preparation_form
+msgid "Transfers"
+msgstr "Trasferimenti"

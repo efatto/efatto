@@ -1,0 +1,174 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_ar
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-24 02:53+0000\n"
+"PO-Revision-Date: 2015-11-30 18:25+0100\n"
+"Last-Translator: Martin Trigaux\n"
+"Language-Team: Italian (http://www.transifex.com/odoo/odoo-8/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACC_50
+msgid "Otros Créditos"
+msgstr "Altri Crediti"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_view
+msgid "Vista"
+msgstr "Vista"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_160
+msgid "Ganancia (Pérdida) Neta del Ejercicio"
+msgstr "Perdita Netta di Esercizio"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAN_10
+msgid "Deudas Bancarias y Financieras a Largo Plazo"
+msgstr "Debiti Bancari e Finanziari a Lungo termine"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAN_40
+msgid "Previsiones"
+msgstr "Previsioni"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_040
+msgid "Gastos de Administración"
+msgstr "Spese amministrative"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAN_20
+msgid "Otros Pasivos a Largo Plazo"
+msgstr "Altri passivi a lungo termine"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_NCLASIFICADO
+msgid "Cuentas No Clasificadas"
+msgstr "Conti non classificati"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACC_30
+msgid "Créditos por Ventas"
+msgstr "Crediti Vendite"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_080
+msgid "Otros Ingresos"
+msgstr "Altre Entrate"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_ORD
+msgid "Cuentas de Orden"
+msgstr "Voci fuori bilancio"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_090
+msgid "Otros Gastos"
+msgstr "Altre spese"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_030
+msgid "Costo Mercaderías y Servicios Vendidos"
+msgstr "Costo delle merci e del servizio di vendita"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACN_40
+msgid "Inversiones Permanentes"
+msgstr "Investimenti permanenti"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACC_20
+msgid "Inversiones"
+msgstr "Investimenti"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_010
+msgid "Ventas Netas de Bienes y Servicios"
+msgstr "Vendite nette di beni e servizi"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACN_10
+msgid "Otros Créditos No Corrientes"
+msgstr "Altri crediti non corrente"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAC_40
+msgid "Cargas Fiscales"
+msgstr "Imposizione fiscale"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_050
+msgid "Gastos de Comercialización"
+msgstr "Spese di commercializzazione"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_070
+msgid "Gastos Financieros y por tenencia"
+msgstr "Spese finanziarie"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAC_45
+msgid "Otros Pasivos"
+msgstr "Altri passivi"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_060
+msgid "Ingresos Financieros y por tenencia"
+msgstr "Entrate finanziarie"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAC_20
+msgid "Cuentas por Pagar"
+msgstr "Debiti v/Fornitori"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAC_35
+msgid "Remuneraciones y Cargas Sociales"
+msgstr "Oneri salariali e sociali"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACC_10
+msgid "Caja y Bancos"
+msgstr "Cassa e Banco"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PAC_10
+msgid "Deudas Bancarias y Financieras"
+msgstr "Debiti bancari e finanziari"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACC_60
+msgid "Bienes de Cambio"
+msgstr "Bene di scambio"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_PTN_10
+msgid "Patrimonio Neto"
+msgstr "Patrimonio netto"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_BG_ACN_50
+msgid "Bienes de Uso"
+msgstr "Beni d'uso"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_NA_010
+msgid "Compras de Bienes de Uso"
+msgstr "Spese per beni d'uso"
+
+#. module: l10n_ar
+#: model:account.account.type,name:l10n_ar.account_account_type_EGP_FU_120
+msgid "Impuesto a las Ganancias"
+msgstr "Imposta sui redditi"

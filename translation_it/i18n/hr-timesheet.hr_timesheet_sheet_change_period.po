@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_change_period
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 23:11+0200\n"
+"PO-Revision-Date: 2016-06-22 23:13+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_sheet_change_period.hr_timesheet_sheet_form
+msgid "(change)"
+msgstr "(modifica)"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+msgid "Change"
+msgstr "Modifica"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+#: model:ir.actions.act_window,name:hr_timesheet_sheet_change_period.open_hr_timesheet_sheet_change_period_wizard
+msgid "Change Period"
+msgstr "Modifica Periodo"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,date_from:0
+msgid "Date from"
+msgstr "Da"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,date_to:0
+msgid "Date to"
+msgstr "A"
+
+#. module: hr_timesheet_sheet_change_period
+#: model:ir.model,name:hr_timesheet_sheet_change_period.model_hr_timesheet_sheet_change_period_wizard
+msgid "Timesheet Period Change Wizard"
+msgstr "Procedura di Modifica del Periodo del Timesheet"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+msgid "New Period"
+msgstr "Nuovo Periodo"
+
+#. module: hr_timesheet_sheet_change_period
+#: field:hr.timesheet.sheet.change.period.wizard,sheet_id:0
+msgid "Timesheet"
+msgstr "Timesheet"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+msgid "or"
+msgstr "o"
+
+#. module: hr_timesheet_sheet_change_period
+#: view:hr.timesheet.sheet.change.period.wizard:hr_timesheet_sheet_change_period.hr_timesheet_sheet_change_period_form
+msgid "to"
+msgstr "a"

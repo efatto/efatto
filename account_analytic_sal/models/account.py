@@ -63,7 +63,7 @@ class AccountAnalyticSal(models.Model):
     percent_completion = fields.Float(
         'SAL percent completion',
         digits_compute=dp.get_precision('Account'),
-        help='Percent SAL completion when gained will start invoice'
+        help='Percent SAL completion. When reached will start action linked.'
     )
     percent_toinvoice = fields.Float(
         'SAL percent to invoice',
@@ -78,12 +78,13 @@ class AccountAnalyticSal(models.Model):
     done = fields.Boolean(
         string='SAL done',
         help='SAL is marked done when completion percent is superior'
-             ' of SAL percent. It can be marked even manually.'
+             ' of project progress bar. It can be marked even manually.'
     )
     invoiced = fields.Boolean(
         string='SAL invoiced',
-        help='SAL is marked invoiced when amount invoice lines is superior'
-             ' of SAL amount. It can be marked even manually.'
+        help='SAL is marked invoiced when amount invoice lines with sal '
+             'reference is superior '
+             'of SAL amount. It can be marked even manually.'
     )
     account_analytic_id = fields.Many2one(
         comodel_name='account.analytic.account',

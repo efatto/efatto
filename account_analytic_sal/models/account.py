@@ -36,34 +36,11 @@ class AccountInvoiceLine(models.Model):
         help='SAL linked to this line'
     )
 
-# class HrAnalyticTimesheet(models.Model):
-#     _inherit = 'hr.analytic.timesheet'
-#
-#     @api.multi
-#     def write(self, vals):
-#         # when updating, do action if account id has sal
-#         for timesheet in self.filtered(
-#                 lambda x: x.account_id.account_analytic_sal_ids is not False):
-#             contract = timesheet.account_id
-#             for sal_id in contract.account_analytic_sal_ids.filtered(
-#                     lambda x: x.sal_action_res_id is not True
-#             ):
-#                 if contract.progress_works_planned >= sal_id.sal_percent:
-#                     sal_action_done_id = sal_id.sal_action_id.with_context({
-#                         'partner_id': contract.partner_id.id,
-#                         'active_id': contract.id,
-#                         'active_ids': [contract.id],
-#                         }).run()
-#                     if sal_action_done_id:
-#                         sal_id.sal_action_res_id = sal_action_done_id
-#                         sal_id.sal_action_res_model_id = sal_id.sal_action_id.\
-#                             model_id.name
-#         return super(HrAnalyticTimesheet, self).write(vals)
-
 
 class AccountAnalyticSal(models.Model):
     _name = 'account.analytic.sal'
     _description = 'Account Analytic SAL'
+    _order = 'id ASC'
 
     @api.multi
     def get_invoiced_sal(self):
@@ -72,20 +49,24 @@ class AccountAnalyticSal(models.Model):
             account_invoice_line_ids = self.env['account.invoice.line'].search(
                 [('account_analytic_sal_id', '=', sal.id)])
             for line in account_invoice_line_ids:
-                if line.invoice_id.state in ['open','done']:
+                if line.invoice_id.state in ['open', 'done']:
                     amount_invoiced += line.price_subtotal
-            if amount_invoiced >= sal.amount_toinvoice:
+            if amount_invoiced >= sal.amount_toinvoice > 0.0:
                 sal.invoiced = True
-            if sal.percent_completion >= sal.percent_toinvoice:
+            # set automatically sal done when progress>sal percent completion
+            if sal.account_analytic_id.progress_works_planned > \
+                    sal.percent_completion > 0.0:
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
         'SAL percent completion',
-        digits_compute=dp.get_precision('Account'))
+        digits_compute=dp.get_precision('Account'),
+        help='Percent SAL completion when gained will start invoice'
+    )
     percent_toinvoice = fields.Float(
-        'SAL percent to invoce',
+        'SAL percent to invoice',
         digits_compute=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',

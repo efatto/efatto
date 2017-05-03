@@ -17,9 +17,9 @@
                             <field name="amount_invoiced" readonly="1"/>
                             <field name="done"/>
                             <field name="invoiced"/>
-                            <!--<field name="action_id"/>-->
-                            <!--<field name="action_res_model_id"/>-->
-                            <!--<field name="action_res_id"/>-->
+                            <field name="action_id"/>
+                            <field name="action_res_model_id"/>
+                            <field name="action_res_id"/>
                         </tree>
                     </field>
                 </group>

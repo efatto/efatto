@@ -35,7 +35,6 @@ class HrAnalyticTimesheet(models.Model):
                 {'no_analytic_entry': True}).create(values)
         return res
 
-    # when modify, adjust task work
     @api.multi
     def write(self, vals):
         for line in self:
@@ -47,17 +46,23 @@ class HrAnalyticTimesheet(models.Model):
                 task_work = self.env['project.task.work'].search([
                     ('hr_analytic_timesheet_id', '=', line.id)
                 ])
+                values = {
+                    'name': vals.get('name', False) or line.name,
+                    'date': date,
+                    'task_id': vals.get('task_id', False) or line.task_id.id,
+                    'hours': vals.get('unit_amount', False) or
+                    line.unit_amount,
+                    'user_id': user,
+                    'company_id': self.env['res.users'].browse(
+                        user).company_id.id,
+                }
                 if task_work:
-                    task_work.with_context({'no_analytic_entry': True}).write({
-                        'name': vals.get('name', False) or line.name,
-                        'date': date,
-                        'task_id': vals.get('task_id', False) or line.task_id.id,
-                        'hours': vals.get('unit_amount', False) or
-                        line.unit_amount,
-                        'user_id': user,
-                        'company_id': self.env['res.users'].browse(
-                            user).company_id.id,
-                    })
+                    task_work.with_context(
+                        {'no_analytic_entry': True}).write(values)
+                else:
+                    values['hr_analytic_timesheet_id'] = line.id
+                    task_work.with_context(
+                        {'no_analytic_entry': True}).create(values)
         return super(HrAnalyticTimesheet, self).write(vals)
 
     # when unlink, unlink task work

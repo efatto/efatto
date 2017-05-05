@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright (C) 2013-2014 Didotech Srl (<http://www.didotech.com>)
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,10 +18,11 @@
 #
 {
     'name': 'Aeroo purchase order report',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL, Didotech Srl',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
+    'description': 'Aeroo purchase order report',
     'license': 'AGPL-3',
     'depends': [
         'account',

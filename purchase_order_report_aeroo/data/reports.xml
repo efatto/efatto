@@ -1,29 +1,35 @@
 <?xml version="1.0"?>
 <openerp>
     <data>  
-        <record id="purchase.report_purchase_order" model="ir.actions.report.xml">
-            <field name="name">Quotation / Order</field>
+        <record id="purchase.action_report_purchase_order" model="ir.actions.report.xml">
+            <field name="name">Order</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="model">purchase.order</field>
-            <field name="report_name">purchase.report_purchaseorder</field>
+            <field name="report_name">purchase.report_purchaseorder_aeroo</field>
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
             <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
             <field name="parser_loc">invoice_report_aeroo_simplerp/models/invoice.py</field>
-            <field name="report_rml">profile_simplerp/purchase_order/templates/purchase_order.odt</field>
+            <field name="report_rml">purchase_order_report_aeroo/data/purchase_order.odt</field>
             <field name="parser_state">loc</field>
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>
         </record>
-        <!--<record id="purchase.report_purchase_quotation" model="ir.actions.report.xml">-->
-            <!--<field name="report_type">aeroo</field>-->
-            <!--<field name="tml_source">file</field>-->
-            <!--<field name="in_format">oo-odt</field>-->
-            <!--<field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_pdf_odt')"></field>-->
-            <!--<field name="report_rml">profile_simplerp/purchase_order/templates/purchase_order.odt</field>-->
-            <!--<field name="parser_loc">l10n_it_account_report/invoice.py</field>-->
-            <!--<field name="parser_state">loc</field>-->
-        <!--</record>-->
+        <record id="purchase.report_purchase_quotation" model="ir.actions.report.xml">
+            <field name="name">Quotation Request</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">purchase.order</field>
+            <field name="report_name">purchase.report_purchasequotation_aeroo</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
+            <field name="parser_loc">invoice_report_aeroo_simplerp/models/invoice.py</field>
+            <field name="report_rml">purchase_order_report_aeroo/data/purchase_quotation.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"/>
+            <field name="attachment_use" eval="0"/>
+        </record>
     </data>
 </openerp>

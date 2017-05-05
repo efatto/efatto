@@ -113,6 +113,11 @@ msgstr "Preventivo"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
+msgid "Quotation Request"
+msgstr "Richiesta Offerta"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
 msgid "Order"
 msgstr "Ordine"
 

@@ -25,7 +25,7 @@
     'author': 'SimplERP SRL, Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': 'Bettere Italian translations, installed only by script.',
+    'description': 'Better Italian translations, installed only by script.',
     'depends': [],
     'installable': False,
 }

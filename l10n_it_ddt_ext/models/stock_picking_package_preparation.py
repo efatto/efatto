@@ -39,21 +39,9 @@ class StockPickingPackagePreparation(models.Model):
         default=fields.Datetime.now,
         states=FIELDS_STATES,
     )
-    tobeinvoiced = fields.Boolean(
-        compute='_tobeinvoiced',
-        store=True
-    )
     carrier_signature = fields.Binary(string="Carrier's signature")
     driver_signature = fields.Binary(string="Driver's signature")
     recipient_signature = fields.Binary(string="Recipient's signature")
-
-    @api.multi
-    @api.depends('picking_ids')
-    def _tobeinvoiced(self):
-        self.ensure_one()
-        if any(picking.invoice_state == '2binvoiced' for picking in \
-               self.picking_ids):
-            self.tobeinvoiced = True
 
     @api.multi
     def action_draft(self):

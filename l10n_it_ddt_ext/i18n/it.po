@@ -863,11 +863,6 @@ msgstr "Questo movimento non è collegato ad un ddt!"
 msgid "To be invoiced"
 msgstr "Da Fatturare"
 
-#. module: l10n_it_ddt_ext
-#: field:stock.picking.package.preparation,tobeinvoiced:0
-msgid "Tobeinvoiced"
-msgstr "Da Fatturare"
-
 #. module: stock_picking_package_preparation
 #: view:stock.picking.package.preparation:stock_picking_package_preparation.stock_picking_package_preparation_form
 #: field:stock.picking.package.preparation,picking_ids:0

@@ -27,5 +27,17 @@
             <field name="domain_force"> ['|',('company_id','=',user.company_id.id),('company_id','=',False)]</field>
         </record>
 
+    	<delete id="account.analytic_journal_comp_rule" model="ir.rule"/>
+
+        <record id="account.analytic_journal_comp_rule" model="ir.rule">
+            <field name="name">Analytic journal multi-company with read permission for all</field>
+            <field name="model_id" ref="account.model_account_analytic_journal"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
     </data>
 </openerp>

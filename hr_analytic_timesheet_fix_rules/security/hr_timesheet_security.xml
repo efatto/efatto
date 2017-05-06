@@ -4,7 +4,7 @@
     	<delete id="hr_timesheet.property_rule_timesheet_employee" model="ir.rule"/>
 
     	<record model="ir.rule" id="hr_timesheet.property_rule_timesheet_employee">
-            <field name="name">Employee HR Analytic Timesheet with read permission</field>
+            <field name="name">Employee HR Analytic Timesheet with read permission for all</field>
             <field name="model_id" ref="hr_timesheet.model_hr_analytic_timesheet"/>
             <field name="domain_force">[('user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
@@ -13,5 +13,19 @@
             <field name="perm_write" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
+
+    	<delete id="product.product_comp_rule" model="ir.rule"/>
+
+        <record id="product.product_comp_rule" model="ir.rule">
+            <field name="name" >Product multi-company with read permission for all</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force"> ['|',('company_id','=',user.company_id.id),('company_id','=',False)]</field>
+        </record>
+
     </data>
 </openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+        <record id="product_supplierinfo_tree_view_variant" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tree.view.variant</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="min_qty" position="after">
+                    <field name="attribute_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_supplierinfo_form_view_variant" model="ir.ui.view">
+            <field name="name">product.supplierinfo.form.view.variant</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <field name="min_qty" position="after">
+                    <field name="attribute_id"/>
+                </field>
+            </field>
+        </record>
+  </data>
+</openerp>

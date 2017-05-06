@@ -22,8 +22,8 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'description': 'This module add sale order ref in tree view and '
-                   'replace total amount with untaxed amount.',
+    'description': 'This module add sale order ref and origin in tree view and'
+                   ' total amount after untaxed amount.',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [

@@ -28,6 +28,7 @@ class PurchaseOrderLine(models.Model):
                 'uom': self.product_uom.id,
                 'date': self.order_id.date_order,
                 'price_extra': cost_extra,
+                'attribute_id': attribute_id,
             }).template_price_get(
                 self.product_tmpl_id.id, self.product_qty or 1.0,
                 self.order_id.partner_id.id)[self.order_id.pricelist_id.id]

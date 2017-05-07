@@ -13,7 +13,7 @@ class ProductPricelist(models.Model):
                 pricelist, products_by_qty_by_partner)
         date = context.get('date') or fields.Date.context_today(self)
         price_extra = context.get('price_extra')
-
+        attribute_id = context.get('attribute_id', False)
         products = map(lambda x: x[0], products_by_qty_by_partner)
         product_uom_obj = self.env['product.uom']
         price_type_obj = self.env['product.price.type']
@@ -89,7 +89,8 @@ class ProductPricelist(models.Model):
                         price = pricelist.currency_id.compute(
                             price_tmp, pricelist.currency_id, round=False)
                 elif rule.base == -2:
-                    for seller in product.seller_ids:
+                    for seller in product.seller_ids.filtered(
+                            lambda x: x.attribute_id == attribute_id):
                         if (not partner) or (seller.name.id != partner):
                             continue
                         qty_in_seller_uom = qty

@@ -11,7 +11,7 @@
                 <field name="is_pack"
                     attrs="{'invisible':['|',('type','=','service'),('product_pack_id','!=',False)]}" />
                 <field name="product_pack_id"
-                    attrs="{'invisible': [('type','=','service')]}"
+                    attrs="{'invisible': ['|',('type','=','service'),('is_pack','!=',False)]}"
                     context="{'default_is_pack': True}" />
             </field>
         </field>

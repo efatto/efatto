@@ -59,6 +59,12 @@ class AccountAnalyticSal(models.Model):
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 
+    @api.multi
+    def _compute_amount_toinvoice(self):
+        for sal in self:
+            sal.amount_toinvoice = sal.account_analytic_id.\
+                fix_price_to_invoice * sal.percent_toinvoice / 100
+
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
         'SAL percent completion',
@@ -70,6 +76,7 @@ class AccountAnalyticSal(models.Model):
         digits_compute=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
+        compute='_compute_amount_toinvoice',
         digits_compute=dp.get_precision('Account'))
     amount_invoiced = fields.Float(
         'SAL amount invoiced',

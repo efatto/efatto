@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 import openerp.addons.decimal_precision as dp
 
 
@@ -105,3 +105,13 @@ class AccountAnalyticSal(models.Model):
         string='Related ID for server action done by the event',
         readonly=True
     )
+
+    @api.multi
+    @api.constrains('percent_toinvoice')
+    def _check_percent_toinvoice(self):
+        percent_toinvoice_total = 0.0
+        for sal in self.account_analytic_id.account_analytic_sal_ids:
+            percent_toinvoice_total += sal.percent_toinvoice
+        if percent_toinvoice_total > 100.0:
+            raise exceptions.ValidationError(
+                "SAL total % to invoice must be <= 100%")

@@ -13,7 +13,7 @@
                             <field name="name"/>
                             <field name="percent_completion"/>
                             <field name="percent_toinvoice"/>
-                            <field name="amount_toinvoice"/>
+                            <field name="amount_toinvoice" readonly="1"/>
                             <field name="amount_invoiced" readonly="1"/>
                             <field name="done"/>
                             <field name="invoiced"/>

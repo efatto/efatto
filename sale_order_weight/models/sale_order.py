@@ -37,15 +37,18 @@ class SaleOrder(models.Model):
         for order in self:
             if order.compute_weight:
                 order.net_weight = sum(
-                    l.product_id.weight_net and l.product_id.weight_net or
+                    l.product_id.weight_net and l.product_id.weight_net
+                    * l.product_uom_qty or
                     l.product_tmpl_id.weight_net and l.product_tmpl_id.weight_net
                     * l.product_uom_qty for l in order.order_line)
                 order.weight = sum(
-                    l.product_id.weight and l.product_id.weight or
+                    l.product_id.weight and l.product_id.weight
+                    * l.product_uom_qty or
                     l.product_tmpl_id.weight and l.product_tmpl_id.weight
                     * l.product_uom_qty for l in order.order_line)
                 order.volume = sum(
-                    l.product_id.volume and l.product_id.volume or
+                    l.product_id.volume and l.product_id.volume
+                    * l.product_uom_qty or
                     l.product_tmpl_id.volume and l.product_tmpl_id.volume
                     * l.product_uom_qty for l in order.order_line)
             else:

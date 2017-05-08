@@ -14,17 +14,31 @@ class ProductTemplate(models.Model):
     )
     is_bag = fields.Boolean()
 
-    @api.onchange('product_bag_id','product_pack_id')
-    def onchange_bag(self):
-        for product in self:
-            product.weight = product.weight_net + \
-                             product.product_bag_id.weight_net + \
-                             product.product_pack_id.weight_net
 
-    @api.onchange('weight_net')
-    @api.depends('product_bag_id','product_pack_id')
-    def onchange_weight_net(self):
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    @api.multi
+    def _get_weight(self):
         for product in self:
-            product.weight = product.weight_net + \
-                             product.product_bag_id.weight_net + \
-                             product.product_pack_id.weight_net
+            # the weight is the sum of package if exists and product_template
+            product.weight = product.product_tmpl_id.product_pack_id.weight + \
+                product.product_tmpl_id.weight if \
+                product.product_tmpl_id.product_pack_id else \
+                product.product_tmpl_id.weight
+            product.weight += product.product_tmpl_id.product_bag_id.weight \
+                if product.product_tmpl_id.product_bag_id else 0.0
+
+    @api.multi
+    def _get_weight_net(self):
+        for product in self:
+            # the weight is the sum of package if exists and product_template
+            product.weight_net = product.product_tmpl_id.product_pack_id. \
+                weight_net + product.product_tmpl_id.weight_net if \
+                product.product_tmpl_id.product_pack_id else \
+                product.product_tmpl_id.weight_net
+            product.weight_net += product.product_tmpl_id.product_bag_id.\
+                weight_net if product.product_tmpl_id.product_bag_id else 0.0
+
+    weight = fields.Float(compute='_get_weight')
+    weight_net = fields.Float(compute='_get_weight_net')

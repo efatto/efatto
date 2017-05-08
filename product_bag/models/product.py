@@ -9,16 +9,14 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     product_bag_id = fields.Many2one(
-        'product.template', 'Bag',
-        domain=[('is_bag','=',True)]
+        'product.product', 'Bag',
+        domain=[('is_bag', '=', True)]
     )
     is_bag = fields.Boolean()
 
     @api.onchange('product_bag_id','product_pack_id')
     def onchange_bag(self):
         for product in self:
-            product.volume = product.product_bag_id.volume + \
-                             product.product_pack_id.volume
             product.weight = product.weight_net + \
                              product.product_bag_id.weight_net + \
                              product.product_pack_id.weight_net

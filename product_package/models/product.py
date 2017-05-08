@@ -14,19 +14,6 @@ class ProductTemplate(models.Model):
     )
     is_pack = fields.Boolean()
 
-    @api.onchange('product_pack_id')
-    def onchange_pack(self):
-        for product in self:
-            product.weight = product.weight_net + \
-                product.product_pack_id.weight_net
-
-    @api.onchange('weight_net')
-    @api.depends('product_pack_id')
-    def onchange_weight_net(self):
-        for product in self:
-            product.weight = product.weight_net + \
-                product.product_pack_id.weight_net
-
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
@@ -34,11 +21,29 @@ class ProductProduct(models.Model):
     @api.multi
     def _get_volume(self):
         for product in self:
-            # the package is esternal of all packaging so volume is only that
+            # the package is external of all packaging so volume is only that
             product.volume = product.product_tmpl_id.product_pack_id.volume if\
                 product.product_tmpl_id.product_pack_id else \
                 product.product_tmpl_id.volume
 
-    volume = fields.Float(
-        compute='_get_volume'
-    )
+    @api.multi
+    def _get_weight(self):
+        for product in self:
+            # the weight is the sum of package if exists and product_template
+            product.weight = product.product_tmpl_id.product_pack_id.weight + \
+                product.product_tmpl_id.weight if \
+                product.product_tmpl_id.product_pack_id else \
+                product.product_tmpl_id.weight
+
+    @api.multi
+    def _get_weight_net(self):
+        for product in self:
+            # the weight is the sum of package if exists and product_template
+            product.weight_net = product.product_tmpl_id.product_pack_id.\
+                weight_net + product.product_tmpl_id.weight_net if \
+                product.product_tmpl_id.product_pack_id else \
+                product.product_tmpl_id.weight_net
+
+    volume = fields.Float(compute='_get_volume')
+    weight = fields.Float(compute='_get_weight')
+    weight_net = fields.Float(compute='_get_weight_net')

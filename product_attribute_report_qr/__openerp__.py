@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2017 Sergio Corato
 #    Copyright (c) 2015 Oihane Crucelaegui - AvanzOSC
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,12 +18,12 @@
 #
 #
 {
-    'name': 'Product label qr code',
+    'name': 'Product attribute label qr code',
     'version': '8.0.1.0.0',
     'category': 'Product Management',
-    'description': "Make Product label QRCode and Data Matrix",
-    'author': 'Sergio Corato - SimplERP Srl',
-    'website': 'http://simplerp.it',
+    'description': "Make Product Attribute label QRCode and Data Matrix",
+    'author': 'Sergio Corato',
+    'website': 'http://efatto.it',
     'depends': [
         'report_aeroo',
         'report_branding',

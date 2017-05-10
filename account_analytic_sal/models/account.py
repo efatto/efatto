@@ -102,7 +102,7 @@ class AccountAnalyticSal(models.Model):
     action_id = fields.Many2one(
         comodel_name='ir.actions.server',
         string='Server Action to do',
-        help='This action will be done on SAL condition if not done.'
+        help='This action will be done on SAL condition if not already done.'
     )
     action_res_model_id = fields.Char(
         string='Related Model for server action done by the event',

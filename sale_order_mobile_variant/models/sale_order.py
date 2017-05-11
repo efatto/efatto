@@ -63,18 +63,27 @@ class SaleOrder(models.Model):
                 value_ids.filtered(lambda x: x.code == self.scan_color)
             if product_attribute_value:
                 self.product_attribute_value_id = product_attribute_value
+                #todo put in product char field the code of variant not existing too
+                product = self.env['product.product'].search([
+                    ('product_tmpl_id', '=', self.product_template_id.id),
+                    ('attribute_value_ids', '=',
+                     self.product_attribute_value_id.id)
+                ])
+                if len(product) == 1:
+                    self.product = product.default_code
             else:
                 self.product_attribute_value_id = False
+                self.product = False
         self.scan_color = ''
 
     @api.onchange('product_template_id')
     def onchange_product(self):
         self.product_attribute_line_id = \
-            self.product_attribute_value_id = False
+            self.product_attribute_value_id = self.product = False
 
     @api.onchange('product_attribute_line_id')
     def onchange_product_attribute(self):
-        self.product_attribute_value_id = False
+        self.product_attribute_value_id = self.product = False
 
     @api.onchange('product_attribute_value_id')
     def onchange_product_attribute_value(self):
@@ -85,8 +94,8 @@ class SaleOrder(models.Model):
             ])
             if len(product) == 1:
                 order.product = product.default_code
-            elif len(product) > 1:
-                order.product = '(error) More than 1 variant found'
+            else:
+                order.product = False
 
     @api.multi
     @api.onchange('product_attribute_value_id')

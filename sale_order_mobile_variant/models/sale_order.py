@@ -31,6 +31,42 @@ class SaleOrder(models.Model):
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
 
+    scan_template = fields.Char('Scan Template')
+    scan_material = fields.Char('Scan Material')
+    scan_color = fields.Char('Scan Color')
+
+    @api.onchange('scan_template')
+    def _scan_template(self):
+        if self.scan_template:
+            product_template = self.env['product.template'].search(
+                [('prefix_code', '=', self.scan_template)])
+            if product_template:
+                self.product_template_id = product_template
+            self.scan_template = ''
+
+    @api.onchange('scan_material')
+    def _scan_material(self):
+        if self.scan_material:
+            product_attribute_line = self.product_template_id.\
+                attribute_line_ids.filtered(lambda x: x.attribute_id.code ==
+                                                      self.scan_material)
+            if product_attribute_line:
+                self.product_attribute_line_id = product_attribute_line
+            else:
+                self.product_attribute_line_id = False
+        self.scan_material = ''
+
+    @api.onchange('scan_color')
+    def _scan_color(self):
+        if self.scan_color:
+            product_attribute_value = self.product_attribute_line_id.\
+                value_ids.filtered(lambda x: x.code == self.scan_color)
+            if product_attribute_value:
+                self.product_attribute_value_id = product_attribute_value
+            else:
+                self.product_attribute_value_id = False
+        self.scan_color = ''
+
     @api.onchange('product_template_id')
     def onchange_product(self):
         self.product_attribute_line_id = \

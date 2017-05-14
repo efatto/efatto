@@ -155,3 +155,18 @@ msgstr "Sede operativa"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "Out refund"
 msgstr "Nota di credito"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Our Ref. Picking %s dated %s. %s"
+msgstr "Ns. Rif. DDT %s del %s. %s"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Our Ref. Order %s dated %s. %s"
+msgstr "Ns. Rif. Ordine %s del %s. %s"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
+msgid "Your Ref. %s"
+msgstr "Vs. Rif. %s"

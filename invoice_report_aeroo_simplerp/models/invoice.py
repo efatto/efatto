@@ -153,20 +153,37 @@ class Parser(report_sxw.rml_parse):
         else:
             return sign + before + ',' + after
 
-    def get_description(self, ddt_name, ddt_date, order_name, order_date):
+    @staticmethod
+    def get_description(self, ddt_name, ddt_date, order_name, order_date,
+                        client_order_ref):
         description = []
 
         if ddt_name:
-            ## Ex: Rif. Ns. DDT 2012/0335
             ddt_date = datetime.strptime(ddt_date[:10],
                                          DEFAULT_SERVER_DATE_FORMAT)
-            description.append(u'Rif. Ns. {ddt} del {ddt_date}'.format(ddt=ddt_name, ddt_date=ddt_date.strftime("%d/%m/%Y")))
+            description.append(
+                self._translate_text(
+                    'Our Ref. Picking %s dated %s. %s') % (
+                    ddt_name,
+                    ddt_date.strftime("%d/%m/%Y"),
+                    self._translate_text('Your Ref. %s') % client_order_ref if
+                    client_order_ref else ''
+                ))
 
-        elif order_name:# and not self.pool['res.users'].browse(
-            #self.cr, self.uid, self.uid).company_id.disable_sale_ref_invoice_report:
+        elif order_name:
+            # and not self.pool['res.users'].browse(
+            #self.cr, self.uid, self.uid).
+            # company_id.disable_sale_ref_invoice_report:
             order_date = datetime.strptime(order_date[:10],
                                            DEFAULT_SERVER_DATE_FORMAT)
-            description.append(u'Rif. Ns. Ordine {order} del {order_date}'.format(order=order_name.replace('Consuntivo', ''), order_date=order_date.strftime("%d/%m/%Y")))
+            description.append(
+                self._translate_text(
+                    'Our Ref. Order %s dated %s. %s') % (
+                    order_name.replace('Consuntivo', ''),
+                    order_date.strftime("%d/%m/%Y"),
+                    self._translate_text('Your Ref. %s') % client_order_ref if
+                    client_order_ref else ''
+                ))
 
         return '\n'.join(description)
     
@@ -190,7 +207,8 @@ class Parser(report_sxw.rml_parse):
     #             else:
     #                 return False
     #         elif move_ids:
-    #             # The same product from the same sale_order is present in various picking lists
+    #             # The same product from the same sale_order is present in
+    #             # various picking lists
     #             raise orm.except_orm('Warning', _('Ambiguous line origin'))
     #         else:
     #             return False
@@ -204,6 +222,7 @@ class Parser(report_sxw.rml_parse):
         sale_order = False
         ddt_date = False
         sale_order_date = False
+        client_order_ref = False
 
         for line in invoice_lines:
             if line.origin:
@@ -216,11 +235,22 @@ class Parser(report_sxw.rml_parse):
                                 ddt_date = picking_preparation.date
                                 sale_order = picking.sale_id.name
                                 sale_order_date = picking.sale_id.date_order
+                                client_order_ref = picking.sale_id.\
+                                    client_order_ref
                 else:
                     sale_order = line.origin
-                    sale_order_date = line.invoice_id.date_invoice or \
-                        datetime.now().strftime('%Y-%m-%d')
-                    #TODO search date order
+                    sale_order_id = self.pool['sale.order'].search(
+                        self.cr, self.uid, [
+                            ('name', '=', line.origin),
+                            ('company_id', '=', line.company_id.id)
+                        ])
+                    if sale_order_id and len(sale_order_id) == 1:
+                        sale_order_obj = self.pool['sale.order'].browse(
+                            self.cr, self.uid, sale_order_id
+                        )
+                        sale_order_date = sale_order_obj.date_order
+                        client_order_ref = sale_order_obj.client_order_ref
+
             # Order lines by date and by ddt, so first create date_ddt key:
             if ddt:
                 if ddt in keys:
@@ -238,10 +268,13 @@ class Parser(report_sxw.rml_parse):
             if key in invoice:
                 invoice[key]['lines'].append(line)
             else:
-                description = self.get_description(ddt, ddt_date, sale_order, sale_order_date)
+                description = self.get_description(
+                    self, ddt, ddt_date, sale_order, sale_order_date,
+                    client_order_ref)
                 invoice[key] = {'description': description, 'lines': [line]}
         
-        return OrderedDict(sorted(invoice.items(), key=lambda t: t[0])).values()
+        return OrderedDict(
+            sorted(invoice.items(), key=lambda t: t[0])).values()
 
     def _get_ddt_tree(self, sppp_line):
         keys = {}

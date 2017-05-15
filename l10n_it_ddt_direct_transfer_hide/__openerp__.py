@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,13 +18,15 @@
 #
 #
 {
-    'name': 'Hide transfer button in ddt stock picking',
+    'name': 'Hide transfer button in stock picking',
     'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': '''Hide transfer button in ddt stock picking''',
+    'description': '''Hide transfer button in stock picking:
+    1. if stock picking is linked to a DDT,
+    2. if stock picking is originated from a sale order.''',
     'depends': [
         'l10n_it_ddt',
     ],

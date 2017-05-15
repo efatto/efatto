@@ -8,15 +8,18 @@
             <field name="arch" type="xml">
                 <field name="picking_type_id" position="after">
                     <field name="sppp_exist" invisible="1"/>
+                    <field name="sale_id" invisible="1"/>
                 </field>
                 <button name="do_enter_transfer_details" position="attributes">
                     <attribute name="attrs">
-                        {'invisible': ['|', ('sppp_exist', '=', True)]}
+                        {'invisible': ['|', '|', ('sppp_exist', '=', True),
+                        ('sale_id', '!=', False)]}
                     </attribute>
                 </button>
                 <button name="action_cancel" position="attributes">
                     <attribute name="attrs">
-                        {'invisible': ['|', ('sppp_exist', '=', True)]}
+                        {'invisible': ['|', '|', ('sppp_exist', '=', True),
+                        ('sale_id', '!=', False)]}
                     </attribute>
                 </button>
 	        </field>

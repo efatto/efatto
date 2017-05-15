@@ -32,7 +32,6 @@ class StockPickingPackagePreparation(models.Model):
 
     ddt_date_start = fields.Datetime(
         string='DDT date start',
-        default=fields.Datetime.now
     )
     date = fields.Date(
         string='Document Date',

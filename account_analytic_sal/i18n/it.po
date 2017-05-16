@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 22:02+0000\n"
-"PO-Revision-Date: 2017-03-07 22:02+0000\n"
+"POT-Creation-Date: 2017-05-09 06:48+0000\n"
+"PO-Revision-Date: 2017-05-09 06:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "ID"
 #. module: account_analytic_sal
 #: model:ir.model,name:account_analytic_sal.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga fattura"
+msgstr "Riga Fattura"
 
 #. module: account_analytic_sal
 #: field:account.analytic.sal,write_uid:0
@@ -79,6 +79,11 @@ msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: account_analytic_sal
+#: help:account.analytic.sal,percent_completion:0
+msgid "Percent SAL completion. When reached will start action linked."
+msgstr "Percentuale completamento SAL. Quando raggiunta verrà avviata l'azione collegata."
+
+#. module: account_analytic_sal
 #: field:account.analytic.sal,action_res_id:0
 msgid "Related ID for server action done by the event"
 msgstr "ID collegato all'azione eseguito dall'evento"
@@ -87,11 +92,6 @@ msgstr "ID collegato all'azione eseguito dall'evento"
 #: field:account.analytic.sal,action_res_model_id:0
 msgid "Related Model for server action done by the event"
 msgstr "Modello collegato all'azione eseguito dall'evento"
-
-#. module: account_analytic_sal
-#: field:account.analytic.sal,amount_toinvoice:0
-msgid "SAL amount to invoice"
-msgstr "Importo SAL da fatturare"
 
 #. module: account_analytic_sal
 #: field:account.analytic.sal,done:0
@@ -105,13 +105,13 @@ msgstr "SAL fatturato"
 
 #. module: account_analytic_sal
 #: help:account.analytic.sal,done:0
-msgid "SAL is marked done when completion percent is superior of SAL percent. It can be marked even manually."
-msgstr "Il SAL è marcato come completato quando la percentuale di completamento è superiore alla percentuale prevista nel SAL. Può anche essere marcato manualmente."
+msgid "SAL is marked done when completion percent is superior of project progress bar. It can be marked even manually."
+msgstr "Il SAL è marcato come fatto quando la % di completamento è superiore alla % di progresso del progetto. Può essere marcato anche manualmente."
 
 #. module: account_analytic_sal
 #: help:account.analytic.sal,invoiced:0
-msgid "SAL is marked invoiced when amount invoice lines is superior of SAL amount. It can be marked even manually."
-msgstr "Il SAL è marcato come fatturato quando l'ammontare del fatturato è superiore all'ammontare previsto nel SAL. Può anche essere marcato manualmente."
+msgid "SAL is marked invoiced when amount invoice lines with sal reference is superior of SAL amount. It can be marked even manually."
+msgstr "Il SAL è marcato come fatturato quando l'ammontare delle righe fatture collegate al SAL è superiore all'ammontare del SAL. Può essere marcato anche manualmente."
 
 #. module: account_analytic_sal
 #: help:account.invoice.line,account_analytic_sal_id:0
@@ -130,8 +130,8 @@ msgstr "Percentuale completamento SAL"
 
 #. module: account_analytic_sal
 #: field:account.analytic.sal,percent_toinvoice:0
-msgid "SAL percent to invoce"
-msgstr "Percentuale SAL da fatturare"
+msgid "SAL percent to invoice"
+msgstr "% SAL da fatturare"
 
 #. module: account_analytic_sal
 #: view:account.analytic.sal:account_analytic_sal.view_account_analytic_sal_filter
@@ -145,11 +145,16 @@ msgstr "Azione server da fare"
 
 #. module: account_analytic_sal
 #: help:account.analytic.sal,action_id:0
-msgid "This action will be done on SAL condition if not done."
-msgstr "Questa azione verrà eseguita alle condizioni previste nel SAL se non già eseguita."
+msgid "This action will be done on SAL condition if not already done."
+msgstr "Questa azione verrà eseguita all'avverarsi della condizione del SAL se non già eseguita."
 
 #. module: account_analytic_sal
 #: model:ir.model,name:account_analytic_sal.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr "Riga Foglio Orario"
+msgstr "Riga Timesheet"
+
+#. module: account_analytic_sal
+#: view:account.analytic.sal:account_analytic_sal.view_account_analytic_sal_filter
+msgid "To invoice"
+msgstr "Da fatturare"
 

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2016 Sergio Corato - SimplERP SRL
+#    Copyright (C) 2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -24,8 +24,8 @@
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
-    'author': 'Sergio Corato - Simplerp srl',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'depends': [
         'analytic',
         'account_analytic_analysis',

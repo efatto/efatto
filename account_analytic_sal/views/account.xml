@@ -17,9 +17,9 @@
                             <field name="amount_invoiced" readonly="1"/>
                             <field name="done"/>
                             <field name="invoiced"/>
-                            <field name="action_id"/>
-                            <field name="action_res_model_id"/>
-                            <field name="action_res_id"/>
+                            <!--<field name="action_id"/>-->
+                            <!--<field name="action_res_model_id"/>-->
+                            <!--<field name="action_res_id"/>-->
                         </tree>
                     </field>
                 </group>
@@ -49,6 +49,12 @@
                         <field name="progress_works_planned" widget="progressbar"/>
                     </div>
                 </field>
+                <label for="quantity_max" position="before">
+                    <label for="amount_sal_to_invoice"/>
+                    <div>
+                        <field name="amount_sal_to_invoice"/>
+                    </div>
+                </label>
             </field>
         </record>
         <record id="view_account_analytic_sal_filter" model="ir.ui.view">
@@ -98,6 +104,18 @@
         <menuitem action="action_account_analytic_sal_line_form" id="account_analytic_sal"
             parent="base.menu_invoiced"
             groups="analytic.group_analytic_accounting"/>
+
+        <record id="view_account_analytic_account_tree_c2c_3_sal" model="ir.ui.view">
+            <field name="name">account.analytic.account.list.contract.sal</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_tree_c2c_3"/>
+            <field name="arch" type="xml">
+                <field name="toinvoice_total" position="after">
+                    <field name="amount_sal_to_invoice" sum="Total SAL to Invoice" string="SAL to Invoice"/>
+                </field>
+            </field>
+        </record>
+
 
     </data>
 </openerp>

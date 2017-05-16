@@ -17,6 +17,52 @@ class AccountAnalyticAccount(models.Model):
                 progress = project.hours_quantity / project.quantity_max * 100
             project.progress_works_planned = progress
 
+    @api.multi
+    def _get_amount_sal_to_invoice(self):
+        for project in self:
+            project.amount_sal_to_invoice = 0.0
+            for sal in project.account_analytic_sal_ids:
+                if sal.account_analytic_id.progress_works_planned > \
+                        sal.percent_completion > 0.0: # would be equal to sal.done
+                                                      # but it is computed after!!!
+                    # and not sal.invoiced:
+                    project.amount_sal_to_invoice += sal.amount_toinvoice
+                    project.amount_sal_to_invoice -= sal.amount_invoiced
+            # project.amount_sal_to_invoice = amount
+
+    # FIX amount_fix_price is always the total from orders, even if invoiced
+    @api.multi
+    def fix_price_to_invoice_calc(self):
+        sale_obj = self.env['sale.order']
+        for account in self:
+            account.fix_price_to_invoice = 0.0
+            sale_ids = sale_obj.search([
+                ('project_id', '=', account.id),
+                ('state', 'not in', ['draft','sent','cancel']) #'manual')
+            ])
+            for sale in sale_ids:
+                account.fix_price_to_invoice += sale.amount_untaxed
+                # for invoice in sale.invoice_ids:
+                #     if invoice.state  != 'cancel':
+                #         res[account.id] -= invoice.amount_untaxed
+
+    @api.multi
+    def remaining_ca_calc(self):
+        for account in self:
+            account.remaining_ca = \
+                max(account.amount_max, account.fix_price_to_invoice) \
+                - account.ca_invoiced
+
+    remaining_ca = fields.Float(
+        compute='remaining_ca_calc',
+        string='Remaining Revenue',
+        help="Computed using the formula: Max Invoice Price - Invoiced Amount",
+        digits_compute=dp.get_precision('Account')
+    )
+    fix_price_to_invoice = fields.Float(
+        compute='fix_price_to_invoice_calc',
+        string='Total Fix Price',
+        help="Sum of quotations for this contract.")
     progress_works_planned = fields.Float(
         help='Progress on hours planned on contract',
         compute='get_progress')
@@ -24,6 +70,10 @@ class AccountAnalyticAccount(models.Model):
         comodel_name='account.analytic.sal',
         inverse_name='account_analytic_id',
         string='Analytic SAL progression'
+    )
+    amount_sal_to_invoice = fields.Float(
+        help='Amount to invoice from SAL',
+        compute='_get_amount_sal_to_invoice',
     )
 
 

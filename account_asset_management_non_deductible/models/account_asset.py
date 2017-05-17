@@ -29,8 +29,9 @@ class AccountAssetDepreciationLine(models.Model):
             if ctg_id.non_deductible_account_expense_depreciation_id:
                 asset = depreciation_line.asset_id
                 analytic_id = asset.account_analytic_id.id
-                amount_ded = depreciation_line.amount * (
-                    100 - ctg_id.non_deductible_percent) / 100
+                dp = self.env['decimal.precision'].precision_get('Account')
+                amount_ded = round(depreciation_line.amount * (
+                    100 - ctg_id.non_deductible_percent) / 100, dp)
                 debit_ded = amount_ded > 0 and amount_ded or 0.0
                 credit_ded = amount_ded < 0 and -amount_ded or 0.0
 

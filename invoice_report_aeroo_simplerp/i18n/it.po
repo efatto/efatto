@@ -27,11 +27,6 @@ msgid "Pickings"
 msgstr "Consegne"
 
 #. module: invoice_report_aeroo_simplerp
-#: view:account.invoice:invoice_report_aeroo_simplerp.invoice_form_pickings
-msgid "Shipping Informations"
-msgstr "Informazioni spedizione"
-
-#. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "Page"
 msgstr "Pag."
@@ -170,3 +165,18 @@ msgstr "Ns. Rif. Ordine %s del %s. %s"
 #: report:ir.actions.report.xml:account.account_invoices
 msgid "Your Ref. %s"
 msgstr "Vs. Rif. %s"
+
+#. module: invoice_report_aeroo_simplerp
+#: field:account.invoice,print_net_price:0
+msgid "Print net price"
+msgstr "Stampa prezzi netti"
+
+#. module: invoice_report_aeroo_simplerp
+#: view:account.invoice:invoice_report_aeroo_simplerp.invoice_form_pickings
+msgid "Shipping Informations"
+msgstr "Informazioni spedizione"
+
+#. module: invoice_report_aeroo_simplerp
+#: field:account.invoice,tax_stamp_image:0
+msgid "Tax stamp"
+msgstr "Bollo"

@@ -49,7 +49,8 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="project_task_id" invisible="0"/>
+                <field name="project_id"/>
+                <field name="project_task_id"/>
                 <field name="timesheet_done" invisible="1"/>
                 <button name="record_task_work" type="object"
                     string="Record time work" icon="gtk-execute"

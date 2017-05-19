@@ -14,8 +14,8 @@
                 attrs="{'invisible':[('project_id', '=', False)]}"/>
             </field>
             <xpath expr="/form/sheet/notebook" position="inside">
-                <page string="Task works" groups="base.group_user">
-                    <field name="task_work_ids" />
+                <page string="Timesheet works" groups="base.group_user">
+                    <field name="timesheet_ids" />
                 </page>
             </xpath>
         </field>
@@ -29,14 +29,6 @@
             <field name="partner_ids" position="after">
                 <field name="project_id"/>
                 <field name="project_task_id"/>
-                <button name="record_task_work" type="object"
-                    string="Record time work" icon="gtk-apply"
-                    attrs="{'invisible':[('project_task_id', '=', False)]}"/>
-                />
-                <button name="set_task_done" type="object"
-                    string="Set task done" icon="gtk-apply"
-                    attrs="{'invisible':[('project_task_id', '=', False)]}"/>
-                />
             </field>
         </field>
     </record>
@@ -49,6 +41,29 @@
             <calendar position="attributes">
                 <attribute name="quick_add">False</attribute>
             </calendar>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_tree_task">
+        <field name="name">Meetings Tree</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_task_id" invisible="0"/>
+                <field name="timesheet_done" invisible="1"/>
+                <button name="record_task_work" type="object"
+                    string="Record time work" icon="gtk-execute"
+                    attrs="{'invisible':['|',
+                    ('timesheet_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
+                <field name="task_done" invisible="1"/>
+                <button name="set_task_done" type="object"
+                    class="oe_highlight"
+                    string="Set task done" icon="gtk-apply"
+                    attrs="{'invisible':['|',
+                    ('task_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
+            </field>
         </field>
     </record>
     </data>

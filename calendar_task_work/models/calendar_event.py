@@ -8,6 +8,28 @@ from openerp import models, fields, api, _, exceptions
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
 
+    @api.multi
+    def _get_task_done(self):
+        for event in self:
+            if event.project_task_id.stage_id.state == 'done':
+                event.task_done = True
+
+    @api.multi
+    def _get_timesheet_done(self):
+        for event in self:
+            if event.timesheet_ids:
+                for partner_id in event.partner_ids:
+                    user = self.env['res.users'].search(
+                        [('partner_id', '=', partner_id.id)], limit=1)
+                    if user:
+                        employee = self.env['hr.employee'].search(
+                            [('user_id', '=', user[0].id)])
+                        if employee:
+                            timesheet = event.timesheet_ids.filtered(
+                                lambda x: x.user_id == user)
+                            if timesheet:
+                                event.timesheet_done = True
+
     project_id = fields.Many2one(
         comodel_name='project.project',
         string='Project'
@@ -19,7 +41,18 @@ class CalendarEvent(models.Model):
     task_work_ids = fields.One2many(
         comodel_name='project.task.work',
         inverse_name='event_id',
+        string='Task work records'
+    )
+    timesheet_ids = fields.One2many(
+        comodel_name='hr.analytic.timesheet',
+        inverse_name='event_id',
         string='Timesheet records'
+    )
+    task_done = fields.Boolean(
+        compute='_get_task_done',
+    )
+    timesheet_done = fields.Boolean(
+        compute='_get_timesheet_done',
     )
 
     @api.onchange('project_id')
@@ -29,7 +62,7 @@ class CalendarEvent(models.Model):
     @api.multi
     @api.depends('project_id', 'project_task_id')
     def record_task_work(self):
-        res_ids = []
+        # res_ids = []
         for event in self:
             #  TODO record task work for this task for these users
             #  no problem if already recorded for same task or same users
@@ -44,45 +77,33 @@ class CalendarEvent(models.Model):
             if diff:
                 duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
             for partner_id in event.partner_ids:
-                work = False
                 user = self.env['res.users'].search(
-                    [('partner_id', '=', partner_id.id)])
+                    [('partner_id', '=', partner_id.id)], limit=1)
                 if user:
                     employee = self.env['hr.employee'].search(
                         [('user_id', '=', user[0].id)])
                     if employee:
-                        if event.task_work_ids.filtered(
-                                lambda x: x.user_id == user):
-                            #  if works for this user exists, update it
-                            work = event.task_work_ids.filtered(
-                                lambda x: x.user_id == user)
-                            work.hours = round(duration, 2)
-                        #  else create
+                        timesheet = event.timesheet_ids.filtered(
+                            lambda x: x.user_id == user)
+                        if timesheet:
+                            # If timesheet for this user exists, update it
+                            timesheet.unit_amount = round(duration, 2)
+                        # Else create ANALYTIC entry wich create task work
                         else:
-                            work = self.env[
-                                'project.task.work'].create({
-                                    'date': event.start_datetime,
+                            self.env[
+                                'hr.analytic.timesheet'].create({
                                     'name': event.name,
-                                    'user_id': user.id,
+                                    'date': event.start_datetime,
                                     'task_id': event.project_task_id.id,
-                                    'hours': round(duration, 2),
-                                    'event_id': event.id,
+                                    'unit_amount': round(duration, 2),
+                                    'account_id': event.project_id.\
+                                    analytic_account_id.id,
+                                    'journal_id': employee.journal_id.id,
+                                    'user_id': user.id,
                                     'company_id': user.company_id.id,
-                                })
-                        if work:
-                            res_ids.append(work.id)
-            view = {
-                'name': _("Calendar"),
-                'view_mode': 'calendar',
-                'view_id': False,
-                'view_type': 'calendar',
-                'res_model': 'calendar.event',
-                'type': 'ir.actions.act_window',
-                'nodestroy': False,
-                'target': 'self',
-                'context': self._context
-            }
-            return view
+                                    'event_id': event.id,
+                            })
+            return True
 
     @api.multi
     def set_task_done(self):
@@ -97,22 +118,20 @@ class CalendarEvent(models.Model):
                     '%s' % (not state_done and 'Missing state of type done'
                             or 'Missing task')
                 ))
-        view = {
-            'name': _("Calendar"),
-            'view_mode': 'calendar',
-            'view_id': False,
-            'view_type': 'calendar',
-            'res_model': 'calendar.event',
-            'type': 'ir.actions.act_window',
-            'nodestroy': False,
-            'target': 'self',
-            'context': self._context
-        }
-        return view
+        return True
 
 
-class TaskWork(models.Model):
+class TaskWork(models.Model): # not more used
     _inherit = 'project.task.work'
+
+    event_id = fields.Many2one(
+        comodel_name='calendar.event',
+        string='Calendar event',
+    )
+
+
+class Timesheet(models.Model):
+    _inherit = 'hr.analytic.timesheet'
 
     event_id = fields.Many2one(
         comodel_name='calendar.event',

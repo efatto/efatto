@@ -13,8 +13,8 @@
                             <field name="name"/>
                             <field name="percent_completion"/>
                             <field name="percent_toinvoice"/>
-                            <field name="amount_toinvoice" readonly="1"/>
-                            <field name="amount_invoiced" readonly="1"/>
+                            <field name="amount_toinvoice" readonly="1" sum="Total to Invoice"/>
+                            <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
                             <field name="done"/>
                             <field name="invoiced"/>
                             <!--<field name="action_id"/>-->
@@ -85,8 +85,8 @@
                     <field name="name"/>
                     <field name="percent_completion"/>
                     <field name="percent_toinvoice"/>
-                    <field name="amount_toinvoice"/>
-                    <field name="amount_invoiced"/>
+                    <field name="amount_toinvoice" sum="Total to Invoice"/>
+                    <field name="amount_invoiced" sum="Total Invoiced"/>
                     <field name="done"/>
                     <field name="invoiced"/>
                 </tree>

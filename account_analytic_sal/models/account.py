@@ -22,13 +22,11 @@ class AccountAnalyticAccount(models.Model):
         for project in self:
             project.amount_sal_to_invoice = 0.0
             for sal in project.account_analytic_sal_ids:
-                if sal.account_analytic_id.progress_works_planned > \
-                        sal.percent_completion > 0.0: # would be equal to sal.done
-                                                      # but it is computed after!!!
+                if sal.done or project.progress_works_planned > \
+                        sal.percent_completion > 0.0:
                     # and not sal.invoiced:
                     project.amount_sal_to_invoice += sal.amount_toinvoice
                     project.amount_sal_to_invoice -= sal.amount_invoiced
-            # project.amount_sal_to_invoice = amount
 
     # FIX amount_fix_price is always the total from orders, even if invoiced
     @api.multi
@@ -42,9 +40,6 @@ class AccountAnalyticAccount(models.Model):
             ])
             for sale in sale_ids:
                 account.fix_price_to_invoice += sale.amount_untaxed
-                # for invoice in sale.invoice_ids:
-                #     if invoice.state  != 'cancel':
-                #         res[account.id] -= invoice.amount_untaxed
 
     @api.multi
     def remaining_ca_calc(self):

@@ -56,18 +56,24 @@ class HrAnalyticTimesheet(models.Model):
                     'company_id': self.env['res.users'].browse(
                         user).company_id.id,
                 }
+                # task_work is found here only if task_id was set initially
                 if task_work:
                     task_work.with_context(
                         {'no_analytic_entry': True}).write(values)
+                # create task work when modify timesheet adding task_id
+                # but if timesheet is created from task, task not yet exists,
+                # so added super() of create() with context no_task_entry
+                # perhaps there is a better way, but pay attention to recursion
                 else:
-                    values['hr_analytic_timesheet_id'] = line.id
-                    task_work.with_context(
-                        {'no_analytic_entry': True}).create(values)
+                    if not self._context.get('no_task_entry', False):
+                        values['hr_analytic_timesheet_id'] = line.id
+                        task_work.with_context(
+                            {'no_analytic_entry': True}).create(values)
         return super(HrAnalyticTimesheet, self).write(vals)
 
-    # when unlink, unlink task work
     @api.multi
     def unlink(self):
+        # when unlink, unlink task work
         for line in self:
             if line.task_id:
                 task_work = self.env['project.task.work'].search([
@@ -108,6 +114,13 @@ class ProjectWork(models.Model):
                     self.invalidate_cache()
             return super(models.Model, self).write(vals)
         return super(ProjectWork, self).write(vals)
+
+    def create(self, cr, uid, vals, *args, **kwargs):
+        context = kwargs.get('context', {})
+        ctx = context.copy()
+        ctx.update({'no_task_entry': True})
+        kwargs['context'] = ctx
+        return super(ProjectWork,self).create(cr, uid, vals, *args, **kwargs)
 
     @api.multi
     def unlink(self):

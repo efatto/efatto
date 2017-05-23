@@ -48,6 +48,7 @@
             <field name="inherit_id" ref="account.view_partner_property_form"/>
             <field name="arch" type="xml">
                 <field name="bank_ids" position="after">
+                    <separator string="Vat Exemption Declarations"/>
                     <field name="account_fiscal_position_rule_ids" domain="[('partner_id', '=', partner_id)]" context="{'default_partner_id': active_id, 'form_view_ref': 'account_fiscal_position_rule_partner.view_account_fiscal_position_rule_partner_form'}">
                         <tree string="Vat Exemption Declarations">
                             <field name="name"/>

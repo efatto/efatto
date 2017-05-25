@@ -20,7 +20,7 @@
         </record>
 
         <record id="payment_direct_30" model="account.payment.term">
-            <field name="name">Direct Payment 30 days inv.</field>
+            <field name="name">30 DAYS INVOICE DATE</field>
             <field name="note">Direct Payment 30 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -33,8 +33,22 @@
             <field name="payment_id" ref="payment_direct_30"/>
         </record>
 
+        <record id="payment_direct_45" model="account.payment.term">
+            <field name="name">45 DAYS INVOICE DATE</field>
+            <field name="note">Direct Payment 45 days invoice</field>
+            <field name="type">RD</field>
+        </record>
+        <record id="payment_direct_line_45" model="account.payment.term.line">
+            <field eval="1" name="sequence"/>
+            <field name="value">balance</field>
+            <field eval="0" name="months"/>
+            <field eval="45" name="days"/>
+            <field eval="0" name="days2"/>
+            <field name="payment_id" ref="payment_direct_45"/>
+        </record>
+
         <record id="payment_direct_60" model="account.payment.term">
-            <field name="name">Direct Payment 60 days inv.</field>
+            <field name="name">60 DAYS INVOICE DATE</field>
             <field name="note">Direct Payment 60 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -48,7 +62,7 @@
         </record>
 
         <record id="payment_direct_90" model="account.payment.term">
-            <field name="name">Direct Payment 90 Days Inv.</field>
+            <field name="name">90 DAYS INVOICE DATE</field>
             <field name="note">Direct Payment 90 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -62,7 +76,7 @@
         </record>
 
         <record id="payment_direct_30_days" model="account.payment.term">
-            <field name="name">Direct Payment 30 Days Inv. End Month</field>
+            <field name="name">30 DAYS INVOICE DATE END MONTH</field>
             <field name="note">Direct Payment 30 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -76,7 +90,7 @@
         </record>
 
         <record id="payment_direct_60_days" model="account.payment.term">
-            <field name="name">Direct Payment 60 Days Inv. End Month</field>
+            <field name="name">60 DAYS INVOICE DATE END MONTH</field>
             <field name="note">Direct Payment 60 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -90,7 +104,7 @@
         </record>
 
         <record id="payment_direct_90_days" model="account.payment.term">
-            <field name="name">Direct Payment 90 Days Inv. End Month</field>
+            <field name="name">90 DAYS INVOICE DATE END MONTH</field>
             <field name="note">Direct Payment 90 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -101,6 +115,20 @@
             <field eval="0" name="days"/>
             <field eval="-1" name="days2"/>
             <field ref="payment_direct_90_days" name="payment_id"/>
+        </record>
+
+        <record id="payment_direct_120_days" model="account.payment.term">
+            <field name="name">120 DAYS INVOICE DATE END MONTH</field>
+            <field name="note">Direct Payment 120 Days End of Month</field>
+            <field name="type">RD</field>
+        </record>
+        <record id="payment_direct_120_days_line" model="account.payment.term.line">
+            <field eval="1" name="sequence"/>
+            <field name="value">balance</field>
+            <field eval="4" name="months"/>
+            <field eval="0" name="days"/>
+            <field eval="-1" name="days2"/>
+            <field ref="payment_direct_120_days" name="payment_id"/>
         </record>
 
         <record id="payment_direct_180_days" model="account.payment.term">
@@ -364,8 +392,8 @@
 
 	<!-- Payment Same day of Month -->
 		<record id="payment_term_advance" model="account.payment.term">
-            <field name="name">B.T. on Order</field>
-            <field name="note">B.T. in Advance on order</field>
+            <field name="name">PREPAYMENT</field>
+            <field name="note">PREPAYMENT in Advance on order</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_advance_line" model="account.payment.term.line">
@@ -447,7 +475,7 @@
         </record>
 		
         <record id="payment_term_60_net_1" model="account.payment.term">
-            <field name="name">B.T. 60 Days Inv.</field>
+            <field name="name">60 DAYS INVOICE</field>
             <field name="note">B.T. 60 days invoice</field>
             <field name="type">BB</field>
         </record>
@@ -461,7 +489,7 @@
         </record>
 
         <record id="payment_term_90_net_1" model="account.payment.term">
-            <field name="name">B.T. 90 Days Inv.</field>
+            <field name="name">90 DAYS INVOICE</field>
             <field name="note">B.T. 90 days invoice</field>
             <field name="type">BB</field>
         </record>
@@ -521,10 +549,35 @@
             <field name="value">balance</field>
             <field eval="2" name="sequence"/>
             <field name="type">BB</field>
+            <field eval="1" name="months"/>
+            <field eval="0" name="days"/>
+            <field eval="-1" name="days2"/>
+            <field ref="payment_term_50order_50_net" name="payment_id"/>
+        </record>
+
+        <record id="payment_term_50order_50_net_30days" model="account.payment.term">
+            <field name="name">50% AT CONFIRMATION ORDER, 50% 30 DAYS INVOICE RECEIPT</field>
+            <field name="note">50% on order, 50% 30 Days</field>
+            <field name="type">RD</field>
+        </record>
+        <record id="payment_term_50order_50_net_30days_line1" model="account.payment.term.line">
+            <field name="value">procent</field>
+            <field eval="1" name="sequence"/>
+            <field name="type">RD</field>
+            <field eval="0.50" name="value_amount"/>
+            <field eval="0" name="months"/>
+            <field eval="0" name="days"/>
+            <field eval="0" name="days2"/>
+            <field ref="payment_term_50order_50_net_30days" name="payment_id"/>
+        </record>
+        <record id="payment_term_50order_50_net_30days_line2" model="account.payment.term.line">
+            <field name="value">balance</field>
+            <field eval="2" name="sequence"/>
+            <field name="type">RD</field>
             <field eval="0" name="months"/>
             <field eval="30" name="days"/>
             <field eval="0" name="days2"/>
-            <field ref="payment_term_50order_50_net" name="payment_id"/>
+            <field ref="payment_term_50order_50_net_30days" name="payment_id"/>
         </record>
 
         <record id="payment_term_30_60_net_2" model="account.payment.term">

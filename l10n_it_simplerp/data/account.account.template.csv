@@ -471,6 +471,7 @@
 "4805040","4805040","ERARIO C/IVA","48005","account.data_account_type_liability","other","TRUE"
 "4805045","4805045","IVA SU VENDITE","48005","account.data_account_type_liability","other","TRUE"
 "4805046","4805046","IVA SU VENDITE ACQ. INTRACOMUNITARI","48005","account.data_account_type_liability","other","TRUE"
+"4805047","4805047","IVA SU VENDITE ACQ. EXTRACOMUNITARI","48005","account.data_account_type_liability","other","TRUE"
 "4805050","4805050","IVA SU CORRISPETTIVI","48005","account.data_account_type_liability","other","TRUE"
 "4805055","4805055","IVA IN SOSPENSIONE","48005","account.data_account_type_liability","other","TRUE"
 "4805056","4805056","IVA C/TRANSITORIO","48005","account.data_account_type_liability","other","TRUE"

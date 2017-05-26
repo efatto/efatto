@@ -11,11 +11,11 @@ class AccountAnalyticAccount(models.Model):
 
     @api.multi
     def get_progress(self):
-        progress = 0.0
         for project in self:
+            project.progress_works_planned = 0.0
             if project.quantity_max and project.hours_quantity:
-                progress = project.hours_quantity / project.quantity_max * 100
-            project.progress_works_planned = progress
+                project.progress_works_planned = \
+                    project.hours_quantity / project.quantity_max * 100
 
     @api.multi
     def _get_amount_sal_to_invoice(self):

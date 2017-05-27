@@ -475,7 +475,7 @@
         </record>
 		
         <record id="payment_term_60_net_1" model="account.payment.term">
-            <field name="name">60 DAYS INVOICE</field>
+            <field name="name">B.T. 60 DAYS INVOICE</field>
             <field name="note">B.T. 60 days invoice</field>
             <field name="type">BB</field>
         </record>
@@ -489,7 +489,7 @@
         </record>
 
         <record id="payment_term_90_net_1" model="account.payment.term">
-            <field name="name">90 DAYS INVOICE</field>
+            <field name="name">B.T. 90 DAYS INVOICE</field>
             <field name="note">B.T. 90 days invoice</field>
             <field name="type">BB</field>
         </record>

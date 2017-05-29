@@ -25,6 +25,9 @@ class SaleOrderLine(models.Model):
             for attribute_line in self.product_tmpl_id.attribute_line_ids:
                 if attribute_line.attribute_id == attribute_id:
                     price_extra += attribute_line.price_extra
+                for child_attribute in attribute_line.attribute_id.child_ids:
+                    if child_attribute == attribute_id:
+                        price_extra += attribute_line.price_extra # o solo =??
             price_unit = self.order_id.pricelist_id.with_context({
                 'uom': self.product_uom.id,
                 'date': self.order_id.date_order,

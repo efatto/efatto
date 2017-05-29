@@ -62,9 +62,10 @@ class ProductConfiguratorAttribute(models.Model):
                     lambda x: x.attribute_id.child_ids):
                 for attribute_line in record.product_tmpl_id.attribute_line_ids:
                     for child in attribute_line.attribute_id.child_ids:
-                        attribute = child if \
-                            child == record.attribute_id else False
-                        if attribute:
+                        if child == record.attribute_id:
+                            record.possible_value_ids = child.value_ids.sorted()
+                    for attribute in attribute_line.attribute_id:
+                        if attribute == record.attribute_id:
                             record.possible_value_ids = attribute.value_ids.sorted()
             else:
                 super(ProductConfiguratorAttribute, self

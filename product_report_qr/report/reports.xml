@@ -46,7 +46,21 @@
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>
         </record>
-
+        <record id="report_product_labels_order" model="ir.actions.report.xml">
+            <field name="name">Product label with QR Code 12 pc from order</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">product.product.labels.order</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_doc_odt')"></field>
+            <field name="parser_loc">product_report_qr/models/sale.py</field>
+            <field name="report_rml">product_report_qr/report/report12.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"/>
+            <field name="attachment_use" eval="0"/>
+        </record>
         <record model="ir.values" id="report_product_labels_action">
             <field name="name">Product label with QR Code 12 pc</field>
             <field name="key">action</field>
@@ -69,6 +83,13 @@
             <field name="key2">client_print_multi</field>
             <field name="model">product.template</field>
             <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_product_template_labels'))"/>
+        </record>
+        <record model="ir.values" id="report_product_labels-order_action">
+            <field name="name">Product label with QR Code 12 pc</field>
+            <field name="key">action</field>
+            <field name="key2">client_print_multi</field>
+            <field name="model">sale.order</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_product_labels_order'))"/>
         </record>
 
     </data>

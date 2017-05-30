@@ -22,10 +22,8 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
-With this module variants are created only for product attribute values,
-without mixing all possibility.
-E.g.: a template has an attribute "Leather Sand" which has three colors:
-only 3 variant of Leather Sand colors will be computed for this template.
+This module take care of variant child attribute, getting values of child
+instead of parent attribute selected (which works as a category).
 """,
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',

@@ -17,17 +17,17 @@ class SaleOrderLine(models.Model):
         date = self._context.get('date') or fields.Date.context_today(self)
         if self.product_tmpl_id:
             price_extra = discount = 0.0
-            attribute_id = False
+            attribute_id = []
             for attr_line in self.product_attribute_ids:
                 price_extra += attr_line.price_extra
                 if attr_line.value_id:
-                    attribute_id = attr_line.attribute_id
+                    attribute_id.append(attr_line.attribute_id)
             for attribute_line in self.product_tmpl_id.attribute_line_ids:
-                if attribute_line.attribute_id == attribute_id:
+                if attribute_line.attribute_id in attribute_id:
                     price_extra += attribute_line.price_extra
                 for child_attribute in attribute_line.attribute_id.child_ids:
-                    if child_attribute == attribute_id:
-                        price_extra += attribute_line.price_extra # o solo =??
+                    if child_attribute in attribute_id:
+                        price_extra += attribute_line.price_extra
             price_unit = self.order_id.pricelist_id.with_context({
                 'uom': self.product_uom.id,
                 'date': self.order_id.date_order,
@@ -88,14 +88,17 @@ class SaleOrderLine(models.Model):
         date = self._context.get('date') or fields.Date.context_today(self)
         if self.product_tmpl_id:
             price_extra = discount = total_price = 0.0
-            attribute_id = False
+            attribute_id = []
             for attr_line in self.product_attribute_ids:
                 price_extra += attr_line.price_extra
                 if attr_line.value_id:
-                    attribute_id = attr_line.attribute_id
+                    attribute_id.append(attr_line.attribute_id)
             for attribute_line in self.product_tmpl_id.attribute_line_ids:
-                if attribute_line.attribute_id == attribute_id:
+                if attribute_line.attribute_id in attribute_id:
                     price_extra += attribute_line.price_extra
+                for child_attribute in attribute_line.attribute_id.child_ids:
+                    if child_attribute in attribute_id:
+                        price_extra += attribute_line.price_extra
             price_unit = self.order_id.pricelist_id.with_context({
                 'uom': self.product_uom.id,
                 'date': self.order_id.date_order,

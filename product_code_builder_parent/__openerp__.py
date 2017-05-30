@@ -33,7 +33,7 @@ only 3 variant of Leather Sand colors will be computed for this template.
     "depends": [
         'product_attribute_value_image',
         'product_code_builder',
-        'product_variants_no_automatic_creation',
+        'product_variants_no_automatic_creation_parent',
     ],
     "data": [
         'views/product_view.xml',

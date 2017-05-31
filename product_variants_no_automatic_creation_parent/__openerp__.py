@@ -18,12 +18,11 @@
 #
 #
 {
-    'name': 'Add variant parent on product configurator',
+    'name': 'EMPTY',
     'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
-This module take care of variant child attribute, getting values of child
-instead of parent attribute selected (which works as a category).
+EMPTY
 """,
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',

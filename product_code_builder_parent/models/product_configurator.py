@@ -11,7 +11,7 @@ class ProductConfigurator(models.AbstractModel):
     @api.multi
     @api.onchange('product_tmpl_id')
     def onchange_product_tmpl_id(self):
-        #TODO get child_ids attribute if present, else super()
+        # Get child_ids attribute if present
         # First, empty current list
         self.product_attribute_ids = [
             (2, x.id) for x in self.product_attribute_ids]

@@ -72,8 +72,10 @@ class SaleOrder(models.Model):
                     if product_attribute_child:
                         self.product_attribute_child_id = \
                             product_attribute_child
-                        self.product_attribute_line_id = \
-                            product_attribute_child.parent_id.id
+                        self.product_attribute_line_id = self.\
+                            product_template_id.attribute_line_ids.filtered(
+                                lambda x: x.attribute_id ==
+                                          product_attribute_child.parent_id)
                         break
             elif attribute and not attribute.parent_id:
                 product_attribute_line = self.product_template_id.\

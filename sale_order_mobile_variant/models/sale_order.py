@@ -41,7 +41,7 @@ class SaleOrder(models.Model):
 
     scan_template = fields.Char('Scan Template')
     scan_material = fields.Char('Scan Material')
-    scan_color = fields.Char('Scan Color')
+    scan_color = fields.Char('Scan Material Color')
     scan_stitching = fields.Char('Scan Stitching')
     scan_stitching_color = fields.Char('Scan Stitching Color')
 
@@ -57,20 +57,21 @@ class SaleOrder(models.Model):
     @api.onchange('scan_material')
     def _scan_material(self):
         if self.scan_material:
-            #todo first search if material has parent,
+            # first search if material has parent
             attribute = self.env['product.attribute'].search(
                 [('code', '=', self.scan_material)])
-            product_attribute_child = product_attribute_line = False
+            # product_attribute_child = product_attribute_line = False
             if attribute and attribute.parent_id:
-                #is a child attribute: set in one passage the attribute line
-                #from parent of attribute, and the product_attribute_child_id
+                # it's a child attribute: set in one passage the attribute line
+                # from parent of attribute, and the product_attribute_child_id
                 for attribute_line in self.product_template_id.\
                         attribute_line_ids:
                     product_attribute_child = \
                         attribute_line.attribute_id.child_ids.filtered(
                             lambda x: x.code == self.scan_material)
                     if product_attribute_child:
-                        self.product_attribute_child_id = product_attribute_child
+                        self.product_attribute_child_id = \
+                            product_attribute_child
                         self.product_attribute_line_id = \
                             product_attribute_child.parent_id.id
                         break
@@ -85,8 +86,12 @@ class SaleOrder(models.Model):
     @api.onchange('scan_color')
     def _scan_color(self):
         if self.scan_color:
-            product_attribute_value = self.product_attribute_line_id.\
-                value_ids.filtered(lambda x: x.code == self.scan_color)
+            if self.product_attribute_child_id:
+                product_attribute_value = self.product_attribute_child_id. \
+                    value_ids.filtered(lambda x: x.code == self.scan_color)
+            else:
+                product_attribute_value = self.product_attribute_line_id.\
+                    value_ids.filtered(lambda x: x.code == self.scan_color)
             if product_attribute_value:
                 self.product_attribute_value_id = product_attribute_value
                 #todo put in product char field the code of variant not existing too

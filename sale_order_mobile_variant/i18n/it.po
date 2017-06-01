@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-11 17:05+0000\n"
-"PO-Revision-Date: 2016-12-11 17:05+0000\n"
+"POT-Creation-Date: 2017-06-01 06:53+0000\n"
+"PO-Revision-Date: 2017-06-01 06:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,34 +103,44 @@ msgid "Product attribute"
 msgstr "Attributo prodotto"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Product attribute child"
+msgstr "Attributo figlio"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,product_attribute_child_id:0
+msgid "Product attribute child id"
+msgstr "ID attributo figlio"
+
+#. module: sale_order_mobile_variant
 #: field:sale.order,product_attribute_line_id:0
 msgid "Product attribute line id"
-msgstr "Product attribute line id"
+msgstr "ID riga attributo"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,product_attribute_value_id:0
 msgid "Product attribute value id"
-msgstr "Product attribute value id"
+msgstr "ID valore attributo"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,product_attribute_ids:0
 msgid "Product attributes"
-msgstr "Product attributes"
+msgstr "Attributi prodotto"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Product template"
-msgstr "Product template"
+msgstr "Template di prodotto"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,product_template_id:0
 msgid "Product template id"
-msgstr "Product template id"
+msgstr "ID template di prodotto"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Product value"
-msgstr "Product value"
+msgstr "Valore prodotto"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
@@ -140,13 +150,13 @@ msgstr "Ricrea Fattura"
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Sale Order Variant Fast"
-msgstr "Sale Order Variant Fast"
+msgstr "Ordine veloce con varianti"
 
 #. module: sale_order_mobile_variant
 #: model:ir.actions.act_window,name:sale_order_mobile_variant.action_sale_order_mobile_variant
 #: model:ir.ui.menu,name:sale_order_mobile_variant.menu_sale_order_mobile_variant
 msgid "Sale Order Variant Mobile"
-msgstr "Sale Order Variant Mobile"
+msgstr "Ordine di Vendita Mobile"
 
 #. module: sale_order_mobile_variant
 #: model:ir.model,name:sale_order_mobile_variant.model_sale_order
@@ -159,9 +169,49 @@ msgid "Sales Order Lines"
 msgstr "Righe Ordine di Vendita"
 
 #. module: sale_order_mobile_variant
+#: field:sale.order,scan_color:0
+msgid "Scan Color"
+msgstr "Scan Colore"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,scan_material:0
+msgid "Scan Material"
+msgstr "Scan Materiale"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,scan_stitching:0
+msgid "Scan Stitching"
+msgstr "Scan Impuntura"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,scan_stitching_color:0
+msgid "Scan Stitching Color"
+msgstr "Scan Colore Impuntura"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,scan_template:0
+msgid "Scan Template"
+msgstr "Scan Template"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Scan product color"
+msgstr "Scan Colore Prodotto"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Scan product material"
+msgstr "Scan Materiale Prodotto"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Scan product template"
+msgstr "Scan Template Prodotto"
+
+#. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Scan product variant"
-msgstr "Scan product variant"
+msgstr "Scan Variante Prodotto"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form

@@ -50,15 +50,17 @@
                     <field name="scan" nolabel="1" placeholder="Scan product variant"/>
 
                     <group colspan="2" col="1">
-                            <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
-                            <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
-                            <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
-                            <field name="product_attribute_value_ids" invisible="1"/>
-                            <field name="product" nolabel="1" placeholder="Product"/>
-                            <group colspan="1" col="2">
-                                <field name="price_unit"/>
-                            </group>
-                            <!--<button name="add_product_in_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>-->
+                        <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
+                        <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
+                        <field name="product_attribute_child_ids" invisible="1"/>
+                        <field name="product_attribute_child_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
+                        <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
+                        <field name="product_attribute_value_ids" invisible="1"/>
+                        <field name="product" nolabel="1" placeholder="Product"/>
+                        <group colspan="1" col="2">
+                            <field name="price_unit"/>
+                        </group>
+                        <!--<button name="add_product_in_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>-->
                         <!--</group>-->
 
                     </group>
@@ -145,7 +147,7 @@
     <menuitem
       action="action_sale_order_mobile_variant"
       id="menu_sale_order_mobile_variant"
-      parent="base.menu_sales" sequence="1"
+      parent="base.menu_sales" sequence="10"
       groups="base.group_sale_salesman,base.group_sale_manager"/>
 
   </data>

@@ -17,6 +17,14 @@ class SaleOrder(models.Model):
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
         )
+    product_attribute_child_ids = fields.One2many(
+        string='Childs',
+        related='product_attribute_line_id.attribute_id.child_ids',
+        readonly=True)
+    product_attribute_child_id = fields.Many2one(
+        'product.attribute',
+        domain="[('id', 'in', product_attribute_child_ids[0][2])]"
+    )
     product_attribute_value_ids = fields.Many2many(
         string='Values',
         related='product_attribute_line_id.value_ids',
@@ -34,6 +42,8 @@ class SaleOrder(models.Model):
     scan_template = fields.Char('Scan Template')
     scan_material = fields.Char('Scan Material')
     scan_color = fields.Char('Scan Color')
+    scan_stitching = fields.Char('Scan Stitching')
+    scan_stitching_color = fields.Char('Scan Stitching Color')
 
     @api.onchange('scan_template')
     def _scan_template(self):
@@ -47,13 +57,29 @@ class SaleOrder(models.Model):
     @api.onchange('scan_material')
     def _scan_material(self):
         if self.scan_material:
-            product_attribute_line = self.product_template_id.\
-                attribute_line_ids.filtered(lambda x: x.attribute_id.code ==
-                                                      self.scan_material)
-            if product_attribute_line:
-                self.product_attribute_line_id = product_attribute_line
-            else:
-                self.product_attribute_line_id = False
+            #todo first search if material has parent,
+            attribute = self.env['product.attribute'].search(
+                [('code', '=', self.scan_material)])
+            product_attribute_child = product_attribute_line = False
+            if attribute and attribute.parent_id:
+                #is a child attribute: set in one passage the attribute line
+                #from parent of attribute, and the product_attribute_child_id
+                for attribute_line in self.product_template_id.\
+                        attribute_line_ids:
+                    product_attribute_child = \
+                        attribute_line.attribute_id.child_ids.filtered(
+                            lambda x: x.code == self.scan_material)
+                    if product_attribute_child:
+                        self.product_attribute_child_id = product_attribute_child
+                        self.product_attribute_line_id = \
+                            product_attribute_child.parent_id.id
+                        break
+            elif attribute and not attribute.parent_id:
+                product_attribute_line = self.product_template_id.\
+                    attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.code == self.scan_material)
+                if product_attribute_line:
+                    self.product_attribute_line_id = product_attribute_line
         self.scan_material = ''
 
     @api.onchange('scan_color')
@@ -76,9 +102,43 @@ class SaleOrder(models.Model):
                 self.product = False
         self.scan_color = ''
 
+    # #TODO scan stitching
+    # @api.onchange('scan_stitching')
+    # def _scan_material(self):
+    #     if self.scan_material:
+    #         product_attribute_line = self.product_template_id.\
+    #             attribute_line_ids.filtered(lambda x: x.attribute_id.code ==
+    #                                                   self.scan_material)
+    #         if product_attribute_line:
+    #             self.product_attribute_line_id = product_attribute_line
+    #         else:
+    #             self.product_attribute_line_id = False
+    #     self.scan_material = ''
+    #
+    # #TODO scan stitching color
+    # @api.onchange('scan_stitching_color')
+    # def _scan_color(self):
+    #     if self.scan_color:
+    #         product_attribute_value = self.product_attribute_line_id.\
+    #             value_ids.filtered(lambda x: x.code == self.scan_color)
+    #         if product_attribute_value:
+    #             self.product_attribute_value_id = product_attribute_value
+    #             #todo put in product char field the code of variant not existing too
+    #             product = self.env['product.product'].search([
+    #                 ('product_tmpl_id', '=', self.product_template_id.id),
+    #                 ('attribute_value_ids', '=',
+    #                  self.product_attribute_value_id.id)
+    #             ])
+    #             if len(product) == 1:
+    #                 self.product = product.default_code
+    #         else:
+    #             self.product_attribute_value_id = False
+    #             self.product = False
+    #     self.scan_color = ''
+
     @api.onchange('product_template_id')
     def onchange_product(self):
-        self.product_attribute_line_id = \
+        self.product_attribute_line_id = self.product_attribute_child_id = \
             self.product_attribute_value_id = self.product = False
 
     @api.onchange('product_attribute_line_id')

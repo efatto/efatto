@@ -26,6 +26,9 @@
             <field name="model">product.attribute</field>
             <field name="inherit_id" ref="product.attribute_tree_view"/>
             <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="editable"/>
+                </tree>
                 <field name="name" position="after">
                     <field name="parent_id"/>
                 </field>

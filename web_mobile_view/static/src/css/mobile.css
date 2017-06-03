@@ -25,6 +25,14 @@
 .openerp .oe_form_sheet_width {
     min-width: 300px;
 }
+/* fix vertical align of fields */
+.openerp .oe_form td.oe_form_group_cell + .oe_form_group_cell {
+    padding: 0px 0px 2px 8px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+}
 /* ok wide all input boxes but not when compiled
 .openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"],
 .openerp .oe_form input[type="file"], .openerp .oe_form select {

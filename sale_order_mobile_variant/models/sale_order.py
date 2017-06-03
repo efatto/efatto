@@ -17,6 +17,18 @@ class SaleOrder(models.Model):
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
         )
+    product_attribute_line_stitching_id = fields.Many2one(
+        'product.attribute.line',
+        domain="[('product_tmpl_id','=',product_template_id)]"
+        )
+    stitching_value_ids = fields.Many2many(
+        string='Values',
+        related='product_attribute_line_stitching_id.value_ids',
+        readonly=True)
+    stitching_value_id = fields.Many2one(
+        'product.attribute.value',
+        domain="[('id', 'in', stitching_value_ids[0][2])]"
+    )
     product_attribute_child_ids = fields.One2many(
         string='Childs',
         related='product_attribute_line_id.attribute_id.child_ids',
@@ -43,7 +55,6 @@ class SaleOrder(models.Model):
     scan_material = fields.Char('Scan Material')
     scan_color = fields.Char('Scan Material Color')
     scan_stitching = fields.Char('Scan Stitching')
-    scan_stitching_color = fields.Char('Scan Stitching Color')
 
     @api.onchange('scan_template')
     def _scan_template(self):
@@ -109,39 +120,23 @@ class SaleOrder(models.Model):
                 self.product = False
         self.scan_color = ''
 
-    # #TODO scan stitching
-    # @api.onchange('scan_stitching')
-    # def _scan_material(self):
-    #     if self.scan_material:
-    #         product_attribute_line = self.product_template_id.\
-    #             attribute_line_ids.filtered(lambda x: x.attribute_id.code ==
-    #                                                   self.scan_material)
-    #         if product_attribute_line:
-    #             self.product_attribute_line_id = product_attribute_line
-    #         else:
-    #             self.product_attribute_line_id = False
-    #     self.scan_material = ''
-    #
-    # #TODO scan stitching color
-    # @api.onchange('scan_stitching_color')
-    # def _scan_color(self):
-    #     if self.scan_color:
-    #         product_attribute_value = self.product_attribute_line_id.\
-    #             value_ids.filtered(lambda x: x.code == self.scan_color)
-    #         if product_attribute_value:
-    #             self.product_attribute_value_id = product_attribute_value
-    #             #todo put in product char field the code of variant not existing too
-    #             product = self.env['product.product'].search([
-    #                 ('product_tmpl_id', '=', self.product_template_id.id),
-    #                 ('attribute_value_ids', '=',
-    #                  self.product_attribute_value_id.id)
-    #             ])
-    #             if len(product) == 1:
-    #                 self.product = product.default_code
-    #         else:
-    #             self.product_attribute_value_id = False
-    #             self.product = False
-    #     self.scan_color = ''
+    #TODO scan stitching
+    @api.onchange('scan_stitching')
+    def _scan_stitching(self):
+        if self.scan_stitching:
+            product_attribute_line = self.product_template_id.\
+                attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.code == 'ST')# self.scan_stitching)
+            if product_attribute_line:
+                self.product_attribute_line_stitching_id = product_attribute_line
+                stitching = product_attribute_line.value_ids.filtered(
+                    lambda x: x.code == self.scan_stitching
+                )
+                if stitching:
+                    self.stitching_value_id = stitching
+            else:
+                self.product_attribute_line_stitching_id = False
+        self.scan_stitching = ''
 
     @api.onchange('product_template_id')
     def onchange_product(self):
@@ -166,7 +161,8 @@ class SaleOrder(models.Model):
 
     @api.multi
     @api.onchange('product_attribute_value_id')
-    @api.depends('product_template_id')
+    @api.depends('product_template_id', 'partner_id', 'date_order',
+                 'pricelist_id')
     def onchange_price_unit(self):
         self.ensure_one()
         if self.product_template_id:

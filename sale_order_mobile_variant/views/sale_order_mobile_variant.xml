@@ -10,21 +10,22 @@
                     <header>
                         <button name="invoice_recreate" states="invoice_except" string="Recreate Invoice" groups="base.group_user"/>
                         <button name="invoice_corrected" states="invoice_except" string="Ignore Exception" groups="base.group_user"/>
-                        <button name="action_quotation_send" string="Send by Email" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
-                        <button name="action_quotation_send" string="Send by Email" type="object" states="sent,progress,manual" groups="base.group_user"/>
-                        <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
-                        <button name="print_quotation" string="Print" type="object" states="sent,progress,manual" groups="base.group_user"/>
-                        <button name="action_button_confirm" states="draft" string="Confirm Sale" type="object" groups="base.group_user"/>
-                        <button name="action_button_confirm" states="sent" string="Confirm Sale" class="oe_highlight" type="object" groups="base.group_user"/>
-                        <button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('invoice_exists', '=', False)]}" groups="base.group_user"/>
-                        <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
-                            type="action" states="manual" class="oe_highlight" groups="base.group_user"/>
-                        <button name="copy_quotation" states="cancel" string="New Copy of Quotation" type="object"/>
-                        <button name="cancel" states="draft,sent" string="Cancel Quotation" groups="base.group_user"/>
-                        <button name="action_cancel" states="manual,progress" string="Cancel Order" type="object" groups="base.group_user"/>
-                        <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
+                        <button name="action_quotation_send" icon="terp-mail-message-new" help="Send by Email" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                        <button name="action_quotation_send" icon="terp-mail-message-new" help="Send by Email" type="object" states="sent,progress,manual" groups="base.group_user"/>
+                        <button name="print_quotation" icon="STOCK_PRINT" help="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                        <button name="print_quotation" icon="STOCK_PRINT" help="Print" type="object" states="sent,progress,manual" groups="base.group_user"/>
+                        <button name="action_button_confirm" icon="STOCK_APPLY" states="draft" help="Confirm Sale" type="object" groups="base.group_user"/>
+                        <button name="action_button_confirm" icon="STOCK_APPLY" states="sent" help="Confirm Sale" class="oe_highlight" type="object" groups="base.group_user"/>
+                        <!--<button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight"-->
+                            <!--attrs="{'invisible': [('invoice_exists', '=', False)]}" groups="base.group_user"/>-->
+                        <!--<button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"-->
+                            <!--type="action" states="manual" class="oe_highlight" groups="base.group_user"/>-->
+                        <button name="copy_quotation" icon="STOCK_COPY" states="cancel" help="New Copy of Quotation" type="object"/>
+                        <button name="cancel" icon="gtk-undo" states="draft,sent" help="Cancel Quotation" groups="base.group_user"/>
+                        <button name="action_cancel" icon="STOCK_CANCEL" states="manual,progress" help="Cancel Order" type="object" groups="base.group_user"/>
+                        <button name="invoice_cancel" icon="STOCK_CANCEL" states="invoice_except" help="Cancel Order" groups="base.group_user"/>
+                        <field name="state" invisible="1"/>
+                        <!--widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>-->
                 </header>
                 <sheet>
                     <!--<h1>-->
@@ -35,27 +36,46 @@
                     <group>
                         <field name="partner_id" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
                     </group>
-                    <group colspan="2" col="1">
-                        <field name="payment_term" options="{'no_create': True}" nolabel="1" placeholder="Payment term"/>
-                    </group>
                     <group colspan="2" col="2">
-                        <!--<group colspan="1" col="1">-->
+                        <group>
                             <field name="product_template_image" widget="image" options="{'no_create': True}" nolabel="1" placeholder="Template Image"/>
+                        </group>
+                        <group>
                             <field name="product_attribute_image" widget="image" options="{'no_create': True}" nolabel="1" placeholder="Attribute Image"/>
+                        </group>
                     </group>
 
-                    <field name="scan_template" nolabel="1" placeholder="Scan product template"/>
-                    <field name="scan_material" nolabel="1" placeholder="Scan product material"/>
-                    <field name="scan_color" nolabel="1" placeholder="Scan product color"/>
+                    <!--<group colspan="2" col="2">-->
+                        <group colspan="2" col="2">
+                            <field name="scan_template" nolabel="1" placeholder="Scan product template"/>
+                            <field name="scan_material" nolabel="1" placeholder="Scan product material"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="scan_color" nolabel="1" placeholder="Scan product color"/>
+                            <field name="scan_stitching" nolabel="1" placeholder="Scan stitching color"/>
+                        </group>
+                    <!--</group>-->
+
+
                     <field name="scan" nolabel="1" placeholder="Scan product variant"/>
 
-                    <group colspan="2" col="1">
-                        <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
-                        <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
-                        <field name="product_attribute_child_ids" invisible="1"/>
-                        <field name="product_attribute_child_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
-                        <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
-                        <field name="product_attribute_value_ids" invisible="1"/>
+                    <group>
+                        <group colspan="2" col="1">
+                            <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
+                            <field name="product_attribute_child_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
+                        </group>
+                        <group colspan="2" col="1">
+                            <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
+                        </group>
+                    </group>
+                    <field name="product_attribute_child_ids" invisible="1"/>
+                    <field name="product_attribute_value_ids" invisible="1"/>
+                    <field name="stitching_value_ids" invisible="1"/>
+                    <group>
+                        <field name="stitching_value_id" options="{'no_create': True}" nolabel="1" placeholder="Stitching value"/>
                         <field name="product" nolabel="1" placeholder="Product"/>
                         <group colspan="1" col="2">
                             <field name="price_unit"/>
@@ -71,7 +91,6 @@
 
                     <field name="order_line">
                         <tree string="Sales Order Lines" editable="bottom">
-                            <!--<field name="sequence" widget="handle"/>-->
                             <field name="state" invisible="1"/>
                             <field name="th_weight" invisible="1"/>
                             <field name="product_id"
@@ -108,6 +127,7 @@
                         <div class="oe_clear"/>
                         <field name="note" nolabel="1" placeholder="Terms and conditions..."/>
                     <group colspan="2" col="1">
+                        <field name="payment_term" options="{'no_create': True}" nolabel="1" placeholder="Payment term"/>
                         <field name="date_order" nolabel="1"/>
                     </group>
 

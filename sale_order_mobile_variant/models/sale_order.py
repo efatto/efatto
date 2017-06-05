@@ -50,7 +50,11 @@ class SaleOrder(models.Model):
     price_unit = fields.Float(string='Price unit',
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
-
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        string='Product',)
+    product_qty = fields.Float(
+        string='Q.ty',)
     scan_template = fields.Char('Scan Template')
     scan_material = fields.Char('Scan Material')
     scan_color = fields.Char('Scan Material Color')
@@ -61,8 +65,13 @@ class SaleOrder(models.Model):
         if self.scan_template:
             product_template = self.env['product.template'].search(
                 [('prefix_code', '=', self.scan_template)])
+            self.product_attribute_line_id = self.product_attribute_child_id \
+                = self.product_attribute_value_id = self.product_id = False
             if product_template:
                 self.product_template_id = product_template
+                self.product = product_template.prefix_code
+            else:
+                self.product_id = self.product_template_id = False
             self.scan_template = ''
 
     @api.onchange('scan_material')
@@ -87,6 +96,8 @@ class SaleOrder(models.Model):
                             product_template_id.attribute_line_ids.filtered(
                                 lambda x: x.attribute_id ==
                                           product_attribute_child.parent_id)
+                        self.product = self.product_template_id.prefix_code + \
+                            product_attribute_child.code
                         break
             elif attribute and not attribute.parent_id:
                 product_attribute_line = self.product_template_id.\
@@ -94,7 +105,9 @@ class SaleOrder(models.Model):
                     lambda x: x.attribute_id.code == self.scan_material)
                 if product_attribute_line:
                     self.product_attribute_line_id = product_attribute_line
-        self.scan_material = ''
+                    self.product = self.product_template_id.prefix_code + \
+                        product_attribute_line.attribute_id.code
+            self.scan_material = ''
 
     @api.onchange('scan_color')
     def _scan_color(self):
@@ -105,20 +118,25 @@ class SaleOrder(models.Model):
             else:
                 product_attribute_value = self.product_attribute_line_id.\
                     value_ids.filtered(lambda x: x.code == self.scan_color)
-            if product_attribute_value:
+            # we can search here for product only if not with child variant
+            if product_attribute_value and not self.product_attribute_child_id:
                 self.product_attribute_value_id = product_attribute_value
-                #todo put in product char field the code of variant not existing too
                 product = self.env['product.product'].search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
                     ('attribute_value_ids', '=',
                      self.product_attribute_value_id.id)
                 ])
                 if len(product) == 1:
+                    self.product_id = product
                     self.product = product.default_code
+                else:
+                    self.product = self.product_template_id.prefix_code + \
+                        self.product_attribute_line_id.attribute_id.code + \
+                        product_attribute_value.code
+                self.price_unit = self._get_price_unit()
             else:
                 self.product_attribute_value_id = False
-                self.product = False
-        self.scan_color = ''
+            self.scan_color = ''
 
     #TODO scan stitching
     @api.onchange('scan_stitching')
@@ -136,34 +154,10 @@ class SaleOrder(models.Model):
                     self.stitching_value_id = stitching
             else:
                 self.product_attribute_line_stitching_id = False
-        self.scan_stitching = ''
-
-    @api.onchange('product_template_id')
-    def onchange_product(self):
-        self.product_attribute_line_id = self.product_attribute_child_id = \
-            self.product_attribute_value_id = self.product = False
-
-    @api.onchange('product_attribute_line_id')
-    def onchange_product_attribute(self):
-        self.product_attribute_value_id = self.product = False
-
-    @api.onchange('product_attribute_value_id')
-    def onchange_product_attribute_value(self):
-        for order in self:
-            product = self.env['product.product'].search([
-                ('product_tmpl_id','=', order.product_template_id.id),
-                ('attribute_value_ids','=', order.product_attribute_value_id.id)
-            ])
-            if len(product) == 1:
-                order.product = product.default_code
-            else:
-                order.product = False
+            self.scan_stitching = ''
 
     @api.multi
-    @api.onchange('product_attribute_value_id')
-    @api.depends('product_template_id', 'partner_id', 'date_order',
-                 'pricelist_id')
-    def onchange_price_unit(self):
+    def _get_price_unit(self):
         self.ensure_one()
         if self.product_template_id:
             price_extra = 0.0
@@ -175,7 +169,7 @@ class SaleOrder(models.Model):
             for attribute_line in self.product_attribute_value_id:
                 # if attribute_line.attribute_id == attribute_id:
                 price_extra += attribute_line.price_extra
-            self.price_unit = self.pricelist_id.with_context({
+            return self.pricelist_id.with_context({
                 'uom': self.product_template_id.uom_id.id,
                 'date': self.date_order,
                 'price_extra': price_extra,
@@ -184,6 +178,31 @@ class SaleOrder(models.Model):
                 self.partner_id.id)[self.pricelist_id.id]
 
     @api.multi
-    def add_product_in_order(self):
+    def add_product_to_order(self):
+        if self.product: # and not self.product_attribute_child_id:
+            product_id = self.env['product.product'].search([
+                ('product_tmpl_id', '=', self.product_template_id.id),
+                ('attribute_value_ids', '=',
+                 self.product_attribute_value_id.id)
+            ])
         for order in self:
-            order.scan = order.product
+            if order.product_id in order.order_line.mapped('product_id'):
+                line = order.order_line.filtered(
+                    lambda r: r.product_id == product_id)
+                line.product_uom_qty += self.product_qty if \
+                    self.product_qty else 1
+            else:
+                order.order_line.create({
+                    'order_id': order.id,
+                    'product_id': product_id.id,
+                    'name': product_id.name_template,
+                    'product_uom_qty': self.product_qty if self.product_qty else 1,
+                    'price_unit': self._get_price_unit(),
+                    'product_uom': product_id.product_tmpl_id.uom_id.id,
+                    'state': 'draft',
+                    'delay': 0.0,
+                })
+        # todo if product do not exists, create it
+        else:
+            pass
+            #order.scan = order.product

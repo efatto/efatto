@@ -6,7 +6,7 @@
             <field name="name">sale.order.form.count</field>
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
-                <form string="Sale Order Variant Fast">
+                <form string="Sale Order Mobile">
                     <header>
                         <button name="invoice_recreate" states="invoice_except" string="Recreate Invoice" groups="base.group_user"/>
                         <button name="invoice_corrected" states="invoice_except" string="Ignore Exception" groups="base.group_user"/>
@@ -38,23 +38,21 @@
                     </group>
                     <group colspan="2" col="2">
                         <group>
-                            <field name="product_template_image" widget="image" options="{'no_create': True}" nolabel="1" placeholder="Template Image"/>
+                            <field name="product_template_image" widget="image" options="{'no_create': True, 'create_edit': false}" nolabel="1" placeholder="Template Image"/>
                         </group>
                         <group>
-                            <field name="product_attribute_image" widget="image" options="{'no_create': True}" nolabel="1" placeholder="Attribute Image"/>
+                            <field name="product_attribute_image" widget="image" options="{'no_create': True, 'create_edit': false}" nolabel="1" placeholder="Attribute Image"/>
                         </group>
                     </group>
 
-                    <!--<group colspan="2" col="2">-->
-                        <group colspan="2" col="2">
-                            <field name="scan_template" nolabel="1" placeholder="Scan product template"/>
-                            <field name="scan_material" nolabel="1" placeholder="Scan product material"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="scan_color" nolabel="1" placeholder="Scan product color"/>
-                            <field name="scan_stitching" nolabel="1" placeholder="Scan stitching color"/>
-                        </group>
-                    <!--</group>-->
+                    <group colspan="2" col="2">
+                        <field name="scan_template" nolabel="1" placeholder="Scan product template"/>
+                        <field name="scan_material" nolabel="1" placeholder="Scan product material"/>
+                    </group>
+                    <group colspan="2" col="2">
+                        <field name="scan_color" nolabel="1" placeholder="Scan product color"/>
+                        <field name="scan_stitching" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" nolabel="1" placeholder="Scan stitching color"/>
+                    </group>
 
 
                     <field name="scan" nolabel="1" placeholder="Scan product variant"/>
@@ -65,7 +63,7 @@
                         </group>
                         <group colspan="2" col="2">
                             <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
-                            <field name="product_attribute_child_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
+                            <field name="product_attribute_child_id" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
                         </group>
                         <group colspan="2" col="1">
                             <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
@@ -74,20 +72,19 @@
                     <field name="product_attribute_child_ids" invisible="1"/>
                     <field name="product_attribute_value_ids" invisible="1"/>
                     <field name="stitching_value_ids" invisible="1"/>
+                    <field name="stitching_value_id" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" options="{'no_create': True}" nolabel="1" placeholder="Stitching value"/>
+                    <field name="product" nolabel="1" placeholder="Product"/>
+                    <field name="product_id" nolabel="1" invisible="0"/>
                     <group>
-                        <field name="stitching_value_id" options="{'no_create': True}" nolabel="1" placeholder="Stitching value"/>
-                        <field name="product" nolabel="1" placeholder="Product"/>
-                        <group colspan="1" col="2">
-                            <field name="price_unit"/>
+                        <group colspan="2" col="2">
+                            <field name="product_qty" nolabel="1"/>
+                            <field name="price_unit" nolabel="1" readonly="1"/>
                         </group>
-                        <!--<button name="add_product_in_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>-->
-                        <!--</group>-->
-
                     </group>
+                    <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
+
                     <!--<button name="barcode" style="height:56px;border-width:0px;" url="zxing://scan/?ret=http://foo.com/products/{CODE}/description&amp;SCAN_FORMATS=UPC_A,EAN_13">-->
                     <!--</button>-->
-                    <!---->
-
 
                     <field name="order_line">
                         <tree string="Sales Order Lines" editable="bottom">

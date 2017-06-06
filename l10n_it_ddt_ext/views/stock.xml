@@ -51,6 +51,7 @@
                         </group>
                     </group>
                 </notebook>
+                <field name="weight_manual" position="replace"/>
             </field>
         </record>
         <record id="ddt_stock_picking_package_preparation_tree_remove_package_id" model="ir.ui.view">

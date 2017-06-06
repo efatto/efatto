@@ -180,3 +180,8 @@ msgstr "Informazioni spedizione"
 #: field:account.invoice,tax_stamp_image:0
 msgid "Tax stamp"
 msgstr "Bollo"
+
+#. module: invoice_report_aeroo_simplerp
+#: field:account.invoice,print_hide_uom:0
+msgid "Print hide uom"
+msgstr "Nascondi U.M. nella stampa"

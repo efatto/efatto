@@ -16,6 +16,7 @@
                 </field>
                 <field name="fiscal_position" position="after">
                     <field name="print_net_price"/>
+                    <field name="print_hide_uom"/>
                 </field>
             </field>
         </record>

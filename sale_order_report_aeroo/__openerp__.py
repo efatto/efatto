@@ -28,10 +28,12 @@
         'account',
         'report_aeroo',
         'report_branding',
+        'sale',
         'invoice_report_aeroo_simplerp',
     ],
     'data': [
         'data/reports.xml',
+        'views/sale_order.xml',
     ],
     'installable': True
 }

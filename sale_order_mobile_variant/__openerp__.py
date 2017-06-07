@@ -33,7 +33,6 @@
     ],
     'data': [
         'views/sale_order_mobile_variant.xml',
-        # 'views/templates.xml',
     ],
     'installable': True
 }

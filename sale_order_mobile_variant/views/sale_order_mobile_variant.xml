@@ -54,9 +54,6 @@
                         <field name="scan_stitching" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" nolabel="1" placeholder="Scan stitching color"/>
                     </group>
 
-
-                    <field name="scan" nolabel="1" placeholder="Scan product variant"/>
-
                     <group>
                         <group colspan="2" col="1">
                             <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>

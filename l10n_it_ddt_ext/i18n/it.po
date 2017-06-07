@@ -38,7 +38,7 @@ msgstr "Aggiungi Picking al DDT"
 #: view:stock.picking.package.preparation:l10n_it_ddt.ddt_stock_picking_package_preparation_form
 #: view:stock.picking.package.preparation:stock_picking_package_preparation.stock_picking_package_preparation_form
 msgid "Add an internal note..."
-msgstr "Add an internal note..."
+msgstr "Aggiungi una nota interna..."
 
 #. module: l10n_it_ddt
 #: view:add.pickings.to.ddt:l10n_it_ddt.view_add_pickings_to_ddt
@@ -930,3 +930,50 @@ msgstr "or"
 msgid "{'invisible': True}"
 msgstr "{'invisible': True}"
 
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,carrier_signature:0
+msgid "Carrier's signature"
+msgstr "Firma del vettore"
+
+#. module: l10n_it_ddt_ext
+#: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings
+msgid "DDT and Pickings"
+msgstr "DDT e Consegne"
+
+#. module: l10n_it_ddt_ext
+#: code:addons/l10n_it_ddt_ext/models/sale.py:54
+#, python-format
+msgid "DDT is already done or in pack."
+msgstr "Il DDT è già completato o preparato."
+
+#. module: l10n_it_ddt_ext
+#: code:addons/l10n_it_ddt_ext/models/stock_picking_package_preparation.py:49
+#, python-format
+msgid "Done package preparations cannot be reset to draft."
+msgstr "Pacchi completati non possono essere riportati a bozza."
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,driver_signature:0
+msgid "Driver's signature"
+msgstr "Firma del conducente"
+
+#. module: l10n_it_ddt_ext
+#: code:addons/l10n_it_ddt_ext/models/sale.py:58
+#, python-format
+msgid "Picking is not in draft or cancel state."
+msgstr "La consegna non è in stato bozza o annullato."
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,recipient_signature:0
+msgid "Recipient's signature"
+msgstr "Firma del destinatario"
+
+#. module: l10n_it_ddt_ext
+#: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings
+msgid "Related DDTs"
+msgstr "DdT collegati"
+
+#. module: l10n_it_ddt_ext
+#: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings
+msgid "Related Pickings"
+msgstr "Consegne collegate"

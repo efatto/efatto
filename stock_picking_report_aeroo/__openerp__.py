@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright (C) 2013-2014 Didotech Srl (<http://www.didotech.com>)
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,8 +21,8 @@
     'name': 'Aeroo ddt report',
     'version': '8.1.0.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL, Didotech Srl',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato, Didotech Srl',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'account',
@@ -34,6 +34,7 @@
     ],
     'data': [
         'data/reports.xml',
+        'views/picking_view.xml',
     ],
     'installable': True
 }

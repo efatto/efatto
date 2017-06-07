@@ -60,3 +60,12 @@ msgstr "Peso manuale"
 msgid "{'invisible': True}"
 msgstr "{'invisible': True}"
 
+#. module: sale_order_weight
+#: field:sale.order,weight:0
+msgid "Weight"
+msgstr "Peso"
+
+#. module: sale_order_weight
+#: field:sale.order,net_weight:0
+msgid "Net weight"
+msgstr "Peso netto"

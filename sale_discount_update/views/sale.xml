@@ -8,11 +8,10 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="after">
-                <group col="3" colspan="2">
-                    <field name="discount" attrs="{'readonly':[('state','not in',['draft',])]}"/>
-                    <group>
+                <label for="discount"/>
+                <group col="2" colspan="1">
+                    <field name="discount" attrs="{'readonly':[('state','not in',['draft',])]}" nolabel="1"/>
                     <button string="Update discount" name="sale_discount_update" type="object" icon="gtk-ok" attrs="{'invisible':[('state','not in',['draft',])]}"/>
-                    </group>
                 </group>
             </field>
         </field>

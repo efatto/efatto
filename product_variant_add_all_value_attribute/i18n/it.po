@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 12:51+0000\n"
-"PO-Revision-Date: 2016-11-24 12:51+0000\n"
+"POT-Creation-Date: 2017-06-07 21:34+0000\n"
+"PO-Revision-Date: 2017-06-07 21:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_variant_add_all_value_attribute
+#: model:ir.actions.server,name:product_variant_add_all_value_attribute.action_product_attribute_add_all
+msgid "Add attribute values Wizard"
+msgstr "Aggiungi tutti gli attributi"
+
+#. module: product_variant_add_all_value_attribute
 #: model:ir.model,name:product_variant_add_all_value_attribute.model_product_template
 msgid "Product Template"
 msgstr "Template Prodotto"
-

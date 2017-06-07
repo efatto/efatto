@@ -26,7 +26,6 @@
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
-        'add_product_via_barcode',
         'sale',
         'product_code_builder_parent_price',
         'product_variants_no_automatic_creation',
@@ -34,7 +33,7 @@
     ],
     'data': [
         'views/sale_order_mobile_variant.xml',
-        'views/templates.xml',
+        # 'views/templates.xml',
     ],
     'installable': True
 }

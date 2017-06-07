@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _
+from openerp import models, fields, api, _, exceptions
 import openerp.addons.decimal_precision as dp
 
 
@@ -50,7 +50,7 @@ class SaleOrder(models.Model):
     price_unit = fields.Float(string='Price unit',
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
-    product_id = fields.Many2one(
+    temp_product_id = fields.Many2one(
         comodel_name='product.product',
         string='Product',)
     product_qty = fields.Float(
@@ -66,12 +66,12 @@ class SaleOrder(models.Model):
             product_template = self.env['product.template'].search(
                 [('prefix_code', '=', self.scan_template)])
             self.product_attribute_line_id = self.product_attribute_child_id \
-                = self.product_attribute_value_id = self.product_id = False
+                = self.product_attribute_value_id = self.temp_product_id = False
             if product_template:
                 self.product_template_id = product_template
                 self.product = product_template.prefix_code
             else:
-                self.product_id = self.product_template_id = False
+                self.temp_product_id = self.product_template_id = False
             self.scan_template = ''
 
     @api.onchange('scan_material')
@@ -119,29 +119,34 @@ class SaleOrder(models.Model):
                 product_attribute_value = self.product_attribute_line_id.\
                     value_ids.filtered(lambda x: x.code == self.scan_color)
             # we can search here for product only if not with child variant
-            if product_attribute_value and not self.product_attribute_child_id:
+            if product_attribute_value:
                 self.product_attribute_value_id = product_attribute_value
                 product = self.env['product.product'].search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
                     ('attribute_value_ids', '=',
                      self.product_attribute_value_id.id)
                 ])
-                if len(product) == 1:
-                    self.product_id = product
+                if product:
+                    self.temp_product_id = product
                     self.product = product.default_code
                 else:
-                    self.product = self.product_template_id.prefix_code + \
-                        self.product_attribute_line_id.attribute_id.code + \
-                        product_attribute_value.code
+                    if self.product_attribute_child_id:
+                        self.product = self.product_template_id.prefix_code + \
+                            self.product_attribute_child_id.code + \
+                            product_attribute_value.code
+                    else:
+                        self.product = self.product_template_id.prefix_code + \
+                            self.product_attribute_line_id.attribute_id.code + \
+                            product_attribute_value.code
                 self.price_unit = self._get_price_unit()
             else:
                 self.product_attribute_value_id = False
             self.scan_color = ''
 
-    #TODO scan stitching
+
     @api.onchange('scan_stitching')
     def _scan_stitching(self):
-        if self.scan_stitching:
+        if self.scan_stitching and self.product_attribute_child_id:
             product_attribute_line = self.product_template_id.\
                 attribute_line_ids.filtered(
                     lambda x: x.attribute_id.code == 'ST')# self.scan_stitching)
@@ -152,6 +157,11 @@ class SaleOrder(models.Model):
                 )
                 if stitching:
                     self.stitching_value_id = stitching
+                    self.product = self.product_template_id.prefix_code + \
+                        self.product_attribute_child_id.code + \
+                        self.product_attribute_value_id.code + \
+                        self.product_attribute_line_stitching_id.attribute_id.code + \
+                        stitching.code
             else:
                 self.product_attribute_line_stitching_id = False
             self.scan_stitching = ''
@@ -179,30 +189,55 @@ class SaleOrder(models.Model):
 
     @api.multi
     def add_product_to_order(self):
-        if self.product: # and not self.product_attribute_child_id:
-            product_id = self.env['product.product'].search([
-                ('product_tmpl_id', '=', self.product_template_id.id),
-                ('attribute_value_ids', '=',
-                 self.product_attribute_value_id.id)
-            ])
-        for order in self:
-            if order.product_id in order.order_line.mapped('product_id'):
-                line = order.order_line.filtered(
-                    lambda r: r.product_id == product_id)
-                line.product_uom_qty += self.product_qty if \
-                    self.product_qty else 1
+        if self.product:
+            product_obj = self.env['product.product']
+            if self.product_attribute_child_id:
+                product_id = product_obj.search([
+                    ('product_tmpl_id', '=', self.product_template_id.id),
+                    ('attribute_value_ids', 'in',
+                     [self.product_attribute_value_id.id,
+                      self.stitching_value_id.id])
+                ])
+                if not product_id:
+                    product_id = product_obj.create({
+                        'product_tmpl_id': self.product_template_id.id,
+                        'attribute_value_ids':
+                            [(6, 0,
+                              [self.product_attribute_value_id.id,
+                               self.stitching_value_id.id])]
+                    })
             else:
-                order.order_line.create({
-                    'order_id': order.id,
-                    'product_id': product_id.id,
-                    'name': product_id.name_template,
-                    'product_uom_qty': self.product_qty if self.product_qty else 1,
-                    'price_unit': self._get_price_unit(),
-                    'product_uom': product_id.product_tmpl_id.uom_id.id,
-                    'state': 'draft',
-                    'delay': 0.0,
-                })
-        # todo if product do not exists, create it
+                product_id = product_obj.search([
+                    ('product_tmpl_id', '=', self.product_template_id.id),
+                    ('attribute_value_ids', 'in',
+                     self.product_attribute_value_id.id)
+                ])
+                if not product_id:
+                    product_id = product_obj.create({
+                        'product_tmpl_id': self.product_template_id.id,
+                        'attribute_value_ids':
+                            [(6, 0,
+                              [self.product_attribute_value_id.id])]
+                    })
+        if len(product_id) != 1:
+            raise exceptions.ValidationError(
+                'Found more than 1 product, product template has malformed '
+                'variants.'
+            )
+        price_unit = self._get_price_unit() or 0.0
+        if product_id in self.order_line.mapped('product_id'):
+            line = self.order_line.filtered(
+                lambda r: r.product_id == product_id)
+            line.product_uom_qty += self.product_qty if \
+                self.product_qty else 1
         else:
-            pass
-            #order.scan = order.product
+            self.order_line.create({
+                'order_id': self.id,
+                'product_id': product_id.id,
+                'name': product_id.name_template,
+                'product_uom_qty': self.product_qty if self.product_qty else 1,
+                'price_unit': price_unit,
+                'product_uom': product_id.product_tmpl_id.uom_id.id,
+                'state': 'draft',
+                'delay': 0.0,
+            })

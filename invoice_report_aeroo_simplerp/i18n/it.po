@@ -153,6 +153,11 @@ msgstr "Nota di credito"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
+msgid "hour"
+msgstr "ora"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
 msgid "Our Ref. Picking %s dated %s. %s"
 msgstr "Ns. Rif. DDT %s del %s. %s"
 

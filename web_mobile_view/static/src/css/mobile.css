@@ -33,6 +33,14 @@
     padding-bottom: 2px;
     padding-left: 8px;
 }
+/* fix align on images */
+.openerp td {
+    vertical-align: middle;
+}
+/* fix margin rows */
+.openerp .oe_form .oe_form_group {
+    margin: 2px 0 2px 0;
+}
 /* ok wide all input boxes but not when compiled
 .openerp .oe_form input[type="text"], .openerp .oe_form input[type="password"],
 .openerp .oe_form input[type="file"], .openerp .oe_form select {

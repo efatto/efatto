@@ -30,6 +30,17 @@
           </field>
         </record>
 
+        <record id="vpicktree_group_id_visible" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <field name="group_id" position="attributes">
+                    <attribute name="invisible" eval="0"/>
+                </field>
+            </field>
+        </record>
+
         <record id="ddt_stock_picking_package_preparation_form_signature" model="ir.ui.view">
             <field name="name">ddt.stock.picking.package.preparation.form.signature</field>
             <field name="model">stock.picking.package.preparation</field>

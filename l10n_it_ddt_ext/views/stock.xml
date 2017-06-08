@@ -38,6 +38,9 @@
                 <field name="group_id" position="attributes">
                     <attribute name="invisible" eval="0"/>
                 </field>
+                <field name="name" position="after">
+                    <field name="ddt_ids" widget="many2many_tags"/>
+                </field>
             </field>
         </record>
 

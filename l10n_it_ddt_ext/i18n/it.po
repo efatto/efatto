@@ -588,12 +588,12 @@ msgstr "Partner"
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_invoice_id:0
 msgid "Partner invoice id"
-msgstr "Fatturazione a"
+msgstr "Indirizzo Fatturazione"
 
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_shipping_id:0
 msgid "Partner shipping id"
-msgstr "Luogo di consegna"
+msgstr "Indirizzo di Consegna"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data
@@ -977,3 +977,13 @@ msgstr "DdT collegati"
 #: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings
 msgid "Related Pickings"
 msgstr "Consegne collegate"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,partner_invoice_id:0
+msgid "Invoice Address"
+msgstr "Indirizzo Fatturazione"
+
+#. module: l10n_it_ddt_ext
+#: field:stock.picking.package.preparation,partner_shipping_id:0
+msgid "Delivery Address"
+msgstr "Indirizzo di Consegna"

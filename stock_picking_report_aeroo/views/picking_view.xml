@@ -13,6 +13,13 @@
                       groups="stock.group_stock_user"
                       type="object"/>
             </field>
+              <field name="partner_id" position="attributes">
+                  <attribute name="string">Delivery Address</attribute>
+              </field>
+              <field name="partner_id" position="after">
+                  <field name="sale_partner_id"/>
+                  <field name="sale_partner_invoice_id"/>
+              </field>
           </field>
         </record>
 

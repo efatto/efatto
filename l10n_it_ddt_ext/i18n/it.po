@@ -588,12 +588,12 @@ msgstr "Partner"
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_invoice_id:0
 msgid "Partner invoice id"
-msgstr "Partner per la fatturazione"
+msgstr "Fatturazione a"
 
 #. module: l10n_it_ddt
 #: field:stock.picking.package.preparation,partner_shipping_id:0
 msgid "Partner shipping id"
-msgstr "Partner per la spedizione"
+msgstr "Luogo di consegna"
 
 #. module: l10n_it_ddt
 #: view:website:l10n_it_ddt.delivery_data

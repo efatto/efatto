@@ -11,6 +11,15 @@ from openerp.exceptions import Warning as UserError
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        ids = self.search([('prefix_code', 'ilike', name)] + args,
+                          limit=limit)
+        if ids:
+            return ids.name_get()
+        return super(ProductTemplate, self).name_search(
+            name=name, args=args, operator=operator, limit=limit)
+
     @api.cr_uid_ids_context
     def create_variant_ids(self, cr, uid, ids, context=None):
         product_obj = self.pool.get("product.product")

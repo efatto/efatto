@@ -18,7 +18,7 @@
               </field>
               <field name="partner_id" position="after">
                   <field name="sale_partner_id"/>
-                  <field name="sale_partner_invoice_id"/>
+                  <field name="sale_partner_invoice_id" string="Invoice Address"/>
               </field>
           </field>
         </record>

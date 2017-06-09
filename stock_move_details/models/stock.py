@@ -12,7 +12,9 @@ class StockMove(models.Model):
     def _set_sign_product_qty(self):
         for move in self:
             move.qty = move.product_uom_qty * (
-                -1 if move.location_dest_id.usage == 'customer' else 1)
+                -1 if move.location_dest_id.usage in [
+                    'customer', 'inventory', 'production', 'procurement'
+                ] else 1)
 
     qty_available = fields.Float(
         related='product_id.qty_available',

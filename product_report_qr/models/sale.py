@@ -49,19 +49,25 @@ class Parser(report_sxw.rml_parse):
         i = 0
         for order in self.pool['sale.order'].browse(
                 self.cr, self.uid, self.ids):
-            for line in order.order_line:
-                group_label.update({
-                    i: {
-                        'default_code': line.product_id.default_code and
-                        line.product_id.default_code or line.product_id.name and
-                        line.product_id.name or '',
-                    }
-                })
-                i += 1
-                if i == group_length:
-                    labels += [group_label]
-                    group_label = {}
-                    i = 0
+            for line in order.order_line.filtered(
+                    lambda x: not (x.product_id.is_pack or
+                                   x.product_id.is_other or
+                                   x.product_id.is_transport or
+                                   x.product_id.is_contribution or
+                                   x.product_id.is_discount)):
+                for product in range(0, int(line.product_uom_qty), 1):
+                    group_label.update({
+                        i: {
+                            'default_code': line.product_id.default_code and
+                            line.product_id.default_code or line.product_id.name and
+                            line.product_id.name or '',
+                        }
+                    })
+                    i += 1
+                    if i == group_length:
+                        labels += [group_label]
+                        group_label = {}
+                        i = 0
             if 0 < i < group_length:
                 for f in range(i, group_length, 1):
                     group_label.update({

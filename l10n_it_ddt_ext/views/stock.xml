@@ -27,6 +27,12 @@
               <field name="company_id" position="after">
                   <field name="ddt_date_start"/>
               </field>
+              <field name="picking_ids" position="replace">
+                <field name="picking_ids"
+                  options="{'no_create': True}"
+                  domain="[('partner_id', '=', partner_id),('ddt_ids', '=', False)]"
+                  context="{'search_default_available': 1,}"/>
+              </field>
           </field>
         </record>
 

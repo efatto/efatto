@@ -55,12 +55,17 @@ class Parser(report_sxw.rml_parse):
                                    x.product_id.is_transport or
                                    x.product_id.is_contribution or
                                    x.product_id.is_discount)):
-                for product in range(0, int(line.product_uom_qty), 1):
+                for uom in range(0, int(line.product_uom_qty), 1):
                     group_label.update({
                         i: {
-                            'default_code': line.product_id.default_code and
-                            line.product_id.default_code or line.product_id.name and
-                            line.product_id.name or '',
+                            'code': line.product_id.default_code and
+                            line.product_id.default_code or '',
+                            'name': line.product_id.product_tmpl_id.name and
+                            line.product_id.product_tmpl_id.name[:32] or '',
+                            'leather': self._get_prod_leather(
+                                line.product_id) or '',
+                            'color': self._get_prod_stitching(
+                                line.product_id) or '',
                         }
                     })
                     i += 1
@@ -72,8 +77,25 @@ class Parser(report_sxw.rml_parse):
                 for f in range(i, group_length, 1):
                     group_label.update({
                         f: {
-                            'default_code': '',
+                            'code': '',
+                            'name': '',
+                            'leather': '',
+                            'color': '',
                         }
                     })
                 labels += [group_label]
         return labels
+
+    def _get_prod_stitching(self, product_id):
+        stiching_attribute_id = self.pool['product.attribute'].search(
+            self.cr, self.uid, [('code', '=', 'ST')])
+        for value in product_id.attribute_value_ids:
+            if value.attribute_id.id == stiching_attribute_id[0]:
+                return value.attribute_id.name + ' ' + value.name
+
+    def _get_prod_leather(self, product_id):
+        stiching_attribute_id = self.pool['product.attribute'].search(
+            self.cr, self.uid, [('code', '=', 'ST')])
+        for value in product_id.attribute_value_ids:
+            if value.attribute_id.id != stiching_attribute_id[0]:
+                return value.attribute_id.name + ' ' + value.name

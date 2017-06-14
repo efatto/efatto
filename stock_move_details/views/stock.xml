@@ -9,6 +9,9 @@
                 <field name="product_uom_qty" position="replace">
                     <field name="qty" string='Quantity Move'/>
                 </field>
+                <field name="location_dest_id" position="after">
+                    <field name="picking_partner_id"/>
+                </field>
             </field>
         </record>
   </data>

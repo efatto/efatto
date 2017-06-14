@@ -25,4 +25,6 @@ class StockMove(models.Model):
     qty = fields.Float(
         compute='_set_sign_product_qty',
     )
-
+    picking_partner_id = fields.Many2one(
+        related='picking_id.partner_id',
+    )

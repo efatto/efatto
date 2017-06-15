@@ -3,11 +3,11 @@
     <data noupdate="0">
         <record id="support_branding.config_parameter_company_name" model="ir.config_parameter">
             <field name="key">support_branding.company_name</field>
-            <field name="value">SimplERP Srl</field>
+            <field name="value">Efatto</field>
         </record>
         <record id="support_branding.config_parameter_company_url" model="ir.config_parameter">
             <field name="key">support_branding.company_url</field>
-            <field name="value">https://www.simplerp.it</field>
+            <field name="value">http://www.efatto.it</field>
         </record>
     </data>
 </openerp>

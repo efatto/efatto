@@ -30,7 +30,7 @@ class Parser(report_sxw.rml_parse):
                 'datamatrix', text, margin=1)
             draw = img.convert("RGB")
         else:
-            qr_code = qrcode.QRCode(version=None, box_size=1, border=1)
+            qr_code = qrcode.QRCode(version=None, box_size=4, border=1)
             qr_code.add_data(text)
             qr_code.make(fit=True)
             qr_img = qr_code.make_image()

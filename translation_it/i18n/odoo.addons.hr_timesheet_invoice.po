@@ -21,8 +21,8 @@ msgstr ""
 
 #. module: hr_timesheet_invoice
 #: model:hr_timesheet_invoice.factor,name:hr_timesheet_invoice.timesheet_invoice_factor2
-msgid "50%"
-msgstr "50%"
+msgid "90%"
+msgstr "90%"
 
 #. module: hr_timesheet_invoice
 #: model:hr_timesheet_invoice.factor,name:hr_timesheet_invoice.timesheet_invoice_factor4
@@ -372,8 +372,8 @@ msgstr "Forza l'utilizzo di un prodotto specifico"
 
 #. module: hr_timesheet_invoice
 #: model:hr_timesheet_invoice.factor,name:hr_timesheet_invoice.timesheet_invoice_factor3
-msgid "Free of charge"
-msgstr "Gratis"
+msgid "50%"
+msgstr "50%"
 
 #. module: hr_timesheet_invoice
 #: field:hr.timesheet.analytic.profit,date_from:0

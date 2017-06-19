@@ -289,8 +289,10 @@ class Parser(report_sxw.rml_parse):
                     sale_order_id = order_obj.search(
                         self.cr, self.uid, [('name', '=', sale_order_name)])
                     if sale_order_id:
-                        order_date = order_obj.browse(
-                            self.cr, self.uid, sale_order_id[0]).date_order
+                        sale_order = order_obj.browse(
+                            self.cr, self.uid, sale_order_id[0])
+                        order_date = sale_order.date_order
+                        order_ref = sale_order.client_order_ref
                     else:
                         order_date = datetime.now().strftime('%Y-%m-%d')
                     sale_order_date = datetime.strptime(
@@ -300,9 +302,10 @@ class Parser(report_sxw.rml_parse):
                     else:
                         key = "{0}_{1}".format(sale_order_date, sale_order_name)
                     description = \
-                        'Order ref. %s - %s' % (
+                        'Order ref. %s - %s %s' % (
                             sale_order_name,
-                            sale_order_date.strftime("%d/%m/%Y")
+                            sale_order_date.strftime("%d/%m/%Y"),
+                            ' - ' + order_ref if order_ref else '',
                         )
                 # if there is move_id but not origin
                 else:

@@ -75,7 +75,7 @@ msgstr "ID"
 #: model:ir.ui.menu,name:knowledge.menu_document
 #: model:ir.ui.menu,name:knowledge.menu_knowledge_configuration
 msgid "Knowledge"
-msgstr "Documenti"
+msgstr "Segreteria"
 
 #. module: knowledge
 #: view:knowledge.config.settings:knowledge.view_knowledge_configuration

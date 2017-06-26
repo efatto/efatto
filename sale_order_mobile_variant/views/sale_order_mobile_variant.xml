@@ -28,14 +28,13 @@
                         <!--widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>-->
                 </header>
                 <sheet>
-                    <!--<h1>-->
-                        <!--<label string="Quotation " attrs="{'invisible': [('state','not in',('draft','sent'))]}"/>-->
-                        <!--<label string="Sales Order " attrs="{'invisible': [('state','in',('draft','sent'))]}"/>-->
-                        <field name="name" class="oe_inline" readonly="1"/>
-                    <!--</h1>-->
+
+                    <field name="scan" nolabel="1" placeholder="Scan QR Code" tabindex="-1"/>
                     <group>
-                        <field name="partner_id" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)]}"/>
+                        <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>
                     </group>
+
                     <group colspan="2" col="2">
                         <group>
                             <field name="product_template_image" widget="image" options="{'no_create': True, 'create_edit': false}" nolabel="1" placeholder="Template Image"/>
@@ -45,27 +44,15 @@
                         </group>
                     </group>
 
-                    <field name="scan" nolabel="1" placeholder="Scan QR Code" tabindex="-1"/>
-                    <group>
-                        <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)]}"/>
-                        <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>
-                    </group>
-                    <group>
-                        <group colspan="2" col="1">
-                            <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="product_attribute_line_id" options="{'no_create': True}" nolabel="1" placeholder="Product attribute"/>
-                            <field name="product_attribute_child_id" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" options="{'no_create': True}" nolabel="1" placeholder="Product attribute child"/>
-                        </group>
-                        <group colspan="2" col="1">
-                            <field name="product_attribute_value_id" options="{'no_create': True}" nolabel="1" placeholder="Product value"/>
-                        </group>
-                    </group>
+
+                    <field name="product_template_id"  invisible="1"/>
+                    <field name="product_attribute_line_id" invisible="1"/>
+                    <field name="product_attribute_child_id" invisible="1"/>
+                    <field name="product_attribute_value_id" invisible="1"/>
                     <field name="product_attribute_child_ids" invisible="1"/>
                     <field name="product_attribute_value_ids" invisible="1"/>
                     <field name="stitching_value_ids" invisible="1"/>
-                    <field name="stitching_value_id" attrs="{'invisible': [('product_attribute_child_id', '=', False)]}" options="{'no_create': True}" nolabel="1" placeholder="Stitching value"/>
+                    <field name="stitching_value_id" invisible="1"/>
                     <field name="product" nolabel="1" placeholder="Product"/>
                     <field name="product_id" nolabel="1" invisible="0"/>
                     <group>
@@ -75,6 +62,10 @@
                         </group>
                     </group>
                     <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
+
+                    <group>
+                        <field name="partner_id" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                    </group>
 
                     <!--<button name="barcode" style="height:56px;border-width:0px;" url="zxing://scan/?ret=http://foo.com/products/{CODE}/description&amp;SCAN_FORMATS=UPC_A,EAN_13">-->
                     <!--</button>-->
@@ -122,6 +113,11 @@
                     </group>
 
                     <group>
+                        <label string="Quotation " attrs="{'invisible': [('state','not in',('draft','sent'))]}"/>
+                        <label string="Sales Order " attrs="{'invisible': [('state','in',('draft','sent'))]}"/>
+                        <field name="name" class="oe_inline" readonly="1" nolabel="1"/>
+                    </group>
+                    <group>
                         <field name="fiscal_position" options="{'no_create': True}"
                             on_change="onchange_fiscal_position(fiscal_position, order_line, context)"/>
                         <field name="company_id" widget="selection" groups="base.group_multi_company"/>
@@ -133,6 +129,15 @@
                         <field name="project_id" context="{'partner_id':partner_invoice_id, 'manager_id': user_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['view','normal','contract'])]"/>
                         <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
                         <field name="currency_id" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="image_medium" widget="image" img_height="250" img_width="250"/>
+                    </group>
+                    <group>
+                        <field name="image_medium1" widget="image" img_height="250" img_width="250"/>
+                    </group>
+                    <group>
+                        <field name="image_medium2" widget="image" img_height="250" img_width="250"/>
                     </group>
                 </sheet>
                 </form>

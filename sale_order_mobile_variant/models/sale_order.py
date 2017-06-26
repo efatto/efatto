@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _, exceptions
+from openerp import models, fields, api, _, exceptions, tools
 import openerp.addons.decimal_precision as dp
 import re
 
@@ -59,6 +59,45 @@ class SaleOrder(models.Model):
     scan = fields.Char('Scan QR Code')
     is_same_color_stitching = fields.Boolean('Stitching color of material')
     is_white_stitching = fields.Boolean('White Stitching')
+    image = fields.Binary('Image')
+    image_medium = fields.Binary(
+        'Image Medium', compute='_get_image', inverse='_set_image')
+    image1 = fields.Binary('Image1')
+    image_medium1 = fields.Binary(
+        'Image Medium1', compute='_get_image1', inverse='_set_image1')
+    image2 = fields.Binary('Image2')
+    image_medium2 = fields.Binary(
+        'Image Medium2', compute='_get_image2', inverse='_set_image2')
+
+    @api.multi
+    def _get_image(self):
+        for record in self:
+            record.image_medium = record.image
+
+    @api.multi
+    def _get_image1(self):
+        for record in self:
+            record.image_medium1 = record.image1
+
+    @api.multi
+    def _get_image2(self):
+        for record in self:
+            record.image_medium2 = record.image2
+
+    @api.multi
+    def _set_image(self):
+        for record in self:
+            record.image = tools.image_resize_image_big(record.image_medium)
+
+    @api.multi
+    def _set_image1(self):
+        for record in self:
+            record.image1 = tools.image_resize_image_big(record.image_medium1)
+
+    @api.multi
+    def _set_image2(self):
+        for record in self:
+            record.image2 = tools.image_resize_image_big(record.image_medium2)
 
     @api.onchange('scan')
     def _scan(self):

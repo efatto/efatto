@@ -57,9 +57,6 @@ class SaleOrder(models.Model):
     product_qty = fields.Float(
         string='Q.ty',)
     scan = fields.Char('Scan QR Code')
-    # scan_material = fields.Char('Scan Material')
-    # scan_color = fields.Char('Scan Material Color')
-    # scan_stitching = fields.Char('Scan Stitching')
     is_same_color_stitching = fields.Boolean('Stitching color of material')
     is_white_stitching = fields.Boolean('White Stitching')
 
@@ -194,6 +191,16 @@ class SaleOrder(models.Model):
             else:
                 self.product_attribute_line_stitching_id = False
 
+    @api.onchange('is_same_color_stitching')
+    def onchange_is_samecolor_stitching(self):
+        if self.product_attribute_value_id:
+            self._get_stitching(
+                self.product_attribute_value_id.code)
+
+    @api.onchange('is_white_stitching')
+    def onchange_is_white_stitching(self):
+        if self.product_attribute_value_id:
+            self._get_stitching('05')
 
     @api.multi
     def _get_price_unit(self):

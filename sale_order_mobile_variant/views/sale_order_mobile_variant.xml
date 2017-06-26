@@ -46,9 +46,10 @@
                     </group>
 
                     <field name="scan" nolabel="1" placeholder="Scan QR Code" tabindex="-1"/>
-                    <field name="is_same_color_stitching" nolabel="0"/>
-                    <field name="is_white_stitching" nolabel="0" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>
-
+                    <group>
+                        <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)]}"/>
+                        <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>
+                    </group>
                     <group>
                         <group colspan="2" col="1">
                             <field name="product_template_id"  options="{'no_create': True}" nolabel="1" placeholder="Product template"/>

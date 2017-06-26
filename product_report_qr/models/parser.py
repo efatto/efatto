@@ -131,20 +131,11 @@ class Parser(report_sxw.rml_parse):
         elif self.name == 'product.attribute.labels':
             for attribute in self.pool['product.attribute'].browse(
                     self.cr, self.uid, self.ids):
-                group_label.update({
-                    i: {
-                        'default_code': attribute.code and
-                                        attribute.code or attribute.name and
-                                        attribute.name or False,
-                    }
-                })
-                i += 1
-                for value in attribute.value_ids:
+                for value in attribute.value_ids.sorted(key=lambda r: r.code):
                     group_label.update({
                         i: {
-                            'default_code': value.code and
-                                            value.code or value.name and
-                                            value.name or False,
+                            'default_code': attribute.code + value.code if
+                            attribute.code and value.code else False,
                         }
                     })
                     i += 1

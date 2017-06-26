@@ -2,6 +2,4 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from . import product
-from . import product_template
-from . import sale
+from . import parser

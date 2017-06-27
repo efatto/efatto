@@ -132,14 +132,8 @@
                         <field name="project_id" context="{'partner_id':partner_invoice_id, 'manager_id': user_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['view','normal','contract'])]"/>
                         <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
                         <field name="currency_id" invisible="1"/>
-                    </group>
-                    <group>
                         <field name="image_medium" widget="image" img_height="250" img_width="250"/>
-                    </group>
-                    <group>
                         <field name="image_medium1" widget="image" img_height="250" img_width="250"/>
-                    </group>
-                    <group>
                         <field name="image_medium2" widget="image" img_height="250" img_width="250"/>
                     </group>
                 </sheet>

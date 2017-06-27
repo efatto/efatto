@@ -89,6 +89,8 @@ class Parser(report_sxw.rml_parse):
                                         product.prefix_code or
                                         product.name and
                                         product.name or False,
+                        'name': product.name and
+                                product.name[:32] or '',
                     }
                 })
                 i += 1
@@ -101,6 +103,7 @@ class Parser(report_sxw.rml_parse):
                     group_label.update({
                         f: {
                             'default_code': '',
+                            'name': '',
                         }
                     })
                 labels += [group_label]
@@ -113,6 +116,8 @@ class Parser(report_sxw.rml_parse):
                                         product.default_code or
                                         product.name and
                                         product.name or False,
+                        'name': product.product_tmpl_id.name and
+                                product.product_tmpl_id.name[:32] or '',
                     }
                 })
                 i += 1
@@ -125,6 +130,7 @@ class Parser(report_sxw.rml_parse):
                     group_label.update({
                         f: {
                             'default_code': '',
+                            'name': '',
                         }
                     })
                 labels += [group_label]

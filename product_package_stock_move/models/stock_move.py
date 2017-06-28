@@ -25,8 +25,10 @@ class StockMove(models.Model):
                     'partner_id': move.partner_id.id,
                     'date': move.date,
                     'state': 'done',
-                    'picking_id': move.picking_id.id,
+                    #'picking_id': move.picking_id.id,
                     # non era collegato al picking prima, problemi?
+                    # sì, il move del package non è fatturabile e rende non
+                    # fatturabile tutto il ddt
                 }
                 self.env['stock.move'].create(values)
         return res

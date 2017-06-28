@@ -6,9 +6,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_quotation_tree"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
+                <field name="state" position="replace"/>
+                <field name="partner_id" position="after">
                     <field name="client_order_ref"/>
                     <field name="origin"/>
+                    <field name="state"/>
                 </field>
                 <field name="amount_total" position="before">
                     <field name="amount_untaxed" sum="Total Tax Excluded"/>
@@ -20,9 +22,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
+                <field name="state" position="replace"/>
+                <field name="partner_id" position="after">
                     <field name="client_order_ref"/>
                     <field name="origin"/>
+                    <field name="state"/>
                 </field>
                 <field name="amount_total" position="before">
                     <field name="amount_untaxed" sum="Total Tax Excluded"/>

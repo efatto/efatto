@@ -80,7 +80,8 @@ class SaleOrderLine(models.Model):
                     discount = (total_price - price_unit) / total_price * 100.0
                     price_unit = total_price
             self.price_unit = price_unit
-            self.discount = discount
+            if discount != 0.0:
+                self.discount = discount
 
     @api.multi
     def update_price_unit(self):
@@ -151,7 +152,8 @@ class SaleOrderLine(models.Model):
                     discount = (total_price - price_unit) / total_price * 100.0
                     price_unit = total_price
             self.price_unit = price_unit
-            self.discount = discount
+            if discount != 0.0:
+                self.discount = discount
 
     @api.cr_uid_ids_context
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,

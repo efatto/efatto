@@ -51,9 +51,6 @@ class SaleOrder(models.Model):
     price_unit = fields.Float(string='Price unit',
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
-    temp_product_id = fields.Many2one(
-        comodel_name='product.product',
-        string='Product',)
     product_qty = fields.Float(
         string='Q.ty',)
     scan = fields.Char('Scan QR Code')
@@ -106,68 +103,14 @@ class SaleOrder(models.Model):
             product_template = self.env['product.template'].search(
                 [('prefix_code', '=', self.scan.upper())])
             if product_template:
-                self.product_template_id = product_template
-                self.product = product_template.prefix_code
-                self.scan = ''
-                # clean all children fields
-                self.product_attribute_line_id = \
-                    self.product_attribute_child_id = \
-                    self.product_attribute_value_id = \
-                    self.temp_product_id = \
-                    False
+                self._set_product_template(product_template)
                 return
             # TWO check if it is a material-color (1 letter 2 number)
             if re.match('[A-Z][0-9][0-9]', self.scan.upper()):
                 material = self.scan[0].upper()
                 color = self.scan[1:3]
-                attribute = self.env['product.attribute'].search(
-                    [('code', '=', material)])
-                # first search if material has parent
-                if attribute and attribute.parent_id:
-                    # it's a child attribute: set in one passage the attribute line
-                    # from parent of attribute, and the product_attribute_child_id
-                    for attribute_line in self.product_template_id.\
-                            attribute_line_ids:
-                        product_attribute_child = \
-                            attribute_line.attribute_id.child_ids.filtered(
-                                lambda x: x.code == material)
-                        if product_attribute_child:
-                            self.product_attribute_child_id = \
-                                product_attribute_child
-                            self.product_attribute_line_id = self. \
-                                product_template_id.attribute_line_ids.filtered(
-                                lambda x: x.attribute_id ==
-                                          product_attribute_child.parent_id)
-                            self.product = self.product_template_id.prefix_code + \
-                                product_attribute_child.code
-                            self._get_color(color)
-                            self.scan = ''
-                            if self.is_same_color_stitching:
-                                self._get_stitching(
-                                    self.product_attribute_value_id.code)
-                                return
-                            if self.is_white_stitching:
-                                self._get_stitching('05')
-                                return
-                            return
-                elif attribute and not attribute.parent_id:
-                    product_attribute_line = self.product_template_id. \
-                        attribute_line_ids.filtered(
-                            lambda x: x.attribute_id.code == material)
-                    if product_attribute_line:
-                        self.product_attribute_line_id = product_attribute_line
-                        self.product = self.product_template_id.prefix_code + \
-                            product_attribute_line.attribute_id.code
-                        self._get_color(color)
-                        self.scan = ''
-                        if self.is_same_color_stitching:
-                            self._get_stitching(
-                                self.product_attribute_value_id.code)
-                            return
-                        if self.is_white_stitching:
-                            self._get_stitching('05')
-                            return
-                        return
+                self._set_material_color(material, color)
+                return
 
             # THREE check stitching (2 numbers) - only 3 qr types
             if re.match('[0-9][0-9]', self.scan):
@@ -175,9 +118,72 @@ class SaleOrder(models.Model):
                 return
 
             # NO MATCHES FOUND: clean all fields
-            self.product_attribute_line_id = self.product_attribute_child_id \
-                = self.product_attribute_value_id = self.temp_product_id = \
+            self.product_attribute_line_id = \
+                self.product_attribute_child_id = \
+                self.product_attribute_value_id = \
                 self.product_template_id = False
+
+    @api.multi
+    def _set_product_template(self, product_template):
+        self.product_template_id = product_template
+        self.product = product_template.prefix_code
+        self.scan = ''
+        # clean all children fields
+        self.product_attribute_line_id = \
+            self.product_attribute_child_id = \
+            self.product_attribute_value_id = \
+            False
+
+    @api.multi
+    def _set_material_color(self, material, color):
+        attribute = self.env['product.attribute'].search(
+            [('code', '=', material)])
+        # first search if material has parent
+        if attribute and attribute.parent_id:
+            # it's a child attribute: set in one passage the attribute line
+            # from parent of attribute, and the product_attribute_child_id
+            for attribute_line in self.product_template_id. \
+                    attribute_line_ids:
+                product_attribute_child = \
+                    attribute_line.attribute_id.child_ids.filtered(
+                        lambda x: x.code == material)
+                if product_attribute_child:
+                    self.product_attribute_child_id = \
+                        product_attribute_child
+                    self.product_attribute_line_id = self. \
+                        product_template_id.attribute_line_ids.filtered(
+                        lambda x: x.attribute_id ==
+                                  product_attribute_child.parent_id)
+                    self.product = self.product_template_id.prefix_code + \
+                                   product_attribute_child.code
+                    self._get_color(color)
+                    self.scan = ''
+                    if self.is_same_color_stitching:
+                        self._get_stitching(
+                            self.product_attribute_value_id.code)
+                        return
+                    if self.is_white_stitching:
+                        self._get_stitching('05')
+                        return
+                    return
+        elif attribute and not attribute.parent_id:
+            product_attribute_line = self.product_template_id. \
+                attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.code == material)
+            if product_attribute_line:
+                self.product_attribute_line_id = product_attribute_line
+                self.product = self.product_template_id.prefix_code + \
+                    product_attribute_line.attribute_id.code
+                self._get_color(color)
+                self.scan = ''
+                if self.is_same_color_stitching:
+                    self._get_stitching(
+                        self.product_attribute_value_id.code)
+                    return
+                if self.is_white_stitching:
+                    self._get_stitching('05')
+                    return
+                return
 
     def _get_color(self, color):
         if self.product_attribute_child_id:
@@ -195,7 +201,6 @@ class SaleOrder(models.Model):
                  self.product_attribute_value_id.id)
             ])
             if product:
-                self.temp_product_id = product
                 self.product = product.default_code
             else:
                 if self.product_attribute_child_id:
@@ -232,13 +237,13 @@ class SaleOrder(models.Model):
 
     @api.onchange('is_same_color_stitching')
     def onchange_is_samecolor_stitching(self):
-        if self.product_attribute_value_id:
+        if self.product_attribute_value_id and self.is_same_color_stitching:
             self._get_stitching(
                 self.product_attribute_value_id.code)
 
     @api.onchange('is_white_stitching')
     def onchange_is_white_stitching(self):
-        if self.product_attribute_value_id:
+        if self.product_attribute_value_id and self.is_white_stitching:
             self._get_stitching('05')
 
     @api.multi
@@ -266,7 +271,41 @@ class SaleOrder(models.Model):
     def add_product_to_order(self):
         if self.product:
             product_obj = self.env['product.product']
-            if self.product_attribute_child_id:
+
+            # check if written manually
+            if not self.product_attribute_value_id and not self.product_template_id:
+                # search attribute-child type
+                child_attributes = re.search(
+                    '[A-Z][0-9][0-9]ST[0-9][0-9]', self.product.upper())
+                if child_attributes:
+                    product_template = self.env['product.template'].search(
+                        [('prefix_code', '=',
+                          self.product.upper().split(child_attributes.group(0))[0])])
+                    if product_template:
+                        self._set_product_template(product_template)
+                    self._set_material_color(
+                        child_attributes.group(0)[0], child_attributes.group(0)[1:3])
+                    self._get_stitching(child_attributes.group(0)[5:7])
+
+                # serch attribute type only
+                attributes = re.search(
+                    '[0-9]{6}[A-Z][0-9]{2}', self.product.upper())
+                if attributes and not child_attributes:
+                    product_template = self.env['product.template'].search(
+                        [('prefix_code', '=',
+                          self.product.upper().split(attributes.group(0))[0])])
+                    if product_template:
+                        self._set_product_template(product_template)
+                    # material-color 10 T35
+                    self._set_material_color(
+                        attributes.group(0)[0:1], attributes.group(0)[1:4])
+                if not self.product_attribute_value_id:
+                    raise exceptions.ValidationError(
+                        _('Code is not valid!')
+                    )
+
+            # then search product - if it is attribute-child
+            if self.product_template_id and self.product_attribute_child_id:
                 product_id = product_obj.search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
                     ('attribute_value_ids', 'in',
@@ -281,7 +320,9 @@ class SaleOrder(models.Model):
                               [self.product_attribute_value_id.id,
                                self.stitching_value_id.id])]
                     })
-            else:
+
+            # attribute type only
+            if self.product_template_id and not self.product_attribute_child_id:
                 product_id = product_obj.search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
                     ('attribute_value_ids', 'in',
@@ -316,3 +357,13 @@ class SaleOrder(models.Model):
                 'state': 'draft',
                 'delay': 0.0,
             })
+
+        # clean fields invisibles
+        self.product_template_id = \
+            self.product_attribute_line_id = \
+            self.product_attribute_line_stitching_id = \
+            self.stitching_value_id = \
+            self.product_attribute_child_id = \
+            self.product_attribute_value_id = \
+            False
+        self.product = ''

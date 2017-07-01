@@ -37,13 +37,12 @@
 
                     <group colspan="2" col="2">
                         <group>
-                            <field name="product_template_image" widget="image" options="{'no_create': True, 'create_edit': false}" nolabel="1" placeholder="Template Image"/>
+                            <field name="product_template_image" widget="image" readonly="1" nolabel="1" placeholder="Template Image"/>
                         </group>
                         <group>
-                            <field name="product_attribute_image" widget="image" options="{'no_create': True, 'create_edit': false}" nolabel="1" placeholder="Attribute Image"/>
+                            <field name="product_attribute_image" widget="image" readonly="1" nolabel="1" placeholder="Attribute Image"/>
                         </group>
                     </group>
-
 
                     <field name="product_template_id"  invisible="1"/>
                     <field name="product_attribute_line_id" invisible="1"/>
@@ -54,7 +53,6 @@
                     <field name="stitching_value_ids" invisible="1"/>
                     <field name="stitching_value_id" invisible="1"/>
                     <field name="product" nolabel="1" placeholder="Product"/>
-                    <field name="product_id" nolabel="1" invisible="0"/>
                     <group>
                         <group colspan="2" col="2">
                             <field name="product_qty" nolabel="1"/>

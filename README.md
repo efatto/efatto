@@ -3,7 +3,7 @@
 ![Alt License](https://img.shields.io/badge/licence-AGPL--3-blue.svg) 
 
 
-SIMPLERP.IT
+EFATTO.IT
 ====================================
 
 Customized version of Odoo for Italy
@@ -12,20 +12,20 @@ Customized version of Odoo for Italy
 Contributors
 ------------
 
-* Sergio Corato <sergio.corato@gmail.com>
+* Sergio Corato <sergiocorato@gmail.com>
 
 Maintainer
 ----------
 
-![Alt SimplERP.it](http://simplerp.it/images/Logo.png "http://simplerp.it") 
+![Alt Efatto.it](http://efatto.it/images/Logo.png "http://efatto.it") 
 
-SimplERP Srl
+Efatto
 =======================
 
-http://simplerp.it
+http://efatto.it
 
-This module is maintained by SimplERP Srl.
+This module is maintained by Efatto.it.
 
-SimplERP is the professional edition of LibrERP.it project, which promotes a customized Odoo with additional features for Italian usage.
+Efatto.it promotes a customized Odoo with additional features for Italian usage.
 
-To contribute to this module, please visit http://librerp.it.
+To contribute to this module, please visit http://efatto.it.

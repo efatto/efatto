@@ -162,9 +162,10 @@ class Parser(report_sxw.rml_parse):
     def _get_prod_stitching(self, product_id):
         stiching_attribute_id = self.pool['product.attribute'].search(
             self.cr, self.uid, [('code', '=', 'ST')])
-        for value in product_id.attribute_value_ids:
-            if value.attribute_id.id == stiching_attribute_id[0]:
-                return value.attribute_id.name + ' ' + value.name
+        if stiching_attribute_id:
+            for value in product_id.attribute_value_ids:
+                if value.attribute_id.id == stiching_attribute_id[0]:
+                    return value.attribute_id.name + ' ' + value.name
 
     def _get_prod_leather(self, product_id):
         stiching_attribute_id = self.pool['product.attribute'].search(

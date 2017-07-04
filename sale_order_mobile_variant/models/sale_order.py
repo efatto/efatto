@@ -306,12 +306,11 @@ class SaleOrder(models.Model):
 
             # then search product - if it is attribute-child
             if self.product_template_id and self.product_attribute_child_id:
-                product_id = product_obj.search([
-                    ('product_tmpl_id', '=', self.product_template_id.id),
-                    ('attribute_value_ids', 'in',
-                     [self.product_attribute_value_id.id,
-                      self.stitching_value_id.id])
-                ])
+                domain = product_obj._build_attributes_domain(
+                    self.product_template_id, [
+                        {'value_id': self.product_attribute_value_id.id},
+                        {'value_id': self.stitching_value_id.id}])
+                product_id = product_obj.search(domain[0])
                 if not product_id:
                     product_id = product_obj.create({
                         'product_tmpl_id': self.product_template_id.id,
@@ -325,7 +324,7 @@ class SaleOrder(models.Model):
             if self.product_template_id and not self.product_attribute_child_id:
                 product_id = product_obj.search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
-                    ('attribute_value_ids', 'in',
+                    ('attribute_value_ids', '=',
                      self.product_attribute_value_id.id)
                 ])
                 if not product_id:

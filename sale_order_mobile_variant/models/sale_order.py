@@ -276,7 +276,7 @@ class SaleOrder(models.Model):
             if not self.product_attribute_value_id and not self.product_template_id:
                 # search attribute-child type
                 child_attributes = re.search(
-                    '[A-Z][0-9][0-9]ST[0-9][0-9]', self.product.upper())
+                    '[A-Z][0-9]{2}ST[0-9]{2}', self.product.upper())
                 if child_attributes:
                     product_template = self.env['product.template'].search(
                         [('prefix_code', '=',
@@ -348,6 +348,7 @@ class SaleOrder(models.Model):
         else:
             self.order_line.create({
                 'order_id': self.id,
+                'product_tmpl_id': product_id.product_tmpl_id.id,
                 'product_id': product_id.id,
                 'name': product_id.name_template,
                 'product_uom_qty': self.product_qty if self.product_qty else 1,

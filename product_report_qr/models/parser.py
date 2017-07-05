@@ -170,13 +170,11 @@ class Parser(report_sxw.rml_parse):
     def _get_prod_leather(self, product_id):
         stiching_attribute_id = self.pool['product.attribute'].search(
             self.cr, self.uid, [('code', '=', 'ST')])
-        if stiching_attribute_id:
-            if product_id.attribute_value_ids.filtered(
-                lambda x: x.attribute_id.id == stiching_attribute_id[0]
-            ):
-                for value in product_id.attribute_value_ids:
-                    if value.attribute_id.id != stiching_attribute_id[0]:
-                        return value.attribute_id.name + ' ' + value.name
+        if stiching_attribute_id and product_id.attribute_value_ids.filtered(
+                lambda x: x.attribute_id.id == stiching_attribute_id[0]):
+            for value in product_id.attribute_value_ids:
+                if value.attribute_id.id != stiching_attribute_id[0]:
+                    return value.attribute_id.name + ' ' + value.name
         else:
             value = product_id.attribute_value_ids[0]
-            return value.attribute_id.name + ' ' + value.name
+            return value.attribute_id.name + '\n' + value.name

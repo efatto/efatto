@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013-2016 Sergio Corato (<http://www.simplerp.it>)
+#    Copyright (C) 2013-2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -22,8 +22,8 @@
 {
     "name" : "Fiscal Year Closing Template for pdc with 7 number",
     "version" : "8.0.1.0.0",
-    "author" : "Sergio Corato - SimplERP SRL",
-    "website" : "http://www.simplerp.it",
+    "author" : "Sergio Corato",
+    "website" : "http://www.efatto.it",
     "category" : "Generic Modules/Accounting",
     "description": "Fiscal Year Closing Wizard Template for pdc with 7 number",
     "license": "AGPL-3",

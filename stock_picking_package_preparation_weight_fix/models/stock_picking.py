@@ -37,15 +37,16 @@ class StockPickingPackagePreparation(models.Model):
 
     @api.multi
     def _compute_weight(self):
-        if self.compute_weight:
-            self.net_weight = sum(
-                l.product_id.weight_net * l.product_uom_qty for l in
-                self.line_ids)
-            self.weight = sum(
-                l.product_id.weight * l.product_uom_qty for l in self.line_ids)
-            self.volume = sum(
-                l.product_id.volume * l.product_uom_qty for l in self.line_ids)
-        else:
-            self.net_weight = self.net_weight_custom
-            self.weight = self.weight_custom
-            self.volume = self.volume_custom
+        for sppp in self:
+            if sppp.compute_weight:
+                sppp.net_weight = sum(
+                    l.product_id.weight_net * l.product_uom_qty for l in
+                    sppp.line_ids)
+                sppp.weight = sum(
+                    l.product_id.weight * l.product_uom_qty for l in sppp.line_ids)
+                sppp.volume = sum(
+                    l.product_id.volume * l.product_uom_qty for l in sppp.line_ids)
+            else:
+                sppp.net_weight = sppp.net_weight_custom
+                sppp.weight = sppp.weight_custom
+                sppp.volume = sppp.volume_custom

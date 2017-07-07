@@ -36,6 +36,7 @@ class Parser(report_sxw.rml_parse):
             'address_invoice_id': self._get_invoice_address,
             'variant_images': self._variant_images,
             'sale_weight': self._sale_weight,
+            'invoice_weight': self._invoice_weight,
             'translate': self._translate_text,
             'img_gray': self._convert_to_gray_scale,
             'get_total_discount': self._get_total_discount,
@@ -343,6 +344,14 @@ class Parser(report_sxw.rml_parse):
         res = False
         if self.pool['ir.config_parameter'].get_param(
                 self.cr, self.uid, 'sale.print_weight',
+                default=False):
+            res = True
+        return res
+
+    def _invoice_weight(self):
+        res = False
+        if self.pool['ir.config_parameter'].get_param(
+                self.cr, self.uid, 'invoice.print_weight',
                 default=False):
             res = True
         return res

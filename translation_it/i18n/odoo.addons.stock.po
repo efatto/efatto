@@ -4577,7 +4577,7 @@ msgstr "Percorsi totali"
 #: code:addons/stock/stock.py:1564 model:ir.ui.menu,name:stock.menu_traceability view:stock.config.settings:stock.view_stock_config_settings view:stock.production.lot:stock.view_production_lot_form
 #, python-format
 msgid "Traceability"
-msgstr "Tracciabilità"
+msgstr "Movimenti Prodotti"
 
 #. module: stock
 #: field:product.template,track_incoming:0

@@ -1829,7 +1829,7 @@ msgstr "Set: quando verrà processato un ordine di vendita per questo prodotto, 
 #. module: mrp
 #: field:mrp.production,origin:0
 msgid "Source Document"
-msgstr "Origine"
+msgstr "Documento di Origine"
 
 #. module: mrp
 #: view:website:mrp.report_mrporder

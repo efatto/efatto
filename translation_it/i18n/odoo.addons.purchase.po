@@ -2001,7 +2001,7 @@ msgstr "Indirizzo di spedizione:"
 #. module: purchase
 #: field:purchase.order,origin:0
 msgid "Source Document"
-msgstr "Documento di riferimento"
+msgstr "Documento di Origine"
 
 #. module: purchase
 #: help:product.template,purchase_ok:0

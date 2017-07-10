@@ -195,7 +195,7 @@ msgstr ""
 #. module: stock_picking_package_preparation
 #: view:stock.picking.package.preparation:stock_picking_package_preparation.stock_picking_package_preparation_form
 msgid "Operations"
-msgstr "Operazioni"
+msgstr "Spedizioni"
 
 #. module: stock_picking_package_preparation
 #: field:stock.picking.package.preparation,package_id:0

@@ -1925,7 +1925,7 @@ msgstr "Mostra registrazioni confermate"
 #. module: event
 #: field:event.registration,origin:0
 msgid "Source Document"
-msgstr "Documento Sorgente"
+msgstr "Origine"
 
 #. module: event
 #: field:res.partner,speaker:0

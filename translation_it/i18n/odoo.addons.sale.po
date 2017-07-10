@@ -1808,7 +1808,7 @@ msgstr "Alcune righe dell'ordine"
 #. module: sale
 #: field:sale.order,origin:0
 msgid "Source Document"
-msgstr "Documento sorgente"
+msgstr "Origine"
 
 #. module: sale
 #: field:sale.order,state:0 view:sale.order.line:sale.view_sales_order_line_filter view:sale.order.line:sale.view_sales_order_uninvoiced_line_filter field:sale.order.line,state:0 view:sale.report:sale.view_order_product_search

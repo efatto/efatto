@@ -589,7 +589,7 @@ msgstr "Origine"
 #. module: purchase_requisition
 #: field:purchase.requisition,origin:0
 msgid "Source Document"
-msgstr "Documento di origine"
+msgstr "Origine"
 
 #. module: purchase_requisition
 #: view:website:purchase_requisition.report_purchaserequisitions

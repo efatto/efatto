@@ -506,7 +506,7 @@ msgstr "Ordinamento"
 #. module: procurement
 #: field:procurement.order,origin:0
 msgid "Source Document"
-msgstr "Documento di origine"
+msgstr "Origine"
 
 #. module: procurement
 #: view:procurement.order:procurement.view_procurement_filter field:procurement.order,state:0

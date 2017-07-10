@@ -8906,7 +8906,7 @@ msgstr "Ordinato per:"
 #: field:account.invoice,origin:0 field:account.invoice.line,origin:0
 #: field:report.invoice.created,origin:0
 msgid "Source Document"
-msgstr "Documento di origine"
+msgstr "Origine"
 
 #. module: account
 #: view:website:account.report_invoice_document

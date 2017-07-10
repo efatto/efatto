@@ -4002,7 +4002,7 @@ msgstr "Sorgente"
 #. module: stock
 #: field:stock.picking,origin:0
 msgid "Source Document"
-msgstr "Documento di origine"
+msgstr "Origine"
 
 #. module: stock
 #: field:procurement.rule,location_src_id:0 field:stock.location.path,location_from_id:0 field:stock.move,location_id:0 field:stock.pack.operation,location_id:0 field:stock.transfer_details_items,sourceloc_id:0

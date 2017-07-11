@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- inherit product template to remove domain from field -->
+		<record id="mrp_production_form_view_inherit_split_qty" model="ir.ui.view">
+		    <field name="name">mrp.production.form.split.inherit</field>
+		    <field name="model">mrp.production</field>
+		    <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+		    <field name="arch" type="xml">
+		    	<xpath expr="//button[@name='action_assign']" position="after">
+		    		<button name="%(mrp_merge_split.action_split_mo)d" attrs="{'invisible':[('state', '!=', 'draft')]}" string="Split MO" type="action" class="oe_highlight"/>
+		    	</xpath>
+		    </field>
+		</record>
+
+	</data>
+</openerp>

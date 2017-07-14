@@ -156,7 +156,7 @@ msgstr "Tipo Documento"
 #. module: document_page
 #: view:document.page:document_page.view_category_form
 msgid "Documents"
-msgstr "Documenti"
+msgstr "Segreteria"
 
 #. module: document_page
 #: field:document.page,message_follower_ids:0

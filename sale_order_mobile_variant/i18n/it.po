@@ -59,7 +59,7 @@ msgstr "Conferma Ordine"
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Ignore Exception"
-msgstr "Ignora eccezione"
+msgstr "Ignora eccezione e completa"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,image:0

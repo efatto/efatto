@@ -131,7 +131,7 @@ msgstr "Genera fatture in seguito a e basate su ordini di consegna"
 #. module: sale_stock
 #: view:sale.order:sale_stock.view_order_form_inherit
 msgid "Ignore Exception"
-msgstr "Ignora eccezione"
+msgstr "Ignora eccezione e completa"
 
 #. module: sale_stock
 #: field:sale.order,incoterm:0

@@ -1016,7 +1016,7 @@ msgstr "Se il listino di questo ordine viene modificato (ed eventualmente anche 
 #. module: sale
 #: view:sale.order:sale.view_order_form
 msgid "Ignore Exception"
-msgstr "Ignora eccezione"
+msgstr "Ignora eccezione e completa"
 
 #. module: sale
 #: selection:sale.report,state:0

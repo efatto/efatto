@@ -29,7 +29,7 @@
                 </header>
                 <sheet>
 
-                    <field name="scan" nolabel="1" placeholder="Scan QR Code" tabindex="-1"/>
+                    <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
                     <group>
                         <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)]}"/>
                         <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>

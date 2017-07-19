@@ -113,8 +113,8 @@ class SaleOrder(models.Model):
                 return
 
             # THREE check stitching (2 numbers) - only 3 qr types
-            if re.match('[0-9][0-9]', self.scan):
-                self._get_stitching(self.scan)
+            if re.match('ST[0-9][0-9]', self.scan.upper()):
+                self._get_stitching(self.scan[-2:])
                 return
 
             # NO MATCHES FOUND: clean all fields

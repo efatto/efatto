@@ -63,11 +63,6 @@ msgstr "importo"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
-msgid "VAT"
-msgstr "IVA"
-
-#. module: invoice_report_aeroo_simplerp
-#: report:ir.actions.report.xml:account.account_invoices
 msgid "total untaxed"
 msgstr "totale imponibile"
 
@@ -98,8 +93,13 @@ msgstr "Sede Legale"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
+msgid "VAT #"
+msgstr "P.IVA"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
 msgid "VAT"
-msgstr "P.I."
+msgstr "IVA"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices

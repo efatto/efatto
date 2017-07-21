@@ -4,3 +4,4 @@
 ##############################################################################
 from . import invoice
 from . import account
+from . import company

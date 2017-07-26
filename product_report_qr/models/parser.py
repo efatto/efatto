@@ -46,11 +46,14 @@ class Parser(report_sxw.rml_parse):
             for order in self.pool['sale.order'].browse(
                     self.cr, self.uid, self.ids):
                 for line in order.order_line.filtered(
-                        lambda x: not (x.product_id.is_pack or
-                                       x.product_id.is_other or
-                                       x.product_id.is_transport or
-                                       x.product_id.is_contribution or
-                                       x.product_id.is_discount)):
+                        lambda x: not (
+                            x.product_id.is_pack or
+                            x.product_id.is_other or
+                            x.product_id.is_transport or
+                            x.product_id.is_contribution or
+                            x.product_id.is_discount
+                        ) and
+                        x.product_id.product_tmpl_id.attribute_line_ids):
                     for uom in range(0, int(line.product_uom_qty), 1):
                         group_label.update({
                             i: {

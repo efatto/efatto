@@ -23,6 +23,7 @@
     'category': 'other',
     'author': 'Sergio Corato, Didotech Srl',
     'website': 'http://www.efatto.it',
+    'description': 'Aeroo ddt report',
     'license': 'AGPL-3',
     'depends': [
         'account',

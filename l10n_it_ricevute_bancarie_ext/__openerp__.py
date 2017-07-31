@@ -23,6 +23,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.simplerp.it',
+    'description': 'Ricevute bancarie accruement',
     'license': 'AGPL-3',
     'depends': [
         'account_bank',

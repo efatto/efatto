@@ -23,6 +23,7 @@
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL, Didotech Srl',
     'website': 'http://www.simplerp.it',
+    'description': 'Aeroo sale order report',
     'license': 'AGPL-3',
     'depends': [
         'account',

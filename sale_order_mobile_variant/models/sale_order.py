@@ -112,9 +112,16 @@ class SaleOrder(models.Model):
                 self._set_material_color(material, color)
                 return
 
-            # THREE check stitching (2 numbers) - only 3 qr types
+            # THREE check stitching (ST + 2 numbers) - only 3 qr types
             if re.match('ST[0-9][0-9]', self.scan.upper()):
                 self._get_stitching(self.scan[-2:])
+                return
+
+            # FOUR check simple material (2 number + 1 or 2 letter + 2 number)
+            if re.match('[0-9]{2}[A-Z]{1,2}[0-9]{2}', self.scan.upper()):
+                material = self.scan[:2].upper()
+                color = self.scan[2:].upper()
+                self._set_material_color(material, color)
                 return
 
             # NO MATCHES FOUND: clean all fields
@@ -176,6 +183,7 @@ class SaleOrder(models.Model):
                     product_attribute_line.attribute_id.code
                 self._get_color(color)
                 self.scan = ''
+                #nb no stitching if is rabitti!!!!
                 if self.is_same_color_stitching:
                     self._get_stitching(
                         self.product_attribute_value_id.code)

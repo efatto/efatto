@@ -15,10 +15,17 @@
                     <field name="tax_stamp_image" widget="image" class="oe_left oe_avatar"/>
                 </field>
                 <field name="fiscal_position" position="after">
-                    <field name="print_net_price"/>
-                    <field name="print_hide_uom"/>
-                    <field name="print_shipping_address"/>
-                    <field name="print_totals_in_first_page"/>
+                    <group colspan="2" col="4">
+                        <group>
+                            <field name="print_net_price"/>
+                            <field name="print_hide_uom"/>
+                            <field name="print_shipping_address"/>
+                        </group>
+                        <group>
+                            <field name="print_totals_in_first_page"/>
+                            <field name="print_payment_in_footer"/>
+                        </group>
+                    </group>
                 </field>
             </field>
         </record>

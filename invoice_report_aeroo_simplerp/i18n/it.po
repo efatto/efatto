@@ -205,3 +205,8 @@ msgstr "Stampa i Totali nella Prima Pagina"
 #: field:account.invoice,print_hide_uom:0
 msgid "Totals in first page"
 msgstr "Totali nella prima pagina"
+
+#. module: invoice_report_aeroo_simplerp
+#: field:account.invoice,print_payment_in_footer:0
+msgid "Print Payment In Footer"
+msgstr "Stampa i pagamenti nel piè di pagina"

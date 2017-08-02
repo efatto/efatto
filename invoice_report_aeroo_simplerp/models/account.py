@@ -13,3 +13,5 @@ class AccountInvoice(models.Model):
     tax_stamp_image = fields.Binary('Tax stamp')
     print_net_price = fields.Boolean()
     print_hide_uom = fields.Boolean()
+    print_shipping_address = fields.Boolean()
+    print_totals_in_first_page = fields.Boolean()

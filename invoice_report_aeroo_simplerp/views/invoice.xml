@@ -17,6 +17,8 @@
                 <field name="fiscal_position" position="after">
                     <field name="print_net_price"/>
                     <field name="print_hide_uom"/>
+                    <field name="print_shipping_address"/>
+                    <field name="print_totals_in_first_page"/>
                 </field>
             </field>
         </record>

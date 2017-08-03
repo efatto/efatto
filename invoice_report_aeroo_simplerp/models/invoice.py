@@ -226,13 +226,14 @@ class Parser(report_sxw.rml_parse):
             # and not self.pool['res.users'].browse(
             #self.cr, self.uid, self.uid).
             # company_id.disable_sale_ref_invoice_report:
-            order_date = datetime.strptime(order_date[:10],
-                                           DEFAULT_SERVER_DATE_FORMAT)
+            if order_date:
+                order_date = datetime.strptime(
+                    order_date[:10], DEFAULT_SERVER_DATE_FORMAT)
             description.append(
                 self._translate_text(
                     'Our Ref. Order %s dated %s. %s') % (
                     order_name.replace('Consuntivo', ''),
-                    order_date.strftime("%d/%m/%Y"),
+                    order_date.strftime("%d/%m/%Y") if order_date else '',
                     self._translate_text('Your Ref. %s') % client_order_ref if
                     client_order_ref else ''
                 ))

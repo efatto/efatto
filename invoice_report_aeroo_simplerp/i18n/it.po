@@ -148,6 +148,11 @@ msgstr "Sede operativa"
 
 #. module: invoice_report_aeroo_simplerp
 #: report:ir.actions.report.xml:account.account_invoices
+msgid "Totals in first page"
+msgstr "Totali nella prima pagina"
+
+#. module: invoice_report_aeroo_simplerp
+#: report:ir.actions.report.xml:account.account_invoices
 msgid "Out refund"
 msgstr "Nota di credito"
 
@@ -192,19 +197,14 @@ msgid "Print hide uom"
 msgstr "Nascondi U.M. nella stampa"
 
 #. module: invoice_report_aeroo_simplerp
-#: field:account.invoice,print_hide_uom:0
+#: field:account.invoice,print_shipping_address:0
 msgid "Print Shipping Address"
 msgstr "Stampa indirizzo di consegna"
 
 #. module: invoice_report_aeroo_simplerp
-#: field:account.invoice,print_hide_uom:0
+#: field:account.invoice,print_totals_in_first_page:0
 msgid "Print Totals In First Page"
 msgstr "Stampa i Totali nella Prima Pagina"
-
-#. module: invoice_report_aeroo_simplerp
-#: field:account.invoice,print_hide_uom:0
-msgid "Totals in first page"
-msgstr "Totali nella prima pagina"
 
 #. module: invoice_report_aeroo_simplerp
 #: field:account.invoice,print_payment_in_footer:0

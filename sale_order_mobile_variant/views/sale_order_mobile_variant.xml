@@ -62,7 +62,7 @@
                     <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
 
                     <group>
-                        <field name="partner_id" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        <field name="partner_id" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
                     </group>
 
                     <!--<button name="barcode" style="height:56px;border-width:0px;" url="zxing://scan/?ret=http://foo.com/products/{CODE}/description&amp;SCAN_FORMATS=UPC_A,EAN_13">-->

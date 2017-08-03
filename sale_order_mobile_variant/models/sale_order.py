@@ -200,14 +200,16 @@ class SaleOrder(models.Model):
         else:
             product_attribute_value = self.product_attribute_line_id.\
                 value_ids.filtered(lambda x: x.code == color)
-        # we can search here for product only if not with child variant
         if product_attribute_value:
             self.product_attribute_value_id = product_attribute_value
-            product = self.env['product.product'].search([
-                ('product_tmpl_id', '=', self.product_template_id.id),
-                ('attribute_value_ids', '=',
-                 self.product_attribute_value_id.id)
-            ])
+            product = False
+            # we can search here for product only if not with child variant
+            if not self.product_attribute_child_id.parent_id:
+                product = self.env['product.product'].search([
+                    ('product_tmpl_id', '=', self.product_template_id.id),
+                    ('attribute_value_ids', '=',
+                     self.product_attribute_value_id.id)
+                ])
             if product:
                 self.product = product.default_code
             else:

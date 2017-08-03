@@ -211,13 +211,14 @@ class Parser(report_sxw.rml_parse):
         description = []
 
         if ddt_name:
-            ddt_date = datetime.strptime(ddt_date[:10],
-                                         DEFAULT_SERVER_DATE_FORMAT)
+            if ddt_date:
+                ddt_date = datetime.strptime(
+                    ddt_date[:10], DEFAULT_SERVER_DATE_FORMAT)
             description.append(
                 self._translate_text(
                     'Our Ref. Picking %s dated %s. %s') % (
                     ddt_name,
-                    ddt_date.strftime("%d/%m/%Y"),
+                    ddt_date.strftime("%d/%m/%Y") if ddt_date else '',
                     self._translate_text('Your Ref. %s') % client_order_ref if
                     client_order_ref else ''
                 ))

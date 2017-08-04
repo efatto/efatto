@@ -47,6 +47,7 @@ class Parser(report_sxw.rml_parse):
             'check_installed_module': self._check_installed_module,
             'get_bank': self._get_bank,
             'get_bank_riba': self._get_bank_riba,
+            'transform_forbidden_word': self._transform_forbidden_word,
         })
         self.cache = {}
 
@@ -477,3 +478,10 @@ class Parser(report_sxw.rml_parse):
                                                  ('state', '=', 'installed')]):
             res = True
         return res
+
+    def _transform_forbidden_word(self, product, phrase):
+        if self._check_installed_module('product_forbidden_word'):
+            if product and product.product_forbidden_word_ids and phrase:
+                for word in product.product_forbidden_word_ids:
+                    phrase = phrase.replace(word.name, word.new_name)
+        return phrase

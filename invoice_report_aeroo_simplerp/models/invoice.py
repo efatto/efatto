@@ -483,5 +483,7 @@ class Parser(report_sxw.rml_parse):
         if self._check_installed_module('product_forbidden_word'):
             if product and product.product_forbidden_word_ids and phrase:
                 for word in product.product_forbidden_word_ids:
-                    phrase = phrase.replace(word.name, word.new_name)
+                    phrase = phrase.replace(
+                        word.name if word.name else '',
+                        word.new_name if word.new_name else '')
         return phrase

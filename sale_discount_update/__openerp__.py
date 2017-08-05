@@ -24,6 +24,8 @@
     'license': 'AGPL-3',
     'description': """
     Add the ability to update discount in all sale order lines with a button.
+    n.b. Remove if partner_default_sale_discount module is installed, it add
+    a duplicated function and more.
     """,
     'author': "Sergio Corato",
     'depends': [

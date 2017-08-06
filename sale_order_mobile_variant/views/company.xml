@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_company_inherit_form_sale_mobile">
+            <field name="inherit_id" ref="sale.view_company_inherit_form2"/>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <field name="sale_note" position="before">
+                    <field name="sale_mobile_partner_default" />
+                    <field name="sale_mobile_catalogue_partner_default"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

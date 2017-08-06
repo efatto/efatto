@@ -16,9 +16,15 @@ class SaleOrder(models.Model):
         if self._context['params'].get('action', False):
             if self._context['params'].get('action') == \
                     self.env['ir.model.data'].get_object_reference(
-                    'sale_order_mobile_variant',
-                    'action_sale_order_mobile_variant')[1]:
+                        'sale_order_mobile_variant',
+                        'action_sale_order_mobile_variant')[1]:
                 res = self.env.user.company_id.sale_mobile_partner_default
+            elif self._context['params'].get('action') == \
+                    self.env['ir.model.data'].get_object_reference(
+                        'sale_order_mobile_variant',
+                        'action_sale_order_mobile_catalogue_variant_form')[1]:
+                res = self.env.user.company_id.\
+                    sale_mobile_catalogue_partner_default
         return res
 
     partner_id = fields.Many2one(
@@ -146,6 +152,7 @@ class SaleOrder(models.Model):
     def _set_product_template(self, product_template):
         self.product_template_id = product_template
         self.product = product_template.prefix_code
+        self.price_unit = 0.0
         self.scan = ''
         # clean all children fields
         self.product_attribute_line_id = \

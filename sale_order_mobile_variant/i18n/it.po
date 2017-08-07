@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-27 06:38+0000\n"
-"PO-Revision-Date: 2017-06-27 06:38+0000\n"
+"POT-Creation-Date: 2017-08-07 06:36+0000\n"
+"PO-Revision-Date: 2017-08-07 06:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,7 @@ msgid "Add product in order"
 msgstr "Aggiungi prodotto all'ordine"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Attribute Image"
 msgstr "Immagine attributo"
@@ -50,6 +51,17 @@ msgstr "Annulla Ordine"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Cancel Quotation"
 msgstr "Annulla il preventivo"
+
+#. module: sale_order_mobile_variant
+#: code:addons/sale_order_mobile_variant/models/sale_order.py:333
+#, python-format
+msgid "Code is not valid!"
+msgstr "Codice non valido!"
+
+#. module: sale_order_mobile_variant
+#: model:ir.model,name:sale_order_mobile_variant.model_res_company
+msgid "Companies"
+msgstr "Aziende"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
@@ -82,6 +94,7 @@ msgid "New Copy of Quotation"
 msgstr "Nuova Copia del Preventivo"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Partner"
 msgstr "Partner"
@@ -102,9 +115,9 @@ msgid "Print"
 msgstr "Stampa"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 #: field:sale.order,product:0
-#: field:sale.order,temp_product_id:0
 msgid "Product"
 msgstr "Prodotto"
 
@@ -159,6 +172,13 @@ msgid "Recreate Invoice"
 msgstr "Ricrea Fattura"
 
 #. module: sale_order_mobile_variant
+#: model:ir.actions.act_window,name:sale_order_mobile_variant.action_sale_order_mobile_catalogue_variant_form
+#: model:ir.ui.menu,name:sale_order_mobile_variant.menu_sale_order_mobile_catalogue_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
+msgid "Sale Mobile Catalogue"
+msgstr "Vista Catalogo"
+
+#. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Sale Order Mobile"
 msgstr "Ordine di Vendita Mobile"
@@ -168,6 +188,16 @@ msgstr "Ordine di Vendita Mobile"
 #: model:ir.ui.menu,name:sale_order_mobile_variant.menu_sale_order_mobile_variant
 msgid "Sale Order Variant Mobile"
 msgstr "Ordine di Vendita Mobile"
+
+#. module: sale_order_mobile_variant
+#: field:res.company,sale_mobile_catalogue_partner_default:0
+msgid "Sale mobile catalogue partner default"
+msgstr "Partner di default in Vista Catalogo"
+
+#. module: sale_order_mobile_variant
+#: field:res.company,sale_mobile_partner_default:0
+msgid "Sale mobile partner default"
+msgstr "Partner di default in Ordine di Vendita Mobile"
 
 #. module: sale_order_mobile_variant
 #: model:ir.model,name:sale_order_mobile_variant.model_sale_order
@@ -181,6 +211,7 @@ msgid "Sales Order Lines"
 msgstr "Righe Ordine di Vendita"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 #: field:sale.order,scan:0
 msgid "Scan QR Code"
@@ -202,6 +233,7 @@ msgid "Stitching value id"
 msgstr "Valore impuntura"
 
 #. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Template Image"
 msgstr "Immagine template"

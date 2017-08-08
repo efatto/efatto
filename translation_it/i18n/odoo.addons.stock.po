@@ -3794,7 +3794,7 @@ msgstr "Fai la scansione di un lotto o inseriscine uno manualmente qui sotto (la
 #: code:addons/stock/static/src/xml/picking.xml:122
 #, python-format
 msgid "Scanned"
-msgstr "Scansione nato"
+msgstr "Scansionato"
 
 #. module: stock
 #. openerp-web

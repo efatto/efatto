@@ -23,14 +23,14 @@
 {
     "name": "Accounting Financial Reports Horizontal Ext",
     "version": "8.1.13.9",
-    "author": ["Therp BV", "Agile Business Group", "Didotech srl", "Simplerp srl"],
+    "author": ["Therp BV", "Agile Business Group", "Didotech srl", "Sergio Corato"],
     "category": 'Accounting & Finance',
     'complexity': "normal",
     "description": """
 This is a port to OpenERP 8.0 of the horizontal financial reports
 'Balance sheet' and 'Profit and Loss' as found in OpenERP 7.0.
     """,
-    'website': 'https://www.simplerp.it',
+    'website': 'https://www.efatto.it',
     "depends": [
         'account',
     ],

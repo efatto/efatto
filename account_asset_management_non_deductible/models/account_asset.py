@@ -21,7 +21,7 @@ class AccountAssetCategory(models.Model):
 class AccountAssetDepreciationLine(models.Model):
     _inherit = 'account.asset.depreciation.line'
 
-    #  add non-deductible account
+    # add non-deductible account
     def _setup_move_line_data(self, depreciation_line, depreciation_date,
                               period_id, account_id, type, move_id, context):
         if type == 'expense':
@@ -35,7 +35,7 @@ class AccountAssetDepreciationLine(models.Model):
                 debit_ded = amount_ded > 0 and amount_ded or 0.0
                 credit_ded = amount_ded < 0 and -amount_ded or 0.0
 
-                #TODO create non deductible account move line
+                # create non deductible account move line
                 amount_not_ded = depreciation_line.amount - amount_ded
                 debit_not_ded = amount_not_ded > 0 and amount_not_ded or 0.0
                 credit_not_ded = amount_not_ded < 0 and -amount_not_ded or 0.0

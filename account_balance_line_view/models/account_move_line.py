@@ -27,10 +27,12 @@ class account_move_line(osv.osv):
         cr.execute(sql, [tuple(ids)])
         return dict(cr.fetchall())
 
-    def _balance_search(self, cursor, user, obj, name, args, domain=None, context=None):
+    def _balance_search(self, cursor, user, obj, name, args, domain=None,
+                        context=None):
         return super(account_move_line, self)._balance_search(
             cursor, user, obj, name, args, domain=domain, context=context)
 
     _columns = {
-        'balance': fields.function(_balance, fnct_search=_balance_search, string='Balance'),
+        'balance': fields.function(_balance, fnct_search=_balance_search,
+                                   string='Balance'),
     }

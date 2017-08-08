@@ -2,6 +2,7 @@
 #
 #
 #    Copyright (C) 2015-2016 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,8 +22,8 @@
     'name': 'Italian customization for asset',
     'version': '8.0.2.1.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'description': 'Italian customization for asset',
     'depends': [

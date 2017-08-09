@@ -24,6 +24,14 @@ class SaleOrderLine(models.Model):
                         [(6, 0,
                           line.product_attribute_ids.mapped('value_id').ids)]})
             line.write({'product_id': product.id})
+            # map tax for product with fp of sale order
+            if line.order_id.fiscal_position:
+                fpos = line.order_id.fiscal_position
+                fp_taxes = fpos.map_tax(product.taxes_id)
+                if fp_taxes:
+                    line.tax_id = fp_taxes
+            else:
+                line.tax_id = product.taxes_id
         return res
 
     @api.multi
@@ -41,4 +49,12 @@ class SaleOrderLine(models.Model):
                         [(6, 0,
                           line.product_attribute_ids.mapped('value_id').ids)]})
             line.write({'product_id': product.id})
+            # map tax for product with fp of sale order
+            if line.order_id.fiscal_position:
+                fpos = line.order_id.fiscal_position
+                fp_taxes = fpos.map_tax(product.taxes_id)
+                if fp_taxes:
+                    line.tax_id = fp_taxes
+            else:
+                line.tax_id = product.taxes_id
         return res

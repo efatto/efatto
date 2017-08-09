@@ -16,7 +16,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         date = self._context.get('date') or fields.Date.context_today(self)
         if self.product_tmpl_id:
-            price_extra = discount = 0.0
+            price_extra = discount = total_price = 0.0
             attribute_id = []
             for attr_line in self.product_attribute_ids:
                 price_extra += attr_line.price_extra

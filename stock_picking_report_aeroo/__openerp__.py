@@ -19,9 +19,9 @@
 #
 {
     'name': 'Aeroo ddt report',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato, Didotech Srl',
+    'author': 'Sergio Corato; Didotech Srl',
     'website': 'http://www.efatto.it',
     'description': 'Aeroo ddt report',
     'license': 'AGPL-3',

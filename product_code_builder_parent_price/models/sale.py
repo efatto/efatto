@@ -215,7 +215,7 @@ class SaleOrderLine(models.Model):
         product_id = product_obj.browse(
             cr, uid, product)
         price_unit = res['value']['price_unit']
-        discount_new = 0.0
+        discount_new = total_price = 0.0
 
         if res['value'].get('price_unit', False):
             price = res['value']['price_unit']

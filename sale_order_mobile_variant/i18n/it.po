@@ -253,3 +253,7 @@ msgstr "U.M."
 msgid "White Stitching"
 msgstr "Filo bianco"
 
+#. module: sale_order_mobile_variant
+#: field:sale.order,net_price:0
+msgid "Net Price"
+msgstr "Prezzo netto"

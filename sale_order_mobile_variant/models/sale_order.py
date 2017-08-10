@@ -88,6 +88,14 @@ class SaleOrder(models.Model):
     image2 = fields.Binary('Image2')
     image_medium2 = fields.Binary(
         'Image Medium2', compute='_get_image2', inverse='_set_image2')
+    discount = fields.Float()
+    net_price = fields.Float()
+
+    @api.onchange('discount')
+    def onchange_discount(self):
+        if self.discount:
+            self.net_price = round(
+                self.price_unit * (100.0 - self.discount) / 100.0 + 0.5, 0)
 
     @api.multi
     def _get_image(self):

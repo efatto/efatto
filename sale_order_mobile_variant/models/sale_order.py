@@ -11,6 +11,11 @@ class SaleOrder(models.Model):
     _inherit = ['sale.order', "product.configurator"]
     _name = "sale.order"
 
+    @api.multi
+    def print_mobile_quotation(self):
+        return self.env['report'].get_action(
+            self, 'sale.report_saleorder_mobile_variant')
+
     def _get_partner_default(self):
         res = False
         if self._context['params'].get('action', False):

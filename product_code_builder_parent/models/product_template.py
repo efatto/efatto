@@ -12,6 +12,56 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.model
+    def create(self, vals):
+        res = super(ProductTemplate, self).create(vals)
+        if vals.get('attribute_line_ids', False):
+            attr_ids = []
+            for attr_line in vals['attribute_line_ids']:
+                attr_ids.append(attr_line[2]['attribute_id'])
+            attribute_ids = self.env['product.attribute'].browse(attr_ids)
+            attribute_with_child_ids = attribute_ids. \
+                filtered("child_ids")
+            attribute_ids = attribute_ids - attribute_with_child_ids
+            if attribute_with_child_ids and len(attribute_ids) > 1:
+                raise UserError('Mixed variant types is not possible! '
+                                'Only one attribute normal is needed in '
+                                'attribute with childs.')
+            if attribute_with_child_ids and \
+                    attribute_ids.parent_id:
+                raise UserError('Attribute line without child with parent! '
+                                'Child variant type must have only one '
+                                'attribute line and this one must be an '
+                                'attribute without parent. ')
+        return res
+
+    @api.multi
+    def write(self, vals):
+        res = super(ProductTemplate, self).write(vals)
+        if vals.get('attribute_line_ids', False):
+            attr_ids = []
+            if self.attribute_line_ids:
+                for attribute_line_id in self.attribute_line_ids:
+                    attr_ids.append(attribute_line_id.attribute_id.id)
+            for attr_line in vals['attribute_line_ids']:
+                if attr_line[2] and attr_line[2].get('attribute_id', False):
+                    attr_ids.append(attr_line[2]['attribute_id'])
+            attribute_ids = self.env['product.attribute'].browse(attr_ids)
+            attribute_with_child_ids = attribute_ids. \
+                filtered("child_ids")
+            attribute_ids = attribute_ids - attribute_with_child_ids
+            if attribute_with_child_ids and len(attribute_ids) > 1:
+                raise UserError('Mixed variant types is not possible! '
+                                'Only one attribute normal is needed in '
+                                'attribute with childs.')
+            if attribute_with_child_ids and \
+                    attribute_ids.parent_id:
+                raise UserError('Attribute line without child with parent! '
+                                'Child variant type must have only one '
+                                'attribute line and this one must be an '
+                                'attribute without parent. ')
+        return res
+
+    @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         ids = self.search([('prefix_code', 'ilike', name)] + args,
                           limit=limit)

@@ -137,7 +137,12 @@ class SaleOrder(models.Model):
 
             # THREE check stitching (ST + 2 numbers) - only 3 qr types
             if re.match('ST[0-9][0-9]', self.scan.upper()):
-                self._get_stitching(self.scan[-2:])
+                self._get_stitching(self.scan[-2:], code_stitching='ST')
+                return
+
+            # THREE check stitching for comb (& + 2 numbers) - only 3 qr types
+            if re.match('&&[0-9][0-9]', self.scan.upper()):
+                self._get_stitching(self.scan[-2:], code_stitching='&&')
                 return
 
             # FOUR check simple material (2 number + 1 or 2 letter + 2 number)
@@ -191,10 +196,13 @@ class SaleOrder(models.Model):
                     self.scan = ''
                     if self.is_same_color_stitching:
                         self._get_stitching(
-                            self.product_attribute_value_id.code)
+                            self.product_attribute_value_id.code,
+                            code_stitching='ST'
+                        )
                         return
                     if self.is_white_stitching:
-                        self._get_stitching('05')
+                        self._get_stitching('05',
+                            code_stitching='ST')
                         return
                     return
         elif attribute and not attribute.parent_id:
@@ -210,10 +218,11 @@ class SaleOrder(models.Model):
                 #nb no stitching if is rabitti!!!!
                 if self.is_same_color_stitching:
                     self._get_stitching(
-                        self.product_attribute_value_id.code)
+                        self.product_attribute_value_id.code,
+                        code_stitching='ST')
                     return
                 if self.is_white_stitching:
-                    self._get_stitching('05')
+                    self._get_stitching('05', code_stitching='ST')
                     return
                 return
 
@@ -249,11 +258,11 @@ class SaleOrder(models.Model):
         else:
             self.product_attribute_value_id = False
 
-    def _get_stitching(self, stitching):
+    def _get_stitching(self, stitching, code_stitching):
         if self.product_attribute_child_id and self.product_attribute_value_id:
             product_attribute_line = self.product_template_id.\
                 attribute_line_ids.filtered(
-                    lambda x: x.attribute_id.code == 'ST')
+                    lambda x: x.attribute_id.code == code_stitching)
             if product_attribute_line:
                 self.product_attribute_line_stitching_id = product_attribute_line
                 stitching_id = product_attribute_line.value_ids.filtered(
@@ -273,12 +282,13 @@ class SaleOrder(models.Model):
     def onchange_is_samecolor_stitching(self):
         if self.product_attribute_value_id and self.is_same_color_stitching:
             self._get_stitching(
-                self.product_attribute_value_id.code)
+                self.product_attribute_value_id.code,
+                code_stitching='ST')
 
     @api.onchange('is_white_stitching')
     def onchange_is_white_stitching(self):
         if self.product_attribute_value_id and self.is_white_stitching:
-            self._get_stitching('05')
+            self._get_stitching('05', code_stitching='ST')
 
     @api.multi
     def _get_price_unit(self):
@@ -310,7 +320,7 @@ class SaleOrder(models.Model):
             if not self.product_attribute_value_id and not self.product_template_id:
                 # search attribute-child type
                 child_attributes = re.search(
-                    '[A-Z][0-9]{2}ST[0-9]{2}', self.product.upper())
+                    '[A-Z][0-9]{2}[S&][T&][0-9]{2}', self.product.upper())
                 if child_attributes:
                     product_template = self.env['product.template'].search(
                         [('prefix_code', '=',
@@ -319,7 +329,8 @@ class SaleOrder(models.Model):
                         self._set_product_template(product_template)
                     self._set_material_color(
                         child_attributes.group(0)[0], child_attributes.group(0)[1:3])
-                    self._get_stitching(child_attributes.group(0)[5:7])
+                    self._get_stitching(child_attributes.group(0)[5:7],
+                                        child_attributes.group(0)[3:5])
 
                 # serch attribute type only
                 attributes = re.search(

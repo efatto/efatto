@@ -181,7 +181,7 @@
                     <field name="price_unit" nolabel="1" readonly="1"/>
                     <field name="order_line" invisible="1"/>
                     <group>
-                        <field name="partner_id" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        <field name="partner_id" invisible="1" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
                     </group>
                     <group>
                         <field name="fiscal_position" options="{'no_open': True, 'no_create': True}" attrs="{'required': True}"

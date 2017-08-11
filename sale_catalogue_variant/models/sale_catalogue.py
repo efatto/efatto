@@ -29,24 +29,33 @@ class SaleCatalogue(models.Model):
         related='partner_id.property_product_pricelist',
     )
     product_template_id = fields.Many2one('product.template')
+    product_template_name = fields.Char(
+        related='product_template_id.name'
+    )
+    product_attribute_line_ids = fields.One2many(
+        related='product_template_id.attribute_line_ids',
+        readonly=True,
+    )
     product_template_image = fields.Binary(
+        related='product_template_id.image_medium')
+    product_template_image_bis = fields.Binary(
         related='product_template_id.image_medium')
     product_attribute_line_id = fields.Many2one(
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
         )
-    product_attribute_line_stitching_id = fields.Many2one(
+    product_attribute_name = fields.Char(
+        related='product_attribute_value_id.attribute_id.name')
+    product_attribute_value_name = fields.Char(
+        related='product_attribute_value_id.name')
+    product_attribute_name1 = fields.Char(
+        related='product_attribute_value1_id.attribute_id.name')
+    product_attribute_value_name1 = fields.Char(
+        related='product_attribute_value1_id.name')
+    product_attribute_line1_id = fields.Many2one(
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
         )
-    stitching_value_ids = fields.Many2many(
-        string='Values',
-        related='product_attribute_line_stitching_id.value_ids',
-        readonly=True)
-    stitching_value_id = fields.Many2one(
-        'product.attribute.value',
-        domain="[('id', 'in', stitching_value_ids[0][2])]"
-    )
     product_attribute_child_ids = fields.One2many(
         string='Childs',
         related='product_attribute_line_id.attribute_id.child_ids',
@@ -63,14 +72,29 @@ class SaleCatalogue(models.Model):
         'product.attribute.value',
         domain="[('id', 'in', product_attribute_value_ids[0][2])]"
     )
+    product_attribute_value1_ids = fields.Many2many(
+        string='Values',
+        related='product_attribute_line1_id.value_ids',
+        readonly=True)
+    product_attribute_value1_id = fields.Many2one(
+        'product.attribute.value',
+        domain="[('id', 'in', product_attribute_value1_ids[0][2])]"
+    )
     product_attribute_image = fields.Binary(
         related='product_attribute_value_id.image')
+    product_attribute_image_bis = fields.Binary(
+        related='product_attribute_value_id.image')
+    product_attribute_image1 = fields.Binary(
+        related='product_attribute_value1_id.image')
     price_unit = fields.Float(string='Price unit',
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
     scan = fields.Char('Scan QR Code')
     discount = fields.Float()
     net_price = fields.Float()
+    is_combination = fields.Boolean(
+        related='product_template_id.is_combination'
+    )
 
     @api.onchange('discount')
     def onchange_discount(self):
@@ -94,14 +118,11 @@ class SaleCatalogue(models.Model):
                 self._set_material_color(material, color)
                 return
 
-            # THREE check stitching (ST + 2 numbers) - only 3 qr types
-            if re.match('ST[0-9][0-9]', self.scan.upper()):
-                self._get_stitching(self.scan[-2:], code_stitching='ST')
-                return
-
-            # THREE check stitching for comb (& + 2 numbers) - only 3 qr types
-            if re.match('&&[0-9][0-9]', self.scan.upper()):
-                self._get_stitching(self.scan[-2:], code_stitching='&&')
+            # FOUR1 check simple material (& + 1 letter + [1 letter + 2 number] + '+' + [1 letter + 2 number])
+            if re.match('[&][A-Z][A-Z][0-9]{2}[+][A-Z][0-9]{2}', self.scan.upper()):
+                material = self.scan[:2].upper()
+                color = self.scan[2:].upper()
+                self._set_material_color(material, color)
                 return
 
             # FOUR check simple material (2 number + 1 or 2 letter + 2 number)
@@ -113,8 +134,10 @@ class SaleCatalogue(models.Model):
 
             # NO MATCHES FOUND: clean all fields
             self.product_attribute_line_id = \
+                self.product_attribute_line1_id = \
                 self.product_attribute_child_id = \
                 self.product_attribute_value_id = \
+                self.product_attribute_value1_id = \
                 self.product_template_id = False
 
     @api.multi
@@ -125,8 +148,10 @@ class SaleCatalogue(models.Model):
         self.scan = ''
         # clean all children fields
         self.product_attribute_line_id = \
+            self.product_attribute_line1_id = \
             self.product_attribute_child_id = \
             self.product_attribute_value_id = \
+            self.product_attribute_value1_id = \
             False
 
     @api.multi
@@ -134,7 +159,7 @@ class SaleCatalogue(models.Model):
         attribute = self.env['product.attribute'].search(
             [('code', '=', material)])
         # first search if material has parent
-        if attribute and attribute.parent_id:
+        if attribute and attribute.parent_id and not self.is_combination:
             # it's a child attribute: set in one passage the attribute line
             # from parent of attribute, and the product_attribute_child_id
             for attribute_line in self.product_template_id. \
@@ -151,33 +176,48 @@ class SaleCatalogue(models.Model):
                                   product_attribute_child.parent_id)
                     self.product = self.product_template_id.prefix_code + \
                                    product_attribute_child.code
-                    self._get_color(color)
+                    self._get_color(color, self.product_attribute_line_id)
                     self.scan = ''
                     return
-        elif attribute and not attribute.parent_id:
+        if attribute and attribute.parent_id and self.is_combination:
+            if self.product_attribute_line_id:
+                # is already chosen first material, so add the second
+                product_attribute_line1 = self.product_template_id. \
+                    attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.code == material)
+                if not self.product_attribute_value_id:
+                    self.product = self.scan = ''
+                if product_attribute_line1:
+                    self.product_attribute_line1_id = product_attribute_line1
+                    self._get_color(color, self.product_attribute_line1_id)
+                    self.scan = ''
+                    return
+        if attribute and not attribute.parent_id or attribute and self.is_combination:
+            # is the first material, work as usual
             product_attribute_line = self.product_template_id. \
                 attribute_line_ids.filtered(
                     lambda x: x.attribute_id.code == material)
             if product_attribute_line:
                 self.product_attribute_line_id = product_attribute_line
-                self.product = self.product_template_id.prefix_code + \
-                    product_attribute_line.attribute_id.code
-                self._get_color(color)
+                self._get_color(color, self.product_attribute_line_id)
                 self.scan = ''
                 return
 
-    def _get_color(self, color):
+    def _get_color(self, color, product_attribute_line_id):
         if self.product_attribute_child_id:
             product_attribute_value = self.product_attribute_child_id. \
                 value_ids.filtered(lambda x: x.code == color)
         else:
-            product_attribute_value = self.product_attribute_line_id.\
+            product_attribute_value = product_attribute_line_id.\
                 value_ids.filtered(lambda x: x.code == color)
         if product_attribute_value:
-            self.product_attribute_value_id = product_attribute_value
+            if self.product_attribute_value_id:
+                self.product_attribute_value1_id = product_attribute_value
+            else:
+                self.product_attribute_value_id = product_attribute_value
             product = False
             # we can search here for product only if not with child variant
-            if not self.product_attribute_child_id.parent_id:
+            if not self.product_attribute_child_id.parent_id and not self.is_combination:
                 product = self.env['product.product'].search([
                     ('product_tmpl_id', '=', self.product_template_id.id),
                     ('attribute_value_ids', '=',
@@ -191,32 +231,19 @@ class SaleCatalogue(models.Model):
                         self.product_attribute_child_id.code + \
                         product_attribute_value.code
                 else:
-                    self.product = self.product_template_id.prefix_code + \
-                        self.product_attribute_line_id.attribute_id.code + \
-                        product_attribute_value.code
+                    if self.product_attribute_line1_id:
+                        self.product = self.product_template_id.prefix_code + \
+                            self.product_attribute_line_id.attribute_id.code +\
+                            self.product_attribute_value_id.code + \
+                            self.product_attribute_line1_id.attribute_id.code+\
+                            product_attribute_value.code
+                    else:
+                        self.product = self.product_template_id.prefix_code + \
+                            self.product_attribute_line_id.attribute_id.code + \
+                            product_attribute_value.code
             self.price_unit = self._get_price_unit()
         else:
             self.product_attribute_value_id = False
-
-    def _get_stitching(self, stitching, code_stitching):
-        if self.product_attribute_child_id and self.product_attribute_value_id:
-            product_attribute_line = self.product_template_id.\
-                attribute_line_ids.filtered(
-                    lambda x: x.attribute_id.code == code_stitching)
-            if product_attribute_line:
-                self.product_attribute_line_stitching_id = product_attribute_line
-                stitching_id = product_attribute_line.value_ids.filtered(
-                    lambda x: x.code == stitching
-                )
-                if stitching_id:
-                    self.stitching_value_id = stitching_id
-                    self.product = self.product_template_id.prefix_code + \
-                        self.product_attribute_child_id.code + \
-                        self.product_attribute_value_id.code + \
-                        self.product_attribute_line_stitching_id.attribute_id.code + \
-                        stitching_id.code
-            else:
-                self.product_attribute_line_stitching_id = False
 
     @api.multi
     def _get_price_unit(self):
@@ -228,6 +255,8 @@ class SaleCatalogue(models.Model):
                 price_extra += attr_line.price_extra
                 # if attr_line.value_id:
                 #     attribute_id = attr_line.attribute_id
+            for attr_line1 in self.product_attribute_line1_id:
+                price_extra += attr_line1.price_extra
             for attribute_line in self.product_attribute_value_id:
                 # if attribute_line.attribute_id == attribute_id:
                 price_extra += attribute_line.price_extra

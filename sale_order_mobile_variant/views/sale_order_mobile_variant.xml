@@ -28,7 +28,7 @@
                         <!--widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>-->
                 </header>
                 <sheet>
-
+                    <field name="partner_id" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
                     <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
                     <field name="is_combination" invisible="1"/>
                     <group>
@@ -64,13 +64,6 @@
                         </group>
                     </group>
                     <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
-
-                    <group>
-                        <field name="partner_id" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                    </group>
-
-                    <!--<button name="barcode" style="height:56px;border-width:0px;" url="zxing://scan/?ret=http://foo.com/products/{CODE}/description&amp;SCAN_FORMATS=UPC_A,EAN_13">-->
-                    <!--</button>-->
 
                     <field name="order_line">
                         <tree string="Sales Order Lines" editable="bottom">

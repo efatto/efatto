@@ -33,7 +33,6 @@
     ],
     'data': [
         'views/sale_order_mobile_variant.xml',
-        'views/company.xml',
         'views/product.xml',
         'data/reports.xml',
     ],

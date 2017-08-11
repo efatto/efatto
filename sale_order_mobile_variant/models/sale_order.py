@@ -16,18 +16,6 @@ class SaleOrder(models.Model):
         return self.env['report'].get_action(
             self, 'sale.report_saleorder_mobile_variant')
 
-    def _get_partner_default(self):
-        res = False
-        if self._context['params'].get('action', False):
-            if self._context['params'].get('action') == \
-                    self.env['ir.model.data'].get_object_reference(
-                        'sale_order_mobile_variant',
-                        'action_sale_order_mobile_variant')[1]:
-                res = self.env.user.company_id.sale_mobile_partner_default
-        return res
-
-    partner_id = fields.Many2one(
-        default=_get_partner_default)
     product_template_id = fields.Many2one('product.template')
     product_template_image = fields.Binary(
         related='product_template_id.image_medium')

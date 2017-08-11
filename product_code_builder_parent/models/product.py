@@ -53,6 +53,7 @@ class ProductAttribute(models.Model):
         'attribute_id',
         'Attribute Values'
     )
+    code_in_report = fields.Char('Code in Report')
 
 
 class ProductAttributeValue(models.Model):

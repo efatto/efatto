@@ -41,7 +41,10 @@
                 <form string="Product Attribute">
                 <group>
                     <field name="name"/>
-                    <field name="code"/>
+                    <group colspan="2" col="4">
+                        <field name="code"/>
+                        <field name="code_in_report"/>
+                    </group>
                     <field name="sequence"/>
                     <field name="parent_id"/>
                     <field name="child_ids">

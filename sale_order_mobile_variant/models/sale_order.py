@@ -69,7 +69,8 @@ class SaleOrder(models.Model):
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()
     product_qty = fields.Float(
-        string='Q.ty',)
+        string='Q.ty',
+        default=1)
     scan = fields.Char('Scan QR Code')
     is_same_color_stitching = fields.Boolean('Stitching color of material')
     is_white_stitching = fields.Boolean('White Stitching')

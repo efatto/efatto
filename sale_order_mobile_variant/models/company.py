@@ -11,6 +11,3 @@ class ResCompany(models.Model):
     sale_mobile_partner_default = fields.Many2one(
         comodel_name='res.partner',
         company_dependent=True,)
-    sale_mobile_catalogue_partner_default = fields.Many2one(
-        comodel_name='res.partner',
-        company_dependent=True,)

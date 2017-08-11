@@ -30,9 +30,10 @@
                 <sheet>
 
                     <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
+                    <field name="is_combination" invisible="1"/>
                     <group>
-                        <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)]}"/>
-                        <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)]}"/>
+                        <field name="is_same_color_stitching" attrs="{'readonly': [('is_white_stitching', '=', True)], 'invisible': [('is_combination', '=', True)]}"/>
+                        <field name="is_white_stitching" attrs="{'readonly': [('is_same_color_stitching', '=', True)], 'invisible': [('is_combination', '=', True)]}"/>
                     </group>
 
                     <group colspan="2" col="2">
@@ -46,10 +47,13 @@
 
                     <field name="product_template_id"  invisible="1"/>
                     <field name="product_attribute_line_id" invisible="1"/>
+                    <field name="product_attribute_line1_id" invisible="1"/>
                     <field name="product_attribute_child_id" invisible="1"/>
                     <field name="product_attribute_value_id" invisible="1"/>
+                    <field name="product_attribute_value1_id" invisible="1"/>
                     <field name="product_attribute_child_ids" invisible="1"/>
                     <field name="product_attribute_value_ids" invisible="1"/>
+                    <field name="product_attribute_value1_ids" invisible="1"/>
                     <field name="stitching_value_ids" invisible="1"/>
                     <field name="stitching_value_id" invisible="1"/>
                     <field name="product" nolabel="1" placeholder="Product"/>
@@ -153,73 +157,10 @@
       </field>
     </record>
 
-    <record id="sale_order_mobile_catalogue_variant_form" model="ir.ui.view">
-            <field name="name">sale.order.form.mobile.catalogue</field>
-            <field name="model">sale.order</field>
-            <field name="arch" type="xml">
-                <form string="Sale Mobile Catalogue">
-                <sheet>
-                    <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
-                    <group colspan="2" col="2">
-                        <group>
-                            <field name="product_template_image" widget="image" readonly="1" nolabel="1" placeholder="Template Image"/>
-                        </group>
-                        <group>
-                            <field name="product_attribute_image" widget="image" readonly="1" nolabel="1" placeholder="Attribute Image"/>
-                        </group>
-                    </group>
-                    <field name="state" invisible="1"/>
-                    <field name="product_template_id"  invisible="1"/>
-                    <field name="product_attribute_line_id" invisible="1"/>
-                    <field name="product_attribute_child_id" invisible="1"/>
-                    <field name="product_attribute_value_id" invisible="1"/>
-                    <field name="product_attribute_child_ids" invisible="1"/>
-                    <field name="product_attribute_value_ids" invisible="1"/>
-                    <field name="stitching_value_ids" invisible="1"/>
-                    <field name="stitching_value_id" invisible="1"/>
-                    <field name="product" nolabel="1" placeholder="Product"/>
-                    <group>
-                    <field name="price_unit" readonly="1"/>
-                    <field name="discount" placeholder="Discount"/>
-                    <field name="net_price" placeholder="Net Price"/>
-                    </group>
-                    <field name="order_line" invisible="1"/>
-                    <group>
-                        <field name="partner_id" invisible="1" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                    </group>
-                    <group>
-                        <field name="fiscal_position" options="{'no_open': True, 'no_create': True}" attrs="{'required': True}"
-                            on_change="onchange_fiscal_position(fiscal_position, order_line, context)" invisible="1"/>
-                        <field name="company_id" widget="selection" groups="base.group_multi_company"/>
-                        <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" invisible="1"/>
-                        <field name="partner_shipping_id" on_change="onchange_delivery_id(company_id, partner_id, partner_shipping_id, fiscal_position)" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" invisible="1"/>
-                        <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)" invisible="1"/>
-                        <field name="currency_id" invisible="1"/>
-                    </group>
-                </sheet>
-                </form>
-            </field>
-        </record>
-
-    <record id="action_sale_order_mobile_catalogue_variant_form" model="ir.actions.act_window">
-      <field name="name">Sale Mobile Catalogue</field>
-      <field name="res_model">sale.order</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">form</field>
-      <field name="view_id" ref="sale_order_mobile_catalogue_variant_form"/>
-    </record>
-
     <menuitem
       action="action_sale_order_mobile_variant"
       id="menu_sale_order_mobile_variant"
       parent="base.menu_sales" sequence="10"
-      groups="base.group_sale_salesman,base.group_sale_manager"/>
-
-    <menuitem
-      action="action_sale_order_mobile_catalogue_variant_form"
-      id="menu_sale_order_mobile_catalogue_variant"
-      parent="base.menu_sales" sequence="11"
       groups="base.group_sale_salesman,base.group_sale_manager"/>
 
   </data>

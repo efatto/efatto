@@ -190,11 +190,6 @@ msgid "Sale Order Variant Mobile"
 msgstr "Ordine di Vendita Mobile"
 
 #. module: sale_order_mobile_variant
-#: field:res.company,sale_mobile_catalogue_partner_default:0
-msgid "Sale mobile catalogue partner default"
-msgstr "Partner di default in Vista Catalogo"
-
-#. module: sale_order_mobile_variant
 #: field:res.company,sale_mobile_partner_default:0
 msgid "Sale mobile partner default"
 msgstr "Partner di default in Ordine di Vendita Mobile"

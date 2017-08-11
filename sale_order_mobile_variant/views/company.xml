@@ -8,7 +8,6 @@
             <field name="arch" type="xml">
                 <field name="sale_note" position="before">
                     <field name="sale_mobile_partner_default" />
-                    <field name="sale_mobile_catalogue_partner_default"/>
                 </field>
             </field>
         </record>

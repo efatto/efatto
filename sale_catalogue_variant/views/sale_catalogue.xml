@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="sale_catalogue_variant_form" model="ir.ui.view">
+            <field name="name">sale.catalogue.form.mobile</field>
+            <field name="model">sale.catalogue</field>
+            <field name="arch" type="xml">
+                <form string="Sale Mobile Catalogue">
+                <sheet>
+                    <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
+                    <group colspan="2" col="2">
+                        <group>
+                            <field name="product_template_image" widget="image" readonly="1" nolabel="1" placeholder="Template Image"/>
+                        </group>
+                        <group>
+                            <field name="product_attribute_image" widget="image" readonly="1" nolabel="1" placeholder="Attribute Image"/>
+                        </group>
+                    </group>
+                    <field name="product_template_id"  invisible="1"/>
+                    <field name="product_attribute_line_id" invisible="1"/>
+                    <field name="product_attribute_child_id" invisible="1"/>
+                    <field name="product_attribute_value_id" invisible="1"/>
+                    <field name="product_attribute_child_ids" invisible="1"/>
+                    <field name="product_attribute_value_ids" invisible="1"/>
+                    <field name="stitching_value_ids" invisible="1"/>
+                    <field name="stitching_value_id" invisible="1"/>
+                    <field name="product" nolabel="1" placeholder="Product"/>
+                    <group>
+                    <field name="price_unit" readonly="1"/>
+                    <field name="discount" placeholder="Discount"/>
+                    <field name="net_price" placeholder="Net Price"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" invisible="1" attrs="{'required': True}" nolabel="1" placeholder="Partner" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                    </group>
+                    <!--<field name="company_id" widget="selection" groups="base.group_multi_company"/>-->
+                    <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" invisible="1"/>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record id="action_sale_catalogue_variant_form" model="ir.actions.act_window">
+      <field name="name">Sale Mobile Catalogue</field>
+      <field name="res_model">sale.catalogue</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="sale_catalogue_variant_form"/>
+    </record>
+
+    <menuitem
+      action="action_sale_catalogue_variant_form"
+      id="menu_sale_catalogue_variant"
+      parent="base.menu_sales" sequence="11"
+      groups="base.group_sale_salesman,base.group_sale_manager"/>
+
+  </data>
+</openerp>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 06:36+0000\n"
-"PO-Revision-Date: 2017-08-07 06:36+0000\n"
+"POT-Creation-Date: 2017-08-13 21:43+0000\n"
+"PO-Revision-Date: 2017-08-13 21:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,11 +33,15 @@ msgstr "<p class=\"oe_view_nocontent_create\">\n"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Add in Quote"
+msgstr "Aggiungi nel Preventivo"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Add product in order"
 msgstr "Aggiungi prodotto all'ordine"
 
 #. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Attribute Image"
 msgstr "Immagine attributo"
@@ -53,12 +57,6 @@ msgid "Cancel Quotation"
 msgstr "Annulla il preventivo"
 
 #. module: sale_order_mobile_variant
-#: code:addons/sale_order_mobile_variant/models/sale_order.py:333
-#, python-format
-msgid "Code is not valid!"
-msgstr "Codice non valido!"
-
-#. module: sale_order_mobile_variant
 #: model:ir.model,name:sale_order_mobile_variant.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -67,6 +65,11 @@ msgstr "Aziende"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Confirm Sale"
 msgstr "Conferma Ordine"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+msgstr "Se non si esegue \"Aggiungi nel Preventivo\", il prezzo esatto verrà calcolato quando la fatturazione è basata sugli ordini di consegna."
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
@@ -89,12 +92,16 @@ msgid "Image2"
 msgstr "Immagine2"
 
 #. module: sale_order_mobile_variant
+#: field:product.template,is_combination:0
+msgid "Is a Combination"
+msgstr "E' una Combinazione"
+
+#. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "New Copy of Quotation"
 msgstr "Nuova Copia del Preventivo"
 
 #. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Partner"
 msgstr "Partner"
@@ -103,6 +110,11 @@ msgstr "Partner"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Payment term"
 msgstr "Modalità di pagamento"
+
+#. module: sale_order_mobile_variant
+#: model:ir.actions.report.xml,name:sale_order_mobile_variant.report_sale_order_mobile_variant
+msgid "Preventivo da mobile"
+msgstr "Preventivo da mobile"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,price_unit:0
@@ -115,13 +127,13 @@ msgid "Print"
 msgstr "Stampa"
 
 #. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 #: field:sale.order,product:0
 msgid "Product"
 msgstr "Prodotto"
 
 #. module: sale_order_mobile_variant
+#: model:ir.model,name:sale_order_mobile_variant.model_product_template
 #: field:sale.order,product_tmpl_id:0
 msgid "Product Template"
 msgstr "Template Prodotto"
@@ -142,9 +154,19 @@ msgid "Product attribute line stitching id"
 msgstr "Attributo impuntura prodotto"
 
 #. module: sale_order_mobile_variant
+#: field:sale.order,product_attribute_line1_id:0
+msgid "Product attribute line1 id"
+msgstr "Product attribute line1 id"
+
+#. module: sale_order_mobile_variant
 #: field:sale.order,product_attribute_value_id:0
 msgid "Product attribute value id"
 msgstr "ID valore attributo"
+
+#. module: sale_order_mobile_variant
+#: field:sale.order,product_attribute_value1_id:0
+msgid "Product attribute value1 id"
+msgstr "Product attribute value1 id"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,product_attribute_ids:0
@@ -172,13 +194,6 @@ msgid "Recreate Invoice"
 msgstr "Ricrea Fattura"
 
 #. module: sale_order_mobile_variant
-#: model:ir.actions.act_window,name:sale_order_mobile_variant.action_sale_order_mobile_catalogue_variant_form
-#: model:ir.ui.menu,name:sale_order_mobile_variant.menu_sale_order_mobile_catalogue_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
-msgid "Sale Mobile Catalogue"
-msgstr "Vista Catalogo"
-
-#. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Sale Order Mobile"
 msgstr "Ordine di Vendita Mobile"
@@ -188,11 +203,6 @@ msgstr "Ordine di Vendita Mobile"
 #: model:ir.ui.menu,name:sale_order_mobile_variant.menu_sale_order_mobile_variant
 msgid "Sale Order Variant Mobile"
 msgstr "Ordine di Vendita Mobile"
-
-#. module: sale_order_mobile_variant
-#: field:res.company,sale_mobile_partner_default:0
-msgid "Sale mobile partner default"
-msgstr "Partner di default in Ordine di Vendita Mobile"
 
 #. module: sale_order_mobile_variant
 #: model:ir.model,name:sale_order_mobile_variant.model_sale_order
@@ -206,7 +216,6 @@ msgid "Sales Order Lines"
 msgstr "Righe Ordine di Vendita"
 
 #. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 #: field:sale.order,scan:0
 msgid "Scan QR Code"
@@ -216,6 +225,11 @@ msgstr "Scan QR Code"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Send by Email"
 msgstr "Invia tramite Email"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Set delivery price"
+msgstr "Seleziona il trasporto"
 
 #. module: sale_order_mobile_variant
 #: field:sale.order,is_same_color_stitching:0
@@ -228,7 +242,6 @@ msgid "Stitching value id"
 msgstr "Valore impuntura"
 
 #. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_catalogue_variant_form
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Template Image"
 msgstr "Immagine template"

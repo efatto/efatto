@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _, exceptions, tools
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 import re
 
@@ -30,23 +30,23 @@ class SaleCatalogue(models.Model):
     )
     product_template_id = fields.Many2one('product.template')
     product_template_name = fields.Char(
-        related='product_template_id.name'
-    )
-    product_attribute_line_ids = fields.One2many(
-        related='product_template_id.attribute_line_ids',
-        readonly=True,
-    )
+        related='product_template_id.name')
+    product_template_name_bis = fields.Char(
+        related='product_template_id.name')
     product_template_image = fields.Binary(
         related='product_template_id.image_medium')
     product_template_image_bis = fields.Binary(
         related='product_template_id.image_medium')
     product_attribute_line_id = fields.Many2one(
         'product.attribute.line',
-        domain="[('product_tmpl_id','=',product_template_id)]"
-        )
+        domain="[('product_tmpl_id','=',product_template_id)]",)
     product_attribute_name = fields.Char(
         related='product_attribute_value_id.attribute_id.name')
     product_attribute_value_name = fields.Char(
+        related='product_attribute_value_id.name')
+    product_attribute_name_bis = fields.Char(
+        related='product_attribute_value_id.attribute_id.name')
+    product_attribute_value_name_bis = fields.Char(
         related='product_attribute_value_id.name')
     product_attribute_name1 = fields.Char(
         related='product_attribute_value1_id.attribute_id.name')
@@ -96,7 +96,25 @@ class SaleCatalogue(models.Model):
         related='product_template_id.is_combination'
     )
 
-    @api.onchange('discount')
+    @api.onchange('partner_id')
+    def onchange_partner(self):
+        self.discount = self.partner_id.default_sale_discount
+
+    @api.onchange('product_template_id')
+    def onchange_product_template(self):
+        if self.product_template_id:
+            self.product_attribute_line_id = self.product_template_id.\
+                attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.name == 'CAT. A'
+                )
+
+    @api.onchange('product_attribute_line_id')
+    def onchange_product_attribute_line(self):
+        #if manually changed, get price (and remove material color and name?)
+        if self.product_template_id:
+            self.price_unit = self._get_price_unit()
+
+    @api.onchange('discount', 'price_unit')
     def onchange_discount(self):
         if self.discount:
             self.net_price = round(

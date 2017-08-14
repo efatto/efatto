@@ -68,7 +68,7 @@
                     </group>
                     <group col="2" colspan="2">
                         <field name="default_sale_discount" attrs="{'readonly':[('state','not in',['draft',])]}" nolabel="1"/>
-                        <button string="Update discount" name="partner_default_sale_discount.sale_discount_update" type="object" icon="gtk-ok" attrs="{'invisible':[('state','not in',['draft',])]}"/>
+                        <button string="Update discount" name="sale_discount_update" type="object" icon="gtk-ok" attrs="{'invisible':[('state','not in',['draft',])]}"/>
                     </group>
                     <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
 
@@ -90,7 +90,7 @@
                                 groups="product.group_uom" options='{"no_open": True}'/>
                             <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
                             <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
-                            <field name="price_unit" string="Unit Price" digits="[6,0]"/>
+                            <field name="price_unit" string="Pr.U." digits="[5,0]"/>
                             <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" invisible="1"/>
                             <field name="discount" string="Disc. %" digits="[2,0]" groups="sale.group_discount_per_so_line" invisible="0"/>
                             <field name="price_subtotal" invisible="1"/>

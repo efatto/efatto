@@ -258,8 +258,8 @@ msgstr "Termini e condizioni..."
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
-msgid "Unit Price"
-msgstr "Pr/un."
+msgid "Pr.U."
+msgstr "Pr.U."
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form

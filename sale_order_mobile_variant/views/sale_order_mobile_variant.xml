@@ -29,7 +29,9 @@
                 </header>
                 <sheet>
                     <field name="partner_id" attrs="{'required': True}" nolabel="1" placeholder="Partner" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                    <group colspan="1" col="2">
                     <field name="shipping_advise" widget="selection"/>
+                    </group>
                     <field name="scan" nolabel="1" placeholder="Scan QR Code"/>
                     <field name="is_combination" invisible="1"/>
                     <group>
@@ -64,6 +66,10 @@
                             <field name="price_unit" nolabel="1" readonly="1"/>
                         </group>
                     </group>
+                    <group col="2" colspan="2">
+                        <field name="default_sale_discount" attrs="{'readonly':[('state','not in',['draft',])]}" nolabel="1"/>
+                        <button string="Update discount" name="partner_default_sale_discount.sale_discount_update" type="object" icon="gtk-ok" attrs="{'invisible':[('state','not in',['draft',])]}"/>
+                    </group>
                     <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
 
                     <field name="order_line">
@@ -75,7 +81,7 @@
                                 groups="base.group_user"
                                 on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
                             <field name="name"/>
-                            <field name="product_uom_qty" string="Pz"
+                            <field name="product_uom_qty" string="Pz" digits="[6,0]"
                                 context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
                                 on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
                             <field name="product_uom" invisible="1"
@@ -84,9 +90,9 @@
                                 groups="product.group_uom" options='{"no_open": True}'/>
                             <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
                             <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
-                            <field name="price_unit"/>
+                            <field name="price_unit" string="Unit Price" digits="[6,0]"/>
                             <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" invisible="1"/>
-                            <field name="discount" groups="sale.group_discount_per_so_line" invisible="1"/>
+                            <field name="discount" string="Disc. %" digits="[2,0]" groups="sale.group_discount_per_so_line" invisible="0"/>
                             <field name="price_subtotal" invisible="1"/>
                         </tree>
                     </field>

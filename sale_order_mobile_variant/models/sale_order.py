@@ -439,6 +439,7 @@ class SaleOrder(models.Model):
                 'product_uom': product_id.product_tmpl_id.uom_id.id,
                 'state': 'draft',
                 'delay': 0.0,
+                'discount': self.default_sale_discount,
             })
 
         # clean fields invisibles

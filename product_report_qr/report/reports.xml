@@ -39,7 +39,7 @@
             <field name="report_type">aeroo</field>
             <field name="tml_source">file</field>
             <field name="in_format">oo-odt</field>
-            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_doc_odt')"></field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
             <field name="parser_loc">product_report_qr/models/parser.py</field>
             <field name="report_rml">product_report_qr/report/sale_report4.odt</field>
             <field name="parser_state">loc</field>

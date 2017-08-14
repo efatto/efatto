@@ -60,17 +60,17 @@
                     <field name="stitching_value_ids" invisible="1"/>
                     <field name="stitching_value_id" invisible="1"/>
                     <field name="product" nolabel="1" placeholder="Product"/>
-                    <group>
-                        <group colspan="2" col="2">
-                            <field name="product_qty" nolabel="1"/>
-                            <field name="price_unit" nolabel="1" readonly="1"/>
-                        </group>
+
+                    <group colspan="1" col="2">
+                        <field name="product_qty" nolabel="0"/>
+                        <field name="price_unit" readonly="1" nolabel="0"/>
+                        <field name="default_sale_discount" attrs="{'readonly':[('state','not in',['draft',])]}" nolabel="0" string="Discount (%)"/>
                     </group>
-                    <group col="2" colspan="2">
-                        <field name="default_sale_discount" attrs="{'readonly':[('state','not in',['draft',])]}" nolabel="1"/>
+
+                    <group col="2" colspan="1">
                         <button string="Update discount" name="sale_discount_update" type="object" icon="gtk-ok" attrs="{'invisible':[('state','not in',['draft',])]}"/>
+                        <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
                     </group>
-                    <button name="add_product_to_order" type="object" states="draft" string="Add product in order" groups="base.group_user"/>
 
                     <field name="order_line">
                         <tree string="Sales Order Lines" editable="bottom">

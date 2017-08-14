@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-14 16:01+0000\n"
-"PO-Revision-Date: 2017-08-14 16:01+0000\n"
+"POT-Creation-Date: 2017-08-14 17:03+0000\n"
+"PO-Revision-Date: 2017-08-14 17:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,11 @@ msgstr "Sc.%"
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Discount (%)"
+msgstr "Sconto (%)"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
 msgstr "Se non si esegue \"Aggiungi nel Preventivo\", il prezzo esatto verrà calcolato quando la fatturazione è basata sugli ordini di consegna."
 
@@ -115,6 +120,11 @@ msgstr "Partner"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Payment term"
 msgstr "Modalità di pagamento"
+
+#. module: sale_order_mobile_variant
+#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
+msgid "Pr.U."
+msgstr "Pr.U."
 
 #. module: sale_order_mobile_variant
 #: model:ir.actions.report.xml,name:sale_order_mobile_variant.report_sale_order_mobile_variant
@@ -255,11 +265,6 @@ msgstr "Immagine template"
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
 msgid "Terms and conditions..."
 msgstr "Termini e condizioni..."
-
-#. module: sale_order_mobile_variant
-#: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form
-msgid "Pr.U."
-msgstr "Pr.U."
 
 #. module: sale_order_mobile_variant
 #: view:sale.order:sale_order_mobile_variant.sale_order_mobile_variant_form

@@ -19,6 +19,8 @@ class SaleOrder(models.Model):
     product_template_id = fields.Many2one('product.template')
     product_template_image = fields.Binary(
         related='product_template_id.image_medium')
+    product_template_image_bis = fields.Binary(
+        related='product_template_id.image_medium')
     product_attribute_line_id = fields.Many2one(
         'product.attribute.line',
         domain="[('product_tmpl_id','=',product_template_id)]"
@@ -65,6 +67,10 @@ class SaleOrder(models.Model):
     )
     product_attribute_image = fields.Binary(
         related='product_attribute_value_id.image')
+    product_attribute_image_bis = fields.Binary(
+        related='product_attribute_value_id.image')
+    product_attribute_image1 = fields.Binary(
+        related='product_attribute_value1_id.image')
     price_unit = fields.Float(string='Price unit',
                               digits_compute=dp.get_precision('Product Price'))
     product = fields.Char()

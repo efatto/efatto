@@ -22,7 +22,10 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'description': 'Account Invoice Partner default',
+    'description': 'This module add ability to select in partner '
+                   'purchase and sale accounts and products default, which '
+                   'will be automatically added to lines during invoice '
+                   'creation.',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [

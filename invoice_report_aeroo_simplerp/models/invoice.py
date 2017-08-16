@@ -437,38 +437,37 @@ class Parser(report_sxw.rml_parse):
             else:
                 total_amount += line.product_uom_qty * line.price_unit
             total_subprices += line.price_subtotal
-        for line in (l for l in lines if l.product_id.is_discount):
+        for line in (l for l in lines if
+                     l.product_id.service_type == 'discount'):
             total_subprices += line.price_subtotal
         return total_amount - total_subprices
 
     def _get_total_goods_amount(self, lines):
         total_goods_amount = 0.0
         for line in (l for l in lines if not l.is_delivery):
-            if not line.product_id.is_transport and \
-                    not line.product_id.is_contribution and \
-                    not line.product_id.is_other and \
-                    not line.product_id.is_discount:
+            if not line.product_id.service_type in [
+                            'transport', 'contribution', 'other', 'discount']:
                 total_goods_amount += line.price_subtotal
         return total_goods_amount
 
     def _get_total_other_amount(self, lines):
         total_other_amount = 0.0
-        for line in (l for l in lines if l.product_id.is_other):
+        for line in (l for l in lines if l.product_id.service_type == 'other'):
             total_other_amount += line.price_subtotal
         return total_other_amount
 
     def _get_total_contribution_amount(self, lines):
         total_contribution_amount = 0.0
-        for line in (l for l in lines if l.product_id.is_contribution):
+        for line in (l for l in lines if l.product_id.service_type
+                     == 'contribution'):
             total_contribution_amount += line.price_subtotal
         return total_contribution_amount
 
     def _get_total_transport_amount(self, lines):
         total_transport_amount = 0.0
-        for line in (l for l in lines if l.is_delivery):
-            if not line.product_id.is_transport:
-                total_transport_amount += line.price_subtotal
-        for line in (l for l in lines if l.product_id.is_transport):
+        for line in (l for l in lines if l.product_id.service_type ==
+                     'transport' or l.is_delivery and not
+                     l.product_id.service_type == 'contribution'):
             total_transport_amount += line.price_subtotal
         return total_transport_amount
 

@@ -22,7 +22,7 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'description': 'MRP operation tree',
+    'description': 'Add to MRP operation tree button to manage production.',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [

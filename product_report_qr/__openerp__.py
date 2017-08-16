@@ -28,6 +28,7 @@
         'product_types',
         'report_aeroo',
         'report_branding',
+        'sale_partner_default',
     ],
     'data': [
         'report/reports.xml',

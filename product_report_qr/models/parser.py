@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp.report import report_sxw
+from openerp import fields
 try:
     import qrcode
 except ImportError:
@@ -37,6 +38,36 @@ class Parser(report_sxw.rml_parse):
         value = code_stream.getvalue().encode(encoding)
         code_stream.close()
         return value
+
+    def _get_price(self, product_template_id, partner_id, ctg_name):
+        if not partner_id:
+            raise Exception('No sale partner default configured in company!')
+        price = False
+        price_text = ''
+        pricelist_id = partner_id.property_product_pricelist
+        if not pricelist_id:
+            raise Exception('No pricelist configured in sale partner default!')
+        if pricelist_id and product_template_id:
+            attribute_line_ids = self.pool['product.attribute.line'].search(
+                self.cr, self.uid, [
+                ('product_tmpl_id', '=', product_template_id.id),
+                ('attribute_id.name', '=', ctg_name)
+            ])
+            if attribute_line_ids:
+                attribute_line_id = self.pool['product.attribute.line'].browse(
+                    self.cr, self.uid, attribute_line_ids[0]
+                )
+                price = pricelist_id.with_context({
+                    'uom': product_template_id.uom_id.id,
+                    'date': fields.Date.today(),
+                    'price_extra': attribute_line_id.price_extra if attribute_line_id else 0.0,
+                }).template_price_get(
+                    product_template_id.id, 1.0, partner_id.id)[pricelist_id.id]
+
+            if price:
+                price_text = '010' + str(int(price)) + '/00'
+
+        return price_text
 
     def _get_labels(self, group_length=0):
         group_label = {}
@@ -84,16 +115,26 @@ class Parser(report_sxw.rml_parse):
                         })
                     labels += [group_label]
         elif self.name == 'product.template.labels':
+            company_id = self.localcontext['company']
+            partner_id = company_id.sale_partner_default
             for product in self.pool['product.template'].browse(
                     self.cr, self.uid, self.ids):
                 group_label.update({
                     i: {
                         'default_code': product.prefix_code and
-                                        product.prefix_code or
-                                        product.name and
-                                        product.name or False,
+                        product.prefix_code or
+                        product.name and
+                        product.name or False,
                         'name': product.name and
-                                product.name[:32] or '',
+                        product.name[:32] or '',
+                        'price_A': self._get_price(
+                            product, partner_id, 'CAT. A'),
+                        'price_B': self._get_price(
+                            product, partner_id, 'CAT. B'),
+                        'price_C': self._get_price(
+                            product, partner_id, 'CAT. C'),
+                        'price_D': self._get_price(
+                            product, partner_id, 'CAT. D'),
                     }
                 })
                 i += 1
@@ -107,6 +148,10 @@ class Parser(report_sxw.rml_parse):
                         f: {
                             'default_code': '',
                             'name': '',
+                            'price_A': '',
+                            'price_B': '',
+                            'price_C': '',
+                            'price_D': '',
                         }
                     })
                 labels += [group_label]
@@ -116,9 +161,9 @@ class Parser(report_sxw.rml_parse):
                 group_label.update({
                     i: {
                         'default_code': product.default_code and
-                                        product.default_code or
-                                        product.name and
-                                        product.name or False,
+                        product.default_code or
+                        product.name and
+                        product.name or False,
                         'name': product.product_tmpl_id.name and
                                 product.product_tmpl_id.name[:32] or '',
                     }

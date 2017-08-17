@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, api, fields
+import openerp.addons.decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
@@ -44,6 +45,12 @@ class ProductProduct(models.Model):
                 product.product_tmpl_id.product_pack_id else \
                 product.product_tmpl_id.weight_net
 
-    volume = fields.Float(compute='_get_volume')
-    weight = fields.Float(compute='_get_weight')
-    weight_net = fields.Float(compute='_get_weight_net')
+    volume = fields.Float(compute='_get_volume',
+                          digits_compute=dp.get_precision('Stock Volume'),
+                          digits=dp.get_precision('Stock Volume'))
+    weight = fields.Float(compute='_get_weight',
+                          digits_compute=dp.get_precision('Stock Weight'),
+                          digits=dp.get_precision('Stock Weight'))
+    weight_net = fields.Float(compute='_get_weight_net',
+                              digits_compute=dp.get_precision('Stock Weight'),
+                              digits=dp.get_precision('Stock Weight'))

@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'sale_order_weight',
     ],
     'data': [
         'views/product.xml',

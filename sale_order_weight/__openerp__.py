@@ -31,6 +31,7 @@
         'l10n_it_ddt',
     ],
     'data': [
+        'data/stock.xml',
         'views/sale_order_view.xml',
     ],
     'installable': True

@@ -12,24 +12,30 @@ class SaleOrder(models.Model):
     weight = fields.Float(
         compute='_compute_weight',
         help="The weight is computed when the order is done.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'))
     net_weight = fields.Float(
         compute='_compute_weight',
         help="The weight is computed when the order is done.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'))
     volume = fields.Float(
         compute='_compute_weight',
         help="The volume is computed when the order is done.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Volume'),
+        digits=dp.get_precision('Stock Volume'))
     weight_custom = fields.Float(
         help="Put here weight when computed amount is not exact.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'))
     net_weight_custom = fields.Float(
         help="Put here net weight when computed amount is not exact.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'))
     volume_custom = fields.Float(
         help="Put here net volume when computed amount is not exact.",
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits_compute=dp.get_precision('Stock Volume'),
+        digits=dp.get_precision('Stock Volume'))
     compute_weight = fields.Boolean(default=True)
 
     @api.multi

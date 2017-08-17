@@ -2,6 +2,17 @@
 <openerp>
     <data>
 
+        <record id="view_ddt_type_tree_picking_type" model="ir.ui.view">
+            <field name="name">stock.ddt.type.tree.ext</field>
+            <field name="model">stock.ddt.type</field>
+            <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="invoiceable"/>
+                </field>
+            </field>
+        </record>
+
         <record id="view_ddt_type_form_picking_type" model="ir.ui.view">
             <field name="name">stock.ddt.type.form.picking.type</field>
             <field name="model">stock.ddt.type</field>

@@ -19,7 +19,11 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
+    @api.depends('product_tmpl_id.product_pack_id.weight',
+                 'product_tmpl_id.weight',
+                 'product_tmpl_id.product_pack_id',
+                 'product_tmpl_id.product_bag_id.weight',
+                 'product_tmpl_id.product_bag_id')
     def _get_weight(self):
         for product in self:
             # the weight is the sum of package if exists and product_template
@@ -30,7 +34,11 @@ class ProductProduct(models.Model):
             product.weight += product.product_tmpl_id.product_bag_id.weight \
                 if product.product_tmpl_id.product_bag_id else 0.0
 
-    @api.multi
+    @api.depends('product_tmpl_id.product_pack_id.weight_net',
+                 'product_tmpl_id.weight_net',
+                 'product_tmpl_id.product_pack_id',
+                 'product_tmpl_id.product_bag_id.weight_net',
+                 'product_tmpl_id.product_bag_id')
     def _get_weight_net(self):
         for product in self:
             # the weight is the sum of package if exists and product_template

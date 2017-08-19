@@ -499,6 +499,6 @@ class Parser(report_sxw.rml_parse):
             if line.product_id.product_pack_id:
                 code += " | " + line.product_id.product_pack_id.default_code
         #check if product_tmpl_id is possible
-        elif line.product_tmpl_id and line.product_tmpl_id.prefix_code:
-            code = line.product_tmpl_id.prefix_code.replace('XXXX','')
+        # elif line.product_tmpl_id and line.product_tmpl_id.prefix_code:
+        #     code = line.product_tmpl_id.prefix_code.replace('XXXX','')
         return code

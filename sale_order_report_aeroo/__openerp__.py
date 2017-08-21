@@ -30,7 +30,7 @@
         'report_aeroo',
         'report_branding',
         'sale',
-        'invoice_report_aeroo_simplerp',
+        'report_aeroo_parser',
     ],
     'data': [
         'data/reports.xml',

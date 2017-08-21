@@ -28,7 +28,7 @@
         'account',
         'report_aeroo',
         'report_branding',
-        'invoice_report_aeroo_simplerp',
+        'report_aeroo_parser',
         'purchase',
     ],
     'data': [

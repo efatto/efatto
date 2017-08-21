@@ -1,3 +1,4 @@
+from decimal import Decimal
 import datetime
 import dateutil.relativedelta as relativedelta
 import logging
@@ -46,7 +47,8 @@ def format_tz(pool, cr, uid, dt, tz=False, format=False, context=None):
 
 
 def format_amount(pool, cr, uid, amount, currency, context):
-    fmt = "%.{0}f".format(2)
+    dec = Decimal(str(currency.rounding)).as_tuple().exponent
+    fmt = "%.{0}f".format(abs(dec))
     lang = context.get("lang") or 'en_US'
     if lang:
         res_lang = pool.get('res.lang')
@@ -106,7 +108,8 @@ try:
         # dateutil.relativedelta is an old-style class and cannot be directly
         # instanciated wihtin a jinja2 expression, so a lambda "proxy" is
         # is needed, apparently.
-        'relativedelta': lambda *a, **kw : relativedelta.relativedelta(*a, **kw),
+        'relativedelta': lambda *a, **kw : relativedelta.relativedelta(
+            *a, **kw),
     })
 except ImportError:
     _logger.warning("jinja2 not available, templating features will not work!")
@@ -144,18 +147,13 @@ class EmailTemplate(osv.osv):
 
         # prepare template variables
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        records = self.pool[model].browse(cr, uid, res_ids, context=context) or [
-            None]
+        records = self.pool[model].browse(cr, uid, res_ids, context=context) \
+                  or [None]
         variables = {
-            'format_tz': lambda dt, tz=False, format=False,
-                                context=context: format_tz(self.pool, cr, uid, dt,
-                                                           tz, format, context),
-            'format_amount': lambda amount, currency,
-                                    context=context: format_amount(self.pool,
-                                                                   cr, uid,
-                                                                   amount,
-                                                                   currency,
-                                                                   context),
+            'format_tz': lambda dt, tz=False, format=False, context=context:
+            format_tz(self.pool, cr, uid, dt, tz, format, context),
+            'format_amount': lambda amount, currency, context=context:
+            format_amount(self.pool, cr, uid, amount, currency, context),
             'user': user,
             'ctx': context,  # context kw would clash with mako internals
         }

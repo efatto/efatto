@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,13 +19,14 @@
 #
 {
     'name': 'Mail catchall alias remove',
-    'version': '8.0.0.0.1',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
-    Remove mail.catchall.alias from parameters.
+    Remove mail.catchall.alias from parameters, instead it will be used for
+    reply_to of outgoing mail.
     """,
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     "depends": [
         'mail',

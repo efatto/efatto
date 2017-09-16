@@ -22,7 +22,7 @@ msgstr ""
 #. module: website
 #: view:website:website.snippets
 msgid "\"OpenERP\""
-msgstr "\"SimplERP\""
+msgstr "\"Odoo\""
 
 #. module: website
 #. openerp-web
@@ -381,7 +381,7 @@ msgstr "Banner"
 #. module: website
 #: view:website:website.snippets
 msgid "Banner Odoo Image"
-msgstr "Banner Immagine SimplERP"
+msgstr "Banner Immagine Odoo"
 
 #. module: website
 #. openerp-web
@@ -1708,7 +1708,7 @@ msgid ""
 "Odoo provides essential platform for our project management.\n"
 "                                                    Things are better organized and more visible with it."
 msgstr ""
-"SimplERP ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
+"Odoo ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
 "                                                   Potrai organizzare meglio le tue attività e renderle più visibili."
 
 #. module: website
@@ -1717,7 +1717,7 @@ msgid ""
 "Odoo provides essential platform for our project management.\n"
 "                                            Things are better organized and more visible with it."
 msgstr ""
-"SimplERP ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
+"Odoo ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
 "                                                   Potrai organizzare meglio le tue attività e renderle più visibili."
 
 #. module: website
@@ -1726,7 +1726,7 @@ msgid ""
 "Odoo provides essential platform for our project management.\n"
 "                                Things are better organized and more visible with it."
 msgstr ""
-"SimplERP ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
+"Odoo ti fornisce un sistema elementare per la gestione dei tuoi progetti.\n"
 "                                                   Potrai organizzare meglio le tue attività e renderle più visibili."
 
 #. module: website
@@ -1735,7 +1735,7 @@ msgid ""
 "Odoo's POS is a web application that can run on any device that\n"
 "                    can display websites with little to no setup required."
 msgstr ""
-"Il POS di SimplERP è un'applicazione Web che può girare su ogni dispositivo\n"
+"Il POS di Odoo è un'applicazione Web che può girare su ogni dispositivo\n"
 "                  in grado di visualizzare siti Web e non richiede una complicata configurazione iniziale."
 
 #. module: website
@@ -2907,7 +2907,7 @@ msgstr "Se questa vista è un modello di pagina Web (completo)"
 #. module: website
 #: view:website:website.snippets
 msgid "Which hardware does Odoo POS support?"
-msgstr "Quale hardware viene supportato dal POS di SimplERP?"
+msgstr "Quale hardware viene supportato dal POS di Odoo?"
 
 #. module: website
 #: view:website:website.snippets
@@ -2926,7 +2926,7 @@ msgid ""
 "                            synchronize your agenda and easily keep in touch with your colleagues,\n"
 "                            partners and other people involved in projects or business discussions."
 msgstr ""
-"Con la completa integrazione di SimplERP, potrai agevolmente gestire le tue riunioni,\n"
+"Con la completa integrazione di Odoo, potrai agevolmente gestire le tue riunioni,\n"
 "                           pianificare le telefonate, creare appuntamenti ricorrenti,\n"
 "                           sincronizzare la tua agenda e rimanere in contatto con i tuoi colleghi, \n"
 "                           partner, collaboratori ed altre persone coinvolte nei tuoi progetti e nei tuoi affari."

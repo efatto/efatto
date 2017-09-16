@@ -69,7 +69,7 @@ msgstr "Tag Accettati"
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track19
 msgid "Advanced lead management with Odoo: tips and tricks from the fields"
-msgstr "Gestione avanzata dei Lead con SimplERP: tips & tricks dai campi"
+msgstr "Gestione avanzata dei Lead con Odoo: tips & tricks dai campi"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track13
@@ -339,7 +339,7 @@ msgstr "Gestisce il sommario (numero di messaggi, ...) di Chatter. Questo sommar
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track18
 msgid "How to build your marketing strategy for the purpose of generating leads with Odoo."
-msgstr "Come costruire la tua strategia di marketing per generare Lead e opportunità con SimplERP."
+msgstr "Come costruire la tua strategia di marketing per generare Lead e opportunità con Odoo."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track1
@@ -349,7 +349,7 @@ msgstr "Come sviluppare un modulo per il sito web."
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track4
 msgid "How to develop automated tests in the Odoo web client."
-msgstr "Com sviluppare test automatici nel web client di SimplERP."
+msgstr "Com sviluppare test automatici nel web client di Odoo."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track3
@@ -359,12 +359,12 @@ msgstr "Come sviluppare applicazioni che restituiscono dati in tempo reale: la L
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track2
 msgid "How to integrate hardware materials with the Odoo point of sale."
-msgstr "Come integrare le periferiche nel POS di SimplERP."
+msgstr "Come integrare le periferiche nel POS di Odoo."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track9
 msgid "How to use Odoo for your HR process: recruitment, leaves management, appraisals, expenses, etc."
-msgstr "Come utilizzare SimplERP per la gestione delle Risorse Umane: reclutamento, gestione dei permessi, valutazioni, spese, ecc..."
+msgstr "Come utilizzare Odoo per la gestione delle Risorse Umane: reclutamento, gestione dei permessi, valutazioni, spese, ecc..."
 
 #. module: website_event_track
 #: field:event.sponsor,id:0 field:event.sponsor.type,id:0 field:event.tag,id:0 field:event.track,id:0 field:event.track.location,id:0
@@ -390,7 +390,7 @@ msgstr "E' un Follower"
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track23
 msgid "Key Success factors selling Odoo."
-msgstr "Fattori di successo nell'installazione e configurazione di SimplERP"
+msgstr "Fattori di successo nell'installazione e configurazione di Odoo"
 
 #. module: website_event_track
 #: field:event.track,message_last_post:0
@@ -442,12 +442,12 @@ msgstr "Pranzo"
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track22
 msgid "Manage your KPIs (recomended to openERP partners)."
-msgstr "Gestire i KPI (raccomandato per i partner SimplERP)."
+msgstr "Gestire i KPI (raccomandato per i partner Odoo)."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track12
 msgid "Manage your events with Odoo, the new training modules."
-msgstr "Gestisci i tuoi eventi con SimplERP: il nuovo modulo dedicato alla formazione."
+msgstr "Gestisci i tuoi eventi con Odoo: il nuovo modulo dedicato alla formazione."
 
 #. module: website_event_track
 #: selection:event.track,priority:0
@@ -513,12 +513,12 @@ msgstr "Odoo Mobile per la gestione delle Note, delle Riunioni e dei Messaggi."
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track28
 msgid "Odoo Status & Strategy 2014"
-msgstr "SimplERP 2016"
+msgstr "Odoo 2016"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track16
 msgid "Odoo as your Enterprise Social Network."
-msgstr "SimplERP - Enterprise Social Network"
+msgstr "Odoo - Enterprise Social Network"
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track27
@@ -730,7 +730,7 @@ msgstr "Grazie per la tua proposta."
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track17
 msgid "The Art of Making an Odoo Demo."
-msgstr "L'Arte di Preparare una Demo con SimplERP."
+msgstr "L'Arte di Preparare una Demo con Odoo."
 
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track29
@@ -740,7 +740,7 @@ msgstr "La nuova strategia di marketing."
 #. module: website_event_track
 #: model:event.track,name:website_event_track.event_track5
 msgid "The new way to promote your modules in the Apps platform and Odoo website."
-msgstr "Condividi le tue esperienze con gli strumenti SimplERP"
+msgstr "Condividi le tue esperienze con gli strumenti Odoo"
 
 #. module: website_event_track
 #: view:website:website_event_track.event_track_proposal

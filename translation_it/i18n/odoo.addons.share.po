@@ -337,8 +337,8 @@ msgid ""
 "Odoo is a powerful and user-friendly suite of Business Applications (CRM, Sales, HR, etc.)\n"
 "It is open source and can be found on https://www.odoo.com."
 msgstr ""
-"SimplERP è un insieme di moduli e applicazioni corrette, sviluppate, modificate, tradotte, localizzate ed integrate secondo le necessità delle PMI italiane.\n"
-"Per ulteriori informazioni visita il sito http://www.simplerp.it"
+"Odoo è un insieme di moduli e applicazioni corrette, sviluppate, modificate, tradotte, localizzate ed integrate secondo le necessità delle PMI italiane.\n"
+"Per ulteriori informazioni visita il sito http://www.Odoo.com"
 
 #. module: share
 #: help:share.wizard,domain:0
@@ -522,7 +522,7 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
-"I documenti non sono stati allegati. È possibile vederle direttamente on-line sul server SimplERP all'indirizzo:\n"
+"I documenti non sono stati allegati. È possibile vederle direttamente on-line sul server Odoo all'indirizzo:\n"
 "    %s\n"
 "\n"
 

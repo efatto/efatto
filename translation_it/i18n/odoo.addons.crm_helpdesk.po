@@ -42,7 +42,7 @@ msgid ""
 "                history of the conversation with the customer.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\nFai click qui per creare una nuova Richiesta di Supporto.\n</p><p>\nL'helpdesk e il servizio di supporto permettono di conservare traccia dei tuoi interventi.\n</p><p>\nUtilizza il sistema di Helpdesk integrato in SimplERP per le attività di \nsupporto. Le richieste di supporto possono essere inoltre collegate ad una casella e ad un server di posta: \nLa ricezione di una mail in una specifica casella di posta può generare una nuova richieste. Ciascuna richiesta conserva\ne traccia automaticamente lo storico della conversazione con il cliente.\n</p>\n            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nFai click qui per creare una nuova Richiesta di Supporto.\n</p><p>\nL'helpdesk e il servizio di supporto permettono di conservare traccia dei tuoi interventi.\n</p><p>\nUtilizza il sistema di Helpdesk integrato in Odoo per le attività di \nsupporto. Le richieste di supporto possono essere inoltre collegate ad una casella e ad un server di posta: \nLa ricezione di una mail in una specifica casella di posta può generare una nuova richieste. Ciascuna richiesta conserva\ne traccia automaticamente lo storico della conversazione con il cliente.\n</p>\n            "
 
 #. module: crm_helpdesk
 #: field:crm.helpdesk,active:0

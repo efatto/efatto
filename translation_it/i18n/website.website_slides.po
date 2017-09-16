@@ -95,7 +95,7 @@ msgstr ""
 "        <td style=\"width: 600px; text-align:center\" valign=\"center\">\n"
 "            <a href=\"${user.company_id.website}\" style=\"text-decoration:"
 "none\">\n"
-"                <img alt=\"SimplERP\" src=\"${ctx['base_url']}/logo.png\" "
+"                <img alt=\"Odoo\" src=\"${ctx['base_url']}/logo.png\" "
 "style=\"display:block; border:none; min-height:60px; margin:0 auto;\">\n"
 "            </a>\n"
 "        </td>\n"
@@ -223,7 +223,7 @@ msgstr ""
 "        <td style=\"width: 600px; text-align:center\" valign=\"center\">\n"
 "            <a href=\"${user.company_id.website}\" style=\"text-decoration:"
 "none\">\n"
-"                <img alt=\"SimplERP\" src=\"${ctx['base_url']}/logo.png\" "
+"                <img alt=\"Odoo\" src=\"${ctx['base_url']}/logo.png\" "
 "style=\"display:block; border:none; min-height:60px; margin:0 auto;\">\n"
 "            </a>\n"
 "        </td>\n"
@@ -483,10 +483,10 @@ msgstr ""
 "sito le funzioni aziendali avanzate: e-Commerce, eventi, blog, "
 "reclutamento, referenze dei clienti, marketing, ecc.\n"
 "\n"
-"SimplERP è una applicazione open source, dedicata alle PMI italiane, in "
+"Odoo è una applicazione open source, dedicata alle PMI italiane, in "
 "Python / Javascript basata su bootstrap e Odoo.\n"
 "\n"
-"Per informazioni puoi visitare il nostro sito web http://www.simplerp.it"
+"Per informazioni puoi visitare il nostro sito web http://www.Odoo.com"
 
 #. module: website_slides
 #: field:slide.category,create_uid:0 field:slide.channel,create_uid:0
@@ -802,7 +802,7 @@ msgid ""
 msgstr ""
 "Intervista con Guy Christiaens, manager Finanziario di Alpinter, sul loro "
 "uso di Odoo.\n"
-"Scopri di più su Odoo e su SimplERP sul sito http://www.simplerp.it."
+"Scopri di più su Odoo e su Odoo sul sito http://www.Odoo.com."
 
 #. module: website_slides
 #. openerp-web
@@ -985,47 +985,47 @@ msgstr "Numero di Video"
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_3
 msgid "Odoo - The Voice of the Customer: Alpinter"
-msgstr "SimplERP - La voce ai clienti: Paar Architects"
+msgstr "Odoo - La voce ai clienti: Paar Architects"
 
 #. module: website_slides
 #: model:slide.category,name:website_slides.category_2
 msgid "Odoo Days"
-msgstr "SimplERP Unveiled"
+msgstr "Odoo Unveiled"
 
 #. module: website_slides
 #: model:slide.slide,description:website_slides.slide_2
 msgid "Odoo Experience - Register now https://www.odoo.com/event/304/"
-msgstr "SimplERP Experience - Registrati ora ai Webinars"
+msgstr "Odoo Experience - Registrati ora ai Webinars"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_0
 msgid "Odoo Explained"
-msgstr "SimplERP Senza Segreti"
+msgstr "Odoo Senza Segreti"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_6
 msgid "Odoo Marketing - part 1: ATTRACT"
-msgstr "SimplERP Marketing: Parte 1: ATTRACT"
+msgstr "Odoo Marketing: Parte 1: ATTRACT"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_7
 msgid "Odoo Marketing - part 1: ATTRACT_2"
-msgstr "SimplERP Marketing: Parte 1: ATTRACT_2"
+msgstr "Odoo Marketing: Parte 1: ATTRACT_2"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_8
 msgid "Odoo Marketing - part 1: ATTRACT_3"
-msgstr "SimplERP Marketing: Parte 1: ATTRACT_3"
+msgstr "Odoo Marketing: Parte 1: ATTRACT_3"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_2
 msgid "Odoo Open Days 2014"
-msgstr "SimplERP Global Business Network"
+msgstr "Odoo Global Business Network"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_10
 msgid "Odoo Roadmap & Strategy - Fabien Pinckaers"
-msgstr "SimplERP Roadmap - Marius Marolla & Sergio Corato"
+msgstr "Odoo Roadmap - Marius Marolla & Sergio Corato"
 
 #. module: website_slides
 #: model:slide.slide,description:website_slides.slide_6
@@ -1034,9 +1034,9 @@ msgid ""
 "close new leads. Check out our three-part video and discover more at www."
 "odoo.com"
 msgstr ""
-"L'applicazione dedicata al marketing, completamente integrata in SimplERP, "
+"L'applicazione dedicata al marketing, completamente integrata in Odoo, "
 "ti consente di convertire i Lead e chiudere le nuove Opportunità. "
-"Visualizza i nostri 3 video oppure vieni a trovarci su www.simplerp.it."
+"Visualizza i nostri 3 video oppure vieni a trovarci su www.Odoo.com."
 
 #. module: website_slides
 #: model:slide.slide,description:website_slides.slide_7
@@ -1048,9 +1048,9 @@ msgid ""
 "\n"
 "Video made by Miroslava Ganzarcikova and Sophia Eribo."
 msgstr ""
-"L'applicazione dedicata al marketing, completamente integrata in SimplERP, "
+"L'applicazione dedicata al marketing, completamente integrata in Odoo, "
 "ti consente di convertire i Lead e chiudere le nuove Opportunità. "
-"Visualizza i nostri 3 video oppure vieni a trovarci su www.simplerp.it."
+"Visualizza i nostri 3 video oppure vieni a trovarci su www.Odoo.com."
 
 #. module: website_slides
 #: model:slide.slide,description:website_slides.slide_5
@@ -1061,27 +1061,27 @@ msgid ""
 "\n"
 "More info - https://www.odoo.com/page/point-of-sale"
 msgstr ""
-"L'applicazione per la Gestione del Punto Vendita di SimplERP integra "
+"L'applicazione per la Gestione del Punto Vendita di Odoo integra "
 "un'interfaccia semplice e intuitiva. Il POS può essere utilizzato online o "
 "offile da iPad, tablet Android o PC.\n"
 "\n"
-"Tutte le informazioni su http://www.simplerp.it"
+"Tutte le informazioni su http://www.Odoo.com"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_9
 msgid "Open Days 2014 Infographic"
-msgstr "Infografica SimplERP Global Business Network Warm-Up 2015"
+msgstr "Infografica Odoo Global Business Network Warm-Up 2015"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_1
 msgid "Open Source Website Builder and eCommerce: OpenERP"
-msgstr "Website Builder e E-Commerce a portata di clic con odoo e SimplERP"
+msgstr "Website Builder e E-Commerce a portata di clic con odoo e Odoo"
 
 #. module: website_slides
 #: model:slide.slide,name:website_slides.slide_4
 msgid "OpenERP SEO - Boost Your Website Trafic"
 msgstr ""
-"SimplERP SEO Pro - Un'integrazione dedicata alla gestione automatica del "
+"Odoo SEO Pro - Un'integrazione dedicata alla gestione automatica del "
 "SEO per il tuo sito web"
 
 #. module: website_slides
@@ -1231,10 +1231,10 @@ msgid ""
 "\n"
 "http://odoo.com/start"
 msgstr ""
-"Gestisci la tua azienda con una suite di applicazioni integrate. SimplERP "
+"Gestisci la tua azienda con una suite di applicazioni integrate. Odoo "
 "può aiutarti!\n"
 "\n"
-"http://www.simplerp.it"
+"http://www.Odoo.com"
 
 #. module: website_slides
 #. openerp-web
@@ -1429,11 +1429,11 @@ msgid ""
 "\n"
 "Online demo and download: http://openerp.com"
 msgstr ""
-"La funzione di Promozione in SimplERP suggerisce parole chiave sulla base "
+"La funzione di Promozione in Odoo suggerisce parole chiave sulla base "
 "dei termini più ricercati in Google. Gli strumenti SEO sono pronti all'uso, "
 "senza alcuna configurazione necessaria.\n"
 "\n"
-"Scopri di più sul nostro sito http://www.simplerp.it"
+"Scopri di più sul nostro sito http://www.Odoo.com"
 
 #. module: website_slides
 #: sql_constraint:slide.slide:0

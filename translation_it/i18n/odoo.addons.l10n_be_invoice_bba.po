@@ -143,7 +143,7 @@ msgid ""
 "Please contact your OpenERP support channel."
 msgstr ""
 "Tipo di algoritmo '%s'  non supportato per la Comunicazione Strutturata!\n"
-"Contatta il servizio di supporto SimplERP!"
+"Contatta il servizio di supporto Odoo!"
 
 #. module: l10n_be_invoice_bba
 #: field:res.partner,out_inv_comm_algorithm:0

@@ -264,13 +264,13 @@ msgstr ""
 "                Fai clic qui per aggiungere una nuova Posizione\n"
 "              </p><p>\n"
 "                Definisci le Posizioni in modo che riflettano la struttura del tuo\n"
-"                magazzino e della tua organizzazione. SimplERP è in grado di gestire\n"
+"                magazzino e della tua organizzazione. Odoo è in grado di gestire\n"
 "                posizioni fisiche (magazzini, scaffali, contenitori ecc...), Posizioni relative ai partner\n"
 "                (clienti, fornitori) e posizioni virtuali (che generalmente vengono utilizzate\n"
 "                come contropartita nelle operazioni di magazzino).\n"
 "              </p><p>  \n"
-"                Ciascun operazione di magazzino in SimplERP muovere un prodotto da una posizione\n"
-"                ad un'altra. Per esempio: se ricevi alcuni prodotti non fornitore, SimplERP sposterà i prodotti\n"
+"                Ciascun operazione di magazzino in Odoo muovere un prodotto da una posizione\n"
+"                ad un'altra. Per esempio: se ricevi alcuni prodotti non fornitore, Odoo sposterà i prodotti\n"
 "                dalla posizione Fornitore alla posizione Magazzino. Ciascun report può essere eseguito su\n"
 "                operazioni fisiche, virtuali o di tipo partner.\n"
 "              </p>\n"
@@ -287,7 +287,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per inserire una nuova Regola di Riapprovvigionamento.\n"
 "              </p><p>\n"
-"                Questo strumento che consente di definire le regole di giacenza minima, in modo che SimplERP possa automaticamente creare bozze di ordini di produzione o di richieste di preventivo sulla base dei livelli di stock. Una volta che lo stock virtuale di un prodotto (= stock disponibile meno tutti gli ordini confermati ed i prodotti riservati) scendesse al di sotto della quantità minima, SimplERP genererà una richiesta di approvvigionamento per riportare lo stock alla quantità massima impostata.\n"
+"                Questo strumento che consente di definire le regole di giacenza minima, in modo che Odoo possa automaticamente creare bozze di ordini di produzione o di richieste di preventivo sulla base dei livelli di stock. Una volta che lo stock virtuale di un prodotto (= stock disponibile meno tutti gli ordini confermati ed i prodotti riservati) scendesse al di sotto della quantità minima, Odoo genererà una richiesta di approvvigionamento per riportare lo stock alla quantità massima impostata.\n"
 "</p>\n"
 "            "
 
@@ -396,7 +396,7 @@ msgstr ""
 "                Fai clic qui per creare una nuova Operazione di Magazzino. \n"
 "              </p><p>\n"
 "                La maggior parte delle operazioni vengono preparate automaticamente da\n"
-"                SimplERP sulla base delle regole logistiche configurate, ma è anche possibile\n"
+"                Odoo sulla base delle regole logistiche configurate, ma è anche possibile\n"
 "                inserirne alcune manualmente\n"
 "              </p>\n"
 "            "
@@ -753,7 +753,7 @@ msgstr "Ingombro"
 #: code:addons/stock/stock.py:1978
 #, python-format
 msgid "By changing this quantity here, you accept the new quantity as complete: Odoo will not automatically generate a back order."
-msgstr "Modificando qui la quantità, accetti che la nuova quantità risulti completa: SimplERP non genererà automaticamente un Ordine in Attesa."
+msgstr "Modificando qui la quantità, accetti che la nuova quantità risulti completa: Odoo non genererà automaticamente un Ordine in Attesa."
 
 #. module: stock
 #: help:stock.move,procure_method:0
@@ -4946,12 +4946,12 @@ msgstr "Quando il metodo è 'Fisso', questa posizione verrà utilizzata per stoc
 #. module: stock
 #: help:stock.warehouse.orderpoint,product_min_qty:0
 msgid "When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to bring the forecasted quantity to the Max Quantity."
-msgstr "Quando lo stock virtuale scende al di sotto della quantità minima impostata in questo campo, SimplERP genera un approvvigionamento per riportare la previsione di quantità alla quantità massima."
+msgstr "Quando lo stock virtuale scende al di sotto della quantità minima impostata in questo campo, Odoo genera un approvvigionamento per riportare la previsione di quantità alla quantità massima."
 
 #. module: stock
 #: help:stock.warehouse.orderpoint,product_max_qty:0
 msgid "When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity."
-msgstr "Quando lo stock virtuale scende al di sotto della quantità minima, SimplERP genera un approvvigionamento per riportare la quantità prevista a quella specificata come quantità massima."
+msgstr "Quando lo stock virtuale scende al di sotto della quantità minima, Odoo genera un approvvigionamento per riportare la quantità prevista a quella specificata come quantità massima."
 
 #. module: stock
 #: view:stock.change.product.qty:stock.view_change_product_quantity

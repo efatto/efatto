@@ -44,7 +44,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "            Fai clic qui per creare una nuova Campagna Marketing.\n"
 "          </p><p>\n"
-"            Lo strumento dedicato alle Campagne Marketing di SimplERP ti consente di automatizzare\n"
+"            Lo strumento dedicato alle Campagne Marketing di Odoo ti consente di automatizzare\n"
 "            le comunicazioni con i tuoi prospect. Puoi segmentare (verificare un gruppo di condizioni)\n"
 "            i tuoi Lead ed i tuoi partner in modo da indirizzare la Campagna in modo mirato.\n"
 "          </p><p>\n"
@@ -966,7 +966,7 @@ msgstr "Costi variabili"
 #. module: marketing_campaign
 #: model:email.template,subject:marketing_campaign.email_template_1
 msgid "Welcome to the Odoo Partner Channel!"
-msgstr "Benvenuti nel Canale dedicato ai partner SimplERP"
+msgstr "Benvenuti nel Canale dedicato ai partner Odoo"
 
 #. module: marketing_campaign
 #: selection:marketing.campaign,mode:0

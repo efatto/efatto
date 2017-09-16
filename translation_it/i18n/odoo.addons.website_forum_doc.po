@@ -195,12 +195,12 @@ msgstr "Errore! Non è possibile creare categorie ricorsive."
 #. module: website_forum_doc
 #: view:website:website_forum_doc.promote_question
 msgid "Explain how to configure in Odoo"
-msgstr "Spiega come configurare in SimplERP"
+msgstr "Spiega come configurare in Odoo"
 
 #. module: website_forum_doc
 #: view:website:website_forum_doc.promote_question
 msgid "Explain how to implement it in Odoo"
-msgstr "Spiega come implementarlo in SimplERP"
+msgstr "Spiega come implementarlo in Odoo"
 
 #. module: website_forum_doc
 #: field:forum.documentation.toc,forum_id:0

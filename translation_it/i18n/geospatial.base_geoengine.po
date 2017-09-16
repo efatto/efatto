@@ -281,17 +281,17 @@ msgstr "Numero Classe"
 #. module: base_geoengine
 #: selection:geoengine.raster.layer,raster_type:0
 msgid "OpenERP -- not implemented"
-msgstr "SimplERP - Non Implementato"
+msgstr "Odoo - Non Implementato"
 
 #. module: base_geoengine
 #: view:geoengine.raster.layer:base_geoengine.geo_raster_view_form
 msgid "OpenERP layer data (Not implemented)"
-msgstr "Livello Dati SimplERP (non implementato)"
+msgstr "Livello Dati Odoo (non implementato)"
 
 #. module: base_geoengine
 #: field:geoengine.raster.layer,field_id:0
 msgid "OpenERP layer field to use"
-msgstr "Campo Livello da Utilizzare in SimplERP"
+msgstr "Campo Livello da Utilizzare in Odoo"
 
 #. module: base_geoengine
 #: selection:geoengine.raster.layer,raster_type:0

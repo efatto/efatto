@@ -74,7 +74,7 @@ msgstr ""
 "<p>\n"
 "                Non è stata ancora svolta nessuna attività su questo contratto.\n"
 "              </p><p>\n"
-"               In SimplERP i contratti ed i progetti sono implementati utilizzando la\n"
+"               In Odoo i contratti ed i progetti sono implementati utilizzando la\n"
 "               contabilità analitica. potrai così tracciare i costi e le entrate al fine di\n"
 "               analizzare in modo semplice ed efficace i margini.\n"
 "              </p><p>\n"
@@ -521,7 +521,7 @@ msgstr "Lavoro Svolto nell'ultimo periodo"
 #. module: hr_timesheet
 #: model:ir.actions.act_window,help:hr_timesheet.action_define_analytic_structure
 msgid "You should create an analytic account structure depending on your needs to analyse costs and revenues. In Odoo, analytic accounts are also used to track customer contracts."
-msgstr "Dovresti creare una struttura di contabilità analitica adeguata alle tue necessità di analisi dei costi e delle entrate. in SimplERP la contabilità analitica viene anche utilizzata per tracciare i contratti con i clienti."
+msgstr "Dovresti creare una struttura di contabilità analitica adeguata alle tue necessità di analisi dei costi e delle entrate. in Odoo la contabilità analitica viene anche utilizzata per tracciare i contratti con i clienti."
 
 #. module: hr_timesheet
 #: view:hr.timesheet.report:hr_timesheet.view_hr_timesheet_report_search

@@ -1240,7 +1240,7 @@ msgstr ""
 "Driver Hardware ESC/POS\n"
 "=======================\n"
 "\n"
-"Questo modulo consente a SimplERP di stampare tramite stampanti compatibili ESC/POS e di aprire\n"
+"Questo modulo consente a Odoo di stampare tramite stampanti compatibili ESC/POS e di aprire\n"
 "i cassetti di registratori di cassa ESC/POS nel punto vendita ed in altri moduli\n"
 "che richiedono queste funzionalità\n"
 "\n"
@@ -2442,7 +2442,7 @@ msgid ""
 "  need or want an online import can avoid it being available to users.\n"
 msgstr ""
 "\n"
-"Importazione file per SimplERP.\n"
+"Importazione file per Odoo.\n"
 "===============================\n"
 
 #. module: base
@@ -2942,7 +2942,7 @@ msgstr ""
 "===============\n"
 "Questo modulo visualizza una semplice Homepage del PosBox in cui viene spiegato il funzionamento\n"
 "dell'hardware e visualizzato il suo stato.\n"
-"Se attivi questo modulo, non sarai più in grado di accedere alla normale interfaccia di SimplERP.\n"
+"Se attivi questo modulo, non sarai più in grado di accedere alla normale interfaccia di Odoo.\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hw_posbox_upgrade
@@ -3428,7 +3428,7 @@ msgid ""
 "===================================================\n"
 msgstr ""
 "\n"
-"Il kernel SimplERP, necessario a tutte le installazioni.\n"
+"Il kernel Odoo, necessario a tutte le installazioni.\n"
 "========================================================\n"
 
 #. module: base
@@ -3450,7 +3450,7 @@ msgid ""
 "=================================================================================================\n"
 msgstr ""
 "\n"
-"Il modulo consente di visualizzare i dati di SimplERP in un Foglio Google in tempo reale.\n"
+"Il modulo consente di visualizzare i dati di Odoo in un Foglio Google in tempo reale.\n"
 "=========================================================================================\n"
 
 #. module: base
@@ -3461,7 +3461,7 @@ msgid ""
 "===========================================================================\n"
 msgstr ""
 "\n"
-"il modulo consente di sincronizzare un Calendario Google con SimplERP\n"
+"il modulo consente di sincronizzare un Calendario Google con Odoo\n"
 "=====================================================================\n"
 
 #. module: base
@@ -4395,7 +4395,7 @@ msgid ""
 "Notes can be found in the 'Home' menu.\n"
 msgstr ""
 "\n"
-"Consente agli utenti di creare le proprie note in SimplERP.\n"
+"Consente agli utenti di creare le proprie note in Odoo.\n"
 "===========================================================\n"
 "\n"
 
@@ -5419,7 +5419,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per aggiungere bun nuovo Contatto nella Rubrica\n"
 "              </p><p>\n"
-"               SimplERP ti consente di tracciare facilmente tutte le attività relative\n"
+"               Odoo ti consente di tracciare facilmente tutte le attività relative\n"
 "               ad un cliente: discussioni, storico delle opportunità,\n"
 "               documenti ecc...\n"
 "              </p>\n"
@@ -5440,7 +5440,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per aggiungere bun nuovo Contatto nella Rubrica\n"
 "              </p><p>\n"
-"               SimplERP ti consente di tracciare facilmente tutte le attività relative\n"
+"               Odoo ti consente di tracciare facilmente tutte le attività relative\n"
 "               ad un cliente: discussioni, storico delle opportunità,\n"
 "               documenti ecc...\n"
 "              </p>\n"
@@ -5461,7 +5461,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per aggiungere bun nuovo Contatto nella Rubrica\n"
 "              </p><p>\n"
-"               SimplERP ti consente di tracciare facilmente tutte le attività relative\n"
+"               Odoo ti consente di tracciare facilmente tutte le attività relative\n"
 "               ad un fornitore: discussioni, storico degli acquisti,\n"
 "               documenti ecc...\n"
 "              </p>\n"
@@ -5489,7 +5489,7 @@ msgstr ""
 "                Puoi anche riordinare i conti bancari dalla apposita lista.\n"
 "              </p>\n"
 "              <p>\n"
-"                Utilizzando gli strumenti di contabilità di SimplERP, sezionali e conti verranno creati automaticamente sulla base di questi dati!\n"
+"                Utilizzando gli strumenti di contabilità di Odoo, sezionali e conti verranno creati automaticamente sulla base di questi dati!\n"
 "              </p>  \n"
 "            "
 
@@ -7052,7 +7052,7 @@ msgstr "Chatta con i Visitatori del Sito Web"
 #. module: base
 #: model:ir.module.module,summary:base.module_im_odoo_support
 msgid "Chat with the Odoo collaborators"
-msgstr "Chatta con i Collaboratori di SimplERP"
+msgstr "Chatta con i Collaboratori di Odoo"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_check_writing
@@ -7763,7 +7763,7 @@ msgstr "Crea un nuovo record nel modello base"
 #. module: base
 #: model:ir.actions.act_window,help:base.action_res_company_form
 msgid "Create and manage the companies that will be managed by Odoo from here. Shops or subsidiaries can be created and maintained from here."
-msgstr "Da qui puoi creare le nuove aziende e le filiali che verranno gestite tramite SimplERP."
+msgstr "Da qui puoi creare le nuove aziende e le filiali che verranno gestite tramite Odoo."
 
 #. module: base
 #: model:ir.actions.act_window,help:base.action_res_users
@@ -9241,7 +9241,7 @@ msgstr ""
 #. module: base
 #: view:base.language.export:base.wizard_lang_export
 msgid "For more details about translating Odoo in your language, please refer to the"
-msgstr "Per ulteriori dettagli sulla traduzione di SimplERP nella tua lingua, fai riferimento al"
+msgstr "Per ulteriori dettagli sulla traduzione di Odoo nella tua lingua, fai riferimento al"
 
 #. module: base
 #: help:ir.model.fields,relation_field:0
@@ -10117,7 +10117,7 @@ msgstr "se abiliti questa opzioni, le traduzioni esistenti (incluse quelle perso
 #. module: base
 #: help:ir.ui.menu,groups_id:0
 msgid "If you have groups, the visibility of this menu will be based on these groups. If this field is empty, Odoo will compute visibility based on the related object's read access."
-msgstr "Se hai impostato gruppi, la visibilità di questo menu sarà basata sull'impostazioni dei gruppi. Se questo campo il vuoto, SimplERP definirà la visibilità sulla base dei permessi di lettura dell'oggetto."
+msgstr "Se hai impostato gruppi, la visibilità di questo menu sarà basata sull'impostazioni dei gruppi. Se questo campo il vuoto, Odoo definirà la visibilità sulla base dei permessi di lettura dell'oggetto."
 
 #. module: base
 #: help:ir.model.access,active:0
@@ -10597,7 +10597,7 @@ msgid "Italian / Italiano"
 msgstr "Italian / Italiano"
 
 #. module: base
-#: model:res.country,name:base.it
+#: model:res.country,name:base.com
 msgid "Italy"
 msgstr "Italia"
 
@@ -11045,7 +11045,7 @@ msgstr "Consente di installare diversi strumenti non essenziali ma utili come i 
 #. module: base
 #: model:ir.module.category,description:base.module_category_report_designer
 msgid "Lets you install various tools to simplify and enhance Odoo's report creation."
-msgstr "Consente di installare diversi strumenti per semplificare e migliorare la creazione di report in SimplERP."
+msgstr "Consente di installare diversi strumenti per semplificare e migliorare la creazione di report in Odoo."
 
 #. module: base
 #: view:ir.logging:base.ir_logging_search_view field:ir.logging,level:0
@@ -11323,7 +11323,7 @@ msgstr "Gestisci Sito Web e Vista QWeb"
 #. module: base
 #: model:ir.actions.act_window,help:base.grant_menu_access
 msgid "Manage and customize the items available and displayed in your Odoo system menu. You can delete an item by clicking on the box at the beginning of each line and then delete it through the button that appeared. Items can be assigned to specific groups in order to make them accessible to some users within the system."
-msgstr "Gestisci e personalizza le voci nel menu di sistema di SimplERP. Puoi cancellare una voce facendo clic nella casella all'inizio di ciascuna riga ed utilizzando il pulsante che comparirà. Le voci possono essere assegnate a specifici gruppi per renderle accessibili ad alcuni utenti del sistema."
+msgstr "Gestisci e personalizza le voci nel menu di sistema di Odoo. Puoi cancellare una voce facendo clic nella casella all'inizio di ciascuna riga ed utilizzando il pulsante che comparirà. Le voci possono essere assegnate a specifici gruppi per renderle accessibili ad alcuni utenti del sistema."
 
 #. module: base
 #: model:ir.module.category,description:base.module_category_customer_relationship_management
@@ -12267,12 +12267,12 @@ msgstr "Oggetto:"
 #: code:addons/base/static/src/js/apps.js:179
 #, python-format
 msgid "Odoo Apps will be available soon"
-msgstr "Le applicazioni SimplERP saranno disponibili a breve."
+msgstr "Le applicazioni Odoo saranno disponibili a breve."
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_im_odoo_support
 msgid "Odoo Live Support"
-msgstr "SimplERP Live Support"
+msgstr "Odoo Live Support"
 
 #. module: base
 #: help:ir.sequence,padding:0
@@ -12427,7 +12427,7 @@ msgstr "Apri Finestra"
 #. module: base
 #: model:ir.module.module,summary:base.module_im_chat
 msgid "OpenERP Chat"
-msgstr "Chat SimplERP"
+msgstr "Chat Odoo"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_api
@@ -12437,7 +12437,7 @@ msgstr "API Web OpenERP"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_diagram
 msgid "OpenERP Web Diagram"
-msgstr "Diagramma Web SimplERP"
+msgstr "Diagramma Web Odoo"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_auth_openid
@@ -13030,7 +13030,7 @@ msgid ""
 "                They usually do not belong to the usual Odoo groups."
 msgstr ""
 "I membri del Portale hanno specifici privilegi d'accesso (come regole di lettura e menu limitati).\n"
-"               Essi generalmente non appartengono ai normali gruppi di utenti di SimplERP."
+"               Essi generalmente non appartengono ai normali gruppi di utenti di Odoo."
 
 #. module: base
 #: model:res.country,name:base.pt
@@ -13225,7 +13225,7 @@ msgid ""
 "                They usually do not belong to the usual Odoo groups."
 msgstr ""
 "Gli utenti pubblici hanno specifici privilegi d'accesso (come regole di lettura e menu limitati).\n"
-"               Essi generalmente non appartengono ai normali gruppi di utenti di SimplERP."
+"               Essi generalmente non appartengono ai normali gruppi di utenti di Odoo."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_membership
@@ -14075,7 +14075,7 @@ msgstr "Vede tutti i possibili valori"
 #: code:addons/common.py:50
 #, python-format
 msgid "See http://openerp.com"
-msgstr "Vedi http://www.simplerp.it"
+msgstr "Vedi http://www.Odoo.com"
 
 #. module: base
 #: help:multi_company.default,field_id:0
@@ -14936,7 +14936,7 @@ msgid ""
 "                                for uploading to Odoo's translation platform,"
 msgstr ""
 "Formato THZ: questo è un archivio compresso che contiene il file PO, già pronto\n"
-"                               per l'invio alla piattaforma SimplERP, "
+"                               per l'invio alla piattaforma Odoo, "
 
 #. module: base
 #: code:addons/base/res/res_company.py:167 field:res.partner,vat:0
@@ -15196,7 +15196,7 @@ msgstr "L'azienda per la quale questo utente sta attualmente lavorando."
 #. module: base
 #: model:ir.actions.act_window,help:base.act_ir_actions_todo_form
 msgid "The configuration wizards are used to help you configure a new instance of Odoo. They are launched during the installation of new modules, but you can choose to restart some wizards manually from this menu."
-msgstr "Le procedure di configurazione vengono utilizzate per affiancare il cliente nella configurazione di SimplERP."
+msgstr "Le procedure di configurazione vengono utilizzate per affiancare il cliente nella configurazione di Odoo."
 
 #. module: base
 #: sql_constraint:res.currency:0
@@ -16329,7 +16329,7 @@ msgstr "Visualizzazioni"
 #. module: base
 #: model:ir.actions.act_window,help:base.action_ui_view
 msgid "Views allows you to personalize each view of Odoo. You can add new fields, move fields, rename them or delete the ones that you do not need."
-msgstr "Le viste ti consentono di personalizzare le pagine di SimplERP. Puoi aggiungere nuovi campi, spostarli, rinominarli o cancellare quelli che non ti servono."
+msgstr "Le viste ti consentono di personalizzare le pagine di Odoo. Puoi aggiungere nuovi campi, spostarli, rinominarli o cancellare quelli che non ti servono."
 
 #. module: base
 #: model:res.country,name:base.vg
@@ -16559,7 +16559,7 @@ msgstr "Quando un campo relazionato viene selezionato come primo campo, questo c
 #. module: base
 #: view:workflow:base.view_workflow_diagram
 msgid "When customizing a workflow, be sure you do not modify an existing node or arrow, but rather add new nodes or arrows. If you absolutly need to modify a node or arrow, you can only change fields that are empty or set to the default value. If you don't do that, your customization will be overwrited at the next update or upgrade to a future version of Odoo."
-msgstr "Quando personalizzi un workflow, assicurati di non modificare un nodo o una freccia. È meglio, piuttosto, aggiungere nuovi nodi o frecce. Se tuttavia hai l'assoluta necessità di modificare un nodo una freccia, puoi anche solo modificare i campi che sono vuoti o impostati sui valori predefiniti. Se non fai così, la personalizzazione verrà sovrascritta al prossimo aggiornamento del modulo o di una nuova versione di SimplERP."
+msgstr "Quando personalizzi un workflow, assicurati di non modificare un nodo o una freccia. È meglio, piuttosto, aggiungere nuovi nodi o frecce. Se tuttavia hai l'assoluta necessità di modificare un nodo una freccia, puoi anche solo modificare i campi che sono vuoti o impostati sui valori predefiniti. Se non fai così, la personalizzazione verrà sovrascritta al prossimo aggiornamento del modulo o di una nuova versione di Odoo."
 
 #. module: base
 #: help:ir.actions.server,sequence:0
@@ -16766,7 +16766,7 @@ msgstr "Non puoi registrare due font con lo stesso nome"
 #: code:addons/base/res/res_users.py:374
 #, python-format
 msgid "You can not remove the admin user as it is used internally for resources created by Odoo (updates, module installation, ...)"
-msgstr "Non puoi rimuovere l'amministratore poiché viene utilizzato internamente per le risorse create da SimplERP (aggiornamenti, installazioni, ecc...)"
+msgstr "Non puoi rimuovere l'amministratore poiché viene utilizzato internamente per le risorse create da Odoo (aggiornamenti, installazioni, ecc...)"
 
 #. module: base
 #: help:res.country,address_format:0
@@ -16856,7 +16856,7 @@ msgstr "Potrai definire ulteriori autorizzazioni d'accesso modificando l'utente 
 #: code:addons/base/ir/ir_mail_server.py:234
 #, python-format
 msgid "Your OpenERP Server does not support SMTP-over-SSL. You could use STARTTLS instead.If SSL is needed, an upgrade to Python 2.6 on the server-side should do the trick."
-msgstr "Il tuo server SimplERP non supporta SMTP via SSL. Al suo posto puoi utilizzare STARTTLS. Poiché è necessario utilizzare SSL, un aggiornamento del server a Python 2,6 potrebbe risolvere il problema. "
+msgstr "Il tuo server Odoo non supporta SMTP via SSL. Al suo posto puoi utilizzare STARTTLS. Poiché è necessario utilizzare SSL, un aggiornamento del server a Python 2,6 potrebbe risolvere il problema. "
 
 #. module: base
 #: code:addons/base/ir/ir_mail_server.py:511
@@ -16996,7 +16996,7 @@ msgstr "Es: it_IT"
 #: view:res.company:base.view_company_form
 #: view:res.partner:base.view_partner_form
 msgid "e.g. www.odoo.com"
-msgstr "Es: www.simplerp.it"
+msgstr "Es: www.Odoo.com"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale
@@ -17021,7 +17021,7 @@ msgstr "Fatturazione elettronica"
 #. module: base
 #: view:res.users:base.view_users_simple_form
 msgid "email@yourcompany.com"
-msgstr "email@azienda.it"
+msgstr "email@azienda.com"
 
 #. module: base
 #: code:addons/base/ir/ir_fields.py:329

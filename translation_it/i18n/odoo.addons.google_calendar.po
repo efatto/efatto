@@ -244,12 +244,12 @@ msgstr "Data di ultima sincronizzazione"
 #. module: google_calendar
 #: field:calendar.attendee,oe_synchro_date:0
 msgid "Odoo Synchro Date"
-msgstr "Data sincro SimplERP"
+msgstr "Data sincro Odoo"
 
 #. module: google_calendar
 #: field:calendar.event,oe_update_date:0
 msgid "Odoo Update Date"
-msgstr "Data Aggiornamento SimplERP"
+msgstr "Data Aggiornamento Odoo"
 
 #. module: google_calendar
 #: view:base.config.settings:google_calendar.view_calendar_config_settings

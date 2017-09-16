@@ -28,10 +28,10 @@ msgid ""
 "            <p>Regards,Odoo Team,</p>"
 msgstr ""
 "<p>Salve,</p>\n"
-"            <p>Grazie per aver acquistato il manuale di SimplERP.</p>\n"
+"            <p>Grazie per aver acquistato il manuale di Odoo.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_8
@@ -46,7 +46,7 @@ msgstr ""
 "            <p>Grazie per l'interesse dimostrato e per aver acquistato il nostro servizio di formazione tecnica.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_3
@@ -57,10 +57,10 @@ msgid ""
 "            <p>Regards,Odoo Team,</p>"
 msgstr ""
 "<p>Salve,</p>\n"
-"             <p>Grazie per l'interesse dimostrato e per esserti iscritto al SimplERP Discovery Day</p>\n"
+"             <p>Grazie per l'interesse dimostrato e per esserti iscritto al Odoo Discovery Day</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_1
@@ -74,7 +74,7 @@ msgstr ""
 "            <p>Grazie per l'interesse dimostrato.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_5
@@ -90,7 +90,7 @@ msgstr ""
 "            Stiamo organizzando una sessione di formazione tecnica gratuita per tutti i nostri partner.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_7
@@ -106,7 +106,7 @@ msgstr ""
 "            Stiamo organizzando una sessione di formazione funzionale gratuita per tutti i nostri partner.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_6
@@ -122,7 +122,7 @@ msgstr ""
 "            Stiamo organizzando una sessione di formazione tecnico-funzionale gratuita per tutti i nostri partner.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,body_html:marketing_campaign_crm_demo.email_template_2
@@ -135,10 +135,10 @@ msgid ""
 msgstr ""
 "<p>Salve,</p>\n"
 "            <p>Abbiamo un'offerta che potrebbe interessarti.\n"
-"            Tutti gli iscritti al SimplERP Discovery Day riceveranno una sessione di formazione tecnica gratuita online.</p>\n"
+"            Tutti gli iscritti al Odoo Discovery Day riceveranno una sessione di formazione tecnica gratuita online.</p>\n"
 "            Rimaniamo a disposizione per qualsiasi ulteriore informazione o chiarimento.\n"
 "            <p>Cordiali saluti,</p>\n"
-"            <p>Il Team SimplERP</p>"
+"            <p>Il Team Odoo</p>"
 
 #. module: marketing_campaign_crm_demo
 #: report:crm.lead.demo:0
@@ -178,12 +178,12 @@ msgstr "Proponi un training a pagamento ai partner Silver"
 #. module: marketing_campaign_crm_demo
 #: model:email.template,subject:marketing_campaign_crm_demo.email_template_2
 msgid "Propose to subscribe to the Odoo Discovery Day on May 2010"
-msgstr "Proposta di iscrizione al SimplERP Discovery Day"
+msgstr "Proposta di iscrizione al Odoo Discovery Day"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,subject:marketing_campaign_crm_demo.email_template_4
 msgid "Thanks for buying the Odoo book"
-msgstr "Grazie per aver comprato il manuale SimplERP"
+msgstr "Grazie per aver comprato il manuale Odoo"
 
 #. module: marketing_campaign_crm_demo
 #: model:email.template,subject:marketing_campaign_crm_demo.email_template_1
@@ -198,4 +198,4 @@ msgstr "Grazie per esserti iscritto al training tecnico"
 #. module: marketing_campaign_crm_demo
 #: model:email.template,subject:marketing_campaign_crm_demo.email_template_3
 msgid "Thanks for subscribing to the Odoo Discovery Day"
-msgstr "Grazie per esserti iscritto al SimplERP Discovery day"
+msgstr "Grazie per esserti iscritto al Odoo Discovery day"

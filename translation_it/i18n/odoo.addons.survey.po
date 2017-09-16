@@ -81,7 +81,7 @@ msgstr "<p></p>"
 #. module: survey
 #: model:survey.page,description:survey.feedback_4
 msgid "<p>If you do not contribute or develop in Odoo, skip this page.</p>"
-msgstr "<p>Se non contribuisci a sviluppare SimplERP, puoi saltare questa pagina.</p>"
+msgstr "<p>Se non contribuisci a sviluppare Odoo, puoi saltare questa pagina.</p>"
 
 #. module: survey
 #: model:ir.actions.act_window,help:survey.action_selected_survey_user_input
@@ -107,7 +107,7 @@ msgid ""
 "<p>These questions relate to the ergonomy and ease of use of Odoo. Try to remind your firsts days on Odoo and\n"
 "what have been your difficulties.</p>"
 msgstr ""
-"<p>Queste domande riguardano la facilità d'uso di SimplERP. Prova a ricordare i primi giorni di utilizzo di SimplERP e quali sono state \n"
+"<p>Queste domande riguardano la facilità d'uso di Odoo. Prova a ricordare i primi giorni di utilizzo di Odoo e quali sono state \n"
 "le difficolta..</p>"
 
 #. module: survey
@@ -158,7 +158,7 @@ msgstr "Un token deve essere unico!"
 #. module: survey
 #: model:survey.page,title:survey.feedback_1
 msgid "About your Odoo usage"
-msgstr "Info sul tuo uso di SimplERP"
+msgstr "Info sul tuo uso di Odoo"
 
 #. module: survey
 #: field:survey.mail.compose.message,active_domain:0
@@ -233,7 +233,7 @@ msgstr "Le risposte non vanno nel thread di discussione del documento originale.
 #. module: survey
 #: model:survey.question,question:survey.feedback_1_1
 msgid "Are you using Odoo on a daily basis?"
-msgstr "Utilizzi SimplERP giornalmente?"
+msgstr "Utilizzi Odoo giornalmente?"
 
 #. module: survey
 #: field:survey.mail.compose.message,attachment_ids:0
@@ -631,7 +631,7 @@ msgstr "Gestisce il sommario (numero di messaggi, ...) di Chatter. Questo sommar
 #. module: survey
 #: model:survey.question,question:survey.feedback_3_1
 msgid "How do you contribute or plan to contribute to Odoo?"
-msgstr "Come contribuisci o pensi di poter contribuire a SimplERP?"
+msgstr "Come contribuisci o pensi di poter contribuire a Odoo?"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_1_2_6
@@ -676,7 +676,7 @@ msgstr "Utilizza un altro sistema di repository"
 #. module: survey
 #: model:survey.label,value:survey.frow_2_1_3
 msgid "I use the contextual help in Odoo"
-msgstr "Utilizzo l'aiuto contestuale in SimplERP"
+msgstr "Utilizzo l'aiuto contestuale in Odoo"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_3_1_5
@@ -1710,7 +1710,7 @@ msgstr "Sono utili per uso quotidiano"
 #. module: survey
 #: model:survey.label,value:survey.frow_2_2_1
 msgid "They help new users to understand Odoo"
-msgstr "Aiutano i nuovi utenti a conoscere SimplERP"
+msgstr "Aiutano i nuovi utenti a conoscere Odoo"
 
 #. module: survey
 #: code:addons/survey/survey.py:700
@@ -1921,7 +1921,7 @@ msgstr "Cosa ne pensi delle procedure di configurazione?"
 #. module: survey
 #: model:survey.question,question:survey.feedback_2_1
 msgid "What do you think about the documentation available on doc.openerp.com?"
-msgstr "Cosa ne pensi dei tutorial disponibili su www.simplerp.it?"
+msgstr "Cosa ne pensi dei tutorial disponibili su www.Odoo.it?"
 
 #. module: survey
 #: model:survey.question,question:survey.feedback_2_5
@@ -1931,7 +1931,7 @@ msgstr "Cosa ne pensi dei gruppi di utenti?"
 #. module: survey
 #: model:survey.question,question:survey.feedback_2_2
 msgid "What do you think about the process views of Odoo, available in the web client ?"
-msgstr "Cosa ne pensi delle viste dei processi in SimplERP?"
+msgstr "Cosa ne pensi delle viste dei processi in Odoo?"
 
 #. module: survey
 #: model:survey.question,question:survey.feedback_2_4 model:survey.question,question:survey.feedback_2_6
@@ -1966,7 +1966,7 @@ msgstr "Sì, uso la versione più recente installata in locale"
 #. module: survey
 #: model:survey.label,value:survey.choice_1_1_3
 msgid "Yes, I use the online version of Odoo"
-msgstr "Sì, uso la versione più recente nel cloud SimplERP"
+msgstr "Sì, uso la versione più recente nel cloud Odoo"
 
 #. module: survey
 #: view:survey.mail.compose.message:survey.survey_email_compose_message

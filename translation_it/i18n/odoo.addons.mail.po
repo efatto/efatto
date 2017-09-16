@@ -870,7 +870,7 @@ msgstr "Selezionando questa opzione, il partner riceverà una e-mail in cui verr
 #. module: mail
 #: help:base.config.settings,alias_domain:0
 msgid "If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here."
-msgstr "Se è stata impostata una casella e-mail di tipo catch-all per il dominio del server SimplERP, inserire qui il nome di dominio."
+msgstr "Se è stata impostata una casella e-mail di tipo catch-all per il dominio del server Odoo, inserire qui il nome di dominio."
 
 #. module: mail
 #: view:mail.compose.message:mail.email_compose_message_wizard_form
@@ -1715,7 +1715,7 @@ msgstr "Il modello a cui corrisponde l'alias. Tutte le e-mail in entrata che non
 #. module: mail
 #: help:mail.alias,alias_name:0
 msgid "The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>"
-msgstr "Il nome dell'alias nella casella. Es: \"lavoro\" se vuoi intercettare le e-mail inviate a <lavoro@esempio.simplerp.it>"
+msgstr "Il nome dell'alias nella casella. Es: \"lavoro\" se vuoi intercettare le e-mail inviate a <lavoro@esempio.Odoo.com>"
 
 #. module: mail
 #: help:mail.alias,alias_user_id:0
@@ -2036,7 +2036,7 @@ msgstr "altro."
 #. module: mail
 #: view:base.config.settings:mail.view_general_configuration_mail_alias_domain
 msgid "mycompany.odoo.com"
-msgstr "azienda.simplerp.it"
+msgstr "azienda.Odoo.com"
 
 #. module: mail
 #. openerp-web

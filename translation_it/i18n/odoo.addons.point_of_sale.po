@@ -649,7 +649,7 @@ msgstr "Spunta la casella se questo sezionale definisce un metodo di pagamento u
 #. module: point_of_sale
 #: help:pos.config,iface_self_checkout:0
 msgid "Check this if this point of sale should open by default in a self checkout mode. If unchecked, Odoo uses the normal cashier mode by default."
-msgstr "Spunta la casella se questo POS deve aprirsi in modo predefinito come una cassa automatica. Se la casella non è selezionata, SimplERP utilizzerà la modalità \"Cassiere\"."
+msgstr "Spunta la casella se questo POS deve aprirsi in modo predefinito come una cassa automatica. Se la casella non è selezionata, Odoo utilizzerà la modalità \"Cassiere\"."
 
 #. module: point_of_sale
 #: help:pos.config,group_by:0

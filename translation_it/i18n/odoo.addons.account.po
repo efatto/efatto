@@ -441,7 +441,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per creare una nuova fattura di vendita.\n"
 "              </p><p>\n"
-"                SimplERP semplifica il processo di fatturazione e ti assiste nel tracciare i pagamenti e le scadenze..Il cliente riceve la fattura nella propria casella di posta elettronica e può pagarla direttamente online e/o importarla nel proprio sistema.\n"
+"                Odoo semplifica il processo di fatturazione e ti assiste nel tracciare i pagamenti e le scadenze..Il cliente riceve la fattura nella propria casella di posta elettronica e può pagarla direttamente online e/o importarla nel proprio sistema.\n"
 "              </p><p>\n"
 "                Per ogni fattura viene visualizzato lo storico dei messssaggi e delle discussioni con il cliente.\n"
 "              </p>"
@@ -489,7 +489,7 @@ msgstr ""
 "              </p><p>\n"
 "               Una registrazione in un sezionale è costituita da diverse voci, ciascuna delle quali rappresenta una transazione a debito o a credito..\n"
 "              </p><p>\n"
-"                SimplERP crea automaticamente una registrazione per ciascun documento contabille: fattura, rimborso, pagamento fornitore ecc... L'inserimento manuale di registrazioni dovrebbe quindi avvenire solo per operazioni particolari.\n"
+"                Odoo crea automaticamente una registrazione per ciascun documento contabille: fattura, rimborso, pagamento fornitore ecc... L'inserimento manuale di registrazioni dovrebbe quindi avvenire solo per operazioni particolari.\n"
 "              </p>"
 
 #. module: account
@@ -599,7 +599,7 @@ msgstr ""
 "                Fai clic qui per definire un nuovo Codice Imposta.\n"
 "              </p><p>\n"
 "                Dipendentemente dalla nazione, un codice imposta è normalmente un'area in cui inserire\n"
-"                la dichiarazione fiscale. SimplERP ti consente di definire\n"
+"                la dichiarazione fiscale. Odoo ti consente di definire\n"
 "                la struttura delle imposte e ciascun computo verrà registrato in uno o più codici imposta\n"
 "              </p>\n"
 "            "
@@ -619,7 +619,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Fai clic qui per inserire una nuova fattura d'acquisto.\n"
 "              </p><p>\n"
-"                Puoi controllare la fattura del tuo fornitore verificando ciò che hai acquistato o ricevuto.</br>SimplERP è in grado\n"
+"                Puoi controllare la fattura del tuo fornitore verificando ciò che hai acquistato o ricevuto.</br>Odoo è in grado\n"
 "                di preparare automaticamente bozze di fattura da ricevute o ordini d'acquisto..\n"
 "              </p>\n"
 "            "
@@ -644,7 +644,7 @@ msgstr ""
 "              </p><p>\n"
 "                Un estratto conto è un riassunto di tutte le transazioni finanziarie, occorse in un determinato periodo di tempo, eseguite su un conto bancario. Dovresti ricevrne periodicamente almeno uno dalla tua banca.\n"
 "              </p><p>\n"
-"                SimplERP ti consente di riconciliare le righe dell'estratto conto con le relative fatture di vendita o di acquisto.\n"
+"                Odoo ti consente di riconciliare le righe dell'estratto conto con le relative fatture di vendita o di acquisto.\n"
 "              </p>"
 
 #. module: account
@@ -711,7 +711,7 @@ msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Seleziona il periodo ed il sezionale che vuoi compilare.\n"
 "              </p><p>\n"
-"                Questo strumento può essere utilizzato dal personale amministrativo per inserire rapidamente diverse registrazioni in SimplERP. Se vuoi registrare una Fattura Fornitore, inizia con l'indicare il conto d'acquisto. SimplERP ti proporrà automaticamente le imposte predefinite per questo conto e la relativa contropartita.\n"
+"                Questo strumento può essere utilizzato dal personale amministrativo per inserire rapidamente diverse registrazioni in Odoo. Se vuoi registrare una Fattura Fornitore, inizia con l'indicare il conto d'acquisto. Odoo ti proporrà automaticamente le imposte predefinite per questo conto e la relativa contropartita.\n"
 "              </p>"
 
 #. module: account
@@ -733,7 +733,7 @@ msgstr ""
 "          </p><p>\n"
 "            Configura i tuoi conti bancari e seleziona quelli che dovranno apparire nel piè di pagina della reportistica..\n"
 "          </p><p>\n"
-"           Se utilizzi gli strumenti di contabilità di SimplERP, conti e sezionali verranno creati automaticamente sulla base di questi dati.\n"
+"           Se utilizzi gli strumenti di contabilità di Odoo, conti e sezionali verranno creati automaticamente sulla base di questi dati.\n"
 "          </p>\n"
 "        "
 
@@ -774,7 +774,7 @@ msgstr ""
 "                Il Piano dei Conti è normalmente strutturato secondo le indicazioni legali e fiscali relative al paese in cui opera l'azienda.\n"
 "Il Piano dei Conti Analitico dovrebbe invece riflettere le esigenze aziendali in termini di analisi dei costi e dei ricavi.\n"
 "              </p><p>\n"
-"                Generalmente la struttura del Piano dei Conti Analitico tiene in considerazione i contratti, i progetti, le commesse, i prodotti ed i dipartimenti.. Gran parte delle operazioni svolte in SimplERP (fatturazione,\n"
+"                Generalmente la struttura del Piano dei Conti Analitico tiene in considerazione i contratti, i progetti, le commesse, i prodotti ed i dipartimenti.. Gran parte delle operazioni svolte in Odoo (fatturazione,\n"
 "                timesheet, registrazione delle spese, ecc) generano registrazioni di contabilità analitica nei relativi conti.\n"
 "              </p>"
 
@@ -1401,8 +1401,8 @@ msgstr "Estratto Conto Partner Periodico"
 #: view:account.aged.trial.balance:account.account_aged_balance_view
 msgid "Aged Partner Balance is a more detailed report of your receivables by intervals. When opening that report, Odoo asks for the name of the company, the fiscal period and the size of the interval to be analyzed (in days). Odoo then calculates a table of credit balance by period. So if you request an interval of 30 days Odoo generates an analysis of creditors for the past month, past two months, and so on."
 msgstr ""
-"Il Bilancio Storico Partner è un report dettagliato dei tuoi crediti per intervallo di tempo. All'apertura del report, SimplERP chiederà il nome dell'azienda, il periodo fiscale e l'intervallo di tempo (espresso in giorni) da analizzare. SimplERP produrrà a questo punto una tabella dei crediti per priodo.\n"
-"Nel caso in cui chiedessi un intervallo di 30 giorni, SimplERP genererà un'analisi dei creditori per l'ultimo mese, per il penutiltimo, il terzultimo e così via..."
+"Il Bilancio Storico Partner è un report dettagliato dei tuoi crediti per intervallo di tempo. All'apertura del report, Odoo chiederà il nome dell'azienda, il periodo fiscale e l'intervallo di tempo (espresso in giorni) da analizzare. Odoo produrrà a questo punto una tabella dei crediti per priodo.\n"
+"Nel caso in cui chiedessi un intervallo di 30 giorni, Odoo genererà un'analisi dei creditori per l'ultimo mese, per il penutiltimo, il terzultimo e così via..."
 
 #. module: account
 #: model:ir.actions.act_window,name:account.action_aged_receivable_graph
@@ -4782,7 +4782,7 @@ msgstr "Per i conti che sono in genere a debito e che si desidera far figurare  
 #. module: account
 #: view:account.automatic.reconcile:account.account_automatic_reconcile_view
 msgid "For an invoice to be considered as paid, the invoice entries must be reconciled with counterparts, usually payments. With the automatic reconciliation functionality, Odoo makes its own search for entries to reconcile in a series of accounts. It finds entries for each partner where the amounts correspond."
-msgstr "Per considerare una fattura come \"Pagata\" è necessario che questa venga riconciliata con la sua contropartita (generalmente i pagamenti). Con la funzionalità di riconciliazione automatica, SimplERP esegue una ricerca sugli importi da riconciliare in una serie di conti ed è in grado di individuare registrazioni con importi corrispondenti per ciascun partner."
+msgstr "Per considerare una fattura come \"Pagata\" è necessario che questa venga riconciliata con la sua contropartita (generalmente i pagamenti). Con la funzionalità di riconciliazione automatica, Odoo esegue una ricerca sugli importi da riconciliare in una serie di conti ed è in grado di individuare registrazioni con importi corrispondenti per ciascun partner."
 
 #. module: account
 #: help:account.journal,with_last_closing_balance:0
@@ -4973,7 +4973,7 @@ msgstr "Definisce l'ordine quando si visualizza un elenco di tipi di conto"
 #. module: account
 #: help:account.analytic.journal,type:0
 msgid "Gives the type of the analytic journal. When it needs for a document (eg: an invoice) to create analytic entries, Odoo will look for a matching journal of the same type."
-msgstr "Restituisce il tipo di sezionale analitico. Quando SimplERP ha la necessità di far creare una registrazione analitica ad un documento (Es: fattura), cercherà un corrispondente sezionale dello stesso tipo."
+msgstr "Restituisce il tipo di sezionale analitico. Quando Odoo ha la necessità di far creare una registrazione analitica ad un documento (Es: fattura), cercherà un corrispondente sezionale dello stesso tipo."
 
 #. module: account
 #: code:addons/account/account_invoice.py:726
@@ -7403,7 +7403,7 @@ msgstr "Conto Paypal"
 #. module: account
 #: help:account.config.settings,paypal_account:0
 msgid "Paypal account (email) for receiving online payments (credit card, etc.) If you set a paypal account, the customer  will be able to pay your invoices or quotations with a button \"Pay with  Paypal\" in automated emails or through the Odoo portal."
-msgstr "Conto Paypal (email) per ricevere pagamenti online (carta di credito ecc..). Se imposti un conto Paypal il cliente potrà pagare le tue fatture o i preventivi utilizzando il pulsante \"Paga con Paypal\" nelle email automatiche o tramite il portale di SimplERP."
+msgstr "Conto Paypal (email) per ricevere pagamenti online (carta di credito ecc..). Se imposti un conto Paypal il cliente potrà pagare le tue fatture o i preventivi utilizzando il pulsante \"Paga con Paypal\" nelle email automatiche o tramite il portale di Odoo."
 
 #. module: account
 #: help:res.company,paypal_account:0
@@ -10189,7 +10189,7 @@ msgstr "Questa etichetta verrà mostrata sul report ad indicare il saldo calcola
 #. module: account
 #: view:account.vat.declaration:account.view_account_vat_declaration
 msgid "This menu prints a tax declaration based on invoices or payments. Select one or several periods of the fiscal year. The information required for a tax declaration is automatically generated by Odoo from invoices (or payments, in some countries). This data is updated in real time. That’s very useful because it enables you to preview at any time the tax that you owe at the start and end of the month or quarter."
-msgstr "Questo menu consente di stampare una dichiarazione fiscale basata su fatture o pagamenti. Selezionare uno o più periodi dell'anno fiscale. Le informazioni necessarie per la dichiarazione vengono generate automaticamente da SimplERP sull base delle fatture (o dei pagamenti, in alcuni paesi). I dati vengono aggiornati in tempo reale. Questo è molto utile perché consente di visualizzare in qualsiasi momento la quantità di imposta dovuta all'inizio e alla fine del mese o del trimestre."
+msgstr "Questo menu consente di stampare una dichiarazione fiscale basata su fatture o pagamenti. Selezionare uno o più periodi dell'anno fiscale. Le informazioni necessarie per la dichiarazione vengono generate automaticamente da Odoo sull base delle fatture (o dei pagamenti, in alcuni paesi). I dati vengono aggiornati in tempo reale. Questo è molto utile perché consente di visualizzare in qualsiasi momento la quantità di imposta dovuta all'inizio e alla fine del mese o del trimestre."
 
 #. module: account
 #: help:account.tax,name:0
@@ -10241,7 +10241,7 @@ msgstr "Questo campo tecnico può essere usata al momento della creazione o dell
 #. module: account
 #: help:account.account.template,type:0 help:account.entries.report,type:0
 msgid "This type is used to differentiate types with special effects in Odoo: view can not have entries, consolidation are accounts that can have children accounts for multi-company consolidations, payable/receivable are for partners accounts (for debit/credit computations), closed for depreciated accounts."
-msgstr "Questo tipo viene utilizzato per differenziare altri tipi con effetti speciali in SimplERP: la vista non può avere voci, il consolidamento è costituito da conti che possono avere sotto-conti per il consolidamento multi-aziendale, debiti e crediti sono per i conti dei partner (per il calcolo di debiti e crediti), chiuso per conti ammortizzati."
+msgstr "Questo tipo viene utilizzato per differenziare altri tipi con effetti speciali in Odoo: la vista non può avere voci, il consolidamento è costituito da conti che possono avere sotto-conti per il consolidamento multi-aziendale, debiti e crediti sono per i conti dei partner (per il calcolo di debiti e crediti), chiuso per conti ammortizzati."
 
 #. module: account
 #: help:account.account,currency_mode:0

@@ -19,7 +19,6 @@ class StockMove(models.Model):
                     'product_uom': move.product_id.product_pack_id.uom_id.id,
                     'name': move.product_id.product_pack_id.name,
                     'origin': move.picking_id.name,
-                    'type': 'internal',
                     'location_id': move.location_id.id,
                     'location_dest_id': move.location_dest_id.id,
                     'partner_id': move.partner_id.id,

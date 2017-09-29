@@ -2,6 +2,50 @@
 <openerp>
     <data noupdate="0">
 
+        <!-- DdT Sequence c/vendita-->
+        <record id="seq_type_ddt_cvendita" model="ir.sequence.type">
+            <field name="name">DDT C/vendita</field>
+            <field name="code">stock.ddt.cvendita</field>
+        </record>
+        <record id="seq_ddt_cvendita" model="ir.sequence">
+            <field name="name">DDT C/vendita</field>
+            <field name="code">stock.ddt.cvendita</field>
+            <field name="prefix">DDTVE/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <!-- DdT Type c/vendita-->
+        <record id="ddt_type_ddt_cvendita" model="stock.ddt.type">
+            <field name="name">DdT C/vendita</field>
+            <field name="sequence_id" ref="seq_ddt_cvendita" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_VEN"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Sequence c/reso-->
+        <record id="seq_type_ddt_creso" model="ir.sequence.type">
+            <field name="name">DDT C/reso</field>
+            <field name="code">stock.ddt.creso</field>
+        </record>
+        <record id="seq_ddt_creso" model="ir.sequence">
+            <field name="name">DDT C/reso</field>
+            <field name="code">stock.ddt.creso</field>
+            <field name="prefix">DDTRE/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <!-- DdT Type c/visione-->
+        <record id="ddt_type_ddt_creso" model="stock.ddt.type">
+            <field name="name">DdT C/reso</field>
+            <field name="sequence_id" ref="seq_ddt_creso" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_RES"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
         <!-- DdT Sequence c/visione-->
         <record id="seq_type_ddt_cvisione" model="ir.sequence.type">
             <field name="name">DDT C/visione</field>

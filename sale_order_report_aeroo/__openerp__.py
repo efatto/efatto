@@ -19,10 +19,10 @@
 #
 {
     'name': 'Aeroo sale order report',
-    'version': '8.1.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL, Didotech Srl',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato - Efatto.it, Didotech Srl',
+    'website': 'http://www.efatto.it',
     'description': 'Aeroo sale order report',
     'license': 'AGPL-3',
     'depends': [

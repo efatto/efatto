@@ -33,6 +33,14 @@ class AccountFiscalPositionRule(models.Model):
         domain += [('partner_id', '=', partner.id)]
         return domain
 
+    def apply_fiscal_mapping(self, result, **kwargs):
+        fp_id = result['value'].get('fiscal_position', False)
+        result = super(AccountFiscalPositionRule, self).apply_fiscal_mapping(
+            result, **kwargs)
+        if not result['value'].get('fiscal_position', False) and fp_id:
+            result['value'].update({'fiscal_position': fp_id})
+        return result
+
     def fiscal_position_map(self, **kwargs):
         result = super(AccountFiscalPositionRule, self
                        ).fiscal_position_map(**kwargs)

@@ -29,5 +29,10 @@ class SaleOrder(models.Model):
                 partner_id == partner_invoice_id == partner_shipping_id:
             return result
 
-        return super(SaleOrder, self).onchange_address_id(
-            partner_invoice_id, partner_shipping_id, partner_id, company_id)
+        kwargs = {
+            'company_id': company_id,
+            'partner_id': partner_id,
+            'partner_invoice_id': partner_invoice_id,
+            'partner_shipping_id': partner_shipping_id,
+        }
+        return self._fiscal_position_map(result, **kwargs)

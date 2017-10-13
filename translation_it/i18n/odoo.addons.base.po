@@ -13592,7 +13592,7 @@ msgstr "File report"
 #. module: base
 #: field:res.company,rml_footer:0 field:res.company,rml_footer_readonly:0
 msgid "Report Footer"
-msgstr "Piè di pagina del Report"
+msgstr "Dati Azienda per Report"
 
 #. module: base
 #: view:ir.actions.report.xml:base.act_report_xml_search_view

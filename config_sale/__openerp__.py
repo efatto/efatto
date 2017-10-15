@@ -29,7 +29,6 @@ Add the next groups to base user:
 - delivery invoice address;
 - proforma invoice;
 - sale pricelist;
-It also set sale order policy default to manual.
 """,
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',

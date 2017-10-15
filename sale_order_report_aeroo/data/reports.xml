@@ -16,5 +16,27 @@
             <field name="attachment"/>
             <field name="attachment_use" eval="0"/>
         </record>
+        <record id="sale_order_report_aeroo.report_sale_order_rev01" model="ir.actions.report.xml">
+            <field name="name">Quotation / Order rev 01</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">sale_order_report_aeroo.report_sale_order_rev01</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"></field>
+            <field name="parser_loc">report_aeroo_parser/models/parser.py</field>
+            <field name="report_rml">sale_order_report_aeroo/data/sale_order_rev01.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"></field>
+            <field name="attachment_use" eval="0"/>
+        </record>
+        <record model="ir.values" id="sale_order_rev01_report_action">
+            <field name="name">Quotation / Order rev 01</field>
+            <field name="key">action</field>
+            <field name="key2">client_print_multi</field>
+            <field name="model">sale.order</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_sale_order_rev01'))"/>
+        </record>
     </data>
 </openerp>

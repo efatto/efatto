@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_code_builder_parent
+#	* config_stock
 #
 msgid ""
 msgstr ""
@@ -14,19 +14,4 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: product_code_builder_parent
-#: model:ir.model,name:product_code_builder_parent.model_product_product
-msgid "Product"
-msgstr "Prodotto"
-
-#. module: product_code_builder_parent
-#: model:ir.model,name:product_code_builder_parent.model_product_attribute
-msgid "Product Attribute"
-msgstr "Attributo Prodotto"
-
-#. module: product_code_builder_parent
-#: model:ir.model,name:product_code_builder_parent.model_product_template
-msgid "Product Template"
-msgstr "Template Prodotto"
 

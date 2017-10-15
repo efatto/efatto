@@ -27,11 +27,13 @@ Add the next groups to base user:
 - inventory valuation;
 - stock packaging;
 - locations.
+It also set sale order policy default to picking.
 """,
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     "depends": [
+        'sale',
         'stock_account',
     ],
     "data": [

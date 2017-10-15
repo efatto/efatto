@@ -10,6 +10,7 @@
         <record model="res.groups" id="base.group_user">
             <field name="implied_ids" eval="[(4, ref('stock.group_locations'))]"/>
         </record>
+        <function id="sale_order_order_pol_default_set" model="ir.values" name="set_default" eval="('sale.order','order_policy', 'picking')"/>
     </data>
 </openerp>
 

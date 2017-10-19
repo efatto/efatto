@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="sale_order_html" model="ir.actions.report.xml">
+            <field name="name">Quotation/Order raw html</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">sale.sale_order_html</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">database</field>
+            <field name="in_format">genshi-raw</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_raw')"></field>
+            <field name="parser_loc">report_aeroo_parser/models/parser.py</field>
+            <field name="report_rml">aeroo_report_html/data/report.html</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"></field>
+            <field name="attachment_use" eval="0"/>
+            <field name="content_fname">html</field>
+        </record>
+    </data>
+</openerp>

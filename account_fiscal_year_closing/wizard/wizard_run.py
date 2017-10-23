@@ -26,7 +26,7 @@ Create FYC entries wizards
 """
 
 from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import workflow
 from openerp.osv import fields, osv
 
 class wizard_run(osv.osv_memory):
@@ -88,11 +88,9 @@ class wizard_run(osv.osv_memory):
             self.remove_move(cr, uid, 'open', fyc, context)
         # Set the fyc as done (if not in cancel_mode)
         if not fyc.create_opening and not fyc.create_closing and not not fyc.create_net_loss_and_profit and not fyc.create_loss_and_profit:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'cancel', cr)
+            workflow.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'cancel', cr)
         else:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'run', cr)
+            workflow.trg_validate(uid, 'account_fiscal_year_closing.fyc', fyc.id, 'run', cr)
 
         return {'type': 'ir.actions.act_window_close'}
 

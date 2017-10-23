@@ -29,7 +29,7 @@ __author__ = "Borja López Soilán (Pexego)"
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from datetime import datetime
-from openerp import netsvc
+from openerp import workflow
 
 
 #-------------------------------------------------------------------------------
@@ -679,7 +679,6 @@ class fiscal_year_closing(osv.osv):
         a new workflow instance.
         """
         self.write(cr, uid, ids, {'state': 'new'})
-        wf_service = netsvc.LocalService("workflow")
         for item_id in ids:
-            wf_service.trg_create(uid, 'account_fiscal_year_closing.fyc', item_id, cr)
+            workflow.trg_create(uid, 'account_fiscal_year_closing.fyc', item_id, cr)
         return True

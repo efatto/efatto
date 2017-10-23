@@ -21,7 +21,7 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from openerp import netsvc
+from openerp import workflow
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 import time
@@ -287,7 +287,6 @@ class account_invoice(orm.Model):
         context = context or {}
         new_invoice_ids = []
         move_obj = self.pool['account.move']
-        wf_service = netsvc.LocalService("workflow")
         for inv in self.browse(cr, uid, ids, context):
             auto_invoice_to_be_reconciled = []
             invoice_to_be_reconciled = []
@@ -321,8 +320,8 @@ class account_invoice(orm.Model):
             auto_invoice_id = self.create(cr, uid, new_inv, context)
             new_invoice_ids.append(auto_invoice_id)
             self.button_reset_taxes(cr, uid, [auto_invoice_id], context)
-            wf_service.trg_validate(uid, 'account.invoice',
-                                    auto_invoice_id, 'invoice_open', cr)
+            workflow.trg_validate(uid, 'account.invoice',
+                                  auto_invoice_id, 'invoice_open', cr)
             new_invoice = self.browse(cr, uid, auto_invoice_id, context)
             #get move_line_ids of auto invoice with partner-account_id partner for reconciliation
             for move_line in new_invoice.move_id.line_id:
@@ -415,7 +414,6 @@ class account_invoice(orm.Model):
         invoices = self.browse(cr, uid, ids, context)
         account_move = self.pool['account.move']
         voucher_obj = self.pool['account.voucher']
-        wf_service = netsvc.LocalService("workflow")
         move_ids = []
         for inv in invoices:
             # ----- Delete Auto Invoice
@@ -431,9 +429,9 @@ class account_invoice(orm.Model):
                 for payment in inv.auto_invoice_id.payment_ids:
                     if payment.reconcile_id:
                         payment.reconcile_id.unlink()
-                wf_service.trg_validate(uid, 'account.invoice',
-                                        inv.auto_invoice_id.id,
-                                        'invoice_cancel', cr)
+                workflow.trg_validate(uid, 'account.invoice',
+                                      inv.auto_invoice_id.id,
+                                      'invoice_cancel', cr)
                 self.action_cancel_draft(
                     cr, uid, [inv.auto_invoice_id.id])
                 self.write(cr, uid, [inv.auto_invoice_id.id], {'internal_number': ''})

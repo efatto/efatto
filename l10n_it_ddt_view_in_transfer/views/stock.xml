@@ -5,9 +5,6 @@
             <field name="model">stock.move</field>
             <field name="inherit_id" ref="stock.view_move_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='picking_id']" position="attributes">
-                    <attribute name="attrs">{'invisible': True}</attribute>
-                </xpath>
                 <xpath expr="//field[@name='picking_id']" position="after">
                     <field name="package_ids" widget="many2many_tags"/>
                 </xpath>

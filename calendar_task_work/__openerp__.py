@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2016 Sergio Corato - SimplERP SRL
+#    Copyright (C) 2016-2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,9 @@
     'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'description':
-        'Task and work in calendar event',
-    'author': 'Sergio Corato - Simplerp srl',
-    'website': 'http://www.simplerp.it',
+        'Manage task and work from calendar event',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'depends': [
         'calendar',
         'hr_timesheet',

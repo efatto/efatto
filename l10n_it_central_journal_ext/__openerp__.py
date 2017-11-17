@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,12 +18,12 @@
 #
 #
 {
-    'name': 'Central journal ext',
+    'name': 'Italian central journal fix',
     'version': '8.0.1.2.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Central journal ext',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'description': 'Italian Central journal various fix',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_central_journal',

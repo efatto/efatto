@@ -24,7 +24,14 @@
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': 'Italia account extension',
+    'description': 'Italian account fixes: '
+                   '- add and set standard sale and purchase journal for '
+                   'default fiscal position;'
+                   '- set group invoice lines for all invoice journal;'
+                   '- set update_posted = True for all journals;'
+                   '- set entry_posted = True for cash/bank journals;'
+                   '- modify basic qweb template header and footer;'
+                   '',
     'depends': [
         'account',
         'l10n_it_account',

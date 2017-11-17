@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (C) 2015-2016 Sergio Corato
+#    Copyright (C) 2015-2017 Sergio Corato
 #    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -31,8 +31,8 @@
     ],
     "author": "Sergio Corato",
     "description": """
-    Autoconfigure tax pdc.
-
+    Autoconfigure tax pdc during installation.
+    This module is useful only is installed with a configured chart.
     """,
     "license": "AGPL-3",
     "category": "Localisation/Italy",

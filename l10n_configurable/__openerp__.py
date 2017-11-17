@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (C) 2015-2016 Sergio Corato - SimplERP srl
+#    Copyright (C) 2015-2016 Sergio Corato
 #    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -29,14 +29,14 @@
         'account',
         'l10n_it_account',
     ],
-    "author": "Sergio Corato - SimplERP SRL",
+    "author": "Sergio Corato",
     "description": """
     Autoconfigure tax pdc.
 
     """,
     "license": "AGPL-3",
     "category": "Localisation/Italy",
-    'website': 'http://www.simplerp.it',
+    'website': 'http://www.efatto.it',
     'data': [
         'data/account_tax_view.xml',
         'data/payment_type_view.xml',

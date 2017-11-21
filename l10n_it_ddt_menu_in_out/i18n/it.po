@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ddt_menu_in_out
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-21 18:30+0000\n"
+"PO-Revision-Date: 2017-11-21 18:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,help:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_in
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"          Click to prepare a new incoming package preparation.\n"
+"        </p>\n"
+"      "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"          Crea un nuovo DDT Fornitori.\n"
+"        </p>\n"
+"      "
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,help:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_out
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"          Click to prepare a new outgoing package preparation.\n"
+"        </p>\n"
+"      "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"          Crea un nuovo DDT Clienti.\n"
+"        </p>\n"
+"      "
+
+#. module: l10n_it_ddt_menu_in_out
+#: code:addons/l10n_it_ddt_menu_in_out/models/stock_picking_package_preparation.py:51
+#, python-format
+msgid "Done package preparations cannot be reset to draft."
+msgstr "Done package preparations cannot be reset to draft."
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_in
+#: model:ir.ui.menu,name:l10n_it_ddt_menu_in_out.menu_stock_picking_package_preparation_in
+msgid "IN Package Preparations"
+msgstr "DDT Fornitori"
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_out
+msgid "OUT Package Preparations"
+msgstr "DDT Clienti"
+

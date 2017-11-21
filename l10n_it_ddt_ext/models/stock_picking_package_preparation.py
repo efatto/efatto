@@ -43,6 +43,7 @@ class StockPickingPackagePreparation(models.Model):
     recipient_signature = fields.Binary(string="Recipient's signature")
     partner_invoice_id = fields.Many2one(string='Invoice Address')
     partner_shipping_id = fields.Many2one(string='Delivery Address')
+    ddt_type_id = fields.Many2one(required=True)
 
     @api.multi
     def action_draft(self):

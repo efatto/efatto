@@ -13,17 +13,6 @@
             </field>
         </record>
 
-      <record id="ddt_stock_picking_package_preparation_form_in" model="ir.ui.view">
-        <field name="name">ddt.stock.picking.package.preparation.form.in</field>
-        <field name="model">stock.picking.package.preparation</field>
-        <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_form"/>
-        <field name="arch" type="xml">
-            <field name="ddt_type_id" position="replace">
-                <field name="ddt_type_id" domain="[('type_code','=','incoming')]"/>
-            </field>
-        </field>
-      </record>
-
       <record id="ddt_stock_picking_package_preparation_form_out" model="ir.ui.view">
         <field name="name">ddt.stock.picking.package.preparation.form.out</field>
         <field name="model">stock.picking.package.preparation</field>
@@ -31,6 +20,45 @@
         <field name="arch" type="xml">
             <field name="ddt_type_id" position="replace">
                 <field name="ddt_type_id" domain="[('type_code','=','outgoing')]"/>
+            </field>
+        </field>
+      </record>
+
+    <record id="stock_picking_package_preparation_form_customer" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">[('customer','=',True),('parent_id','=',False)]</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_stock_picking_package_preparation" model="ir.actions.act_window">
+      <field name="name">OUT Package Preparations</field>
+      <field name="res_model">stock.picking.package.preparation</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">['|','&amp;',('ddt_type_id','=',False),
+          ('ddt_type_id.picking_type_id','!=',False),('ddt_type_id.picking_type_id.code','=','outgoing')]
+      </field>
+      <field name="context">{'ddt_type_id.picking_type_id.code': 'outgoing'}</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to prepare a new outgoing package preparation.
+        </p>
+      </field>
+    </record>
+
+      <record id="ddt_stock_picking_package_preparation_form_in" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form.in</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <field name="ddt_type_id" position="replace">
+                <field name="ddt_type_id" domain="[('type_code','=','incoming')]"/>
             </field>
         </field>
       </record>
@@ -53,34 +81,11 @@
       </field>
     </record>
 
-    <record id="action_stock_picking_package_preparation_out" model="ir.actions.act_window">
-      <field name="name">OUT Package Preparations</field>
-      <field name="res_model">stock.picking.package.preparation</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="ddt_stock_picking_package_preparation_form_out"/>
-      <field name="domain">['|','&amp;',('ddt_type_id','=',False),
-          ('ddt_type_id.picking_type_id','!=',False),('ddt_type_id.picking_type_id.code','=','outgoing')]
-      </field>
-      <field name="context">{'ddt_type_id.picking_type_id.code': 'outgoing'}</field>
-      <field name="help" type="html">
-        <p class="oe_view_nocontent_create">
-          Click to prepare a new outgoing package preparation.
-        </p>
-      </field>
-    </record>
-
     <menuitem
       action="action_stock_picking_package_preparation_in"
       string="IN Package Preparations"
       id="menu_stock_picking_package_preparation_in"
       parent="stock.menu_stock_warehouse_mgmt" sequence="4"/>
-    <menuitem
-      action="action_stock_picking_package_preparation_out"
-      string="OUT Package Preparations"
-      id="stock_picking_package_preparation.menu_stock_picking_package_preparation"
-      parent="stock.menu_stock_warehouse_mgmt" sequence="3"/>
 
     </data>
 </openerp>

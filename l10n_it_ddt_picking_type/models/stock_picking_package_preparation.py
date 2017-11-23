@@ -46,6 +46,14 @@ class StockPickingPackagePreparation(models.Model):
             if package.invoiceable:
                 package.line_ids.write({'invoiceable': package.invoiceable})
             # end fix
+            # check partner_invoice_id of order origin of pickings is only 1
+            if len(package.picking_ids.filtered('sale_partner_invoice_id')) >1:
+                raise exceptions.ValidationError(
+                    _("DDT has more than 1 partner to invoice in sale order"
+                      ". Partner %s"
+                      % (package.picking_ids.mapped(
+                             'sale_partner_invoice_id.name'))))
+            # end check
             for line in package.line_ids:
                 # ----- If line has 'move_id' this means we don't need to
                 #       recreate picking and move again

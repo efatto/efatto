@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-07 11:59+0000\n"
-"PO-Revision-Date: 2017-04-07 11:59+0000\n"
+"POT-Creation-Date: 2017-11-23 21:30+0000\n"
+"PO-Revision-Date: 2017-11-23 21:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_ddt_picking_type
-#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:94
-#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:103
+#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:55
+#, python-format
+msgid "DDT can contains only pickings with the same partner to invoice, as defined in sale order.Partners: %s. Please remove pickings."
+msgstr "Un DDT può contenere solo trasferimenti con lo stesso partner di fatturazione, definito nell'ordine di vendita. Partner: %s. Si prega di rimuovere dei trasferimenti."
+
+#. module: l10n_it_ddt_picking_type
+#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:102
+#: code:addons/l10n_it_ddt_picking_type/models/stock_picking_package_preparation.py:111
 #, python-format
 msgid "Impossible to create confirmed picking. Please Check products availability!"
 msgstr "Impossibile creare ordini di consegna. Controllare la disponibilità dei prodotti!"

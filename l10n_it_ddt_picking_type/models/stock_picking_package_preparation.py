@@ -49,8 +49,9 @@ class StockPickingPackagePreparation(models.Model):
             # check partner_invoice_id of order origin of pickings is only 1
             if len(package.picking_ids.filtered('sale_partner_invoice_id')) >1:
                 raise exceptions.ValidationError(
-                    _("DDT has more than 1 partner to invoice in sale order"
-                      ". Partner %s"
+                    _("DDT can contains only pickings with the same partner "
+                      "to invoice, as defined in sale order."
+                      "Partners: %s. Please remove pickings."
                       % (package.picking_ids.mapped(
                              'sale_partner_invoice_id.name'))))
             # end check

@@ -47,7 +47,7 @@ class StockPickingPackagePreparation(models.Model):
                 package.line_ids.write({'invoiceable': package.invoiceable})
             # end fix
             # check partner_invoice_id of order origin of pickings is only 1
-            if len(package.picking_ids.filtered('sale_partner_invoice_id')) >1:
+            if len(package.picking_ids.mapped('sale_partner_invoice_id.id'))>1:
                 raise exceptions.ValidationError(
                     _("DDT can contains only pickings with the same partner "
                       "to invoice, as defined in sale order."

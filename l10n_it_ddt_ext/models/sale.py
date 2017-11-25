@@ -59,3 +59,11 @@ class SaleOrder(models.Model):
                 picking.unlink()
             ddt.unlink()
         return res
+
+    @api.multi
+    def action_view_ddt(self):
+        res = super(SaleOrder, self).action_view_ddt()
+        for so in self:
+            if len(so.ddt_ids) == 0:
+                res['context'] = {'default_partner_id':self.partner_id.id}
+        return res

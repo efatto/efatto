@@ -16,11 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_report_aeroo
-#: field:sale.order,print_hide_prices:0
-msgid "Hide prices in report?"
-msgstr "Nascondi i prezzi nella stampa?"
-
-#. module: sale_order_report_aeroo
 #: model:ir.model,name:sale_order_report_aeroo.model_sale_order
 msgid "Sales Order"
 msgstr "Ordine di vendita"

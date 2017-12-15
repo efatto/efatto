@@ -156,22 +156,43 @@
       </field>
     </record>
 
+    <record id="stock_picking_package_preparation_tree_supplier" model="ir.ui.view">
+      <field name="name">stock.picking.package.preparation.tree</field>
+      <field name="model">stock.picking.package.preparation</field>
+      <field name="arch" type="xml">
+        <tree colors="grey:state == 'cancel';" string="Package Preparations">
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="date"/>
+          <field name="date_done"/>
+          <field name="package_id"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
     <record id="action_stock_picking_package_preparation_supplier" model="ir.actions.act_window">
       <field name="name">Supplier Package Preparations</field>
       <field name="res_model">stock.picking.package.preparation</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="stock_picking_package_preparation_form_supplier"/>
       <field name="domain">['|','&amp;',('ddt_type_id','=',False),
           ('ddt_type_id.picking_type_id','!=',False),('ddt_type_id.picking_type_id.code','=','incoming')]
       </field>
       <field name="context">{'ddt_type_id.picking_type_id.code': 'incoming'}</field>
-      <field name="help" type="html">
-        <p class="oe_view_nocontent_create">
-          Click to prepare a new supplier package preparation.
-        </p>
-      </field>
+    </record>
+
+    <record id="action_stock_picking_package_preparation_supplier_form" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_picking_package_preparation_form_supplier"/>
+        <field name="act_window_id" ref="action_stock_picking_package_preparation_supplier"/>
+    </record>
+    <record id="action_stock_picking_package_preparation_supplier_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="stock_picking_package_preparation_tree_supplier"/>
+        <field name="act_window_id" ref="action_stock_picking_package_preparation_supplier"/>
     </record>
 
     <menuitem

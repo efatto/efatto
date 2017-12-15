@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-21 18:30+0000\n"
-"PO-Revision-Date: 2017-11-21 18:30+0000\n"
+"POT-Creation-Date: 2017-12-15 10:39+0000\n"
+"PO-Revision-Date: 2017-12-15 10:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,41 +16,99 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_ddt_menu_in_out
-#: model:ir.actions.act_window,help:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_in
+#: model:ir.actions.act_window,help:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation
 msgid "<p class=\"oe_view_nocontent_create\">\n"
-"          Click to prepare a new incoming package preparation.\n"
+"          Click to prepare a new customer package preparation.\n"
 "        </p>\n"
 "      "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"          Crea un nuovo DDT Fornitori.\n"
+"          Clicca per creare un nuovo DDT clienti.\n"
 "        </p>\n"
 "      "
 
 #. module: l10n_it_ddt_menu_in_out
-#: model:ir.actions.act_window,help:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_out
-msgid "<p class=\"oe_view_nocontent_create\">\n"
-"          Click to prepare a new outgoing package preparation.\n"
-"        </p>\n"
-"      "
-msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"          Crea un nuovo DDT Clienti.\n"
-"        </p>\n"
-"      "
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Add an internal note..."
+msgstr "Aggiungi una nota interna..."
 
 #. module: l10n_it_ddt_menu_in_out
-#: code:addons/l10n_it_ddt_menu_in_out/models/stock_picking_package_preparation.py:51
-#, python-format
-msgid "Done package preparations cannot be reset to draft."
-msgstr "Done package preparations cannot be reset to draft."
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Cancel"
+msgstr "Annulla"
 
 #. module: l10n_it_ddt_menu_in_out
-#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_in
-#: model:ir.ui.menu,name:l10n_it_ddt_menu_in_out.menu_stock_picking_package_preparation_in
-msgid "IN Package Preparations"
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Create Invoice"
+msgstr "Crea fattura"
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation
+msgid "Customer Package Preparations"
+msgstr "DDT Clienti"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "If there is no product but a source package, this means the source package was moved entirely.  If there is a product and a source package, the product was taken from the source package."
+msgstr "If there is no product but a source package, this means the source package was moved entirely.  If there is a product and a source package, the product was taken from the source package."
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Operations"
+msgstr "Movimenti"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Package Preparation"
 msgstr "DDT Fornitori"
 
 #. module: l10n_it_ddt_menu_in_out
-#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_out
-msgid "OUT Package Preparations"
-msgstr "DDT Clienti"
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_tree_supplier
+msgid "Package Preparations"
+msgstr "DDT Fornitori"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Package done"
+msgstr "DDT completato"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Put in pack"
+msgstr "Inserisci nel DDT"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Reset to draft"
+msgstr "Reimposta a Bozza"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Set done"
+msgstr "Completato"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Shipping Informations"
+msgstr "Informazioni spedizione"
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.model,name:l10n_it_ddt_menu_in_out.model_stock_ddt_type
+msgid "Stock DdT Type"
+msgstr "Tipo DdT"
+
+#. module: l10n_it_ddt_menu_in_out
+#: model:ir.actions.act_window,name:l10n_it_ddt_menu_in_out.action_stock_picking_package_preparation_supplier
+#: model:ir.ui.menu,name:l10n_it_ddt_menu_in_out.menu_stock_picking_package_preparation_supplier
+msgid "Supplier Package Preparations"
+msgstr "DDT Fornitori"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
+msgid "Transfers"
+msgstr "Movimenti"
+
+#. module: l10n_it_ddt_menu_in_out
+#: view:stock.picking.package.preparation:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_customer
+msgid "[('customer','=',True),('parent_id','=',False)]"
+msgstr "[('customer','=',True),('parent_id','=',False)]"
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <!-- DdT Sequence c/vendita-->
         <record id="seq_type_ddt_cvendita" model="ir.sequence.type">
@@ -14,7 +14,6 @@
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
-        <!-- DdT Type c/vendita-->
         <record id="ddt_type_ddt_cvendita" model="stock.ddt.type">
             <field name="name">DdT C/vendita</field>
             <field name="sequence_id" ref="seq_ddt_cvendita" />
@@ -36,10 +35,30 @@
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
-        <!-- DdT Type c/visione-->
         <record id="ddt_type_ddt_creso" model="stock.ddt.type">
             <field name="name">DdT C/reso</field>
             <field name="sequence_id" ref="seq_ddt_creso" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_RES"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Sequence c/reso a Fornitore-->
+        <record id="seq_type_ddt_cresoforn" model="ir.sequence.type">
+            <field name="name">DDT C/reso a Fornitore</field>
+            <field name="code">stock.ddt.cresoforn</field>
+        </record>
+        <record id="seq_ddt_cresoforn" model="ir.sequence">
+            <field name="name">DDT C/reso a Fornitore</field>
+            <field name="code">stock.ddt.cresoforn</field>
+            <field name="prefix">DDTRF/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_cresoforn" model="stock.ddt.type">
+            <field name="name">DdT C/reso a Fornitore</field>
+            <field name="sequence_id" ref="seq_ddt_cresoforn" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
             <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_RES"/>
@@ -58,13 +77,81 @@
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
-        <!-- DdT Type c/visione-->
         <record id="ddt_type_ddt_cvisione" model="stock.ddt.type">
             <field name="name">DdT C/visione</field>
             <field name="sequence_id" ref="seq_ddt_cvisione" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
             <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_VIS"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Sequence reso c/visione-->
+        <record id="seq_type_ddt_reso_cvisione" model="ir.sequence.type">
+            <field name="name">DDT Reso c/visione</field>
+            <field name="code">stock.ddt.reso.cvisione</field>
+        </record>
+        <record id="seq_ddt_reso_cvisione" model="ir.sequence">
+            <field name="name">DDT Reso c/visione</field>
+            <field name="code">stock.ddt.reso.cvisione</field>
+            <field name="prefix">DDTRV/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_reso_cvisione" model="stock.ddt.type">
+            <field name="name">DdT Reso c/visione</field>
+            <field name="sequence_id" ref="seq_ddt_reso_cvisione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="l10n_it_ddt.transportation_reason_VIS"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type reso per Accredito-->
+        <record id="transportation_reason_ACC" model="stock.picking.transportation_reason">
+            <field name="name">Reso per Accredito</field>
+        </record>
+        <record id="seq_type_ddt_accredito" model="ir.sequence.type">
+            <field name="name">DDT Reso per Accredito</field>
+            <field name="code">stock.ddt.accredito</field>
+        </record>
+        <record id="seq_ddt_accredito" model="ir.sequence">
+            <field name="name">DDT Reso per Accredito</field>
+            <field name="code">stock.ddt.accredito</field>
+            <field name="prefix">DDTAC/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_accredito" model="stock.ddt.type">
+            <field name="name">DdT Reso per Accredito</field>
+            <field name="sequence_id" ref="seq_ddt_accredito" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_ACC"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type reso per Sostituzione-->
+        <record id="transportation_reason_SOS" model="stock.picking.transportation_reason">
+            <field name="name">Reso per Sostituzione</field>
+        </record>
+        <record id="seq_type_ddt_sostituzione" model="ir.sequence.type">
+            <field name="name">DDT Reso per Sostituzione</field>
+            <field name="code">stock.ddt.sostituzione</field>
+        </record>
+        <record id="seq_ddt_sostituzione" model="ir.sequence">
+            <field name="name">DDT Reso per Sostituzione</field>
+            <field name="code">stock.ddt.sostituzione</field>
+            <field name="prefix">DDTSO/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_sostituzione" model="stock.ddt.type">
+            <field name="name">DdT Reso per Sostituzione</field>
+            <field name="sequence_id" ref="seq_ddt_sostituzione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_SOS"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -92,6 +179,30 @@
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
+        <!-- DdT Type reso da c/lavorazione-->
+        <record id="transportation_reason_MAR" model="stock.picking.transportation_reason">
+            <field name="name">Reso da c/lavorazione</field>
+        </record>
+        <record id="seq_type_ddt_reso_clavorazione" model="ir.sequence.type">
+            <field name="name">DDT Reso da c/lavorazione</field>
+            <field name="code">stock.ddt.reso.clavorazione</field>
+        </record>
+        <record id="seq_ddt_reso_clavorazione" model="ir.sequence">
+            <field name="name">DDT Reso da c/lavorazione</field>
+            <field name="code">stock.ddt.reso.clavorazione</field>
+            <field name="prefix">DDTLR/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_reso_clavorazione" model="stock.ddt.type">
+            <field name="name">DdT Reso da c/lavorazione</field>
+            <field name="sequence_id" ref="seq_ddt_reso_clavorazione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_MAR"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
         <!-- DdT Type c/riparazione-->
         <record id="transportation_reason_REP" model="stock.picking.transportation_reason">
             <field name="name">Repair</field>
@@ -110,6 +221,27 @@
         <record id="ddt_type_ddt_criparazione" model="stock.ddt.type">
             <field name="name">DdT C/riparazione</field>
             <field name="sequence_id" ref="seq_ddt_criparazione" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_REP"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type Reso c/riparazione-->
+        <record id="seq_type_ddt_reso_criparazione" model="ir.sequence.type">
+            <field name="name">DDT Reso da riparazione</field>
+            <field name="code">stock.ddt.reso.criparazione</field>
+        </record>
+        <record id="seq_ddt_reso_criparazione" model="ir.sequence">
+            <field name="name">DDT Reso da riparazione</field>
+            <field name="code">stock.ddt.reso.criparazione</field>
+            <field name="prefix">DDTRR/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_reso_criparazione" model="stock.ddt.type">
+            <field name="name">DdT Reso da riparazione</field>
+            <field name="sequence_id" ref="seq_ddt_reso_criparazione" />
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
             <field name="transportation_reason_id" ref="transportation_reason_REP"/>
@@ -137,6 +269,19 @@
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
             <field name="transportation_reason_id" ref="transportation_reason_REPW"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type reso c/riparazione in garanzia-->
+        <record id="transportation_reason_RERW" model="stock.picking.transportation_reason">
+            <field name="name">Reso c/riparazione in garanzia</field>
+        </record>
+        <record id="ddt_type_ddt_resocriparazione_garanzia" model="stock.ddt.type">
+            <field name="name">DdT Reso c/riparazione in garanzia</field>
+            <field name="sequence_id" ref="seq_ddt_criparazione_garanzia" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_RERW"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
@@ -188,6 +333,30 @@
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 
+        <!-- DdT Type c/comodato gratuito-->
+        <record id="transportation_reason_COMO" model="stock.picking.transportation_reason">
+            <field name="name">Comodato d'uso gratuito</field>
+        </record>
+        <record id="seq_type_ddt_comodato" model="ir.sequence.type">
+            <field name="name">DDT C/comodato d'uso gratuito</field>
+            <field name="code">stock.ddt.comodato</field>
+        </record>
+        <record id="seq_ddt_comodato" model="ir.sequence">
+            <field name="name">DDT C/comodato</field>
+            <field name="code">stock.ddt.comodato</field>
+            <field name="prefix">DDTCO/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_comodato" model="stock.ddt.type">
+            <field name="name">DdT C/comodato</field>
+            <field name="sequence_id" ref="seq_ddt_comodato" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_COMO"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
         <!-- DdT Type c/installazione-->
         <record id="transportation_reason_INS" model="stock.picking.transportation_reason">
             <field name="name">Installation</field>
@@ -233,6 +402,50 @@
             <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
             <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
             <field name="transportation_reason_id" ref="transportation_reason_NOL"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+        <!-- DdT Type Reso c/noleggio-->
+        <record id="seq_type_ddt_reso_noleggio" model="ir.sequence.type">
+            <field name="name">DDT Reso c/noleggio</field>
+            <field name="code">stock.ddt.reso.noleggio</field>
+        </record>
+        <record id="seq_ddt_reso_noleggio" model="ir.sequence">
+            <field name="name">DDT Reso c/noleggio</field>
+            <field name="code">stock.ddt.reso.noleggio</field>
+            <field name="prefix">DDTRN/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_reso_noleggio" model="stock.ddt.type">
+            <field name="name">DdT Reso c/noleggio</field>
+            <field name="sequence_id" ref="seq_ddt_reso_noleggio" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_NOL"/>
+            <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
+        </record>
+
+        <!-- DdT Type c/trasferimento-->
+        <record id="transportation_reason_TRA" model="stock.picking.transportation_reason">
+            <field name="name">Trasferimento</field>
+        </record>
+        <record id="seq_type_ddt_ctrasferimento" model="ir.sequence.type">
+            <field name="name">DDT C/trasferimento</field>
+            <field name="code">stock.ddt.ctrasferimento</field>
+        </record>
+        <record id="seq_ddt_ctrasferimento" model="ir.sequence">
+            <field name="name">DDT C/trasferimento</field>
+            <field name="code">stock.ddt.ctrasferimento</field>
+            <field name="prefix">DDTTR/%(fy)s/</field>
+            <field name="padding" eval="4"/>
+            <field name="implementation">no_gap</field>
+        </record>
+        <record id="ddt_type_ddt_ctrasferimento" model="stock.ddt.type">
+            <field name="name">DdT C/trasferimento</field>
+            <field name="sequence_id" ref="seq_ddt_ctrasferimento" />
+            <field name="carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
+            <field name="goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>
+            <field name="transportation_reason_id" ref="transportation_reason_TRA"/>
             <field name="transportation_method_id" ref="l10n_it_ddt.transportation_method_MIT"/>
         </record>
 

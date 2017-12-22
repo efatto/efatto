@@ -8234,7 +8234,7 @@ msgstr "Separatore Decimale"
 #. module: base
 #: selection:ir.values,key:0 selection:res.partner,type:0
 msgid "Default"
-msgstr "Predefinito"
+msgstr "Sede Legale"
 
 #. module: base
 #: field:multi_company.default,company_dest_id:0
@@ -10523,7 +10523,7 @@ msgstr "Inventario, Logistica, Valutazione, Contabilità"
 #. module: base
 #: selection:res.partner,type:0
 msgid "Invoice"
-msgstr "Fattura"
+msgstr "Sede Amministrativa"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_stock_invoice_directly

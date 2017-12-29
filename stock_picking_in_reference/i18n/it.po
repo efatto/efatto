@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_picking_usability
+#	* stock_picking_in_reference
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-06 09:34+0000\n"
-"PO-Revision-Date: 2017-07-06 09:34+0000\n"
+"POT-Creation-Date: 2017-12-29 14:03+0000\n"
+"PO-Revision-Date: 2017-12-29 14:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,23 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_picking_usability
-#: view:stock.picking:stock_picking_usability.view_picking_form_partner_address
-msgid "Delivery Address"
-msgstr "Indirizzo di Consegna"
+#. module: stock_picking_in_reference
+#: field:stock.picking,in_date:0
+msgid "In date"
+msgstr "Data DDT acquisto"
 
-#. module: stock_picking_usability
-#: view:stock.picking:stock_picking_usability.view_picking_form_partner_address
-msgid "Invoice Address"
-msgstr "Indirizzo di Fatturazione"
+#. module: stock_picking_in_reference
+#: field:stock.picking,in_reference:0
+msgid "In reference"
+msgstr "Nr DDT acquisto"
 
-#. module: stock_picking_usability
-#: model:ir.model,name:stock_picking_usability.model_stock_picking_package_preparation
-msgid "Package Preparation"
-msgstr "DDT"
-
-#. module: stock_picking_usability
-#: model:ir.model,name:stock_picking_usability.model_stock_picking
+#. module: stock_picking_in_reference
+#: model:ir.model,name:stock_picking_in_reference.model_stock_picking
 msgid "Picking List"
-msgstr "Picking List"
+msgstr "Lista di Prelievo"
 

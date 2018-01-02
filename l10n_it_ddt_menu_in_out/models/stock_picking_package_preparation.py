@@ -8,6 +8,9 @@ from openerp import models, fields, api
 class StockDdtType(models.Model):
     _inherit = 'stock.ddt.type'
 
+    type_code = fields.Selection(
+        related='picking_type_id.code'
+    )
     partner_type = fields.Selection(
         selection=[
             ('customer', 'Customer'),

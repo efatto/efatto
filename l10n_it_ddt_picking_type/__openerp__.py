@@ -31,6 +31,7 @@
         'l10n_it_ddt',
     ],
     'data': [
+        'data/stock_picking_type.xml',
         'views/stock.xml',
     ],
     'installable': True

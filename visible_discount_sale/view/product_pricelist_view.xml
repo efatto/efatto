@@ -20,7 +20,7 @@
             <field name="inherit_id" ref="product.product_pricelist_view"/>
             <field name="arch" type="xml">
                 <field name="currency_id" position="before">
-                    <field name="visible_discount" groups="sale.group_sale_visible_discount" attrs="{'invisible':[('type','!=','sale')]}"/>
+                    <field name="visible_discount" groups="sale.group_sale_visible_discount"/>
                 </field>
             </field>
         </record>

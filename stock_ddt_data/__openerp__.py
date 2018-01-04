@@ -37,6 +37,7 @@
     "data": [
         'data/groups.xml',
         'data/ddt_type.xml',
+        'data/stock_location.xml',
     ],
     "installable": True,
 }

@@ -577,7 +577,7 @@ msgstr "Pronto per la Riparazione"
 #. module: mrp_repair
 #: selection:mrp.repair,state:0
 msgid "Ready to Repair"
-msgstr "Prodo da Riparare"
+msgstr "Pronto da Riparare"
 
 #. module: mrp_repair
 #: view:mrp.repair:mrp_repair.view_repair_order_form_filter

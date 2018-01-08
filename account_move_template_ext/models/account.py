@@ -18,7 +18,12 @@ class AccountMove(models.Model):
         if self.template_id.cross_journals:
             raise exceptions.Warning(_("Error! Not possible in more than one "
                                        "journal. Create from wizard"))
-        self.journal_id = self.template_id.template_line_ids[0].journal_id
+        if self.template_id.template_line_ids:
+            if self.template_id.template_line_ids[0].journal_id:
+                self.journal_id = self.template_id.template_line_ids[
+                    0].journal_id
+        if not self.journal_id:
+            return
         lines = []
         for line in self.template_id.template_line_ids:
             analytic_account_id = False

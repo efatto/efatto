@@ -27,6 +27,9 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_move_filter"/>
         <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="template_id"/>
+            </field>
             <xpath expr="//search/group[@string='Group By']/filter[@string='Partner']" position="before">
                 <filter string="Account Move Template" icon="terp-partner" domain="[]" context="{'group_by':'template_id'}"/>
             </xpath>

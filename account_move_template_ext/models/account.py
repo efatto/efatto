@@ -18,7 +18,9 @@ class AccountMove(models.Model):
         if self.template_id.cross_journals:
             raise exceptions.Warning(_("Error! Not possible in more than one "
                                        "journal. Create from wizard"))
-        if self.template_id.template_line_ids:
+        if self.template_id.journal_id:
+            self.journal_id = self.template_id.journal_id
+        elif self.template_id.template_line_ids:
             if self.template_id.template_line_ids[0].journal_id:
                 self.journal_id = self.template_id.template_line_ids[
                     0].journal_id

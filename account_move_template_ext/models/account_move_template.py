@@ -5,6 +5,15 @@
 from openerp import models, fields
 
 
+class AccountMoveTemplate(models.Model):
+    _inherit = 'account.move.template'
+
+    journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Default journal'
+    )
+
+
 class AccountMoveTemplateLine(models.Model):
     _inherit = 'account.move.template.line'
 

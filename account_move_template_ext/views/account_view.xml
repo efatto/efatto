@@ -45,5 +45,15 @@
             </xpath>
         </field>
     </record>
+    <record id="view_move_template_form_model" model="ir.ui.view">
+        <field name="name">account.move.template.form</field>
+        <field name="model">account.move.template</field>
+        <field name="inherit_id" ref="account_move_template.view_move_template_form"/>
+        <field name="arch" type="xml">
+            <field name="cross_journals" position="after">
+                <field name="journal_id"/>
+            </field>
+        </field>
+    </record>
   </data>
 </openerp>

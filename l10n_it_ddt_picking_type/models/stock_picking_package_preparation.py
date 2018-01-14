@@ -5,6 +5,13 @@
 from openerp import models, fields, api, exceptions, _
 
 
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+    sale_partner_invoice_id = fields.Many2one(
+        related='sale_id.partner_invoice_id')
+
+
 class StockDdtType(models.Model):
     _inherit = 'stock.ddt.type'
 

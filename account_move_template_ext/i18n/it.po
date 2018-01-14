@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-02 10:22+0000\n"
-"PO-Revision-Date: 2016-06-02 10:22+0000\n"
+"POT-Creation-Date: 2018-01-14 10:16+0000\n"
+"PO-Revision-Date: 2018-01-14 10:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: account_move_template_ext
 #: model:ir.model,name:account_move_template_ext.model_account_move
 msgid "Account Entry"
-msgstr "Registrazione Contabile"
+msgstr "Registrazione contabile"
 
 #. module: account_move_template_ext
 #: view:account.move:account_move_template_ext.view_account_move_filter_model
@@ -26,6 +26,11 @@ msgstr "Registrazione Contabile"
 #: field:account.move,template_id:0
 msgid "Account Move Template"
 msgstr "Causale"
+
+#. module: account_move_template_ext
+#: field:account.move.template,journal_id:0
+msgid "Default journal"
+msgstr "Giornale di default"
 
 #. module: account_move_template_ext
 #: code:addons/account_move_template_ext/models/account.py:19
@@ -36,10 +41,11 @@ msgstr "Errore! Non è possible utilizzare una causale multi-giornale. Creare il
 #. module: account_move_template_ext
 #: field:account.move.template.line,amount:0
 msgid "Fixed Amount"
-msgstr "Fixed Amount"
+msgstr "Importo Fisso"
 
 #. module: account_move_template_ext
-#: code:addons/account_move_template_ext/models/account.py:28
+#: code:addons/account_move_template_ext/models/account.py:35
 #, python-format
 msgid "You have to define an analytic journal on the '%s' journal!"
 msgstr "E' necessario definire un giornale analitico sul giornale '%s'"
+

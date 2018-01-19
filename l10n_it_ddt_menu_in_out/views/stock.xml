@@ -169,6 +169,7 @@
     <record id="stock_picking_package_preparation_tree_supplier" model="ir.ui.view">
       <field name="name">stock.picking.package.preparation.tree</field>
       <field name="model">stock.picking.package.preparation</field>
+      <field name="priority">40</field>
       <field name="arch" type="xml">
         <tree colors="grey:state == 'cancel';" string="Package Preparations">
           <field name="name"/>

@@ -59,6 +59,8 @@
                     <field name="partner_id"/>
                     <field name="iban"/>
                     <field name="amount" sum="Amount"/>
+                    <field name="cig"/>
+                    <field name="cup"/>
                     <field name="due_date"/>
                     <field name="state"/>
                     <button name="%(l10n_it_ricevute_bancarie.riba_unsolved_action)d" type='action' attrs="{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}" string="Unsolved" icon="terp-dolar_ok!"/>

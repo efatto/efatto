@@ -1,29 +1,15 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-#$ricevute_bancarie = array bidimensionale con i seguenti index aggiunti:
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
+# ricevute_bancarie = array bidimensionale con i seguenti index aggiunti:
 # [15] cup
 # [16] cig
 import base64
 from openerp.osv import orm
 from openerp.tools.translate import _
 import datetime
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class RibaFileExport(orm.TransientModel):
@@ -138,11 +124,15 @@ class RibaFileExport(orm.TransientModel):
                 cig = ' CIG: ' + str(line.cig) + ' '
             invoice_ref = ''
             if line.invoice_number and line.invoice_number != '':
-                invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + line.invoice_date
+                invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + \
+                    datetime.datetime.strptime(
+                        line.invoice_date, DEFAULT_SERVER_DATE_FORMAT
+                    ).strftime('%d/%m/%Y')
             else:
                 if line.move_line_ids:
                     if line.move_line_ids[0].move_line_id:
-                        invoice_ref = line.move_line_ids[0].move_line_id.name and line.move_line_ids[0].move_line_id.name or ''
+                        invoice_ref = line.move_line_ids[0].move_line_id.name \
+                            and line.move_line_ids[0].move_line_id.name or ''
             Riba = [
                 line.sequence,
                 due_date,

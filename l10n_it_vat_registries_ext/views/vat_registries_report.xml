@@ -33,11 +33,11 @@
                         <t t-if="print_details > 0 ">
                             <tr style="page-break-inside: avoid; border:1px solid #A1A1A1; ">
                                 <th class="left_without_line">DATA REG.</th>
-                                <th class="left_without_line">NUM. REG.</th>
+                                <th class="left_without_line">NR REG.</th>
                                 <t t-if="registry_type != 'corrispettivi'">
                                     <th class="left_without_line">CAUS.</th>
                                     <th class="left_without_line">DT FATT.</th>
-                                    <th class="left_without_line">NUM FATT.</th>
+                                    <th class="left_without_line">NR FATT.</th>
                                     <th class="left_without_line">RAGIONE SOCIALE</th>
                                     <th class="left_without_line">P.IVA</th>
                                 </t>

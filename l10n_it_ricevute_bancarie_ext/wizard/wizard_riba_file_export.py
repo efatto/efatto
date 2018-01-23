@@ -17,6 +17,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
+#$ricevute_bancarie = array bidimensionale con i seguenti index aggiunti:
+# [15] cup
+# [16] cig
 import base64
 from openerp.osv import orm
 from openerp.tools.translate import _
@@ -25,6 +28,17 @@ import datetime
 
 class RibaFileExport(orm.TransientModel):
     _inherit = "riba.file.export"
+
+    def _Record50(
+        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore,
+        cup=False, cig=False):
+        self._descrizione = str(cup) if cup else '' + \
+            str(cig) if cig else '' + 'FT N. ' + invoice_ref + \
+            ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
+        return (
+            " 50" + str(self._progressivo).rjust(7, '0') +
+            self._descrizione.ljust(80)[0:80] + " " * 10 +
+            partita_iva_creditore.ljust(16, ' ') + " " * 4 + "\r\n")
 
     def act_getfile(self, cr, uid, ids, context=None):
         active_ids = context and context.get('active_ids', [])
@@ -117,12 +131,12 @@ class RibaFileExport(orm.TransientModel):
                 raise orm.except_orm(
                     'Error',
                     _('No debit_bank specified for ') + line.partner_id.name)
-#             cup = ''
-#             cig = ''
-#             if line.cup:
-#                 cup = 'CUP: ' + str(line.cup)
-#             if line.cig:
-#                 cig = ' CIG: ' + str(line.cig) + ' '
+            cup = ''
+            cig = ''
+            if line.cup:
+                cup = 'CUP: ' + str(line.cup)
+            if line.cig:
+                cig = ' CIG: ' + str(line.cig) + ' '
             invoice_ref = ''
             if line.invoice_number and line.invoice_number != '':
                 invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + line.invoice_date
@@ -147,8 +161,8 @@ class RibaFileExport(orm.TransientModel):
                 line.partner_id.ref or '',
                 invoice_ref,  # changed
                 line.invoice_date,
-#                 cup,
-#                 cig,
+                cup,
+                cig,
             ]
             arrayRiba.append(Riba)
 
@@ -176,3 +190,32 @@ class RibaFileExport(orm.TransientModel):
             'target': 'new',
             'context': context,
         }
+
+    def _creaFile(self, intestazione, ricevute_bancarie):
+        accumulatore = self._RecordIB(
+            intestazione[0], intestazione[1], intestazione[4], intestazione[5],
+            intestazione[6])
+        for value in ricevute_bancarie:  # estraggo le ricevute dall'array
+            self._progressivo = self._progressivo + 1
+            accumulatore = accumulatore + self._Record14(
+                value[1], value[2], intestazione[1], intestazione[2],
+                intestazione[3], value[9], value[10], intestazione[0],
+                value[12])
+            accumulatore = accumulatore + \
+                self._Record20(intestazione[7], intestazione[
+                               8], intestazione[9], intestazione[10])
+            accumulatore = accumulatore + self._Record30(value[3], value[4])
+            accumulatore = accumulatore + \
+                self._Record40(
+                    value[5], value[6], value[7], value[8], value[11])
+            accumulatore = accumulatore + \
+                self._Record50(
+                    value[2], value[13], value[14], intestazione[11],
+                    value[15], value[16]
+                )
+            accumulatore = accumulatore + self._Record51(value[0])
+            accumulatore = accumulatore + self._Record70()
+        accumulatore = accumulatore + self._RecordEF()
+        self._progressivo = 0
+        self._totale = 0
+        return accumulatore

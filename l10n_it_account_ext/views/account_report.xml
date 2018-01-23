@@ -22,7 +22,7 @@
                         <span class="state" t-esc="company.state_id.code" /><br/>
                       </span>
                       <span class="vat text-right" t-if="company.partner_id.vat">
-                        <span>Vat:</span> <span t-esc="company.partner_id.vat" />
+                        <span>P.IVA:</span> <span t-esc="company.partner_id.vat" />
                       </span> -
                       <span class="fiscalcode text-right" t-if="company.partner_id.fiscalcode">
                         <span>Fiscalcode:</span> <span t-esc="company.partner_id.fiscalcode" />

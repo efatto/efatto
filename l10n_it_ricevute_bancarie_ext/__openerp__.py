@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2017 Sergio Corato.
+#    Copyright (C) 2017-2018 Sergio Corato.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -22,7 +22,7 @@
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.simplerp.it',
+    'website': 'http://www.efatto.it',
     'description': 'Ricevute bancarie accruement',
     'license': 'AGPL-3',
     'depends': [

@@ -31,13 +31,9 @@ class RibaFileExport(orm.TransientModel):
 
     def _Record50(
         self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore,
-        cup=False, cig=False):
-        if cup:
-            self._descrizione += str(cup)
-        if cig:
-            self._descrizione += str(cig)
-        self._descrizione += invoice_ref + \
-            ' DEL ' + data_invoice + ' IMP ' + str(importo_debito)
+            cup=False, cig=False):
+        self._descrizione = str(cup if cup else '') + str(cig if cig else '') \
+            + invoice_ref
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
             self._descrizione.ljust(80)[0:80] + " " * 10 +

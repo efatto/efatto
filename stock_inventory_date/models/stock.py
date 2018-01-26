@@ -3,6 +3,10 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import fields, models, exceptions, api, _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, \
+    DEFAULT_SERVER_DATETIME_FORMAT
+from datetime import datetime
+from dateutil import relativedelta
 
 
 class StockInventoryLine(models.Model):
@@ -48,7 +52,14 @@ class StockInventory(models.Model):
         flag = False
         move_obj = self.env['stock.move']
         uom_obj = self.env['product.uom']
-        #todo get cost for product moves
+        # todo get cost for product moves
+        # get next date at 00:00:00 of date selected for inventory
+        date_inventory = (datetime.strptime(
+            inventory.date_inventory, DEFAULT_SERVER_DATE_FORMAT
+        ) + relativedelta.relativedelta(
+            days=1)).strftime(
+            DEFAULT_SERVER_DATETIME_FORMAT
+        )
         for location in location_ids:
             datas = {}
             res[location.id] = {}
@@ -58,7 +69,7 @@ class StockInventory(models.Model):
                     ('location_id', '=', location.id),
                     ('state', '=', 'done'),
                     ('product_id', 'in', product_ids.ids),
-                    ('date', '<=', inventory.date_inventory)])
+                    ('date', '<', date_inventory)])
             for move in move_ids:
                 lot_id = False
                 if move.lot_ids:

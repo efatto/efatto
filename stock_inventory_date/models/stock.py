@@ -123,3 +123,34 @@ class StockInventory(models.Model):
         return self.write({
             'state': 'confirm',
             'date': fields.Datetime.now()})
+
+    @api.cr_uid_context
+    def post_inventory(self, cr, uid, inv, context=None):
+        if context is None:
+            context = {}
+        ctx = context.copy()
+        if inv.date_inventory:
+            now = fields.Datetime.now()
+            if inv.date_inventory > now:
+                raise exceptions.UserError(
+                    _("You can not process an actual "
+                      "movement date in the future."))
+            ctx['date_inventory'] = inv.date_inventory
+        return super(StockInventory, self).post_inventory(
+            cr, uid, inv, context=ctx)
+
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    @api.multi
+    def action_done(self):
+        result = super(StockMove, self).action_done()
+        # overwrite date field where applicable
+        if 'date_inventory' in self.env.context:
+            date_inv = self.env.context.get('date_inventory')
+            for move in self:
+                move.date = date_inv
+                if move.quant_ids:
+                    move.quant_ids.sudo().write({'in_date': date_inv})
+        return result

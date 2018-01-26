@@ -788,7 +788,7 @@ msgstr ""
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:107
 #: report:addons/account_financial_report_webkit/report/templates/aged_open_invoices.mako:108
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_print_journal.mako:33

@@ -59,7 +59,7 @@ msgstr "Importa Registrazioni"
 #. module: multi_payment
 #: view:account.bank.statement:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: multi_payment
 #: view:account.move.line:0

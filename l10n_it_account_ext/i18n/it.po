@@ -38,5 +38,5 @@ msgstr "Fattura"
 #. module: l10n_it_account_ext
 #: model:ir.model,name:l10n_it_account_ext.model_account_journal
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 

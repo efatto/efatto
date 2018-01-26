@@ -680,7 +680,7 @@ msgstr "Conto da chiudere"
 #: field:account_fiscal_year_closing.fyc,nlp_journal_id:0
 #: field:account_fiscal_year_closing.fyc,o_journal_id:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account_fiscal_year_closing
 #: view:account_fiscal_year_closing.fyc:0

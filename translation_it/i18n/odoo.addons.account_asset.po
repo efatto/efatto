@@ -514,7 +514,7 @@ msgstr "E' l'ammontare che si prevede di non poter ammortizzare."
 #. module: account_asset
 #: field:account.asset.category,journal_id:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account_asset
 #: code:addons/account_asset/account_asset.py:349

@@ -506,7 +506,7 @@ msgstr "E' un Follower"
 #: view:sale.receipt.report:account_voucher.view_sale_receipt_report_search
 #: field:sale.receipt.report,journal_id:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account_voucher
 #: field:account.voucher.line,move_line_id:0

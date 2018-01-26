@@ -5763,7 +5763,7 @@ msgstr "Gennaio"
 #: view:website:account.report_journal
 #, python-format
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account
 #: selection:account.report.general.ledger,sortby:0

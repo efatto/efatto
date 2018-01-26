@@ -146,7 +146,7 @@ msgstr "Fattura"
 #. module: account_journal_report_xls
 #: model:ir.model,name:account_journal_report_xls.model_account_journal
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: account_journal_report_xls
 #: selection:account.print.journal.xls,sort_selection:0

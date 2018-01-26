@@ -1263,7 +1263,7 @@ msgstr "Indica che una fattura è stata validata"
 #. module: purchase
 #: field:purchase.order,journal_id:0
 msgid "Journal"
-msgstr "Sezionale"
+msgstr "Giornale"
 
 #. module: purchase
 #: field:purchase.order,message_last_post:0

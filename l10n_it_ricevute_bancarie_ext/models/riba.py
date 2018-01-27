@@ -9,6 +9,7 @@ from openerp.tools.translate import _
 
 class RibaList(models.Model):
     _inherit = 'riba.distinta'
+    _order = 'date_created DESC'
 
     @api.multi
     def _get_accreditation_move_ids(self):

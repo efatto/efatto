@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="workflow.transition" id="accepted_to_accredited">
+            <field name="act_from" ref="act_accepted" />
+            <field name="act_to" ref="act_accrued" />
+            <field name="signal">accrued</field>
+        </record>
+    </data>
+</openerp>

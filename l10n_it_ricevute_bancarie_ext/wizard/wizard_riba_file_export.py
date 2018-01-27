@@ -2,24 +2,20 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-# ricevute_bancarie = array bidimensionale con i seguenti index aggiunti:
-# [15] cup
-# [16] cig
 import base64
 from openerp.osv import orm
 from openerp.tools.translate import _
-import datetime
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+import datetime
+import re
 
 
 class RibaFileExport(orm.TransientModel):
     _inherit = "riba.file.export"
 
-    def _Record50(
-        self, importo_debito, invoice_ref, data_invoice, partita_iva_creditore,
-            cup=False, cig=False):
-        self._descrizione = str(cup if cup else '') + str(cig if cig else '') \
-            + invoice_ref
+    def _Record50(self, importo_debito, invoice_ref, data_invoice,
+                  partita_iva_creditore):
+        self._descrizione = invoice_ref
         return (
             " 50" + str(self._progressivo).rjust(7, '0') +
             self._descrizione.ljust(80)[0:80] + " " * 10 +
@@ -116,12 +112,6 @@ class RibaFileExport(orm.TransientModel):
                 raise orm.except_orm(
                     'Error',
                     _('No debit_bank specified for ') + line.partner_id.name)
-            cup = ''
-            cig = ''
-            if line.cup:
-                cup = 'CUP: ' + str(line.cup)
-            if line.cig:
-                cig = ' CIG: ' + str(line.cig) + ' '
             invoice_ref = ''
             if line.invoice_number and line.invoice_number != '':
                 invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + \
@@ -137,21 +127,21 @@ class RibaFileExport(orm.TransientModel):
                 line.sequence,
                 due_date,
                 line.amount,
-                line.partner_id.name,
+                # using regex we remove chars outside letters, numbers, space,
+                # dot and comma because, special chars cause errors.
+                re.sub(r'[^\w\s,.]+', '', line.partner_id.name)[:60],
                 line.partner_id.vat and line.partner_id.vat[
                     2:] or line.partner_id.fiscalcode,
-                debitor_street,
-                debitor_zip,
-                debitor_city,
+                re.sub(r'[^\w\s,.]+', '', debitor_street)[:30],
+                debitor_zip[:5],
+                debitor_city[:24],
                 debitor_province,
                 debit_abi,
                 debit_cab,
                 debit_bank_name,  # changed
-                line.partner_id.ref or '',
+                line.partner_id.ref and line.partner_id.ref[:16] or '',
                 invoice_ref,  # changed
                 line.invoice_date,
-                cup,
-                cig,
             ]
             arrayRiba.append(Riba)
 
@@ -179,32 +169,3 @@ class RibaFileExport(orm.TransientModel):
             'target': 'new',
             'context': context,
         }
-
-    def _creaFile(self, intestazione, ricevute_bancarie):
-        accumulatore = self._RecordIB(
-            intestazione[0], intestazione[1], intestazione[4], intestazione[5],
-            intestazione[6])
-        for value in ricevute_bancarie:  # estraggo le ricevute dall'array
-            self._progressivo = self._progressivo + 1
-            accumulatore = accumulatore + self._Record14(
-                value[1], value[2], intestazione[1], intestazione[2],
-                intestazione[3], value[9], value[10], intestazione[0],
-                value[12])
-            accumulatore = accumulatore + \
-                self._Record20(intestazione[7], intestazione[
-                               8], intestazione[9], intestazione[10])
-            accumulatore = accumulatore + self._Record30(value[3], value[4])
-            accumulatore = accumulatore + \
-                self._Record40(
-                    value[5], value[6], value[7], value[8], value[11])
-            accumulatore = accumulatore + \
-                self._Record50(
-                    value[2], value[13], value[14], intestazione[11],
-                    value[15], value[16]
-                )
-            accumulatore = accumulatore + self._Record51(value[0])
-            accumulatore = accumulatore + self._Record70()
-        accumulatore = accumulatore + self._RecordEF()
-        self._progressivo = 0
-        self._totale = 0
-        return accumulatore

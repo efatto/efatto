@@ -9,17 +9,6 @@
                 <xpath expr="/form[@string='Ri.Ba. list']/notebook/page[@string='General']/field[@name='line_ids']/tree[@string='Detail']" position="attributes">
                     <attribute name="editable">top</attribute>
                 </xpath>
-                <xpath expr="/form[@string='Ri.Ba. list']/notebook/page[@string='General']/field[@name='line_ids']/tree[@string='Detail']/field[@name='sequence']" position="before">
-                    <field name="tobe_accredited"/>
-                </xpath>
-                <button name="%(l10n_it_ricevute_bancarie.riba_unsolved_action)d" position="attributes">
-                    <attribute name="attrs">{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}</attribute>
-                </button>
-                <field name='accreditation_move_id' position="replace">
-                    <field name='accreditation_move_ids' colspan="4" nolabel="1"/>
-                    <separator colspan="4" string="Accruement Entry"/>
-                    <field name='accruement_move_ids' colspan="4" nolabel="1"/>
-                </field>
                 <field name="date_accepted" position="replace"/>
                 <field name="date_accreditation" position="replace"/>
                 <field name="date_paid" position="replace"/>
@@ -39,82 +28,6 @@
                 </xpath>
             </field>
         </record>
-
-
-        <!-- ====================================================== -->
-        <!--                     DISTINTA RIBA LINE TREE            -->
-        <!-- ====================================================== -->
-        <record model="ir.ui.view" id="view_distinta_riba_line_tree">
-            <field name="name">riba.distinta.line.tree</field>
-            <field name="model">riba.distinta.line</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Detail" editable="top">
-                    <field name="acceptance_account_id" />
-                    <!--field name="tobe_accredited"/-->
-                    <field name="distinta_id"/>
-                    <field name="sequence"/>
-                    <field name="invoice_number"/>
-                    <field name="invoice_date"/>
-                    <field name="partner_id"/>
-                    <field name="iban"/>
-                    <field name="amount" sum="Amount"/>
-                    <field name="cig"/>
-                    <field name="cup"/>
-                    <field name="due_date"/>
-                    <field name="state"/>
-                    <button name="%(l10n_it_ricevute_bancarie.riba_unsolved_action)d" type='action' attrs="{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}" string="Unsolved" icon="terp-dolar_ok!"/>
-                    <field name="type" invisible="1" />
-                </tree>
-            </field>
-        </record>
-
-        <!-- ====================================================== -->
-        <!--                     DISTINTA RIBA LINE - FILTRI                 -->
-        <!-- ====================================================== -->
-        <record id="view_distinta_riba_line_filtri" model="ir.ui.view">
-            <field name="name">riba.distinta.line.filtri</field>
-            <field name="model">riba.distinta.line</field>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <search string="Linee Distinte Ri.Ba.">
-                    <filter icon="terp-check" string="Draft" domain="[('state','=','draft')]" help="Draft"/>
-                    <filter icon="terp-dolar" string="Confirmed" domain="[('state','=','confirmed')]" help="Confirmed"/>
-                    <filter icon="terp-dolar" string="Accredited" domain="[('state','=','accredited')]" help="Accredited"/>
-                    <filter icon="terp-dolar" string="Not Accredited" domain="[('state','!=','accredited')]" help="Not Accredited" name="not_accredited"/>
-                    <filter icon="terp-dolar_ok!" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
-                    <filter icon="terp-dolar_ok!" string="Unsolved" domain="[('state','=','unsolved')]" help="Unsolved"/>
-                    <separator orientation="vertical"/>
-                    <field name="due_date" />
-                    <separator orientation="vertical"/>
-                    <field name="acceptance_account_id" attrs="{'required':[('tipo','=','sbf')]}"/>
-                    <separator orientation="vertical"/>
-                    <field name="partner_id" domain="[('customer', '=', True)]"/>
-                    <separator orientation="vertical"/>
-                    <field name="distinta_id" />
-               </search>
-            </field>
-        </record>
-
-        <!-- ====================================================== -->
-        <!--                     ACTION DISTINTA LINE RIBA                -->
-        <!-- ====================================================== -->
-        <record id="distinta_riba_line_action" model="ir.actions.act_window">
-            <field name="name">Linee Distinta Ri.Ba.</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">riba.distinta.line</field>
-            <field name="src_model">riba.distinta.line</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_distinta_riba_line_filtri"/>
-            <field name="context">{'search_default_not_accredited':1}</field>
-        </record>
-
-        <!-- ====================================================== -->
-        <!--                     DISTINTA RIBA LINE - MENU                -->
-        <!-- ====================================================== -->
-        <menuitem name="Ri.ba. Linee" parent="l10n_it_ricevute_bancarie.menu_riba"
-            id="menu_riba_distinte_line" action="distinta_riba_line_action" sequence="2" />
 
     </data>
 </openerp>

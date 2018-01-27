@@ -27,9 +27,7 @@
 from openerp import fields, models, exceptions, api, _
 
 
-# -------------------------------------------------------
-#        RIBA ISSUE
-# -------------------------------------------------------
+# add bank_riba_id to RIBA ISSUE
 class RibaIssue(models.TransientModel):
     _inherit = "riba.issue"
 

@@ -18,57 +18,10 @@ class RibaList(models.Model):
             move_ids |= line.accreditation_move_id
         self.accreditation_move_ids = move_ids
 
-    @api.multi
-    def _get_accruement_move_ids(self):
-        self.ensure_one()
-        move_ids = self.env['account.move']
-        for line in self.line_ids:
-            move_ids |= line.accruement_move_id
-        self.accruement_move_ids = move_ids
-
-    @api.multi
-    def riba_cancel(self):
-        super(RibaList, self).riba_cancel()
-        for riba_list in self:
-            for line in riba_list.line_ids:
-                if line.accreditation_move_id:
-                    line.accreditation_move_id.unlink()
-
-    @api.multi
-    def riba_accepted(self):
-        self.ensure_one()
-        super(RibaList, self).riba_accepted()
-        self.date_accepted = self.date_accepted or \
-            fields.Date.context_today(self)
-
-    @api.multi
-    def riba_accredited(self):
-        self.ensure_one()
-        super(RibaList, self).riba_accredited()
-        self.date_accreditation = self.date_accreditation or \
-            fields.Date.context_today(self)
-
-    accreditation_move_ids = fields.Many2many(
-        'account.move',
-        compute='_get_accreditation_move_ids',
-        string="Accreditation Entries")
-    accruement_move_ids = fields.Many2many(
-        'account.move',
-        compute='_get_accruement_move_ids',
-        string="Accruement Entries")
     line_ids = fields.One2many(
         'riba.distinta.line', 'distinta_id', 'Riba deadlines', readonly=False,
         states={'paid': [('readonly', True)],
                 'cancel': [('readonly', True)]})
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('accepted', 'Accepted'),
-        ('accredited', 'Accredited'),
-        ('accrued', 'Accrued'),
-        ('paid', 'Paid'),
-        ('unsolved', 'Unsolved'),
-        ('cancel', 'Canceled')], 'State', select=True, readonly=True,
-        default='draft')
 
 
 class RibaListLine(models.Model):
@@ -76,43 +29,9 @@ class RibaListLine(models.Model):
 
     bank_riba_id = fields.Many2one(
         'res.bank', string='Debitor Bank for ri.ba.')
-    accreditation_move_id = fields.Many2one(
-        'account.move',
-        string='Accreditation Entry',
-        readonly=True)
-    accruement_move_id = fields.Many2one(
-        'account.move',
-        string='Accruement Entry',
-        readonly=True)
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('confirmed', 'Confirmed'),
-        ('accredited', 'Accredited'),
-        ('accrued', 'Accrued'),  # added state
-        ('paid', 'Paid'),
-        ('unsolved', 'Unsolved'),
-        ('cancel', 'Canceled'),
-    ], 'State', select=True, readonly=True, track_visibility='onchange')
-    tobe_accredited = fields.Boolean(
-        string='To be accredited')
-    cig = fields.Char(
-        compute='_get_cig_cup_values', string="CIG", size=256)
-    cup = fields.Char(
-        compute='_get_cig_cup_values', string="CUP", size=256)
 
-    @api.one
-    def _get_cig_cup_values(self):
-        self.cig = ""
-        self.cup = ""
-        for move_line in self.move_line_ids:
-            for related_document in move_line.move_line_id.invoice.\
-                    related_documents:
-                if related_document.cup:
-                    self.cup = str(related_document.cup)
-                if related_document.cig:
-                    self.cig = str(related_document.cig)
-
-    # total overwrite
+    # total overwrite to use date_accepted instead of registration_date for
+    # accepted move, and other minor change in move line description
     @api.multi
     def confirm(self):
         move_pool = self.pool['account.move']
@@ -123,11 +42,15 @@ class RibaListLine(models.Model):
             if not line.distinta_id.date_accepted:
                 raise UserError(_('Warning'), _('Missing Accepted Date'))
             date_accepted = line.distinta_id.date_accepted
+            period_id = self.pool['account.period'].find(
+                self._cr, self.env.user.id,
+                line.distinta_id.registration_date)
             move_id = move_pool.create(self._cr, self.env.user.id, {
                 'ref': 'Ri.Ba. %s - line %s' % (line.distinta_id.name,
                                                 line.sequence),
                 'journal_id': journal.id,
                 'date': date_accepted,
+                'period_id': period_id and period_id[0] or False,
             }, self._context)
             to_be_reconciled = []
             riba_move_line_name = ''
@@ -163,7 +86,7 @@ class RibaListLine(models.Model):
                     # in questo modo se la riga non ha conto accettazione
                     # viene prelevato il conto in configuration riba
                 ),
-                #  'partner_id': line.partner_id.id,
+                'partner_id': line.partner_id.id,
                 'date_maturity': line.due_date,
                 'credit': 0.0,
                 'debit': total_credit,

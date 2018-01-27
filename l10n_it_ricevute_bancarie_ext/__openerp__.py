@@ -18,12 +18,12 @@
 #
 #
 {
-    'name': 'Ricevute bancarie accruement',
+    'name': 'Ricevute bancarie extension',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
-    'description': 'Ricevute bancarie accruement',
+    'description': 'Ricevute bancarie bank riba from partner',
     'license': 'AGPL-3',
     'depends': [
         'account_bank',
@@ -36,7 +36,6 @@
         'views/partner_view.xml',
         'views/res_bank_view.xml',
         'views/riba_view.xml',
-        'views/wizard_accreditation.xml',
     ],
     'installable': True
 }

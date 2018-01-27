@@ -86,7 +86,7 @@ class RibaListLine(models.Model):
                     # in questo modo se la riga non ha conto accettazione
                     # viene prelevato il conto in configuration riba
                 ),
-                'partner_id': line.partner_id.id,
+                # 'partner_id': line.partner_id.id,
                 'date_maturity': line.due_date,
                 'credit': 0.0,
                 'debit': total_credit,

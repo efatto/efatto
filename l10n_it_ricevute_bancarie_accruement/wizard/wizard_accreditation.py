@@ -73,6 +73,23 @@ class RibaAccreditation(models.TransientModel):
         return amount
 
     @api.multi
+    def _get_accruement_amount(self):
+        amount = 0.0
+        config = False
+        if self._context.get('active_model', False) == 'riba.distinta.line':
+            for line in self.env['riba.distinta.line'].browse(
+                        self._context['active_ids']):
+                if not config:
+                    config = line.distinta_id.config_id
+                if line.distinta_id.config_id != config:
+                    raise UserError(
+                        _('Error'),
+                        _('Accrue only one bank configuration is possible'))
+                if line.state == 'accredited':
+                    amount += line.amount
+        return amount
+
+    @api.multi
     def skip(self):
         if self._context.get('active_model', False) == 'riba.distinta.line':
             active_ids = self._context.get('active_ids', False)
@@ -99,24 +116,13 @@ class RibaAccreditation(models.TransientModel):
         self.ensure_one()
         ref = ''
         context = {}
-        # accredit from distinta
-        if self._context.get('active_model', False) == 'riba.distinta':
-            active_id = self._context.get('active_id', False)
-            if not active_id:
-                raise UserError(_('Error'), _('No active ID found'))
-            distinta = self.env['riba.distinta'].browse(active_id)
-            ref = distinta.name
-
-        if self._context.get('active_model', False) == 'riba.distinta.line':
-            active_ids = self._context.get('active_ids', False)
-            if not active_ids:
-                raise UserError(_('Error'), _('No active IDS found'))
-            distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
-            last_id = ''
-            for line in distinta_lines:
-                if line.distinta_id.id != last_id:
-                    ref += line.distinta_id.name + ' '
-                last_id = line.distinta_id.id
+        # accredit only from distinta line
+        active_ids = self._context.get('active_ids', False)
+        if not active_ids:
+            raise UserError(_('Error'), _('No active IDS found'))
+        distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
+        distinta_id = distinta_lines[0].distinta_id
+        ref = distinta_id.name
 
         if not (self.accreditation_journal_id or self.date_accreditation):
             raise UserError(
@@ -149,8 +155,12 @@ class RibaAccreditation(models.TransientModel):
             if not line.state == "accredited":
                 line.write({'accreditation_move_id': move_id.id,
                             'state': 'accredited'})
-                # TODO: if all lines of a distinta are accredited,
-                # set distinta accredited
+        distinta_line_states = set(distinta_id.line_ids.mapped('state'))
+        state_distinta = list(distinta_line_states)
+        if len(state_distinta) == 1 and state_distinta[0] == 'accredited':
+            workflow.trg_validate(
+                self._uid, 'riba.distinta', distinta_id.id, 'accredited',
+                self._cr)
         return {
             'name': _('Accreditation Entry'),
             'view_type': 'form',
@@ -165,17 +175,16 @@ class RibaAccreditation(models.TransientModel):
     def create_accrue_move(self):
         self.ensure_one()
         ref = ''
-        context = {}
         # accrue only from distinta lines
         active_ids = self._context.get('active_ids', False)
         if not active_ids:
             raise UserError(_('Error'), _('No active IDS found'))
         distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
-        last_id = ''
+        distinta_id = ''
         for line in distinta_lines:
-            if line.distinta_id.id != last_id:
+            if line.distinta_id != distinta_id:
                 ref += line.distinta_id.name + ' '
-            last_id = line.distinta_id.id
+            distinta_id = line.distinta_id
 
         if not (self.accreditation_journal_id or self.date_accreditation):
             raise UserError(
@@ -193,14 +202,14 @@ class RibaAccreditation(models.TransientModel):
                 (0, 0, {
                     'name': _('Bank'),
                     'account_id': self.accreditation_account_id.id,
-                    'debit': self.bank_amount,
+                    'debit': self.accruement_amount,
                     'credit': 0.0,
                     'date': date_accruement,
                 }),
                 (0, 0, {
                     'name': _('Credit'),
                     'account_id': self.acceptance_account_id.id ,
-                    'credit': self.accreditation_amount,
+                    'credit': self.accruement_amount,
                     'debit': 0.0,
                     'date': date_accruement,
                 }),
@@ -213,10 +222,12 @@ class RibaAccreditation(models.TransientModel):
                 line.write({'accruement_move_id': move_id.id,
                             'state': 'accrued'})
         # todo if all lines of distinta are accrued, set distinta accrued
-        # if accrued:
-        #     workflow.trg_validate(
-        #         self._uid, 'riba.distinta', active_id,
-        #         'accrued', self._cr)
+        state_distinta = list(set(distinta_id.line_ids.mapped('state')))
+        if len(state_distinta) == 1 and state_distinta[0] == 'accrued':
+            distinta_id.state = 'accrued'
+            # workflow.trg_validate(
+            #     self._uid, 'riba.distinta', distinta_id.id,
+            #     'accrued', self._cr)
 
         return {
             'name': _('Movimento di maturazione ri.ba.'),
@@ -230,6 +241,7 @@ class RibaAccreditation(models.TransientModel):
 
     acceptance_account_id = fields.Many2one(
         comodel_name='account.account',
+        default=_get_acceptance_account_id,
         string="Ri.Ba. acceptance account")
     date_accreditation = fields.Date(
         string='Accreditation date',
@@ -242,6 +254,10 @@ class RibaAccreditation(models.TransientModel):
     accreditation_amount = fields.Float(
         string='Credit amount',
         default=lambda self: self._get_accreditation_amount(),
+    )
+    accruement_amount = fields.Float(
+        string='Accrue amount',
+        default=lambda self: self._get_accruement_amount(),
     )
     bank_amount = fields.Float(
         string='Versed amount',

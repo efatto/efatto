@@ -27,9 +27,9 @@
             <field name="model">riba.distinta</field>
             <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_distinta_form"/>
             <field name="arch" type="xml">
-                <button name="%(l10n_it_ricevute_bancarie.riba_accreditation_action)d" position="after">
-                    <button name="%(action_riba_line_accredit)d" type='action' string="Accredit lines" icon="gtk-apply"/>
-                    <button name="%(action_riba_line_accrue)d" type='action' string="Accrue lines" icon="gtk-apply"/>
+                <button name="%(l10n_it_ricevute_bancarie.riba_accreditation_action)d" position="replace">
+                    <button name="%(action_riba_line_accredit)d" type='action' string="Accredit lines" states='accepted' icon="gtk-apply"/>
+                    <button name="%(action_riba_line_accrue)d" type='action' string="Accrue lines" states="accredited" icon="gtk-apply"/>
                 </button>
                 <button name="%(l10n_it_ricevute_bancarie.riba_unsolved_action)d" position="attributes">
                     <attribute name="attrs">{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}</attribute>

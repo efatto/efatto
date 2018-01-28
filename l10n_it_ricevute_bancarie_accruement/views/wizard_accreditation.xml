@@ -60,14 +60,12 @@
                     <separator string="This wizard generates the journal entry related to accruement received from the bank" colspan="4"/>
                     <group>
                         <field name="accreditation_journal_id" />
-                        <field name="date_accreditation" />
                         <field name="date_accruement"/>
                     </group>
                     <group>
                         <field name="accreditation_account_id" />
-                        <field name="accreditation_amount" />
+                        <field name="accruement_amount" />
                         <field name="acceptance_account_id" />
-                        <field name="bank_amount" />
                     </group>
                     <button string="Cancel" special="cancel" icon="gtk-cancel" colspan="2"/>
                     <button string="Create" name="create_accrue_move" type="object" icon="gtk-ok" colspan="2" context="{'accruement':True}"/>

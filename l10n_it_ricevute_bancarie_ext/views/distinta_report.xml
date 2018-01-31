@@ -100,12 +100,14 @@
                                         <td/>
                                         <td><p>Total</p></td>
                                         <td class="text-right">
-                                            <p><span t-esc="tot_amount"/></p>
+                                            <p><span t-esc="tot_amount"
+                                                t-esc-options='{"widget": "monetary", "display_currency": "o.company_id.currency_id"}'/>
+                                            </p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> <!-- /row -->
+                        </div>
 
                     </div>
                 </t>

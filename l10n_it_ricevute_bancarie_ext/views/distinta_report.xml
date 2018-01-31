@@ -34,7 +34,7 @@
 
                         <div id="distinta_number" class="row with_bord" style="padding: 2px;">
                             <p class="distinta_number">
-                                Ricevute Bancarie list nr <span t-esc="o.name or 'Bozza'"/> del <span t-field="o.registration_date"/>
+                                Distinta SBF n. <span t-esc="o.name or 'Bozza'"/> su banca <span t-esc="o.config_id.name or ''"/> del <span t-field="o.registration_date"/>
                             </p>
                         </div>
 

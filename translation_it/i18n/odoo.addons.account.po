@@ -895,7 +895,7 @@ msgstr "Conto imponibile"
 #: model:ir.actions.act_window,name:account.action_account_central_journal
 #: model:ir.model,name:account.model_account_central_journal
 msgid "Account Central Journal"
-msgstr "Sezionale principale Conto"
+msgstr "Giornale principale Conto"
 
 #. module: account
 #: view:account.account:account.view_account_form
@@ -910,7 +910,7 @@ msgstr "Account Common Account Report"
 #. module: account
 #: model:ir.model,name:account.model_account_common_journal_report
 msgid "Account Common Journal Report"
-msgstr "Report Sezionale Contabile Semplice"
+msgstr "Report Giornale Contabile Semplice"
 
 #. module: account
 #: model:ir.model,name:account.model_account_common_partner_report
@@ -943,19 +943,19 @@ msgstr "Registrazione Contabile"
 #: model:ir.actions.act_window,name:account.action_account_general_journal
 #: model:ir.model,name:account.model_account_general_journal
 msgid "Account General Journal"
-msgstr "Sezionale di Contabilità Generale"
+msgstr "Giornale di Contabilità Generale"
 
 #. module: account
 #: view:account.journal:account.view_account_journal_form
 #: view:account.journal:account.view_account_journal_tree
 #: field:res.partner.bank,journal_id:0
 msgid "Account Journal"
-msgstr "Sezionale Contabile"
+msgstr "Giornale Contabile"
 
 #. module: account
 #: model:ir.model,name:account.model_account_journal_select
 msgid "Account Journal Select"
-msgstr "Selezione Sezionale di Contabilità"
+msgstr "Giornale Sezionale di Contabilità"
 
 #. module: account
 #: field:account.invoice.report,account_line_id:0
@@ -1237,7 +1237,7 @@ msgstr "Piano delle imposte"
 #. module: account
 #: field:account.bank.statement,account_id:0
 msgid "Account used in this journal"
-msgstr "Conto utlilizzato in questo sezionale"
+msgstr "Conto utlilizzato in questo giornale"
 
 #. module: account
 #: model:res.groups,name:account.group_account_user
@@ -2502,7 +2502,7 @@ msgstr "Categoria del prodotto"
 #. module: account
 #: model:ir.actions.report.xml,name:account.action_report_central_journal
 msgid "Central Journal"
-msgstr "Sezionale centralizzato"
+msgstr "Giornale centralizzato"
 
 #. module: account
 #: field:account.move.line,centralisation:0
@@ -2517,12 +2517,12 @@ msgstr "Contropartita centralizzata"
 #. module: account
 #: view:website:account.report_centraljournal
 msgid "Centralized Journal"
-msgstr "Sezionale Centralizzato"
+msgstr "Giornale Centralizzato"
 
 #. module: account
 #: model:ir.ui.menu,name:account.menu_account_central_journal
 msgid "Centralizing Journal"
-msgstr "Sezionale Centralizzato"
+msgstr "Giornale Centralizzato"
 
 #. module: account
 #: xsl:account.transfer:0
@@ -3788,7 +3788,7 @@ msgstr "Dicembre"
 #. module: account
 #: field:account.config.settings,decimal_precision:0
 msgid "Decimal precision on journal entries"
-msgstr "Accuratezza decimale nelle registrazioni sezionale"
+msgstr "Accuratezza decimale nelle registrazioni giornale"
 
 #. module: account
 #: field:account.journal,default_credit_account_id:0
@@ -5775,12 +5775,12 @@ msgstr "Sezionale & Partner"
 #: code:addons/account/static/src/xml/account_move_line_quickadd.xml:14
 #, python-format
 msgid "Journal :"
-msgstr "Sezionale :"
+msgstr "Giornale :"
 
 #. module: account
 #: field:account.analytic.journal,code:0
 msgid "Journal Code"
-msgstr "Codice sezionale"
+msgstr "Codice giornale"
 
 #. module: account
 #: view:account.bank.statement:account.view_bank_statement_form2
@@ -5790,12 +5790,12 @@ msgstr "Codice sezionale"
 #: model:ir.ui.menu,name:account.menu_action_move_journal_line_form
 #: model:ir.ui.menu,name:account.menu_finance_entries
 msgid "Journal Entries"
-msgstr "Registrazioni Sezionale"
+msgstr "Registrazioni Giornale"
 
 #. module: account
 #: view:account.move:account.view_account_move_filter
 msgid "Journal Entries by Month"
-msgstr "Registrazioni Sezionale per Mese"
+msgstr "Registrazioni Giornale per Mese"
 
 #. module: account
 #: view:account.move:account.view_account_move_filter
@@ -5899,17 +5899,17 @@ msgstr "Voci Sezionale da Riconciliare"
 #: field:account.analytic.journal,name:0 field:account.journal,name:0
 #: view:website:account.report_generaljournal
 msgid "Journal Name"
-msgstr "Nome sezionale"
+msgstr "Nome giornale"
 
 #. module: account
 #: model:ir.model,name:account.model_account_journal_period
 msgid "Journal Period"
-msgstr "Periodo del Sezionale"
+msgstr "Periodo del giornale"
 
 #. module: account
 #: view:account.journal.select:account.open_journal_button_view
 msgid "Journal Select"
-msgstr "Selezione sezionale"
+msgstr "Selezione giornale"
 
 #. module: account
 #: help:account.journal,analytic_journal_id:0
@@ -5930,7 +5930,7 @@ msgstr "Nome periodo del sezionale"
 #: view:website:account.report_journal
 #: view:website:account.report_salepurchasejournal
 msgid "Journal:"
-msgstr "Sezionale :"
+msgstr "Giornale :"
 
 #. module: account
 #: field:account.aged.trial.balance,journal_ids:0
@@ -6884,7 +6884,7 @@ msgid ""
 msgstr ""
 "Quando le fatture bozza vengono confermate, non è possibile\n"
 "                        modificarle. Le fatture riceveranno un numero\n"
-"                        univoco e registrazioni sezionale verranno create\n"
+"                        univoco e registrazioni giornale verranno create\n"
 "                        nel piano dei conti."
 
 #. module: account
@@ -6947,7 +6947,7 @@ msgstr "Apri fattura"
 #. module: account
 #: model:ir.actions.act_window,name:account.action_open_journal_button
 msgid "Open Journal"
-msgstr "Apri sezionale"
+msgstr "Apri giornale"
 
 #. module: account
 #. openerp-web
@@ -7005,7 +7005,7 @@ msgstr "Movimenti Aperti Conto di Ricavo"
 #: code:addons/account/account.py:3191
 #, python-format
 msgid "Opening Entries Journal"
-msgstr "Sezionale delle voci di apertura"
+msgstr "Giornale delle voci di apertura"
 
 #. module: account
 #: field:account.fiscalyear.close,period_id:0
@@ -7572,7 +7572,7 @@ msgstr "Si prega di controllare che il campo 'Conto Movimenti Interni' sia confi
 #: code:addons/account/wizard/pos_box.py:32
 #, python-format
 msgid "Please check that the field 'Journal' is set on the Bank Statement"
-msgstr "Verificare che il campo 'Sezionale' sia impostato nella Configurazione Banche"
+msgstr "Verificare che il campo 'Giornale' sia impostato nella Configurazione Banche"
 
 #. module: account
 #: code:addons/account/account_invoice.py:799
@@ -7584,7 +7584,7 @@ msgstr "Creare voci della fattura"
 #: code:addons/account/account.py:1321
 #, python-format
 msgid "Please define a sequence on the journal."
-msgstr "E' necessario definire una sequenza per il sezionale."
+msgstr "E' necessario definire una sequenza per il giornale."
 
 #. module: account
 #: code:addons/account/account_invoice.py:797

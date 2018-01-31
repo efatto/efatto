@@ -6913,7 +6913,7 @@ msgstr "Annulla Installazione"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_cancel
 msgid "Cancel Journal Entries"
-msgstr "Annulla registrazioni sezionale"
+msgstr "Annulla registrazioni giornale"
 
 #. module: base
 #: view:ir.module.module:base.module_form

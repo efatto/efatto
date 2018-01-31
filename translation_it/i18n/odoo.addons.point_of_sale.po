@@ -1471,7 +1471,7 @@ msgstr "Genera registrazioni"
 #. module: point_of_sale
 #: view:pos.confirm:point_of_sale.view_pos_confirm
 msgid "Generate Journal Entries"
-msgstr "Genera Registrazioni Sezionale"
+msgstr "Genera Registrazioni Giornale"
 
 #. module: point_of_sale
 #: view:pos.confirm:point_of_sale.view_pos_confirm
@@ -1524,7 +1524,7 @@ msgstr "Raggruppa per"
 #. module: point_of_sale
 #: field:pos.config,group_by:0
 msgid "Group Journal Items"
-msgstr "Raggruppa Registrazioni Sezionale"
+msgstr "Raggruppa Registrazioni Giornale"
 
 #. module: point_of_sale
 #. openerp-web
@@ -2551,7 +2551,7 @@ msgstr "Invia Tutti gli Ordini"
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_pos_confirm
 msgid "Post POS Journal Entries"
-msgstr "Invia Registrazioni Sezionale POS"
+msgstr "Invia Registrazioni Giornale POS"
 
 #. module: point_of_sale
 #. openerp-web

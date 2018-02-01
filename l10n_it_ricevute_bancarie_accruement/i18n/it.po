@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_ricevute_bancarie_ext
+#	* l10n_it_ricevute_bancarie_accruement
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-14 06:54+0000\n"
-"PO-Revision-Date: 2016-06-14 06:54+0000\n"
+"POT-Creation-Date: 2018-02-01 10:14+0000\n"
+"PO-Revision-Date: 2018-02-01 10:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,191 +15,196 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:account.move.line,abi:0
-msgid "ABI"
-msgstr "ABI"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.distinta:l10n_it_ricevute_bancarie_accruement.view_riba_distinta_accruement_form
+msgid "Accredit lines"
+msgstr "Accredita ri.ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_accreditation.py:45
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:68
 #, python-format
 msgid "Accredit only one bank configuration is possible"
-msgstr "E' possibile accredita solo una banca"
+msgstr "E' possibile accreditare solo una configurazione bancaria"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:riba.distinta.line,accreditation_move_id:0
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie_accruement.action_riba_line_accreditation
+msgid "Accredita Ri.Ba."
+msgstr "Accredita Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:165
+#, python-format
 msgid "Accreditation Entry"
-msgstr "Registrazione di Accredito"
+msgstr "Registrazione Accredito"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:riba.accreditation,date_accreditation:0
-msgid "Accreditation date"
-msgstr "Data Accredito"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:133
+#, python-format
+msgid "Accreditation Ri.Ba. %s"
+msgstr "Accredita Ri.Ba. %s"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.distinta:l10n_it_ricevute_bancarie_ext.view_riba_distinta_form
-#: field:riba.distinta.line,accruement_move_id:0
+#. module: l10n_it_ricevute_bancarie_accruement
+#: field:riba.accreditation,accruement_amount:0
+msgid "Accrue amount"
+msgstr "Importo maturazione"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.distinta:l10n_it_ricevute_bancarie_accruement.view_riba_distinta_accruement_form
+msgid "Accrue lines"
+msgstr "Maturazione Ri.Ba."
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:87
+#, python-format
+msgid "Accrue only one bank configuration is possible"
+msgstr "E' possibile maturare solo una configurazione bancaria"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.distinta:l10n_it_ricevute_bancarie_accruement.view_riba_distinta_accruement_form
 msgid "Accruement Entry"
 msgstr "Registrazione di maturazione valuta"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:93
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:198
 #, python-format
-msgid "Attention!"
-msgstr "Attenzione!"
+msgid "Accruement Ri.Ba. %s"
+msgstr "Maturazione Ri.Ba. %s"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_res_bank
+#. module: l10n_it_ricevute_bancarie_accruement
+#: field:riba.accreditation,date_accruement:0
+msgid "Accruement date"
+msgstr "Data di valuta maturazione"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:138
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:203
+#, python-format
 msgid "Bank"
 msgstr "Banca"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_res_partner_bank
-msgid "Bank Accounts"
-msgstr "Conti Bancari"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:res.bank:l10n_it_ricevute_bancarie_ext.view_bank_form_abicab
-msgid "Bank Details"
-msgstr "Coordinate bancarie"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_accreditation
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.model,name:l10n_it_ricevute_bancarie_accruement.model_riba_accreditation
 msgid "Bank accreditation"
 msgstr "Accredito banca"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:account.move.line,cab:0
-msgid "CAB"
-msgstr "CAB"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accruement
+msgid "Cancel"
+msgstr "Annulla"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:riba.distinta.line,bank_riba_id:0
-msgid "Debitor Bank for ri.ba."
-msgstr "Appoggio Bancario per ri.ba."
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accruement
+msgid "Create"
+msgstr "Crea"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_accreditation.py:44
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:145
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:210
+#, python-format
+msgid "Credit"
+msgstr "Avere"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie_accruement.action_riba_line_accredit
+msgid "Dettaglio distinta Ri.Ba. da accreditare"
+msgstr "Dettaglio distinta Ri.Ba. da accreditare"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie_accruement.action_riba_line_accrue
+msgid "Dettaglio distinta Ri.Ba. da maturare"
+msgstr "Dettaglio distinta Ri.Ba. da maturare"
+
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:67
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:86
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:97
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:122
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:129
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:181
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:191
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:193
 #, python-format
 msgid "Error"
 msgstr "Errore"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_account_move_line
-msgid "Journal Items"
-msgstr "Voci sezionale"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.actions.act_window,name:l10n_it_ricevute_bancarie_accruement.action_riba_line_accruement
+msgid "Maturazione Ri.Ba."
+msgstr "Maturazione Ri.Ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/models/riba.py:110
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:129
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:191
 #, python-format
-msgid "Missing Accepted Date"
-msgstr "Data Accettazione mancante"
+msgid "Missing accreditation date or journal"
+msgstr "Giornale accredito o data mancanti"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:36
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:193
 #, python-format
-msgid "No IBAN specified"
-msgstr "Nessun IBAN indicato"
+msgid "Missing bank account or accreditation account"
+msgstr "Conto di accredito o banca mancanti"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:43
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:233
 #, python-format
-msgid "No SIA Code specified for: "
-msgstr "Nessun codica SIA indicato per: "
+msgid "Movimento di maturazione ri.ba."
+msgstr "Movimento di maturazione ri.ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:56
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:109
+#. module: l10n_it_ricevute_bancarie_accruement
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:97
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:122
+#: code:addons/l10n_it_ricevute_bancarie_accruement/wizard/wizard_accreditation.py:181
 #, python-format
-msgid "No VAT or Fiscalcode specified for: "
-msgstr "Nessuna P.IVA o codice fiscale indicato per: "
+msgid "No active IDS found"
+msgstr "No active IDS found"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:96
-#, python-format
-msgid "No bank or IBAN specified for "
-msgstr "Nessuna banca o IBAN indicato per "
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
+msgid "Ri.Ba. Line Accreditation"
+msgstr "Accredito Linee Ri.Ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:115
-#, python-format
-msgid "No debit_bank specified for "
-msgstr "Nessuna banca di debito indicato per "
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accruement
+msgid "Ri.Ba. Line Accruement"
+msgstr "Maturazione valuta Linee Ri.Ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:94
-#, python-format
-msgid "Partner %s has not bank!!!"
-msgstr "Il Partner %s non ha un appoggio bancario!!!"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:riba.accreditation,acceptance_account_id:0
-msgid "Ri.Ba. acceptance account"
-msgstr "Conto di accettazione Ri.Ba."
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:res.partner:l10n_it_ricevute_bancarie_ext.view_partner_form_riba
-msgid "Ri.Ba. properties"
-msgstr "Proprietà Ri.Ba."
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_distinta_line
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.model,name:l10n_it_ricevute_bancarie_accruement.model_riba_distinta_line
 msgid "Riba details"
 msgstr "Dettagli Ri.Ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_distinta
+#. module: l10n_it_ricevute_bancarie_accruement
+#: model:ir.model,name:l10n_it_ricevute_bancarie_accruement.model_riba_distinta
 msgid "Riba list"
-msgstr "Distinta RiBa"
+msgstr "Distinta Ri.Ba."
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:res.bank:l10n_it_ricevute_bancarie_ext.view_bank_filter_abicab
-msgid "Ricerca Banca"
-msgstr "Ricerca Banca"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_issue
-msgid "Ricevute bancarie issue"
-msgstr "Emissione Ricevute bancarie"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.accreditation:l10n_it_ricevute_bancarie_ext.riba_accreditation
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_accreditation
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
 msgid "Skip and confirm accreditation"
 msgstr "Salta e conferma accredito"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: field:riba.distinta.line,tobe_accredited:0
-msgid "To be accredited"
-msgstr "Accreditare"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
+msgid "This wizard generates the journal entry related to accreditation received from the bank"
+msgstr "Questo wizard genererà la registrazione relativa all'accredito ricevuto dalla banca"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: code:addons/l10n_it_ricevute_bancarie_ext/models/riba.py:110
-#, python-format
-msgid "Warning"
-msgstr "Attenzione"
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accruement
+msgid "This wizard generates the journal entry related to accruement received from the bank"
+msgstr "Questo wizard genererà la registrazione relativa alla maturazione valuta"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.accreditation:l10n_it_ricevute_bancarie_ext.riba_accreditation
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_accreditation
+#: view:riba.accreditation:l10n_it_ricevute_bancarie_accruement.riba_line_accreditation
 msgid "You can also skip this step and set the distinta status to 'accredited' anyway"
 msgstr "È anche possibile saltare questo passo e impostare comunque la distinta dello stato di 'accreditata'"
 
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.distinta:l10n_it_ricevute_bancarie_ext.view_riba_distinta_form
-msgid "top"
-msgstr "top"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.distinta:l10n_it_ricevute_bancarie_ext.view_riba_distinta_form
+#. module: l10n_it_ricevute_bancarie_accruement
+#: view:riba.distinta:l10n_it_ricevute_bancarie_accruement.view_riba_distinta_accruement_form
 msgid "{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}"
 msgstr "{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.distinta:l10n_it_ricevute_bancarie_ext.view_riba_distinta_form
-msgid "{'readonly':[('state','!=','draft')]}"
-msgstr "{'readonly':[('state','!=','draft')]}"
-
-#. module: l10n_it_ricevute_bancarie_ext
-#: view:riba.distinta:l10n_it_ricevute_bancarie_ext.view_riba_distinta_form
-msgid "{'readonly':[('state','not in',['draft','accepted'])]}"
-msgstr "{'readonly':[('state','not in',['draft','accepted'])]}"
 

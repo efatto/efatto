@@ -228,10 +228,10 @@ class GeneralLedgerWebkit(report_sxw.rml_parse, CommonReportHeaderWebkit):
         res = self._get_move_line_datas(move_line_ids)
         # computing counter part is really heavy in term of ressouces
         # consuption looking for a king of SQL to help me improve it
-        move_ids = [x.get('move_id') for x in res]
-        counter_parts = self._get_moves_counterparts(move_ids, account_id)
-        for line in res:
-            line['counterparts'] = counter_parts.get(line.get('move_id'), '')
+        # move_ids = [x.get('move_id') for x in res]
+        # counter_parts = self._get_moves_counterparts(move_ids, account_id)
+        # for line in res:
+        #     line['counterparts'] = counter_parts.get(line.get('move_id'), '')
         return res
 
 

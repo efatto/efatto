@@ -546,6 +546,7 @@ SELECT l.id AS id,
             i.id AS invoice_id,
             i.type AS invoice_type,
             i.number AS invoice_number,
+            t.name AS template,
             l.date_maturity
 FROM account_move_line l
     JOIN account_move m on (l.move_id=m.id)
@@ -556,6 +557,7 @@ FROM account_move_line l
     LEFT JOIN res_partner p on (l.partner_id=p.id)
     LEFT JOIN account_invoice i on (m.id =i.move_id)
     LEFT JOIN account_period per on (per.id=l.period_id)
+    LEFT JOIN account_move_template t on (m.template_id=t.id)
     JOIN account_journal j on (l.journal_id=j.id)
     WHERE l.id in %s"""
         monster += (" ORDER BY %s" % (order,))

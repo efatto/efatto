@@ -107,15 +107,15 @@
                         ## move reference
                         <div class="act_as_cell" style="width: 140px;">${_('Reference')}</div>
                         ## label
-                        <div class="act_as_cell" style="width: 160px;">${_('Label')}</div>
+                        <div class="act_as_cell" style="width: 160px;">${_('Description')}</div>
                         ## counterpart
-                        <div class="act_as_cell" style="width: 100px;">${_('Counter part')}</div>
+                        <div class="act_as_cell" style="width: 100px;">${_('Template')}</div>
                         ## debit
                         <div class="act_as_cell amount" style="width: 75px;">${_('Debit')}</div>
                         ## credit
                         <div class="act_as_cell amount" style="width: 75px;">${_('Credit')}</div>
                         ## balance cumulated
-                        <div class="act_as_cell amount" style="width: 75px;">${_('Cumul. Bal.')}</div>
+                        <div class="act_as_cell amount" style="width: 75px;">${_('Progressive Balance')}</div>
                         %if amount_currency(data):
                             ## currency balance
                             <div class="act_as_cell amount sep_left" style="width: 75px;">${_('Curr. Balance')}</div>
@@ -197,7 +197,7 @@
                           ## label
                           <div class="act_as_cell">${label}</div>
                           ## counterpart
-                          <div class="act_as_cell">${line.get('counterparts') or ''}</div>
+                          <div class="act_as_cell">${line.get('template') or ''}</div>
                           ## debit
                           <div class="act_as_cell amount">${ formatLang(line.get('debit', 0.0)) | amount }</div>
                           ## credit

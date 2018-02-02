@@ -9,7 +9,7 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     template_id = fields.Many2one(
-        related='move_id.template_id')
+        related='move_id.template_id', string="Account Move Template")
 
 
 class AccountMove(models.Model):

@@ -5,6 +5,13 @@
 from openerp import models, fields, api, exceptions, _
 
 
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    template_id = fields.Many2one(
+        related='move_id.template_id')
+
+
 class AccountMove(models.Model):
     _inherit = "account.move"
 

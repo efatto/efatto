@@ -23,6 +23,7 @@ msgstr "Registrazione Contabile"
 #. module: account_move_template_ext
 #: view:account.move:account_move_template_ext.view_account_move_filter_model
 #: view:account.move:account_move_template_ext.view_move_tree_model
+#: field:account.move.line,template_id:0
 #: field:account.move,template_id:0
 msgid "Account Move Template"
 msgstr "Causale"

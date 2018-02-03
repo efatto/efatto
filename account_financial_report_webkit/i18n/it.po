@@ -1371,7 +1371,7 @@ msgstr "Registrazioni:"
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:112
 msgid "Template"
-msgstr "Template"
+msgstr "Causale"
 
 #. module: account_financial_report_webkit
 #: help:account.aged.trial.balance.webkit,until_date:0

@@ -112,10 +112,25 @@ class RibaAccreditation(models.TransientModel):
         return res
 
     @api.multi
+    def skip(self):
+        active_ids = self._context.get('active_ids', False)
+        if not active_ids:
+            raise UserError(_('Error'), _('No active IDS found'))
+        distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
+        for line in distinta_lines:
+            if not line.state == "accredited":
+                line.write({'state': 'accredited'})
+        distinta_id = distinta_lines[0].distinta_id
+        distinta_line_states = set(distinta_id.line_ids.mapped('state'))
+        state_distinta = list(distinta_line_states)
+        if len(state_distinta) == 1 and state_distinta[0] == 'accredited':
+            workflow.trg_validate(
+                self._uid, 'riba.distinta', distinta_id.id, 'accredited',
+                self._cr)
+        return {'type': 'ir.actions.act_window_close'}
+
+    @api.multi
     def create_move(self):
-        self.ensure_one()
-        ref = ''
-        context = {}
         # accredit only from distinta line
         active_ids = self._context.get('active_ids', False)
         if not active_ids:

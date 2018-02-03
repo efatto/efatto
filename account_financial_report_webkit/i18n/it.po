@@ -359,7 +359,7 @@ msgstr "Created on"
 #: report:addons/account_financial_report_webkit/report/templates/account_report_profit_loss.mako:114
 #: report:addons/account_financial_report_webkit/report/templates/account_report_trial_balance.mako:129
 msgid "Credit"
-msgstr "Credito"
+msgstr "Avere"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:118
@@ -463,7 +463,7 @@ msgstr "Filtri Data:"
 #: report:addons/account_financial_report_webkit/report/templates/account_report_profit_loss.mako:112
 #: report:addons/account_financial_report_webkit/report/templates/account_report_trial_balance.mako:127
 msgid "Debit"
-msgstr "Debito"
+msgstr "Dare"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:110

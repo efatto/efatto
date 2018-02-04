@@ -92,7 +92,7 @@ msgstr "Aged Open Invoices Report"
 #: model:ir.actions.report.xml,name:account_financial_report_webkit.account_report_aged_trial_blanance_webkit
 #, python-format
 msgid "Aged Partner Balance"
-msgstr "Aged Partner Balance"
+msgstr "Saldo Storico Partner"
 
 #. module: account_financial_report_webkit
 #: model:ir.model,name:account_financial_report_webkit.model_aged_open_invoices_webkit
@@ -1243,11 +1243,6 @@ msgstr "Si prega di impostare un filtro valido per la data"
 #: view:trial.balance.webkit:account_financial_report_webkit.account_trial_balance_view_webkit
 msgid "Print only"
 msgstr "Solo stampa"
-
-#. module: account_financial_report_webkit
-#: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:118
-msgid "Progressive Balance"
-msgstr "Progressive Balance"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:115

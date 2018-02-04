@@ -115,7 +115,7 @@
                         ## credit
                         <div class="act_as_cell amount" style="width: 75px;">${_('Credit')}</div>
                         ## balance cumulated
-                        <div class="act_as_cell amount" style="width: 75px;">${_('Progressive Balance')}</div>
+                        <div class="act_as_cell amount" style="width: 75px;">${_('Cumul. Bal.')}</div>
                         %if amount_currency(data):
                             ## currency balance
                             <div class="act_as_cell amount sep_left" style="width: 75px;">${_('Curr. Balance')}</div>

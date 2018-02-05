@@ -9,7 +9,9 @@ class AccountVoucher(models.Model):
     _inherit = "account.voucher"
 
     template_id = fields.Many2one(
-        'account.move.template', 'Account Move Template')
+        'account.move.template', 'Account Move Template',
+        domain=[('journal_id.type', 'in', ['cash','bank'])]
+    )
 
     @api.onchange('template_id')
     def onchange_template_id(self):

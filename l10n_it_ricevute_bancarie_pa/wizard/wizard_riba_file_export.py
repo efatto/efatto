@@ -125,9 +125,7 @@ class RibaFileExport(orm.TransientModel):
             invoice_ref = ''
             if line.invoice_number and line.invoice_number != '':
                 invoice_ref = 'FT N. ' + line.invoice_number + ' DEL ' + \
-                    datetime.datetime.strptime(
-                        line.invoice_date, DEFAULT_SERVER_DATE_FORMAT
-                    ).strftime('%d/%m/%Y')
+                        line.invoice_date
             else:
                 if line.move_line_ids:
                     if line.move_line_ids[0].move_line_id:

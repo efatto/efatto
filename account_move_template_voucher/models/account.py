@@ -36,3 +36,14 @@ class AccountVoucher(models.Model):
             if voucher.template_id:
                 move['template_id'] = voucher.template_id.id
         return move
+
+    @api.multi
+    def onchange_amount(self, amount, rate, partner_id, journal_id,
+                        currency_id, ttype, date, payment_rate_currency_id,
+                        company_id):
+        if self.env['ir.config_parameter'].get_param(
+                    'account.voucher.disable.onchange.amount'):
+            return False
+        return super(AccountVoucher, self).onchange_amount(
+            amount, rate, partner_id, journal_id, currency_id, ttype, date,
+            payment_rate_currency_id, company_id)

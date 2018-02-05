@@ -9,7 +9,7 @@ class AccountVoucher(models.Model):
     _inherit = "account.voucher"
 
     template_id = fields.Many2one(
-        'account.move.template', 'Account Move Template', )
+        'account.move.template', 'Account Move Template')
 
     @api.onchange('template_id')
     def onchange_template_id(self):
@@ -24,3 +24,13 @@ class AccountVoucher(models.Model):
             if self.template_id.template_line_ids[0].journal_id:
                 self.journal_id = self.template_id.template_line_ids[
                     0].journal_id
+
+    @api.model
+    def account_move_get(self, voucher_id):
+        move = super(AccountVoucher, self).account_move_get(
+            voucher_id=voucher_id)
+        if voucher_id:
+            voucher = self.browse(voucher_id)
+            if voucher.template_id:
+                move['template_id'] = voucher.template_id.id
+        return move

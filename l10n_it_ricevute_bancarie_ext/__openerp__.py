@@ -36,7 +36,7 @@
         'views/partner_view.xml',
         'views/res_bank_view.xml',
         'views/riba_view.xml',
-        'views/distinta_report.xml',
+        'report/distinta_report.xml',
     ],
     'installable': True
 }

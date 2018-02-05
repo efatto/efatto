@@ -37,10 +37,15 @@
                                 Distinta SBF n. <span t-esc="o.name or 'Bozza'"/> su banca <span t-esc="o.config_id.name or ''"/> del <span t-field="o.registration_date"/>
                             </p>
                         </div>
-
+                        <t t-as="due_date" t-foreach="get_riba_group">
                         <div class="row">
                             <table id="distinta_details" class="table table-bordered table-responsive">
                                 <thead>
+                                    <tr>
+                                        <td colspan="6" style="font-size: 14px;">
+                                            <p>Scadenze del <span t-esc="due_date"/></p>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <th>
                                             <p>Number</p>
@@ -54,9 +59,9 @@
                                         <th>
                                             <p>Customer</p>
                                         </th>
-                                        <th>
-                                            <p>IBAN</p>
-                                        </th>
+                                        <!--<th>-->
+                                            <!--<p>ABI - CAB</p>-->
+                                        <!--</th>-->
                                         <th>
                                             <p>Due Date</p>
                                         </th>
@@ -67,7 +72,8 @@
                                 </thead>
                                 <tbody>
                                     <t t-set="tot_amount" t-value="0" />
-                                    <tr t-foreach="o.line_ids" t-as="line">
+                                    <t t-set="nr" t-value="0"/>
+                                    <tr t-foreach="get_riba_group[due_date]" t-as="line">
                                         <td>
                                             <p><span t-field="line.sequence" /></p>
                                         </td>
@@ -80,9 +86,9 @@
                                         <td>
                                             <p><span t-field="line.partner_id" /></p>
                                         </td>
-                                        <td>
-                                            <p><span t-field="line.iban" /></p>
-                                        </td>
+                                        <!--<td>-->
+                                            <!--<p><span t-field="line.abi" /><span t-field="line.cab" /></p>-->
+                                        <!--</td>-->
                                         <td>
                                             <p><span t-field="line.due_date" /></p>
                                         </td>
@@ -97,7 +103,7 @@
                                         <td/>
                                         <td/>
                                         <td/>
-                                        <td/>
+                                        <!--<td/>-->
                                         <td><p>Total</p></td>
                                         <td class="text-right">
                                             <p><span t-esc="tot_amount"
@@ -108,6 +114,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        </t>
 
                     </div>
                 </t>

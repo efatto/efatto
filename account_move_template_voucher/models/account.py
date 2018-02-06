@@ -47,3 +47,20 @@ class AccountVoucher(models.Model):
         return super(AccountVoucher, self).onchange_amount(
             amount, rate, partner_id, journal_id, currency_id, ttype, date,
             payment_rate_currency_id, company_id)
+
+    @api.multi
+    def action_move_line_create(self):
+        for line in self.line_ids:
+            if line.move_line_id:
+                if line.move_line_id.invoice:
+                    invoice = line.move_line_id.invoice
+                    number = invoice.number
+                    if invoice.type in ['in_invoice', 'in_refund']:
+                        number = invoice.supplier_invoice_number
+                    if invoice.type in ['out_invoice', 'out_refund']:
+                        number = invoice.number
+                    name = _('Ref. invoice %s of %s') % (
+                        number, invoice.date_invoice)
+                    line.write({'name': name})
+        res = super(AccountVoucher, self).action_move_line_create()
+        return res

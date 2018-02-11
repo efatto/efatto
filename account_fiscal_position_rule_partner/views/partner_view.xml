@@ -19,6 +19,7 @@
                         <group string="Exemption" colspan="4">
                             <field name="exemption_type"/>
                             <field name="amount_max"/>
+                            <field name="amount_total"/>
                             <field name="exemption_proof"/>
                         </group>
                         <group string="Date limit" colspan="4">
@@ -57,13 +58,14 @@
                             <field name="date_issue"/>
                             <field name="date_reception"/>
                             <field name="exemption_type"/>
-                            <!--<field name="amount_max"/>-->
+                            <field name="amount_max"/>
+                            <field name="amount_total"/>
                             <!--<field name="exemption_proof"/>-->
                             <field name="date_start"/>
                             <field name="date_end"/>
                             <field name="fiscal_position_id"/>
-                            <field name="use_sale"/>
-                            <field name="use_invoice"/>
+                            <!--<field name="use_sale"/>-->
+                            <!--<field name="use_invoice"/>-->
                             <!--<field name="use_purchase"/>-->
                             <!--<field name="use_picking"/>-->
                             <field name="vat_rule"/>

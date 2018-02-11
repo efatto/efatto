@@ -26,6 +26,18 @@ class AccountFiscalPositionRule(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'account.fiscal.position.rule'))
 
+    def _get_amount_total(self):
+        for rule in self:
+            inv_tax_ids = self.env['account.invoice.tax'].search([
+                ('invoice_id.account_fiscal_position_rule_id', '=', rule.id),
+                ('invoice_id.state', 'not in', ['cancel', 'draft']),
+            ])
+            rule.amount_total = sum(line.base for line in inv_tax_ids
+                                    if line.amount == 0.0)
+
+    amount_total = fields.Float(
+        compute=_get_amount_total, string='Total amount used')
+
     def _map_domain(self, partner, addrs, company, **kwargs):
         domain = super(AccountFiscalPositionRule, self)._map_domain(
             partner, addrs, company, **kwargs)

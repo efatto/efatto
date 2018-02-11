@@ -18,12 +18,12 @@ msgstr ""
 #. module: account_fiscal_position_rule_partner
 #: model:ir.model,name:account_fiscal_position_rule_partner.model_account_fiscal_position_rule
 msgid "Account Fiscal Position Rule"
-msgstr "Regola di Posizione fiscale contabile"
+msgstr "Dichiarazione d'intento"
 
 #. module: account_fiscal_position_rule_partner
 #: field:account.invoice,account_fiscal_position_rule_id:0
 msgid "Fiscal Position Rule"
-msgstr "Regola di Posizione fiscale contabile"
+msgstr "Dichiarazione d'intento"
 
 #. module: account_fiscal_position_rule_partner
 #: view:account.fiscal.position.rule:account_fiscal_position_rule_partner.view_account_fiscal_position_rule_partner_form

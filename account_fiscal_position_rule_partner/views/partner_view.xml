@@ -81,7 +81,17 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="fiscal_position" position="after">
-                    <field name="account_fiscal_position_rule_id" attrs="{'invisible': [('account_fiscal_position_rule_id', '=', False)]}"/>
+                    <field name="account_fiscal_position_rule_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="invoice_supplier_form_fiscal_rule" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.fiscal.rule</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="account_fiscal_position_rule_id"/>
                 </field>
             </field>
         </record>

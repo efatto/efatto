@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,11 +21,12 @@
     'name': 'Account fiscal position rules for partner',
     'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
+    'author': 'Sergio Corato',
     'description': 'Account fiscal positione rules for partner',
-    'website': 'http://www.simplerp.it',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
+        'account',
         'account_fiscal_position_rule',
     ],
     'data': [

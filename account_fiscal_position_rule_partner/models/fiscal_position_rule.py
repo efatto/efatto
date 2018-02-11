@@ -15,7 +15,6 @@ class AccountFiscalPositionRule(models.Model):
     date_reception = fields.Date('VAT Exemption declaratione Reception Date')
     exemption_type = fields.Selection([
         ('S', 'Single Operation'),
-        ('P', 'Period'),
         ('I', 'Import')
     ], 'VAT Exemption Type')
     amount_max = fields.Float('Max Amount')

@@ -12,6 +12,7 @@
                 <field name="description" position="after">
                     <field name="amount_max"/>
                     <field name="amount_total"/>
+                    <field name="operation_type"/>
                 </field>
             </field>
         </record>
@@ -26,6 +27,7 @@
                         <field name="company_id"/>
                         <field name="name"/>
                         <field name="partner_id"/>
+                        <field name="operation_type"/>
                         <field name="amount_max"/>
                         <field name="amount_total"/>
                         <!--<field name="from_country"/>-->

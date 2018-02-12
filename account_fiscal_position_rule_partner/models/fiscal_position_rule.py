@@ -21,6 +21,10 @@ class AccountFiscalPositionRule(models.Model):
     inactive = fields.Boolean('Inactive')
     exemption_proof = fields.Binary(
         'VAT Exemption proof of posting',)
+    operation_type = fields.Selection([
+        ('customer', 'Customer'),
+        ('supplier', 'Supplier'),
+    ], 'VAT Operation Type')
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
         default=lambda self: self.env['res.company']._company_default_get(
@@ -28,12 +32,30 @@ class AccountFiscalPositionRule(models.Model):
 
     def _get_amount_total(self):
         for rule in self:
-            inv_tax_ids = self.env['account.invoice.tax'].search([
-                ('invoice_id.account_fiscal_position_rule_id', '=', rule.id),
-                ('invoice_id.state', 'not in', ['cancel', 'draft']),
-            ])
-            rule.amount_total = sum(line.base for line in inv_tax_ids
-                                    if line.amount == 0.0)
+            # TODO get for type of invoice, and not compensate between
+            # customer and supplier if it is the same (theoric only?)
+            if rule.operation_type == 'supplier':
+                inv_tax_ids = self.env['account.invoice.tax'].search([
+                    ('invoice_id.account_fiscal_position_rule_id', '=', rule.id),
+                    ('invoice_id.state', 'not in', ['cancel', 'draft']),
+                    ('invoice_id.type', 'in', ['in_invoice', 'in_refund'])
+                ])
+                rule.amount_total = sum(
+                    line.base for line in inv_tax_ids if line.amount == 0.0 and
+                    line.invoice_id.type == 'in_invoice') - sum(
+                    line.base for line in inv_tax_ids if line.amount == 0.0 and
+                    line.invoice_id.type == 'in_refund')
+            elif rule.operation_type == 'customer':
+                inv_tax_ids = self.env['account.invoice.tax'].search([
+                    ('invoice_id.account_fiscal_position_rule_id', '=', rule.id),
+                    ('invoice_id.state', 'not in', ['cancel', 'draft']),
+                    ('invoice_id.type', 'in', ['out_invoice', 'out_refund'])
+                ])
+                rule.amount_total = sum(
+                    line.base for line in inv_tax_ids if line.amount == 0.0 and
+                    line.invoice_id.type == 'out_invoice') - sum(
+                    line.base for line in inv_tax_ids if line.amount == 0.0 and
+                    line.invoice_id.type == 'out_refund')
 
     amount_total = fields.Float(
         compute=_get_amount_total, string='Total amount used')

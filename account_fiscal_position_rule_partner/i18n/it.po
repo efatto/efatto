@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-07 20:56+0000\n"
-"PO-Revision-Date: 2016-08-07 20:56+0000\n"
+"POT-Creation-Date: 2018-02-12 00:05+0000\n"
+"PO-Revision-Date: 2018-02-12 00:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,7 @@ msgstr ""
 #. module: account_fiscal_position_rule_partner
 #: model:ir.model,name:account_fiscal_position_rule_partner.model_account_fiscal_position_rule
 msgid "Account Fiscal Position Rule"
-msgstr "Dichiarazione d'intento"
-
-#. module: account_fiscal_position_rule_partner
-#: field:account.invoice,account_fiscal_position_rule_id:0
-msgid "Fiscal Position Rule"
-msgstr "Dichiarazione d'intento"
+msgstr "Lettera d'Intento"
 
 #. module: account_fiscal_position_rule_partner
 #: view:account.fiscal.position.rule:account_fiscal_position_rule_partner.view_account_fiscal_position_rule_partner_form
@@ -46,9 +41,15 @@ msgid "Exemption"
 msgstr "Esenzione"
 
 #. module: account_fiscal_position_rule_partner
+#: view:account.fiscal.position.rule:account_fiscal_position_rule_partner.view_account_fiscal_position_rule_tree_amount
+#: field:account.invoice,account_fiscal_position_rule_id:0
+msgid "Fiscal Position Rule"
+msgstr "Lettera d'Intento"
+
+#. module: account_fiscal_position_rule_partner
 #: view:account.fiscal.position.rule:account_fiscal_position_rule_partner.view_account_fiscal_position_rule_partner_form
 msgid "Fiscal Position Rule for Partner"
-msgstr "Fiscal Position Rule for Partner"
+msgstr "Lettera d'Intento per Partner"
 
 #. module: account_fiscal_position_rule_partner
 #: selection:account.fiscal.position.rule,exemption_type:0
@@ -75,11 +76,6 @@ msgstr "Importo Massimo"
 #: model:ir.model,name:account_fiscal_position_rule_partner.model_res_partner
 msgid "Partner"
 msgstr "Partner"
-
-#. module: account_fiscal_position_rule_partner
-#: selection:account.fiscal.position.rule,exemption_type:0
-msgid "Period"
-msgstr "Periodo"
 
 #. module: account_fiscal_position_rule_partner
 #: selection:account.fiscal.position.rule,exemption_type:0

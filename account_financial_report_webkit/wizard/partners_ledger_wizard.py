@@ -46,12 +46,10 @@ class AccountReportPartnersLedgerWizard(orm.TransientModel):
             help='Filter by date: no opening balance will be displayed. '
             '(opening balance can only be computed based on period to be \
             correct).'),
-        'group_invoice_payments': fields.boolean("Group invoice payment rows.")
     }
     _defaults = {
         'amount_currency': False,
         'result_selection': 'customer_supplier',
-        'group_invoice_payments': True,
     }
 
     def _check_fiscalyear(self, cr, uid, ids, context=None):
@@ -129,7 +127,7 @@ class AccountReportPartnersLedgerWizard(orm.TransientModel):
         # will be used to attach the report on the main account
         data['ids'] = [data['form']['chart_account_id']]
         vals = self.read(cr, uid, ids,
-                         ['amount_currency', 'partner_ids', 'group_invoice_payments'],
+                         ['amount_currency', 'partner_ids'],
                          context=context)[0]
         data['form'].update(vals)
         return data

@@ -28,9 +28,6 @@
                             <group colspan="4" col="2">
                                 <field name="amount_currency"/>
                             </group>
-                            <group colspan="4" col="2">
-                                <field name="group_invoice_payments"/>
-                            </group>
                         </page>
                     </page>
                     <page name="filters" position="attributes">

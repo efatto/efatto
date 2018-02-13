@@ -24,7 +24,7 @@ from itertools import groupby
 from datetime import datetime
 
 from openerp.report import report_sxw
-from openerp import pooler
+from openerp.modules.registry import RegistryManager
 from openerp.tools.translate import _
 from .common_reports import CommonReportHeaderWebkit
 from .webkit_parser_header_fix import HeaderFooterTextWebKitParser
@@ -35,7 +35,7 @@ class GeneralLedgerWebkit(report_sxw.rml_parse, CommonReportHeaderWebkit):
     def __init__(self, cursor, uid, name, context):
         super(GeneralLedgerWebkit, self).__init__(
             cursor, uid, name, context=context)
-        self.pool = pooler.get_pool(self.cr.dbname)
+        self.pool = RegistryManager.get(self.cr.dbname)
         self.cursor = self.cr
 
         company = self.pool.get('res.users').browse(
@@ -75,6 +75,8 @@ class GeneralLedgerWebkit(report_sxw.rml_parse, CommonReportHeaderWebkit):
     def set_context(self, objects, data, ids, report_type=None):
         """Populate a ledger_lines attribute on each browse record that will be
         used by mako template"""
+        lang = self.localcontext.get('lang')
+        lang_ctx = lang and {'lang': lang} or {}
         new_ids = data['form']['account_ids'] or data[
             'form']['chart_account_id']
 
@@ -121,7 +123,8 @@ class GeneralLedgerWebkit(report_sxw.rml_parse, CommonReportHeaderWebkit):
             stop)
         objects = self.pool.get('account.account').browse(self.cursor,
                                                           self.uid,
-                                                          accounts)
+                                                          accounts,
+                                                          context=lang_ctx)
 
         init_balance = {}
         ledger_lines = {}

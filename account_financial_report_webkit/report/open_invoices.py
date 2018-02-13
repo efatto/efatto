@@ -26,7 +26,7 @@ from operator import itemgetter
 from mako.template import Template
 
 
-from openerp import pooler
+from openerp.modules.registry import RegistryManager
 from openerp.osv import osv
 from openerp.report import report_sxw
 from openerp.tools.translate import _
@@ -50,7 +50,7 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
     def __init__(self, cursor, uid, name, context):
         super(PartnersOpenInvoicesWebkit, self).__init__(
             cursor, uid, name, context=context)
-        self.pool = pooler.get_pool(self.cr.dbname)
+        self.pool = RegistryManager.get(self.cr.dbname)
         self.cursor = self.cr
 
         company = self.pool.get('res.users').browse(
@@ -86,11 +86,11 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
             ],
         })
 
-    def _group_lines_by_currency(self, account_br):
+    def _group_lines_by_currency(self, account_br, ledger_lines):
         account_br.grouped_ledger_lines = {}
-        if not account_br.ledger_lines:
+        if not ledger_lines:
             return
-        for part_id, plane_lines in account_br.ledger_lines.items():
+        for part_id, plane_lines in ledger_lines.items():
             account_br.grouped_ledger_lines[part_id] = []
             plane_lines.sort(key=itemgetter('currency_code'))
             for curr, lines in groupby(plane_lines,
@@ -102,6 +102,8 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
     def set_context(self, objects, data, ids, report_type=None):
         """Populate a ledger_lines attribute on each browse record that will
            be used by mako template"""
+        lang = self.localcontext.get('lang')
+        lang_ctx = lang and {'lang': lang} or {}
         new_ids = data['form']['chart_account_id']
         # Account initial balance memoizer
         init_balance_memoizer = {}
@@ -148,7 +150,8 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
             partner_filter=partner_ids)
         objects = self.pool.get('account.account').browse(self.cursor,
                                                           self.uid,
-                                                          account_ids)
+                                                          account_ids,
+                                                          context=lang_ctx)
 
         ledger_lines = {}
         init_balance = {}
@@ -174,7 +177,8 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
             ledger_lines[account.id] = ledger_lines_memoizer.get(account.id,
                                                                  {})
             if group_by_currency:
-                self._group_lines_by_currency(account)
+                self._group_lines_by_currency(
+                    account, ledger_lines[account.id])
 
         self.localcontext.update({
             'fiscalyear': fiscalyear,

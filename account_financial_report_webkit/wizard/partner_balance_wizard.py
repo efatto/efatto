@@ -24,7 +24,7 @@ class AccountPartnerBalanceWizard(models.TransientModel):
         'res.partner', string='Filter on partner',
         help="Only selected partners will be printed. "
         "Leave empty to print all partners.")
-
+    remove_footer = fields.Boolean()
     # same field in the module account
     display_partner = fields.Selection(
         [

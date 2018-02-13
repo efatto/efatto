@@ -47,7 +47,25 @@ class PartnerBalanceWebkit(report_sxw.rml_parse,
 
         footer_date_time = self.formatLang(
             str(datetime.today()), date_time=True)
+        additional_args = [
+            ('--header-font-name', 'Helvetica'),
+            ('--footer-font-name', 'Helvetica'),
+            ('--header-font-size', '10'),
+            ('--footer-font-size', '6'),
+            ('--header-left', header_report_name),
+            ('--header-spacing', '2'),
+        ]
+        wizard = self.pool['partner.balance.webkit'].browse(
+            cursor, uid, context.get('active_id', False), context)
 
+        if not wizard.remove_footer:
+            additional_args += [
+                ('--footer-left', footer_date_time),
+                ('--footer-right',
+                    ' '.join((_('Page'), '[page]', _('of'),
+                            '[topage]'))),
+                ('--footer-line',)
+            ]
         self.localcontext.update({
             'cr': cursor,
             'uid': uid,
@@ -59,18 +77,7 @@ class PartnerBalanceWebkit(report_sxw.rml_parse,
             'display_target_move': self._get_display_target_move,
             'display_partner_account': self._get_display_partner_account,
             'accounts': self._get_accounts_br,
-            'additional_args': [
-                ('--header-font-name', 'Helvetica'),
-                ('--footer-font-name', 'Helvetica'),
-                ('--header-font-size', '10'),
-                ('--footer-font-size', '6'),
-                ('--header-left', header_report_name),
-                ('--header-spacing', '2'),
-                ('--footer-left', footer_date_time),
-                ('--footer-right',
-                 ' '.join((_('Page'), '[page]', _('of'), '[topage]'))),
-                ('--footer-line',),
-            ],
+            'additional_args': additional_args,
         })
 
     def _get_initial_balance_mode(self, start_period):

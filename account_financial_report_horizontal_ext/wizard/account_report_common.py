@@ -188,6 +188,11 @@ class account_common_report(orm.TransientModel):
             period_obj = self.pool.get('account.period')
             result['periods'] = period_obj.build_ctx_periods(
                 cr, uid, period_from, period_to)
+            # exclude closing period if exists
+            for period in period_obj.browse(
+                    cr, uid, result['periods'], context=context):
+                if period.special and period.id != period_from:
+                    result['periods'].remove(period.id)
 
         return result
 

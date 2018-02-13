@@ -32,8 +32,6 @@ class AccountFiscalPositionRule(models.Model):
 
     def _get_amount_total(self):
         for rule in self:
-            # TODO get for type of invoice, and not compensate between
-            # customer and supplier if it is the same (theoric only?)
             if rule.operation_type == 'supplier':
                 inv_tax_ids = self.env['account.invoice.tax'].search([
                     ('invoice_id.account_fiscal_position_rule_id', '=', rule.id),

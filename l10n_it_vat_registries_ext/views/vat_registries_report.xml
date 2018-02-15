@@ -36,7 +36,7 @@
                                 <th class="left_without_line">NR REG.</th>
                                 <t t-if="registry_type != 'corrispettivi'">
                                     <th class="left_without_line">CAUS.</th>
-                                    <th class="left_without_line">DT FATT.</th>
+                                    <th class="left_without_line">DATA FATT.</th>
                                     <th class="left_without_line">NR FATT.</th>
                                     <th class="left_without_line">RAGIONE SOCIALE</th>
                                     <th class="left_without_line">P.IVA</th>

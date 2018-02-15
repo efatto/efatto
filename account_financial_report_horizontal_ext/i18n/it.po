@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-16 21:31+0000\n"
-"PO-Revision-Date: 2016-04-16 21:31+0000\n"
+"POT-Creation-Date: 2018-02-15 18:37+0000\n"
+"PO-Revision-Date: 2018-02-15 18:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -97,18 +97,12 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
-#: report:account.profit_horizontal:0
-msgid "Chart of Account"
-msgstr "Piano dei conti"
-
-#. module: account_financial_report_horizontal_ext
-#: field:account.bs.report,chart_account_id:0
-#: field:account.pl.report,chart_account_id:0
-#: field:account_financial_report_horizontal_ext.common.account.report,chart_account_id:0
-#: field:account_financial_report_horizontal_ext.common.report,chart_account_id:0
+#: field:account.bs.report,chart_template_id:0
+#: field:account.pl.report,chart_template_id:0
+#: field:account_financial_report_horizontal_ext.common.account.report,chart_template_id:0
+#: field:account_financial_report_horizontal_ext.common.report,chart_template_id:0
 msgid "Chart of account"
-msgstr "Piano dei conti"
+msgstr "Chart of account"
 
 #. module: account_financial_report_horizontal_ext
 #: report:account.balancesheet.horizontal:0
@@ -138,6 +132,12 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: account_financial_report_horizontal_ext
+#: report:account.balancesheet.horizontal:0
+#: report:account.profit_horizontal:0
+msgid "Dal"
+msgstr "Dal"
+
+#. module: account_financial_report_horizontal_ext
 #: selection:account.bs.report,filter:0
 #: selection:account.pl.report,filter:0
 #: selection:account_financial_report_horizontal_ext.common.account.report,filter:0
@@ -160,20 +160,12 @@ msgid "Display accounts"
 msgstr "Mostra conti"
 
 #. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
 #: field:account.bs.report,date_to:0
 #: field:account.pl.report,date_to:0
-#: report:account.profit_horizontal:0
 #: field:account_financial_report_horizontal_ext.common.account.report,date_to:0
 #: field:account_financial_report_horizontal_ext.common.report,date_to:0
 msgid "End Date"
 msgstr "Data Fine"
-
-#. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
-#: report:account.profit_horizontal:0
-msgid "End Period"
-msgstr "Periodo finale"
 
 #. module: account_financial_report_horizontal_ext
 #: field:account.bs.report,period_to:0
@@ -185,8 +177,8 @@ msgstr "Periodo finale"
 
 #. module: account_financial_report_horizontal_ext
 #: code:addons/account_financial_report_horizontal_ext/report/common_report_header.py:68
-#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:165
 #: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:180
+#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:200
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -195,12 +187,6 @@ msgstr "Errore"
 #: report:account.profit_horizontal:0
 msgid "Expense"
 msgstr "Costi"
-
-#. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
-#: report:account.profit_horizontal:0
-msgid "Filter By"
-msgstr "Filtra per"
 
 #. module: account_financial_report_horizontal_ext
 #: field:account.bs.report,filter:0
@@ -214,12 +200,6 @@ msgstr "Filtra per"
 #: view:account_financial_report_horizontal_ext.common.report:account_financial_report_horizontal_ext.account_common_report_view
 msgid "Filters"
 msgstr "Filtri"
-
-#. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
-#: report:account.profit_horizontal:0
-msgid "Fiscal Year"
-msgstr "Anno Fiscale"
 
 #. module: account_financial_report_horizontal_ext
 #: field:account.bs.report,fiscalyear_id:0
@@ -292,8 +272,8 @@ msgstr "Nome"
 
 #. module: account_financial_report_horizontal_ext
 #: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:102
-#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:166
-#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:327
+#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:161
+#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:325
 #: code:addons/account_financial_report_horizontal_ext/report/account_profit_loss.py:92
 #: code:addons/account_financial_report_horizontal_ext/report/account_profit_loss.py:189
 #, python-format
@@ -302,9 +282,9 @@ msgstr "Perdita Netta"
 
 #. module: account_financial_report_horizontal_ext
 #: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:97
-#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:160
-#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:163
-#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:164
+#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:155
+#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:158
+#: code:addons/account_financial_report_horizontal_ext/report/account_balance_sheet.py:159
 #: code:addons/account_financial_report_horizontal_ext/report/account_profit_loss.py:87
 #: code:addons/account_financial_report_horizontal_ext/report/account_profit_loss.py:193
 #, python-format
@@ -365,34 +345,42 @@ msgid "Report Options"
 msgstr "Opzioni Report"
 
 #. module: account_financial_report_horizontal_ext
+#: field:account.bs.report,chart_account_id:0
+#: field:account.pl.report,chart_account_id:0
+#: field:account_financial_report_horizontal_ext.common.account.report,chart_account_id:0
+#: field:account_financial_report_horizontal_ext.common.report,chart_account_id:0
+msgid "Root account"
+msgstr "Root account"
+
+#. module: account_financial_report_horizontal_ext
+#: help:account.bs.report,chart_template_id:0
+#: help:account.pl.report,chart_template_id:0
+#: help:account_financial_report_horizontal_ext.common.account.report,chart_template_id:0
+#: help:account_financial_report_horizontal_ext.common.report,chart_template_id:0
+msgid "Select Charts of Accounts"
+msgstr "Select Charts of Accounts"
+
+#. module: account_financial_report_horizontal_ext
 #: help:account.bs.report,chart_account_id:0
 #: help:account.pl.report,chart_account_id:0
 #: help:account_financial_report_horizontal_ext.common.account.report,chart_account_id:0
 #: help:account_financial_report_horizontal_ext.common.report,chart_account_id:0
-msgid "Select Charts of Accounts"
-msgstr "Selezionare il Piano dei Conti"
+msgid "Select Root of Accounts"
+msgstr "Select Root of Accounts"
 
 #. module: account_financial_report_horizontal_ext
-#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:165
+#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:180
 #, python-format
 msgid "Select a starting and an ending period"
 msgstr "Selezionare un periodo iniziale e uno finale"
 
 #. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
 #: field:account.bs.report,date_from:0
 #: field:account.pl.report,date_from:0
-#: report:account.profit_horizontal:0
 #: field:account_financial_report_horizontal_ext.common.account.report,date_from:0
 #: field:account_financial_report_horizontal_ext.common.report,date_from:0
 msgid "Start Date"
 msgstr "Data di Inizio"
-
-#. module: account_financial_report_horizontal_ext
-#: report:account.balancesheet.horizontal:0
-#: report:account.profit_horizontal:0
-msgid "Start Period"
-msgstr "Periodo Iniziale"
 
 #. module: account_financial_report_horizontal_ext
 #: field:account.bs.report,period_from:0
@@ -465,7 +453,13 @@ msgid "With movements"
 msgstr "Con movimenti"
 
 #. module: account_financial_report_horizontal_ext
-#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:180
+#: report:account.balancesheet.horizontal:0
+#: report:account.profit_horizontal:0
+msgid "al"
+msgstr "al"
+
+#. module: account_financial_report_horizontal_ext
+#: code:addons/account_financial_report_horizontal_ext/wizard/account_report_common.py:200
 #, python-format
 msgid "not implemented"
 msgstr "non implementato"

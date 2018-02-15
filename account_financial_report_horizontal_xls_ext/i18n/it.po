@@ -6,23 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-16 21:56+0000\n"
-"PO-Revision-Date: 2016-04-16 21:56+0000\n"
+"POT-Creation-Date: 2018-02-15 20:46+0000\n"
+"PO-Revision-Date: 2018-02-15 20:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:140
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:144
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:137
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:141
-#, python-format
-msgid "Account"
-msgstr "Conto"
 
 #. module: account_financial_report_horizontal_xls_ext
 #: model:ir.model,name:account_financial_report_horizontal_xls_ext.model_account_bs_report
@@ -35,56 +26,41 @@ msgid "Account Profit And Loss Report"
 msgstr "Report Profitti e perdite"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:60
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:73
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:93
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:91
 #, python-format
-msgid "BS Report"
-msgstr "Report Stato Patrimoniale"
+msgid "Anno Fiscale"
+msgstr "Anno Fiscale"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:139
 #: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:143
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:136
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:140
 #, python-format
-msgid "Code"
-msgstr "Codice"
-
-#. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:146
-#, python-format
-msgid "Credit"
+msgid "Attività"
 msgstr "Attività"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:217
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:140
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:144
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:138
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:142
 #, python-format
-msgid "Credit Totals"
-msgstr "Attività Totali"
+msgid "Codice"
+msgstr "Codice"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:142
-#, python-format
-msgid "Debit"
-msgstr "Passività"
-
-#. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:213
-#, python-format
-msgid "Debit Totals"
-msgstr "Passività Totali"
-
-#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:141
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:145
 #: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:139
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:143
 #, python-format
-msgid "Expense"
-msgstr "Costi"
+msgid "Conto"
+msgstr "Conto"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:210
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:141
 #, python-format
-msgid "Expense Totals"
-msgstr "Costi Totali"
+msgid "Costi"
+msgstr "Costi"
 
 #. module: account_financial_report_horizontal_xls_ext
 #: view:account.bs.report:account_financial_report_horizontal_xls_ext.horizontal_bs_webkit_xls_wizard_view
@@ -93,25 +69,35 @@ msgid "Export"
 msgstr "Esporta"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:93
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:90
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:92
 #, python-format
-msgid "Filter"
+msgid "Filtri"
+msgstr "Filtri"
+
+#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:94
+#, python-format
+msgid "Filtro"
 msgstr "Filtro"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:92
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:89
-#, python-format
-msgid "Fiscal Year"
-msgstr "Anno Fiscale"
-
-#. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:110
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:107
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:111
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:109
 #, python-format
 msgid "From"
 msgstr "Da"
+
+#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:58
+#, python-format
+msgid "PL Report"
+msgstr "CONTO ECONOMICO"
+
+#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:147
+#, python-format
+msgid "Passività"
+msgstr "Passività"
 
 #. module: account_financial_report_horizontal_xls_ext
 #: view:account.bs.report:account_financial_report_horizontal_xls_ext.horizontal_bs_webkit_xls_wizard_view
@@ -120,16 +106,17 @@ msgid "Print"
 msgstr "Stampa"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:143
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:145
 #, python-format
-msgid "Revenue"
+msgid "Ricavi"
 msgstr "Ricavi"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:214
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:61
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:74
 #, python-format
-msgid "Revenue Totals"
-msgstr "Ricavi Totali"
+msgid "Stato Patrimoniale"
+msgstr "Stato Patrimoniale"
 
 #. module: account_financial_report_horizontal_xls_ext
 #: view:account.bs.report:account_financial_report_horizontal_xls_ext.horizontal_bs_webkit_xls_wizard_view
@@ -138,42 +125,51 @@ msgid "This report allows you to generate a pdf or xls of your trial balance all
 msgstr "Questo report genera un pdf o xls dello Stato Patrimoniale"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:111
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:108
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:112
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:110
 #, python-format
 msgid "To"
 msgstr "A"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:145
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:220
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:224
 #, python-format
-msgid "Total Credit"
+msgid "Totale"
+msgstr "Totale"
+
+#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:142
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:253
+#, python-format
+msgid "Totale Attività"
 msgstr "Totale Attività"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:141
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:140
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:212
 #, python-format
-msgid "Total Debit"
-msgstr "Totale Passività"
-
-#. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:138
-#, python-format
-msgid "Total Expense"
+msgid "Totale Costi"
 msgstr "Totale Costi"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:142
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:146
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:257
 #, python-format
-msgid "Total Revenue"
+msgid "Totale Passività"
+msgstr "Totale Passività"
+
+#. module: account_financial_report_horizontal_xls_ext
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:144
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:216
+#, python-format
+msgid "Totale Ricavi"
 msgstr "Totale Ricavi"
 
 #. module: account_financial_report_horizontal_xls_ext
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:246
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_bs_xls.py:250
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:242
-#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:246
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:244
+#: code:addons/account_financial_report_horizontal_xls_ext/report/horizontal_pl_xls.py:248
 #, python-format
-msgid "Totals"
+msgid "Totali"
 msgstr "Totali"
 

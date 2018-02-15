@@ -19,12 +19,11 @@
 ##############################################################################
 
 import xlwt
-import time
-from openerp.report import report_sxw
 from openerp.addons.report_xls.report_xls import report_xls
-from openerp.addons.report_xls.utils import rowcol_to_cell
-from openerp.addons.account_financial_report_horizontal_ext.report.account_profit_loss import report_pl_account_horizontal
-from openerp.tools.translate import _
+from openerp.addons.report_xls.utils import rowcol_to_cell, _render
+from openerp.addons.account_financial_report_horizontal_ext.report.\
+    account_profit_loss import report_pl_account_horizontal
+from openerp import _
 
 
 class my_report_pl_account_horizontal(report_pl_account_horizontal):
@@ -54,7 +53,7 @@ class trial_balance_xls(report_xls):
                     12, 30, 17, 17, 17, 17]
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
-        ws = wb.add_sheet('PL Report')  # _p.report_name[:31])
+        ws = wb.add_sheet(_('Conto Economico'))  # _p.report_name[:31])
         ws.panes_frozen = True
         ws.remove_splits = True
         ws.portrait = 0  # Landscape
@@ -67,7 +66,8 @@ class trial_balance_xls(report_xls):
 
         # Title
         cell_style = xlwt.easyxf(_xs['xls_title'])
-        report_name = ' - '.join(['PL Report'.upper(), _p.company.partner_id.name, _p.company.currency_id.name])
+        report_name = ' - '.join(['Conto Economico'.upper(),
+                                  _p.company.partner_id.name])
         c_specs = [
             ('report_name', 1, 0, 'text', report_name),
         ]
@@ -76,7 +76,8 @@ class trial_balance_xls(report_xls):
 
         # write empty row to define column sizes
         c_sizes = self.column_sizes
-        c_specs = [('empty%s' % i, 1, c_sizes[i], 'text', None) for i in range(0, len(c_sizes))]
+        c_specs = [('empty%s' % i, 1, c_sizes[i], 'text', None) for i in range(
+            0, len(c_sizes))]
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, set_column_size=True)
 
@@ -86,13 +87,13 @@ class trial_balance_xls(report_xls):
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
 
         c_specs = [
-            ('fy', 1, 0, 'text', _('Fiscal Year')),
-            ('df', 2, 0, 'text', _('Filter')),
-#                               data['form'].get('filter', False) == 'filter_date' and _('Dates Filter')
-#                               or data['form'].get('filter', False) == 'filter_period' and _('Periods Filter')
-#                               or u''),
-#             ('ib', 1, 0, 'text', _('Initial Balance'), None, cell_style_center),
-#             ('coa', 1, 0, 'text', _('Chart of Account'), None, cell_style_center),
+            ('fy', 1, 0, 'text', _('Anno Fiscale')),
+            ('df', 2, 0, 'text', _('Filtro')),
+            #                   data['form'].get('filter', False) == 'filter_date' and _('Dates Filter')
+            #                   or data['form'].get('filter', False) == 'filter_period' and _('Periods Filter')
+            #                   or u''),
+            # ('ib', 1, 0, 'text', _('Initial Balance'), None, cell_style_center),
+            # ('coa', 1, 0, 'text', _('Chart of Account'), None, cell_style_center),
         ]
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
@@ -102,10 +103,10 @@ class trial_balance_xls(report_xls):
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
         c_specs = [
             ('fy', 1, 0, 'text', _p.get_fiscalyear(data) if _p.get_fiscalyear(data) else '-'),
-#             ('af', 2, 0, 'text', _p.accounts(data) and ', '.join([account.code for account in _p.accounts(data)]) or _('All')),
+            # ('af', 2, 0, 'text', _p.accounts(data) and ', '.join([account.code for account in _p.accounts(data)]) or _('All')),
         ]
-        df = _('From') + ': '
-        dt = _('To') + ': '
+        df = _('Da') + ': '
+        dt = _('A') + ': '
         if data['form'].get('filter', False) == 'filter_date':
             df += _p.get_start_date(data) if _p.get_start_date(data) else u''
             dt += _p.get_end_date(data) if _p.get_end_date(data) else u''
@@ -119,28 +120,29 @@ class trial_balance_xls(report_xls):
         c_specs += [
             ('df', 1, 0, 'text', df),
             ('dt', 1, 0, 'text', dt),
-#             ('tm', 2, 0, 'text', _p.display_target_move(data), None, cell_style_center), _
-#             ('ib', 1, 0, 'text', initial_balance_text[_p.initial_balance_mode], None, cell_style_center),
-#             ('coa', 1, 0, 'text', p.get_chart_account(data), None, cell_style_center),
+            # ('tm', 2, 0, 'text', _p.display_target_move(data), None, cell_style_center), _
+            # ('ib', 1, 0, 'text', initial_balance_text[_p.initial_balance_mode], None, cell_style_center),
+            # ('coa', 1, 0, 'text', p.get_chart_account(data), None, cell_style_center),
         ]
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
 
         # Column Header Row
-        cell_format = _xs['bold'] + _xs['fill_blue'] + _xs['borders_all'] + _xs['wrap'] + _xs['top']
+        cell_format = _xs['bold'] + _xs['fill_blue'] + _xs['borders_all'] + \
+                      _xs['wrap'] + _xs['top']
         cell_style = xlwt.easyxf(cell_format)
         cell_style_right = xlwt.easyxf(cell_format + _xs['right'])
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
         account_span = 3
         c_specs = [
-            ('c_code', 1, 0, 'text', _('Code')),
-            ('c_account', account_span, 0, 'text', _('Account')),
-            ('total_credit', 1, 0, 'text', _('Total Expense'), None, cell_style_right),
-            ('credit', 1, 0, 'text', _('Expense'), None, cell_style_right),
-            ('d_code', 1, 0, 'text', _('Code')),
-            ('d_account', account_span, 0, 'text', _('Account')),
-            ('total_debit', 1, 0, 'text', _('Total Revenue'), None, cell_style_right),
-            ('debit', 1, 0, 'text', _('Revenue'), None, cell_style_right)]
+            ('c_code', 1, 0, 'text', _('Codice')),
+            ('c_account', account_span, 0, 'text', _('Conto')),
+            ('total_credit', 1, 0, 'text', _('Totale Costi'), None, cell_style_right),
+            ('credit', 1, 0, 'text', _('Costi'), None, cell_style_right),
+            ('d_code', 1, 0, 'text', _('Codice')),
+            ('d_account', account_span, 0, 'text', _('Conto')),
+            ('total_debit', 1, 0, 'text', _('Totale Ricavi'), None, cell_style_right),
+            ('debit', 1, 0, 'text', _('Ricavi'), None, cell_style_right)]
 
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
@@ -150,13 +152,17 @@ class trial_balance_xls(report_xls):
         view_cell_format = _xs['bold'] + _xs['fill'] + _xs['borders_all']
         view_cell_style = xlwt.easyxf(view_cell_format)
         view_cell_style_center = xlwt.easyxf(view_cell_format + _xs['center'])
-        view_cell_style_decimal = xlwt.easyxf(view_cell_format + _xs['right'], num_format_str = report_xls.decimal_format)
-        view_cell_style_pct = xlwt.easyxf(view_cell_format + _xs['center'], num_format_str = '0')
+        view_cell_style_decimal = xlwt.easyxf(view_cell_format + _xs['right'],
+                                              num_format_str = report_xls.decimal_format)
+        view_cell_style_pct = xlwt.easyxf(view_cell_format + _xs['center'],
+                                          num_format_str = '0')
         regular_cell_format = _xs['borders_all']
         regular_cell_style = xlwt.easyxf(regular_cell_format)
         regular_cell_style_center = xlwt.easyxf(regular_cell_format + _xs['center'])
-        regular_cell_style_decimal = xlwt.easyxf(regular_cell_format + _xs['right'], num_format_str = report_xls.decimal_format)
-        regular_cell_style_pct = xlwt.easyxf(regular_cell_format + _xs['center'], num_format_str = '0')
+        regular_cell_style_decimal = xlwt.easyxf(regular_cell_format + _xs['right'],
+                                                 num_format_str = report_xls.decimal_format)
+        regular_cell_style_pct = xlwt.easyxf(regular_cell_format + _xs['center'],
+                                             num_format_str = '0')
         account_id = data['form'].get('chart_account_id', False)
         if account_id:
             account_id = account_id[0]
@@ -207,11 +213,11 @@ class trial_balance_xls(report_xls):
         c_tot_formula = 'sum(' + rowcol_to_cell(5, 11) + ':' + rowcol_to_cell(row_pos - 1, 11) + ')'
         c_specs = [
             ('c_code', 1, 0, 'text', None, None, view_cell_style),
-            ('c_account', account_span, 0, 'text', _('Expense Totals'), None, view_cell_style),
+            ('c_account', account_span, 0, 'text', _('Totale Costi'), None, view_cell_style),
             ('total_credit', 1, 0, 'text', None, None, view_cell_style),
             ('credit', 1, 0, 'number', None, d_tot_formula, view_cell_style_decimal),
             ('d_code', 1, 0, 'text', None, None, view_cell_style),
-            ('d_account', account_span, 0, 'text', _('Revenue Totals'), None, view_cell_style),
+            ('d_account', account_span, 0, 'text', _('Totale Ricavi'), None, view_cell_style),
             ('total_debit', 1, 0, 'text', None, None, view_cell_style),
             ('debit', 1, 0, 'number', None, c_tot_formula, view_cell_style_decimal)]
 
@@ -239,11 +245,11 @@ class trial_balance_xls(report_xls):
         c_tot_formula = 'sum(' + rowcol_to_cell(row_pos - 2, 5) + ':' + rowcol_to_cell(row_pos - 1, 5) + ')'
         c_specs = [
             ('c_code', 1, 0, 'text', None, None, view_cell_style),
-            ('c_account', account_span, 0, 'text', _('Totals'), None, view_cell_style),
+            ('c_account', account_span, 0, 'text', _('Totali'), None, view_cell_style),
             ('total_credit', 1, 0, 'text', None, None, view_cell_style),
             ('credit', 1, 0, 'number', None, d_tot_formula, view_cell_style_decimal),
             ('d_code', 1, 0, 'text', None, None, view_cell_style),
-            ('d_account', account_span, 0, 'text', _('Totals'), None, view_cell_style),
+            ('d_account', account_span, 0, 'text', _('Totali'), None, view_cell_style),
             ('total_debit', 1, 0, 'text', None, None, view_cell_style),
             ('debit', 1, 0, 'number', None, c_tot_formula, view_cell_style_decimal)]
 

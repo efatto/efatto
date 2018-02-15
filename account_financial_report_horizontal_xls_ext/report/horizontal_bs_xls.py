@@ -22,8 +22,9 @@
 
 import xlwt
 from openerp.addons.report_xls.report_xls import report_xls
-from openerp.addons.report_xls.utils import rowcol_to_cell
-from openerp.addons.account_financial_report_horizontal_ext.report.account_balance_sheet import report_balancesheet_horizontal
+from openerp.addons.report_xls.utils import rowcol_to_cell, _render
+from openerp.addons.account_financial_report_horizontal_ext.report.\
+    account_balance_sheet import report_balancesheet_horizontal
 from openerp.tools.translate import _
 
 
@@ -70,7 +71,8 @@ class trial_balance_xls(report_xls):
 
         # Title
         cell_style = xlwt.easyxf(_xs['xls_title'])
-        report_name = ' - '.join([_('Stato Patrimoniale').upper(), _p.company.partner_id.name, _p.company.currency_id.name])
+        report_name = ' - '.join([_('Stato Patrimoniale').upper(),
+                                  _p.company.partner_id.name])
         c_specs = [
             ('report_name', 1, 0, 'text', report_name),
         ]
@@ -91,11 +93,11 @@ class trial_balance_xls(report_xls):
         c_specs = [
             ('fy', 1, 0, 'text', _('Anno Fiscale')),
             ('df', 2, 0, 'text', _('Filtro')),
-#                               data['form'].get('filter', False) == 'filter_date' and _('Dates Filter')
-#                               or data['form'].get('filter', False) == 'filter_period' and _('Periods Filter')
-#                               or u''),
-#             ('ib', 1, 0, 'text', _('Initial Balance'), None, cell_style_center),
-#             ('coa', 1, 0, 'text', _('Chart of Account'), None, cell_style_center),
+            #                   data['form'].get('filter', False) == 'filter_date' and _('Dates Filter')
+            #                   or data['form'].get('filter', False) == 'filter_period' and _('Periods Filter')
+            #                   or u''),
+            # ('ib', 1, 0, 'text', _('Initial Balance'), None, cell_style_center),
+            # ('coa', 1, 0, 'text', _('Chart of Account'), None, cell_style_center),
         ]
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
@@ -105,10 +107,10 @@ class trial_balance_xls(report_xls):
         cell_style_center = xlwt.easyxf(cell_format + _xs['center'])
         c_specs = [
             ('fy', 1, 0, 'text', _p.get_fiscalyear(data) if _p.get_fiscalyear(data) else '-'),
-#             ('af', 2, 0, 'text', _p.accounts(data) and ', '.join([account.code for account in _p.accounts(data)]) or _('All')),
+            # ('af', 2, 0, 'text', _p.accounts(data) and ', '.join([account.code for account in _p.accounts(data)]) or _('All')),
         ]
-        df = _('From') + ': '
-        dt = _('To') + ': '
+        df = _('Da') + ': '
+        dt = _('A') + ': '
         if data['form'].get('filter', False) == 'filter_date':
             df += _p.get_start_date(data) if _p.get_start_date(data) else u''
             dt += _p.get_end_date(data) if _p.get_end_date(data) else u''
@@ -122,9 +124,9 @@ class trial_balance_xls(report_xls):
         c_specs += [
             ('df', 1, 0, 'text', df),
             ('dt', 1, 0, 'text', dt),
-#             ('tm', 2, 0, 'text', _p.display_target_move(data), None, cell_style_center), _
-#             ('ib', 1, 0, 'text', initial_balance_text[_p.initial_balance_mode], None, cell_style_center),
-#             ('coa', 1, 0, 'text', p.get_chart_account(data), None, cell_style_center),
+            # ('tm', 2, 0, 'text', _p.display_target_move(data), None, cell_style_center), _
+            # ('ib', 1, 0, 'text', initial_balance_text[_p.initial_balance_mode], None, cell_style_center),
+            # ('coa', 1, 0, 'text', p.get_chart_account(data), None, cell_style_center),
         ]
         row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
         row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)

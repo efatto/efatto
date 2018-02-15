@@ -55,12 +55,35 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
 
         company = self.pool.get('res.users').browse(
             self.cr, uid, uid, context=context).company_id
-        header_report_name = ' - '.join((_('OPEN INVOICES REPORT'),
-                                        company.name,
-                                        company.currency_id.name))
-
+        header_report_name = ' - '.join(
+            (_('OPEN INVOICES REPORT'), company.name, company.street,
+             company.zip, company.city,
+             _('VAT: %s' % company.vat),
+             _('C.F.: %s' % company.partner_id.fiscalcode)
+            )
+        )
         footer_date_time = self.formatLang(
             str(datetime.today()), date_time=True)
+
+        additional_args = [
+            ('--header-font-name', 'Helvetica'),
+            ('--footer-font-name', 'Helvetica'),
+            ('--header-font-size', '10'),
+            ('--footer-font-size', '6'),
+            ('--header-left', header_report_name),
+            ('--header-spacing', '2'),
+        ]
+        wizard = self.pool['open.invoices.webkit'].browse(
+            cursor, uid, context.get('active_id', False), context)
+
+        if not wizard.remove_footer:
+            additional_args += [
+                ('--footer-left', footer_date_time),
+                ('--footer-right',
+                    ' '.join((_('Page'), '[page]', _('of'),
+                             '[topage]'))),
+                ('--footer-line',)
+            ]
 
         self.localcontext.update({
             'cr': cursor,
@@ -72,18 +95,7 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
             'amount_currency': self._get_amount_currency,
             'display_partner_account': self._get_display_partner_account,
             'display_target_move': self._get_display_target_move,
-            'additional_args': [
-                ('--header-font-name', 'Helvetica'),
-                ('--footer-font-name', 'Helvetica'),
-                ('--header-font-size', '10'),
-                ('--footer-font-size', '6'),
-                ('--header-left', header_report_name),
-                ('--header-spacing', '2'),
-                ('--footer-left', footer_date_time),
-                ('--footer-right',
-                 ' '.join((_('Page'), '[page]', _('of'), '[topage]'))),
-                ('--footer-line',),
-            ],
+            'additional_args': additional_args,
         })
 
     def _group_lines_by_currency(self, account_br, ledger_lines):

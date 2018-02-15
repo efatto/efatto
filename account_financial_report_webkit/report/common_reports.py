@@ -397,6 +397,42 @@ class CommonReportHeaderWebkit(common_report_header):
                 'init_balance': res.get('balance') or 0.0,
                 'init_balance_currency': res.get('curr_balance') or 0.0,
                 'state': mode}
+    # SC add function
+    def _compute_init_balance_by_date(self, account_id=None, date=None, mode='computed', default_values=False):
+        res = {}
+
+        if not default_values:
+            if not account_id or not date:
+                raise Exception('Missing account or period_ids')
+            try:
+                self.cursor.execute("SELECT sum(debit) AS debit, "
+                                    " sum(credit) AS credit, "
+                                    " sum(debit)-sum(credit) AS balance, "
+                                    " sum(amount_currency) AS curr_balance"
+                                    " FROM account_move_line"
+                                    " WHERE date < %s"
+                                    " AND account_id = %s", (date, account_id))
+                res = self.cursor.dictfetchone()
+
+            except Exception:
+                self.cursor.rollback()
+                raise
+
+        return {'debit': res.get('debit') or 0.0,
+                'credit': res.get('credit') or 0.0,
+                'init_balance': res.get('balance') or 0.0,
+                'init_balance_currency': res.get('curr_balance') or 0.0,
+                'state': mode}
+
+    def _compute_initial_balances_by_date(self, account_ids, start_date, fiscalyear):
+        """We compute initial balance by date.
+        This function will sum pear and apple in currency amount if account as no secondary currency"""
+        res = {}
+
+        for acc in self.pool.get('account.account').browse(self.cursor, self.uid, account_ids):
+            res[acc.id] = self._compute_init_balance_by_date(default_values=True)
+            res[acc.id] = self._compute_init_balance_by_date(acc.id, start_date)
+        return res
 
     def _read_opening_balance(self, account_ids, start_period):
         """ Read opening balances from the opening balance
@@ -523,8 +559,10 @@ class CommonReportHeaderWebkit(common_report_header):
         monster = """
 SELECT l.id AS id,
             l.date AS ldate,
+            m.date AS mdate,
             j.code AS jcode ,
             j.type AS jtype,
+            j.name AS jname ,
             l.currency_id,
             l.account_id,
             l.amount_currency,
@@ -601,7 +639,8 @@ WHERE move_id in %s"""
         return res and dict(res) or {}
 
     def is_initial_balance_enabled(self, main_filter):
-        if main_filter not in ('filter_no', 'filter_year', 'filter_period'):
+        if main_filter not in ('filter_no', 'filter_year', 'filter_period',
+                               'filter_date'):
             return False
         return True
 

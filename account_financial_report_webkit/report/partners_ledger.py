@@ -227,6 +227,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 if l['lperiod_id'] == line['lperiod_id'] and \
                         l['jcode'] == line['jcode'] and \
                         l['ldate'] == line['ldate'] and \
+                        l['mdate'] == line['mdate'] and \
                         l['supplier_invoice_number'] == \
                             line['supplier_invoice_number'] and \
                         l['date_invoice'] == line['date_invoice'] and \
@@ -241,6 +242,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                         l['move_id'] == line['move_id'] and \
                         l['lpartner_id'] == line['lpartner_id'] and \
                         l['invoice_id'] == line['invoice_id'] and \
+                        l['jname'] == line['jname'] and \
                         l['period_code'] == line['period_code'] and \
                         l['lref'] == line['lref'] and \
                         l['currency_code'] == line['currency_code']:

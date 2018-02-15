@@ -31,6 +31,7 @@ class AccountReportOpenInvoicesWizard(orm.TransientModel):
 
     _columns = {
         'group_by_currency': fields.boolean('Group Partner by currency'),
+        'remove_footer': fields.boolean('Remove Footer'),
         'until_date': fields.date(
             "Clearance date",
             required=True,

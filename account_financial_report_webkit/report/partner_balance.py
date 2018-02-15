@@ -41,9 +41,13 @@ class PartnerBalanceWebkit(report_sxw.rml_parse,
 
         company = self.pool.get('res.users').browse(
             self.cr, uid, uid, context=context).company_id
-        header_report_name = ' - '.join((_('PARTNER BALANCE'),
-                                        company.name,
-                                        company.currency_id.name))
+        header_report_name = ' - '.join(
+            (_('PARTNER BALANCE'), company.name, company.street, company.zip,
+             company.city,
+             _('VAT: %s' % company.vat),
+             _('C.F.: %s' % company.partner_id.fiscalcode)
+            )
+        )
 
         footer_date_time = self.formatLang(
             str(datetime.today()), date_time=True)
@@ -63,7 +67,7 @@ class PartnerBalanceWebkit(report_sxw.rml_parse,
                 ('--footer-left', footer_date_time),
                 ('--footer-right',
                     ' '.join((_('Page'), '[page]', _('of'),
-                            '[topage]'))),
+                             '[topage]'))),
                 ('--footer-line',)
             ]
         self.localcontext.update({

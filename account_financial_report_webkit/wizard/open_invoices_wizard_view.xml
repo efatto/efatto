@@ -18,6 +18,8 @@
                     <xpath expr="//field[@name='target_move']" position="after">
                         <newline/>
                         <field name="result_selection" colspan="4"/>
+                        <newline/>
+                        <field name="remove_footer" colspan="4"/>
                     </xpath>
                     <xpath expr="/form/notebook[1]" position="after">
                         <separator string="Clearance Analysis Options" colspan="4"/>

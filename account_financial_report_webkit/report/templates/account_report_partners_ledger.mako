@@ -102,17 +102,15 @@
                             ## period
                             <div class="act_as_cell" style="width: 70px;">${_('Period')}</div>
                             ## move
-                            <div class="act_as_cell" style="width: 100px;">${_('Entry')}</div>
+                            <div class="act_as_cell" style="width: 70px;">${_('Entry')}</div>
                             ## journal
                             <div class="act_as_cell" style="width: 70px;">${_('Journal')}</div>
                             ## partner
-                            <div class="act_as_cell" style="width: 100px;">${_('Partner')}</div>
-                            ## move reference
-                            <div class="act_as_cell" style="width: 60px;">${_('Reference')}</div>
+                            <div class="act_as_cell" style="width: 180px;">${_('Partner')}</div>
                             ## label
-                            <div class="act_as_cell" style="width: 280px;">${_('Label')}</div>
+                            <div class="act_as_cell" style="width: 220px;">${_('Label')} - ${_('Invoice Number')}</div>
                             ## reconcile
-                            <div class="act_as_cell" style="width: 80px;">${_('Rec.')}</div>
+                            <div class="act_as_cell" style="width: 50px;">${_('Rec.')}</div>
                             ## debit
                             <div class="act_as_cell amount" style="width: 80px;">${_('Debit')}</div>
                             ## credit
@@ -152,8 +150,6 @@
                               <div class="act_as_cell"></div>
                               ## partner
                               <div class="act_as_cell"></div>
-                              ## move reference
-                              <div class="act_as_cell"></div>
                               ## label
                               <div class="act_as_cell" >${_('Initial Balance')}</div>
                               ## reconcile
@@ -182,11 +178,13 @@
                           label_elements = [line.get('lname') or '']
                           if line.get('invoice_number'):
                             label_elements.append("(%s)" % (line['invoice_number'],))
+                          if line.get('supplier_invoice_number'):
+                            label_elements.append("(%s)" % (line['supplier_invoice_number'],))
                           label = ' '.join(label_elements)
                           %>
                             <div class="act_as_row lines">
                               ## date
-                              <div class="act_as_cell first_column">${formatLang(line.get('ldate') or '', date=True)}</div>
+                              <div class="act_as_cell first_column">${formatLang(line.get('mdate') or '', date=True)}</div>
                               ## period
                               <div class="act_as_cell">${line.get('period_code') or ''}</div>
                               ## move
@@ -195,8 +193,6 @@
                               <div class="act_as_cell">${line.get('jcode') or ''}</div>
                               ## partner
                               <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
-                              ## move reference
-                              <div class="act_as_cell">${line.get('lref') or ''}</div>
                               ## label
                               <div class="act_as_cell">${label}</div>
                               ## reconcile
@@ -226,8 +222,6 @@
                           ## journal
                           <div class="act_as_cell"></div>
                           ## partner
-                          <div class="act_as_cell"></div>
-                          ## move reference
                           <div class="act_as_cell"></div>
                           ## label
                           <div class="act_as_cell">${_('Cumulated Balance on Partner')}</div>
@@ -262,9 +256,9 @@
 
                 <div class="act_as_table list_table" style="margin-top:5px;">
                     <div class="act_as_row labels" style="font-weight: bold; font-size: 12px;">
-                            <div class="act_as_cell first_column" style="width: 450px;">${account.code} - ${account.name}</div>
+                            <div class="act_as_cell first_column" style="width: 320px;">${account.code} - ${account.name}</div>
                             ## label
-                            <div class="act_as_cell" style="width: 360px;">${_("Cumulated Balance on Account")}</div>
+                            <div class="act_as_cell" style="width: 390px;">${_("Cumulated Balance on Account")}</div>
                             ## debit
                             <div class="act_as_cell amount" style="width: 80px;">${ formatLang(account_total_debit) | amount }</div>
                             ## credit

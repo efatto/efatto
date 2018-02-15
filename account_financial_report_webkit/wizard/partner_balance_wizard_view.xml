@@ -25,7 +25,8 @@
                         <newline/>
                         <field name="display_partner" colspan="4"/>
                         <newline/>
-                        <field name="remove_footer" colspan="4"/>
+                        <field name="inventory_journal" colspan="2"/>
+                        <field name="last_page" colspan="2" attrs="{'invisible': [('inventory_journal', '=', False)]}"/>
                     </field>
                     <page name="filters" position="after">
                         <page string="Accounts Filters" name="accounts">

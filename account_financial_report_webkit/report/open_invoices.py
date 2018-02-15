@@ -55,13 +55,25 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
 
         company = self.pool.get('res.users').browse(
             self.cr, uid, uid, context=context).company_id
-        header_report_name = ' - '.join(
-            (_('OPEN INVOICES REPORT'), company.name, company.street,
-             company.zip, company.city,
-             _('VAT: %s' % company.vat),
-             _('C.F.: %s' % company.partner_id.fiscalcode)
+        wizard = self.pool['open.invoices.webkit'].browse(
+            cursor, uid, context.get('active_id', False), context)
+        if wizard.inventory_journal:
+            header_report_name = ' - '.join((
+                _('INVENTORY JOURNAL - OPEN INVOICES REPORT'),
+                company.name
             )
-        )
+            )
+            footer_left = ' '.join((
+                company.name, company.street, company.zip,
+                company.city,
+                _('VAT: %s' % company.vat),
+                _('C.F.: %s' % company.partner_id.fiscalcode)
+            )
+            )
+        else:
+            header_report_name = ' - '.join(
+                (_('OPEN INVOICES REPORT'),
+                 company.name, company.currency_id.name))
         footer_date_time = self.formatLang(
             str(datetime.today()), date_time=True)
 
@@ -72,17 +84,24 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
             ('--footer-font-size', '6'),
             ('--header-left', header_report_name),
             ('--header-spacing', '2'),
+            ('--footer-line',)
         ]
-        wizard = self.pool['open.invoices.webkit'].browse(
-            cursor, uid, context.get('active_id', False), context)
 
-        if not wizard.remove_footer:
+        if wizard.inventory_journal:
+            additional_args += [
+                ('--page-offset', str(wizard.last_page)),
+                ('--footer-right',
+                 ' '.join(
+                     (_('Page'), '[page]', '/',
+                      str(wizard.fiscalyear_id.code))),
+                 ),
+                ('--footer-left', footer_left)
+            ]
+        else:
             additional_args += [
                 ('--footer-left', footer_date_time),
                 ('--footer-right',
-                    ' '.join((_('Page'), '[page]', _('of'),
-                             '[topage]'))),
-                ('--footer-line',)
+                    ' '.join((_('Page'), '[page]', _('of'), '[topage]'))),
             ]
 
         self.localcontext.update({

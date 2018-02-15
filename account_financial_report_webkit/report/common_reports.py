@@ -546,6 +546,8 @@ SELECT l.id AS id,
             i.id AS invoice_id,
             i.type AS invoice_type,
             i.number AS invoice_number,
+            i.supplier_invoice_number AS supplier_invoice_number,
+            i.date_invoice AS date_invoice,
             t.name AS template,
             l.date_maturity
 FROM account_move_line l

@@ -102,6 +102,9 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         partner_ids = self._get_form_param('partner_ids', data)
         result_selection = self._get_form_param('result_selection', data)
         chart_account = self._get_chart_account_id_br(data)
+        # SC extra field
+        group_invoice_payments = self._get_form_param(
+            'group_invoice_payments', data)
 
         if main_filter == 'filter_no' and fiscalyear:
             start_period = self.get_first_fiscalyear_period(fiscalyear)
@@ -147,7 +150,9 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
 
         ledger_lines = self._compute_partner_ledger_lines(
             accounts, main_filter, target_move, start, stop,
-            partner_filter=partner_ids)
+            partner_filter=partner_ids,
+            group_invoice_payments=group_invoice_payments)
+
         objects = self.pool.get('account.account').browse(self.cursor,
                                                           self.uid,
                                                           accounts,
@@ -197,7 +202,8 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
 
     def _compute_partner_ledger_lines(self, accounts_ids, main_filter,
                                       target_move, start, stop,
-                                      partner_filter=False):
+                                      partner_filter=False,
+                                      group_invoice_payments=False):
         res = defaultdict(dict)
 
         for acc_id in accounts_ids:
@@ -209,8 +215,43 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
             for partner_id in move_line_ids:
                 partner_line_ids = move_line_ids.get(partner_id, [])
                 lines = self._get_move_line_datas(list(set(partner_line_ids)))
+                if group_invoice_payments:
+                    lines = self.group_lines(lines)
                 res[acc_id][partner_id] = lines
         return res
+
+    def group_lines(self, lines):
+        grouped_lines = []
+        for line in lines:
+            for l in [x for x in lines if x['id'] != line['id']]:
+                if l['lperiod_id'] == line['lperiod_id'] and \
+                        l['jcode'] == line['jcode'] and \
+                        l['ldate'] == line['ldate'] and \
+                        l['supplier_invoice_number'] == \
+                            line['supplier_invoice_number'] and \
+                        l['date_invoice'] == line['date_invoice'] and \
+                        l['currency_id'] == line['currency_id'] and \
+                        l['partner_name'] == line['partner_name'] and \
+                        l['lname'] == line['lname'] and \
+                        l['peropen'] == line['peropen'] and \
+                        l['account_id'] == line['account_id'] and \
+                        l['invoice_type'] == line['invoice_type'] and \
+                        l['move_name'] == line['move_name'] and \
+                        l['invoice_number'] == line['invoice_number'] and \
+                        l['move_id'] == line['move_id'] and \
+                        l['lpartner_id'] == line['lpartner_id'] and \
+                        l['invoice_id'] == line['invoice_id'] and \
+                        l['period_code'] == line['period_code'] and \
+                        l['lref'] == line['lref'] and \
+                        l['currency_code'] == line['currency_code']:
+                    line['debit'] += l['debit']
+                    line['credit'] += l['credit']
+                    # line['amount_currency'] += l['amount_currency']
+                    line['balance'] += l['balance']
+                    line['date_maturity'] == ''
+                    lines.remove(l)
+            grouped_lines.append(line)
+        return grouped_lines
 
 
 HeaderFooterTextWebKitParser(

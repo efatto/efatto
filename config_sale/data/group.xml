@@ -16,5 +16,8 @@
         <record model="res.groups" id="base.group_user">
             <field name="implied_ids" eval="[(4, ref('product.group_sale_pricelist'))]"/>
         </record>
+        <record id="base.main_company" model="res.company">
+            <field name="tax_calculation_rounding_method"  eval="'round_globally'"/>
+        </record>
     </data>
 </openerp>

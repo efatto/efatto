@@ -8,7 +8,10 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="origin" position="before">
-                    <field name="pickings_in_ref" invisible="context.get('type') in ['out_invoice', 'out_refund']"/>
+                    <field name="pickings_in_ref"
+                           invisible="context.get('type') in ['out_invoice', 'out_refund']"
+                           string="Pickings"
+                    />
                 </field>
             </field>
         </record>

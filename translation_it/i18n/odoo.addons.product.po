@@ -1243,7 +1243,7 @@ msgstr "Data dell'ultimo messaggio postato per questo record"
 #. module: product
 #: model:product.uom,name:product.product_uom_day
 msgid "Day(s)"
-msgstr "Giorno(i)"
+msgstr "Giorno"
 
 #. module: product
 #: model:product.pricelist.version,name:product.ver0

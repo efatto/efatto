@@ -413,7 +413,7 @@ msgstr "Ciao! Siamo lieti di darti il benvenuto tra i nostri Silver Partner!"
 #. module: marketing_campaign
 #: selection:marketing.campaign.transition,interval_type:0
 msgid "Hour(s)"
-msgstr "Ora(e)"
+msgstr "Ora"
 
 #. module: marketing_campaign
 #: help:marketing.campaign.transition,trigger:0

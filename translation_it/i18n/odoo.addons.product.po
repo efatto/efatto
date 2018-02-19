@@ -1555,7 +1555,7 @@ msgstr "Gestisce il sommario (numero di messaggi, ...) di Chatter. Questo sommar
 #. module: product
 #: model:product.uom,name:product.product_uom_hour
 msgid "Hour(s)"
-msgstr "Ora(e)"
+msgstr "Ora"
 
 #. module: product
 #: help:product.uom,factor_inv:0
@@ -1774,7 +1774,7 @@ msgstr "Lista delle Varianti"
 #. module: product
 #: model:product.uom,name:product.product_uom_litre
 msgid "Liter(s)"
-msgstr "Litro/i"
+msgstr "Litro"
 
 #. module: product
 #: model:ir.model,name:product.model_product_ul

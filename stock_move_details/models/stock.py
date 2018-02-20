@@ -13,7 +13,8 @@ class StockMove(models.Model):
         for move in self:
             move.qty = move.product_uom_qty * (
                 -1 if move.location_dest_id.usage in [
-                    'customer', 'inventory', 'production', 'procurement'
+                    'customer', 'inventory', 'production', 'procurement',
+                    'supplier'
                 ] else 1)
 
     qty_available = fields.Float(

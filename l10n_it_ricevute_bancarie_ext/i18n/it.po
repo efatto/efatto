@@ -50,7 +50,7 @@ msgstr "Appoggio Bancario per ri.ba."
 #: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:90
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr "Errore"
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_account_move_line
@@ -67,7 +67,7 @@ msgstr "Data Accettazione mancante"
 #: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:91
 #, python-format
 msgid "No IBAN or ABI/CAB specified for "
-msgstr "No IBAN or ABI/CAB specified for "
+msgstr "IBAN o ABI/CAB non indicati per "
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_file_export.py:31

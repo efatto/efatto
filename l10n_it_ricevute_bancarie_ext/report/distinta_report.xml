@@ -49,7 +49,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <p>Row</p>
+                                            <p>Pos.</p>
                                         </th>
                                         <th>
                                             <p>Invoice Number</p>
@@ -120,7 +120,7 @@
 
                         </t>
                         <div id="total" class="row with_bord text-right" style="padding: 2px;">
-                        <strong><p>TOTAL   <span t-esc="gen_amount"
+                        <strong><p>TOTALE COMPLESSIVO   <span t-esc="gen_amount"
                             t-esc-options='{"widget": "monetary", "display_currency": "o.company_id.currency_id"}'/>
                         </p></strong>
                     </div>

@@ -39,4 +39,6 @@ class DistintaReportQweb(models.AbstractModel):
                     res.update({line_due_date: [line]})
                 else:
                     res[line_due_date] = res[line_due_date] + [line]
-        return res
+        dates = sorted([datetime.strptime(ts, "%d/%m/%Y") for ts in res])
+        dates_sorted = [datetime.strftime(ts, "%d/%m/%Y") for ts in dates]
+        return res, dates_sorted

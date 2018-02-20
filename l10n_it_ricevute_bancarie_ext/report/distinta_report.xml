@@ -37,7 +37,8 @@
                                 Distinta SBF n. <span t-esc="o.name or 'Bozza'"/> su banca <span t-esc="o.config_id.name or ''"/> del <span t-field="o.registration_date"/>
                             </p>
                         </div>
-                        <t t-as="due_date" t-foreach="get_riba_group">
+                        <t t-set="gen_amount" t-value="0" />
+                        <t t-as="due_date" t-foreach="get_riba_group[1]">
                         <div class="row">
                             <table id="distinta_details" class="table table-bordered table-responsive">
                                 <thead>
@@ -48,7 +49,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <p>Number</p>
+                                            <p>Row</p>
                                         </th>
                                         <th>
                                             <p>Invoice Number</p>
@@ -72,10 +73,10 @@
                                 </thead>
                                 <tbody>
                                     <t t-set="tot_amount" t-value="0" />
-                                    <t t-set="nr" t-value="0"/>
-                                    <tr t-foreach="get_riba_group[due_date]" t-as="line">
+                                    <t t-set="nr" t-value="1"/>
+                                    <tr t-foreach="get_riba_group[0][due_date]" t-as="line">
                                         <td>
-                                            <p><span t-field="line.sequence" /></p>
+                                            <p><span t-esc="nr" /></p>
                                         </td>
                                         <td>
                                             <p><span t-field="line.invoice_number" /></p>
@@ -97,6 +98,8 @@
                                             t-field-options='{"widget": "monetary", "display_currency": "o.company_id.currency_id"}'/></p>
                                         </td>
                                         <t t-set="tot_amount" t-value="tot_amount + line.amount" />
+                                        <t t-set="nr" t-value="nr + 1" />
+                                        <t t-set="gen_amount" t-value="gen_amount + line.amount" />
                                     </tr>
                                     <tr>
                                         <td/>
@@ -116,7 +119,11 @@
                         </div>
 
                         </t>
-
+                        <div id="total" class="row with_bord text-right" style="padding: 2px;">
+                        <strong><p>TOTAL   <span t-esc="gen_amount"
+                            t-esc-options='{"widget": "monetary", "display_currency": "o.company_id.currency_id"}'/>
+                        </p></strong>
+                    </div>
                     </div>
                 </t>
             </t>

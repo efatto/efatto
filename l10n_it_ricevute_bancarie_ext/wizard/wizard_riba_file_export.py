@@ -104,7 +104,7 @@ class RibaFileExport(orm.TransientModel):
             if not line.partner_id.vat and not line.partner_id.fiscalcode:
                 raise orm.except_orm(
                     'Error',
-                    _('No VAT or Fiscal code specified for: ') +
+                    _('No VAT or Fiscalcode specified for: ') +
                     line.partner_id.name)
             if not debit_bank_name:
                 #  removed: bank and debit_bank.bank.name or

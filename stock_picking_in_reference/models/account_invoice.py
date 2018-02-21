@@ -18,7 +18,7 @@ class AccountInvoice(models.Model):
             if inv.picking_ids:
                 pickings_in_ref = ' - '.join([
                     '_'.join([
-                        x.in_reference,
+                        x.in_reference if x.in_reference else '',
                         (
                             datetime.strptime(
                                 x.in_date, DEFAULT_SERVER_DATE_FORMAT

@@ -24,7 +24,7 @@
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': '''This module menu for outgoing and incoming DDT.''',
+    'description': '''This module add menus for outgoing and incoming DDT.''',
     'depends': [
         'l10n_it_ddt',
         'l10n_it_ddt_ext',

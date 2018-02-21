@@ -27,6 +27,7 @@
     'description': '''This module menu for outgoing and incoming DDT.''',
     'depends': [
         'l10n_it_ddt',
+        'l10n_it_ddt_ext',
         'l10n_it_ddt_picking_type',
     ],
     'data': [

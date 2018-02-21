@@ -106,6 +106,7 @@
                 <field name="ul_id"/>
                 <field name="packaging_id"/>
                 <field name="company_id"/>
+                <field name="ddt_date_start"/>
               </group>
             </group>
             <notebook>

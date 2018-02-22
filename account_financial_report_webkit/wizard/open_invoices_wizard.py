@@ -33,6 +33,11 @@ class AccountReportOpenInvoicesWizard(orm.TransientModel):
         'group_by_currency': fields.boolean('Group Partner by currency'),
         'inventory_journal': fields.boolean('Inventory Journal'),
         'last_page': fields.integer('Last Page printed'),
+        'display_partner': fields.selection(
+        [
+            ('non-zero_balance', 'With non-zero balance'),
+            ('all', 'All Partners')
+        ], 'Display Partners', default='all'),
         'until_date': fields.date(
             "Clearance date",
             required=True,
@@ -137,7 +142,8 @@ are still unpaid today (today is my clearance date)?'
         data = super(AccountReportOpenInvoicesWizard, self).pre_print_report(
             cr, uid, ids, data, context=context)
         vals = self.read(cr, uid, ids,
-                         ['until_date', 'group_by_currency'],
+                         ['until_date', 'group_by_currency',
+                          'display_partner'],
                          context=context)[0]
         data['form'].update(vals)
         return data

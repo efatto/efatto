@@ -621,7 +621,7 @@ msgstr "Pagamento anticipato all'ordine"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_paid
 #: model:account.payment.term,note:l10n_it_simplerp.payment_paid
-msgid "Pagamento effettuato"
+msgid "Payment executed"
 msgstr "Pagamento effettuato"
 
 #. module: l10n_it_simplerp

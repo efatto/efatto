@@ -363,8 +363,8 @@
         </record>
 
         <record id="payment_paid" model="account.payment.term">
-            <field name="name">Pagamento effettuato</field>
-            <field name="note">Pagamento effettuato</field>
+            <field name="name">Payment executed</field>
+            <field name="note">Payment executed</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_paid_line" model="account.payment.term.line">

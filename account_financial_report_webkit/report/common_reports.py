@@ -542,7 +542,7 @@ class CommonReportHeaderWebkit(common_report_header):
                 _('No valid filter'), _('Please set a valid time filter'))
 
     def _get_move_line_datas(self, move_line_ids,
-                             order='per.special DESC, l.date ASC, \
+                             order='m.date ASC, \
                              per.date_start ASC, m.name ASC'):
         # Possible bang if move_line_ids is too long
         # We can not slice here as we have to do the sort.

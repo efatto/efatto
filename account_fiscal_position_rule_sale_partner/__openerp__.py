@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account_fiscal_position_rule_sale',
+        'stock_account',
     ],
     'data': [
         'views/partner_view.xml',

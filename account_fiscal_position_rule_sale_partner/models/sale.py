@@ -36,3 +36,16 @@ class SaleOrder(models.Model):
             'partner_shipping_id': partner_shipping_id,
         }
         return self._fiscal_position_map(result, **kwargs)
+
+
+class SaleAdvancePaymentInv(models.TransientModel):
+    _inherit = "sale.advance.payment.inv"
+
+    @api.model
+    def _create_invoices(self, inv_values, sale_id):
+        for sale in self.env['sale.order'].browse(sale_id):
+            if sale.account_fiscal_position_rule_id:
+                inv_values['account_fiscal_position_rule_id'] = \
+                    sale.account_fiscal_position_rule_id.id
+        return super(SaleAdvancePaymentInv, self)._create_invoices(
+            inv_values, sale_id)

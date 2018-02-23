@@ -374,7 +374,7 @@ msgstr "Credito"
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:119
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:121
 msgid "Cumul. Bal."
-msgstr "Bil. Cumul."
+msgstr "Saldo"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:220

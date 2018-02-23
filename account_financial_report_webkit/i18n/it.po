@@ -905,7 +905,7 @@ msgstr "Lasciare vuoto per tutti gli anni fiscali aperti"
 #: report:addons/account_financial_report_webkit/report/templates/account_report_print_journal.mako:89
 #: report:addons/account_financial_report_webkit/report/templates/aged_open_invoices.mako:110
 msgid "Label"
-msgstr "Etichetta"
+msgstr "Descrizione"
 
 #. module: account_financial_report_webkit
 #: field:account.aged.trial.balance.webkit,last_page:0

@@ -18,7 +18,7 @@
 #
 #
 {
-    'name': 'Product types',
+    'name': 'Product types DEPRECATED',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',

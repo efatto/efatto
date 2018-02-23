@@ -85,7 +85,8 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="fiscal_position" position="after">
-                    <field name="account_fiscal_position_rule_id" domain="[('partner_id', '=', partner_id)]"/>
+                    <field name="account_fiscal_position_rule_id" domain="[('partner_id', '=', partner_id)]"
+                     attrs="{'invisible': [('account_fiscal_position_rule_id', '=', False)]}"/>
                 </field>
             </field>
         </record>
@@ -95,7 +96,8 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <field name="fiscal_position" position="after">
-                    <field name="account_fiscal_position_rule_id" domain="[('partner_id', '=', partner_id)]"/>
+                    <field name="account_fiscal_position_rule_id" domain="[('partner_id', '=', partner_id)]"
+                     attrs="{'invisible': [('account_fiscal_position_rule_id', '=', False)]}"/>
                 </field>
             </field>
         </record>

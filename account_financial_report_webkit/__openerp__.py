@@ -24,7 +24,8 @@
     'author': (
         "Camptocamp,"
         "Savoir-faire Linux,"
-        "Odoo Community Association (OCA)"
+        "Odoo Community Association (OCA),"
+        "Sergio Corato"
     ),
     'license': 'AGPL-3',
     'category': 'Finance',

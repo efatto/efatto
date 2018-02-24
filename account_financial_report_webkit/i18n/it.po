@@ -517,7 +517,7 @@ msgstr "Conti visualizzati"
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:98
 msgid "Doc. Date"
-msgstr "Doc. Date"
+msgstr "Data Doc."
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_print_journal.mako:85

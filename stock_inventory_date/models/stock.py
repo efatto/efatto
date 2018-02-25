@@ -36,16 +36,19 @@ class StockInventory(models.Model):
             ('id', 'child_of', [inventory.location_id.id])])
         # filter for date for now:
         # 'none' for all products, 'product' for one, 'categories' for some ctg
-        if inventory.filter not in ['none', 'categories', 'product']:
+        if inventory.filter not in [
+                'none', 'categories', 'product', 'products']:
             raise exceptions.ValidationError(
                 'Filter available by date are:'
-                '"None", "Categories", "Product"')
+                '"None", "Categories", "Product", "Products"')
         if inventory.filter == 'categories':
             product_ids = self.env['product.product'].search([
                 ('categ_id', 'in', inventory.categ_ids.ids)
             ])
         elif inventory.filter == 'product':
             product_ids = inventory.product_id
+        elif inventory.filter == 'products':
+            product_ids = inventory.product_ids
         else:
             product_ids = self.env['product.product'].search([])
         res = {}

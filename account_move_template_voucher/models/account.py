@@ -54,13 +54,16 @@ class AccountVoucher(models.Model):
             if line.move_line_id:
                 if line.move_line_id.invoice:
                     invoice = line.move_line_id.invoice
+                    date = invoice.date_invoice
                     number = invoice.number
                     if invoice.type in ['in_invoice', 'in_refund']:
                         number = invoice.supplier_invoice_number
-                    if invoice.type in ['out_invoice', 'out_refund']:
-                        number = invoice.number
+                elif line.move_line_id.move_id:
+                    date = line.move_line_id.move_id.date
+                    number = line.move_line_id.move_id.name
+                if number and date:
                     name = _('Ref. invoice %s of %s') % (
-                        number, invoice.date_invoice)
+                        number, date)
                     line.write({'name': name})
         res = super(AccountVoucher, self).action_move_line_create()
         return res

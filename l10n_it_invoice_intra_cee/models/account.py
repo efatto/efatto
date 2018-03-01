@@ -99,38 +99,52 @@ class account_invoice(orm.Model):
 
             for line in invoice.invoice_line:
 
-                if fp and fp.active_reverse_charge and line.invoice_line_tax_id[0].auto_invoice_tax_id:
+                if fp and fp.active_reverse_charge and line.\
+                        invoice_line_tax_id[0].auto_invoice_tax_id:
 
                     for tax_id in line.invoice_line_tax_id:
                         if not tax_id.auto_invoice_tax_id:
-                            #perhaps possible for Travel agencies, which has withholding tax with reverse charge for intermediaries
+                            # perhaps possible for Travel agencies, which has
+                            # withholding tax with reverse charge for
+                            # intermediaries
                             raise orm.except_orm(
                                 _('Tax configuration Error!'),
-                                _("The %s tax is configured as reverse charge, so the row must have only reverse charge taxes.")
+                                _("The %s tax is configured as reverse charge,"
+                                  " so the row must have only reverse charge "
+                                  "taxes.")
                                 % (tax_id.name)
                             )
                         for child_tax in tax_id.child_ids:
                             if not child_tax.auto_invoice_tax_id:
                                 raise orm.except_orm(
                                     _('Tax configuration Error!'),
-                                    _("The %s tax is configured as reverse charge, so its childs must be too.")
+                                    _("The %s tax is configured as reverse "
+                                      "charge, so its childs must be too.")
                                     % (tax_id.name)
                                 )
 
-                    res[invoice.id]['auto_invoice_amount_untaxed'] += line.price_subtotal
+                    res[invoice.id]['auto_invoice_amount_untaxed'] += line.\
+                        price_subtotal
                     for t in tax_obj.compute_all(
                             cr, uid, line.invoice_line_tax_id,
-                            (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+                            (line.price_unit * (
+                                1 - (line.discount or 0.0) / 100.0)),
                             line.quantity, line.product_id)['taxes']:
-                        res[invoice.id]['auto_invoice_amount_tax'] += t['amount']
+                        res[invoice.id]['auto_invoice_amount_tax'] += \
+                            t['amount']
                 if (not fp) or (fp and not fp.active_reverse_charge):
-                    res[invoice.id]['auto_invoice_amount_untaxed'] += line.price_subtotal
+                    res[invoice.id]['auto_invoice_amount_untaxed'] += line.\
+                        price_subtotal
                     for t in tax_obj.compute_all(
                             cr, uid, line.invoice_line_tax_id,
-                            (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+                            (line.price_unit * (
+                                1 - (line.discount or 0.0) / 100.0)),
                             line.quantity, line.product_id)['taxes']:
-                        res[invoice.id]['auto_invoice_amount_tax'] += t['amount']
-            res[invoice.id]['auto_invoice_amount_total'] = res[invoice.id]['auto_invoice_amount_tax'] + res[invoice.id]['auto_invoice_amount_untaxed']
+                        res[invoice.id]['auto_invoice_amount_tax'] += \
+                            t['amount']
+            res[invoice.id]['auto_invoice_amount_total'] = \
+                res[invoice.id]['auto_invoice_amount_tax'] + \
+                res[invoice.id]['auto_invoice_amount_untaxed']
         return res
 
     _columns = {
@@ -335,40 +349,71 @@ class account_invoice(orm.Model):
             # Create transfer entry movements
             account_move_line_vals = []
             # ----- Tax for supplier
-            debit_1 = credit_1 = 0.0
-            debit_2 = credit_2 = 0.0
-            debit_3 = credit_3 = 0.0
+            debit_1 = credit_1 = debit_1_currency = credit_1_currency = 0.0
+            debit_2 = credit_2 = debit_2_currency = credit_2_currency = 0.0
+            debit_3 = credit_3 = debit_3_currency = credit_3_currency = 0.0
+            company_currency = inv.company_id.currency_id
+            diff_currency = inv.currency_id != company_currency
+
             if inv.type == 'in_invoice':
                 debit_1 = inv.auto_invoice_amount_tax
                 debit_2 = inv.auto_invoice_amount_untaxed
                 credit_3 = inv.auto_invoice_amount_total
+                if diff_currency:
+                    debit_1_currency = inv.currency_id.\
+                    with_context(date=inv.date_invoice).compute(
+                        debit_1, company_currency)
+                    debit_2_currency = inv.currency_id.\
+                    with_context(date=inv.date_invoice).compute(
+                        debit_2, company_currency)
+                    credit_3_currency = debit_1_currency + debit_2_currency
             else:
                 credit_1 = inv.auto_invoice_amount_tax
                 credit_2 = inv.auto_invoice_amount_untaxed
                 debit_3 = inv.auto_invoice_amount_total
+                if diff_currency:
+                    credit_1_currency = inv.currency_id.\
+                    with_context(date=inv.date_invoice).compute(
+                        credit_1, company_currency)
+                    credit_2_currency = inv.currency_id.\
+                    with_context(date=inv.date_invoice).compute(
+                        credit_2, company_currency)
+                    debit_3_currency = credit_1_currency + credit_2_currency
+
             account_move_line_vals.append((0, 0, {
                 'name': 'Tax for Supplier',
-                'debit': debit_1,
-                'credit': credit_1,
+                'debit': debit_1 if not diff_currency else debit_1_currency,
+                'credit': credit_1 if not diff_currency else credit_1_currency,
                 'partner_id': inv.partner_id.id,
-                'account_id': inv.account_id.id, # use actual account_id configured in invoice
-                #if set, instead of generic partner_id.property_account_payable.id,
+                'account_id': inv.account_id.id,
+                # use actual account_id configured in invoice if set,
+                # instead of generic partner_id.property_account_payable.id,
+                'currency_id': diff_currency and inv.currency_id.id,
+                'amount_currency': diff_currency and debit_1 if debit_1 != 0.0
+                else - credit_1,
             }))
             # ----- Products values
             account_move_line_vals.append((0, 0, {
                 'name': 'Products',
-                'debit': debit_2,
-                'credit': credit_2,
+                'debit': debit_2 if not diff_currency else debit_2_currency,
+                'credit': credit_2 if not diff_currency else credit_2_currency,
                 'partner_id': new_invoice.partner_id.id,
                 'account_id': fiscal_position.account_transient_id.id,
+                'currency_id': diff_currency and inv.currency_id.id,
+                'amount_currency': diff_currency and debit_2 if debit_2 != 0.0
+                else - credit_2,
             }))
             # ----- Invoice Total
             account_move_line_vals.append((0, 0, {
                 'name': 'Invoice Total',
-                'debit': debit_3,
-                'credit': credit_3,
+                'debit': debit_3 if not diff_currency else debit_3_currency,
+                'credit': credit_3 if not diff_currency else credit_3_currency,
                 'partner_id': new_invoice.partner_id.id,
-                'account_id': new_invoice.partner_id.property_account_receivable.id,
+                'account_id': new_invoice.partner_id.
+                property_account_receivable.id,
+                'currency_id': diff_currency and inv.currency_id.id,
+                'amount_currency': diff_currency and debit_3 if debit_3 != 0.0
+                else - credit_3,
             }))
             # ----- Account Move
             account_move_vals = {
@@ -388,7 +433,8 @@ class account_invoice(orm.Model):
             self.write(cr, uid, [inv.id],
                        {'auto_invoice_id': auto_invoice_id,
                         'transfer_entry_id': transfer_entry_id})
-            #get move_line_ids of auto invoice with partner-account_id partner for reconciliation
+            # get move_line_ids of auto invoice with partner-account_id partner
+            # for reconciliation
             move = move_obj.browse(cr, uid, [transfer_entry_id], context)[0]
             for move_line in move.line_id:
                 if move_line.account_id == move_line.partner_id.property_account_receivable:

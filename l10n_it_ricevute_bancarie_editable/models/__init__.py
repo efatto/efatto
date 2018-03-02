@@ -2,5 +2,5 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from . import riba
+# from . import riba
 from . import account

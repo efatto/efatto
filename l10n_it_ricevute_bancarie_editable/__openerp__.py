@@ -23,18 +23,12 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
-    'description': 'Ricevute bancarie editable',
+    'description': 'Make invoice with ri.ba. editable even after emission.',
     'license': 'AGPL-3',
     'depends': [
-        'account_bank',
-        'account_payment_term_month',
-        'l10n_it_abicab',
         'l10n_it_ricevute_bancarie',
-        'l10n_it_ricevute_bancarie_ext',
-        'l10n_it_fatturapa_out',
     ],
     'data': [
-        'views/riba_view.xml',
     ],
     'installable': True
 }

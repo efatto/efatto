@@ -21,6 +21,8 @@
           <xpath expr="//field[@name='target_move']" position="after">
             <newline/>
             <field name="result_selection" colspan="4"/>
+            <field name="inventory_journal" colspan="2" attrs="{'invisible': True}"/>
+            <field name="last_page" colspan="2" attrs="{'invisible': True}"/>
           </xpath>
           <xpath expr="/form/notebook[1]" position="after">
             <separator string="Clearance Analysis Options" colspan="4"/>

@@ -237,8 +237,9 @@
                     </div>
                 </div>
             </div>
-            <p style="page-break-after:always;"/>
           %endif
+          <p style="page-break-after:always;"/>
         %endfor
+        <p style="page-break-after:avoid;"/>
     </body>
 </html>

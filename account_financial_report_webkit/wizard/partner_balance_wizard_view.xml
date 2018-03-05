@@ -22,6 +22,8 @@
                     <field name="target_move" position="after">
                         <newline/>
                         <field name="result_selection" colspan="4"/>
+                        <field name="inventory_journal" colspan="2" attrs="{'invisible': True}"/>
+                        <field name="last_page" colspan="2" attrs="{'invisible': True}"/>
                         <newline/>
                         <field name="display_partner" colspan="4"/>
                         <newline/>

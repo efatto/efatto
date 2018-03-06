@@ -87,7 +87,11 @@
                   total_credit = 0.0
                   cumul_balance = 0.0
                   cumul_balance_curr = 0.0
-
+                  total_invoice_debit = 0.0
+                  total_invoice_credit = 0.0
+                  invoice_number = False
+                  last_invoice_number = False
+                  invoice_break = False
                   part_cumul_balance = 0.0
                   part_cumul_balance_curr = 0.0
                 %>
@@ -175,6 +179,11 @@
                           total_debit += line.get('debit') or 0.0
                           total_credit += line.get('credit') or 0.0
 
+                          if line.get('invoice_number'):
+                            invoice_number = line['invoice_number']
+                            if last_invoice_number and line['invoice_number'] != last_invoice_number:
+                                invoice_break = True
+
                           label_elements = [line.get('lname') or '']
                           if line.get('invoice_number'):
                             label_elements.append("(%s)" % (line['invoice_number'],))
@@ -182,6 +191,21 @@
                             label_elements.append("(%s)" % (line['supplier_invoice_number'],))
                           label = ' '.join(label_elements)
                           %>
+                          %if invoice_break:
+                            <div class="act_as_row lines">
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell first_column" style="width: 180px;">${_("Total Invoice Settlement")}</div>
+                                <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${invoice_number}</div>
+                                <div class="act_as_cell"></div>
+                                <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_debit) | amount }</div>
+                                <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_credit) | amount }</div>
+                                <div class="act_as_cell"></div>
+                            </div>
+                          <%invoice_break = False%>
+                          %endif
                             <div class="act_as_row lines">
                               ## date
                               <div class="act_as_cell first_column">${formatLang(line.get('mdate') or '', date=True)}</div>
@@ -211,7 +235,32 @@
                                   <div class="act_as_cell" style="text-align: right; ">${line.get('currency_code') or ''}</div>
                               %endif
                           </div>
+                          <%
+                          if line.get('invoice_number'):
+                            if last_invoice_number and line['invoice_number'] != last_invoice_number:
+                              total_invoice_debit = 0.0
+                              total_invoice_credit = 0.0
+
+                          total_invoice_debit += line.get('debit') or 0.0
+                          total_invoice_credit += line.get('credit') or 0.0
+
+                          if line.get('invoice_number'):
+                            last_invoice_number = line['invoice_number']
+                          %>
+
                         %endfor
+                        <div class="act_as_row lines">
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell first_column" style="width: 180px;">${_("Total Invoice Settlement")}</div>
+                            <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${invoice_number}</div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_debit) | amount }</div>
+                            <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_credit) | amount }</div>
+                            <div class="act_as_cell"></div>
+                        </div>
                         <div class="act_as_row lines labels">
                           ## date
                           <div class="act_as_cell first_column"></div>

@@ -114,7 +114,7 @@
                             ## label
                             <div class="act_as_cell" style="width: 220px;">${_('Label')} - ${_('Invoice Number')}</div>
                             ## reconcile
-                            <div class="act_as_cell" style="width: 50px;">${_('Rec.')}</div>
+                            <div class="act_as_cell" style="width: 50px;">${_('Date Due')}</div>
                             ## debit
                             <div class="act_as_cell amount" style="width: 80px;">${_('Debit')}</div>
                             ## credit
@@ -222,7 +222,7 @@
                               ## label
                               <div class="act_as_cell">${label}</div>
                               ## reconcile
-                              <div class="act_as_cell">${line.get('rec_name') or ''}</div>
+                              <div class="act_as_cell">${formatLang(line.get('date_maturity') or '', date=True)}</div>
                               ## debit
                               <div class="act_as_cell amount">${formatLang(line.get('debit') or 0.0) | amount }</div>
                               ## credit

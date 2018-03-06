@@ -403,6 +403,13 @@ report_sxw.report_sxw(
     header='internal landscape')
 
 report_sxw.report_sxw(
+    'report.account.balancesheet.horizontal.old', 'account.account',
+    'addons/account_financial_report_horizontal_ext/report/'
+    'account_balance_sheet_horizontal_old.rml',
+    parser=report_balancesheet_horizontal,
+    header='internal landscape')
+
+report_sxw.report_sxw(
     'report.account.balancesheet', 'account.account',
     'addons/account_financial_report_horizontal_ext/report/'
     'account_balance_sheet.rml',

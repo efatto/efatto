@@ -35,21 +35,31 @@ class account_pl_report(orm.TransientModel):
     _columns = {
         'name': fields.char("Name", size=16),
         'display_type': fields.boolean("Landscape Mode"),
+        'report_type': fields.selection([
+            ('old', 'Old'),
+            ('new', 'New'),
+        ], string='Report type')
     }
 
     _defaults = {
         'display_type': True,
+        'report_type': 'new',
     }
 
     def _print_report(self, cr, uid, ids, data, context=None):
         if context is None:
             context = {}
         data = self.pre_print_report(cr, uid, ids, data, context=context)
-        data['form'].update(self.read(cr, uid, ids, ['display_type'])[0])
+        data['form'].update(self.read(cr, uid, ids, [
+            'display_type', 'report_type'])[0])
         if data['form']['display_type']:
+            if data['form']['report_type'] == 'new':
+                report_name = 'account.profit_horizontal'
+            else:
+                report_name = 'account.profit_horizontal_old'
             return {
                 'type': 'ir.actions.report.xml',
-                'report_name': 'account.profit_horizontal',
+                'report_name': report_name,
                 'datas': data,
             }
         else:

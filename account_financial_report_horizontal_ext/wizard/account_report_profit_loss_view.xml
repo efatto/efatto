@@ -17,8 +17,9 @@
                 <label nolabel="1" colspan="4" string="The Profit and Loss report gives you an overview of your company profit and loss in a single document"/>
             </xpath>
             <xpath expr="//field[@name='fiscalyear_id']" position="after">
-                   <field name="display_account"/>
-                   <field name="display_type"/>
+                <field name="display_account"/>
+                <field name="display_type"/>
+                <field name="report_type"/>
             </xpath>
             </data>
             </field>

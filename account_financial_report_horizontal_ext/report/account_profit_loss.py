@@ -267,6 +267,12 @@ report_sxw.report_sxw(
     parser=report_pl_account_horizontal, header='internal landscape')
 
 report_sxw.report_sxw(
+    'report.account.profit_horizontal_old', 'account.account',
+    'addons/account_financial_report_horizontal_ext/report/'
+    'account_profit_horizontal_old.rml',
+    parser=report_pl_account_horizontal, header='internal landscape')
+
+report_sxw.report_sxw(
     'report.account.profit_loss', 'account.account',
     'addons/account_financial_report_horizontal_ext/report/'
     'account_profit_loss.rml',

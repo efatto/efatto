@@ -19,6 +19,7 @@
             <xpath expr="//field[@name='target_move']" position="after">
                 <field name="display_account"/>
                 <field name="display_type"/>
+                <field name="report_type"/>
                 <newline/>
             </xpath>
             </data>

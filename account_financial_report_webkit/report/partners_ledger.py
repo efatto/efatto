@@ -103,8 +103,8 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         result_selection = self._get_form_param('result_selection', data)
         chart_account = self._get_chart_account_id_br(data)
         # SC extra field
-        group_invoice_payments = self._get_form_param(
-            'group_invoice_payments', data)
+        group_method = self._get_form_param(
+            'group_method', data)
 
         if main_filter == 'filter_no' and fiscalyear:
             start_period = self.get_first_fiscalyear_period(fiscalyear)
@@ -151,7 +151,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         ledger_lines = self._compute_partner_ledger_lines(
             accounts, main_filter, target_move, start, stop,
             partner_filter=partner_ids,
-            group_invoice_payments=group_invoice_payments)
+            group_method=group_method)
 
         objects = self.pool.get('account.account').browse(self.cursor,
                                                           self.uid,
@@ -203,7 +203,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
     def _compute_partner_ledger_lines(self, accounts_ids, main_filter,
                                       target_move, start, stop,
                                       partner_filter=False,
-                                      group_invoice_payments=False):
+                                      group_method=False):
         res = defaultdict(dict)
 
         for acc_id in accounts_ids:
@@ -215,9 +215,10 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
             for partner_id in move_line_ids:
                 partner_line_ids = move_line_ids.get(partner_id, [])
                 lines = self._get_move_line_datas(list(set(partner_line_ids)))
-                if group_invoice_payments:
+                if group_method == 'group_payments':
                     lines = self.group_lines(lines)
-                lines = self._get_sorted_invoices(lines)
+                elif group_method == 'group_invoices':
+                    lines = self._get_sorted_invoices(lines)
                 res[acc_id][partner_id] = lines
         return res
 

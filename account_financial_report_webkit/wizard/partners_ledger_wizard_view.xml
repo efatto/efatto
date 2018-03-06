@@ -27,7 +27,7 @@
                         <page string="Layout Options" name="layout_options">
                             <group colspan="4" col="2">
                                 <field name="amount_currency"/>
-                                <field name="group_invoice_payments"/>
+                                <field name="group_method" widget="radio"/>
                             </group>
                         </page>
                     </page>

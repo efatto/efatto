@@ -191,6 +191,7 @@
                             label_elements.append("(%s)" % (line['supplier_invoice_number'],))
                           label = ' '.join(label_elements)
                           %>
+                          %if group_method(data) == 'group_invoices':
                           %if invoice_break:
                             <div class="act_as_row lines">
                                 <div class="act_as_cell"></div>
@@ -205,6 +206,7 @@
                                 <div class="act_as_cell"></div>
                             </div>
                           <%invoice_break = False%>
+                          %endif
                           %endif
                             <div class="act_as_row lines">
                               ## date
@@ -249,6 +251,7 @@
                           %>
 
                         %endfor
+                        %if group_method(data) == 'group_invoices':
                         <div class="act_as_row lines">
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
@@ -261,6 +264,7 @@
                             <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_credit) | amount }</div>
                             <div class="act_as_cell"></div>
                         </div>
+                        %endif
                         <div class="act_as_row lines labels">
                           ## date
                           <div class="act_as_cell first_column"></div>

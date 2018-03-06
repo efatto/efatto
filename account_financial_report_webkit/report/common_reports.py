@@ -102,6 +102,9 @@ class CommonReportHeaderWebkit(common_report_header):
     def _get_filter(self, data):
         return self._get_form_param('filter', data)
 
+    def _get_group(self, data):
+        return self._get_form_param('group_method', data)
+
     def _get_target_move(self, data):
         return self._get_form_param('target_move', data)
 

@@ -193,13 +193,13 @@
                           %>
                           %if group_method(data) == 'group_invoices':
                           %if invoice_break:
-                            <div class="act_as_row lines">
+                            <div class="act_as_row lines" style="font-weight: bold; font-size: 10px;">
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell first_column" style="width: 180px;">${_("Total Invoice Settlement")}</div>
-                                <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${invoice_number}</div>
+                                <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_debit) | amount }</div>
                                 <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_credit) | amount }</div>
@@ -252,13 +252,13 @@
 
                         %endfor
                         %if group_method(data) == 'group_invoices':
-                        <div class="act_as_row lines">
+                        <div class="act_as_row lines" style="font-weight: bold; font-size: 10px;">
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell first_column" style="width: 180px;">${_("Total Invoice Settlement")}</div>
-                            <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${invoice_number}</div>
+                            <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_debit) | amount }</div>
                             <div class="act_as_cell amount" style="width: 80px;">${ formatLang(total_invoice_credit) | amount }</div>

@@ -217,8 +217,27 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 lines = self._get_move_line_datas(list(set(partner_line_ids)))
                 if group_invoice_payments:
                     lines = self.group_lines(lines)
+                lines = self._get_sorted_invoices(lines)
                 res[acc_id][partner_id] = lines
         return res
+
+    @staticmethod
+    def _get_sorted_invoices(lines):
+        # todo first invoice_number, then if this lines have rec_name, the
+        # rec_name linked, then other invoices
+        rec_lines = [x for x in lines if x['rec_name']
+                     and not x['invoice_number']]
+        inv_lines = sorted([x for x in lines if x['invoice_number']],
+                           key=lambda x: (
+                               x['invoice_number'] + x['date_maturity']))
+        for i, line in enumerate(inv_lines):
+            for rec_line in rec_lines:
+                if line['rec_name'] == rec_line['rec_name']:
+                    inv_lines.insert(i+1, rec_line)
+                    rec_lines.remove(rec_line)
+        if len(rec_lines) > 0:
+            inv_lines += rec_lines
+        return inv_lines
 
     def group_lines(self, lines):
         grouped_lines = []

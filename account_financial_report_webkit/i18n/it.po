@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-07 15:04+0000\n"
-"PO-Revision-Date: 2018-03-07 15:04+0000\n"
+"POT-Creation-Date: 2018-03-07 16:47+0000\n"
+"PO-Revision-Date: 2018-03-07 16:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -378,9 +378,13 @@ msgid "Credit"
 msgstr "Avere"
 
 #. module: account_financial_report_webkit
+#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:123
+msgid "Cum. Bal."
+msgstr "Saldo Progressivo"
+
+#. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:118
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:121
-#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:123
 msgid "Cumul. Bal."
 msgstr "Saldo Progressivo"
 

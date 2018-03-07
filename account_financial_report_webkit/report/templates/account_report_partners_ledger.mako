@@ -112,7 +112,7 @@
                             ## partner
                             <div class="act_as_cell" style="width: 140px;">${_('Partner')}</div>
                             ## label
-                            <div class="act_as_cell" style="width: 170px;">${_('Label')} - ${_('Invoice Number')}</div>
+                            <div class="act_as_cell" style="width: 170px;">${_('Invoice Number')}</div>
                             ## reconcile
                             <div class="act_as_cell" style="width: 50px;">${_('Date Due')}</div>
                             ## debit

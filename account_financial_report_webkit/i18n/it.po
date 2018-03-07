@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-06 17:02+0000\n"
-"PO-Revision-Date: 2018-03-06 17:02+0000\n"
+"POT-Creation-Date: 2018-03-07 15:04+0000\n"
+"PO-Revision-Date: 2018-03-07 15:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -446,6 +446,11 @@ msgstr "Filtro Personalizzato"
 #: selection:trial.balance.webkit,filter:0
 msgid "Date"
 msgstr "Data"
+
+#. module: account_financial_report_webkit
+#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:117
+msgid "Date Due"
+msgstr "Scadenza"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_profit_loss.mako:44
@@ -902,7 +907,6 @@ msgstr "GIORNALI"
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:102
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:107
-#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:111
 #: report:addons/account_financial_report_webkit/report/templates/aged_open_invoices.mako:108
 msgid "Journal"
 msgstr "Giornale"
@@ -1420,7 +1424,6 @@ msgstr "Solo stampa"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:115
-#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:117
 #: report:addons/account_financial_report_webkit/report/templates/aged_open_invoices.mako:112
 msgid "Rec."
 msgstr "Riconc."
@@ -1541,6 +1544,7 @@ msgstr "Registrazioni:"
 
 #. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_general_ledger.mako:112
+#: report:addons/account_financial_report_webkit/report/templates/account_report_partners_ledger.mako:111
 msgid "Template"
 msgstr "Causale"
 

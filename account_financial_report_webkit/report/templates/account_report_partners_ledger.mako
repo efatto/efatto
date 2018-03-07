@@ -108,11 +108,11 @@
                             ## move
                             <div class="act_as_cell" style="width: 70px;">${_('Entry')}</div>
                             ## journal
-                            <div class="act_as_cell" style="width: 70px;">${_('Journal')}</div>
+                            <div class="act_as_cell" style="width: 160px;">${_('Template')}</div>
                             ## partner
-                            <div class="act_as_cell" style="width: 180px;">${_('Partner')}</div>
+                            <div class="act_as_cell" style="width: 140px;">${_('Partner')}</div>
                             ## label
-                            <div class="act_as_cell" style="width: 220px;">${_('Label')} - ${_('Invoice Number')}</div>
+                            <div class="act_as_cell" style="width: 170px;">${_('Label')} - ${_('Invoice Number')}</div>
                             ## reconcile
                             <div class="act_as_cell" style="width: 50px;">${_('Date Due')}</div>
                             ## debit
@@ -216,7 +216,7 @@
                               ## move
                               <div class="act_as_cell">${line.get('move_name') or ''}</div>
                               ## journal
-                              <div class="act_as_cell">${line.get('jcode') or ''}</div>
+                              <div class="act_as_cell">${line.get('template') or line.get('jname') or ''}</div>
                               ## partner
                               <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
                               ## label

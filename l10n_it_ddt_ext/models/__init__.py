@@ -5,4 +5,3 @@
 from . import sale
 from . import stock_picking_package_preparation
 from . import config
-# from . import sppp_line

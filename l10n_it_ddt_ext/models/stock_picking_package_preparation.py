@@ -104,14 +104,18 @@ class StockPickingPackagePreparation(models.Model):
         super(StockPickingPackagePreparation, self).on_change_partner()
         if self.ddt_type_id:
             if not self.carriage_condition_id:
-                self.carriage_condition_id = self.ddt_type_id.carriage_condition_id.id \
+                self.carriage_condition_id = \
+                    self.ddt_type_id.carriage_condition_id.id \
                     if self.ddt_type_id.carriage_condition_id else False
             if not self.goods_description_id:
-                self.goods_description_id = self.ddt_type_id.goods_description_id.id \
+                self.goods_description_id = \
+                    self.ddt_type_id.goods_description_id.id \
                     if self.ddt_type_id.goods_description_id else False
             if not self.transportation_reason_id:
-                self.transportation_reason_id = self.ddt_type_id.transportation_reason_id.id \
+                self.transportation_reason_id = \
+                    self.ddt_type_id.transportation_reason_id.id \
                     if self.ddt_type_id.transportation_reason_id else False
             if not self.transportation_method_id:
-                self.transportation_method_id = self.ddt_type_id.transportation_method_id.id \
+                self.transportation_method_id = \
+                    self.ddt_type_id.transportation_method_id.id \
                     if self.ddt_type_id.transportation_method_id else False

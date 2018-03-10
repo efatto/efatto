@@ -21,9 +21,6 @@
           <field name="model">stock.picking.package.preparation</field>
           <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
           <field name="arch" type="xml">
-            <button name="action_draft" position="attributes">
-                <attribute name="states">cancel,done</attribute>>
-            </button>
               <field name="company_id" position="after">
                   <field name="ddt_date_start"/>
               </field>

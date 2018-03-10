@@ -15,8 +15,7 @@ class SaleOrder(models.Model):
         if res:
             company = self.env.user.company_id
             res['create_ddt'] = company.create_ddt \
-                    if company.create_ddt \
-                    else False
+                if company.create_ddt else False
         return res
 
     def _default_ddt_type(self):

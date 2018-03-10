@@ -24,6 +24,5 @@ class StockConfigSettingsDDT(models.TransientModel):
         if res:
             company = self.env.user.company_id
             res['create_ddt'] = company.create_ddt \
-                    if company.create_ddt \
-                    else False
+                if company.create_ddt else False
         return res

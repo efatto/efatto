@@ -29,6 +29,7 @@
     - assign via company if create_ddt is default,
     - use of fiscal sequence for ddt.''',
     'depends': [
+        'stock_picking_package_preparation',
         'l10n_it_ddt',
         'web_widget_digitized_signature',
     ],

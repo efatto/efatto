@@ -46,6 +46,15 @@ class StockPickingPackagePreparation(models.Model):
     ddt_type_id = fields.Many2one(required=True)
 
     @api.multi
+    def action_done(self):
+        if not self.mapped('package_id'):
+            raise exceptions.Warning(
+                _('The package has not been generated.')
+            )
+        self.picking_ids.filtered(lambda x: x.state != 'done').do_transfer()
+        self.write({'state': 'done', 'date_done': fields.Datetime.now()})
+
+    @api.multi
     def action_draft(self):
         if any(prep.state == 'done' for prep in self):
             raise exceptions.Warning(

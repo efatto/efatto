@@ -17,18 +17,18 @@ msgstr ""
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_120_days
-msgid "120 DAYS INVOICE DATE END MONTH"
-msgstr "Rimessa diretta 120 G.G.D.F.F.M."
+msgid "120 DAYS END OF MONTH"
+msgstr "120 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30
-msgid "30 DAYS INVOICE DATE"
-msgstr "Rimessa diretta 30 G.G.D.F."
+msgid "30 DAYS FROM INVOICE DATE"
+msgstr "30 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30_days
-msgid "30 DAYS INVOICE DATE END MONTH"
-msgstr "Rimessa diretta 30 G.G.D.F.F.M."
+msgid "30 DAYS END OF MONTH"
+msgstr "30 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_consignment_30_days
@@ -45,24 +45,24 @@ msgstr "30% all'ordine 70% prima della consegna"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_30order_70beforeshipment
 #: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30order_70beforeshipment
-msgid "30% on order 70% before shipping"
-msgstr "30% all'ordine 70% prima della spedizione"
+msgid "30% ON PROFORMA INVOICE, 70% BEFORE SHIPMENT"
+msgstr "30% alla proforma, 70% prima della spedizione"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_45
-msgid "45 DAYS INVOICE DATE"
-msgstr "Rimessa diretta 45 G.G. D.F."
+msgid "45 DAYS FROM INVOICE DATE"
+msgstr "45 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_50order_50_net_30days
-msgid "50% AT CONFIRMATION ORDER, 50% 30 DAYS INVOICE RECEIPT"
-msgstr "50% alla Conferma d'ordine, 50% 30 G.G. ricevimento fattura"
+msgid "50% ON PROFORMA INVOICE, 50% 30 DAYS FROM INVOICE DATE"
+msgstr "50% ALLA PROFORMA, 50% 30 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_50order_50beforeshipment
 #: model:account.payment.term,note:l10n_it_simplerp.payment_direct_50order_50beforeshipment
-msgid "50% on order 50% before shipping"
-msgstr "50% all'ordine 50% prima della spedizione"
+msgid "50% ON PROFORMA INVOICE, 50% BEFORE SHIPMENT"
+msgstr "50% ALLA PROFORMA, 50% PRIMA DELLA SPEDIZIONE"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_50order_50_net_30days
@@ -104,12 +104,12 @@ msgstr "B.B. 60 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60
-msgid "60 DAYS INVOICE DATE"
+msgid "60 DAYS FROM INVOICE DATE"
 msgstr "60 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_60_days
-msgid "60 DAYS INVOICE DATE END MONTH"
+msgid "60 DAYS END OF MONTH"
 msgstr "60 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
@@ -125,12 +125,12 @@ msgstr "B.B. 90 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_90
-msgid "90 DAYS INVOICE DATE"
+msgid "90 DAYS FROM INVOICE DATE"
 msgstr "90 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_90_days
-msgid "90 DAYS INVOICE DATE END MONTH"
+msgid "90 DAYS END OF MONTH"
 msgstr "90 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
@@ -140,13 +140,13 @@ msgstr "B.B 30/60/90 GG Data Fattura"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_net_1
-msgid "B.T. 120 Days Inv."
-msgstr "B.B. 120 GG D.F."
+msgid "120 DAYS FROM INVOICE DATE"
+msgstr "B.B. 120 GG D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_1
 msgid "B.T. 120 Days Inv. End Month"
-msgstr "B.B. 120 GG D.F. F.M."
+msgstr "120 GG D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_10_monthly_1
@@ -436,12 +436,12 @@ msgstr "B.B. 90/120 Giorni Data fattura Fine Mese"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_sight
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_sight
-msgid "B.T. At Sight"
-msgstr "B.B. A Vista"
+msgid "PAYMENT AT SIGHT"
+msgstr "Pagamento a vista"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_dffm
-msgid "B.T. Date Invoice End Month"
+msgid "END OF MONTH"
 msgstr "B.B. D.F.F.M."
 
 #. module: l10n_it_simplerp
@@ -466,8 +466,8 @@ msgstr "B.B. all'Ordine"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_proforma
-msgid "B.T. on Proforma"
-msgstr "B.B. alla Proforma"
+msgid "100% ON PROFORMA INVOICE"
+msgstr "100% ALLA PROFORMA"
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_delivery
@@ -504,8 +504,8 @@ msgstr "Rimessa Diretta 180 GG D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_direct_180_days
-msgid "Direct Payment 180 Days Inv. End Month"
-msgstr "Rimessa Diretta 180 GG D.F.F.M."
+msgid "180 DAYS END OF MONTH"
+msgstr "180 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_direct_30_days
@@ -621,7 +621,7 @@ msgstr "Pagamento anticipato all'ordine"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_paid
 #: model:account.payment.term,note:l10n_it_simplerp.payment_paid
-msgid "Payment executed"
+msgid "PAYMENT MADE"
 msgstr "Pagamento effettuato"
 
 #. module: l10n_it_simplerp

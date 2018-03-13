@@ -20,7 +20,7 @@
         </record>
 
         <record id="payment_direct_30" model="account.payment.term">
-            <field name="name">30 DAYS INVOICE DATE</field>
+            <field name="name">30 DAYS FROM INVOICE DATE</field>
             <field name="note">Direct Payment 30 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -34,7 +34,7 @@
         </record>
 
         <record id="payment_direct_45" model="account.payment.term">
-            <field name="name">45 DAYS INVOICE DATE</field>
+            <field name="name">45 DAYS FROM INVOICE DATE</field>
             <field name="note">Direct Payment 45 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -48,7 +48,7 @@
         </record>
 
         <record id="payment_direct_60" model="account.payment.term">
-            <field name="name">60 DAYS INVOICE DATE</field>
+            <field name="name">60 DAYS FROM INVOICE DATE</field>
             <field name="note">Direct Payment 60 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -62,7 +62,7 @@
         </record>
 
         <record id="payment_direct_90" model="account.payment.term">
-            <field name="name">90 DAYS INVOICE DATE</field>
+            <field name="name">90 DAYS FROM INVOICE DATE</field>
             <field name="note">Direct Payment 90 days invoice</field>
             <field name="type">RD</field>
         </record>
@@ -76,7 +76,7 @@
         </record>
 
         <record id="payment_direct_30_days" model="account.payment.term">
-            <field name="name">30 DAYS INVOICE DATE END MONTH</field>
+            <field name="name">30 DAYS END OF MONTH</field>
             <field name="note">Direct Payment 30 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -90,7 +90,7 @@
         </record>
 
         <record id="payment_direct_60_days" model="account.payment.term">
-            <field name="name">60 DAYS INVOICE DATE END MONTH</field>
+            <field name="name">60 DAYS END OF MONTH</field>
             <field name="note">Direct Payment 60 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -104,7 +104,7 @@
         </record>
 
         <record id="payment_direct_90_days" model="account.payment.term">
-            <field name="name">90 DAYS INVOICE DATE END MONTH</field>
+            <field name="name">90 DAYS END OF MONTH</field>
             <field name="note">Direct Payment 90 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -118,7 +118,7 @@
         </record>
 
         <record id="payment_direct_120_days" model="account.payment.term">
-            <field name="name">120 DAYS INVOICE DATE END MONTH</field>
+            <field name="name">120 DAYS END OF MONTH</field>
             <field name="note">Direct Payment 120 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -132,7 +132,7 @@
         </record>
 
         <record id="payment_direct_180_days" model="account.payment.term">
-            <field name="name">Direct Payment 180 Days Inv. End Month</field>
+            <field name="name">180 DAYS END OF MONTH</field>
             <field name="note">Direct Payment 180 Days End of Month</field>
             <field name="type">RD</field>
         </record>
@@ -206,8 +206,8 @@
         </record>
 
         <record id="payment_direct_30order_70beforeshipment" model="account.payment.term">
-            <field name="name">30% on order 70% before shipping</field>
-            <field name="note">30% on order 70% before shipping</field>
+            <field name="name">30% ON PROFORMA INVOICE, 70% BEFORE SHIPMENT</field>
+            <field name="note">30% ON PROFORMA INVOICE, 70% BEFORE SHIPMENT</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_30order_70beforeshipment_line1" model="account.payment.term.line">
@@ -229,8 +229,8 @@
         </record>
 
         <record id="payment_direct_50order_50beforeshipment" model="account.payment.term">
-            <field name="name">50% on order 50% before shipping</field>
-            <field name="note">50% on order 50% before shipping</field>
+            <field name="name">50% ON PROFORMA INVOICE, 50% BEFORE SHIPMENT</field>
+            <field name="note">50% ON PROFORMA INVOICE, 50% BEFORE SHIPMENT</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_direct_50order_50beforeshipment_line1" model="account.payment.term.line">
@@ -363,8 +363,8 @@
         </record>
 
         <record id="payment_paid" model="account.payment.term">
-            <field name="name">Payment executed</field>
-            <field name="note">Payment executed</field>
+            <field name="name">PAYMENT MADE</field>
+            <field name="note">PAYMENT MADE</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_paid_line" model="account.payment.term.line">
@@ -406,8 +406,8 @@
         </record>
 
 		<record id="payment_term_proforma" model="account.payment.term">
-            <field name="name">B.T. on Proforma</field>
-            <field name="note">B.T. in Advance on proforma</field>
+            <field name="name">100% ON PROFORMA INVOICE</field>
+            <field name="note">100% ON PROFORMA INVOICE</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_proforma_line" model="account.payment.term.line">
@@ -434,8 +434,8 @@
         </record>
 
 		<record id="payment_term_sight" model="account.payment.term">
-            <field name="name">B.T. At Sight</field>
-            <field name="note">B.T. At Sight</field>
+            <field name="name">PAYMENT AT SIGHT</field>
+            <field name="note">PAYMENT AT SIGHT</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_sight_line" model="account.payment.term.line">
@@ -503,8 +503,8 @@
         </record>
 
         <record id="payment_term_120_net_1" model="account.payment.term">
-            <field name="name">B.T. 120 Days Inv.</field>
-            <field name="note">B.T. 120 days invoice</field>
+            <field name="name">120 DAYS FROM INVOICE DATE</field>
+            <field name="note">120 days from invoice date</field>
             <field name="type">BB</field>
         </record>
         <record id="1_payment_term_120_net_line" model="account.payment.term.line">
@@ -556,8 +556,8 @@
         </record>
 
         <record id="payment_term_50order_50_net_30days" model="account.payment.term">
-            <field name="name">50% AT CONFIRMATION ORDER, 50% 30 DAYS INVOICE RECEIPT</field>
-            <field name="note">50% on order, 50% 30 Days</field>
+            <field name="name">50% ON PROFORMA INVOICE, 50% 30 DAYS FROM INVOICE DATE</field>
+            <field name="note">50% ON PROFORMA INVOICE, 50% 30 DAYS FROM INVOICE DATE</field>
             <field name="type">RD</field>
         </record>
         <record id="payment_term_50order_50_net_30days_line1" model="account.payment.term.line">
@@ -715,8 +715,8 @@
 
 	<!-- Payment End of Month -->
         <record id="payment_term_dffm" model="account.payment.term">
-            <field name="name">B.T. Date Invoice End Month</field>
-            <field name="note">B.T. Date Invoice End of Month</field>
+            <field name="name">END OF MONTH</field>
+            <field name="note">END OF MONTH</field>
             <field name="type">BB</field>
         </record>
         <record id="payment_term_dffm_line" model="account.payment.term.line">

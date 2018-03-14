@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2017 Sergio Corato
+#    Copyright (C) 2017-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,7 @@
 #
 {
     'name': 'Stock inventory by date',
-    'version': '8.0.0.0.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
     'description': """
     Stock inventory by date

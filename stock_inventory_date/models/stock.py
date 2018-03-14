@@ -34,8 +34,7 @@ class StockInventory(models.Model):
         location_obj = self.env['stock.location']
         location_ids = location_obj.search([
             ('id', 'child_of', [inventory.location_id.id])])
-        # filter for date for now:
-        # 'none' for all products, 'product' for one, 'categories' for some ctg
+        # filter for date available:
         if inventory.filter not in [
                 'none', 'categories', 'product', 'products']:
             raise exceptions.ValidationError(
@@ -55,8 +54,6 @@ class StockInventory(models.Model):
         flag = False
         move_obj = self.env['stock.move']
         uom_obj = self.env['product.uom']
-        # todo get cost for product moves
-        # get next date at 00:00:00 of date selected for inventory
         date_inventory = (datetime.strptime(
             inventory.date_inventory, DEFAULT_SERVER_DATE_FORMAT
         ) + relativedelta.relativedelta(
@@ -74,32 +71,30 @@ class StockInventory(models.Model):
                     ('product_id', 'in', product_ids.ids),
                     ('date', '<', date_inventory)])
             for move in move_ids:
-                lot_id = False
-                if move.lot_ids:
-                    #todo: create one line for lot
-                    lot_id = move.lot_ids[0].id
-                prod_id = move.product_id.id
-                if move.location_dest_id.id == location.id:
-                    qty = uom_obj._compute_qty(move.product_uom.id,
-                                               move.product_qty,
-                                               move.product_id.uom_id.id)
-                else:
-                    qty = -uom_obj._compute_qty(move.product_uom.id,
-                                                move.product_qty,
-                                                move.product_id.uom_id.id)
+                for quant in move.quant_ids:
+                    lot_id = quant.lot_id
+                    prod_id = quant.product_id.id
+                    if quant.location_id.id == location.id:
+                        qty = uom_obj._compute_qty(move.product_uom.id,
+                                                   quant.qty,
+                                                   quant.product_id.uom_id.id)
+                    else:
+                        qty = -uom_obj._compute_qty(move.product_uom.id,
+                                                    quant.qty,
+                                                    quant.product_id.uom_id.id)
 
-                if datas.get((prod_id, lot_id)):
-                    qty += datas[(prod_id, lot_id)]['product_qty']
+                    if datas.get((prod_id, lot_id)):
+                        qty += datas[(prod_id, lot_id)]['product_qty']
 
-                datas[(prod_id, lot_id)] = {
-                    'product_id': prod_id,
-                    'location_id': location.id,
-                    'product_qty': qty,
-                    'theoretical_qty': qty,
-                    'product_uom_id': move.product_id.uom_id.id,
-                    'prod_lot_id': lot_id,
-                    'inventory_id': inventory.id,
-                }
+                    datas[(prod_id, lot_id)] = {
+                        'product_id': prod_id,
+                        'location_id': location.id,
+                        'product_qty': qty,
+                        'theoretical_qty': qty,
+                        'product_uom_id': quant.product_id.uom_id.id,
+                        'prod_lot_id': lot_id,
+                        'inventory_id': inventory.id,
+                    }
             if datas:
                 flag = True
                 res[location.id] = datas

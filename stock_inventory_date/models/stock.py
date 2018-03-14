@@ -72,9 +72,9 @@ class StockInventory(models.Model):
                     ('date', '<', date_inventory)])
             for move in move_ids:
                 for quant in move.quant_ids:
-                    lot_id = quant.lot_id
+                    lot_id = quant.lot_id.id
                     prod_id = quant.product_id.id
-                    if quant.location_id.id == location.id:
+                    if move.location_dest_id.id == location.id:
                         qty = uom_obj._compute_qty(move.product_uom.id,
                                                    quant.qty,
                                                    quant.product_id.uom_id.id)

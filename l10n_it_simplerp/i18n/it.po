@@ -141,12 +141,12 @@ msgstr "B.B 30/60/90 GG Data Fattura"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_net_1
 msgid "120 DAYS FROM INVOICE DATE"
-msgstr "B.B. 120 GG D.F.F.M."
+msgstr "120 G.G.D.F."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_1
 msgid "B.T. 120 Days Inv. End Month"
-msgstr "120 GG D.F.F.M."
+msgstr "B.B. 120 G.G.D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_120_days_10_monthly_1
@@ -442,7 +442,7 @@ msgstr "Pagamento a vista"
 #. module: l10n_it_simplerp
 #: model:account.payment.term,name:l10n_it_simplerp.payment_term_dffm
 msgid "END OF MONTH"
-msgstr "B.B. D.F.F.M."
+msgstr "D.F.F.M."
 
 #. module: l10n_it_simplerp
 #: model:account.payment.term,note:l10n_it_simplerp.payment_term_dffm

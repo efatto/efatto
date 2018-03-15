@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <field name="date" position="after">
                     <field name="date_inventory"/>
+                    <field name="search_child_location"/>
                 </field>
             </field>
         </record>

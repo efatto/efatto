@@ -28,12 +28,15 @@ class StockInventory(models.Model):
     _order = 'date DESC'
 
     date_inventory = fields.Date()
+    search_child_location = fields.Boolean()
 
     @api.model
     def _get_inventory_lines_by_date(self, inventory):
         location_obj = self.env['stock.location']
-        location_ids = location_obj.search([
-            ('id', 'child_of', [inventory.location_id.id])])
+        location_ids = inventory.location_id
+        if inventory.search_child_location:
+            location_ids = location_obj.search([
+                ('id', 'child_of', [inventory.location_id.id])])
         # filter for date available:
         if inventory.filter not in [
                 'none', 'categories', 'product', 'products']:

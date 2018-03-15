@@ -285,7 +285,7 @@ msgstr "+ Transazioni"
 #: model:account.payment.term,name:account.account_payment_term_15days
 #: model:account.payment.term,note:account.account_payment_term_15days
 msgid "15 Days"
-msgstr "15 giorni"
+msgstr "15 G.G.D.F."
 
 #. module: account
 #: selection:account.config.settings,period:0
@@ -297,13 +297,13 @@ msgstr "Trimestrale"
 #: model:account.payment.term,name:account.account_payment_term
 #: model:account.payment.term,note:account.account_payment_term
 msgid "30 Days End of Month"
-msgstr "30 giorni Fine Mese"
+msgstr "30 G.G.D.F.F.M."
 
 #. module: account
 #: model:account.payment.term,name:account.account_payment_term_net
 #: model:account.payment.term,note:account.account_payment_term_net
 msgid "30 Net Days"
-msgstr "30 giorni netti"
+msgstr "30 G.G.D.F."
 
 #. module: account
 #: model:account.payment.term,name:account.account_payment_term_advance

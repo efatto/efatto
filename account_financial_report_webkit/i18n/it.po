@@ -70,7 +70,7 @@ msgstr "Attivare Centralizzazione"
 #: view:aged.open.invoices.webkit:account_financial_report_webkit.aged_open_invoice_webkit
 #: model:ir.actions.act_window,name:account_financial_report_webkit.action_account_aged_open_invoice_menu_webkit
 msgid "Aged Open Invoice"
-msgstr "Aged Open Invoice"
+msgstr "E/C Fatture Aperte"
 
 #. module: account_financial_report_webkit
 #: code:addons/account_financial_report_webkit/report/aged_open_invoices.py:84
@@ -80,12 +80,12 @@ msgstr "Aged Open Invoice"
 #: model:ir.ui.menu,name:account_financial_report_webkit.menu_account_aged_open_invoices
 #, python-format
 msgid "Aged Open Invoices"
-msgstr "Aged Open Invoices"
+msgstr "E/C Fatture Aperte"
 
 #. module: account_financial_report_webkit
 #: model:ir.actions.report.xml,name:account_financial_report_webkit.account_report_aged_open_invoices_webkit
 msgid "Aged Open Invoices Report"
-msgstr "Aged Open Invoices Report"
+msgstr "Report Fatture Aperte"
 
 #. module: account_financial_report_webkit
 #: view:account.aged.trial.balance.webkit:account_financial_report_webkit.account_aged_trial_balance_webkit
@@ -101,17 +101,17 @@ msgstr "Estratto Conto Partner Periodico"
 #. module: account_financial_report_webkit
 #: model:ir.model,name:account_financial_report_webkit.model_aged_open_invoices_webkit
 msgid "Aged open invoices"
-msgstr "Aged open invoices"
+msgstr "E/C Fatture Aperte"
 
 #. module: account_financial_report_webkit
 #: model:ir.actions.act_window,name:account_financial_report_webkit.action_account_aged_trial_balance_menu_webkit
 msgid "Aged partner balance"
-msgstr "Aged partner balance"
+msgstr "Estratto Conto Partner Periodico "
 
 #. module: account_financial_report_webkit
 #: model:ir.model,name:account_financial_report_webkit.model_account_aged_trial_balance_webkit
 msgid "Aged partner balanced"
-msgstr "Aged partner balanced"
+msgstr "Estratto Conto Partner Periodico "
 
 #. module: account_financial_report_webkit
 #: selection:account.common.balance.report,display_account:0
@@ -1629,12 +1629,12 @@ msgstr "Questo report è un analisi fatta per un partner, è una stampa in PDF c
 #. module: account_financial_report_webkit
 #: view:account.aged.trial.balance.webkit:account_financial_report_webkit.account_aged_trial_balance_webkit
 msgid "This report list partner open balances and indicate when payment is (or was) supposed to be completed"
-msgstr "This report list partner open balances and indicate when payment is (or was) supposed to be completed"
+msgstr "Questo report mostra i saldi aperti del partner e indica quando i pagamenti saranno (o dovevano essere) eseguiti"
 
 #. module: account_financial_report_webkit
 #: view:aged.open.invoices.webkit:account_financial_report_webkit.aged_open_invoice_webkit
 msgid "This report list partner open invoices and indicate when payment is (or was) supposed to be completed"
-msgstr "This report list partner open invoices and indicate when payment is (or was) supposed to be completed"
+msgstr "Questo report mostra le fatture aperte del partner e indica quando i pagamenti saranno (o dovevano essere) eseguiti"
 
 #. module: account_financial_report_webkit
 #: view:account.aged.trial.balance.webkit:account_financial_report_webkit.account_aged_trial_balance_webkit

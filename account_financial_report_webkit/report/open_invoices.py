@@ -55,7 +55,7 @@ class PartnersOpenInvoicesWebkit(report_sxw.rml_parse,
 
         company = self.pool.get('res.users').browse(
             self.cr, uid, uid, context=context).company_id
-        wizard = self.pool['open.invoices.webkit'].browse(
+        wizard = self.pool[context['active_model']].browse(
             cursor, uid, context.get('active_id', False), context)
         if wizard.inventory_journal:
             header_report_name = ' - '.join((

@@ -39,7 +39,7 @@ msgstr "Nessun prodotto in questo deposito."
 #. module: stock_inventory_date
 #: field:stock.inventory,search_child_location:0
 msgid "Search child location"
-msgstr "Mostra punti di stoccaggio figli"
+msgstr "Includi punti di stoccaggio figli"
 
 #. module: stock_inventory_date
 #: model:ir.model,name:stock_inventory_date.model_stock_move

@@ -13,5 +13,38 @@
             </group>
         </field>
     </record>
+    <record id="view_order_form_service_project" model="ir.ui.view">
+        <field name="name">sale.order.form.service.project</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_service_project.view_order_form_service_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']"
+                   position="replace">
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',True)]}"
+                        groups="base.group_user"/>
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',False)]}"
+                        groups="base.group_user"/>
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" groups="base.group_user"
+                    attrs="{'invisible': [('state','not in',['manual','progress','invoice_except'])]}"
+                />
+            </xpath>
+            <field name="pricelist_id" position="after">
+                <field name="print_works"/>
+                <field name="has_task" invisible="1"/>
+                <field name="task_closed" invisible="1"/>
+            </field>
+            <field name="origin" position="after">
+                <field name="invoice_on_timesheets"/>
+            </field>
+        </field>
+    </record>
 </data>
 </openerp>

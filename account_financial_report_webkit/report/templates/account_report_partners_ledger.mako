@@ -92,6 +92,7 @@
                   invoice_number = False
                   last_invoice_number = False
                   invoice_break = False
+                  orphan_space = False
                   part_cumul_balance = 0.0
                   part_cumul_balance_curr = 0.0
                 %>
@@ -177,6 +178,7 @@
                         %for line in ledger_lines[account.id].get(p_id, []):
                         %if group_method(data) == 'group_invoices' and line.get('rec_name') == 'IS_ORPHAN':
                           <%
+                          orphan_space = True
                           total_debit += line.get('debit') or 0.0
                           total_credit += line.get('credit') or 0.0
                           label_elements = [line.get('lname') or '']
@@ -217,7 +219,21 @@
                           </div>
                         %endif
                         %endfor
-
+                        %if orphan_space:
+                        <div class="act_as_row lines" style="border-bottom: 1px solid black;">
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                        </div>
+                        </br>
+                        %endif
                         %for line in ledger_lines[account.id].get(p_id, []):
                         %if (group_method(data) == 'group_invoices' and line.get('rec_name') != 'IS_ORPHAN') or group_method(data) != 'group_invoices':
                           <%

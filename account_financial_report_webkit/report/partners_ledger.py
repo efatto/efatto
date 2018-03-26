@@ -232,6 +232,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         inv_lines = sorted([x for x in lines if x['invoice_number']],
                            key=lambda x: (
                                x['invoice_number'] + x['date_maturity']))
+        res_lines = [x for x in lines if x not in (rec_lines + inv_lines)]
         for i, line in enumerate(inv_lines):
             for rec_line in rec_lines:
                 if line['rec_name'] == rec_line['rec_name']:
@@ -239,6 +240,8 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                     rec_lines.remove(rec_line)
         if len(rec_lines) > 0:
             inv_lines += rec_lines
+        if len(res_lines) > 0:
+            inv_lines += res_lines
         return inv_lines
 
     def group_lines(self, lines):

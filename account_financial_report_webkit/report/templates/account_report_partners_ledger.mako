@@ -175,6 +175,51 @@
                           %endif
 
                         %for line in ledger_lines[account.id].get(p_id, []):
+                        %if group_method(data) == 'group_invoices' and line.get('rec_name') == 'IS_ORPHAN':
+                          <%
+                          total_debit += line.get('debit') or 0.0
+                          total_credit += line.get('credit') or 0.0
+                          label_elements = [line.get('lname') or '']
+                          if line.get('invoice_number'):
+                            label_elements.append("(%s)" % (line['invoice_number'],))
+                          if line.get('supplier_invoice_number'):
+                            label_elements.append("(%s)" % (line['supplier_invoice_number'],))
+                          label = ' '.join(label_elements)
+                          %>
+                          <div class="act_as_row lines">
+                              ## date
+                              <div class="act_as_cell first_column">${formatLang(line.get('mdate') or '', date=True)}</div>
+                              ## period
+                              <div class="act_as_cell">${line.get('period_code') or ''}</div>
+                              ## move
+                              <div class="act_as_cell">${line.get('move_name') or ''}</div>
+                              ## journal
+                              <div class="act_as_cell">${line.get('template') or line.get('jname') or ''}</div>
+                              ## partner
+                              <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
+                              ## label
+                              <div class="act_as_cell">${label}</div>
+                              ## reconcile
+                              <div class="act_as_cell">${formatLang(line.get('date_maturity') or '', date=True)}</div>
+                              ## debit
+                              <div class="act_as_cell amount">${formatLang(line.get('debit') or 0.0) | amount }</div>
+                              ## credit
+                              <div class="act_as_cell amount">${formatLang(line.get('credit') or 0.0) | amount }</div>
+                              ## balance cumulated
+                              <% cumul_balance += line.get('balance') or 0.0 %>
+                              <div class="act_as_cell amount" style="padding-right: 1px;">${formatLang(cumul_balance) | amount }</div>
+                              %if amount_currency(data):
+                                  ## currency balance
+                                  <div class="act_as_cell sep_left amount">${formatLang(line.get('amount_currency') or 0.0) | amount }</div>
+                                  ## curency code
+                                  <div class="act_as_cell" style="text-align: right; ">${line.get('currency_code') or ''}</div>
+                              %endif
+                          </div>
+                        %endif
+                        %endfor
+
+                        %for line in ledger_lines[account.id].get(p_id, []):
+                        %if (group_method(data) == 'group_invoices' and line.get('rec_name') != 'IS_ORPHAN') or group_method(data) != 'group_invoices':
                           <%
                           total_debit += line.get('debit') or 0.0
                           total_credit += line.get('credit') or 0.0
@@ -192,7 +237,7 @@
                           label = ' '.join(label_elements)
                           %>
                           %if group_method(data) == 'group_invoices':
-                          %if invoice_break:
+                          %if invoice_break and last_invoice_number:
                             <div class="act_as_row lines" style="font-weight: bold; font-size: 10px;">
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
@@ -249,9 +294,9 @@
                           if line.get('invoice_number'):
                             last_invoice_number = line['invoice_number']
                           %>
-
+                        %endif
                         %endfor
-                        %if group_method(data) == 'group_invoices':
+                        %if group_method(data) == 'group_invoices' and last_invoice_number:
                         <div class="act_as_row lines" style="font-weight: bold; font-size: 10px;">
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>

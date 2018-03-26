@@ -238,9 +238,17 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 if line['rec_name'] == rec_line['rec_name']:
                     inv_lines.insert(i+1, rec_line)
                     rec_lines.remove(rec_line)
+            for res_line in res_lines:
+                if line['invoice_number'] == res_line['lname']:
+                    inv_lines.insert(i+1, res_line)
+                    res_lines.remove(res_line)
         if len(rec_lines) > 0:
+            for rcline in rec_lines:
+                rcline['rec_name'] = 'IS_ORPHAN'
             inv_lines += rec_lines
         if len(res_lines) > 0:
+            for reline in res_lines:
+                reline['rec_name'] = 'IS_ORPHAN'
             inv_lines += res_lines
         return inv_lines
 

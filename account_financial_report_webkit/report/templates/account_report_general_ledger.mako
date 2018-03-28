@@ -87,10 +87,10 @@
               %>
             <div class="act_as_table list_table" style="margin-top: 10px;">
 
-                <div class="act_as_caption account_title">
-                    ${account.code} - ${account.name}
-                </div>
                 <div class="act_as_thead">
+                    <div class="account_title" style="width: 1080px; background-color:#F0F0F0;">
+                        ${account.code} - ${account.name}
+                    </div>
                     <div class="act_as_row labels">
                         ## date
                         <div class="act_as_cell first_column" style="width: 50px;">${_('Date')}</div>

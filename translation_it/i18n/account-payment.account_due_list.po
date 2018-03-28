@@ -36,10 +36,24 @@ msgid "Group By..."
 msgstr "Raggruppa per..."
 
 #. module: account_due_list
+#: help:account.move.line,payment_term_id:0
+msgid ""
+"If you use payment terms, the due date will be computed automatically at the"
+" generation of accounting entries. If you keep the payment term and the due "
+"date empty, it means direct payment. The payment term may compute several "
+"due dates, for example 50% now, 50% in one month."
+msgstr ""
+
+#. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_filter
 #: field:account.move.line,stored_invoice_id:0
 msgid "Invoice"
 msgstr "Fattura"
+
+#. module: account_due_list
+#: field:account.move.line,invoice_date:0
+msgid "Invoice Date"
+msgstr "Data fattura"
 
 #. module: account_due_list
 #: field:account.move.line,invoice_user_id:0
@@ -50,6 +64,11 @@ msgstr "Commerciale"
 #: model:ir.model,name:account_due_list.model_account_move_line
 msgid "Journal Items"
 msgstr "Voci sezionale"
+
+#. module: account_due_list
+#: help:account.move.line,invoice_date:0
+msgid "Keep empty to use the current date"
+msgstr "Lasciare vuoto per usare la data odierna"
 
 #. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_filter
@@ -72,6 +91,11 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: account_due_list
+#: field:account.move.line,partner_ref:0
+msgid "Partner Ref"
+msgstr "Riferimento partner"
+
+#. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_filter
 msgid "Payable"
 msgstr "Debiti"
@@ -80,6 +104,11 @@ msgstr "Debiti"
 #: view:account.move.line:account_due_list.view_payments_filter
 msgid "Payable payments"
 msgstr "Saldo fornitori"
+
+#. module: account_due_list
+#: field:account.move.line,payment_term_id:0
+msgid "Payment Terms"
+msgstr "Termini di pagamento"
 
 #. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_tree
@@ -103,9 +132,14 @@ msgid "Receivable payments"
 msgstr "Incassi clienti"
 
 #. module: account_due_list
+#: help:account.move.line,invoice_origin:0
+msgid "Reference of the document that produced this invoice."
+msgstr "Riferimento del documento che ha generato questa fattura"
+
+#. module: account_due_list
 #: field:account.move.line,maturity_residual:0
 msgid "Residual Amount"
-msgstr "Residual Amount"
+msgstr "Saldo"
 
 #. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_filter
@@ -116,6 +150,11 @@ msgstr "Commerciale"
 #: view:account.move.line:account_due_list.view_payments_filter
 msgid "Search Payments"
 msgstr "Ricerca pagamenti"
+
+#. module: account_due_list
+#: field:account.move.line,invoice_origin:0
+msgid "Source Doc"
+msgstr "Documento origine"
 
 #. module: account_due_list
 #: help:account.move.line,maturity_residual:0
@@ -135,7 +174,7 @@ msgstr "Debito Totale"
 #. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_tree
 msgid "Total Residual"
-msgstr "Total Residual"
+msgstr "Saldo Totale"
 
 #. module: account_due_list
 #: view:account.move.line:account_due_list.view_payments_filter
@@ -146,4 +185,3 @@ msgstr "Non riconciliate"
 #: view:account.move.line:account_due_list.view_payments_filter
 msgid "Unreconciled payments"
 msgstr "Pagamenti non riconciliati"
-

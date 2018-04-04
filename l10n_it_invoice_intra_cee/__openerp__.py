@@ -4,6 +4,7 @@
 #    Copyright (C) 2014 Associazione OpenERP Italia
 #    (<http://www.openerp-italia.org>)
 #    Copyright (C) 2014 Didotech srl
+#    Copyright (C) 2015-2017 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -22,29 +23,25 @@
 
 {
     'name': "Invoice Intra CEE",
-    'version': '3.2.10.3',
+    'version': '8.0.1.0.0',
     'category': 'Account',
-    'description': """Manage Invoice for Intra CEE supplier""",
-    'author': 'CoOpenERP <info@coopenerp.it>, Didotech srl <info@didotech.com>, SimplERP srl ',
-    'website': 'http://www.simplerp.it',
+    'description': "Manage Invoice for Intra CEE",
+    'author': 'CoOpenERP <info@coopenerp.it>, Didotech srl <info@didotech.com>'
+              ', Sergio Corato <info@efatto.it>',
+    'website': 'https://www.efatto.it',
     'license': 'AGPL-3',
     "depends": [
         'base',
         'account',
         'account_voucher',
         'account_journal_sequence',
-#         'account_invoice_entry_date',
-#         'account_payment_term_month',
-        #'l10n_it_account',
     ],
     "data": [
         'views/account_view.xml',
         'views/account_data.xml',
     ],
-    "demo": [],
     "test": [
         'test/invoice_reverse_charge.yml',
     ],
-    "active": False,
     "installable": True,
 }

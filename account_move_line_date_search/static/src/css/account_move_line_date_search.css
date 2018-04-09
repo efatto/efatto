@@ -1,0 +1,12 @@
+.openerp .oe_account_credit {
+  position: relative;
+  display: inline-block;
+}
+.openerp .oe_account_debit {
+  position: relative;
+  display: inline-block;
+}
+.openerp .oe_form_field_date {
+  position: relative;
+  display: inline-block;
+}

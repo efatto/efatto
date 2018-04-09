@@ -13,9 +13,9 @@
                 <input type="date" class="oe_account_select_date_to"/>
             </div>
             <div>
-            <button class="oe_inline oe_account_credit oe_button oe_highlight" href="javascript:void(0)"
+            <button class="oe_account_credit oe_button oe_highlight" href="javascript:void(0)"
                >Credit</button>
-            <button class="oe_inline oe_account_debit oe_button oe_highlight" href="javascript:void(0)"
+            <button class="oe_account_debit oe_button oe_highlight" href="javascript:void(0)"
                >Debit</button>
         </div>
 

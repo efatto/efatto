@@ -4,17 +4,20 @@
 
     <t t-extend="AccountMoveLineQuickAdd" >
         <t t-jquery="div.oe_account_quickadd" t-operation="append">
-            <div class="oe_datepicker_container">
-                <h4>Date from :</h4>
-                <select class="oe_account_select_date_from">
-
-                </select>
-
-                <h4>Date to :</h4>
-                <select class="oe_account_select_date_to">
-
-                </select>
+            <div class="oe_form_field_date">
+            <h4>Date from: </h4>
+                <input type="date" class="oe_account_select_date_from"/>
             </div>
+            <div class="oe_form_field_date">
+                <h4>Date to: </h4>
+                <input type="date" class="oe_account_select_date_to"/>
+            </div>
+            <div>
+            <button class="oe_inline oe_account_credit oe_button oe_highlight" href="javascript:void(0)"
+               >Credit</button>
+            <button class="oe_inline oe_account_debit oe_button oe_highlight" href="javascript:void(0)"
+               >Debit</button>
+        </div>
 
         </t>
     </t>

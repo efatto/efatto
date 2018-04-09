@@ -2,9 +2,9 @@
 
 <openerp>
     <data>
-        <template id="assets_backend" name="account_move_line_date_search assets" inherit_id="web.assets_backend">
+        <template id="assets_backend" name="account_move_line_search_assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script src="/account_move_line_date_search/static/src/js/account_move_line_quickadd.js"></script>
+                <script type="text/javascript" src="/account_move_line_date_search/static/src/js/account_move_line_quickadd.js"></script>
             </xpath>
         </template>
     </data>

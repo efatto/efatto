@@ -21,16 +21,16 @@
     'name': 'Account Move Line date search',
     'version': '8.0.1.0.0',
     'category': 'Generic Modules/Payment',
-    'author': 'Sergio Corato - SimplERP SRL',
+    'author': 'Sergio Corato',
     'description': 'Account Move Line date search',
-    'website': 'http://www.simplerp.it',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'account',
     ],
     'data': [
-        # 'views/account_move_line_view.xml',
+        'views/quickadd.xml',
     ],
     'qweb': ['static/src/xml/account_move_line_quickadd.xml'],
-    'installable': False,
+    'installable': True,
 }

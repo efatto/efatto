@@ -1293,12 +1293,12 @@ msgstr "Bilancio del Partner Webkit"
 #: view:partners.ledger.webkit:account_financial_report_webkit.account_partner_ledger_view_webkit
 #, python-format
 msgid "Partner Ledger"
-msgstr "Mastro del partner"
+msgstr "Estratto Conto del partner"
 
 #. module: account_financial_report_webkit
 #: model:ir.model,name:account_financial_report_webkit.model_partners_ledger_webkit
 msgid "Partner Ledger Report"
-msgstr "Stampa Mastro del Partner"
+msgstr "Stampa Estratto Conto del Partner"
 
 #. module: account_financial_report_webkit
 #: model:ir.actions.report.xml,name:account_financial_report_webkit.account_report_partners_ledger_webkit

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2016 Sergio Corato - SimplERP SRL
+#    Copyright (C) 2016 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,8 +25,8 @@
     'summary': 'View task on calendar based on date_end and date_start',
     'description':
         'View task on calendar based on date_end and date_start',
-    'author': 'Sergio Corato - Simplerp srl',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
     'depends': [
         'project',
     ],

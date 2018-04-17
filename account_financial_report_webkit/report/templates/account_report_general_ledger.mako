@@ -88,28 +88,23 @@
             <div class="act_as_table list_table" style="margin-top: 10px;">
 
                 <div class="act_as_thead">
-                    <div class="account_title" style="width: 1080px; background-color:#F0F0F0;">
-                        ${account.code} - ${account.name}
-                    </div>
                     <div class="act_as_row labels">
                         ## date
                         <div class="act_as_cell first_column" style="width: 50px;">${_('Date')}</div>
                         ## date invoice
                         <div class="act_as_cell" style="width: 50px;">${_('Doc. Date')}</div>
                         ## move
-                        <div class="act_as_cell" style="width: 70px;">${_('Entry')}</div>
+                        <div class="act_as_cell" style="width: 90px;">${_('Entry')}</div>
                         ## journal
-                        <div class="act_as_cell" style="width: 90px;">${_('Journal')}</div>
+                        <div class="act_as_cell" style="width: 110px;">${_('Journal')}</div>
                         ## account code
                         <div class="act_as_cell" style="width: 65px;">${_('Invoice')}</div>
                         ## partner
-                        <div class="act_as_cell" style="width: 120px;">${_('Partner')}</div>
+                        <div class="act_as_cell" style="width: 140px;">${_('Partner')}</div>
                         ## due date
                         <div class="act_as_cell" style="width: 75px;">${_('Due date')}</div>
-                        ## label
-                        <div class="act_as_cell" style="width: 185px;">${_('Description')}</div>
-                        ## template
-                        <div class="act_as_cell" style="width: 90px;">${_('Template')}</div>
+                        ## template - label
+                        <div class="act_as_cell" style="width: 295px;">${_('Description')} <div style="font-weight: bold;">${account.code} ${account.name}</div></div>
                         ## debit
                         <div class="act_as_cell amount" style="width: 75px;">${_('Debit')}</div>
                         ## credit
@@ -148,10 +143,8 @@
                           <div class="act_as_cell"></div>
                           ## due date
                           <div class="act_as_cell"></div>
-                          ## label
+                          ## template - label
                           <div class="act_as_cell">${_('Initial Balance')}</div>
-                          ## template
-                          <div class="act_as_cell"></div>
                           ## debit
                           <div class="act_as_cell amount">${formatLang(init_balance[account.id].get('debit')) | amount}</div>
                           ## credit
@@ -194,10 +187,8 @@
                           <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
                           ## due date
                           <div class="act_as_cell">${formatLang(line.get('date_maturity') or '', date=True)}</div>
-                          ## label
-                          <div class="act_as_cell">${label | h}</div>
-                          ## template
-                          <div class="act_as_cell">${line.get('template') or ''}</div>
+                          ## template - label
+                          <div class="act_as_cell">${line.get('template') or ''} - ${label | h}</div>
                           ## debit
                           <div class="act_as_cell amount">${ formatLang(line.get('debit', 0.0)) | amount }</div>
                           ## credit

@@ -30,6 +30,7 @@
     'depends': [
         'hr_timesheet_sheet',
         'project_timesheet',
+        'project_task_fix_project_id',
     ],
     'conflicts':[
         'show_sequence_columns_easy_0',

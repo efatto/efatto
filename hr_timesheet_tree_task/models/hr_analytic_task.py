@@ -13,6 +13,15 @@ class HrAnalyticTimesheet(models.Model):
         string='Task',
     )
 
+    @api.multi
+    @api.constrains('task_id')
+    def _check_task_project(self):
+        for hr in self:
+            if hr.task_id and hr.account_id != \
+                    hr.task_id.project_id.analytic_account_id:
+                raise exceptions.ValidationError(
+                    "Task must be children of project")
+
     # when create analytic timesheet directly, create project.task.work
     @api.model
     def create(self, vals):

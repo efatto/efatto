@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, _
+from openerp import models, fields, api, _, exceptions
 
 
 class HrAnalyticTimesheet(models.Model):
@@ -12,6 +12,15 @@ class HrAnalyticTimesheet(models.Model):
         comodel_name='project.task',
         string='Task',
     )
+
+    @api.multi
+    @api.constrains('task_id')
+    def _check_task_project(self):
+        for hr in self:
+            if hr.task_id and hr.account_id != \
+                    hr.task_id.project_id.analytic_account_id:
+                raise exceptions.ValidationError(
+                    "Task must be children of project")
 
     # when create analytic timesheet directly, create project.task.work
     @api.model
@@ -33,6 +42,11 @@ class HrAnalyticTimesheet(models.Model):
             }
             self.env['project.task.work'].with_context(
                 {'no_analytic_entry': True}).create(values)
+            # force update of project hours and progress
+            task = self.env['project.task'].browse(vals['task_id'])
+            if task and task.project_id:
+                vals = task.project_id._progress_rate(names=False, arg=False)
+                task.project_id.write(vals[task.project_id.id])
         return res
 
     @api.multi
@@ -79,8 +93,7 @@ class HrAnalyticTimesheet(models.Model):
                 task_work = self.env['project.task.work'].search([
                     ('hr_analytic_timesheet_id', '=', line.id)
                 ])
-                if task_work and not self._context.get('active_model', False) \
-                        == 'project.project':
+                if task_work:
                     task_work.with_context(
                         {'no_analytic_entry': True}).unlink()
         return super(HrAnalyticTimesheet, self).unlink()
@@ -107,10 +120,65 @@ class ProjectWork(models.Model):
                 vals['hours'] = 0.00
             if 'hours' in vals:
                 for work in self:
-                    self._cr.execute(
-                        'update project_task set remaining_hours='
-                        'remaining_hours - %s + (%s) where id=%s',
-                        (vals.get('hours', 0.0), work.hours, work.task_id.id))
+                    old_project_id = work.task_id.project_id
+                    old_project_progress = old_project_id._progress_rate(
+                        names=False, arg=False)
+                    if 'task_id' in vals:
+                        # task is changed
+                        # update old task adding remaining hours not used
+                        self._cr.execute(
+                            'update project_task set remaining_hours='
+                            'remaining_hours + (%s) where id=%s',
+                            (work.hours, work.task_id.id))
+                        # and new task removing remaining hours used
+                        self._cr.execute(
+                            'update project_task set remaining_hours='
+                            'remaining_hours - %s where id=%s',
+                            (vals.get('hours', 0.0), vals.get('task_id')))
+                        # update project total hours
+                        #todo add module depend for project_id required in task!
+                        new_project_id = self.env['project.task'].browse(
+                            vals.get('task_id')).project_id
+                        if old_project_id != new_project_id:
+                            # update old project removing hours not done
+                            self._cr.execute(
+                                'update project_project set effective_hours='
+                                '(%s) - (%s) where id=%s',
+                                (old_project_progress[old_project_id.id][
+                                 'effective_hours'],
+                                 work.hours, old_project_id.id))
+                            # and new project adding hours done
+                            new_project_progress = new_project_id.\
+                                _progress_rate(names=False, arg=False)
+                            self._cr.execute(
+                                'update project_project set effective_hours='
+                                '(%s) + %s where id=%s',
+                                (new_project_progress[new_project_id.id][
+                                 'effective_hours'],
+                                 vals.get('hours', 0.0), new_project_id.id))
+                        else:
+                            self._cr.execute(
+                                'update project_project set effective_hours='
+                                '(%s) + %s - (%s) where id=%s',
+                                (old_project_progress[old_project_id.id][
+                                 'effective_hours'],
+                                 vals.get('hours', 0.0), work.hours,
+                                 old_project_id.id))
+                    else:
+                        # task is unchanged
+                        self._cr.execute(
+                            'update project_task set remaining_hours='
+                            'remaining_hours - %s + (%s) where id=%s',
+                            (vals.get('hours', 0.0), work.hours,
+                             work.task_id.id))
+                        # update project total hours
+                        self._cr.execute(
+                            'update project_project set effective_hours='
+                            '(%s) + %s - (%s) where id=%s',
+                            (old_project_progress[old_project_id.id][
+                             'effective_hours'],
+                             vals.get('hours', 0.0), work.hours,
+                             work.task_id.project_id.id))
                     self.invalidate_cache()
             return super(models.Model, self).write(vals)
         return super(ProjectWork, self).write(vals)
@@ -129,6 +197,10 @@ class ProjectWork(models.Model):
                 self._cr.execute(
                     'update project_task set remaining_hours=remaining_hours'
                     ' + %s where id=%s', (work.hours, work.task_id.id))
+                self._cr.execute(
+                    'update project_project set effective_hours='
+                    'effective_hours - %s where id=%s',
+                    (work.hours, work.task_id.project_id.id))
                 self.invalidate_cache()
             return super(models.Model, self).unlink()
         return super(ProjectWork, self).unlink()

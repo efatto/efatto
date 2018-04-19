@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #    Copyright (C) 2013 Didotech srl (<http://www.didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
     'name': 'Account Multi payment',
     'version': '8.0.1.0.0',
     'category': 'Generic Modules/Payment',
-    'author': 'Sergio Corato - SimplERP SRL',
+    'author': 'Sergio Corato',
     'description': """
 
     Functionalities:
@@ -30,7 +30,7 @@
     - Add grouped multi payment to bank statement
 
     """,
-    'website': 'http://www.simplerp.it',
+    'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'account',

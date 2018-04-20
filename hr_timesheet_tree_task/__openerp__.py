@@ -28,6 +28,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
+        'project',
         'hr_timesheet_sheet',
         'project_timesheet',
         'project_task_fix_project_id',

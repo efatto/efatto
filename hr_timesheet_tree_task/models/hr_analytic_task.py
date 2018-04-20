@@ -14,7 +14,7 @@ class HrAnalyticTimesheet(models.Model):
     )
 
     @api.multi
-    @api.constrains('task_id')
+    @api.constrains('task_id', 'account_id')
     def _check_task_project(self):
         for hr in self:
             if hr.task_id and hr.account_id != \
@@ -45,8 +45,14 @@ class HrAnalyticTimesheet(models.Model):
             # force update of project hours and progress
             task = self.env['project.task'].browse(vals['task_id'])
             if task and task.project_id:
-                vals = task.project_id._progress_rate(names=False, arg=False)
-                task.project_id.write(vals[task.project_id.id])
+                project_vals = task.project_id._progress_rate(
+                    names=False, arg=False)
+                self._cr.execute(
+                    'update project_project set effective_hours='
+                    '(%s) where id=%s',
+                    (project_vals[task.project_id.id][
+                         'effective_hours'], task.project_id.id))
+                self.invalidate_cache()
         return res
 
     @api.multi
@@ -136,7 +142,6 @@ class ProjectWork(models.Model):
                             'remaining_hours - %s where id=%s',
                             (vals.get('hours', 0.0), vals.get('task_id')))
                         # update project total hours
-                        #todo add module depend for project_id required in task!
                         new_project_id = self.env['project.task'].browse(
                             vals.get('task_id')).project_id
                         if old_project_id != new_project_id:
@@ -197,10 +202,14 @@ class ProjectWork(models.Model):
                 self._cr.execute(
                     'update project_task set remaining_hours=remaining_hours'
                     ' + %s where id=%s', (work.hours, work.task_id.id))
+                project_vals = work.task_id.project_id._progress_rate(
+                    names=False, arg=False)
                 self._cr.execute(
                     'update project_project set effective_hours='
-                    'effective_hours - %s where id=%s',
-                    (work.hours, work.task_id.project_id.id))
+                    '(%s) - %s where id=%s',
+                    (project_vals[work.task_id.project_id.id][
+                             'effective_hours'],
+                     work.hours, work.task_id.project_id.id))
                 self.invalidate_cache()
             return super(models.Model, self).unlink()
         return super(ProjectWork, self).unlink()

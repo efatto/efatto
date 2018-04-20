@@ -26,7 +26,9 @@ class CalendarEvent(models.Model):
                             [('user_id', '=', user[0].id)])
                         if employee:
                             timesheet = event.timesheet_ids.filtered(
-                                lambda x: x.user_id == user)
+                                lambda x: x.user_id == user and
+                                x.task_id == event.project_task_id
+                            )
                             if timesheet:
                                 event.timesheet_done = True
 
@@ -64,7 +66,7 @@ class CalendarEvent(models.Model):
     def record_task_work(self):
         # res_ids = []
         for event in self:
-            #  TODO record task work for this task for these users
+            #  record task work for this task for these users
             #  no problem if already recorded for same task or same users
             #  but one user can't have more than one timesheet for same time...
             stop_datetime = event.stop_datetime
@@ -87,7 +89,14 @@ class CalendarEvent(models.Model):
                             lambda x: x.user_id == user)
                         if timesheet:
                             # If timesheet for this user exists, update it
-                            timesheet.unit_amount = round(duration, 2)
+                            timesheet.write({
+                                    'name': event.name,
+                                    'date': event.start_datetime,
+                                    'task_id': event.project_task_id.id,
+                                    'unit_amount': round(duration, 2),
+                                    'account_id': event.project_id.\
+                                    analytic_account_id.id,
+                            })
                         # Else create ANALYTIC entry wich create task work
                         else:
                             self.env[
@@ -137,3 +146,40 @@ class Timesheet(models.Model):
         comodel_name='calendar.event',
         string='Calendar event',
     )
+
+    @api.multi
+    def write(self, vals):
+        for ts in self:
+            if ts.event_id and not self._context.get(
+                    'update_event_from_ts', False) and (
+                        vals.get('account_id', False) or
+                        vals.get('task_id', False)):
+                raise exceptions.ValidationError(_(
+                    'This timesheet is generated from calendar view! '
+                    'Project and task can be changed from linked event.'
+                ))
+        return super(Timesheet, self).write(vals)
+
+    @api.multi
+    def action_view_event(self):
+        view_rec = self.env['ir.model.data'].get_object_reference(
+                'calendar',
+                'view_calendar_event_form')
+        view_id = False
+        if view_rec:
+            view_id = view_rec and view_rec[1] or False
+        res_id = self._context.get('default_event_id', False)
+        ctx = self._context.copy()
+        ctx.update(update_event_from_ts=True)
+        return {
+            'view_type': 'form',
+            'name': "Event",
+            'view_id': [view_id],
+            'res_id': res_id,
+            'view_mode': 'form',
+            'res_model': 'calendar.event',
+            'type': 'ir.actions.act_window',
+            'context': ctx,
+            'views': [[False, 'tree'], [False, 'form']],
+            'domain': [['id', '=', res_id]],
+        }

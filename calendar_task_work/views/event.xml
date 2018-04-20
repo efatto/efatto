@@ -68,6 +68,21 @@
             </field>
         </field>
     </record>
+    <record id="hr_timesheet_line_tree_event" model="ir.ui.view">
+        <field name="name">hr.analytic.timesheet.tree.event</field>
+        <field name="model">hr.analytic.timesheet</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='account_id']" position="after">
+                <field name="event_id" invisible="1"/>
+                <button type="object" name="action_view_event"
+                icon="terp-go-today" help="Open linked event"
+                attrs="{'invisible': [('event_id', '=', False)]}"
+                context="{'default_event_id': event_id}"
+                />
+            </xpath>
+        </field>
+    </record>
     </data>
 </openerp>
 

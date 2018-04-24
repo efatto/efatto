@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-17 15:42+0000\n"
-"PO-Revision-Date: 2016-06-17 15:42+0000\n"
+"POT-Creation-Date: 2018-04-24 08:15+0000\n"
+"PO-Revision-Date: 2018-04-24 08:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,28 +16,20 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: discount_complex
-#: code:addons/discount_complex/models/purchase.py:27
 #: code:addons/discount_complex/models/sale.py:27
 #, python-format
 msgid "Bad discount format"
-msgstr "Formato sconto errato"
+msgstr "Bad discount format"
 
 #. module: discount_complex
-#: field:purchase.order.line,complex_discount:0
 #: field:sale.order.line,complex_discount:0
 msgid "Complex Discount"
 msgstr "Sconto Composto"
 
 #. module: discount_complex
-#: help:purchase.order.line,complex_discount:0
 #: help:sale.order.line,complex_discount:0
 msgid "E.g.: 15.5+5, or 50+10+3.5"
 msgstr "Es.: 15,5+5, o 50+10+3,5"
-
-#. module: discount_complex
-#: model:ir.model,name:discount_complex.model_purchase_order_line
-msgid "Purchase Order Line"
-msgstr "Riga Ordine d'Acquisto"
 
 #. module: discount_complex
 #: model:ir.model,name:discount_complex.model_sale_order_line

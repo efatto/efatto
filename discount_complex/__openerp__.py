@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    'name': 'Complex discount',
+    'name': 'Sale complex discount',
     'version': '8.0.1.0.0',
     'category': 'other',
     'description': 'Add multiple discount field, like 50+14.5+5',
@@ -26,11 +26,10 @@
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
     'depends': [
-        'purchase_discount',
         'sale',
     ],
     'data': [
-        'views/purchase_view.xml',
+        'views/sale_view.xml',
     ],
     'installable': True
 }

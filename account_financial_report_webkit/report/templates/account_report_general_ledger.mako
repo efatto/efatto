@@ -87,6 +87,9 @@
               %>
             <div class="act_as_table list_table" style="margin-top: 10px;">
 
+                <div class="act_as_caption account_title">
+                    ${account.code} - ${account.name}
+                </div>
                 <div class="act_as_thead">
                     <div class="act_as_row labels">
                         ## date
@@ -106,7 +109,7 @@
                         ## template
                         <div class="act_as_cell" style="width: 150px;">${_('Template')}</div>
                         ## label
-                        <div class="act_as_cell" style="width: 170px;">${_('Description')} <div style="font-weight: bold;">${account.code} ${account.name}</div></div>
+                        <div class="act_as_cell" style="width: 170px;">${_('Description')} - ${account.code} ${account.name[:50]} </div>
                         ## debit
                         <div class="act_as_cell amount" style="width: 75px;">${_('Debit')}</div>
                         ## credit

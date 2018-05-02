@@ -56,6 +56,7 @@
     'data': [
         'views/riba_view.xml',
         'views/wizard_accreditation.xml',
+        'views/account_view.xml',
     ],
     'installable': True
 }

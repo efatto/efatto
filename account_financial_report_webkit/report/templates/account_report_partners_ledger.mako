@@ -259,12 +259,12 @@
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
                                 <div class="act_as_cell"></div>
-                                <div class="act_as_cell first_column" style="border-bottom: 1px solid black; width: 180px;">${_("Total Invoice Settlement")}</div>
-                                <div class="act_as_cell" style="border-bottom: 1px solid black; width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
-                                <div class="act_as_cell" style="border-bottom: 1px solid black;"></div>
-                                <div class="act_as_cell amount" style="border-bottom: 1px solid black; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit) | amount }</div>
-                                <div class="act_as_cell amount" style="border-bottom: 1px solid black; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_credit) | amount }</div>
-                                <div class="act_as_cell amount" style="border-bottom: 1px solid black; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit - total_invoice_credit) | amount }</div>
+                                <div class="act_as_cell first_column" style="background-color:#b4b4b4; width: 180px;">${_("Total Invoice Settlement")}</div>
+                                <div class="act_as_cell" style="background-color:#b4b4b4; width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
+                                <div class="act_as_cell" style="background-color:#b4b4b4;"></div>
+                                <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit) | amount }</div>
+                                <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_credit) | amount }</div>
+                                <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit - total_invoice_credit) | amount }</div>
                             </div>
                           <%invoice_break = False%>
                           %endif
@@ -318,12 +318,12 @@
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
                             <div class="act_as_cell"></div>
-                            <div class="act_as_cell first_column" style="width: 180px;">${_("Total Invoice Settlement")}</div>
-                            <div class="act_as_cell" style="width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
-                            <div class="act_as_cell"></div>
-                            <div class="act_as_cell amount" style="width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit) | amount }</div>
-                            <div class="act_as_cell amount" style="width: 80px; padding-right: 5px;">${ formatLang(total_invoice_credit) | amount }</div>
-                            <div class="act_as_cell amount" style="width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit - total_invoice_credit) | amount }</div>
+                            <div class="act_as_cell first_column" style="background-color:#b4b4b4; width: 180px;">${_("Total Invoice Settlement")}</div>
+                            <div class="act_as_cell" style="background-color:#b4b4b4; width: 220px;">${_("Invoice")} ${last_invoice_number}</div>
+                            <div class="act_as_cell" style="background-color:#b4b4b4;"></div>
+                            <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit) | amount }</div>
+                            <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_credit) | amount }</div>
+                            <div class="act_as_cell amount" style="background-color:#b4b4b4; width: 80px; padding-right: 5px;">${ formatLang(total_invoice_debit - total_invoice_credit) | amount }</div>
                         </div>
                         %endif
                         <div class="act_as_row lines labels">

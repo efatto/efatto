@@ -8,6 +8,9 @@
                 overflow: hidden;
                 white-space: nowrap;
             }
+            thead { display: table-header-group }
+            tfoot { display: table-row-group }
+            tr { page-break-inside: avoid }
             ${css}
         </style>
     </head>

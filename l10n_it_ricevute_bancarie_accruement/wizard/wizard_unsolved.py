@@ -26,6 +26,7 @@ class RibaUnsolved(models.TransientModel):
     overdue_effects_amount = fields.Float(
         default=_get_effects_amount,
         string='Overdue Effects amount')
+    move_template_id = fields.Many2one('account.move.template')
 
     @api.multi
     def create_move(self):
@@ -84,6 +85,8 @@ class RibaUnsolved(models.TransientModel):
             'journal_id': wizard.unsolved_journal_id.id,
             'line_id': lines,
         }
+        if wizard.move_template_id:
+            move_vals.update({'template_id': wizard.move_template_id.id})
         move_id = move_pool.create(move_vals)
 
         for move_line in move_id.line_id:

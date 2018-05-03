@@ -225,7 +225,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
 
     @staticmethod
     def _get_sorted_invoices(lines):
-        # todo first invoice_number, then if this lines have rec_name, the
+        # first invoice_number, then if this lines have rec_name, the
         # rec_name linked, then other invoices
         rec_lines = [x for x in lines if x['rec_name']
                      and not x['invoice_number']]
@@ -234,6 +234,18 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                                x['invoice_number'] + x['date_maturity']))
         res_lines = [x for x in lines if x not in (rec_lines + inv_lines)]
         for i, line in enumerate(inv_lines):
+            # first search for invoice number in move line name
+            for rec_line in rec_lines:
+                if len(line['lname']) > 4 and \
+                        line['lname'] in rec_line['lname'] \
+                        or len(rec_line['lname']) > 4 and \
+                        rec_line['lname'] in line['lname'] or \
+                        line.get('invoice_number', False) and \
+                        line['invoice_number'] in rec_line['lname']:
+                    inv_lines.insert(i+1, rec_line)
+                    rec_lines.remove(rec_line)
+        for i, line in enumerate(inv_lines):
+            # then search for reconciliation name
             for rec_line in rec_lines:
                 if line['rec_name'] == rec_line['rec_name']:
                     inv_lines.insert(i+1, rec_line)

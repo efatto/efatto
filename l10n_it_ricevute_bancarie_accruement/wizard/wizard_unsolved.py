@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api, _, workflow
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.l10n_configurable.model.account import \
     PAYMENT_TERM_TYPE_SELECTION
@@ -40,9 +40,9 @@ class RibaUnsolved(models.TransientModel):
             cr, uid, active_ids, context=context)
         wizard = self.browse(cr, uid, ids)[0]
         if (not wizard.unsolved_journal_id or
-                not wizard.bank_account_id or
-                not wizard.bank_expense_account_id):
-            raise UserError(_('Every account is mandatory'))
+                not wizard.bank_account_id):
+            raise UserError(
+                _('Unsolved journal and bank account are mandatory'))
         line_id = []
         unsolved_desc = ''
         unsolved_amount = 0
@@ -52,7 +52,9 @@ class RibaUnsolved(models.TransientModel):
                         partner_id.property_account_receivable.id:
                     line_id.append(
                         (0, 0, {
-                            'name': _('Overdue Effects'),
+                            'name': _('Overdue Effects %s') %
+                            riba_move_line.move_line_id.invoice.
+                            internal_number,
                             'account_id': distinta_line.partner_id.\
                             property_account_receivable.id,
                             'debit': riba_move_line.amount,
@@ -71,13 +73,14 @@ class RibaUnsolved(models.TransientModel):
                 'credit': unsolved_amount + wizard.expense_amount,
                 'debit': 0.0,
             }),)
-        line_id.append(
-            (0, 0, {
-                'name':  _('Expenses'),
-                'account_id': wizard.bank_expense_account_id.id,
-                'debit': wizard.expense_amount,
-                'credit': 0.0,
-            }),)
+        if wizard.bank_expense_account_id:
+            line_id.append(
+                (0, 0, {
+                    'name':  _('Expenses'),
+                    'account_id': wizard.bank_expense_account_id.id,
+                    'debit': wizard.expense_amount,
+                    'credit': 0.0,
+                }),)
         move_vals = {
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
                 distinta_lines[0].distinta_id.name, unsolved_desc),

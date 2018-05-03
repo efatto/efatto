@@ -19,7 +19,7 @@
                 <t t-if="only_totals == True">
                     <t t-set="print_details" t-value="0"/>
                 </t>
-                <table style="width:100%; font-size: small;" cellspacing="0">
+                <table style="width:100%;" cellspacing="0">
                     <thead>
                         <tr class="first_th_row">
                             <t t-if="registry_type == 'corrispettivi'">

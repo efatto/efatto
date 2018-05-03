@@ -52,10 +52,12 @@
         'l10n_it_abicab',
         'l10n_it_ricevute_bancarie',
         'l10n_it_ricevute_bancarie_ext',
+        'l10n_configurable',
     ],
     'data': [
         'views/riba_view.xml',
         'views/wizard_accreditation.xml',
+        'views/wizard_unsolved.xml',
         'views/account_view.xml',
     ],
     'installable': True

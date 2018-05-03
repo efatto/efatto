@@ -25,8 +25,22 @@
                 <field name="overdue_effects_account_id" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
+                <field name="bank_amount" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
             </field>
         </record>
+
+       <act_window name="Unsolved Ri.Ba."
+            res_model="riba.unsolved"
+            src_model="riba.distinta.line"
+            key2="client_action_multi"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            multi="True"
+            id="l10n_it_ricevute_bancarie.riba_unsolved_action"
+            view_id="l10n_it_ricevute_bancarie.riba_unsolved"/>
 
     </data>
 </openerp>

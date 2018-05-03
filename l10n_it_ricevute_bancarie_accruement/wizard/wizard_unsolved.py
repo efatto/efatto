@@ -11,9 +11,21 @@ from openerp.addons.l10n_configurable.model.account import \
 class RibaUnsolved(models.TransientModel):
     _inherit = 'riba.unsolved'
 
+    @api.model
+    def _get_effects_amount(self):
+        super(RibaUnsolved, self)._get_effects_amount()
+        amount = 0
+        for line in self.env['riba.distinta.line'].browse(
+                self.env.context['active_ids']):
+            amount += line.amount
+        return amount
+
     new_due_date = fields.Date('New due date')
     new_payment_term_type = fields.Selection(
         PAYMENT_TERM_TYPE_SELECTION, "Type of payment")
+    overdue_effects_amount = fields.Float(
+        default=_get_effects_amount,
+        string='Overdue Effects amount')
 
     @api.cr_uid_ids_context
     def create_move(self, cr, uid, ids, context=None):
@@ -33,6 +45,7 @@ class RibaUnsolved(models.TransientModel):
             raise UserError(_('Every account is mandatory'))
         line_id = []
         unsolved_desc = ''
+        unsolved_amount = 0
         for distinta_line in distinta_lines:
             for riba_move_line in distinta_line.move_line_ids:
                 if riba_move_line.move_line_id.account_id.id == distinta_line.\
@@ -50,11 +63,12 @@ class RibaUnsolved(models.TransientModel):
                                                  or False,
                             }),)
                     unsolved_desc += ' %s' % distinta_line.sequence
+                    unsolved_amount += riba_move_line.amount
         line_id.append(
             (0, 0, {
-                'name':  _('Bank'),
+                'name': _('Bank'),
                 'account_id': wizard.bank_account_id.id,
-                'credit': wizard.bank_amount,
+                'credit': unsolved_amount + wizard.expense_amount,
                 'debit': 0.0,
             }),)
         line_id.append(

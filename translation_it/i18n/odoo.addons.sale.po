@@ -370,7 +370,7 @@ msgstr "Acconto prodotto"
 #: code:addons/sale/wizard/sale_make_invoice_advance.py:62
 #, python-format
 msgid "Advance of %s %%"
-msgstr "Stato avanzamento lavori del %s %%"
+msgstr "Acconto del %s %%"
 
 #. module: sale
 #: code:addons/sale/wizard/sale_make_invoice_advance.py:62

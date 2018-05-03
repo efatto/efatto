@@ -236,13 +236,10 @@ class RibaAccreditation(models.TransientModel):
             if not line.state == "accrued":
                 line.write({'accruement_move_id': move_id.id,
                             'state': 'accrued'})
-        # todo if all lines of distinta are accrued, set distinta accrued
+        # if all lines of distinta are accrued, set distinta accrued
         state_distinta = list(set(distinta_id.line_ids.mapped('state')))
         if len(state_distinta) == 1 and state_distinta[0] == 'accrued':
             distinta_id.state = 'accrued'
-            # workflow.trg_validate(
-            #     self._uid, 'riba.distinta', distinta_id.id,
-            #     'accrued', self._cr)
 
         return {
             'name': _('Movimento di maturazione ri.ba.'),

@@ -27,30 +27,27 @@ class RibaUnsolved(models.TransientModel):
         default=_get_effects_amount,
         string='Overdue Effects amount')
 
-    @api.cr_uid_ids_context
-    def create_move(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        active_ids = context and context.get('active_ids', False) or False
+    @api.multi
+    def create_move(self):
+        active_ids = self._context.get('active_ids', False)
         if not active_ids:
             raise UserError(_('No active IDs found'))
-        move_pool = self.pool['account.move']
-        invoice_pool = self.pool['account.invoice']
-        distinta_lines = self.pool['riba.distinta.line'].browse(
-            cr, uid, active_ids, context=context)
-        wizard = self.browse(cr, uid, ids)[0]
+        move_pool = self.env['account.move']
+        invoice_pool = self.env['account.invoice']
+        distinta_lines = self.env['riba.distinta.line'].browse(active_ids)
+        wizard = self[0]
         if (not wizard.unsolved_journal_id or
                 not wizard.bank_account_id):
             raise UserError(
                 _('Unsolved journal and bank account are mandatory'))
-        line_id = []
+        lines = []
         unsolved_desc = ''
         unsolved_amount = 0
         for distinta_line in distinta_lines:
             for riba_move_line in distinta_line.move_line_ids:
                 if riba_move_line.move_line_id.account_id.id == distinta_line.\
                         partner_id.property_account_receivable.id:
-                    line_id.append(
+                    lines.append(
                         (0, 0, {
                             'name': _('Overdue Effects %s') %
                             riba_move_line.move_line_id.invoice.
@@ -66,7 +63,7 @@ class RibaUnsolved(models.TransientModel):
                             }),)
                     unsolved_desc += ' %s' % distinta_line.sequence
                     unsolved_amount += riba_move_line.amount
-        line_id.append(
+        lines.append(
             (0, 0, {
                 'name': _('Bank'),
                 'account_id': wizard.bank_account_id.id,
@@ -74,7 +71,7 @@ class RibaUnsolved(models.TransientModel):
                 'debit': 0.0,
             }),)
         if wizard.bank_expense_account_id:
-            line_id.append(
+            lines.append(
                 (0, 0, {
                     'name':  _('Expenses'),
                     'account_id': wizard.bank_expense_account_id.id,
@@ -85,12 +82,11 @@ class RibaUnsolved(models.TransientModel):
             'ref': _('Unsolved Ri.Ba. %s - line %s') % (
                 distinta_lines[0].distinta_id.name, unsolved_desc),
             'journal_id': wizard.unsolved_journal_id.id,
-            'line_id': line_id,
+            'line_id': lines,
         }
-        move_id = move_pool.create(cr, uid, move_vals, context=context)
+        move_id = move_pool.create(move_vals)
 
-        for move_line in move_pool.browse(
-                cr, uid, move_id, context=context).line_id:
+        for move_line in move_id.line_id:
             for distinta_line in distinta_lines:
                 if move_line.account_id.id == distinta_line.partner_id.\
                         property_account_receivable.id:
@@ -105,12 +101,12 @@ class RibaUnsolved(models.TransientModel):
                                 riba_move_line.move_line_id.
                                 unsolved_invoice_ids
                             ]
-                        invoice_pool.write(cr, uid, invoice_ids, {
+                        invoice_pool.browse(invoice_ids).write({
                             'unsolved_move_line_ids': [(4, move_line.id)],
-                        }, context=context)
+                        })
 
                 distinta_line.write({
-                    'unsolved_move_id': move_id,
+                    'unsolved_move_id': move_id.id,
                     'state': 'unsolved',
                 })
                 distinta_line.distinta_id.signal_workflow('unsolved')
@@ -121,5 +117,5 @@ class RibaUnsolved(models.TransientModel):
             'res_model': 'account.move',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'res_id': move_id or False,
+            'res_id': move_id.id or False,
         }

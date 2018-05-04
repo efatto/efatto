@@ -65,7 +65,10 @@ class RibaListLine(models.Model):
                         riba_move_line_name += riba_move_line.move_line_id.name
                 move_line_id = move_line_pool.create(
                     self._cr, self.env.user.id, {
-                        'name': riba_move_line_name,
+                        'name': (
+                            riba_move_line.move_line_id.invoice and
+                            riba_move_line.move_line_id.invoice.number or
+                            riba_move_line.move_line_id.name),
                         'partner_id': line.partner_id.id,
                         'account_id':
                         riba_move_line.move_line_id.account_id.id,

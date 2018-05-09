@@ -102,9 +102,12 @@ class account_voucher(orm.Model):
                                         _('The payment term %s does not have due dates')
                                         % tax_line.tax_code_id.withholding_payment_term_id.name)
                                 # compute the amount of withholding tax to pay, proportionally to paid amount
-                                new_line_amount = curr_pool.round(cr, uid, voucher.company_id.currency_id, (
-                                 line.amount/invoice.amount_total * inv_tax_line.price_subtotal * - tax_line.amount)
-                                 )
+                                new_line_amount = curr_pool.round(
+                                    cr, uid, voucher.company_id.currency_id, line.amount / (
+                                        invoice.amount_total - inv_tax_line.price_subtotal * - tax_line.amount
+                                    ) * inv_tax_line.price_subtotal * - tax_line.amount
+                                )
+
                                 new_move = {
                                     'journal_id': invoice.company_id.withholding_journal_id.id,
                                     'line_id': [

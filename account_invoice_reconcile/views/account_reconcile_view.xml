@@ -9,7 +9,9 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/header/button[@name='invoice_cancel']" position="after">
-                    <button name="action_reconcile" type="object" states="open" string="Reconcile" help="This button search for bank and cash moves related to the account of the partner and open a filtered view in which this ones can be reconciled with this or other invoices." groups="account.group_account_invoice"/>
+                    <button name="action_reconcile" type="object" states="open" string="Reconcile"
+                            help="This button search for bank and cash moves related to the account of the partner and open a filtered view in which this ones can be reconciled with this or other invoices."
+                            groups="account.group_account_invoice"/>
                 </xpath>
             </field>
         </record>
@@ -21,7 +23,9 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/header/button[@name='invoice_cancel']" position="after">
-                    <button name="action_reconcile" type="object" states="open" string="Reconcile" help="This button search for bank and cash moves related to the account of the partner and open a filtered view in which this ones can be reconciled with this or other invoices." groups="account.group_account_invoice"/>
+                    <button name="action_reconcile" type="object" states="open" string="Reconcile"
+                            help="This button search for bank and cash moves related to the account of the partner and open a filtered view in which this ones can be reconciled with this or other invoices."
+                            groups="account.group_account_invoice"/>
                 </xpath>
             </field>
         </record>

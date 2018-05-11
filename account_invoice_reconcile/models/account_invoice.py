@@ -17,6 +17,7 @@ class AccountInvoice(models.Model):
             'views': [[False, 'tree'], [False, 'form']],
             'domain': [
                 ['account_id', '=', self.account_id.id],
-                ['reconcile_id', '=', False]
+                ['reconcile_id', '=', False],
+                ['period_id.special', '=', False],
             ],
         }

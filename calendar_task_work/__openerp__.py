@@ -30,6 +30,7 @@
         'calendar',
         'hr_timesheet',
         'project',
+        'project_stage_state',
     ],
     'data': [
         'views/event.xml',

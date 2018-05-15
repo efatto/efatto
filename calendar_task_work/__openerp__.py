@@ -29,6 +29,7 @@
     'depends': [
         'calendar',
         'hr_timesheet',
+        'hr_timesheet_tree_task',
         'project',
         'project_stage_state',
     ],

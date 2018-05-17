@@ -36,6 +36,7 @@
         'account',
         'l10n_it_account',
         'account_cancel',
+        'sale',
     ],
     'data': [
         'views/account.xml',

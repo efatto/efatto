@@ -33,7 +33,7 @@
                    '- modify basic qweb template header and footer;'
                    '',
     'depends': [
-        'account',
+        'account_accountant',
         'l10n_it_account',
         'account_cancel',
         'sale',

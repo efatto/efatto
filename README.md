@@ -1,4 +1,4 @@
-![Alt License](https://img.shields.io/badge/licence-LGPL--3-blue.svg) 
+![Alt License](https://img.shields.io/badge/licence-AGPL--3-blue.svg) 
 
 
 EFATTO.IT
@@ -15,7 +15,7 @@ Contributors
 Maintainer
 ----------
 
-![Alt Efatto.it](https://efatto.it/wp-content/uploads/2017/05/eFattoitacle.png "http://efatto.it") 
+![Alt Efatto.it](https://efatto.it/wp-content/uploads/2017/05/eFattoitacle.png "https://efatto.it") 
 
 Efatto
 =======================

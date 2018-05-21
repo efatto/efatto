@@ -48,5 +48,5 @@ and those in the configuration of the tax:
         ],
     "demo" : [],
     "active": False,
-    "installable": True,
+    'installable': False,
 }

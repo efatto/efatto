@@ -34,7 +34,7 @@
     "depends": ["mail"],
 	"data": ["views/mail_notification_view.xml"],
     "qweb": [],
-    "installable": True,
+    'installable': False,
     "auto_install": False
 }
 

@@ -34,5 +34,5 @@
     ],
     "data": [
     ],
-    "installable": False,
+    'installable': False,
 }

@@ -63,6 +63,6 @@ user can cancel and undo the operations easily.
         "fyc_view.xml",
         "hide_account_wizards.xml",
     ],
-    "installable": True
+    'installable': False
 }
 

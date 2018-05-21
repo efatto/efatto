@@ -43,5 +43,5 @@
     "test": [
         'test/invoice_reverse_charge.yml',
     ],
-    "installable": True,
+    'installable': False,
 }

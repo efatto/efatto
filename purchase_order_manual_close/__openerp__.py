@@ -15,5 +15,5 @@
     "depends": ['purchase'],
     "category": "Purchase Management",
     "data": ['wizard/purchase_order_finish_wf_view.xml'],
-    "installable": True
+    'installable': False
 }

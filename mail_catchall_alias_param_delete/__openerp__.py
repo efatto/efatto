@@ -34,5 +34,5 @@
     'data': [
         'views/mail_catchall.xml',
     ],
-    "installable": True,
+    'installable': False,
 }

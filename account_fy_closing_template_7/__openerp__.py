@@ -32,6 +32,6 @@
         "data/account_journal.xml",
         "data/account_template_fy.xml",
     ],
-    "installable": True
+    'installable': False
 }
 

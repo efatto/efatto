@@ -35,5 +35,5 @@
         'security/web_debranding_security.xml',
         'views.xml',
     ],
-    "installable": True,
+    'installable': False,
 }

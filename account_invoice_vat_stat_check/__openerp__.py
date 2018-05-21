@@ -34,5 +34,5 @@ if true, raise an error.
     ],
     "data": [
     ],
-    "installable": True
+    'installable': False
 }

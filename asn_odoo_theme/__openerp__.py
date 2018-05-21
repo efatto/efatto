@@ -14,5 +14,5 @@
     ],
     'css': ['static/src/css/styles.css'],
     'auto_install': False,
-    'installable': True,
+    'installable': False,
 }

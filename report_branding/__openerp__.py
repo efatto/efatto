@@ -31,5 +31,5 @@
     'data': [
         'views/config.xml',
     ],
-    'installable': True
+    'installable': False
 }

@@ -40,7 +40,7 @@ The app goal is to limit user access to a specified warehouse and location. The 
     'images': ['static/description/main.png'],
     'update_xml': [],
     'application':True,
-    'installable': True,
+    'installable': False,
     'private_category':False,
     'external_dependencies': {
     },

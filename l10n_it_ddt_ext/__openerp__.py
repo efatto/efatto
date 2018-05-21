@@ -38,5 +38,5 @@
         'views/stock.xml',
         'views/config.xml',
     ],
-    'installable': True
+    'installable': False
 }

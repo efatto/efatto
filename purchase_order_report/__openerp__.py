@@ -32,5 +32,5 @@
     'data': [
         'views/report.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

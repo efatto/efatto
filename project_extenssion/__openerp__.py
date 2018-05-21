@@ -35,6 +35,6 @@
         'project_extenssion_view.xml',
         'email_data.xml',
      ],
-    'installable': True,
+    'installable': False,
     'images': ['images/imagem_project_extension.png'],
 }

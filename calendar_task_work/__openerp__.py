@@ -36,5 +36,5 @@
     'data': [
         'views/event.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

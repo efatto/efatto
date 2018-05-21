@@ -34,6 +34,6 @@
     ],
     'data': [
     ],
-    'installable': True,
+    'installable': False,
     'pre_init_hook': 'pre_init_hook',
 }

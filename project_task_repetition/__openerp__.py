@@ -36,5 +36,5 @@
     'data': [
         'views/project_task_repetition_view.xml'
     ],
-    'installable': True,
+    'installable': False,
 }

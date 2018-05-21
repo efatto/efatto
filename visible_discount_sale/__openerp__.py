@@ -14,7 +14,7 @@
                 'view/product_pricelist_view.xml',
             ],
     'images': ['static/description/main_screen.png'],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application' : True,
     'price': 5.00,

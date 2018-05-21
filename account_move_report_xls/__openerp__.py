@@ -32,5 +32,5 @@
     'data': [
         'views/move_list_xls_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

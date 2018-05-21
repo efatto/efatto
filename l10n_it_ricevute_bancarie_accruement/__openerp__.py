@@ -64,5 +64,5 @@ seguenti passaggi:
         'views/wizard_unsolved.xml',
         'views/account_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

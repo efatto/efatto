@@ -30,7 +30,7 @@ https://www.odoo.com/apps/modules?author=Emipro%20Technologies%20Pvt.%20Ltd. \n
              'view/webclient_templates.xml',
             ],
 
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': True,
     'images': ['static/description/main_screen.png'],

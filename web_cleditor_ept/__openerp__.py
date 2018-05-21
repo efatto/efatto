@@ -14,7 +14,7 @@ Contact : info@emiprotechnologies.com for any kind of services on Odoo V8.
     'data': ['views/web_cleditor_ept.xml', ],
     'depends': ['web'],
     'images': ['static/description/main_screen.png'],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': True,
     'qweb' : [],

@@ -31,5 +31,5 @@
     'data': [
         'report/report_account_central_journal.xml',
     ],
-    'installable': True
+    'installable': False
 }

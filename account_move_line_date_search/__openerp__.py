@@ -32,5 +32,5 @@
         'views/quickadd.xml',
     ],
     'qweb': ['static/src/xml/account_move_line_quickadd.xml'],
-    'installable': True,
+    'installable': False,
 }

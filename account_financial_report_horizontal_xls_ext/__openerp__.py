@@ -37,5 +37,5 @@
     'data': [
         'wizard/horizontal_wizard_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

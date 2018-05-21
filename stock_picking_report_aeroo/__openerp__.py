@@ -36,5 +36,5 @@
         'data/reports.xml',
         'views/picking_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

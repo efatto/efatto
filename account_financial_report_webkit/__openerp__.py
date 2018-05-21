@@ -60,6 +60,6 @@
              'test/aged_trial_balance.yml'],
     # 'tests/account_move_line.yml'
     'active': False,
-    'installable': True,
+    'installable': False,
     'application': True,
 }

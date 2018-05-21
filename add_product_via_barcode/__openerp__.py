@@ -24,5 +24,5 @@
     ],
 
     'images': ['static/description/barcode-scanner.jpg'],
-    'installable': True,
+    'installable': False,
 }

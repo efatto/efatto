@@ -41,5 +41,5 @@
         'data/account_tax_view.xml',
         'data/payment_type_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

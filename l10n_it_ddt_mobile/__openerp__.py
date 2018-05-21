@@ -33,5 +33,5 @@
     'data': [
         'views/stock_picking_mobile.xml',
     ],
-    'installable': True
+    'installable': False
 }

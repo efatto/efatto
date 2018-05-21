@@ -38,5 +38,5 @@
         'views/riba_view.xml',
         'report/distinta_report.xml',
     ],
-    'installable': True
+    'installable': False
 }

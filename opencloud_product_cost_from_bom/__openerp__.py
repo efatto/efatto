@@ -19,7 +19,7 @@
     'demo_xml': [],
     'qweb': ['static/src/xml/*.xml'],
     'test': [],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
     'images': ['images/imagem_upd_prod.png'],

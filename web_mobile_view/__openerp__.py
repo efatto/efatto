@@ -32,5 +32,5 @@
         'views/mobile.xml',
         'views/navbarhide.xml',
     ],
-    'installable': True
+    'installable': False
 }

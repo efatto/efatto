@@ -33,5 +33,5 @@
         'views/partner_view.xml',
         'views/account_fiscal_position_rule.xml',
     ],
-    'installable': True
+    'installable': False
 }

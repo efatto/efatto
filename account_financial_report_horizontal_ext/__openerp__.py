@@ -41,6 +41,6 @@ This is a port to OpenERP 8.0 of the horizontal financial reports
         'wizard/account_report_balance_sheet_view.xml',
         'wizard/account_report_profit_loss_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

@@ -13,7 +13,7 @@ Questo modulo è stato tradotto/testato/modificato per rispondere alle caratteri
 requisiti di SimplERP (<http://www.simplerp.it>
         """,
     'images': ['static/description/main_screen.png'],
-    'installable': True,
+    'installable': False,
     'qweb': [
         "static/src/xml/*.xml",
     ],

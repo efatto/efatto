@@ -32,5 +32,5 @@
     'data': [
         'views/sale_service_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

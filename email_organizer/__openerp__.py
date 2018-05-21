@@ -39,5 +39,5 @@ You can configure the available model through
  'qweb': [
      'static/src/xml/email.xml'
  ],
- 'installable': True,
+ 'installable': False,
  'application': True}

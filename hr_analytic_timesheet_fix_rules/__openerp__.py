@@ -31,5 +31,5 @@
     'data': [
         'security/hr_timesheet_security.xml',
     ],
-    'installable': True
+    'installable': False
 }

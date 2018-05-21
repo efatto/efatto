@@ -40,7 +40,7 @@
         'setting.xml',
         'template.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
     'license': 'AGPL-3',

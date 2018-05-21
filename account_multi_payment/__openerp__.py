@@ -34,6 +34,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'account_cancel',
         'account_voucher',
         'account_analytic_analysis',
     ],

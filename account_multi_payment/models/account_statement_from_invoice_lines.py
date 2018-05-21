@@ -29,8 +29,8 @@ class account_statement_from_invoice_lines(orm.TransientModel):
         currency_obj = self.pool.get('res.currency')
         voucher_obj = self.pool.get('account.voucher')
         voucher_line_obj = self.pool.get('account.voucher.line')
-        line_date = time.strftime('%Y-%m-%d')
         statement = statement_obj.browse(cr, uid, statement_id, context=context)
+        line_date = statement.date
 
         # for each selected move lines
         for line in line_obj.browse(cr, uid, line_ids, context=context):
@@ -46,27 +46,43 @@ class account_statement_from_invoice_lines(orm.TransientModel):
                 amount = -line.credit
 
             if line.amount_currency:
-                amount = currency_obj.compute(cr, uid, line.currency_id.id,
-                    statement.currency.id, line.amount_currency, context=ctx)
+                if line.company_id.currency_id.id != statement.currency.id:
+                    # In the specific case where the company currency and the statement currency are the same
+                    # the debit/credit field already contains the amount in the right currency.
+                    # We therefore avoid to re-convert the amount in the currency, to prevent Gain/loss exchanges
+                    amount = currency_obj.compute(cr, uid, line.currency_id.id,
+                        statement.currency.id, line.amount_currency, context=ctx)
             elif (line.invoice and line.invoice.currency_id.id <> statement.currency.id):
                 amount = currency_obj.compute(cr, uid, line.invoice.currency_id.id,
                     statement.currency.id, amount, context=ctx)
 
             context.update({'move_line_ids': [line.id],
                             'invoice_id': line.invoice.id})
-            result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, amount=abs(amount), currency_id= statement.currency.id, ttype=(amount < 0 and 'payment' or 'receipt'), date=line_date, context=context)
-            voucher_res = { 'type':(amount < 0 and 'payment' or 'receipt'),
-                            'name': line.name,
-                            'partner_id': line.partner_id.id,
-                            'journal_id': statement.journal_id.id,
-                            'account_id': result.get('account_id', statement.journal_id.default_credit_account_id.id), # improve me: statement.journal_id.default_credit_account_id.id
-                            'company_id':statement.company_id.id,
-                            'currency_id':statement.currency.id,
-                            'date':line.date,
-                            'amount':abs(amount),
-                            'payment_rate': result['value']['payment_rate'],
-                            'payment_rate_currency_id': result['value']['payment_rate_currency_id'],
-                            'period_id':statement.period_id.id}
+            type = 'general'
+            ttype = amount < 0 and 'payment' or 'receipt'
+            sign = 1 if ttype == 'receipt' else -1
+            if line.journal_id.type in ('sale', 'sale_refund'):
+                type = 'customer'
+                ttype = 'receipt'
+                sign = 1
+            elif line.journal_id.type in ('purchase', 'purchase_refund'):
+                type = 'supplier'
+                ttype = 'payment'
+                sign = -1
+            result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, amount=sign*amount, currency_id= statement.currency.id, ttype=ttype, date=line_date, context=context)
+            voucher_res = {
+                'type': ttype,
+                'name': line.name,
+                'partner_id': line.partner_id.id,
+                'journal_id': statement.journal_id.id,
+                'account_id': result.get('account_id', statement.journal_id.default_credit_account_id.id),
+                'company_id': statement.company_id.id,
+                'currency_id': statement.currency.id,
+                'date': statement.date,
+                'amount': sign*amount,
+                'payment_rate': result['value']['payment_rate'],
+                'payment_rate_currency_id': result['value']['payment_rate_currency_id'],
+                'period_id':statement.period_id.id}
             voucher_id = voucher_obj.create(cr, uid, voucher_res, context=context)
 
             voucher_line_dict =  {}
@@ -78,20 +94,9 @@ class account_statement_from_invoice_lines(orm.TransientModel):
             if voucher_line_dict:
                 voucher_line_dict.update({'voucher_id': voucher_id})
                 voucher_line_obj.create(cr, uid, voucher_line_dict, context=context)
-
-            #Updated the amount of voucher in case of partially paid invoice
-            amount_res = voucher_line_dict.get('amount_unreconciled',amount)
-            voucher_obj.write(cr, uid, voucher_id, {'amount':amount_res}, context=context)
-
-            if line.journal_id.type == 'sale':
-                type = 'customer'
-            elif line.journal_id.type == 'purchase':
-                type = 'supplier'
-            else:
-                type = 'general'
             statement_line_obj.create(cr, uid, {
                 'name': line.name or '?',
-                'amount': amount_res if amount >= 0 else -amount_res,
+                'amount': amount,
                 'type': type,
                 'partner_id': line.partner_id.id,
                 'account_id': line.account_id.id,
@@ -99,6 +104,6 @@ class account_statement_from_invoice_lines(orm.TransientModel):
                 'ref': line.ref,
                 'voucher_id': voucher_id,
                 'date': statement.date,
-                'move_line_id': line.id,
+                'move_line_id': line.id,  # the only change is this one
             }, context=context)
         return {'type': 'ir.actions.act_window_close'}

@@ -39,5 +39,5 @@ It also set sale order policy default to picking.
     "data": [
         'data/group.xml',
     ],
-    "installable": True
+    'installable': False
 }

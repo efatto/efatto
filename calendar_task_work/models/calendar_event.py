@@ -56,6 +56,14 @@ class CalendarEvent(models.Model):
     timesheet_done = fields.Boolean(
         compute='_get_timesheet_done',
     )
+    timesheet_todo = fields.Char(compute='_get_timesheet_todo')
+    hex_value = fields.Char(compute='_get_timesheet_todo')
+
+    @api.one
+    @api.depends('timesheet_ids')
+    def _get_timesheet_todo(self):
+        self.timesheet_todo = ' ' if self.timesheet_done else 'TODO'
+        self.hex_value = '#DBDBDB' if self.timesheet_done else '#AAAAAA'
 
     @api.onchange('project_id')
     def onchange_project_id(self):

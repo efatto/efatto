@@ -21,7 +21,8 @@ class StockInventory(models.Model):
         [('fifo', 'FIFO'),
          ('lifo', 'LIFO'),
          ('average', 'AVERAGE'),
-         ('standard', 'STANDARD')
+         ('standard', 'STANDARD'),
+         ('list_price', 'LIST_PRICE')
         ], 'Price valuation')
 
     @api.multi
@@ -33,6 +34,13 @@ class StockInventory(models.Model):
                         'valuation_price_unit': line.product_id.standard_price,
                         'valuation_price_subtotal':
                             line.product_id.standard_price * line.product_qty,
+                    })
+            elif inv.valuation_type == 'list_price':
+                for line in inv.line_ids:
+                    line.write({
+                        'valuation_price_unit': line.product_id.lst_price,
+                        'valuation_price_subtotal':
+                            line.product_id.lst_price * line.product_qty,
                     })
             elif inv.valuation_type == 'average':
                 for line in inv.line_ids:

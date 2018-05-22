@@ -14,6 +14,12 @@ openerp.calendar_task_work = function (instance) {
 //            }
         if (event.hex_value ) {
             res.backgroundColor = event.hex_value;
+            debugger;
+            if (event.timesheet_done === false) {
+                res.className += ' fc-todo';
+            }else{
+                res.className.replace(' fc-todo', '');
+            }
 //                res.title = res.title.substring(0, res.title.indexOf(', ' + event.hex_value));
         }
         return res;

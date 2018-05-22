@@ -49,6 +49,7 @@
                     <field name="hex_value"/>
                     <field name="partner_ids"/>
                     <field name="timesheet_todo"/>
+                    <field name="timesheet_done"/>
                 </calendar>
             </calendar>
         </field>

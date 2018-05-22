@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="view_calendar_event_form_task">
+        <field name="name">Calendar - Event Form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="project_id"/>
+                <field name="project_task_id"
+                    context="{'default_project_id': project_id}"
+                    domain="[('project_id', '=', project_id)]"
+                    attrs="{'invisible':[('project_id', '=', False)]}"/>
+            </field>
+            <xpath expr="/form/sheet/notebook" position="inside">
+                <page string="Timesheet works" groups="base.group_user">
+                    <field name="timesheet_ids" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_form_popup_task">
+        <field name="name">Meetings Popup</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="0"/>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form_popup"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="project_id"/>
+                <field name="project_task_id"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_calendar_no_quick_create">
+        <field name="name">Meetings Calendar</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="2"/>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <calendar position="replace">
+                <calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday"
+                 display="[timesheet_todo] [name]" attendee="partner_ids" avatar_model="res.partner"
+                 use_contacts="True" event_open_popup="%(calendar.view_calendar_event_form_popup)s"
+                 quick_add="False">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="hex_value"/>
+                    <field name="partner_ids"/>
+                    <field name="timesheet_todo"/>
+                </calendar>
+            </calendar>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_calendar_event_tree_task">
+        <field name="name">Meetings Tree</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_id"/>
+                <field name="project_task_id"/>
+                <field name="timesheet_done" invisible="1"/>
+                <button name="record_task_work" type="object"
+                    string="Record time work" icon="gtk-execute"
+                    attrs="{'invisible':['|',
+                    ('timesheet_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
+                <field name="task_done" invisible="1"/>
+                <button name="set_task_done" type="object"
+                    class="oe_highlight"
+                    string="Set task done" icon="gtk-apply"
+                    attrs="{'invisible':['|',
+                    ('task_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+    <record id="hr_timesheet_line_tree_event" model="ir.ui.view">
+        <field name="name">hr.analytic.timesheet.tree.event</field>
+        <field name="model">hr.analytic.timesheet</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='account_id']" position="after">
+                <field name="event_id" invisible="1"/>
+                <button type="object" name="action_view_event"
+                icon="terp-go-today" help="Open linked event"
+                attrs="{'invisible': [('event_id', '=', False)]}"
+                context="{'default_event_id': event_id}"
+                />
+            </xpath>
+        </field>
+    </record>
+    </data>
+</openerp>
+
+

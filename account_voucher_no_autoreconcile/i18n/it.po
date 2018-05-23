@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_voucher_no_autoselect
+#	* account_voucher_no_autoreconcile
 #
 msgid ""
 msgstr ""
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: account_voucher_no_autoselect
-#: model:ir.model,name:account_voucher_no_autoselect.model_account_voucher
+#. module: account_voucher_no_autoreconcile
+#: model:ir.model,name:account_voucher_no_autoreconcile.model_account_voucher
 msgid "Accounting Voucher"
 msgstr "Pagamento"
 

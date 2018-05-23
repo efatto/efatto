@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-20 16:48+0000\n"
-"PO-Revision-Date: 2018-02-20 16:48+0000\n"
+"POT-Creation-Date: 2018-05-23 14:36+0000\n"
+"PO-Revision-Date: 2018-05-23 14:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: field:account.move.line,abi:0
+msgid "ABI"
+msgstr "ABI"
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: field:riba.distinta.line,accreditation_move_id:0
@@ -31,7 +36,14 @@ msgid "Accruement Entry"
 msgstr "Registrazione di maturazione valuta"
 
 #. module: l10n_it_ricevute_bancarie_ext
+#: field:account.move.line,amount_residual_signed:0
+msgid "Amount Residual Signed"
+msgstr "Importo Residuo"
+
+#. module: l10n_it_ricevute_bancarie_ext
 #: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:91
+#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:117
+#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:132
 #, python-format
 msgid "Attention!"
 msgstr "Attenzione!"
@@ -40,6 +52,21 @@ msgstr "Attenzione!"
 #: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_accreditation
 msgid "Bank accreditation"
 msgstr "Accredito banca"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: field:account.move.line,cab:0
+msgid "CAB"
+msgstr "CAB"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: field:riba.distinta.line,cig:0
+msgid "CIG"
+msgstr "CIG"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: field:riba.distinta.line,cup:0
+msgid "CUP"
+msgstr "CUP"
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: field:riba.distinta.line,bank_riba_id:0
@@ -111,6 +138,13 @@ msgid "Ri.Ba. properties"
 msgstr "Proprietà Ri.Ba."
 
 #. module: l10n_it_ricevute_bancarie_ext
+#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:118
+#: code:addons/l10n_it_ricevute_bancarie_ext/wizard/wizard_riba_issue.py:133
+#, python-format
+msgid "Ri.ba. cannot be negative! Group with other positive one(s) changing maturity date."
+msgstr "Le Ri.ba. non possono essere negative! Raggrupparle con altre positive cambiandone la data di scadenza."
+
+#. module: l10n_it_ricevute_bancarie_ext
 #: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_distinta_line
 msgid "Riba details"
 msgstr "Dettagli Ri.Ba."
@@ -118,7 +152,7 @@ msgstr "Dettagli Ri.Ba."
 #. module: l10n_it_ricevute_bancarie_ext
 #: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_distinta
 msgid "Riba list"
-msgstr "Distinta Ri.Ba."
+msgstr "Distinta RiBa"
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: view:res.bank:l10n_it_ricevute_bancarie_ext.view_bank_filter_abicab
@@ -129,6 +163,16 @@ msgstr "Ricerca Banca"
 #: model:ir.model,name:l10n_it_ricevute_bancarie_ext.model_riba_issue
 msgid "Ricevute bancarie issue"
 msgstr "Emissione Ricevute bancarie"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: view:account.move.line:l10n_it_ricevute_bancarie_ext.view_riba_da_emettere_tree
+msgid "Total Amount"
+msgstr "Importo totale"
+
+#. module: l10n_it_ricevute_bancarie_ext
+#: view:account.move.line:l10n_it_ricevute_bancarie_ext.view_riba_da_emettere_tree
+msgid "Total Credit"
+msgstr "Credito Totale"
 
 #. module: l10n_it_ricevute_bancarie_ext
 #: code:addons/l10n_it_ricevute_bancarie_ext/models/riba.py:44

@@ -116,7 +116,7 @@ class RibaIssue(models.TransientModel):
                             raise exceptions.Warning(
                                 _('Attention!'),
                                 _('Ri.ba. cannot be negative! Group with other'
-                                  ' positive one(s)')
+                                  ' positive one(s) or change maturity date.')
                             )
                         for grouped_line in grouped_lines[key]:
                             riba_list_move_line.create({
@@ -131,7 +131,7 @@ class RibaIssue(models.TransientModel):
                     raise exceptions.Warning(
                         _('Attention!'),
                         _('Ri.ba. cannot be negative! Group with other '
-                          'positive one(s).')
+                          'positive one(s) or change maturity date.')
                     )
                 if bank_riba_id:
                     rdl_id = create_rdl(

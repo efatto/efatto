@@ -28,6 +28,16 @@
                 </xpath>
             </field>
         </record>
-
+        <record model="ir.ui.view" id="view_riba_da_emettere_tree">
+            <field name="name">Issue Ri.Ba.</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_da_emettere_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_residual" position="replace">
+                    <field name="credit" readonly="1" sum="Total Credit"/>
+                    <field name="amount_residual_signed" readonly="1" sum="Total Amount"/>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

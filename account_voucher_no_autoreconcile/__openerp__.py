@@ -29,7 +29,6 @@
         'account_voucher',
     ],
     'data': [
-        'views/voucher.xml',
     ],
     'installable': True
 }

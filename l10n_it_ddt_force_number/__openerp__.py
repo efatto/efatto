@@ -37,6 +37,7 @@ ddt numbering for a specific ddt.
     'license': 'AGPL-3',
     "depends": [
         'l10n_it_ddt',
+        'l10n_it_ddt_menu_in_out',
     ],
     "data": [
         'security/security.xml',

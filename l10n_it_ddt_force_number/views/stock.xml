@@ -18,5 +18,21 @@
     </field>
 </record>
 
+<record model="ir.ui.view" id="stock_picking_package_preparation_form_supplier_force_number">
+    <field name="name">ddt.stock.picking.package.preparation.form.supplier.force.number</field>
+    <field name="model">stock.picking.package.preparation</field>
+    <field name="inherit_id" ref="l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier"/>
+    <field name="arch" type="xml">
+        <field name="ddt_number" position="attributes">
+            <attribute name="readonly">0</attribute>
+            <attribute name="attrs">{'invisible': [('ddt_number', '=', ''), ('ddt_type_id', '=', False),('state', '!=', 'draft')], 'readonly': [('state', '!=', 'draft')]}</attribute>
+            <attribute name="string">Force Number</attribute>
+            <attribute name="help">Force ddt number. Use this field if you don't want to use the default numbering</attribute>
+            <attribute name="invisible">0</attribute>
+            <attribute name="groups">l10n_it_ddt_force_number.group_allow_ddt_force_number</attribute>
+        </field>
+    </field>
+</record>
+
 </data>
 </openerp>

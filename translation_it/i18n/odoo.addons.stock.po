@@ -1158,7 +1158,7 @@ msgstr "Punti di stoccaggio cliente"
 #: model:stock.location,name:stock.stock_location_customers
 #: selection:stock.picking.type,code:0
 msgid "Customers"
-msgstr "Uscite"
+msgstr "Uscita"
 
 #. module: stock
 #: view:stock.move:stock.stock_move_tree
@@ -4595,7 +4595,7 @@ msgstr "Magazzino Fornitore"
 #: model:stock.location,name:stock.stock_location_suppliers
 #: selection:stock.picking.type,code:0
 msgid "Suppliers"
-msgstr "Ingressi"
+msgstr "Ingresso"
 
 #. module: stock
 #: view:product.template:stock.view_template_property_form

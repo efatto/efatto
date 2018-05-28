@@ -22,7 +22,8 @@
             <group col="1" colspan="2">
                 <field name="date" nolabel="1"/>
                 <field name="ddt_type_id" widget="selection" nolabel="1"/>
-                <field name="partner_id" nolabel="1" placeholder="Partner" domain="[('is_company','=',True)]"/>
+                <field name="partner_id" nolabel="1" placeholder="Partner" domain="[
+                    '|', ('is_company','=',True), ('parent_id', '=', False)]"/>
                 <field name="date_done" attrs="{'invisible': [('state', '!=', 'done')]}"/>
                 <field name="company_id" invisible="1"/>
             </group>

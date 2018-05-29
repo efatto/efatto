@@ -36,6 +36,7 @@ Add the next groups to base user:
     "depends": [
         'account',
         'sale',
+        'sale_stock',
     ],
     "data": [
         'data/group.xml',

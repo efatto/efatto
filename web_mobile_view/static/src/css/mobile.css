@@ -8,7 +8,7 @@
 }
 .oe_letters {
 }
-@media screen and (max-device-width: 768px) {
+@media screen and (max-device-width: 720px) {
 /* hide header */
 .openerp .oe_view_manager table.oe_view_manager_header h2,
 .openerp .oe_view_manager_view_search {

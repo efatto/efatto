@@ -181,12 +181,13 @@
                           orphan_space = True
                           total_debit += line.get('debit') or 0.0
                           total_credit += line.get('credit') or 0.0
-                          label_elements = [line.get('lname') or '']
-                          if line.get('invoice_number'):
-                            label_elements.append("(%s)" % (line['invoice_number'],))
-                          if line.get('supplier_invoice_number'):
-                            label_elements.append("(%s)" % (line['supplier_invoice_number'],))
-                          label = ' '.join(label_elements)
+                          #not useful...
+                          #label_elements = [line.get('lname') or '']
+                          #if line.get('invoice_number'):
+                          #  label_elements.append("(%s)" % (line['invoice_number'],))
+                          #if line.get('supplier_invoice_number'):
+                          #  label_elements.append("(%s)" % (line['supplier_invoice_number'],))
+                          #label = ' '.join(label_elements)
                           %>
                           <div class="act_as_row lines">
                               ## date
@@ -200,7 +201,7 @@
                               ## partner
                               <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
                               ## label
-                              <div class="act_as_cell">${label}</div>
+                              <div class="act_as_cell">${line.get('lname') or ''}</div>
                               ## reconcile
                               <div class="act_as_cell">${formatLang(line.get('date_maturity') or '', date=True)}</div>
                               ## debit
@@ -244,13 +245,13 @@
                             invoice_number = line['invoice_number']
                             if last_invoice_number and line['invoice_number'] != last_invoice_number:
                                 invoice_break = True
-
-                          label_elements = [line.get('lname') or '']
-                          if line.get('invoice_number'):
-                            label_elements.append("(%s)" % (line['invoice_number'],))
-                          if line.get('supplier_invoice_number'):
-                            label_elements.append("(%s)" % (line['supplier_invoice_number'],))
-                          label = ' '.join(label_elements)
+                          #not useful
+                          #label_elements = [line.get('lname') or '']
+                          #if line.get('invoice_number'):
+                          #  label_elements.append("(%s)" % (line['invoice_number'],))
+                          #if line.get('supplier_invoice_number'):
+                          #  label_elements.append("(%s)" % (line['supplier_invoice_number'],))
+                          #label = ' '.join(label_elements)
                           %>
                           %if group_method(data) == 'group_invoices':
                           %if invoice_break and last_invoice_number:
@@ -281,7 +282,7 @@
                               ## partner
                               <div class="act_as_cell overflow_ellipsis">${line.get('partner_name') or ''}</div>
                               ## label
-                              <div class="act_as_cell">${label}</div>
+                              <div class="act_as_cell">${line.get('lname') or ''}</div>
                               ## reconcile
                               <div class="act_as_cell">${formatLang(line.get('date_maturity') or '', date=True)}</div>
                               ## debit

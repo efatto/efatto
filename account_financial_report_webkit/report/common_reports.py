@@ -147,8 +147,12 @@ class CommonReportHeaderWebkit(common_report_header):
             # stop recursion if no children found
             if not level_accounts:
                 return []
-
-            level_accounts = sorted(level_accounts, key=lambda a: a['code'])
+            if level_accounts[0]['type'] in ['receivable', 'payable']:
+                level_accounts = sorted(
+                    level_accounts, key=lambda a: a['name'])
+            else:
+                level_accounts = sorted(
+                    level_accounts, key=lambda a: a['code'])
 
             for level_account in level_accounts:
                 sorted_accounts.append(level_account['id'])
@@ -161,7 +165,8 @@ class CommonReportHeaderWebkit(common_report_header):
 
         accounts_data = self.pool.get('account.account').read(
             self.cr, self.uid, account_ids,
-            ['id', 'parent_id', 'level', 'code', 'child_consol_ids'],
+            ['id', 'parent_id', 'level', 'code', 'child_consol_ids', 'name',
+             'type'],
             context=context)
 
         sorted_accounts = []

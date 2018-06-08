@@ -1,26 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_commission
-#
+# * sale_commission
+# 
+# Translators:
+# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016-2017
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
+# Nicola Malcontenti <nicola.malcontenti@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: commission (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-11 16:20+0100\n"
-"PO-Revision-Date: 2016-01-11 16:36+0100\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-03-03 02:37+0000\n"
+"PO-Revision-Date: 2018-03-28 21:09+0000\n"
+"Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-commission-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.6\n"
-"Last-Translator: \n"
+"Content-Transfer-Encoding: \n"
 "Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_commission
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
 msgid "(keep empty for invoicing all the settlements)"
-msgstr "(Lasciare vuoto per fatturazione tutte le liquidazioni)"
+msgstr "(Lasciare vuoto per fatturare tutte le liquidazioni)"
 
 #. module: sale_commission
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
@@ -60,12 +63,14 @@ msgid "Agent line"
 msgstr "Riga Agente"
 
 #. module: sale_commission
+#: view:account.invoice.line.agent:sale_commission.invoice_line_agent_form
 #: model:ir.actions.act_window,name:sale_commission.action_agent_form
 #: model:ir.ui.menu,name:sale_commission.menu_agent_form
 #: view:res.partner:sale_commission.view_res_partner_filter
 #: field:res.partner,agents:0
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 #: field:sale.commission.make.settle,agents:0
+#: view:sale.order.line.agent:sale_commission.view_sale_order_line_form
 #: view:sale.order.line.agent:sale_commission.view_sale_order_line_tree
 msgid "Agents"
 msgstr "Agenti"
@@ -79,12 +84,17 @@ msgstr "Agenti e Commissioni"
 #: model:ir.actions.act_window,name:sale_commission.action_settlement_report
 #: model:ir.ui.menu,name:sale_commission.menu_action_settlement_report
 msgid "Agents settlements analysis"
-msgstr "Analisi Pagamenti Agenti"
+msgstr "Analisi liquidazioni agenti"
 
 #. module: sale_commission
 #: help:account.invoice.line,agents:0
 msgid "Agents/Commissions related to the invoice line."
 msgstr "Agenti/Commissioni relative alla riga della fattura."
+
+#. module: sale_commission
+#: field:sale.order.line.agent,amount:0
+msgid "Amount"
+msgstr "Totale"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,amount:0
@@ -96,6 +106,11 @@ msgstr "Importo liquidato"
 #: selection:res.partner,settlement:0
 msgid "Annual"
 msgstr "Annuale"
+
+#. module: sale_commission
+#: field:sale.commission,amount_base_type:0
+msgid "Base"
+msgstr "Base"
 
 #. module: sale_commission
 #: selection:sale.commission,commission_type:0
@@ -114,12 +129,7 @@ msgid "Canceled"
 msgstr "Annullato"
 
 #. module: sale_commission
-#: selection:sale.commission.settlement,state:0
-msgid "Invoice exception"
-msgstr "Eccezione Fattura"
-
-#. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:63
+#: code:addons/sale_commission/models/settlement.py:49
 #, python-format
 msgid "Cannot cancel an invoiced settlement."
 msgstr "Impossibile annullare una liquidazione fatturata."
@@ -136,9 +146,11 @@ msgid "Comm. free"
 msgstr "Senza commissioni"
 
 #. module: sale_commission
-#: field:account.invoice.line.agent,commission:0 field:res.partner,commission:0
+#: field:account.invoice.line.agent,commission:0
+#: field:res.partner,commission:0
 #: view:sale.commission:sale_commission.sale_commission_form
 #: field:sale.commission.section,commission:0
+#: field:sale.commission.settlement.line,commission:0
 #: field:sale.order.line.agent,commission:0
 msgid "Commission"
 msgstr "Commissione"
@@ -162,14 +174,23 @@ msgstr "Sezione commissioni"
 #: model:ir.actions.act_window,name:sale_commission.action_commission
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_types
 msgid "Commission types"
-msgstr "Tipo commissioni"
+msgstr "Tipi di commissione"
 
 #. module: sale_commission
-#: field:account.invoice,commission_total:0 field:sale.order,commission_total:0
+#: field:account.invoice,commission_total:0
 #: model:ir.ui.menu,name:sale_commission.menu_sale_commissions_conf
 #: view:sale.commission:sale_commission.sale_commission_tree
+#: field:sale.order,commission_total:0
 msgid "Commissions"
 msgstr "Commissioni"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,company_id:0
+#: field:sale.commission,company_id:0
+#: field:sale.commission.settlement,company_id:0
+#: field:sale.commission.settlement.line,company_id:0
+msgid "Company"
+msgstr "Azienda"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_commission_make_invoices
@@ -183,6 +204,18 @@ msgid "Create invoices"
 msgstr "Crea Fatture"
 
 #. module: sale_commission
+#: code:addons/sale_commission/wizard/wizard_invoice.py:59
+#, python-format
+msgid "Created Invoices"
+msgstr "Fatture Create"
+
+#. module: sale_commission
+#: code:addons/sale_commission/wizard/wizard_settle.py:108
+#, python-format
+msgid "Created Settlements"
+msgstr "Liquidazioni create"
+
+#. module: sale_commission
 #: field:account.invoice.line.agent,create_uid:0
 #: field:sale.commission,create_uid:0
 #: field:sale.commission.make.invoice,create_uid:0
@@ -192,7 +225,7 @@ msgstr "Crea Fatture"
 #: field:sale.commission.settlement.line,create_uid:0
 #: field:sale.order.line.agent,create_uid:0
 msgid "Created by"
-msgstr "Creato da"
+msgstr "Creata da"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,create_date:0
@@ -204,17 +237,17 @@ msgstr "Creato da"
 #: field:sale.commission.settlement.line,create_date:0
 #: field:sale.order.line.agent,create_date:0
 msgid "Created on"
-msgstr "Creato il"
+msgstr "Creata il "
 
 #. module: sale_commission
 #: field:res.partner,agent:0
 msgid "Creditor/Agent"
-msgstr "Creditore/agente"
+msgstr "Creditore/Agente"
 
 #. module: sale_commission
 #: field:sale.commission.settlement,currency_id:0
 msgid "Currency id"
-msgstr "Id Valuta"
+msgstr "Valuta"
 
 #. module: sale_commission
 #: field:sale.commission.make.invoice,date:0
@@ -232,6 +265,18 @@ msgid "Date month"
 msgstr "Data mese"
 
 #. module: sale_commission
+#: field:account.invoice.line.agent,display_name:0
+#: field:sale.commission,display_name:0
+#: field:sale.commission.make.invoice,display_name:0
+#: field:sale.commission.make.settle,display_name:0
+#: field:sale.commission.section,display_name:0
+#: field:sale.commission.settlement,display_name:0
+#: field:sale.commission.settlement.line,display_name:0
+#: field:sale.order.line.agent,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_commission
 #: selection:res.partner,agent_type:0
 msgid "External agent"
 msgstr "Agente esterno"
@@ -240,6 +285,11 @@ msgstr "Agente esterno"
 #: selection:sale.commission,commission_type:0 field:sale.commission,fix_qty:0
 msgid "Fixed percentage"
 msgstr "Percentuale fissa"
+
+#. module: sale_commission
+#: selection:sale.commission,commission_type:0
+msgid "Formula"
+msgstr "Formula"
 
 #. module: sale_commission
 #: field:product.template,commission_free:0
@@ -268,10 +318,15 @@ msgid "Generated invoice"
 msgstr "Fattura generata"
 
 #. module: sale_commission
+#: selection:sale.commission,amount_base_type:0
+msgid "Gross Amount"
+msgstr "Importo IVA inclusa"
+
+#. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Group By"
-msgstr "Raggruppa Per"
+msgstr "Raggruppa per"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,id:0 field:sale.commission,id:0
@@ -290,26 +345,41 @@ msgid "Invoice"
 msgstr "Fattura"
 
 #. module: sale_commission
+#: selection:sale.commission,invoice_state:0
+msgid "Invoice Based"
+msgstr "Basato sulla Fattura"
+
+#. module: sale_commission
 #: model:ir.model,name:sale_commission.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Riga Fattura"
+msgstr "Riga di Fattura"
+
+#. module: sale_commission
+#: field:sale.commission,invoice_state:0
+msgid "Invoice Status"
+msgstr "Stato Fattura"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice_date:0
 #: field:sale.commission.settlement.line,date:0
 msgid "Invoice date"
-msgstr "Data fattura"
+msgstr "Data Fattura"
+
+#. module: sale_commission
+#: selection:sale.commission.settlement,state:0
+msgid "Invoice exception"
+msgstr "Eccezione Fattura"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,invoice_line:0
 #: field:sale.commission.settlement.line,invoice_line:0
 msgid "Invoice line"
-msgstr "Riga di fattura"
+msgstr "Riga Fattura"
 
 #. module: sale_commission
 #: view:account.invoice.line.agent:sale_commission.invoice_line_agent_tree
 msgid "Invoice line agents and commissions"
-msgstr "Agenti/Commissioni relative alla riga della fattura."
+msgstr "Agenti e commissioni Righe di fattura"
 
 #. module: sale_commission
 #: selection:sale.commission.settlement,state:0
@@ -319,13 +389,25 @@ msgstr "Fatturato"
 #. module: sale_commission
 #: field:sale.commission.make.invoice,journal:0
 msgid "Journal"
-msgstr "Registro"
+msgstr "Giornale"
 
 #. module: sale_commission
 #: help:account.invoice.line.agent,invoice_date:0
 #: help:sale.commission.settlement.line,date:0
 msgid "Keep empty to use the current date"
-msgstr "Lasciare vuoto per utilizzare la data corrente"
+msgstr "Lasciare vuoto per usare la data odierna"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,__last_update:0
+#: field:sale.commission,__last_update:0
+#: field:sale.commission.make.invoice,__last_update:0
+#: field:sale.commission.make.settle,__last_update:0
+#: field:sale.commission.section,__last_update:0
+#: field:sale.commission.settlement,__last_update:0
+#: field:sale.commission.settlement.line,__last_update:0
+#: field:sale.order.line.agent,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_uid:0
@@ -337,7 +419,7 @@ msgstr "Lasciare vuoto per utilizzare la data corrente"
 #: field:sale.commission.settlement.line,write_uid:0
 #: field:sale.order.line.agent,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo Aggiornamento di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_commission
 #: field:account.invoice.line.agent,write_date:0
@@ -349,10 +431,10 @@ msgstr "Ultimo Aggiornamento di"
 #: field:sale.commission.settlement.line,write_date:0
 #: field:sale.order.line.agent,write_date:0
 msgid "Last Updated on"
-msgstr "Ultimo Aggiornamento il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:78
+#: code:addons/sale_commission/models/settlement.py:64
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 #, python-format
 msgid "Make invoice"
@@ -366,7 +448,7 @@ msgstr "Crea Fatture"
 #. module: sale_commission
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "Make settlements"
-msgstr "Crea Liquidazioni"
+msgstr "Crea liquidazioni"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -379,9 +461,19 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: sale_commission
+#: selection:sale.commission,amount_base_type:0
+msgid "Net Amount"
+msgstr "Importo al netto IVA"
+
+#. module: sale_commission
 #: model:ir.model,name:sale_commission.model_res_partner
 msgid "Partner"
 msgstr "Partner"
+
+#. module: sale_commission
+#: selection:sale.commission,invoice_state:0
+msgid "Payment Based"
+msgstr "Basato sul Pagamento"
 
 #. module: sale_commission
 #: field:sale.commission.section,percent:0
@@ -389,10 +481,15 @@ msgid "Percent"
 msgstr "Percentuale"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:125
+#: code:addons/sale_commission/models/settlement.py:114
 #, python-format
 msgid "Period: from %s to %s"
 msgstr "Periodo: da %s a %s"
+
+#. module: sale_commission
+#: field:account.invoice.line.agent,product:0
+msgid "Product"
+msgstr "Prodotto"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_product_template
@@ -412,17 +509,32 @@ msgstr "Trimestrale"
 #. module: sale_commission
 #: view:sale.commission:sale_commission.sale_commission_form
 msgid "Rates definition"
-msgstr "Definizioni percentuali"
+msgstr "Definizione Rata"
+
+#. module: sale_commission
+#: field:sale.commission.make.invoice,refund_journal:0
+msgid "Refund Journal"
+msgstr "Sezionale Rimborsi"
 
 #. module: sale_commission
 #: field:sale.order.line.agent,sale_line:0
 msgid "Sale line"
-msgstr "Riga Vendita"
+msgstr "Riga di Vendita"
+
+#. module: sale_commission
+#: model:ir.model,name:sale_commission.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di Vendita"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga ordine di vendita"
+msgstr "Riga Ordine di Vendita"
+
+#. module: sale_commission
+#: selection:res.partner,agent_type:0
+msgid "Salesman (employee)"
+msgstr "Addetto Vendite (dipendente)"
 
 #. module: sale_commission
 #: field:sale.commission,sections:0
@@ -432,8 +544,7 @@ msgstr "Sezioni"
 #. module: sale_commission
 #: view:sale.commission.make.settle:sale_commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
-msgstr ""
-"Selezionare la data fino alla quale si desidera creare le liquidazioni:"
+msgstr "Selezionare la data fino alla quale si desidera creare le liquidazioni:"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -469,19 +580,19 @@ msgstr "Liquidazione"
 #. module: sale_commission
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr "Analisi Liquidazioni"
+msgstr "Analisi liquidazioni"
 
 #. module: sale_commission
 #: view:sale.commission.settlement:sale_commission.view_settlement_form
 #: field:sale.commission.settlement,lines:0
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_tree
 msgid "Settlement lines"
-msgstr "Righe Liquidazioni"
+msgstr "Righe liquidazioni"
 
 #. module: sale_commission
 #: view:sale.commission.settlement.line:sale_commission.view_settlement_line_search
 msgid "Settlement lines search"
-msgstr "Cerca Righe Liquidazioni"
+msgstr "Cerca righe liquidazioni"
 
 #. module: sale_commission
 #: field:res.partner,settlement:0
@@ -489,8 +600,8 @@ msgid "Settlement period"
 msgstr "Periodo Liquidazioni"
 
 #. module: sale_commission
-#: code:addons/sale_commission/wizard/wizard_settle.py:55
-#: code:addons/sale_commission/wizard/wizard_settle.py:69
+#: code:addons/sale_commission/wizard/wizard_settle.py:35
+#: code:addons/sale_commission/wizard/wizard_settle.py:49
 #, python-format
 msgid "Settlement period not valid."
 msgstr "Periodo non valido."
@@ -501,6 +612,8 @@ msgid "Settlement search"
 msgstr "Cerca Liquidazioni"
 
 #. module: sale_commission
+#: model:ir.actions.act_window,name:sale_commission.action_settlement
+#: model:ir.ui.menu,name:sale_commission.menu_sale_settlements
 #: view:res.partner:sale_commission.view_partner_form_agent
 #: field:res.partner,settlements:0
 #: view:sale.commission.make.invoice:sale_commission.sale_commission_make_invoice_form
@@ -510,12 +623,13 @@ msgid "Settlements"
 msgstr "Liquidazioni"
 
 #. module: sale_commission
+#: view:sale.commission.settlement:sale_commission.view_settlement_search
 #: field:sale.commission.settlement,state:0
 msgid "State"
 msgstr "Stato"
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/sale_commission.py:63
+#: code:addons/sale_commission/models/sale_commission.py:65
 #, python-format
 msgid "The lower limit cannot be greater than upper one."
 msgstr "Il limite inferiore non può essere maggiore di quello superiore."
@@ -548,6 +662,7 @@ msgstr "Totale"
 
 #. module: sale_commission
 #: field:res.partner,agent_type:0 field:sale.commission,commission_type:0
+#: field:sale.commission.settlement,agent_type:0
 msgid "Type"
 msgstr "Tipo"
 
@@ -563,7 +678,7 @@ msgid "You can only add one time each agent."
 msgstr "È possibile aggiungere solo una volta ogni agente."
 
 #. module: sale_commission
-#: code:addons/sale_commission/models/settlement.py:71
+#: code:addons/sale_commission/models/settlement.py:57
 #, python-format
 msgid "You can't delete invoiced settlements."
 msgstr "Non è possibile eliminare le liquidazioni fatturate."
@@ -583,3 +698,9 @@ msgstr "o"
 #: view:sale.commission:sale_commission.sale_commission_form
 msgid "sections"
 msgstr "sezioni"
+
+#. module: sale_commission
+#: view:account.invoice:sale_commission.invoice_form_agent
+#: view:sale.order:sale_commission.view_order_agent_form_inherit
+msgid "{'partner_id': partner_id}"
+msgstr "{'partner_id': partner_id}"

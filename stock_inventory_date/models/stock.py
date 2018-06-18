@@ -74,7 +74,8 @@ class StockInventory(models.Model):
                     ('product_id', 'in', product_ids.ids),
                     ('date', '<', date_inventory)])
             for move in move_ids:
-                for quant in move.quant_ids:
+                for quant in move.quant_ids.filtered(
+                        lambda x: x.qty > 0.0):
                     lot_id = quant.lot_id.id
                     prod_id = quant.product_id.id
                     if move.location_dest_id.id == location.id:

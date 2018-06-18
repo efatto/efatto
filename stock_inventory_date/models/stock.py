@@ -120,6 +120,8 @@ class StockInventory(models.Model):
                 for product_line in vals:
                     inventory_line_obj.create(product_line)
             else:
+                # default inventory is made with child location by default
+                inventory.search_child_location = True
                 return super(StockInventory, self).prepare_inventory()
         return self.write({
             'state': 'confirm',

@@ -27,7 +27,7 @@ class StockInventory(models.Model):
     _inherit = "stock.inventory"
     _order = 'date DESC'
 
-    date_inventory = fields.Date()
+    date_inventory = fields.Date(default=fields.Date.context_today)
     search_child_location = fields.Boolean()
 
     @api.model

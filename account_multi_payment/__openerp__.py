@@ -36,7 +36,7 @@
         'account',
         'account_cancel',
         'account_voucher',
-        'account_analytic_analysis',
+        # 'account_analytic_analysis',
     ],
     'data': [
         'views/payment_view.xml',

@@ -51,28 +51,12 @@
                             string="Import Invoices" type="action" icon="gtk-execute"
                             attrs="{'invisible':['|', ('state','=','confirm'), ('is_multi_payment', '!=', True)]}"/>
                 </xpath>
-                <!--<button name="button_confirm_bank" position="attributes">-->
-                    <!--<attribute name="attrs">{'invisible': [('is_multi_payment', '=', True)]}</attribute>-->
-                <!--</button>-->
                 <button name="button_dummy" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('is_multi_payment', '=', True)]}</attribute>
                 </button>
                 <button name="button_cancel" position="attributes">
                     <attribute name="attrs">{'invisible': ['|', ('is_multi_payment', '=', True)]}</attribute>
                 </button>
-            </field>
-        </record>
-
-        <record id="view_account_move_line_filter_multi_payment" model="ir.ui.view">
-            <field name="name">account.move.line.filter.multi.payment</field>
-            <field name="model">account.move.line</field>
-            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
-            <field name="arch" type="xml">
-                <data>
-                    <field name="date" position="after">
-                        <field name="date_maturity"/>
-                    </field>
-                </data>
             </field>
         </record>
 

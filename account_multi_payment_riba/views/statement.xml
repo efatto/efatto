@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+        <!-- todo if possible add default filter to search view -->
+        <!--<record id="view_account_statement_multi_pay_search" model="ir.ui.view">-->
+            <!--<field name="name">account.statement.from.invoice.lines.search.multi.pay</field>-->
+            <!--<field name="model">account.statement.from.invoice.lines</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search string="Search Invoices">-->
+                    <!--&lt;!&ndash;<field name="riba"/>&ndash;&gt;-->
+                    <!--<filter name="no_riba" string="No riba" domain="[('riba', '=', False)]" help="Exclude ri.ba."/>-->
+               <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="account_multi_payment.action_view_account_statement_multi_pay" model="ir.actions.act_window">-->
+            <!--<field name="context">{'statement_id': active_id, 'search_default_no_riba': True}</field>-->
+            <!--<field name="search_view_id" ref="view_account_statement_multi_pay_search"/>-->
+        <!--</record>-->
+
+        <record id="view_account_statement_multi_pay_riba" model="ir.ui.view">
+            <field name="name">account.statement.from.invoice.lines.form.multi.pay</field>
+            <field name="model">account.statement.from.invoice.lines</field>
+            <field name="inherit_id" ref="account_multi_payment.view_account_statement_multi_pay"/>
+            <field name="arch" type="xml">
+                <field name="line_ids" position="attributes">
+                    <attribute name="domain">
+                        [('account_id.type','in',['receivable','payable']),
+                         ('reconcile_id','=',False),
+                         ('state', '=', 'valid'),
+                         ('move_id.state', '=', 'posted'),
+                         ('riba', '=', False),
+                        ]
+                    </attribute>
+                </field>
+            </field>
+        </record>
+
+</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+  <data noupdate="1">
+    <record id="account_analytic_rule_followers" model="ir.rule">
+        <field name="name">Account Analytic only followers, manager, creator user</field>
+        <field name="model_id" ref="analytic.model_account_analytic_account"/>
+        <field name="domain_force">['|','|',
+        ('create_uid', '=', user.id),
+        ('manager_id', '=', user.id),
+        ('message_follower_ids', 'in', [user.partner_id.id]),
+        ]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+  </data>
+</openerp>

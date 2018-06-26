@@ -15,5 +15,15 @@
         <field name="perm_unlink" eval="True"/>
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
     </record>
+    <record id="account_analytic_rule_account_manager" model="ir.rule">
+        <field name="name">Account Analytic account manager</field>
+        <field name="model_id" ref="analytic.model_account_analytic_account"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('account.group_account_manager'))]"/>
+    </record>
   </data>
 </openerp>

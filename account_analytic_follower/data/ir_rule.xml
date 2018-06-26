@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <openerp>
-  <data noupdate="1">
+  <data>
     <record id="account_analytic_rule_followers" model="ir.rule">
         <field name="name">Account Analytic only followers, manager, creator user</field>
         <field name="model_id" ref="analytic.model_account_analytic_account"/>

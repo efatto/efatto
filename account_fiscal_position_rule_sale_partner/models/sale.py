@@ -47,5 +47,15 @@ class SaleAdvancePaymentInv(models.TransientModel):
             if sale.account_fiscal_position_rule_id:
                 inv_values['account_fiscal_position_rule_id'] = \
                     sale.account_fiscal_position_rule_id.id
+            else:
+                # check if a valid rule exists and apply
+                result = self.env['account.fiscal.position.rule'].\
+                        fiscal_position_map(partner_id=sale.partner_id.id,
+                                            company_id=sale.company_id.id,
+                                            partner_invoice_id=sale.
+                                            partner_invoice_id.id)
+                if result:
+                    inv_values['account_fiscal_position_rule_id'] = \
+                        result['account_fiscal_position_rule_id']
         return super(SaleAdvancePaymentInv, self)._create_invoices(
             inv_values, sale_id)

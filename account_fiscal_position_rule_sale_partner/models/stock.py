@@ -17,4 +17,14 @@ class StockPicking(models.Model):
             if sale.account_fiscal_position_rule_id:
                 invoice_vals['account_fiscal_position_rule_id'] = \
                     sale.account_fiscal_position_rule_id.id
+            else:
+                # check if a valid rule exists and apply
+                result = self.env['account.fiscal.position.rule'].\
+                        fiscal_position_map(partner_id=sale.partner_id.id,
+                                            company_id=sale.company_id.id,
+                                            partner_invoice_id=sale.
+                                            partner_invoice_id.id)
+                if result:
+                    invoice_vals['account_fiscal_position_rule_id'] = \
+                        result['account_fiscal_position_rule_id']
         return invoice_vals

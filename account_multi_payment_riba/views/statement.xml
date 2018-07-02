@@ -26,11 +26,13 @@
             <field name="arch" type="xml">
                 <field name="line_ids" position="attributes">
                     <attribute name="domain">
-                        [('account_id.type','in',['receivable','payable']),
-                         ('reconcile_id','=',False),
+                        [('reconcile_id','=',False),
                          ('state', '=', 'valid'),
                          ('move_id.state', '=', 'posted'),
+                         '|', '&amp;',
                          ('riba', '=', False),
+                         ('account_id.type','=','receivable'),
+                         ('account_id.type','=','payable'),
                         ]
                     </attribute>
                 </field>

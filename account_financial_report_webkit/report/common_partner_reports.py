@@ -194,7 +194,9 @@ class CommonPartnersReportHeaderWebkit(CommonReportHeaderWebkit):
         if partner_filter:
             sql_where += "   AND account_move_line.partner_id \
                                                             in %(partner_ids)s"
-
+            search_params.update({
+                'partner_ids': tuple(partner_filter),
+            })
         if target_move == 'posted':
             sql_joins += "INNER JOIN account_move \
                                 ON account_move_line.move_id = account_move.id"
@@ -203,7 +205,6 @@ class CommonPartnersReportHeaderWebkit(CommonReportHeaderWebkit):
 
         search_params.update({
             'account_ids': account_id,
-            'partner_ids': tuple(partner_filter),
         })
 
         sql = ' '.join((sql_select, sql_joins, sql_where))

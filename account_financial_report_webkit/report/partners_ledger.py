@@ -244,6 +244,16 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                         line['invoice_number'] in rec_line['lname']:
                     inv_lines.insert(i+1, rec_line)
                     rec_lines.remove(rec_line)
+            # test if there are payment for invoice in res_lines
+            for res_line in res_lines:
+                if len(line['lname']) > 4 and \
+                        line['lname'] in res_line['lname'] \
+                        or len(res_line['lname']) > 4 and \
+                        res_line['lname'] in line['lname'] or \
+                        line.get('invoice_number', False) and \
+                        line['invoice_number'] in res_line['lname']:
+                    inv_lines.insert(i+1, res_line)
+                    res_lines.remove(res_line)
         for i, line in enumerate(inv_lines):
             # then search for reconciliation name
             for rec_line in rec_lines:

@@ -30,6 +30,14 @@ class StockPickingPackagePreparation(models.Model):
                      'in_pack': [('readonly', True)],
                      'cancel': [('readonly', True)]}
 
+    @api.multi
+    def _get_all_picking_done(self):
+        for sppp in self:
+            picking_state = sppp.picking_ids.mapped('state')
+            sppp.all_picking_done = True if (
+                len(picking_state) == 1
+                and picking_state[0] == 'done') else False
+
     ddt_date_start = fields.Datetime(
         string='DDT date start',
     )
@@ -44,6 +52,7 @@ class StockPickingPackagePreparation(models.Model):
     partner_invoice_id = fields.Many2one(string='Invoice Address')
     partner_shipping_id = fields.Many2one(string='Delivery Address')
     ddt_type_id = fields.Many2one(required=True)
+    all_picking_done = fields.Boolean(compute=_get_all_picking_done)
 
     @api.multi
     def action_done(self):

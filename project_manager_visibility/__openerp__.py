@@ -28,6 +28,7 @@
     'license': 'AGPL-3',
     'depends': [
         'project',
+        'hr',
     ],
     'data': [
         'views/project.xml',

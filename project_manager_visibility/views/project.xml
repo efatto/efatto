@@ -10,6 +10,9 @@
                 <field name="project_id" position="attributes">
                     <attribute name="groups">project.group_project_manager</attribute>
                 </field>
+                <field name="work_ids" position="attributes">
+                    <attribute name="groups">hr.group_hr_user</attribute>
+                </field>
             </field>
         </record>
 

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+    <record id="base.menu_reporting" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_hr_user')])]"/>
+    </record>
+
+    </data>
+</openerp>

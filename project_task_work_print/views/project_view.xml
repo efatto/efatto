@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
                 <notebook position="after">
-                    <group colspan="8" col="8" groups="base.group_hr_user,base.group_hr_manager">
+                    <group colspan="8" col="8" groups="base.group_hr_user">
                         <group colspan="2" col="1">
                             <label for="worker_signature" class="oe_edit_only"/>
                             <h2><field name="worker_signature" widget="signature" width="400" height="100"/></h2>

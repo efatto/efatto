@@ -9,5 +9,6 @@ class SaleOrder(models.Model):
     def copy_quotation(self):
         self.ensure_one()
         res = super(SaleOrder, self).copy_quotation()
-        self.old_revision_ids.order_line.write({'state': 'cancel'})
+        for old_revision in self.old_revision_ids:
+            old_revision.order_line.write({'state': 'cancel'})
         return res

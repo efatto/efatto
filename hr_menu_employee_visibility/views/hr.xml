@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <openerp>
-    <data noupdate="1">
+    <data>
 
     <record id="hr.menu_hr_root" model="ir.ui.menu">
         <field name="groups" eval="[(6, 0, [ref('base.group_hr_manager'), ref('base.group_hr_user')])]"/>

@@ -236,26 +236,13 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
 
     @staticmethod
     def _get_sorted_invoices(lines):
-        # first invoice_number, then if this lines have rec_name, the
-        # rec_name linked, then other invoices
-        rec_lines = [x for x in lines if x['rec_name']
-                     and not x['invoice_number']]
         inv_lines = sorted([x for x in lines if x['invoice_number']],
-                           key=lambda x: (
-                               x['invoice_number'] + x['date_maturity']))
-        res_lines = [x for x in lines if x not in (rec_lines + inv_lines)]
+                           key=lambda z: (
+                               z['invoice_number'] + z['date_maturity']))
+        res_lines = sorted([x for x in lines if x not in inv_lines],
+                           key=lambda y: y['mdate'])
         for i, line in enumerate(inv_lines):
-            # first search for invoice number in move line name
-            for rec_line in rec_lines:
-                if len(line['lname']) > 4 and \
-                        line['lname'] in rec_line['lname'] \
-                        or len(rec_line['lname']) > 4 and \
-                        rec_line['lname'] in line['lname'] or \
-                        line.get('invoice_number', False) and \
-                        line['invoice_number'] in rec_line['lname']:
-                    inv_lines.insert(i+1, rec_line)
-                    rec_lines.remove(rec_line)
-            # test if there are payment for invoice in res_lines
+            a = 0
             for res_line in res_lines:
                 if len(line['lname']) > 4 and \
                         line['lname'] in res_line['lname'] \
@@ -263,22 +250,9 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                         res_line['lname'] in line['lname'] or \
                         line.get('invoice_number', False) and \
                         line['invoice_number'] in res_line['lname']:
-                    inv_lines.insert(i+1, res_line)
+                    inv_lines.insert(i+a+1, res_line)
+                    a += 1
                     res_lines.remove(res_line)
-        for i, line in enumerate(inv_lines):
-            # then search for reconciliation name
-            for rec_line in rec_lines:
-                if line['rec_name'] == rec_line['rec_name']:
-                    inv_lines.insert(i+1, rec_line)
-                    rec_lines.remove(rec_line)
-            for res_line in res_lines:
-                if line['invoice_number'] == res_line['lname']:
-                    inv_lines.insert(i+1, res_line)
-                    res_lines.remove(res_line)
-        if len(rec_lines) > 0:
-            for rcline in rec_lines:
-                rcline['rec_name'] = 'IS_ORPHAN'
-            inv_lines += rec_lines
         if len(res_lines) > 0:
             for reline in res_lines:
                 reline['rec_name'] = 'IS_ORPHAN'

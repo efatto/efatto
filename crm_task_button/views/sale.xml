@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!--  Lead inherited form -->
+    <record model="ir.ui.view" id="crm_case_form_view_leads_task">
+        <field name="name">CRM - Leads Form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='buttons']" position="inside">
+                <button class="oe_inline oe_stat_button" type="action" name="%(project.action_view_task)d"
+                    context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id}"
+                    icon="fa-tasks">
+                    <field string="Tasks" name="task_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!--  Opportunity inherited form -->
+    <record model="ir.ui.view" id="crm_case_form_view_oppor_task">
+        <field name="name">Opportunities</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">20</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_right oe_button_box']" position="inside">
+                <button class="oe_inline oe_stat_button" type="action" name="%(project.action_view_task)d"
+                    context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id}"
+                    icon="fa-tasks">
+                    <field string="Tasks" name="task_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</openerp>

@@ -14,7 +14,6 @@ openerp.calendar_task_work = function (instance) {
 //            }
         if (event.hex_value ) {
             res.backgroundColor = event.hex_value;
-            debugger;
             if (event.timesheet_done === false) {
                 res.className += ' fc-todo';
             }else{

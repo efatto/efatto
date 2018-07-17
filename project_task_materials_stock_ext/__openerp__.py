@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,11 +19,12 @@
 #
 {
     'name': 'Project Task Cost in task materials',
-    'version': '8.0.0.1.0',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Project Task Cost in task materials',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'description': 'Add unit and total amount cost in task materials of '
+                   'project, to add the ability of setting custom values.',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'project_task_materials_stock',

@@ -19,10 +19,3 @@ class ProjectProject(models.Model):
             [('project_id', 'in', self.ids)])
         works = tasks.mapped('work_ids')
         self.ordered_works = works.sorted(key=lambda x: x.date, reverse=True)
-
-
-class ProjectTask(models.Model):
-    _inherit = "project.task"
-
-    worker_signature = fields.Binary(string="Worker's signature")
-    recipient_signature = fields.Binary(string="Recipient's signature")

@@ -28,7 +28,6 @@
     "license": 'AGPL-3',
     "depends": [
         'project',
-        'web_widget_digitized_signature',
     ],
     "data": [
         "report/report.xml",

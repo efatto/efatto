@@ -5526,7 +5526,7 @@ msgstr "Nell'azienda il numero fattura dev'essere univoco!"
 #. module: account
 #: field:account.invoice,reference:0 field:account.invoice.line,invoice_id:0
 msgid "Invoice Reference"
-msgstr "riferimento fattura"
+msgstr "Documento di Origine"
 
 #. module: account
 #: model:ir.model,name:account.model_account_invoice_refund

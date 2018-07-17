@@ -12,10 +12,3 @@ class ProjectTask(models.Model):
         'res.partner', 'Delivery Address',
         domain="[('parent_id', '=', partner_id)]",
         help="Delivery address for current task.")
-
-    def onchange_user_id(self, cr, uid, ids, user_id, context=None):
-        vals = {}
-        # remove change of date_start when assigned
-        # if user_id:
-        #     vals['date_start'] = fields.datetime.now()
-        return {'value': vals}

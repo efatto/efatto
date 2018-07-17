@@ -931,11 +931,6 @@ msgid "{'invisible': True}"
 msgstr "{'invisible': True}"
 
 #. module: l10n_it_ddt_ext
-#: field:stock.picking.package.preparation,carrier_signature:0
-msgid "Carrier's signature"
-msgstr "Firma del vettore"
-
-#. module: l10n_it_ddt_ext
 #: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings
 msgid "DDT and Pickings"
 msgstr "DDT e Consegne"
@@ -953,20 +948,10 @@ msgid "Done package preparations cannot be reset to draft."
 msgstr "Pacchi completati non possono essere riportati a bozza."
 
 #. module: l10n_it_ddt_ext
-#: field:stock.picking.package.preparation,driver_signature:0
-msgid "Driver's signature"
-msgstr "Firma del conducente"
-
-#. module: l10n_it_ddt_ext
 #: code:addons/l10n_it_ddt_ext/models/sale.py:58
 #, python-format
 msgid "Picking is not in draft or cancel state."
 msgstr "La consegna non è in stato bozza o annullato."
-
-#. module: l10n_it_ddt_ext
-#: field:stock.picking.package.preparation,recipient_signature:0
-msgid "Recipient's signature"
-msgstr "Firma del destinatario"
 
 #. module: l10n_it_ddt_ext
 #: view:sale.order:l10n_it_ddt_ext.view_order_form_view_ddt_pickings

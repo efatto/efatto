@@ -66,22 +66,6 @@
                         class="oe_highlight"
                         attrs="{'invisible':['|', ('state', 'in', ['done', 'in_pack']), ('all_picking_done', '!=', True)]}"/>
                 </button>
-                <notebook position="after">
-                    <group colspan="8" col="6">
-                        <group colspan="2" col="1">
-                            <label for="carrier_signature" class="oe_edit_only"/>
-                            <h2><field name="carrier_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                        <group colspan="2" col="1">
-                            <label for="driver_signature" class="oe_edit_only"/>
-                            <h2><field name="driver_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                        <group colspan="2" col="1">
-                            <label for="recipient_signature" class="oe_edit_only"/>
-                            <h2><field name="recipient_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                    </group>
-                </notebook>
                 <field name="weight_manual" position="replace"/>
             </field>
         </record>

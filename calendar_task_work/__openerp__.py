@@ -34,7 +34,6 @@
         'project_stage_state',
     ],
     'data': [
-        'views/calendar.xml',
         'views/event.xml',
     ],
     'installable': True,

@@ -32,6 +32,9 @@
         'project_task_partner_shipping',
         'web_widget_color',
     ],
+    'conflicts': [
+        'calendar_task_work',
+    ],
     'data': [
         'views/calendar.xml',
         'views/project.xml',

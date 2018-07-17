@@ -12,9 +12,8 @@ openerp.task_color_state = function (instance) {
 //		   res.title = res.title.substring(0, res.title.indexOf(','));
 //		}
 //            }
-        debugger;
+
         if (event.hex_value ) {
-            res.backgroundColor = event.hex_value;
             if (event.kanban_state === 'done') {
                 res.backgroundColor = event.hex_value_reduced;
             }else{

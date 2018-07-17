@@ -41,14 +41,12 @@
         <field name="arch" type="xml">
             <calendar position="replace">
                 <calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday"
-                 display="[timesheet_todo] [name]" attendee="partner_ids" avatar_model="res.partner"
+                 display="[name]" attendee="partner_ids" avatar_model="res.partner"
                  use_contacts="True" event_open_popup="%(calendar.view_calendar_event_form_popup)s"
                  quick_add="False">
                     <field name="name"/>
                     <field name="user_id"/>
-                    <field name="hex_value"/>
                     <field name="partner_ids"/>
-                    <field name="timesheet_todo"/>
                     <field name="timesheet_done"/>
                 </calendar>
             </calendar>

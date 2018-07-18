@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Task color state',
+    'name': 'Project task colors',
     'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'description':

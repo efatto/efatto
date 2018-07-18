@@ -14,7 +14,7 @@ openerp.project_task_state_color = function (instance) {
 //            }
 
         if (event.hex_value ) {
-            if (event.kanban_state === 'done') {
+            if (event.kanban_state === 'done' or event.state === 'done') {
                 res.backgroundColor = event.hex_value_reduced;
             }else{
                 res.backgroundColor = event.hex_value;

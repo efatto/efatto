@@ -1,4 +1,4 @@
-openerp.task_color_state = function (instance) {
+openerp.project_task_state_color = function (instance) {
     instance.web_calendar.CalendarView = instance.web_calendar.CalendarView.extend({
         event_data_transform: function (event) {
             var res = this._super.apply(this, arguments);

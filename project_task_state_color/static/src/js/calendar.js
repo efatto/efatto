@@ -14,7 +14,16 @@ openerp.project_task_state_color = function (instance) {
 //            }
 
         if (event.hex_value ) {
-            if (event.kanban_state === 'done' or event.state === 'done') {
+            var matches = res.className.match(/calendar_color_[0-9]*/g);
+                if (matches.length)
+                    var original_class_color = (matches[0].replace("calendar", "underline"));
+            // set all obj with original_class_color class to event.hex_value for underline_color_x
+            var x = document.getElementsByClassName(original_class_color);
+            for (var j=0; j<x.length; j++) {
+                x[j].style.backgroundColor = event.hex_value;
+                x[j].classList.remove(original_class_color);
+            }
+            if (event.kanban_state === 'done' || event.state === 'done') {
                 res.backgroundColor = event.hex_value_reduced;
             }else{
                 res.backgroundColor = event.hex_value;

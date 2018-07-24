@@ -85,21 +85,27 @@ class CalendarEvent(models.Model):
                     employee = self.env['hr.employee'].search(
                         [('user_id', '=', user[0].id)])
                     if employee:
+                        result = self.env['project.task.work'].\
+                            get_user_related_details(user.id)
                         timesheet = event.timesheet_ids.filtered(
                             lambda x: x.user_id == user)
                         if timesheet:
                             # If timesheet for this user exists, update it
                             timesheet.write({
-                                    'name': event.name,
-                                    'date': event.start_datetime,
-                                    'task_id': event.project_task_id.id,
-                                    'unit_amount': round(duration, 2),
-                                    'account_id': event.project_id.\
-                                    analytic_account_id.id,
+                                'name': event.name,
+                                'date': event.start_datetime,
+                                'task_id': event.project_task_id.id,
+                                'unit_amount': round(duration, 2),
+                                'account_id': event.project_id.\
+                                analytic_account_id.id,
+                                'product_id': result['product_id'],
+                                'general_account_id': result[
+                                    'general_account_id'],
+                                'product_uom_id': result['product_uom_id'],
                             })
                         # Else create ANALYTIC entry wich create task work
                         else:
-                            self.env[
+                            timesheet = self.env[
                                 'hr.analytic.timesheet'].create({
                                     'name': event.name,
                                     'date': event.start_datetime,
@@ -107,11 +113,26 @@ class CalendarEvent(models.Model):
                                     'unit_amount': round(duration, 2),
                                     'account_id': event.project_id.\
                                     analytic_account_id.id,
-                                    'journal_id': employee.journal_id.id,
+                                    'journal_id': result['journal_id'],
                                     'user_id': user.id,
                                     'company_id': user.company_id.id,
                                     'event_id': event.id,
+                                    'product_id': result['product_id'],
+                                    'general_account_id': result[
+                                        'general_account_id'],
+                                    'product_uom_id': result['product_uom_id'],
                             })
+                        amount_unit = timesheet.on_change_unit_amount(
+                            result['product_id'], round(duration, 2),
+                            False, False, result['journal_id'])[0]
+                        if amount_unit and 'amount' in amount_unit.get(
+                                'value', {}):
+                            amount = amount_unit['value']['amount']
+                        to_invoice = event.project_id.analytic_account_id.\
+                            to_invoice.id
+                        timesheet.write({
+                            'amount': amount,
+                            'to_invoice': to_invoice,})
             return True
 
     @api.multi

@@ -14,7 +14,7 @@ class ProjectProject(models.Model):
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    hex_value = fields.Char(related='project_id.hex_value')
+    hex_value = fields.Char(related='project_id.hex_value', readonly=True)
     hex_value_reduced = fields.Char(compute='_get_hex_task_value')
 
     @staticmethod

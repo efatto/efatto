@@ -21,6 +21,9 @@ class CalendarEvent(models.Model):
                 for partner_id in event.partner_ids:
                     user = self.env['res.users'].search(
                         [('partner_id', '=', partner_id.id)], limit=1)
+                    # todo test if all lines are correct with times recorded
+                    # if not, user has changed time in event and timesheet
+                    # is no more correct
                     if user:
                         employee = self.env['hr.employee'].search(
                             [('user_id', '=', user[0].id)])

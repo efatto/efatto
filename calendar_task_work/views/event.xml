@@ -13,6 +13,12 @@
                     context="{'default_project_id': project_id}"
                     domain="[('project_id', '=', project_id)]"
                     attrs="{'invisible':[('project_id', '=', False)]}"/>
+                <field name="timesheet_done" invisible="1"/>
+                <button name="record_task_work" type="object"
+                    string="Record time work"
+                    attrs="{'invisible':['|',
+                    ('timesheet_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
             </field>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheet works" groups="base.group_user">

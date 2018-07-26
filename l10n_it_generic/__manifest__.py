@@ -29,6 +29,8 @@
     'license': 'AGPL-3',
     "depends": [
         'account_accountant',
+        'base_vat',
+        'base_iban',
     ],
     "data": [
         'data/account_chart.xml',

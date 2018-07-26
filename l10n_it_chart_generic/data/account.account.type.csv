@@ -1,0 +1,7 @@
+"id","code","name","report_type","close_method"
+"account_type_view","view","Viste diverse","none","none"
+"account_type_view_assets","account_type_view_assets","Viste Attivo","asset","none"
+"account_type_view_liability","account_type_view_liability","Viste Passivo","liability","none"
+"account_type_memo","account_type_memo","Conti d'ordine","none","none"
+"account_type_correction_expense","account_type_correction_expense","Rettifiche di costi","expense","none"
+"account_type_correction_income","account_type_correction_income","Rettifiche di ricavi","income","none"

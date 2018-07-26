@@ -33,7 +33,6 @@
         'account_payment_term_month',  # needed for fields sequence and months
     ],
     "data": [
-        'data/payment_data_first.xml',
         'data/account.account.type.csv',
         'data/account.account.template.csv',
         'data/account.tax.code.template.csv',
@@ -41,7 +40,6 @@
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'data/account.fiscal.position.tax.template.csv',
-        'data/l10n_chart_it_generic.xml',
         'data/payment_data.xml',
     ],
     "installable": True,

@@ -28,19 +28,17 @@
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     "depends": [
-        'l10n_configurable',
         'account_accountant',
-        'account_payment_term_month',  # needed for fields sequence and months
     ],
     "data": [
-        'data/account.account.type.csv',
-        'data/account.account.template.csv',
-        'data/account.tax.code.template.csv',
         'data/account_chart.xml',
+        'data/data_account_type.xml',
+        'data/account.account.template.csv',
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'data/account.fiscal.position.tax.template.csv',
-        'data/payment_data.xml',
+        'data/account.chart.template.csv',
+        'data/account_chart_template_data.yml',
     ],
     "installable": True,
 }

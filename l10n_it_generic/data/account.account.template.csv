@@ -120,9 +120,8 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 1120005,1120005,PRODOTTI FINITI,account.data_account_type_current_assets,TRUE,chart_generic
 1120010,1120010,MERCI,account.data_account_type_current_assets,TRUE,chart_generic
 1125005,1125005,FORNITORI C/ACC.-RIMANENZE,account.data_account_type_current_assets,TRUE,chart_generic
-14,14,CREDITI V/CLIENTI,account.data_account_type_receivable,TRUE,chart_generic
-15,15,ALTRI CREDITI V/CLIENTI,account.data_account_type_receivable,TRUE,chart_generic
-15005,1505,ALTRI CREDITI V/CLIENTI,account.data_account_type_receivable,TRUE,chart_generic
+1401,1401,CREDITI V/CLIENTI,account.data_account_type_receivable,TRUE,chart_generic
+1501,1501,ALTRI CREDITI V/CLIENTI,account.data_account_type_receivable,TRUE,chart_generic
 1505005,1505005,EFFETTI IN PORTAFOGLIO,account.data_account_type_receivable,TRUE,chart_generic
 1505010,1505010,EFFETTI ALLO SCONTO,account.data_account_type_receivable,TRUE,chart_generic
 1505015,1505015,EFFETTI ALL'INCASSO,account.data_account_type_receivable,TRUE,chart_generic
@@ -330,9 +329,8 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 3805030,3805030,CLIENTI C/PAG.CONTR-IMPOSTE-RIT.,account.data_account_type_current_liabilities,TRUE,chart_generic
 3805040,3805040,INCASSI C/TERZI,account.data_account_type_current_liabilities,TRUE,chart_generic
 3805090,3805090,CLIENTI C/ANT.ESIG.OLTRE ES.SUCC,account.data_account_type_current_liabilities,TRUE,chart_generic
-40,40,DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,chart_generic
-41,41,ALTRI DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,chart_generic
-41005,4105,ALTRI DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,chart_generic
+4001,4001,DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,chart_generic
+4101,4101,ALTRI DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,chart_generic
 4105005,4105005,FATTURE DA RICEVERE,account.data_account_type_current_liabilities,TRUE,chart_generic
 4105090,4105090,DEB.V/FORN. ESIG. OLTRE ES.SUCC.,account.data_account_type_current_liabilities,TRUE,chart_generic
 4205005,4205005,EFFETTI PASSIVI COMMERCIALI,account.data_account_type_current_liabilities,TRUE,chart_generic

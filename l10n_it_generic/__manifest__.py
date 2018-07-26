@@ -38,7 +38,7 @@
         'data/account.account.template.csv',
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
-        'data/account.fiscal.position.tax.template.csv',
+        # 'data/account.fiscal.position.tax.template.csv',
         'data/account.chart.template.csv',
         'data/account_chart_template_data.yml',
     ],

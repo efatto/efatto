@@ -626,7 +626,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 6625035,6625035,SCONTI/ABBUONI ACQUISTI MERCI,account_type_correction_expense,TRUE,chart_generic
 6625040,6625040,PREMI SU ACQUISTI DI MERCI,account_type_correction_expense,TRUE,chart_generic
 6625045,6625045,COSTO MERCI FITT. Intra/RSM/Rott.C/NoCEE,account.data_account_type_expenses,TRUE,chart_generic
-6630005,6630005,MATERIALI DI MANUTENZIONE,account.data_account_type_expense,TRUE,chart_generic
+6630005,6630005,MATERIALI DI MANUTENZIONE,account.data_account_type_expenses,TRUE,chart_generic
 6630007,6630007,MAT. DI MANUT. SU BENI PROPRI(LIMITE 5%),account.data_account_type_expenses,TRUE,chart_generic
 6630010,6630010,IMBALLAGGI C/ACQUISTI,account.data_account_type_expenses,TRUE,chart_generic
 6630015,6630015,MATERIALE DI PULIZIA,account.data_account_type_expenses,TRUE,chart_generic

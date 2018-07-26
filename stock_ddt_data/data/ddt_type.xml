@@ -10,7 +10,7 @@
         <record id="seq_ddt_cvendita" model="ir.sequence">
             <field name="name">DDT C/vendita</field>
             <field name="code">stock.ddt.cvendita</field>
-            <field name="prefix">DDTVE/%(fy)s/</field>
+            <field name="prefix">DDTVE/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -31,7 +31,7 @@
         <record id="seq_ddt_creso" model="ir.sequence">
             <field name="name">DDT C/reso</field>
             <field name="code">stock.ddt.creso</field>
-            <field name="prefix">DDTRE/%(fy)s/</field>
+            <field name="prefix">DDTRE/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -52,7 +52,7 @@
         <record id="seq_ddt_cresoforn" model="ir.sequence">
             <field name="name">DDT C/reso a Fornitore</field>
             <field name="code">stock.ddt.cresoforn</field>
-            <field name="prefix">DDTRF/%(fy)s/</field>
+            <field name="prefix">DDTRF/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -73,7 +73,7 @@
         <record id="seq_ddt_cvisione" model="ir.sequence">
             <field name="name">DDT C/visione</field>
             <field name="code">stock.ddt.cvisione</field>
-            <field name="prefix">DDTV/%(fy)s/</field>
+            <field name="prefix">DDTV/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -94,7 +94,7 @@
         <record id="seq_ddt_reso_cvisione" model="ir.sequence">
             <field name="name">DDT Reso c/visione</field>
             <field name="code">stock.ddt.reso.cvisione</field>
-            <field name="prefix">DDTRV/%(fy)s/</field>
+            <field name="prefix">DDTRV/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -118,7 +118,7 @@
         <record id="seq_ddt_accredito" model="ir.sequence">
             <field name="name">DDT Reso per Accredito</field>
             <field name="code">stock.ddt.accredito</field>
-            <field name="prefix">DDTAC/%(fy)s/</field>
+            <field name="prefix">DDTAC/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -142,7 +142,7 @@
         <record id="seq_ddt_sostituzione" model="ir.sequence">
             <field name="name">DDT Reso per Sostituzione</field>
             <field name="code">stock.ddt.sostituzione</field>
-            <field name="prefix">DDTSO/%(fy)s/</field>
+            <field name="prefix">DDTSO/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -166,7 +166,7 @@
         <record id="seq_ddt_clavorazione" model="ir.sequence">
             <field name="name">DDT C/lavorazione</field>
             <field name="code">stock.ddt.clavorazione</field>
-            <field name="prefix">DDTL/%(fy)s/</field>
+            <field name="prefix">DDTL/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -190,7 +190,7 @@
         <record id="seq_ddt_reso_clavorazione" model="ir.sequence">
             <field name="name">DDT Reso da c/lavorazione</field>
             <field name="code">stock.ddt.reso.clavorazione</field>
-            <field name="prefix">DDTLR/%(fy)s/</field>
+            <field name="prefix">DDTLR/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -214,7 +214,7 @@
         <record id="seq_ddt_criparazione" model="ir.sequence">
             <field name="name">DDT C/riparazione</field>
             <field name="code">stock.ddt.criparazione</field>
-            <field name="prefix">DDTR/%(fy)s/</field>
+            <field name="prefix">DDTR/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -235,7 +235,7 @@
         <record id="seq_ddt_reso_criparazione" model="ir.sequence">
             <field name="name">DDT Reso da riparazione</field>
             <field name="code">stock.ddt.reso.criparazione</field>
-            <field name="prefix">DDTRR/%(fy)s/</field>
+            <field name="prefix">DDTRR/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -259,7 +259,7 @@
         <record id="seq_ddt_criparazione_garanzia" model="ir.sequence">
             <field name="name">DDT C/riparazione in garanzia</field>
             <field name="code">stock.ddt.criparazione_garanzia</field>
-            <field name="prefix">DDTG/%(fy)s/</field>
+            <field name="prefix">DDTG/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -296,7 +296,7 @@
         <record id="seq_ddt_csostituzione_garanzia" model="ir.sequence">
             <field name="name">DDT C/sostituzione in garanzia</field>
             <field name="code">stock.ddt.csostituzione_garanzia</field>
-            <field name="prefix">DDTS/%(fy)s/</field>
+            <field name="prefix">DDTS/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -320,7 +320,7 @@
         <record id="seq_ddt_omaggio" model="ir.sequence">
             <field name="name">DDT C/omaggio</field>
             <field name="code">stock.ddt.omaggio</field>
-            <field name="prefix">DDTO/%(fy)s/</field>
+            <field name="prefix">DDTO/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -344,7 +344,7 @@
         <record id="seq_ddt_comodato" model="ir.sequence">
             <field name="name">DDT C/comodato</field>
             <field name="code">stock.ddt.comodato</field>
-            <field name="prefix">DDTCO/%(fy)s/</field>
+            <field name="prefix">DDTCO/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -368,7 +368,7 @@
         <record id="seq_ddt_installazione" model="ir.sequence">
             <field name="name">DDT C/installazione</field>
             <field name="code">stock.ddt.installazione</field>
-            <field name="prefix">DDTI/%(fy)s/</field>
+            <field name="prefix">DDTI/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -392,7 +392,7 @@
         <record id="seq_ddt_noleggio" model="ir.sequence">
             <field name="name">DDT C/noleggio</field>
             <field name="code">stock.ddt.noleggio</field>
-            <field name="prefix">DDTN/%(fy)s/</field>
+            <field name="prefix">DDTN/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -412,7 +412,7 @@
         <record id="seq_ddt_reso_noleggio" model="ir.sequence">
             <field name="name">DDT Reso c/noleggio</field>
             <field name="code">stock.ddt.reso.noleggio</field>
-            <field name="prefix">DDTRN/%(fy)s/</field>
+            <field name="prefix">DDTRN/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>
@@ -436,7 +436,7 @@
         <record id="seq_ddt_ctrasferimento" model="ir.sequence">
             <field name="name">DDT C/trasferimento</field>
             <field name="code">stock.ddt.ctrasferimento</field>
-            <field name="prefix">DDTTR/%(fy)s/</field>
+            <field name="prefix">DDTTR/%(range_year)s/</field>
             <field name="padding" eval="4"/>
             <field name="implementation">no_gap</field>
         </record>

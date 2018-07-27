@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016-2017 Sergio Corato
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,19 +19,19 @@
 #
 {
     'name': 'Module to configure sale',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'description': """
 Module to configure sale.
 Add the next groups to base user:
-- invoice so lines;
-- invoice deli orders;
+- invoice so lines; NO MORE EXISTS
+- invoice deli orders; NO MORE EXISTS
 - delivery invoice address;
 - proforma invoice;
 - sale pricelist;
 """,
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     "depends": [
         'account',
@@ -40,5 +40,5 @@ Add the next groups to base user:
     "data": [
         'data/group.xml',
     ],
-    'installable': False
+    'installable': True
 }

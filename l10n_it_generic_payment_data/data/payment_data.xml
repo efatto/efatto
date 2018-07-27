@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
+    <data noupdate="1">
 
 		<record id="payment_term_16_MS" model="account.payment.term">
             <field name="name">F24 16 GG M.S.</field>
@@ -9,10 +9,6 @@
             'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 16, 'option': 'fix_day_following_month'})]"/>
             <!--<field name="type">F4</field>-->
         </record>
-<!--existing-->
-<!--account.account_payment_term_15days-->
-<!--account.account_payment_term_net-->
-<!--account.account_payment_term_immediate-->
         <record id="payment_direct" model="account.payment.term">
             <field name="name">Direct Payment</field>
             <field name="note">Direct Payment</field>

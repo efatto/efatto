@@ -24,9 +24,9 @@
     'description': """
 Module to configure sale.
 Add the next groups to base user:
-- invoice so lines; NO MORE EXISTS
-- invoice deli orders; NO MORE EXISTS
-- delivery invoice address;
+- warning on sale;
+- discount on sale lines;
+- delivery address on invoice and sale;
 - proforma invoice;
 - sale pricelist;
 """,

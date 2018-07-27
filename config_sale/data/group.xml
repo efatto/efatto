@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-        <record model="res.groups" id="base.group_user">
-            <field name="implied_ids" eval="[(4, ref('sale.group_invoice_so_lines'))]"/>
-        </record>
-        <record model="res.groups" id="base.group_user"  >
-            <field name="implied_ids" eval="[(4, ref('sale_stock.group_invoice_deli_orders'))]"/>
-        </record>
+        <!--<record model="res.groups" id="base.group_user">-->
+            <!--<field name="implied_ids" eval="[(4, ref('sale.group_invoice_so_lines'))]"/>-->
+        <!--</record>-->
+        <!--<record model="res.groups" id="base.group_user"  >-->
+            <!--<field name="implied_ids" eval="[(4, ref('sale_stock.group_invoice_deli_orders'))]"/>-->
+        <!--</record>-->
         <record model="res.groups" id="base.group_user"  >
             <field name="implied_ids" eval="[(4, ref('sale.group_delivery_invoice_address'))]"/>
         </record>

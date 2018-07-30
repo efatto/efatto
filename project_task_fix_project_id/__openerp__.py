@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,12 +18,12 @@
 #
 #
 {
-    'name': 'Project Task project_id required fix',
-    'version': '8.0.0.1.0',
+    'name': 'Project Task project_id required',
+    'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'description': 'Fix for project_id not required in tasks.',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'description': 'This module set project_id required in tasks.',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'project',

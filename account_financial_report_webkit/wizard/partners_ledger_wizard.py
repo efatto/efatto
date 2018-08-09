@@ -36,6 +36,7 @@ class AccountReportPartnersLedgerWizard(orm.TransientModel):
                                           help="It adds the currency column"),
         'partner_ids': fields.many2many(
             'res.partner',
+            domain=[('parent_id', '=', False)],
             string='Filter on partner',
             help="Only selected partners will be printed. "
             "Leave empty to print all partners."),

@@ -53,6 +53,8 @@ class RibaUnsolved(models.TransientModel):
                             'name': _('Overdue Effects %s') %
                             riba_move_line.move_line_id.invoice.
                             internal_number,
+                            'invoice_number': riba_move_line.move_line_id.
+                            invoice.internal_number,
                             'account_id': distinta_line.partner_id.\
                             property_account_receivable.id,
                             'debit': riba_move_line.amount,

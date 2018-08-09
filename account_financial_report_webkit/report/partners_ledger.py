@@ -129,9 +129,18 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
             # remove partner_ids to filter only on accounts
             partner_ids = False
         else:
-            accounts = self.get_all_accounts(new_ids, exclude_type=['view'],
-                                             only_type=filter_type)
-
+            # SC: filter only on accounts of all partner, to exclude account
+            # of type receivable or payable not linked to partners
+            partner_ids = self.pool['res.partner'].search(
+                self.cr, self.uid, [('parent_id', '=', False)], {})
+            partners = self.pool['res.partner'].browse(
+                self.cr, self.uid, partner_ids, {})
+            if 'receivable' in filter_type:
+                accounts = [x.property_account_receivable.id for x in partners]
+            if 'payable' in filter_type:
+                accounts += [x.property_account_payable.id for x in partners]
+            # remove partner_ids to filter only on accounts
+            partner_ids = False
         if not accounts:
             raise osv.except_osv(_('Error'), _('No accounts to print.'))
 

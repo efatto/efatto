@@ -18,7 +18,9 @@ class CrmLead(models.Model):
             'search_default_partner_id': self.partner_id.id,
             'default_partner_id': self.partner_id.id,
         })
-        view_calendar_id = self.env.ref('project.view_task_calendar')
+        view_calendar_id = self.env.ref(
+            'project_task_state_color.'
+            'view_task_calendar_partner_shipping_color')
         view_tree_id = self.env.ref('project.view_task_tree2')
         view_form_id = self.env.ref('project.view_task_form2')
         return {

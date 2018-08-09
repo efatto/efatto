@@ -29,6 +29,7 @@
     'depends': [
         'sale',
         'project',
+        'project_task_state_color',
     ],
     'data': [
         'views/sale.xml',

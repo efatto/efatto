@@ -2,9 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 Rui Pedrosa Franco All Rights Reserved
-#    http://pt.linkedin.com/in/ruipedrosafranco
-#    $Id$
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,13 +19,13 @@
 #
 ##############################################################################
 {
-    'name': 'Project task date gantt better visibility',
-    'version': '8.0.1.0.0',
+    'name': 'Project task date better visibility',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'description':
-        'With this module dates for gantt are in top view',
-    'author': 'Sergio Corato - Simplerp srl',
-    'website': 'http://www.simplerp.it',
+        'With this module dates in kanban are more visible',
+    'author': 'Sergio Corato',
+    'website': 'https://efatto.it',
     'depends': [
         'project',
         'project_stage_state',
@@ -36,5 +34,5 @@
         'views/web_kanban.xml',
         'views/project_task_view.xml'
     ],
-    'installable': False,
+    'installable': True,
 }

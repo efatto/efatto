@@ -19,11 +19,12 @@
 #
 ##############################################################################
 {
-    'name': 'Project task date better visibility',
+    'name': 'Project task date visible and coloured on kanban',
     'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'description':
-        'With this module dates in kanban are more visible',
+        'With this module dates in kanban are more visible and coloured '
+        'on stage basis.',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'depends': [

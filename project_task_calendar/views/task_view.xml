@@ -10,6 +10,7 @@
                 <calendar position="replace">
                     <calendar color="user_id" date_start="date_start"
                               date_stop="date_end" string="Tasks"
+                              mode="week"
                               display="[name], [project_id] - [user_id]"
                     >
                         <field name="name"/>

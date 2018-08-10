@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2016 Sergio Corato
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,18 +20,18 @@
 ##############################################################################
 {
     'name': 'Better view of task on calendar',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'View task on calendar based on date_end and date_start',
     'description':
         'View task on calendar based on date_end and date_start',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'depends': [
         'project',
     ],
     'data': [
         'views/task_view.xml'
     ],
-    'installable': False,
+    'installable': True,
 }

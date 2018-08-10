@@ -6,9 +6,14 @@ from . import models
 
 
 def pre_init_hook(cr):
+    cr.execute("SELECT max(id) from project_task_type")
+    max_id = cr.fetchone()[0]
     #  first remove unused task type created manually
     cr.execute("DELETE from project_task_type where id not in "
-               "(select stage_id from project_task) and id > 8")
+               "(select stage_id from project_task) and id > 3 and "
+               "id <= %s" % (max_id - 8))
+    cr.execute("DELETE from project_task_type where id not in "
+               "(select stage_id from project_task) and id > %s" % max_id)
 
     cr.execute(
         "SELECT id, name from project_task_type where name in (SELECT name"
@@ -24,4 +29,8 @@ def pre_init_hook(cr):
 
     # finally remove unused task type resulting from removing duplications
     cr.execute("DELETE from project_task_type where id not in "
-               "(select stage_id from project_task) and id > 8")
+               "(select stage_id from project_task) and id > 3 and "
+               "id <= %s" % (max_id - 8))
+    cr.execute("DELETE from project_task_type where id not in "
+               "(select stage_id from project_task) and id > %s" % max_id)
+

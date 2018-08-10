@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2016 Sergio Corato - SimplERP SRL
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,20 +20,22 @@
 ##############################################################################
 {
     'name': 'Project task type name unique',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'Set project task type name (aka "stage") unique',
     'description':
-        'With this module the task type name does not accept duplicates. '
+        'With this module the task type name does not accept duplicates (case'
+        ' insensitive). '
         'For better result, rename task with the same function but different '
-        'name with the same name ("source" name) before installation.',
-    'author': 'Sergio Corato - Simplerp srl',
-    'website': 'http://www.simplerp.it',
+        'name with the same name ("source" name) before installation.'
+        'This module must be installed before createat db creation.',
+    'author': 'Sergio Corato',
+    'website': 'https://efatto.it',
     'depends': [
-        'project',
+        'project_task_default_stage',
     ],
     'data': [
     ],
-    'installable': False,
+    'installable': True,
     'pre_init_hook': 'pre_init_hook',
 }

@@ -20,12 +20,12 @@
 ##############################################################################
 {
     'name': 'Project task colors',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'description':
         'Change task color on state.',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'depends': [
         'calendar',
         'project',
@@ -33,8 +33,8 @@
         'web_widget_color',
     ],
     'data': [
-        'views/calendar.xml',
         'views/project.xml',
+        'views/calendar.xml',
     ],
     'installable': True,
 }

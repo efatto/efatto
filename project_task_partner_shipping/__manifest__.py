@@ -19,7 +19,7 @@
 #
 {
     'name': 'Task shipping address',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'With this module task has a shipping address',

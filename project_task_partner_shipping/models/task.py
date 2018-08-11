@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, api, models, _
+from odoo import fields, models, _
 
 
 class ProjectTask(models.Model):

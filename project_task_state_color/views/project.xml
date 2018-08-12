@@ -32,7 +32,7 @@
             <calendar position="replace">
                 <calendar color="project_id" date_start="date_start"
                           date_stop="date_end" string="Tasks"
-                          mode="week"
+                          mode="week" quick_add="False"
                           display="[name] c/o [partner_shipping_id] - [user_id] - [project_id]"
                 >
                     <field name="name"/>

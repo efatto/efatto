@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <record id="view_task_calendar_date" model="ir.ui.view">
             <field name="name">project.task.calendar.date</field>
             <field name="model">project.task</field>
@@ -11,8 +9,7 @@
                     <calendar color="user_id" date_start="date_start"
                               date_stop="date_end" string="Tasks"
                               mode="week" quick_add="False"
-                              display="[name], [project_id] - [user_id]"
-                    >
+                              display="[name], [project_id] - [user_id]">
                         <field name="name"/>
                         <field name="user_id"/>
                         <field name="project_id"/>
@@ -20,6 +17,5 @@
                 </calendar>
             </field>
         </record>
-
     </data>
 </openerp>

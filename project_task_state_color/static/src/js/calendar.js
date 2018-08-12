@@ -5,9 +5,9 @@ var CalendarView = require('web_calendar.CalendarView');
 
 CalendarView.include({
     event_data_transform: function (evt) {
-        var res = this._super.apply(this, arguments);
+        var r = this._super(evt);
         if (evt.hex_value ) {
-            var matches = res.className.match(/o_calendar_color_[0-9]*/g);
+            var matches = r.className.match(/o_calendar_color_[0-9]*/g);
                 if (matches.length)
                     var original_class_color = (matches[0].replace("calendar", "underline"));
             // set all obj with original_class_color class to evt.hex_value for underline_color_x
@@ -17,12 +17,12 @@ CalendarView.include({
                 x[j].classList.remove(original_class_color);
             }
             if (evt.kanban_state === 'done' || evt.state === 'done') {
-                res.backgroundColor = evt.hex_value_reduced;
+                r.backgroundColor = evt.hex_value_reduced;
             }else{
-                res.backgroundColor = evt.hex_value;
+                r.backgroundColor = evt.hex_value;
             }
         }
-        return res;
+        return r;
     },
 });
 

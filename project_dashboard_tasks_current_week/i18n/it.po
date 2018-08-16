@@ -23,7 +23,7 @@ msgstr "<span class=\"o_label\">Settimana in corso</span>"
 #. module: project_dashboard_tasks_current_week
 #: model:ir.ui.view,arch_db:project_dashboard_tasks_current_week.view_task_search_form
 msgid "Current week"
-msgstr "Settimana in corso"
+msgstr "In settimana"
 
 #. module: project_dashboard_tasks_current_week
 #: model:ir.ui.view,arch_db:project_dashboard_tasks_current_week.view_task_search_form

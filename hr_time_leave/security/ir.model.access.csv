@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_time_leave_user,hr.time_leave.user,model_hr_time_leave,base.group_hr_user,1,1,1,1
-access_hr_time_leave_employee,hr.time_leave.employee,model_hr_time_leave,base.group_user,1,1,1,1
-access_hr_time_leaves_status_employee,hr.time_leave.status employee,model_hr_time_leave_status,base.group_user,1,0,0,0
-access_hr_time_leave_status_manager,hr.time_leave.status manager,model_hr_time_leave_status,base.group_hr_manager,1,1,1,1
-access_resource_calendar_leaves_user,resource_calendar_leaves_user,resource.model_resource_calendar_leaves,base.group_hr_user,1,1,1,1
-access_calendar_event_hr_user,calendar.event.hr.user,calendar.model_calendar_event,base.group_hr_user,1,1,1,1
-access_calendar_event_type_manager,calendar.event.type.manager,calendar.model_calendar_event_type,base.group_hr_manager,1,1,1,1
-access_calendar_attendee_hr_user,calendar.attendee.hr.user,calendar.model_calendar_attendee,base.group_hr_user,1,1,1,1

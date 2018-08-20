@@ -39,7 +39,7 @@ For any doubt or query email us at support@webkul.com or raise a Ticket on http:
     'website': 'http://www.webkul.com',
     'data': ['wizard/wizard_message_view.xml'],
     'installable': True,
-    'active': True,
+    'active': False,
     'images':['static/description/Banner.png'],
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

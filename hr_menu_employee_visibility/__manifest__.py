@@ -23,11 +23,13 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'description':
-        'Hide hr menu for not employed user.',
+        'Hide hr menu (timesheet and holidays) for not employed user.',
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'hr',
+        'hr_holidays',
+        'hr_timesheet',
     ],
     'data': [
         'views/hr.xml',

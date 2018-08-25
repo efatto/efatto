@@ -2,24 +2,27 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, exceptions, _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from datetime import datetime
+from odoo import models, fields, api, exceptions, _
 
 
 class StockDdtType(models.Model):
     _inherit = 'stock.ddt.type'
 
-    carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', 'Carriage Condition')
-    goods_description_id = fields.Many2one(
-        'stock.picking.goods_description', 'Description of Goods')
-    transportation_reason_id = fields.Many2one(
+    # fields for migration compatibility from 8.0 todo test if it works!!!
+    default_carriage_condition_id = fields.Many2one(
+        'stock.picking.carriage_condition', 'Carriage Condition',
+        oldname='carriage_condition_id')
+    default_goods_description_id = fields.Many2one(
+        'stock.picking.goods_description', 'Description of Goods',
+        oldname='goods_description_id')
+    default_transportation_reason_id = fields.Many2one(
         'stock.picking.transportation_reason',
-        'Reason for Transportation')
-    transportation_method_id = fields.Many2one(
+        'Reason for Transportation',
+        oldname='transportation_reason_id')
+    default_transportation_method_id = fields.Many2one(
         'stock.picking.transportation_method',
-        'Method of Transportation')
+        'Method of Transportation',
+        oldname='transportation_method_id')
 
 
 class StockPickingPackagePreparation(models.Model):
@@ -30,23 +33,20 @@ class StockPickingPackagePreparation(models.Model):
                      'in_pack': [('readonly', True)],
                      'cancel': [('readonly', True)]}
 
-    ddt_date_start = fields.Datetime(
-        string='DDT date start',
-    )
-    date = fields.Date(
-        string='Document Date',
-        default=fields.Datetime.now,
-        states=FIELDS_STATES,
-    )
-    carrier_signature = fields.Binary(string="Carrier's signature")
-    driver_signature = fields.Binary(string="Driver's signature")
-    recipient_signature = fields.Binary(string="Recipient's signature")
-    partner_invoice_id = fields.Many2one(string='Invoice Address')
+    ddt_date_start = fields.Datetime(string='DDT date start',
+                                     copy=False)
+    date = fields.Date(string='Document Date',
+                       default=fields.Datetime.now,
+                       states=FIELDS_STATES,
+                       copy=False)
+    partner_invoice_id = fields.Many2one('res.partner',
+                                         string='Invoice Address')
     partner_shipping_id = fields.Many2one(string='Delivery Address')
     ddt_type_id = fields.Many2one(required=True)
 
     @api.multi
     def action_done(self):
+        # do not transfer already done pickings todo check if needed
         if not self.mapped('package_id'):
             raise exceptions.Warning(
                 _('The package has not been generated.')
@@ -55,38 +55,25 @@ class StockPickingPackagePreparation(models.Model):
         self.write({'state': 'done', 'date_done': fields.Datetime.now()})
 
     @api.multi
-    def action_draft(self):
-        if any(prep.state == 'done' for prep in self):
-            raise exceptions.Warning(
-                _('Done package preparations cannot be reset to draft.')
-            )
-        self.write({'state': 'draft'})
-
-    @api.multi
     def set_done(self):
-        # put fy in context to get fy sequence
+        # put date in context to get correct next id sequence
         for package in self:
             if not package.ddt_number:
-                fy_id = self.env['account.fiscalyear'].find(
-                    dt=datetime.strptime(
-                        package.date, DEFAULT_SERVER_DATE_FORMAT))
                 package.ddt_number = package.ddt_type_id.sequence_id.\
-                    with_context({'fiscalyear_id': fy_id}).get(
-                        package.ddt_type_id.sequence_id.code)
+                    with_context({'ir_sequence_date': package.date}
+                                 ).next_by_id()
         return super(StockPickingPackagePreparation, self).set_done()
 
     @api.multi
     def action_put_in_pack(self):
-        # put fy in context to get fy sequence
+        # put date in context to get correct next id sequence and check if
+        # the date of ddt is possible, if not change it to last date available
         for package in self:
             # ----- Assign ddt number if ddt type is set
             if package.ddt_type_id and not package.ddt_number:
-                fy_id = self.env['account.fiscalyear'].find(
-                    dt=datetime.strptime(
-                        package.date, DEFAULT_SERVER_DATE_FORMAT))
                 package.ddt_number = package.ddt_type_id.sequence_id.\
-                    with_context({'fiscalyear_id': fy_id}).get(
-                        package.ddt_type_id.sequence_id.code)
+                    with_context({'ir_sequence_date': package.date}
+                                 ).next_by_id()
                 # check date progression
                 ddt_type_ids = self.env['stock.ddt.type'].search([
                     ('sequence_id', '=', package.ddt_type_id.sequence_id.id)
@@ -107,40 +94,3 @@ class StockPickingPackagePreparation(models.Model):
                     else:
                         package.date = last_ddt.date
         return super(StockPickingPackagePreparation, self).action_put_in_pack()
-
-    @api.onchange('partner_id', 'ddt_type_id')
-    def on_change_partner(self):
-        super(StockPickingPackagePreparation, self).on_change_partner()
-        if self.ddt_type_id:
-            if not self.carriage_condition_id:
-                if self._context.get('carriage_condition_id', False):
-                    self.carriage_condition_id = self._context[
-                        'carriage_condition_id']
-                else:
-                    self.carriage_condition_id = \
-                        self.ddt_type_id.carriage_condition_id.id \
-                        if self.ddt_type_id.carriage_condition_id else False
-            if not self.goods_description_id:
-                if self._context.get('goods_description_id', False):
-                    self.goods_description_id = self._context[
-                        'goods_description_id']
-                else:
-                    self.goods_description_id = \
-                        self.ddt_type_id.goods_description_id.id \
-                        if self.ddt_type_id.goods_description_id else False
-            if not self.transportation_reason_id:
-                if self._context.get('transportation_reason_id', False):
-                    self.transportation_reason_id = self._context[
-                        'transportation_reason_id']
-                else:
-                    self.transportation_reason_id = \
-                        self.ddt_type_id.transportation_reason_id.id \
-                        if self.ddt_type_id.transportation_reason_id else False
-            if not self.transportation_method_id:
-                if self._context.get('transportation_method_id', False):
-                    self.transportation_method_id = self._context[
-                        'transportation_method_id']
-                else:
-                    self.transportation_method_id = \
-                        self.ddt_type_id.transportation_method_id.id \
-                        if self.ddt_type_id.transportation_method_id else False

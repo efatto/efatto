@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016-2017 Sergio Corato
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,25 +18,34 @@
 #
 #
 {
-    'name': 'DDT template and fiscal sequence',
-    'version': '8.0.1.0.0',
+    'name': 'DDT fixes',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
-    'description': '''This module add:
-    - possibility to create template ddt,
-    - assign via company if create_ddt is default,
-    - use of fiscal sequence for ddt.''',
+    'description': '''
+This module add:
+* ability to assign ddt type from sale order,
+* ability to assign default create_ddt via company,
+* fix use of fiscal sequence for ddt,
+* limit domain to picking addable to ddt to not already in other ddts,
+* remove package_id from tree view of ddts,
+* add ddt start date,
+* change ddt date type from datetime to date,
+* check ddt number progression on date last ddt emitted on the same sequence
+and fix date when not right,
+* fill ddt data from ddt type when not filled in sale order of partner,
+* block cancel of sale order is ddt and picking linked are in states done or 
+in pack.''',
     'depends': [
         'stock_picking_package_preparation',
         'l10n_it_ddt',
-        'web_widget_digitized_signature',
     ],
     'data': [
         'views/sale.xml',
         'views/stock.xml',
         'views/config.xml',
     ],
-    'installable': False
+    'installable': True,
 }

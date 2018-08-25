@@ -2,77 +2,20 @@
 <openerp>
     <data>
 
-        <record id="view_ddt_type_form_ext" model="ir.ui.view">
-            <field name="name">stock.ddt.type.form.ext</field>
-            <field name="model">stock.ddt.type</field>
-            <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_form"/>
-            <field name="arch" type="xml">
-                <field name="note" position="after">
-                        <field name="carriage_condition_id"/>
-                        <field name="goods_description_id"/>
-                        <field name="transportation_reason_id"/>
-                        <field name="transportation_method_id"/>
-                </field>
-            </field>
-        </record>
-
         <record id="stock_picking_package_preparation_reopen_form" model="ir.ui.view">
-          <field name="name">stock.picking.package.preparation.reopen.form</field>
           <field name="model">stock.picking.package.preparation</field>
           <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
           <field name="arch" type="xml">
               <field name="company_id" position="after">
                   <field name="ddt_date_start"/>
               </field>
-              <field name="picking_ids" position="replace">
-                <field name="picking_ids"
-                  options="{'no_create': True}"
-                  domain="[('partner_id', '=', partner_id),('ddt_ids', '=', False)]"
-                  context="{'search_default_available': 1,}"/>
+              <field name="picking_ids" position="attributes">
+                  <attribute name="domain">[('partner_id', '=', partner_id), ('ddt_ids', '=', False)]</attribute>
               </field>
           </field>
         </record>
 
-        <record id="vpicktree_group_id_visible" model="ir.ui.view">
-            <field name="name">stock.picking.tree</field>
-            <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.vpicktree"/>
-            <field name="arch" type="xml">
-                <field name="group_id" position="attributes">
-                    <attribute name="invisible" eval="0"/>
-                </field>
-                <field name="name" position="after">
-                    <field name="ddt_ids" widget="many2many_tags"/>
-                </field>
-            </field>
-        </record>
-
-        <record id="ddt_stock_picking_package_preparation_form_signature" model="ir.ui.view">
-            <field name="name">ddt.stock.picking.package.preparation.form.signature</field>
-            <field name="model">stock.picking.package.preparation</field>
-            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
-            <field name="arch" type="xml">
-                <notebook position="after">
-                    <group colspan="8" col="6">
-                        <group colspan="2" col="1">
-                            <label for="carrier_signature" class="oe_edit_only"/>
-                            <h2><field name="carrier_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                        <group colspan="2" col="1">
-                            <label for="driver_signature" class="oe_edit_only"/>
-                            <h2><field name="driver_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                        <group colspan="2" col="1">
-                            <label for="recipient_signature" class="oe_edit_only"/>
-                            <h2><field name="recipient_signature" widget="signature" width="400" height="100"/></h2>
-                        </group>
-                    </group>
-                </notebook>
-                <field name="weight_manual" position="replace"/>
-            </field>
-        </record>
         <record id="ddt_stock_picking_package_preparation_tree_remove_package_id" model="ir.ui.view">
-            <field name="name">ddt.stock.picking.package.preparation.tree</field>
             <field name="model">stock.picking.package.preparation</field>
             <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
             <field name="arch" type="xml">

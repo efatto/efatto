@@ -2,18 +2,18 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
-    create_ddt = fields.Boolean(
-        string='Automatically create the DDT',
-        )
+
+    create_ddt = fields.Boolean(string='Automatically create the DDT')
 
 
 class StockConfigSettingsDDT(models.TransientModel):
     _inherit = 'stock.config.settings'
+
     create_ddt = fields.Boolean(
         string="Automatically create the DDT",
         related='company_id.create_ddt')

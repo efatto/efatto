@@ -3,11 +3,10 @@
 	<data>
     
     <record model="ir.ui.view" id="view_stock_picking_package_preparation_line_setting_ddt">
-        <field name="name">view.stock.picking.package.preparation.line.setting.ddt</field>
         <field name="model">stock.config.settings</field>
         <field name="inherit_id" ref="stock_picking_package_preparation_line.view_stock_picking_package_preparation_line_setting" />
         <field name="arch" type="xml">
-            <xpath expr="//label[@string='Package Preparation']" position="before">
+            <xpath expr="//label" position="before">
                  <label for="id" string="DDT"/>
                     <div>
                         <div>

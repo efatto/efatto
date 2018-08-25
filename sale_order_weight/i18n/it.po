@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-02 14:27+0000\n"
-"PO-Revision-Date: 2017-01-02 14:27+0000\n"
+"POT-Creation-Date: 2018-08-25 13:24+0000\n"
+"PO-Revision-Date: 2018-08-25 13:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_weight
-#: field:sale.order,compute_weight:0
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_compute_weight
 msgid "Compute weight"
 msgstr "Calcola il peso"
 
 #. module: sale_order_weight
-#: field:sale.order,net_weight_custom:0
-msgid "Net weight custom"
-msgstr "Peso netto manuale"
-
-#. module: sale_order_weight
-#: help:sale.order,volume_custom:0
+#: model:ir.model.fields,help:sale_order_weight.field_sale_order_volume_custom
 msgid "Put here net volume when computed amount is not exact."
 msgstr "Indicare qui il volume quando il valore calcolato non è esatto."
 
 #. module: sale_order_weight
-#: help:sale.order,net_weight_custom:0
-msgid "Put here net weight when computed amount is not exact."
-msgstr "Indicare qui il peso netto quando il valore calcolato non è esatto."
-
-#. module: sale_order_weight
-#: help:sale.order,weight_custom:0
+#: model:ir.model.fields,help:sale_order_weight.field_sale_order_weight_custom
 msgid "Put here weight when computed amount is not exact."
 msgstr "Indicare qui il peso quando il valore calcolato non è esatto."
 
@@ -46,26 +36,11 @@ msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: sale_order_weight
-#: field:sale.order,volume_custom:0
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_volume_custom
 msgid "Volume custom"
 msgstr "Volume manuale"
 
 #. module: sale_order_weight
-#: field:sale.order,weight_custom:0
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_weight_custom
 msgid "Weight custom"
 msgstr "Peso manuale"
-
-#. module: sale_order_weight
-#: view:sale.order:sale_order_weight.view_order_form_weight
-msgid "{'invisible': True}"
-msgstr "{'invisible': True}"
-
-#. module: sale_order_weight
-#: field:sale.order,weight:0
-msgid "Weight"
-msgstr "Peso"
-
-#. module: sale_order_weight
-#: field:sale.order,net_weight:0
-msgid "Net weight"
-msgstr "Peso netto"

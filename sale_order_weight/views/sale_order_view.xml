@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
+    <data>
         <record id="view_order_form_weight" model="ir.ui.view">
             <field name="name">sale.order.form.weight</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
             <field name="arch" type="xml">
-                <field name="parcels" position="after">
+                <field name="weight" position="replace">
                     <field name="compute_weight"/>
-                    <field name="volume" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
                     <field name="weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
-                    <field name="net_weight" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
-                    <field name="volume_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                     <field name="weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
-                    <field name="net_weight_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                 </field>
-                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='th_weight']" position="attributes">
-                    <attribute name="attrs">{'invisible': True}</attribute>
-                </xpath>
-            </field>
-        </record>
-        <record id="product_template_form_view_volume" model="ir.ui.view">
-            <field name="name">product.template.common.form.volume</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_form_view"/>
-            <field name="arch" type="xml">
                 <field name="volume" position="replace">
-                    <field name="volume"/>
+                    <field name="volume" attrs="{'invisible': [('compute_weight','!=',True)]}"/>
+                    <field name="volume_custom" attrs="{'invisible': [('compute_weight','=',True)]}"/>
                 </field>
             </field>
         </record>
   </data>
-</openerp>
+</odoo>

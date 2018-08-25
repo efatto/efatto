@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2017 Sergio Corato
+#    Copyright (C) 2017-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,21 +19,21 @@
 #
 {
     'name': 'Sale order weight',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'description': 'This module add computed field to sale order with '
-                   'weight, net weight and volume of sold products.',
-    'website': 'http://www.efatto.it',
+    'description': '''
+This module add:
+----------------
+* computed field to sale order with weight, and volume of sold products.''',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
-        'product',
         'sale',
         'l10n_it_ddt',
     ],
     'data': [
-        'data/stock.xml',
         'views/sale_order_view.xml',
     ],
-    'installable': False
+    'installable': True,
 }

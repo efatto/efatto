@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from odoo import fields, models, api, _, exceptions
+from openerp import fields, models, api, _, exceptions
 
 
 class SaleOrder(models.Model):

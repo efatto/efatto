@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_view_ddt_pickings" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="l10n_it_ddt.sale_order_form_view_ddt"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='create_ddt']" position="after">
+                     <field name="ddt_type_id"/>
+                 </xpath>
+                 <xpath expr="//field[@name='ddt_ids']/.." position="after">
+                     <group string="Related Pickings">
+                         <field name="picking_ids" nolabel="1"/>
+                     </group>
+                 </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

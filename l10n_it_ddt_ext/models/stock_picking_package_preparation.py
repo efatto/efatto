@@ -8,7 +8,6 @@ from openerp import models, fields, api, exceptions, _
 class StockDdtType(models.Model):
     _inherit = 'stock.ddt.type'
 
-    # fields for migration compatibility from 8.0 todo test if it works!!!
     carriage_condition_id = fields.Many2one(
         'stock.picking.carriage_condition', 'Carriage Condition')
     goods_description_id = fields.Many2one(

@@ -56,7 +56,7 @@ msgstr "Preparazione pacco"
 #: code:addons/l10n_it_ddt_ext/models/sale.py:56
 #, python-format
 msgid "Picking is already done or in pack."
-msgstr "Ordine di consegna già fatto o nel pacco."
+msgstr "Ordine di consegna già completato o nel pacco."
 
 #. module: l10n_it_ddt_ext
 #: model:ir.ui.view,arch_db:l10n_it_ddt_ext.view_order_form_view_ddt_pickings

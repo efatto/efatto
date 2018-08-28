@@ -1,27 +1,18 @@
-<?xml version="1.0"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
 
-    <record model="ir.ui.view" id="sale_discount_order_line_form_complex">
-        <field name="name">order.line.form.complex</field>
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_form2"/>
-        <field name="arch" type="xml">
-            <field name="price_unit" position="after">
-                 <field name="complex_discount"/>
-            </field>
-        </field>
-    </record>
-    
     <record model="ir.ui.view" id="sale_discount_form_complex">
         <field name="name">order.form.complex</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <field name="price_unit" position="after">
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
                 <field name="complex_discount"/>
-            </field>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="complex_discount"/>
+            </xpath>
         </field>
     </record>
     

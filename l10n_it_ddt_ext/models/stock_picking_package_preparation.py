@@ -5,26 +5,6 @@
 from odoo import models, fields, api, exceptions, _
 
 
-class StockDdtType(models.Model):
-    _inherit = 'stock.ddt.type'
-
-    # fields for migration compatibility from 8.0 todo test if it works!!!
-    default_carriage_condition_id = fields.Many2one(
-        'stock.picking.carriage_condition', 'Carriage Condition',
-        oldname='carriage_condition_id')
-    default_goods_description_id = fields.Many2one(
-        'stock.picking.goods_description', 'Description of Goods',
-        oldname='goods_description_id')
-    default_transportation_reason_id = fields.Many2one(
-        'stock.picking.transportation_reason',
-        'Reason for Transportation',
-        oldname='transportation_reason_id')
-    default_transportation_method_id = fields.Many2one(
-        'stock.picking.transportation_method',
-        'Method of Transportation',
-        oldname='transportation_method_id')
-
-
 class StockPickingPackagePreparation(models.Model):
     _inherit = 'stock.picking.package.preparation'
     _order = 'ddt_number desc'

@@ -258,8 +258,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                         inv_lines.insert(i + a + 1, res_line)
                         a += 1
                         res_lines.remove(res_line)
-                    # do not search line with reconcile by invoice name
-                    continue
+                        continue
                 if len(line['lname']) > 4 and \
                         line['lname'] in res_line['lname'] \
                         or len(res_line['lname']) > 4 and \

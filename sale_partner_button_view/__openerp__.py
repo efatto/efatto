@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,13 +19,13 @@
 #
 {
     'name': 'Sale partner button view improvement',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
+    'author': 'Sergio Corato',
     'description': 'With this module partner will have a new button with'
-                   'only Offers, and button with Sales will be linked only to'
+                   'only Offers, and button with Sales will show only to'
                    'real sales.',
-    'website': 'http://www.simplerp.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'sale',
@@ -33,5 +33,5 @@
     'data': [
         'views/sale_partner_view.xml',
     ],
-    'installable': False
+    'installable': True,
 }

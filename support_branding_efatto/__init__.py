@@ -17,26 +17,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Italy - Default DDT data',
-    'version': '10.0.1.0.0',
-    'category': 'other',
-    'description': """
-    Default datas for DDTs.
-    """,
-    'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'l10n_it_ddt_ext',
-        'sale',
-        'stock_account',
-        'stock',
-    ],
-    "data": [
-        'data/groups.xml',
-        'data/ddt_type.xml',
-        'data/stock_location.xml',
-    ],
-    'installable': True,
-}

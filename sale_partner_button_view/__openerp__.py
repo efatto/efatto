@@ -19,7 +19,7 @@
 #
 {
     'name': 'Sale partner button view improvement',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'With this module partner will have a new button with'

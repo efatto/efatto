@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2017-2018 Sergio Corato
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,18 +19,23 @@
 #
 ##############################################################################
 {
-    'name': 'Sale complex discount',
-    'version': '9.0.1.0.0',
-    'category': 'other',
-    'description': 'Add multiple discount field, like 50+14.5+5',
+    'name': 'Project task type name unique',
+    'version': '10.0.1.0.0',
+    'category': 'Extra Tools',
+    'summary': 'Set project task type name (aka "stage") unique',
+    'description':
+        'With this module the task type name does not accept duplicates (case'
+        ' insensitive). '
+        'For better result, rename task with the same function but different '
+        'name with the same name ("source" name) before installation.'
+        'This module must be installed before createat db creation.',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
     'depends': [
-        'sale',
+        'project_task_default_stage',
     ],
     'data': [
-        'views/sale_view.xml',
     ],
     'installable': True,
+    'pre_init_hook': 'pre_init_hook',
 }

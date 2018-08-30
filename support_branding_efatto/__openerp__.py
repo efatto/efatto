@@ -20,7 +20,7 @@
 {
     'name': 'Support branding Efatto',
     "description": "Add Efatto brand to an Odoo instance extension",
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Dependecy/Hidden',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',

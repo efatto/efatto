@@ -2,8 +2,8 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from odoo import fields, api, models, _
-from odoo.exceptions import UserError
+from openerp import fields, api, models, _
+from openerp.exceptions import UserError
 
 
 class ProjectTaskType(models.Model):

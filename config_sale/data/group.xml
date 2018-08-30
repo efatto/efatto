@@ -6,7 +6,6 @@
              (4, ref('sale.group_discount_per_so_line')),
              (4, ref('sale.group_delivery_invoice_address')),
              (4, ref('account.group_proforma_invoices')),
-             (4, ref('sale.group_warning_sale')),
              ]"/>
         </record>
         <record id="base.main_company" model="res.company">

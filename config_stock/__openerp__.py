@@ -19,7 +19,7 @@
 #
 {
     'name': 'Module to configure stock',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'other',
     'description': """
 Module to configure stock.

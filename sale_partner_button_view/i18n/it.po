@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_button_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-19 12:25+0000\n"
+"PO-Revision-Date: 2016-05-19 14:31+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#. module: sale_partner_button_view
+#: field:res.partner,draft_sale_order_count:0
+msgid "# of Draft Sales Order"
+msgstr "Numero di Ordini di Vendita in Bozza"
+
+#. module: sale_partner_button_view
+#: model:ir.actions.act_window,help:sale_partner_button_view.act_res_partner_3_sale_order
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a Offer for this customer.\n"
+"              </p><p>\n"
+"                Odoo will help you efficiently handle the complete sale flow:\n"
+"                quotation, sales order, delivery, invoicing and\n"
+"                payment.\n"
+"              </p><p>\n"
+"                The social feature helps you organize discussions on each sales\n"
+"                order, and allow your customer to keep track of the evolution\n"
+"                of the sales order.\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Fai clic qui per creare una nuova Offerta per questo Cliente.\n"
+"              </p><p>\n"
+"                SimplERP ti assisterà nella gestione dell'intero processo di vendita:\n"
+"                preventivi, ordini di vendita, consegne, fatturazione e\n"
+"                pagamenti.\n"
+"              </p><p>\n"
+"                L'approccio di tipo \"social\" ti consente di gestire le discussioni relative ad ogni\n"
+"                ordine, favorendo il monitoraggio di ciascuna vendita, anche da parte del cliente!\n"
+"              </p>\n"
+"            "
+
+#. module: sale_partner_button_view
+#: view:res.partner:sale_partner_button_view.crm_lead_partner_kanban_view_offer
+#: view:res.partner:sale_partner_button_view.res_partner_view_buttons_offer
+msgid "Offers"
+msgstr "Offerte"
+
+#. module: sale_partner_button_view
+#: model:ir.model,name:sale_partner_button_view.model_res_partner
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: sale_partner_button_view
+#: model:ir.actions.act_window,name:sale_partner_button_view.act_res_partner_3_sale_order
+msgid "Sales"
+msgstr "Vendite"

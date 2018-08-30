@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sale.act_res_partner_2_sale_order" model="ir.actions.act_window">
+            <field name="name">Sales</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_partner_id': active_id}</field>
+            <field name="domain">[('state', 'not in', ['draft', 'sent', 'cancel'])]</field>
+            <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the Invoice and collect the Payment.
+              </p><p>
+                Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the Sales Order list.
+              </p>
+            </field>
+        </record>
+        <record id="act_res_partner_3_quotation_order" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_partner_id': active_id}</field>
+            <field name="domain">[('state', 'in', ['draft', 'sent', 'cancel'])]</field>
+            <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the Invoice and collect the Payment.
+              </p><p>
+                Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the Sales Order list.
+              </p>
+            </field>
+        </record>
+        <record id="res_partner_view_buttons_quotation" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']/button[@name='%(sale.act_res_partner_2_sale_order)d']" position="attributes">
+                    <attribute name="icon">fa-eur</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" type="action"
+                        name="%(sale_partner_button_view.act_res_partner_3_quotation_order)d"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        icon="fa-eur">
+                        <field string="Quotations" name="quotation_order_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Partner kanban view inherte -->
+        <record model="ir.ui.view" id="crm_lead_partner_kanban_view_offer">
+            <field name="name">res.partner.kanban.saleorder.inherit.offer</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale.crm_lead_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="mobile" position="after">
+                    <field name="quotation_order_count"/>
+                </field>
+                <xpath expr="//div[@class='oe_kanban_partner_links']" position="inside">
+                    <span t-if="record.quotation_order_count.value>0" class="badge" style="background:lightgrey">
+                        <i class="fa fa-fw fa-eur"/><t t-esc="record.quotation_order_count.value"/></span>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_partner_links']/span[@t-if='record.sale_order_count.value>0']/i" position="attributes">
+                    <attribute name="class">fa fa-fw fa-eur</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

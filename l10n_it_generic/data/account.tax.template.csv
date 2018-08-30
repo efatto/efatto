@@ -73,35 +73,35 @@ id,description,chart_template_id:id,name,sequence,amount,amount_type,type_tax_us
 21a,21a,l10n_it_chart_generic,Iva al 21% (credito),901,21,percent,purchase,False,tax_tag_21a,,1820005,1820005
 20v,20v,l10n_it_chart_generic,Iva al 20% (debito),902,20,percent,sale,False,tax_tag_20v,,4805045,4805045
 20a,20a,l10n_it_chart_generic,Iva al 20% (credito),903,20,percent,purchase,False,tax_tag_20a,,1820005,1820005
-2010a,2010a,l10n_it_chart_generic,Iva al 20% detraibile 10% (I),100,18,percent,purchase,False,,,,
-2010b,2010b,l10n_it_chart_generic,Iva al 20% detraibile 10% (D),200,2,percent,purchase,False,,,1820005,1820005
+2010a,2010a,l10n_it_chart_generic,Iva al 20% detraibile 10% (I),100,18,percent,none,False,,,,
+2010b,2010b,l10n_it_chart_generic,Iva al 20% detraibile 10% (D),200,2,percent,none,False,,,1820005,1820005
 2010,2010,l10n_it_chart_generic,Iva al 20% detraibile 10%,904,20,group,purchase,False,tax_tag_2010,"2010a,2010b",,
-2015a,2015a,l10n_it_chart_generic,Iva al 20% detraibile 15% (I),100,17,percent,purchase,False,,,,
-2015b,2015b,l10n_it_chart_generic,Iva al 20% detraibile 15% (D),200,3,percent,purchase,False,,,1820005,1820005
+2015a,2015a,l10n_it_chart_generic,Iva al 20% detraibile 15% (I),100,17,percent,none,False,,,,
+2015b,2015b,l10n_it_chart_generic,Iva al 20% detraibile 15% (D),200,3,percent,none,False,,,1820005,1820005
 2015,2015,l10n_it_chart_generic,Iva al 20% detraibile 15%,907,20,group,purchase,False,tax_tag_2015,"2015a,2015b",,
-2040a,2040a,l10n_it_chart_generic,Iva al 20% detraibile 40% (I),100,12,percent,purchase,False,,,,
-2040b,2040b,l10n_it_chart_generic,Iva al 20% detraibile 40% (D),200,8,percent,purchase,False,,,1820005,1820005
+2040a,2040a,l10n_it_chart_generic,Iva al 20% detraibile 40% (I),100,12,percent,none,False,,,,
+2040b,2040b,l10n_it_chart_generic,Iva al 20% detraibile 40% (D),200,8,percent,none,False,,,1820005,1820005
 2040,2040,l10n_it_chart_generic,Iva al 20% detraibile 40%,910,20,group,purchase,False,tax_tag_2040,"2040a,2040b",,
 20AO,20AO,l10n_it_chart_generic,Iva al 20% indetraibile,913,20,group,purchase,False,tax_tag_20AO,,,
-20I5a,20I5a,l10n_it_chart_generic,Iva al 20% detraibile al 50% (I),100,10,percent,purchase,False,,,,
-20I5b,20I5b,l10n_it_chart_generic,Iva al 20% detraibile al 50% (D),200,10,percent,purchase,False,,,1820005,1820005
+20I5a,20I5a,l10n_it_chart_generic,Iva al 20% detraibile al 50% (I),100,10,percent,none,False,,,,
+20I5b,20I5b,l10n_it_chart_generic,Iva al 20% detraibile al 50% (D),200,10,percent,none,False,,,1820005,1820005
 20I5,20I5,l10n_it_chart_generic,Iva al 20% detraibile al 50%,914,20,group,purchase,False,tax_tag_20I5,"20I5a,20I5b",,
 21v INC,21v INC,l10n_it_chart_generic,Iva al 21% (debito) INC,917,21,percent,sale,True,tax_tag_21vINC,,4805045,4805045
 20v INC,20v INC,l10n_it_chart_generic,Iva al 20% (debito) INC,918,20,percent,sale,True,tax_tag_20vINC,,4805045,4805045
-2110a,2110a,l10n_it_chart_generic,Iva al 21% detraibile 10% (I),100,18.9,percent,purchase,False,,,,
-2110b,2110b,l10n_it_chart_generic,Iva al 21% detraibile 10% (D),200,2.1,percent,purchase,False,,,1820005,1820005
+2110a,2110a,l10n_it_chart_generic,Iva al 21% detraibile 10% (I),100,18.9,percent,none,False,,,,
+2110b,2110b,l10n_it_chart_generic,Iva al 21% detraibile 10% (D),200,2.1,percent,none,False,,,1820005,1820005
 2110,2110,l10n_it_chart_generic,Iva al 21% detraibile 10%,919,21,group,purchase,False,tax_tag_2110,"2110a,2110b",,
-2115a,2115a,l10n_it_chart_generic,Iva al 21% detraibile 15% (I),100,17.85,percent,purchase,False,,,,
-2115b,2115b,l10n_it_chart_generic,Iva al 21% detraibile 15% (D),200,3.15,percent,purchase,False,,,1820005,1820005
+2115a,2115a,l10n_it_chart_generic,Iva al 21% detraibile 15% (I),100,17.85,percent,none,False,,,,
+2115b,2115b,l10n_it_chart_generic,Iva al 21% detraibile 15% (D),200,3.15,percent,none,False,,,1820005,1820005
 2115,2115,l10n_it_chart_generic,Iva al 21% detraibile 15%,922,21,group,purchase,False,tax_tag_2115,"2115a,2115b",,
-2140a,2140a,l10n_it_chart_generic,Iva al 21% detraibile 40% (I),100,12.6,percent,purchase,False,,,,
-2140b,2140b,l10n_it_chart_generic,Iva al 21% detraibile 40% (D),200,8.4,percent,purchase,False,,,1820005,1820005
+2140a,2140a,l10n_it_chart_generic,Iva al 21% detraibile 40% (I),100,12.6,percent,none,False,,,,
+2140b,2140b,l10n_it_chart_generic,Iva al 21% detraibile 40% (D),200,8.4,percent,none,False,,,1820005,1820005
 2140,2140,l10n_it_chart_generic,Iva al 21% detraibile 40%,925,21,group,purchase,False,tax_tag_2140,"2140a,2140b",,
 21AOb,21AOb,l10n_it_chart_generic,Iva al 21% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
 21AOa,21AOa,l10n_it_chart_generic,Iva al 21% indetraibile (I),100,21,percent,none,False,,,,
 21AO,21AO,l10n_it_chart_generic,Iva al 21% indetraibile,928,21,group,purchase,False,tax_tag_21AO,"21AOb,21AOa",,
-21I5a,21I5a,l10n_it_chart_generic,Iva al 21% detraibile al 50% (I),100,10.5,percent,purchase,False,,,,
-21I5b,21I5b,l10n_it_chart_generic,Iva al 21% detraibile al 50% (D),200,10.5,percent,purchase,False,,,1820005,1820005
+21I5a,21I5a,l10n_it_chart_generic,Iva al 21% detraibile al 50% (I),100,10.5,percent,none,False,,,,
+21I5b,21I5b,l10n_it_chart_generic,Iva al 21% detraibile al 50% (D),200,10.5,percent,none,False,,,1820005,1820005
 21I5,21I5,l10n_it_chart_generic,Iva al 21% detraibile al 50%,929,21,group,purchase,False,tax_tag_21I5,"21I5a,21I5b",,
 21art38a,21art38a,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 21% (credito),932,21,percent,purchase,False,tax_tag_21art38a,,1820006,1820006
 21art38v,21art38v,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 21% (debito),933,21,percent,sale,False,tax_tag_21art38v,,4805046,4805046

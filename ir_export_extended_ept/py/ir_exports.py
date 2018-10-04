@@ -2,10 +2,11 @@ import base64
 import datetime
 from openerp.osv import osv
 from openerp.addons.web import http
-from openerp.exceptions import except_orm, Warning
+from openerp.exceptions import ValidationError
 import openerp.addons.web.http as oeweb
 from openerp import models, fields, api, _
 import openerp
+from dateutil.relativedelta import relativedelta
 from operator import attrgetter
 try:
     import xlwt
@@ -87,89 +88,87 @@ class ir_exports( models.Model ):
         return data
 
     @api.multi
-    def export_with_domain( self ):
-        context = dict( self._context ) or {}
-        e_data = {}
-        line_fields = []
-        if self.export_fields :
-            rexport_fields_sorted = self.export_fields.sorted( key=attrgetter( 'sequence', 'heading', 'name' ) )  # export_obj.export_fields.sorted(key=lambda r: r.sequence)
-            field_names = map( lambda x:x.name, rexport_fields_sorted )
-            field_headings = map( lambda x:x.heading, rexport_fields_sorted )
-            export_data = []
-            domain = []
-            if self.domain :
-                domain = eval( self.domain )
-            record_ids = self.env[ self.resource ].search( domain )
+    def export_with_domain(self):
+        if self.export_fields:
+            rexport_fields_sorted = self.export_fields.sorted(
+                key=attrgetter('sequence', 'heading', 'name'))
+            field_names = map( lambda x:x.name, rexport_fields_sorted)
+            field_headings = map( lambda x:x.heading, rexport_fields_sorted)
+            domain = eval(self.domain) if self.domain else []
+            record_ids = self.env[self.resource ].search(domain)
             if record_ids :
-                export_data = record_ids.export_data( field_names, True ).get( 'datas', [] )
-                data = base64.encodestring( self.from_data( field_headings, export_data ) )
+                export_data = record_ids.export_data(
+                    field_names, True).get('datas', [])
+                data = base64.encodestring(
+                    self.from_data(field_headings, export_data))
                 attach_vals = {
-                         'name':'%s.xls' % ( self.resource ),
-                         'datas':data,
-                         'datas_fname':'%s.xls' % ( self.resource ),
+                         'name': '%s.xls' % self.resource,
+                         'datas': data,
+                         'datas_fname': '%s.xls' % self.resource,
                          }
 
-                doc_id = self.env['ir.attachment'].create( attach_vals )
-                if self.attachment_id :
-                    try :
+                doc_id = self.env['ir.attachment'].create(attach_vals)
+                if self.attachment_id:
+                    try:
                         self.attachment_id.unlink()
-                    except :
+                    except:
                         pass
-                self.write( {'attachment_id':doc_id.id} )
+                self.write({'attachment_id': doc_id.id})
                 return {
-                    'type' : 'ir.actions.act_url',
-                    'url':   '/web/binary/saveas?model=ir.attachment&field=datas&filename_field=name&id=%s' % ( doc_id.id ),
+                    'type': 'ir.actions.act_url',
+                    'url': '/web/binary/saveas?model=ir.attachment&field='
+                           'datas&filename_field=name&id=%s' % doc_id.id,
                     'target': 'self',
                     }
 
-
     @api.multi
-    def export_old_file( self ):
-        if self.attachment_id :
+    def export_old_file(self):
+        if self.attachment_id:
             return {
-                'type' : 'ir.actions.act_url',
-                'url':   '/web/binary/saveas?model=ir.attachment&field=datas&filename_field=name&id=%s' % ( self.attachment_id.id ),
+                'type': 'ir.actions.act_url',
+                'url': '/web/binary/saveas?model=ir.attachment&field=datas&'
+                       'filename_field=name&id=%s' % self.attachment_id.id,
                 'target': 'self',
                 }
-
         else:
-            raise osv.except_osv( _( 'Attachment not found !' ), _( 'There is no last export for this record.' ) )
+            raise ValidationError(
+                _('Attachment not found! Missing export for this record.'))
 
     @api.multi
-    def export_and_send( self ):
-        assert len( self._ids ) == 1, 'This option should only be used for a single id at a time.'
-        ir_model_data = self.env['ir.model.data']
-        if self.attachment_id :
-            try:
-                template_id = ir_model_data.get_object_reference( 'ir_export_extended_ept', 'email_template_export_with_domain_ept' )[1]
-            except ValueError:
-                template_id = False
-            try:
-                compose_form_id = ir_model_data.get_object_reference( 'mail', 'email_compose_message_wizard_form' )[1]
-            except ValueError:
-                compose_form_id = False
-            ctx = dict()
-            ctx.update( {
-                        'default_model': 'ir.exports',
-                        'default_attachment_ids': [( 6, 0, [self.attachment_id.id] )],
-                        'default_res_id': self._ids[0],
-                        'default_use_template': bool( template_id ),
-                        'default_template_id': template_id,
-                        'default_composition_mode': 'comment',
-                        'mark_so_as_sent': True
-                        } )
-
+    def export_and_send(self):
+        self.ensure_one()
+        if not self.attachment_id:
+            # call popup_wizard, do export and save
+            wizard = self.env['export.wizard.ept']
+            config = wizard.default_get(
+                    list(wizard.fields_get()))
+            wiz_id = wizard.create(config)
+            wiz_id.download_file()
+        template = self.env.ref('ir_export_extended_ept.'
+                                'email_template_export_with_domain_ept')
+        compose_form = self.env.ref('mail.email_compose_message_wizard_form')
+        ctx = {
+            'default_model': 'ir.exports',
+            'default_active_model': 'ir.exports',
+            'default_attachment_ids': [(6, 0, [self.attachment_id.id])],
+            'default_res_id': self.id,
+            'default_use_template': bool(template),
+            'default_template_id': template.id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+        }
+        if self._context.get('auto_send', False):
+            composer = self.env['mail.compose.message'].with_context(
+                ctx).sudo().create({})
+            composer.sudo().send_mail()
+        else:
             return {
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'mail.compose.message',
-                'views': [( compose_form_id, 'form' )],
-                'view_id': compose_form_id,
+                'views': [(compose_form.id, 'form')],
+                'view_id': compose_form.id,
                 'target': 'new',
                 'context': ctx,
-                }
-        else:
-            raise Warning( _( """There is no file found for attachment. Please click on "Export Data" button and select the option "Latest and Save".""" ) )
-
-
+            }

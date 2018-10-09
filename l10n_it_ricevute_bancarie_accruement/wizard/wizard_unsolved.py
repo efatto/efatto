@@ -64,7 +64,9 @@ class RibaUnsolved(models.TransientModel):
                             'payment_term_type': wizard.new_payment_term_type
                                                  or False,
                             }),)
-                    unsolved_desc += ' %s' % distinta_line.sequence
+                    unsolved_desc += ' %s (%s)' % (
+                        distinta_line.sequence,
+                        riba_move_line.move_line_id.invoice.internal_number)
                     unsolved_amount += riba_move_line.amount
         lines.append(
             (0, 0, {

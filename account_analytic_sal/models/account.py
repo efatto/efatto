@@ -113,12 +113,12 @@ class AccountAnalyticSal(models.Model):
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
         'SAL percent completion',
-        digits_compute=dp.get_precision('Payment Term'),
+        digits=dp.get_precision('Payment Term'),
         help='Percent SAL completion. When reached will start action linked.'
     )
     percent_toinvoice = fields.Float(
         'SAL percent to invoice',
-        digits_compute=dp.get_precision('Payment Term'))
+        digits=dp.get_precision('Payment Term'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
         compute='_compute_amount_toinvoice',

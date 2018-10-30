@@ -253,18 +253,16 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         for i, line in enumerate(inv_lines):
             a = 0
             for res_line in res_lines:
-                if res_line['rec_id']:
+                # line with reconcile_id are never passed with name search
+                if res_line.get('rec_id', False):
                     if res_line['rec_id'] == line['rec_id']:
                         inv_lines.insert(i + a + 1, res_line)
                         a += 1
                         res_lines.remove(res_line)
-                        continue
-                if len(line['lname']) > 4 and \
-                        line['lname'] in res_line['lname'] \
-                        or len(res_line['lname']) > 4 and \
-                        res_line['lname'] in line['lname'] or \
+                elif line['lname'] == res_line['lname'] \
+                        or res_line['lname'] == line['lname'] or \
                         line.get('invoice_number', False) and \
-                        line['invoice_number'] in res_line['lname']:
+                        line['invoice_number'] == res_line['lname']:
                     inv_lines.insert(i+a+1, res_line)
                     a += 1
                     res_lines.remove(res_line)

@@ -159,15 +159,20 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
         #    previous periods
         #  - 'opening_balance' means display the move lines of the opening
         #    period
-        init_balance = main_filter in ('filter_no', 'filter_period')
+        init_balance = main_filter in ('filter_date', 'filter_no', 'filter_period')
         initial_balance_mode = init_balance and self._get_initial_balance_mode(
             start) or False
 
         initial_balance_lines = {}
         if initial_balance_mode == 'initial_balance':
-            initial_balance_lines = self._compute_partners_initial_balances(
-                accounts, start_period, partner_filter=partner_ids,
-                exclude_reconcile=False)
+            if main_filter == 'filter_date':
+                initial_balance_lines = self._compute_partners_initial_balances_dates(
+                    accounts, start_date, partner_filter=partner_ids,
+                    exclude_reconcile=False)
+            else:
+                initial_balance_lines = self._compute_partners_initial_balances(
+                    accounts, start_period, partner_filter=partner_ids,
+                    exclude_reconcile=False)
 
         ledger_lines = self._compute_partner_ledger_lines(
             accounts, main_filter, target_move, start, stop,

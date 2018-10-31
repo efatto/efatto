@@ -341,6 +341,74 @@ class CommonPartnersReportHeaderWebkit(CommonReportHeaderWebkit):
         res = self.cursor.dictfetchall()
         return self._tree_move_line_ids(res)
 
+    # added to give initial balance by date
+    def _partners_initial_balance_line_ids_dates(self, account_ids, start_date,
+                                           partner_filter,
+                                           exclude_reconcile=False,
+                                           force_period_ids=False,
+                                           date_stop=None):
+        search_param = {
+            'date_start': start_date,
+            'account_ids': tuple(account_ids),
+        }
+        sql = ("SELECT ml.id, ml.account_id, ml.partner_id "
+               "FROM account_move_line ml "
+               "INNER JOIN account_account a "
+               "ON a.id = ml.account_id "
+               "WHERE ml.date <= %(date_start)s "
+               "AND ml.account_id in %(account_ids)s ")
+        if exclude_reconcile:
+            if not date_stop:
+                raise Exception(
+                    "Missing \"date_stop\" to compute the open invoices.")
+            search_param.update({'date_stop': date_stop})
+            sql += ("AND ((ml.reconcile_id IS NULL) "
+                    "OR (ml.reconcile_id IS NOT NULL \
+                    AND ml.last_rec_date > date(%(date_stop)s))) ")
+        if partner_filter:
+            sql += "AND ml.partner_id in %(partner_ids)s "
+            search_param.update({'partner_ids': tuple(partner_filter)})
+
+        self.cursor.execute(sql, search_param)
+        return self.cursor.dictfetchall()
+
+    def _compute_partners_initial_balances_dates(self, account_ids, start_date,
+                                           partner_filter=None,
+                                           exclude_reconcile=False,
+                                           force_period_ids=False):
+        """We compute initial balance.
+        If form is filtered by date all initial balance are correct
+        This function will sum pear and apple in currency amount if account
+        as no secondary currency"""
+        if isinstance(account_ids, (int, long)):
+            account_ids = [account_ids]
+        move_line_ids = self._partners_initial_balance_line_ids_dates(
+            account_ids, start_date, partner_filter,
+            exclude_reconcile=exclude_reconcile,
+            force_period_ids=force_period_ids)
+        if not move_line_ids:
+            move_line_ids = [{'id': -1}]
+        sql = ("SELECT ml.account_id, ml.partner_id,"
+               "       sum(ml.debit) as debit, sum(ml.credit) as credit,"
+               "       sum(ml.debit-ml.credit) as init_balance,"
+               "       CASE WHEN a.currency_id ISNULL THEN 0.0\
+                       ELSE sum(ml.amount_currency) \
+                       END as init_balance_currency, "
+               "       c.name as currency_name "
+               "FROM account_move_line ml "
+               "INNER JOIN account_account a "
+               "ON a.id = ml.account_id "
+               "LEFT JOIN res_currency c "
+               "ON c.id = a.currency_id "
+               "WHERE ml.id in %(move_line_ids)s "
+               "GROUP BY ml.account_id, ml.partner_id, a.currency_id, c.name")
+        search_param = {
+            'move_line_ids': tuple([move_line['id'] for move_line in
+                                    move_line_ids])}
+        self.cursor.execute(sql, search_param)
+        res = self.cursor.dictfetchall()
+        return self._tree_move_line_ids(res)
+
     ############################################################
     # Partner specific helper                                  #
     ############################################################

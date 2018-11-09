@@ -19,7 +19,7 @@ class AccountInvoice(models.Model):
                         inv.amount_untaxed:
                     raise UserError(
                         _('Fiscal position rule residual amount %.2f is not '
-                          'enough to validate this invoice with amount %.2f.'
+                          'enough to validate this invoice with amount %.2f. '
                           'Remove fiscal position rule to continue.')
                         % (inv.account_fiscal_position_rule_id.amount_max -
                            inv.account_fiscal_position_rule_id.amount_total,
@@ -37,7 +37,7 @@ class AccountInvoice(models.Model):
                         inv.amount_untaxed:
                     raise UserError(
                         _('Fiscal position rule residual amount %.2f is not '
-                          'enough to validate this invoice with amount %.2f.'
+                          'enough to validate this invoice with amount %.2f. '
                           'Remove fiscal position rule to continue.')
                         % (inv.account_fiscal_position_rule_id.amount_max -
                            inv.account_fiscal_position_rule_id.amount_total,

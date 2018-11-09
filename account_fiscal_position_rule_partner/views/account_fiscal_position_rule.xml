@@ -42,7 +42,8 @@
             </field>
         </record>
 
-        <menuitem id="account_fiscal_position_rule.menu_action_account_fiscal_position_rule_form"
+        <menuitem name="Lettere d'intento"
+                  id="account_fiscal_position_rule.menu_action_account_fiscal_position_rule_form"
                   action="account_fiscal_position_rule.action_account_fiscal_position_rule_form"
                   parent="account.menu_finance_receivables" sequence="15"/>
 

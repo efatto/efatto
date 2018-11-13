@@ -13,7 +13,9 @@ class AccountInvoice(models.Model):
     def action_number(self):
         res = super(AccountInvoice, self).action_number()
         for inv in self:
-            if inv.account_fiscal_position_rule_id:
+            if inv.account_fiscal_position_rule_id and inv.type in [
+                'out_invoice',
+            ]:
                 if inv.account_fiscal_position_rule_id.amount_max < \
                         inv.account_fiscal_position_rule_id.amount_total + \
                         inv.amount_untaxed:
@@ -31,7 +33,9 @@ class AccountInvoice(models.Model):
     def button_reset_taxes(self):
         res = super(AccountInvoice, self).button_reset_taxes()
         for inv in self:
-            if inv.account_fiscal_position_rule_id:
+            if inv.account_fiscal_position_rule_id and inv.type in [
+                'out_invoice',
+            ]:
                 if inv.account_fiscal_position_rule_id.amount_max < \
                         inv.account_fiscal_position_rule_id.amount_total + \
                         inv.amount_untaxed:

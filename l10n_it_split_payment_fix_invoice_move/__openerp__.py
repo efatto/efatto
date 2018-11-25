@@ -24,7 +24,8 @@
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'license': 'AGPL-3',
-    'description': 'Invoice move created with correct tax values',
+    'description': 'Invoice move created with correct tax values in case '
+                   'of refund invoice',
     'depends': [
         'l10n_it_split_payment',
     ],

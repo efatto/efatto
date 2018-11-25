@@ -18,12 +18,13 @@
 #
 #
 {
-    'name': 'Project task no date start change',
+    'name': 'Project task freeze date and partner',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'description': 'Changing user normally change date start to today. '
-                   'With this module, date start is not changed.',
+    'description': 'Stop to:'
+                   '- changing user normally change date start to today, '
+                   '- changing project change partner to project partner. ',
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [

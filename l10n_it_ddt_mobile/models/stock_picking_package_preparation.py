@@ -49,6 +49,7 @@ class StockPickingPackagePreparation(models.Model):
                     'package_preparation_id': pack.id,
                     'lot_id': False,
                 })
+        return True
 
     @api.multi
     def action_put_in_pack(self):

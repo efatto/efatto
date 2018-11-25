@@ -28,6 +28,7 @@
     'depends': [
         'account',
         'account_fiscal_position_rule',
+        'sale',
     ],
     'data': [
         'views/partner_view.xml',

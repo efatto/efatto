@@ -248,8 +248,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 res[acc_id][partner_id] = lines
         return res
 
-    @staticmethod
-    def _get_sorted_invoices(lines):
+    def _get_sorted_invoices(self, lines):
         inv_lines = sorted([x for x in lines if x['invoice_number']],
                            key=lambda z: (
                                z['invoice_number'] + z['date_maturity']))
@@ -257,9 +256,16 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                            key=lambda y: y['mdate'])
         for i, line in enumerate(inv_lines):
             a = 0
+            inv = self.pool['account.invoice'].browse(
+                self.cr, self.uid, line['invoice_id'], {})
             for res_line in res_lines:
                 # line with reconcile_id are never passed with name search
-                if res_line.get('rec_id', False):
+                if res_line.get('id', False) in [
+                        x.id for x in inv.unsolved_move_line_ids]:
+                    inv_lines.insert(i + a + 1, res_line)
+                    a += 1
+                    res_lines.remove(res_line)
+                elif res_line.get('rec_id', False):
                     if res_line['rec_id'] == line['rec_id']:
                         inv_lines.insert(i + a + 1, res_line)
                         a += 1

@@ -107,15 +107,15 @@
                             ## period
                             <div class="act_as_cell" style="width: 70px;">${_('Period')}</div>
                             ## move
-                            <div class="act_as_cell" style="width: 70px;">${_('Entry')}</div>
+                            <div class="act_as_cell" style="width: 74px;">${_('Entry')}</div>
                             ## journal
-                            <div class="act_as_cell" style="width: 160px;">${_('Template')}</div>
+                            <div class="act_as_cell" style="width: 156px;">${_('Template')}</div>
                             ## partner
                             <div class="act_as_cell" style="width: 140px;">${_('Partner')}</div>
                             ## label
-                            <div class="act_as_cell" style="width: 170px;">${_('Invoice Number')}</div>
+                            <div class="act_as_cell" style="width: 166px;">${_('Invoice Number')}</div>
                             ## reconcile
-                            <div class="act_as_cell" style="width: 50px;">${_('Date Due')}</div>
+                            <div class="act_as_cell" style="width: 54px;">${_('Date Due')}</div>
                             ## debit
                             <div class="act_as_cell amount" style="width: 80px;">${_('Debit')}</div>
                             ## credit

@@ -105,11 +105,11 @@
                             ## date
                             <div class="act_as_cell first_column" style="width: 50px;">${_('Date')}</div>
                             ## period
-                            <div class="act_as_cell" style="width: 70px;">${_('Period')}</div>
+                            <div class="act_as_cell" style="width: 50px;">${_('Period')}</div>
                             ## move
                             <div class="act_as_cell" style="width: 74px;">${_('Entry')}</div>
                             ## journal
-                            <div class="act_as_cell" style="width: 156px;">${_('Template')}</div>
+                            <div class="act_as_cell" style="width: 170px;">${_('Template')}</div>
                             ## partner
                             <div class="act_as_cell" style="width: 140px;">${_('Partner')}</div>
                             ## label
@@ -121,10 +121,10 @@
                             ## credit
                             <div class="act_as_cell amount" style="width: 80px;">${_('Credit')}</div>
                             ## balance cumulated
-                            <div class="act_as_cell amount" style="width: 80px;">${_('Cum. Bal.')}</div>
+                            <div class="act_as_cell amount" style="width: 86px;">${_('Cum. Bal.')}</div>
                             %if amount_currency(data):
                                 ## currency balance
-                                <div class="act_as_cell amount sep_left" style="width: 80px;">${_('Curr. Balance')}</div>
+                                <div class="act_as_cell amount sep_left" style="width: 86px;">${_('Curr. Balance')}</div>
                                 ## curency code
                                 <div class="act_as_cell amount" style="width: 30px; text-align: right;">${_('Curr.')}</div>
                             %endif

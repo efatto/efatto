@@ -254,13 +254,15 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                                z['invoice_number'] + z['date_maturity']))
         res_lines = sorted([x for x in lines if x not in inv_lines],
                            key=lambda y: y['mdate'])
+        inv = False
         for i, line in enumerate(inv_lines):
             a = 0
-            inv = self.pool['account.invoice'].browse(
-                self.cr, self.uid, line['invoice_id'], {})
+            if line.get('invoice_id', False):
+                inv = self.pool['account.invoice'].browse(
+                    self.cr, self.uid, line['invoice_id'], {})
             for res_line in res_lines:
                 # line with reconcile_id are never passed with name search
-                if res_line.get('id', False) in [
+                if inv and res_line.get('id', False) in [
                         x.id for x in inv.unsolved_move_line_ids]:
                     inv_lines.insert(i + a + 1, res_line)
                     a += 1

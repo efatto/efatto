@@ -100,7 +100,7 @@
                         ## date invoice
                         <div class="act_as_cell" style="width: 60px;">${_('Doc. Date')}</div>
                         ## move
-                        <div class="act_as_cell" style="width: 80px;">${_('Entry')}</div>
+                        <div class="act_as_cell" style="width: 100px;">${_('Entry')}</div>
                         ## journal
                         <div class="act_as_cell" style="width: 95px;">${_('Journal')}</div>
                         ## account code
@@ -110,7 +110,7 @@
                         ## due date
                         <div class="act_as_cell" style="width: 75px;">${_('Due date')}</div>
                         ## template
-                        <div class="act_as_cell" style="width: 150px;">${_('Template')}</div>
+                        <div class="act_as_cell" style="width: 130px;">${_('Template')}</div>
                         ## label
                         <div class="act_as_cell" style="width: 170px;">${_('Description')} - ${account.code} ${account.name[:50]} </div>
                         ## debit

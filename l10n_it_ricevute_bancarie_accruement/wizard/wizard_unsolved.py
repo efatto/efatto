@@ -44,6 +44,7 @@ class RibaUnsolved(models.TransientModel):
         lines = []
         unsolved_desc = ''
         unsolved_amount = 0
+        unsolved_move_line_ids = {}
         for distinta_line in distinta_lines:
             for riba_move_line in distinta_line.move_line_ids:
                 if riba_move_line.move_line_id.account_id.id == distinta_line.\
@@ -68,6 +69,8 @@ class RibaUnsolved(models.TransientModel):
                         distinta_line.sequence,
                         riba_move_line.move_line_id.invoice.internal_number)
                     unsolved_amount += riba_move_line.amount
+                    unsolved_move_line_ids.update({
+                        riba_move_line.move_line_id: distinta_line})
         lines.append(
             (0, 0, {
                 'name': _('Bank'),
@@ -93,30 +96,23 @@ class RibaUnsolved(models.TransientModel):
             move_vals.update({'template_id': wizard.move_template_id.id})
         move_id = move_pool.create(move_vals)
 
-        for move_line in move_id.line_id:
-            for distinta_line in distinta_lines:
-                if move_line.account_id.id == distinta_line.partner_id.\
-                        property_account_receivable.id:
-                    for riba_move_line in distinta_line.move_line_ids:
-                        invoice_ids = []
-                        if riba_move_line.move_line_id.invoice:
-                            invoice_ids = [
-                                riba_move_line.move_line_id.invoice.id]
-                        elif riba_move_line.move_line_id.unsolved_invoice_ids:
-                            invoice_ids = [
-                                i.id for i in
-                                riba_move_line.move_line_id.
-                                unsolved_invoice_ids
-                            ]
-                        invoice_pool.browse(invoice_ids).write({
-                            'unsolved_move_line_ids': [(4, move_line.id)],
-                        })
-
-                distinta_line.write({
-                    'unsolved_move_id': move_id.id,
-                    'state': 'unsolved',
-                })
-                distinta_line.distinta_id.signal_workflow('unsolved')
+        for unsolved_move_line in unsolved_move_line_ids:
+            invoice = invoice_pool.browse(unsolved_move_line.invoice.id)
+            distinta_line = unsolved_move_line_ids[unsolved_move_line]
+            for move_line in move_id.line_id:
+                if move_line.account_id.id == distinta_line.partner_id. \
+                        property_account_receivable.id and \
+                        move_line.invoice_number == distinta_line.\
+                        invoice_number:
+                    invoice.write({
+                        'unsolved_move_line_ids': [(4, move_line.id)]})
+                    break
+            distinta_line.write({
+                'unsolved_move_id': move_id.id,
+                'state': 'unsolved',
+            })
+            unsolved_move_line_ids[unsolved_move_line].distinta_id.\
+                signal_workflow('unsolved')
         return {
             'name': _('Unsolved Entry'),
             'view_type': 'form',

@@ -264,9 +264,34 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 # line with reconcile_id are never passed with name search
                 if inv and res_line.get('id', False) in [
                         x.id for x in inv.unsolved_move_line_ids]:
-                    inv_lines.insert(i + a + 1, res_line)
-                    a += 1
-                    res_lines.remove(res_line)
+                    settlement_lines = inv.move_id.line_id.filtered(
+                        lambda t: t.account_id.id == inv.partner_id.
+                        property_account_receivable.id)
+                    if len(settlement_lines) > 1:
+                        # if this line have date > all settlement lines
+                        # put in the last
+                        last_settlement_line = settlement_lines.sorted(
+                            key=lambda k: k.date_maturity, reverse=True)[0]
+                        if last_settlement_line.date <= line['mdate']:
+                            if line['id'] == last_settlement_line.id:
+                                inv_lines.insert(i + a + 1, res_line)
+                                a += 1
+                                res_lines.remove(res_line)
+                            continue
+                        # if there is a another settlement_line with
+                        # date <= this line, continue
+                        elif settlement_lines.filtered(
+                                lambda k: line['mdate'] < k.date <=
+                                res_line['mdate'] and k.id != line['id']):
+                            continue
+                        else:
+                            inv_lines.insert(i + a + 1, res_line)
+                            a += 1
+                            res_lines.remove(res_line)
+                    else:
+                        inv_lines.insert(i + a + 1, res_line)
+                        a += 1
+                        res_lines.remove(res_line)
                 elif res_line.get('rec_id', False):
                     if res_line['rec_id'] == line['rec_id']:
                         inv_lines.insert(i + a + 1, res_line)

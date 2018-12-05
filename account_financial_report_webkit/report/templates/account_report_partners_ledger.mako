@@ -181,13 +181,6 @@
                           orphan_space = True
                           total_debit += line.get('debit') or 0.0
                           total_credit += line.get('credit') or 0.0
-                          #not useful...
-                          #label_elements = [line.get('lname') or '']
-                          #if line.get('invoice_number'):
-                          #  label_elements.append("(%s)" % (line['invoice_number'],))
-                          #if line.get('supplier_invoice_number'):
-                          #  label_elements.append("(%s)" % (line['supplier_invoice_number'],))
-                          #label = ' '.join(label_elements)
                           %>
                           <div class="act_as_row lines">
                               ## date

@@ -29,6 +29,7 @@ class StockInventory(models.Model):
 
     date_inventory = fields.Date(default=fields.Date.context_today)
     search_child_location = fields.Boolean()
+    no_consumable = fields.Boolean()
 
     @api.model
     def _get_inventory_lines_by_date(self, inventory):
@@ -44,15 +45,26 @@ class StockInventory(models.Model):
                 'Filter available by date are:'
                 '"None", "Categories", "Product", "Products"')
         if inventory.filter == 'categories':
-            product_ids = self.env['product.product'].search([
-                ('categ_id', 'in', inventory.categ_ids.ids)
-            ])
+            if inventory.no_consumable:
+                product_ids = self.env['product.product'].search([
+                    ('categ_id', 'in', inventory.categ_ids.ids),
+                    ('type', '=', 'product'),
+                ])
+            else:
+                product_ids = self.env['product.product'].search([
+                    ('categ_id', 'in', inventory.categ_ids.ids)
+                ])
         elif inventory.filter == 'product':
             product_ids = inventory.product_id
         elif inventory.filter == 'products':
             product_ids = inventory.product_ids
         else:
-            product_ids = self.env['product.product'].search([])
+            if inventory.no_consumable:
+                product_ids = self.env['product.product'].search([
+                    ('type', '=', 'product'),
+                ])
+            else:
+                product_ids = self.env['product.product'].search([])
         res = {}
         flag = False
         move_obj = self.env['stock.move']

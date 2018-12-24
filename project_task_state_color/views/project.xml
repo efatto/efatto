@@ -24,8 +24,8 @@
             </field>
         </field>
     </record>
-    <record id="view_task_calendar_partner_shipping_color" model="ir.ui.view">
-        <field name="name">project.task.calendar.partner.shipping.color</field>
+    <record id="view_task_calendar_partner_color" model="ir.ui.view">
+        <field name="name">project.task.calendar.partner.color</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_calendar"/>
         <field name="arch" type="xml">
@@ -33,7 +33,7 @@
                 <calendar color="project_id" date_start="date_start"
                           date_stop="date_end" string="Tasks"
                           mode="week" quick_add="False"
-                          display="[name] c/o [partner_shipping_id] - [user_id] - [project_id]"
+                          display="[name] - [user_id] - [project_id]"
                 >
                     <field name="name"/>
                     <field name="hex_value"/>
@@ -43,7 +43,6 @@
                     <field name="user_id"/>
                     <field name="project_id"/>
                     <field name="partner_id"/>
-                    <field name="partner_shipping_id"/>
                 </calendar>
             </calendar>
         </field>

@@ -29,7 +29,6 @@
     'depends': [
         'calendar',
         'project',
-        'project_task_partner_shipping',
         'web_widget_color',
     ],
     'data': [

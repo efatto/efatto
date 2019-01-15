@@ -48,6 +48,12 @@ class AccountAnalyticAccount(models.Model):
                 max(account.amount_max, account.fix_price_to_invoice) \
                 - account.ca_invoiced
 
+    def _get_total_invoiced(self, account):
+        res = super(AccountAnalyticAccount, self)._get_total_invoiced(account)
+        if account.invoice_on_timesheets and not account.fix_price_invoices:
+            res += account.ca_invoiced
+        return res
+
     remaining_ca = fields.Float(
         compute='remaining_ca_calc',
         string='Remaining Revenue',

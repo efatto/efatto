@@ -1,45 +1,65 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, fields, api, exceptions
-import openerp.addons.decimal_precision as dp
+
+from odoo import models, fields, api, exceptions
+import odoo.addons.decimal_precision as dp
 
 
 class AccountAnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
-
-    @api.multi
-    def get_progress(self):
-        for project in self:
-            project.progress_works_planned = 0.0
-            if project.quantity_max and project.hours_quantity:
-                project.progress_works_planned = \
-                    project.hours_quantity / project.quantity_max * 100
+    #
+    # @api.multi
+    # def get_account_hours_quantity(self):
+    #     for account in self:
+    #         account.hours_quantity = sum(account.task_ids.hours)
+    #
+    #
+    # @api.multi
+    # def get_progress(self):
+    #     for account in self:
+    #         account.progress_works_planned = 0.0
+    #         if account.quantity and account.hours_quantity:
+    #             account.progress_works_planned = \
+    #                 account.hours_quantity / account.quantity * 100
 
     @api.multi
     def _get_amount_sal_to_invoice(self):
-        for project in self:
-            project.amount_sal_to_invoice = 0.0
-            for sal in project.account_analytic_sal_ids:
-                if sal.done or project.progress_works_planned > \
-                        sal.percent_completion > 0.0:
+        for account in self:
+            total = 0.0
+            for sal in account.account_analytic_sal_ids:
+                if sal.done or sal.percent_completion > 0.0:
+                    # account.progress_works_planned >
                     # and not sal.invoiced:
-                    project.amount_sal_to_invoice += sal.amount_toinvoice
-                    project.amount_sal_to_invoice -= sal.amount_invoiced
+                    total += sal.amount_toinvoice
+                    total -= sal.amount_invoiced
+            account.amount_sal_to_invoice += total
 
     # FIX amount_fix_price is always the total from orders, even if invoiced
     @api.multi
     def fix_price_to_invoice_calc(self):
         sale_obj = self.env['sale.order']
         for account in self:
-            account.fix_price_to_invoice = 0.0
+            total = 0.0
             sale_ids = sale_obj.search([
                 ('project_id', '=', account.id),
-                ('state', 'not in', ['draft','sent','cancel']) #'manual')
+                ('state', 'not in', ['draft', 'sent', 'cancel']) #'manual')
             ])
             for sale in sale_ids:
-                account.fix_price_to_invoice += sale.amount_untaxed
+                total += sale.amount_untaxed
+            account.fix_price_to_invoice = total
+
+    @api.multi
+    def ca_invoiced_calc(self):
+        invoice_line_obj = self.env['account.invoice.line']
+        for account in self:
+            total = 0.0
+            line_ids = invoice_line_obj.search([
+                ('account_analytic_id', '=', account.id),
+                ('invoice_id.state', 'not in',
+                    ['draft', 'sent', 'cancel']) #'manual')
+            ])
+            for line in line_ids:
+                total += line.price_subtotal
+            account.fix_price_to_invoice = total
 
     @api.multi
     def remaining_ca_calc(self):
@@ -48,6 +68,18 @@ class AccountAnalyticAccount(models.Model):
                 max(account.amount_max, account.fix_price_to_invoice) \
                 - account.ca_invoiced
 
+    use_sal = fields.Boolean(
+        string='Use SAL'
+    )
+    ca_invoiced = fields.Float(
+        compute='ca_invoiced_calc',
+        string='Invoiced amount',
+        digits_compute=dp.get_precision('Account')
+    )
+    amount_max = fields.Float(
+        string='Account Amount Max',
+        digits_compute=dp.get_precision('Account')
+    )
     remaining_ca = fields.Float(
         compute='remaining_ca_calc',
         string='Remaining Revenue',
@@ -58,17 +90,17 @@ class AccountAnalyticAccount(models.Model):
         compute='fix_price_to_invoice_calc',
         string='Total Fix Price',
         help="Sum of quotations for this contract.")
-    progress_works_planned = fields.Float(
-        help='Progress on hours planned on contract',
-        compute='get_progress')
+    # progress_works_planned = fields.Float(
+    #     help='Progress on hours planned on contract',
+    #     compute='get_progress')
     account_analytic_sal_ids = fields.One2many(
         comodel_name='account.analytic.sal',
         inverse_name='account_analytic_id',
         string='Analytic SAL progression'
     )
     amount_sal_to_invoice = fields.Float(
-        help='Amount to invoice from SAL',
         compute='_get_amount_sal_to_invoice',
+        help='Amount to invoice from SAL',
     )
 
 
@@ -99,8 +131,8 @@ class AccountAnalyticSal(models.Model):
             if amount_invoiced >= sal.amount_toinvoice > 0.0:
                 sal.invoiced = True
             # set automatically sal done when progress>sal percent completion
-            if sal.account_analytic_id.progress_works_planned > \
-                    sal.percent_completion > 0.0:
+            if sal.percent_completion > 0.0:
+                #sal.account_analytic_id.progress_works_planned >
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 
@@ -130,7 +162,7 @@ class AccountAnalyticSal(models.Model):
     done = fields.Boolean(
         string='SAL done',
         help='SAL is marked done when completion percent is superior'
-             ' of project progress bar. It can be marked even manually.'
+             ' of account progress bar. It can be marked even manually.'
     )
     invoiced = fields.Boolean(
         string='SAL invoiced',

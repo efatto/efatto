@@ -6,22 +6,39 @@
             <field name="name">account.analytic.account.inherit.sal</field>
             <field name="model">account.analytic.account</field>
             <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
-                <group name='contract' position="after">
-                    <field name="account_analytic_sal_ids">
-                        <tree string="Analytic SAL" editable="top">
-                            <field name="name"/>
-                            <field name="percent_completion"/>
-                            <field name="percent_toinvoice"/>
-                            <field name="amount_toinvoice" readonly="1" sum="Total to Invoice"/>
-                            <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
-                            <field name="done"/>
-                            <field name="invoiced"/>
-                            <!--<field name="action_id"/>-->
-                            <!--<field name="action_res_model_id"/>-->
-                            <!--<field name="action_res_id"/>-->
-                        </tree>
-                    </field>
+                <group name='main' position="after">
+                    <separator string="Use SAL"
+                           attrs="{'invisible': [('use_sal','!=',True)]}"
+                           />
+                    <div>
+                        <field name="use_sal" class="oe_inline"/>
+                        <label for="use_sal" />
+                        <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
+                            <field name="amount_sal_to_invoice"/>
+                            <field name="amount_max"/>
+                            <field name="ca_invoiced"/>
+                            <field name="remaining_ca"/>
+                            <field name="fix_price_to_invoice"/>
+                        </group>
+                        <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
+                            <field name="account_analytic_sal_ids" nolabel="1">
+                                <tree string="Analytic SAL" editable="top">
+                                    <field name="name"/>
+                                    <field name="percent_completion"/>
+                                    <field name="percent_toinvoice"/>
+                                    <field name="amount_toinvoice" readonly="1" sum="Total to Invoice"/>
+                                    <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
+                                    <field name="done"/>
+                                    <field name="invoiced"/>
+                                    <!--<field name="action_id"/>-->
+                                    <!--<field name="action_res_model_id"/>-->
+                                    <!--<field name="action_res_id"/>-->
+                                </tree>
+                            </field>
+                        </group>
+                    </div>
                 </group>
             </field>
         </record>
@@ -31,7 +48,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/sheet[@string='Invoice']/notebook/page[@string='Invoice Lines']/field[@name='invoice_line']/tree/field[@name='account_id']" position="after">
+                <xpath expr="//page/field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="after">
                     <field name="account_analytic_sal_id"
                            groups="analytic.group_analytic_accounting"
                            domain="[('account_analytic_id', '=', account_analytic_id)]"/>
@@ -39,24 +56,6 @@
             </field>
         </record>
 
-        <record id="account_analytic_account_form_form_sal" model="ir.ui.view">
-            <field name="name">account.analytic.account.inherit.analysis.sal</field>
-            <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form"/>
-            <field name="arch" type="xml">
-                <field name='remaining_hours' position="after">
-                    <div class="oe_grey">
-                        <field name="progress_works_planned" widget="progressbar"/>
-                    </div>
-                </field>
-                <label for="quantity_max" position="before">
-                    <label for="amount_sal_to_invoice"/>
-                    <div>
-                        <field name="amount_sal_to_invoice"/>
-                    </div>
-                </label>
-            </field>
-        </record>
         <record id="view_account_analytic_sal_filter" model="ir.ui.view">
             <field name="name">account.analytic.sal.filter</field>
             <field name="model">account.analytic.sal</field>
@@ -102,20 +101,9 @@
             <field name="search_view_id" ref="view_account_analytic_sal_filter"/>
         </record>
         <menuitem action="action_account_analytic_sal_line_form" id="account_analytic_sal"
-            parent="base.menu_invoiced"
-            groups="analytic.group_analytic_accounting"/>
-
-        <record id="view_account_analytic_account_tree_c2c_3_sal" model="ir.ui.view">
-            <field name="name">account.analytic.account.list.contract.sal</field>
-            <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_tree_c2c_3"/>
-            <field name="arch" type="xml">
-                <field name="toinvoice_total" position="after">
-                    <field name="amount_sal_to_invoice" sum="Total SAL to Invoice" string="SAL to Invoice"/>
-                </field>
-            </field>
-        </record>
-
+            parent="account.menu_finance_receivables"
+            groups="analytic.group_analytic_accounting"
+            sequence="100"/>
 
     </data>
 </openerp>

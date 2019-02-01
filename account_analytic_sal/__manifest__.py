@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2017 Sergio Corato
+#    Copyright (C) 2017-2019 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,19 +20,20 @@
 ##############################################################################
 {
     'name': 'Account analytic SAL',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'depends': [
         'analytic',
-        'account_analytic_analysis',
+        'contract',
+        'project',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/account.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

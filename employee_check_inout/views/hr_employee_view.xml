@@ -4,7 +4,7 @@
 
         <!-- hr employee new kanban view -->
         <record model="ir.ui.view" id="hr_employee_kanban_view_acespritech">
-            <field name="name">hr.employee.kanban</field>
+            <field name="name">Employee check-in-out</field>
             <field name="model">hr.employee</field>
             <field name="arch" type="xml">
                 <kanban>
@@ -52,11 +52,12 @@
          </record>
 
         <record id="action_hr_employee_acespritech" model="ir.actions.act_window">
-            <field name="name">Employees</field>
+            <field name="name">Employees check-in-out</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hr.employee</field>
             <field name="view_type">form</field>
             <field name="view_mode">kanban</field>
+            <field name="domain">[('user_id','=',uid)]</field>
         </record>
 
         <record id="action_hr_employee_kanban_view_acepritech" model="ir.actions.act_window.view">

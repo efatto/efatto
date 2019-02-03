@@ -2,7 +2,7 @@
 ##############################################################################
 #    Copyright (c) 2012 - Present Acespritech Solutions Pvt. Ltd.
 #    Author: <info@acespritech.com>
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2019 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
     'description': """
 Allows to keep track of employee attendance and can print attendance report.
     """,
-    'author': "Acespritech Solutions Pvt. Ltd., SimplERP Srl",
+    'author': "Acespritech Solutions Pvt. Ltd., Sergio Corato",
     'website': "www.acespritech.com",
     'images': ['static/description/main_screenshot.png'],
     'depends': ['base', 'hr_attendance', 'hr_timesheet'],

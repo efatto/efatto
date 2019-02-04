@@ -74,17 +74,17 @@ class AccountAnalyticAccount(models.Model):
     ca_invoiced = fields.Float(
         compute='ca_invoiced_calc',
         string='Invoiced amount',
-        digits_compute=dp.get_precision('Account')
+        digits=dp.get_precision('Account')
     )
     amount_max = fields.Float(
         string='Account Amount Max',
-        digits_compute=dp.get_precision('Account')
+        digits=dp.get_precision('Account')
     )
     remaining_ca = fields.Float(
         compute='remaining_ca_calc',
         string='Remaining Revenue',
         help="Computed using the formula: Max Invoice Price - Invoiced Amount",
-        digits_compute=dp.get_precision('Account')
+        digits=dp.get_precision('Account')
     )
     fix_price_to_invoice = fields.Float(
         compute='fix_price_to_invoice_calc',
@@ -145,20 +145,20 @@ class AccountAnalyticSal(models.Model):
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
         'SAL percent completion',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         help='Percent SAL completion. When reached will start action linked.'
     )
     percent_toinvoice = fields.Float(
         'SAL percent to invoice',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
         compute='_compute_amount_toinvoice',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     amount_invoiced = fields.Float(
         'SAL amount invoiced',
         compute='get_invoiced_sal',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     done = fields.Boolean(
         string='SAL done',
         help='SAL is marked done when completion percent is superior'

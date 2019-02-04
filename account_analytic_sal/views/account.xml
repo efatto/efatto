@@ -97,9 +97,12 @@
             <field name="arch" type="xml">
                 <form string="Analytic SAL">
                     <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
                         <group>
                             <field name="account_analytic_id"/>
-                            <field name="name"/>
                         </group>
                         <group col="4">
                             <field name="percent_completion"/>

@@ -33,9 +33,8 @@ class AccountAnalyticAccount(models.Model):
                     total -= sal.amount_invoiced
             account.amount_sal_to_invoice += total
 
-    # FIX amount_fix_price is always the total from orders, even if invoiced
     @api.multi
-    def fix_price_to_invoice_calc(self):
+    def _get_amount_sale_to_invoice(self):
         sale_obj = self.env['sale.order']
         for account in self:
             total = 0.0
@@ -45,10 +44,10 @@ class AccountAnalyticAccount(models.Model):
             ])
             for sale in sale_ids:
                 total += sale.amount_untaxed
-            account.fix_price_to_invoice = total
+            account.amount_sale_to_invoice = total
 
     @api.multi
-    def ca_invoiced_calc(self):
+    def _get_amount_invoiced(self):
         invoice_line_obj = self.env['account.invoice.line']
         for account in self:
             total = 0.0
@@ -59,20 +58,20 @@ class AccountAnalyticAccount(models.Model):
             ])
             for line in line_ids:
                 total += line.price_subtotal
-            account.fix_price_to_invoice = total
+            account.amount_invoiced = total
 
     @api.multi
-    def remaining_ca_calc(self):
+    def _get_amount_remaining(self):
         for account in self:
-            account.remaining_ca = \
-                max(account.amount_max, account.fix_price_to_invoice) \
-                - account.ca_invoiced
+            account.amount_remaining = \
+                max(account.amount_max, account.amount_sale_to_invoice) \
+                - account.amount_invoiced
 
     use_sal = fields.Boolean(
         string='Use SAL'
     )
-    ca_invoiced = fields.Float(
-        compute='ca_invoiced_calc',
+    amount_invoiced = fields.Float(
+        compute='_get_amount_invoiced',
         string='Invoiced amount',
         digits=dp.get_precision('Account')
     )
@@ -80,15 +79,15 @@ class AccountAnalyticAccount(models.Model):
         string='Account Amount Max',
         digits=dp.get_precision('Account')
     )
-    remaining_ca = fields.Float(
-        compute='remaining_ca_calc',
+    amount_remaining = fields.Float(
+        compute='_get_amount_remaining',
         string='Remaining Revenue',
         help="Computed using the formula: Max Invoice Price - Invoiced Amount",
         digits=dp.get_precision('Account')
     )
-    fix_price_to_invoice = fields.Float(
-        compute='fix_price_to_invoice_calc',
-        string='Total Fix Price',
+    amount_sale_to_invoice = fields.Float(
+        compute='_get_amount_sale_to_invoice',
+        string='Total Sales',
         help="Sum of quotations for this contract.")
     # progress_works_planned = fields.Float(
     #     help='Progress on hours planned on contract',
@@ -140,7 +139,7 @@ class AccountAnalyticSal(models.Model):
     def _compute_amount_toinvoice(self):
         for sal in self:
             sal.amount_toinvoice = sal.account_analytic_id.\
-                fix_price_to_invoice * sal.percent_toinvoice / 100
+                amount_sale_to_invoice * sal.percent_toinvoice / 100
 
     name = fields.Char('SAL name')
     percent_completion = fields.Float(

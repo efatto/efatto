@@ -16,11 +16,11 @@
                         <field name="use_sal" class="oe_inline"/>
                         <label for="use_sal" />
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
-                            <field name="amount_sal_to_invoice"/>
                             <field name="amount_max"/>
-                            <field name="ca_invoiced"/>
-                            <field name="remaining_ca"/>
-                            <field name="fix_price_to_invoice"/>
+                            <field name="amount_invoiced"/>
+                            <field name="amount_remaining"/>
+                            <field name="amount_sale_to_invoice"/>
+                            <field name="amount_sal_to_invoice"/>
                         </group>
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
                             <field name="account_analytic_sal_ids" nolabel="1">
@@ -91,11 +91,34 @@
                 </tree>
             </field>
         </record>
+        <record id="view_account_analytic_sal_form" model="ir.ui.view">
+            <field name="name">account.analytic.sal.form</field>
+            <field name="model">account.analytic.sal</field>
+            <field name="arch" type="xml">
+                <form string="Analytic SAL">
+                    <sheet>
+                        <group>
+                            <field name="account_analytic_id"/>
+                            <field name="name"/>
+                        </group>
+                        <group col="4">
+                            <field name="percent_completion"/>
+                            <field name="percent_toinvoice"/>
+                            <field name="amount_invoiced" sum="Total Invoiced"/>
+                            <field name="amount_toinvoice" sum="Total to Invoice"/>
+                            <field name="done"/>
+                            <field name="invoiced"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
         <record id="action_account_analytic_sal_line_form" model="ir.actions.act_window">
             <field name="name">Analytic SAL to invoice</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">account.analytic.sal</field>
             <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_to_invoice": 1}</field>
             <field name="view_id" ref="view_account_analytic_sal_tree"/>
             <field name="search_view_id" ref="view_account_analytic_sal_filter"/>

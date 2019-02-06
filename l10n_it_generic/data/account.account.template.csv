@@ -329,8 +329,8 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 3805030,3805030,CLIENTI C/PAG.CONTR-IMPOSTE-RIT.,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
 3805040,3805040,INCASSI C/TERZI,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
 3805090,3805090,CLIENTI C/ANT.ESIG.OLTRE ES.SUCC,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
-40,40,DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
-4101,4101,ALTRI DEBITI V/FORNITORI,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
+40,40,DEBITI V/FORNITORI,account.data_account_type_payable,TRUE,l10n_it_chart_generic
+4101,4101,ALTRI DEBITI V/FORNITORI,account.data_account_type_payable,TRUE,l10n_it_chart_generic
 4105005,4105005,FATTURE DA RICEVERE,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
 4105090,4105090,DEB.V/FORN. ESIG. OLTRE ES.SUCC.,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic
 4205005,4205005,EFFETTI PASSIVI COMMERCIALI,account.data_account_type_current_liabilities,TRUE,l10n_it_chart_generic

@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_ddt_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-31 10:44+0000\n"
+"PO-Revision-Date: 2016-10-31 10:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_FREE
+msgid "Free"
+msgstr "Omaggio"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_INS
+msgid "Installation"
+msgstr "Istallazione"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_MAN
+msgid "Manufacturing"
+msgstr "Lavorazione"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_NOL
+msgid "Rent"
+msgstr "Noleggio"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_REP
+msgid "Repair"
+msgstr "Riparazione"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_REPW
+msgid "Repair under warranty"
+msgstr "Riparazione in garanzia"
+
+#. module: l10n_it_ddt_data
+#: model:stock.picking.transportation_reason,name:l10n_it_ddt_data.transportation_reason_RELW
+msgid "Replacement under warranty"
+msgstr "Sostituzione in garanzia"
+

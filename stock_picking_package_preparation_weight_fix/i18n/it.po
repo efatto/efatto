@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_ddt_data
+#	* stock_picking_package_preparation_weight_fix
 #
 msgid ""
 msgstr ""
@@ -14,39 +14,3 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_FREE
-msgid "Free"
-msgstr "Omaggio"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_INS
-msgid "Installation"
-msgstr "Istallazione"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_MAN
-msgid "Manufacturing"
-msgstr "Lavorazione"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_NOL
-msgid "Rent"
-msgstr "Noleggio"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_REP
-msgid "Repair"
-msgstr "Riparazione"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_REPW
-msgid "Repair under warranty"
-msgstr "Riparazione in garanzia"
-
-#. module: stock_ddt_data
-#: model:stock.picking.transportation_reason,name:stock_ddt_data.transportation_reason_RELW
-msgid "Replacement under warranty"
-msgstr "Sostituzione in garanzia"
-

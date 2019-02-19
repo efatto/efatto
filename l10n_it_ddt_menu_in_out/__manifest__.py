@@ -18,11 +18,11 @@
 #
 #
 {
-    'name': 'DDT menus',
-    'version': '8.0.1.0.0',
+    'name': 'DDT in and out menu',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'description': '''This module add menus for outgoing and incoming DDT.''',
     'depends': [
@@ -33,5 +33,5 @@
     'data': [
         'views/stock.xml',
     ],
-    'installable': False
+    'installable': True,
 }

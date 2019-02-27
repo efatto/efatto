@@ -113,7 +113,14 @@ class StockInventory(models.Model):
                     uom_from, qty_from, move.product_id.uom_id.id)
                 # Get price from purchase line
                 price_unit = 0
-                if move.purchase_line_id:
+                if move.invoice_line_ids and move.invoice_line_ids[0].\
+                        invoice_id.state in ('open', 'paid'):
+                    # In real life, all move lines related to an 1 invoice line
+                    # should be in the same state and have the same date
+                    inv_line = move.invoice_line_ids[0]
+                    price_unit = inv_line.price_unit * (
+                        1 - (inv_line.discount or 0.0) / 100.0)
+                elif move.purchase_line_id:
                     # get price from purchase line
                     price_unit = move.purchase_line_id.price_unit_net
                 else:

@@ -26,7 +26,7 @@
     'name': 'Disabilita indicizzazione sito web',
     'summary': 'Modifica il file robots.txt affinchè il sito web non venga indicizzato',
 
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'B-Informed B.V.',
     'complexity': 'normal',
     'description': """

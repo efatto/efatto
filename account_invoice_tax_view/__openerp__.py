@@ -19,7 +19,7 @@
 #
 {
     'name': 'Account Tax Invoice Lines',
-    'version': '8.1.0.1.0',
+    'version': '8.0.1.1.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP SRL',
     'description': 'WIP: add tree view of account tax invoice Lines',

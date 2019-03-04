@@ -1,7 +1,7 @@
 {
     'name': 'Export data in Excel',
     'summary' : 'Manage export list with custom domain,export them to Excel & email it',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'author': 'Emipro Technologies Pvt. Ltd.',
     'website': 'www.emiprotechnologies.com',

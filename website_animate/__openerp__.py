@@ -2,7 +2,7 @@
     'name':'Website Animate',
     'description':"Provide animation for page\'s blocks",
     'category': 'Website',
-    'version':'1.1',
+    'version':'8.0.0.1.1',
     'author':'Odoo S.A.',
     'data': [
         'views/assets.xml',

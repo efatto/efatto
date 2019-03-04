@@ -22,7 +22,7 @@
     """,
     "author": "Webkul Software Pvt. Ltd.",
     "website": "http://www.webkul.com",
-    "version": '1.0',
+    "version": '8.0.1.0.0',
     "depends": ['base'],
     "data": [
         'views/webkul_addons_config_view.xml',

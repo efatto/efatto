@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Spesometro - Comunicazione art.21',
-    'version': '8.0.0.3',
+    'version': '8.0.1.0.3',
     'category': 'Localisation/Italy',
     'description': """Spesometro - Comunicazione art.21
 

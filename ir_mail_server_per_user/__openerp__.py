@@ -5,7 +5,7 @@
     'website': 'http://www.emiprotechnologies.com',
     'maintainer': 'Emipro Technologies Pvt. Ltd.',
     'category': 'Social Network',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'description':
         """
 By default in Odoo, when email goes out from system and if no outgoing mail server specified, it selects the outgoing server which is having low priority. \n

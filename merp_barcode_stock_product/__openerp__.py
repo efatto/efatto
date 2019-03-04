@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Demo Barcode Scanner',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': '',
     "sequence": 14,
     'complexity': "easy",

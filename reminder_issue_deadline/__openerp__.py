@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Reminders and Agenda for Issues",
-    'version': '1.0.0',
+    'version': '8.0.1.0.0',
     'author': 'Matmoz d.o.o.',
     'license': 'GPL-3',
     'category': 'Reminders and Agenda',

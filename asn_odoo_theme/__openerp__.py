@@ -1,6 +1,6 @@
 {
     'name': 'Odoo 9 Backend-Theme',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'Ajeng Shilvie N',
     'description': '''
         A custom module to change menu bar like Odoo Enterprise

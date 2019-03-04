@@ -1,6 +1,6 @@
 {
     'name': 'Abilita pulsante Scrivi Mail',
-    'version': '1.0.0',
+    'version': '8.0.1.0.0',
     'category': 'Social Network',
     'author': 'Emipro Technologies Pvt. Ltd.',
     'summary': 'Abilita il pulsante "Scrivi Mail" nella casella di posta',

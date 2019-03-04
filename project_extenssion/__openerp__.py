@@ -20,7 +20,7 @@
 {
     "name": "Project Tasks Start/Stop",
     "description": "Starts and stops the project tasks easily",
-    "version": "8.0.0.1",
+    "version": "8.0.0.1.0",
     "author": "SimplERP SRL, Opencloud",
     "license": "LGPL-3",
     "website": "http://www.simplerp.it",

@@ -23,7 +23,7 @@
 ##############################################################################
 {
     'name': "Management of withholding tax",
-    'version': '3.0.2.1',
+    'version': '8.0.0.2.1',
     'category': 'Accounting & Finance',
     'description': """
 Withholding tax on purchase invoices

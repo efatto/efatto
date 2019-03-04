@@ -22,7 +22,7 @@
     'name': 'Message Wizard',
     'sequence': 1,
     'summary': 'To show messages/warnings in Odoo.',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
     'description': """
 Message Wizard

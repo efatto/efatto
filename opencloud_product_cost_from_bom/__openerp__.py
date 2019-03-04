@@ -2,7 +2,7 @@
 
 {
     'name': 'Update Product Cost from BOM',
-    'version': '1',
+    'version': '8.0.1.0.0',
     'category': 'Opencloud',
     'description': """ """,
     'author': 'Opencloud',

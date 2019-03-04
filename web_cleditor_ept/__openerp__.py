@@ -3,7 +3,7 @@
     'summary' : 'Enable full list of options in Cleditor',
     'category': 'web',  # 'Social Network',
     'author':'Emipro Technologies Pvt. Ltd.',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'website': 'www.emiprotechnologies.com',
     'description':
         """

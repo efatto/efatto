@@ -1,6 +1,6 @@
 {
     'name': 'Visible Discount in Sale',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': "Sales",
     'summary' : 'Enable discount visibility separately on Sale Order from pricelist',
     'description': """

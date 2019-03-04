@@ -16,7 +16,7 @@
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Sale',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'depends': [
         'sale', 'purchase'],
     'data': [

@@ -10,7 +10,7 @@
     'sequence':1,
     'summary': 'Manage all SEO Information(Meta-tags, alt-tags on your images, etc) of all your products/categories in minutes !!!',
     'website': 'http://www.webkul.com',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'description':"""
    ODOO SEO-PRO
 ===========================

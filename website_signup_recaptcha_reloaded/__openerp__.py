@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Signup Form reCAPTCHA',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'category': 'Website',
  'depends': ['website_recaptcha_reloaded','auth_signup'],
  'author': 'Tech Receptives',

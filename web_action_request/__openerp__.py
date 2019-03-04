@@ -23,7 +23,7 @@
 ###############################################################################
 {
     'name': 'Action request',
-    'version': '1.0.0',
+    'version': '8.0.1.0.0',
     'sequence': 150,
     'category': 'Anybox',
     'description': """

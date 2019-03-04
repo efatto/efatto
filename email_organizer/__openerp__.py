@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {'name': 'Email Organizer Pro',
- 'version': '0.1',
+ 'version': '8.0.0.0.1',
  'category': 'Social Network',
  'depends': ['web_polymorphic_field', 'mail'],
  'author': 'Augustin Cisterne-Kaas',

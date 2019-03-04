@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Add XLS export to accounting reports',
-    'version': '8.2.4.1',
+    'version': '8.0.2.4.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Generic Modules/Accounting',

@@ -27,7 +27,7 @@
 Shows New Mail Notification in Sytem Tray.
 ==========================================
         """,
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': "Vidhin Mehta (vidhin.mehta16@gmail.com)",
     'depends':['web'],
     'data': ['views/notification.xml'],

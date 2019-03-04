@@ -23,7 +23,7 @@
     "images":['static/description/Banner.png'],
     "author": "Webkul Software Pvt. Ltd.",
     "website": "http://www.webkul.com",
-    "version": '2.0',
+    "version": '8.0.0.2.0',
     "depends": ['base','website_quote'],
     "data": [
 	'security/ir.model.access.csv',

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Website reCAPTCHA Reloaded',
- 'version': '1.0',
+ 'version': '8.0.0.1.0',
  'category': 'Website',
  'depends': ['website'],
  'author': 'Tech Receptives',

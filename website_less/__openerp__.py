@@ -2,7 +2,7 @@
     'name': 'Theme Support Engine',
     'category': 'Website',
     'summary': 'Support layer for Themes in 8.0',
-    'version': '1.1',
+    'version': '8.0.0.1.1',
     'description': """
 Support layer for themes in 8.0.
 

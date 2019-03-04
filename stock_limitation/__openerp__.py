@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Stocks Access Rules',
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'category': 'Warehouse',
     'summary': 'Restrict users access to stocks and locations',
     'description': '''

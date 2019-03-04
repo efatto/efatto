@@ -2,7 +2,7 @@
     # Theme information
     'name' : 'Material Backend Theme v8',
     'category' : 'Theme/Backend',
-    'version' : '1.1.20',
+    'version' : '8.0.1.1.20',
     'summary': 'Backend, Clean, Modern, Material, Theme',
     'description': """
 Material Backend Theme v8

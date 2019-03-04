@@ -22,7 +22,7 @@
 ##############################################################################
 {
     "name": "Accounting Financial Reports Horizontal Ext",
-    "version": "8.1.13.9",
+    "version": "8.0.1.13.9",
     "author": ["Therp BV", "Agile Business Group", "Didotech srl", "Sergio Corato"],
     "category": 'Accounting & Finance',
     'complexity': "normal",

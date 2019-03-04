@@ -38,7 +38,7 @@
     'category': 'Accounting & Finance',
     'images': ['static/description/main.png'],
 
-    'version': '0.7',
+    'version': '8.0.0.0.7',
     'price': 129,
     'currency': 'EUR',
     # any module necessary for this one to work correctly

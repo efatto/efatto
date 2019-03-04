@@ -21,7 +21,7 @@
 
 {
     "name" : "CRM Lead Website Social",
-    "version" : "1.1.1",
+    "version" : "8.0.1.1.1",
     "depends" : ["base",'crm'],
     "author" : "closemarketing",
     "description": """'Adds Social Media in Leads, Opportunities and Partners.'

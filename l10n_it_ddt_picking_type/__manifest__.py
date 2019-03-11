@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2017 Sergio Corato
+#    Copyright (C) 2017-2019 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,13 +17,13 @@
 #
 {
     'name': 'Add pycking type to DDT',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
-    'description': '''This module add possibility to add picking type and
-    invoiceability to ddt type, so ddt can be created directly using
+    'description': '''This module add possibility to add picking type
+    to ddt type, so ddt can be created directly using
     a different route.''',
     'depends': [
         'l10n_it_ddt',
@@ -34,5 +32,5 @@
         'data/stock_picking_type.xml',
         'views/stock.xml',
     ],
-    'installable': False
+    'installable': True,
 }

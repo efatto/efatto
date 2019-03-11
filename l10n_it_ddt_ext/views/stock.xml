@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="stock_picking_package_preparation_reopen_form" model="ir.ui.view">
-          <field name="model">stock.picking.package.preparation</field>
-          <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
-          <field name="arch" type="xml">
-              <field name="company_id" position="after">
-                  <field name="ddt_date_start"/>
-              </field>
-              <field name="picking_ids" position="attributes">
-                  <attribute name="domain">[('partner_id', '=', partner_id), ('ddt_ids', '=', False)]</attribute>
-              </field>
+    <record id="stock_picking_package_preparation_reopen_form" model="ir.ui.view">
+      <field name="model">stock.picking.package.preparation</field>
+      <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+      <field name="arch" type="xml">
+          <field name="company_id" position="after">
+              <field name="ddt_date_start"/>
           </field>
-        </record>
+          <field name="picking_ids" position="attributes">
+              <attribute name="domain">[('partner_id', '=', partner_id), ('ddt_ids', '=', False)]</attribute>
+          </field>
+      </field>
+    </record>
 
-        <record id="ddt_stock_picking_package_preparation_tree_remove_package_id" model="ir.ui.view">
-            <field name="model">stock.picking.package.preparation</field>
-            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
-            <field name="arch" type="xml">
-                <field name="package_id" position="replace">
-                </field>
+    <record id="ddt_stock_picking_package_preparation_tree_remove_package_id" model="ir.ui.view">
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_tree"/>
+        <field name="arch" type="xml">
+            <field name="package_id" position="replace">
             </field>
-        </record>
-    </data>
-</openerp>
+        </field>
+    </record>
+
+</odoo>

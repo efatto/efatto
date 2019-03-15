@@ -10,7 +10,7 @@ class ResCompany(models.Model):
 
 
 class StockConfigSettingsDDT(models.TransientModel):
-    _inherit = 'stock.config.settings'
+    _inherit = 'res.config.settings'
 
     create_ddt = fields.Boolean(
         string="Automatically create the DDT",

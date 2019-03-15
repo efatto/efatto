@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="view_stock_picking_package_preparation_line_setting_ddt">
-        <field name="model">stock.config.settings</field>
+        <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="stock_picking_package_preparation_line.view_stock_picking_package_preparation_line_setting" />
         <field name="arch" type="xml">
             <xpath expr="//label" position="before">

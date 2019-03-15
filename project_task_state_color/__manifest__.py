@@ -36,5 +36,5 @@
         'views/project.xml',
         'views/calendar.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

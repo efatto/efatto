@@ -9,6 +9,12 @@
             <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
                 <group name='main' position="after">
+                    <group col="4">
+                        <field name="amount_max"/>
+                        <field name="amount_invoiced"/>
+                        <field name="amount_remaining"/>
+                        <field name="amount_sale_to_invoice"/>
+                    </group>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
                            />
@@ -16,10 +22,6 @@
                         <field name="use_sal" class="oe_inline"/>
                         <label for="use_sal" />
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
-                            <field name="amount_max"/>
-                            <field name="amount_invoiced"/>
-                            <field name="amount_remaining"/>
-                            <field name="amount_sale_to_invoice"/>
                             <field name="amount_sal_to_invoice"/>
                         </group>
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">

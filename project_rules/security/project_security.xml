@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
+<odoo noupdate="0">
+
     <record model="ir.rule" id="project.task_visibility_rule">
         <field name="name">Project/Task: employees or (followers and following)</field>
         <field name="domain_force">[
@@ -20,5 +20,5 @@
                                     ]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
     </record>
-</data>
-</openerp>
+
+</odoo>

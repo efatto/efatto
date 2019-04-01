@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, fields, api, _
+
+from odoo import models, fields, api, _
 
 
 class SaleOrderLine(models.Model):

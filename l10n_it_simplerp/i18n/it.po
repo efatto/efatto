@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_chart_generic
+#	* chart_template_simplerp
 #
 msgid ""
 msgstr ""
@@ -15,17 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_chart_generic
-#: model:account.account.type,name:l10n_it_chart_generic.account_type_correction_expense
+#. module: chart_template_simplerp
+#: model:account.account.type,name:chart_template_simplerp.account_type_correction_expense
 msgid "Rettifiche di costi"
 msgstr "Rettifiche di costi"
 
-#. module: l10n_it_chart_generic
-#: model:account.account.type,name:l10n_it_chart_generic.account_type_correction_income
+#. module: chart_template_simplerp
+#: model:account.account.type,name:chart_template_simplerp.account_type_correction_income
 msgid "Rettifiche di ricavi"
 msgstr "Rettifiche di ricavi"
 
-#. module: l10n_it_chart_generic
-#: model:account.account.type,name:l10n_it_chart_generic.account_type_memo
+#. module: chart_template_simplerp
+#: model:account.account.type,name:chart_template_simplerp.account_type_memo
 msgid "Memo"
 msgstr "Memo"

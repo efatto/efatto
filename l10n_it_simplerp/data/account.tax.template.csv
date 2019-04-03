@@ -1,107 +1,107 @@
 id,description,chart_template_id:id,name,sequence,amount,amount_type,type_tax_use,price_include,tag_ids/id,children_tax_ids/id,account_id/id,refund_account_id/id
-22v,22v,l10n_it_chart_generic,Iva al 22% (debito),1,22,percent,sale,False,tax_tag_22v,,4805045,4805045
-22a,22a,l10n_it_chart_generic,Iva al 22% (credito),2,22,percent,purchase,False,tax_tag_22a,,1820005,1820005
-22v INC,22v INC,l10n_it_chart_generic,Iva al 22% (debito) INCL,3,22,percent,sale,True,tax_tag_22vINC,,4805045,4805045
-2210a,2210a,l10n_it_chart_generic,Iva al 22% detraibile 10% (I),100,19.8,percent,none,False,,,,
-2210b,2210b,l10n_it_chart_generic,Iva al 22% detraibile 10% (D),200,2.2,percent,none,False,,,1820005,1820005
-2210,2210,l10n_it_chart_generic,Iva al 22% detraibile 10%,4,22,group,purchase,False,tax_tag_2210,"2210a,2210b",,
-2215a,2215a,l10n_it_chart_generic,Iva al 22% detraibile 15% (I),100,18.7,percent,none,False,,,,
-2215b,2215b,l10n_it_chart_generic,Iva al 22% detraibile 15% (D),200,3.3,percent,none,False,,,1820005,1820005
-2215,2215,l10n_it_chart_generic,Iva al 22% detraibile 15%,7,22,group,purchase,False,tax_tag_2215,"2215a,2215b",,
-2240a,2240a,l10n_it_chart_generic,Iva al 22% detraibile 40% (I),100,13.2,percent,none,False,,,,
-2240b,2240b,l10n_it_chart_generic,Iva al 22% detraibile 40% (D),200,8.8,percent,none,False,,,1820005,1820005
-2240,2240,l10n_it_chart_generic,Iva al 22% detraibile 40%,10,22,group,purchase,False,tax_tag_2240,"2240a,2240b",,
-22I5a,22I5a,l10n_it_chart_generic,Iva al 22% detraibile al 50% (I),100,11,percent,none,False,,,,
-22I5b,22I5b,l10n_it_chart_generic,Iva al 22%ibile al 50% (D),200,11,percent,none,False,,,1820005,1820005
-22I5,22I5,l10n_it_chart_generic,Iva al 22% detraibile al 50%,13,22,group,purchase,False,tax_tag_22I5,"22I5a,22I5b",,
-22AOb,22AOb,l10n_it_chart_generic,Iva al 22% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
-22AOa,22AOa,l10n_it_chart_generic,Iva al 22% indetraibile (I),100,22,percent,none,False,,,,
-22AO,22AO,l10n_it_chart_generic,Iva al 22% indetraibile,16,22,group,purchase,False,tax_tag_22AO,"22AOb,22AOa",,
-22art38v,22art38v,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 22% (debito),17,22,percent,sale,False,tax_tag_22art38v,,4805046,4805046
-22art38a,22art38a,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 22% (credito),18,22,percent,purchase,False,tax_tag_22art38a,,1820006,1820006
-22art173v,22art173v,l10n_it_chart_generic,Autofattura Extra CEE – art. 17 c.3 22% (debito),19,22,percent,sale,False,tax_tag_22art173v,,4805047,4805047
-22art173a,22art173a,l10n_it_chart_generic,Autofattura Extra CEE – art. 17 c.3 22% (credito),20,22,percent,purchase,False,tax_tag_22art173a,,1820007,1820007
-00747v,00747v,l10n_it_chart_generic,Reverse cessionario art.74 c.7 DPR 633/72 (debito),21,0,percent,sale,False,tax_tag_00747v,,4805045,4805045
-00748v,00748v,l10n_it_chart_generic,Reverse cessionario art.74 c.8 DPR 633/72 (debito),22,0,percent,sale,False,tax_tag_00748v,,4805045,4805045
-20ra,20ra,l10n_it_chart_generic,Rit. acconto passiva compensi al 20%,23,-20,percent,purchase,False,tax_tag_20ra,,4805085,4805085
-235ra,235ra,l10n_it_chart_generic,Rit. acconto passiva agenti al 23% sul 50%,24,-11.5,percent,purchase,False,tax_tag_235ra,,4805086,4805086
-232ra,232ra,l10n_it_chart_generic,Rit. acconto passiva agenti al 23% sul 20%,25,-4.6,percent,purchase,False,tax_tag_232ra,,4805086,4805086
-710ena,710ena,l10n_it_chart_generic,"Rit. ENASARCO passiva agenti al 14,20% sul 50%",26,-7.1,percent,purchase,False,tax_tag_710ena,,4805087,4805087
-1465ena,1465ena,l10n_it_chart_generic,"Rit. ENASARCO passiva agenti al 14,65% sul 50%",27,-7.325,percent,purchase,False,tax_tag_1465ena,,4805087,4805087
-20rv,20rv,l10n_it_chart_generic,Rit. acconto attiva compensi al 20%,28,-20,percent,sale,False,tax_tag_20rv,,4805085,4805085
-235rv,235rv,l10n_it_chart_generic,Rit. acconto attiva agenti al 23% sul 50%,29,-11.5,percent,sale,False,tax_tag_235rv,,4805086,4805086
-232rv,232rv,l10n_it_chart_generic,Rit. acconto attiva agenti al 23% sul 20%,30,-4.6,percent,sale,False,tax_tag_232rv,,4805086,4805086
-710env,710env,l10n_it_chart_generic,"Rit. ENASARCO attiva agenti al 14,20% sul 50%",31,-7.1,percent,sale,False,tax_tag_710env,,4805087,4805087
-1465env,1465env,l10n_it_chart_generic,"Rit. ENASARCO attiva agenti al 14,65% sul 50%",32,-7.325,percent,sale,False,tax_tag_1465env,,4805087,4805087
-10v,10v,l10n_it_chart_generic,Iva al 10% (debito),33,10,percent,sale,False,tax_tag_10v,,4805045,4805045
-10a,10a,l10n_it_chart_generic,Iva al 10% (credito),34,10,percent,purchase,False,tax_tag_10a,,,
-10AOb,10AOb,l10n_it_chart_generic,Iva al 10% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
-10AOa,10AOa,l10n_it_chart_generic,Iva al 10% indetraibile (I),100,10,percent,none,False,,,,
-10AO,10AO,l10n_it_chart_generic,Iva al 10% indetraibile,35,10,percent,purchase,False,tax_tag_10AO,"10AOb,10AOa",,
-12v,12v,l10n_it_chart_generic,Iva 12% (debito),36,12,percent,sale,False,tax_tag_12v,,4805045,4805045
-12a,12a,l10n_it_chart_generic,Iva 12% (credito),37,12,percent,purchase,False,tax_tag_12a,,1820005,1820005
-2v,2v,l10n_it_chart_generic,Iva 2% (debito),38,2,percent,sale,False,tax_tag_2v,,4805045,4805045
-2a,2a,l10n_it_chart_generic,Iva 2% (credito),39,2,percent,purchase,False,tax_tag_2a,,1820005,1820005
-4v,4v,l10n_it_chart_generic,Iva 4% (debito),40,4,percent,sale,False,tax_tag_4v,,4805045,4805045
-4a,4a,l10n_it_chart_generic,Iva 4% (credito),41,4,percent,purchase,False,tax_tag_4a,,1820005,1820005
-4AOb,4AOb,l10n_it_chart_generic,Iva al 4% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
-4AOa,4AOa,l10n_it_chart_generic,Iva al 4% indetraibile (I),100,4,percent,none,False,,,,
-4AO,4AO,l10n_it_chart_generic,Iva al 4% indetraibile,42,4,percent,purchase,False,tax_tag_4AO,"4AOb,4AOa",,
-10I5a,10I5a,l10n_it_chart_generic,Iva al 10% detraibile al 50% (I),100,5,percent,none,False,,,,
-10I5b,10I5b,l10n_it_chart_generic,Iva al 10% detraibile al 50% (D),200,5,percent,none,False,,,1820005,1820005
-10I5,10I5,l10n_it_chart_generic,Iva al 10% detraibile al 50%,34,10,group,purchase,False,tax_tag_10I5,"10I5a,10I5b",,
-4I5a,4I5a,l10n_it_chart_generic,Iva al 4% detraibile al 50% (I),100,2,percent,none,False,,,,
-4I5b,4I5b,l10n_it_chart_generic,Iva al 4% detraibile al 50% (D),200,2,percent,none,False,,,1820005,1820005
-4I5,4I5,l10n_it_chart_generic,Iva al 4% detraibile al 50%,37,4,group,purchase,False,tax_tag_4I5,"4I5a,4I5b",,
-10v INC,10v INC,l10n_it_chart_generic,Iva al 10% (debito) INC,40,10,percent,sale,True,tax_tag_10vINC,,4805045,4805045
-12v INC,12v INC,l10n_it_chart_generic,Iva 12% (debito) INC,41,12,percent,sale,True,tax_tag_12vINC,,4805045,4805045
-2v INC,2v INC,l10n_it_chart_generic,Iva 2% (debito) INC,42,2,percent,sale,True,tax_tag_2vINC,,4805045,4805045
-4v INC,4v INC,l10n_it_chart_generic,Iva 4% (debito) INC,43,4,percent,sale,True,tax_tag_4vINC,,4805045,4805045
-00v,00v,l10n_it_chart_generic,Fuori Campo Iva DPR 633/72 (debito),44,0,percent,sale,False,tax_tag_00v,,4805045,4805045
-00a,00a,l10n_it_chart_generic,Fuori Campo Iva DPR 633/72 (credito),45,0,percent,purchase,False,tax_tag_00a,,1820005,1820005
-00art15v,00art15v,l10n_it_chart_generic,Imponibile Escluso Art.15 DPR 633/72 (debito),46,0,percent,sale,False,tax_tag_00art15v,,4805045,4805045
-00art15a,00art15a,l10n_it_chart_generic,Imponibile Escluso Art.15 DPR 633/72 (credito),47,0,percent,purchase,False,tax_tag_00art15a,,1820005,1820005
-00art741a,00art741a,l10n_it_chart_generic,Imponibile Escluso Art.74 c.1 DPR 633/72 (credito),48,0,percent,purchase,False,tax_tag_00art741a,,1820005,1820005
-00art8v,00art8v,l10n_it_chart_generic,Non imponibile Art.8 DPR 633/72 (debito),49,0,percent,sale,False,tax_tag_00art8v,,4805045,4805045
-00art8bv,00art8bv,l10n_it_chart_generic,Non imponibile Art.8 b DPR 633/72 (debito),50,0,percent,sale,False,tax_tag_00art8bv,,4805045,4805045
-00art8cv,00art8cv,l10n_it_chart_generic,Non imponibile Art.8 c DPR 633/72 (debito),51,0,percent,sale,False,tax_tag_00art8cv,,4805045,4805045
-00art72,00art72,l10n_it_chart_generic,Non imponibile Art.72 DPR 633/72 (debito),52,0,percent,sale,False,tax_tag_00art72,,4805045,4805045
-00art41v,00art41v,l10n_it_chart_generic,Operazione non imponibile – art.41 D.L. 331/93 (debito),53,0,percent,sale,False,tax_tag_00art41v,,,
-00art10v,00art10v,l10n_it_chart_generic,Esente Art. 10 DPR 633/72 (debito),54,0,percent,sale,False,tax_tag_00art10v,,4805045,4805045
-00art10a,00art10a,l10n_it_chart_generic,Esente Art. 10 DPR 633/72 (credito),55,0,percent,purchase,False,tax_tag_00art10a,,1820005,1820005
-21v,21v,l10n_it_chart_generic,Iva al 21% (debito),900,21,percent,sale,False,tax_tag_21v,,4805045,4805045
-21a,21a,l10n_it_chart_generic,Iva al 21% (credito),901,21,percent,purchase,False,tax_tag_21a,,1820005,1820005
-20v,20v,l10n_it_chart_generic,Iva al 20% (debito),902,20,percent,sale,False,tax_tag_20v,,4805045,4805045
-20a,20a,l10n_it_chart_generic,Iva al 20% (credito),903,20,percent,purchase,False,tax_tag_20a,,1820005,1820005
-2010a,2010a,l10n_it_chart_generic,Iva al 20% detraibile 10% (I),100,18,percent,none,False,,,,
-2010b,2010b,l10n_it_chart_generic,Iva al 20% detraibile 10% (D),200,2,percent,none,False,,,1820005,1820005
-2010,2010,l10n_it_chart_generic,Iva al 20% detraibile 10%,904,20,group,purchase,False,tax_tag_2010,"2010a,2010b",,
-2015a,2015a,l10n_it_chart_generic,Iva al 20% detraibile 15% (I),100,17,percent,none,False,,,,
-2015b,2015b,l10n_it_chart_generic,Iva al 20% detraibile 15% (D),200,3,percent,none,False,,,1820005,1820005
-2015,2015,l10n_it_chart_generic,Iva al 20% detraibile 15%,907,20,group,purchase,False,tax_tag_2015,"2015a,2015b",,
-2040a,2040a,l10n_it_chart_generic,Iva al 20% detraibile 40% (I),100,12,percent,none,False,,,,
-2040b,2040b,l10n_it_chart_generic,Iva al 20% detraibile 40% (D),200,8,percent,none,False,,,1820005,1820005
-2040,2040,l10n_it_chart_generic,Iva al 20% detraibile 40%,910,20,group,purchase,False,tax_tag_2040,"2040a,2040b",,
-20AO,20AO,l10n_it_chart_generic,Iva al 20% indetraibile,913,20,group,purchase,False,tax_tag_20AO,,,
-20I5a,20I5a,l10n_it_chart_generic,Iva al 20% detraibile al 50% (I),100,10,percent,none,False,,,,
-20I5b,20I5b,l10n_it_chart_generic,Iva al 20% detraibile al 50% (D),200,10,percent,none,False,,,1820005,1820005
-20I5,20I5,l10n_it_chart_generic,Iva al 20% detraibile al 50%,914,20,group,purchase,False,tax_tag_20I5,"20I5a,20I5b",,
-21v INC,21v INC,l10n_it_chart_generic,Iva al 21% (debito) INC,917,21,percent,sale,True,tax_tag_21vINC,,4805045,4805045
-20v INC,20v INC,l10n_it_chart_generic,Iva al 20% (debito) INC,918,20,percent,sale,True,tax_tag_20vINC,,4805045,4805045
-2110a,2110a,l10n_it_chart_generic,Iva al 21% detraibile 10% (I),100,18.9,percent,none,False,,,,
-2110b,2110b,l10n_it_chart_generic,Iva al 21% detraibile 10% (D),200,2.1,percent,none,False,,,1820005,1820005
-2110,2110,l10n_it_chart_generic,Iva al 21% detraibile 10%,919,21,group,purchase,False,tax_tag_2110,"2110a,2110b",,
-2115a,2115a,l10n_it_chart_generic,Iva al 21% detraibile 15% (I),100,17.85,percent,none,False,,,,
-2115b,2115b,l10n_it_chart_generic,Iva al 21% detraibile 15% (D),200,3.15,percent,none,False,,,1820005,1820005
-2115,2115,l10n_it_chart_generic,Iva al 21% detraibile 15%,922,21,group,purchase,False,tax_tag_2115,"2115a,2115b",,
-2140a,2140a,l10n_it_chart_generic,Iva al 21% detraibile 40% (I),100,12.6,percent,none,False,,,,
-2140b,2140b,l10n_it_chart_generic,Iva al 21% detraibile 40% (D),200,8.4,percent,none,False,,,1820005,1820005
-2140,2140,l10n_it_chart_generic,Iva al 21% detraibile 40%,925,21,group,purchase,False,tax_tag_2140,"2140a,2140b",,
-21AOb,21AOb,l10n_it_chart_generic,Iva al 21% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
-21AOa,21AOa,l10n_it_chart_generic,Iva al 21% indetraibile (I),100,21,percent,none,False,,,,
-21AO,21AO,l10n_it_chart_generic,Iva al 21% indetraibile,928,21,group,purchase,False,tax_tag_21AO,"21AOb,21AOa",,
-21I5a,21I5a,l10n_it_chart_generic,Iva al 21% detraibile al 50% (I),100,10.5,percent,none,False,,,,
-21I5b,21I5b,l10n_it_chart_generic,Iva al 21% detraibile al 50% (D),200,10.5,percent,none,False,,,1820005,1820005
-21I5,21I5,l10n_it_chart_generic,Iva al 21% detraibile al 50%,929,21,group,purchase,False,tax_tag_21I5,"21I5a,21I5b",,
-21art38a,21art38a,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 21% (credito),932,21,percent,purchase,False,tax_tag_21art38a,,1820006,1820006
-21art38v,21art38v,l10n_it_chart_generic,Operazione non imponibile – art.38 D.L. 331/93 21% (debito),933,21,percent,sale,False,tax_tag_21art38v,,4805046,4805046
+22v,22v,chart_template_simplerp,Iva al 22% (debito),1,22,percent,sale,False,tax_tag_22v,,4805045,4805045
+22a,22a,chart_template_simplerp,Iva al 22% (credito),2,22,percent,purchase,False,tax_tag_22a,,1820005,1820005
+22v INC,22v INC,chart_template_simplerp,Iva al 22% (debito) INCL,3,22,percent,sale,True,tax_tag_22vINC,,4805045,4805045
+2210a,2210a,chart_template_simplerp,Iva al 22% detraibile 10% (I),100,19.8,percent,none,False,,,,
+2210b,2210b,chart_template_simplerp,Iva al 22% detraibile 10% (D),200,2.2,percent,none,False,,,1820005,1820005
+2210,2210,chart_template_simplerp,Iva al 22% detraibile 10%,4,22,group,purchase,False,tax_tag_2210,"2210a,2210b",,
+2215a,2215a,chart_template_simplerp,Iva al 22% detraibile 15% (I),100,18.7,percent,none,False,,,,
+2215b,2215b,chart_template_simplerp,Iva al 22% detraibile 15% (D),200,3.3,percent,none,False,,,1820005,1820005
+2215,2215,chart_template_simplerp,Iva al 22% detraibile 15%,7,22,group,purchase,False,tax_tag_2215,"2215a,2215b",,
+2240a,2240a,chart_template_simplerp,Iva al 22% detraibile 40% (I),100,13.2,percent,none,False,,,,
+2240b,2240b,chart_template_simplerp,Iva al 22% detraibile 40% (D),200,8.8,percent,none,False,,,1820005,1820005
+2240,2240,chart_template_simplerp,Iva al 22% detraibile 40%,10,22,group,purchase,False,tax_tag_2240,"2240a,2240b",,
+22I5a,22I5a,chart_template_simplerp,Iva al 22% detraibile al 50% (I),100,11,percent,none,False,,,,
+22I5b,22I5b,chart_template_simplerp,Iva al 22%ibile al 50% (D),200,11,percent,none,False,,,1820005,1820005
+22I5,22I5,chart_template_simplerp,Iva al 22% detraibile al 50%,13,22,group,purchase,False,tax_tag_22I5,"22I5a,22I5b",,
+22AOb,22AOb,chart_template_simplerp,Iva al 22% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
+22AOa,22AOa,chart_template_simplerp,Iva al 22% indetraibile (I),100,22,percent,none,False,,,,
+22AO,22AO,chart_template_simplerp,Iva al 22% indetraibile,16,22,group,purchase,False,tax_tag_22AO,"22AOb,22AOa",,
+22art38v,22art38v,chart_template_simplerp,Operazione non imponibile – art.38 D.L. 331/93 22% (debito),17,22,percent,sale,False,tax_tag_22art38v,,4805046,4805046
+22art38a,22art38a,chart_template_simplerp,Operazione non imponibile – art.38 D.L. 331/93 22% (credito),18,22,percent,purchase,False,tax_tag_22art38a,,1820006,1820006
+22art173v,22art173v,chart_template_simplerp,Autofattura Extra CEE – art. 17 c.3 22% (debito),19,22,percent,sale,False,tax_tag_22art173v,,4805047,4805047
+22art173a,22art173a,chart_template_simplerp,Autofattura Extra CEE – art. 17 c.3 22% (credito),20,22,percent,purchase,False,tax_tag_22art173a,,1820007,1820007
+00747v,00747v,chart_template_simplerp,Reverse cessionario art.74 c.7 DPR 633/72 (debito),21,0,percent,sale,False,tax_tag_00747v,,4805045,4805045
+00748v,00748v,chart_template_simplerp,Reverse cessionario art.74 c.8 DPR 633/72 (debito),22,0,percent,sale,False,tax_tag_00748v,,4805045,4805045
+20ra,20ra,chart_template_simplerp,Rit. acconto passiva compensi al 20%,23,-20,percent,purchase,False,tax_tag_20ra,,4805085,4805085
+235ra,235ra,chart_template_simplerp,Rit. acconto passiva agenti al 23% sul 50%,24,-11.5,percent,purchase,False,tax_tag_235ra,,4805086,4805086
+232ra,232ra,chart_template_simplerp,Rit. acconto passiva agenti al 23% sul 20%,25,-4.6,percent,purchase,False,tax_tag_232ra,,4805086,4805086
+710ena,710ena,chart_template_simplerp,"Rit. ENASARCO passiva agenti al 14,20% sul 50%",26,-7.1,percent,purchase,False,tax_tag_710ena,,4805087,4805087
+1465ena,1465ena,chart_template_simplerp,"Rit. ENASARCO passiva agenti al 14,65% sul 50%",27,-7.325,percent,purchase,False,tax_tag_1465ena,,4805087,4805087
+20rv,20rv,chart_template_simplerp,Rit. acconto attiva compensi al 20%,28,-20,percent,sale,False,tax_tag_20rv,,4805085,4805085
+235rv,235rv,chart_template_simplerp,Rit. acconto attiva agenti al 23% sul 50%,29,-11.5,percent,sale,False,tax_tag_235rv,,4805086,4805086
+232rv,232rv,chart_template_simplerp,Rit. acconto attiva agenti al 23% sul 20%,30,-4.6,percent,sale,False,tax_tag_232rv,,4805086,4805086
+710env,710env,chart_template_simplerp,"Rit. ENASARCO attiva agenti al 14,20% sul 50%",31,-7.1,percent,sale,False,tax_tag_710env,,4805087,4805087
+1465env,1465env,chart_template_simplerp,"Rit. ENASARCO attiva agenti al 14,65% sul 50%",32,-7.325,percent,sale,False,tax_tag_1465env,,4805087,4805087
+10v,10v,chart_template_simplerp,Iva al 10% (debito),33,10,percent,sale,False,tax_tag_10v,,4805045,4805045
+10a,10a,chart_template_simplerp,Iva al 10% (credito),34,10,percent,purchase,False,tax_tag_10a,,,
+10AOb,10AOb,chart_template_simplerp,Iva al 10% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
+10AOa,10AOa,chart_template_simplerp,Iva al 10% indetraibile (I),100,10,percent,none,False,,,,
+10AO,10AO,chart_template_simplerp,Iva al 10% indetraibile,35,10,percent,purchase,False,tax_tag_10AO,"10AOb,10AOa",,
+12v,12v,chart_template_simplerp,Iva 12% (debito),36,12,percent,sale,False,tax_tag_12v,,4805045,4805045
+12a,12a,chart_template_simplerp,Iva 12% (credito),37,12,percent,purchase,False,tax_tag_12a,,1820005,1820005
+2v,2v,chart_template_simplerp,Iva 2% (debito),38,2,percent,sale,False,tax_tag_2v,,4805045,4805045
+2a,2a,chart_template_simplerp,Iva 2% (credito),39,2,percent,purchase,False,tax_tag_2a,,1820005,1820005
+4v,4v,chart_template_simplerp,Iva 4% (debito),40,4,percent,sale,False,tax_tag_4v,,4805045,4805045
+4a,4a,chart_template_simplerp,Iva 4% (credito),41,4,percent,purchase,False,tax_tag_4a,,1820005,1820005
+4AOb,4AOb,chart_template_simplerp,Iva al 4% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
+4AOa,4AOa,chart_template_simplerp,Iva al 4% indetraibile (I),100,4,percent,none,False,,,,
+4AO,4AO,chart_template_simplerp,Iva al 4% indetraibile,42,4,percent,purchase,False,tax_tag_4AO,"4AOb,4AOa",,
+10I5a,10I5a,chart_template_simplerp,Iva al 10% detraibile al 50% (I),100,5,percent,none,False,,,,
+10I5b,10I5b,chart_template_simplerp,Iva al 10% detraibile al 50% (D),200,5,percent,none,False,,,1820005,1820005
+10I5,10I5,chart_template_simplerp,Iva al 10% detraibile al 50%,34,10,group,purchase,False,tax_tag_10I5,"10I5a,10I5b",,
+4I5a,4I5a,chart_template_simplerp,Iva al 4% detraibile al 50% (I),100,2,percent,none,False,,,,
+4I5b,4I5b,chart_template_simplerp,Iva al 4% detraibile al 50% (D),200,2,percent,none,False,,,1820005,1820005
+4I5,4I5,chart_template_simplerp,Iva al 4% detraibile al 50%,37,4,group,purchase,False,tax_tag_4I5,"4I5a,4I5b",,
+10v INC,10v INC,chart_template_simplerp,Iva al 10% (debito) INC,40,10,percent,sale,True,tax_tag_10vINC,,4805045,4805045
+12v INC,12v INC,chart_template_simplerp,Iva 12% (debito) INC,41,12,percent,sale,True,tax_tag_12vINC,,4805045,4805045
+2v INC,2v INC,chart_template_simplerp,Iva 2% (debito) INC,42,2,percent,sale,True,tax_tag_2vINC,,4805045,4805045
+4v INC,4v INC,chart_template_simplerp,Iva 4% (debito) INC,43,4,percent,sale,True,tax_tag_4vINC,,4805045,4805045
+00v,00v,chart_template_simplerp,Fuori Campo Iva DPR 633/72 (debito),44,0,percent,sale,False,tax_tag_00v,,4805045,4805045
+00a,00a,chart_template_simplerp,Fuori Campo Iva DPR 633/72 (credito),45,0,percent,purchase,False,tax_tag_00a,,1820005,1820005
+00art15v,00art15v,chart_template_simplerp,Imponibile Escluso Art.15 DPR 633/72 (debito),46,0,percent,sale,False,tax_tag_00art15v,,4805045,4805045
+00art15a,00art15a,chart_template_simplerp,Imponibile Escluso Art.15 DPR 633/72 (credito),47,0,percent,purchase,False,tax_tag_00art15a,,1820005,1820005
+00art741a,00art741a,chart_template_simplerp,Imponibile Escluso Art.74 c.1 DPR 633/72 (credito),48,0,percent,purchase,False,tax_tag_00art741a,,1820005,1820005
+00art8v,00art8v,chart_template_simplerp,Non imponibile Art.8 DPR 633/72 (debito),49,0,percent,sale,False,tax_tag_00art8v,,4805045,4805045
+00art8bv,00art8bv,chart_template_simplerp,Non imponibile Art.8 b DPR 633/72 (debito),50,0,percent,sale,False,tax_tag_00art8bv,,4805045,4805045
+00art8cv,00art8cv,chart_template_simplerp,Non imponibile Art.8 c DPR 633/72 (debito),51,0,percent,sale,False,tax_tag_00art8cv,,4805045,4805045
+00art72,00art72,chart_template_simplerp,Non imponibile Art.72 DPR 633/72 (debito),52,0,percent,sale,False,tax_tag_00art72,,4805045,4805045
+00art41v,00art41v,chart_template_simplerp,Operazione non imponibile – art.41 D.L. 331/93 (debito),53,0,percent,sale,False,tax_tag_00art41v,,,
+00art10v,00art10v,chart_template_simplerp,Esente Art. 10 DPR 633/72 (debito),54,0,percent,sale,False,tax_tag_00art10v,,4805045,4805045
+00art10a,00art10a,chart_template_simplerp,Esente Art. 10 DPR 633/72 (credito),55,0,percent,purchase,False,tax_tag_00art10a,,1820005,1820005
+21v,21v,chart_template_simplerp,Iva al 21% (debito),900,21,percent,sale,False,tax_tag_21v,,4805045,4805045
+21a,21a,chart_template_simplerp,Iva al 21% (credito),901,21,percent,purchase,False,tax_tag_21a,,1820005,1820005
+20v,20v,chart_template_simplerp,Iva al 20% (debito),902,20,percent,sale,False,tax_tag_20v,,4805045,4805045
+20a,20a,chart_template_simplerp,Iva al 20% (credito),903,20,percent,purchase,False,tax_tag_20a,,1820005,1820005
+2010a,2010a,chart_template_simplerp,Iva al 20% detraibile 10% (I),100,18,percent,none,False,,,,
+2010b,2010b,chart_template_simplerp,Iva al 20% detraibile 10% (D),200,2,percent,none,False,,,1820005,1820005
+2010,2010,chart_template_simplerp,Iva al 20% detraibile 10%,904,20,group,purchase,False,tax_tag_2010,"2010a,2010b",,
+2015a,2015a,chart_template_simplerp,Iva al 20% detraibile 15% (I),100,17,percent,none,False,,,,
+2015b,2015b,chart_template_simplerp,Iva al 20% detraibile 15% (D),200,3,percent,none,False,,,1820005,1820005
+2015,2015,chart_template_simplerp,Iva al 20% detraibile 15%,907,20,group,purchase,False,tax_tag_2015,"2015a,2015b",,
+2040a,2040a,chart_template_simplerp,Iva al 20% detraibile 40% (I),100,12,percent,none,False,,,,
+2040b,2040b,chart_template_simplerp,Iva al 20% detraibile 40% (D),200,8,percent,none,False,,,1820005,1820005
+2040,2040,chart_template_simplerp,Iva al 20% detraibile 40%,910,20,group,purchase,False,tax_tag_2040,"2040a,2040b",,
+20AO,20AO,chart_template_simplerp,Iva al 20% indetraibile,913,20,group,purchase,False,tax_tag_20AO,,,
+20I5a,20I5a,chart_template_simplerp,Iva al 20% detraibile al 50% (I),100,10,percent,none,False,,,,
+20I5b,20I5b,chart_template_simplerp,Iva al 20% detraibile al 50% (D),200,10,percent,none,False,,,1820005,1820005
+20I5,20I5,chart_template_simplerp,Iva al 20% detraibile al 50%,914,20,group,purchase,False,tax_tag_20I5,"20I5a,20I5b",,
+21v INC,21v INC,chart_template_simplerp,Iva al 21% (debito) INC,917,21,percent,sale,True,tax_tag_21vINC,,4805045,4805045
+20v INC,20v INC,chart_template_simplerp,Iva al 20% (debito) INC,918,20,percent,sale,True,tax_tag_20vINC,,4805045,4805045
+2110a,2110a,chart_template_simplerp,Iva al 21% detraibile 10% (I),100,18.9,percent,none,False,,,,
+2110b,2110b,chart_template_simplerp,Iva al 21% detraibile 10% (D),200,2.1,percent,none,False,,,1820005,1820005
+2110,2110,chart_template_simplerp,Iva al 21% detraibile 10%,919,21,group,purchase,False,tax_tag_2110,"2110a,2110b",,
+2115a,2115a,chart_template_simplerp,Iva al 21% detraibile 15% (I),100,17.85,percent,none,False,,,,
+2115b,2115b,chart_template_simplerp,Iva al 21% detraibile 15% (D),200,3.15,percent,none,False,,,1820005,1820005
+2115,2115,chart_template_simplerp,Iva al 21% detraibile 15%,922,21,group,purchase,False,tax_tag_2115,"2115a,2115b",,
+2140a,2140a,chart_template_simplerp,Iva al 21% detraibile 40% (I),100,12.6,percent,none,False,,,,
+2140b,2140b,chart_template_simplerp,Iva al 21% detraibile 40% (D),200,8.4,percent,none,False,,,1820005,1820005
+2140,2140,chart_template_simplerp,Iva al 21% detraibile 40%,925,21,group,purchase,False,tax_tag_2140,"2140a,2140b",,
+21AOb,21AOb,chart_template_simplerp,Iva al 21% indetraibile (D),200,0,percent,none,False,,,1820005,1820005
+21AOa,21AOa,chart_template_simplerp,Iva al 21% indetraibile (I),100,21,percent,none,False,,,,
+21AO,21AO,chart_template_simplerp,Iva al 21% indetraibile,928,21,group,purchase,False,tax_tag_21AO,"21AOb,21AOa",,
+21I5a,21I5a,chart_template_simplerp,Iva al 21% detraibile al 50% (I),100,10.5,percent,none,False,,,,
+21I5b,21I5b,chart_template_simplerp,Iva al 21% detraibile al 50% (D),200,10.5,percent,none,False,,,1820005,1820005
+21I5,21I5,chart_template_simplerp,Iva al 21% detraibile al 50%,929,21,group,purchase,False,tax_tag_21I5,"21I5a,21I5b",,
+21art38a,21art38a,chart_template_simplerp,Operazione non imponibile – art.38 D.L. 331/93 21% (credito),932,21,percent,purchase,False,tax_tag_21art38a,,1820006,1820006
+21art38v,21art38v,chart_template_simplerp,Operazione non imponibile – art.38 D.L. 331/93 21% (debito),933,21,percent,sale,False,tax_tag_21art38v,,4805046,4805046

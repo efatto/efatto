@@ -22,7 +22,7 @@ class AccountInvoice(models.Model):
             ]:
                 if inv.account_fiscal_position_rule_id.amount_max < (
                         inv.account_fiscal_position_rule_id.amount_total +
-                        inv.amount_untaxed + 0.01):
+                        inv.amount_untaxed - 0.01):
                     raise UserError(
                         _('Fiscal position rule residual amount %s is not '
                           'enough to validate this invoice with amount %s. '

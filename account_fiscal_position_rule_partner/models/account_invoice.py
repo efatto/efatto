@@ -5,6 +5,10 @@
 from openerp import models, api, _
 from openerp.exceptions import Warning as UserError
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -16,9 +20,9 @@ class AccountInvoice(models.Model):
             if inv.account_fiscal_position_rule_id and inv.type in [
                 'out_invoice',
             ]:
-                if inv.account_fiscal_position_rule_id.amount_max < \
-                        inv.account_fiscal_position_rule_id.amount_total + \
-                        inv.amount_untaxed:
+                if inv.account_fiscal_position_rule_id.amount_max < (
+                        inv.account_fiscal_position_rule_id.amount_total +
+                        inv.amount_untaxed):
                     raise UserError(
                         _('Fiscal position rule residual amount %.2f is not '
                           'enough to validate this invoice with amount %.2f. '
@@ -36,16 +40,15 @@ class AccountInvoice(models.Model):
             if inv.account_fiscal_position_rule_id and inv.type in [
                 'out_invoice',
             ]:
-                if inv.account_fiscal_position_rule_id.amount_max < \
-                        inv.account_fiscal_position_rule_id.amount_total + \
-                        inv.amount_untaxed:
-                    pass
-                    # raise UserError(
-                    #     _('Fiscal position rule residual amount %.2f is not '
-                    #       'enough to validate this invoice with amount %.2f. '
-                    #       'Remove fiscal position rule to continue.')
-                    #     % (inv.account_fiscal_position_rule_id.amount_max -
-                    #        inv.account_fiscal_position_rule_id.amount_total,
-                    #        inv.amount_untaxed)
-                    # )
+                if inv.account_fiscal_position_rule_id.amount_max < (
+                        inv.account_fiscal_position_rule_id.amount_total +
+                        inv.amount_untaxed):
+                    _logger.info(
+                        _('Fiscal position rule residual amount %.2f is not '
+                          'enough to validate this invoice with amount %.2f. '
+                          'Remove fiscal position rule to continue.')
+                        % (inv.account_fiscal_position_rule_id.amount_max -
+                           inv.account_fiscal_position_rule_id.amount_total,
+                           inv.amount_untaxed)
+                    )
         return res

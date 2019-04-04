@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'No my tasks default filter',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Extra Tools',
     'summary': 'Remove default filter my tasks',
     'description':

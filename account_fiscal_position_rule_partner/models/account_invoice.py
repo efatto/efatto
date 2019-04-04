@@ -20,9 +20,9 @@ class AccountInvoice(models.Model):
             if inv.account_fiscal_position_rule_id and inv.type in [
                 'out_invoice',
             ]:
-                if inv.account_fiscal_position_rule_id.amount_max < (
+                if inv.account_fiscal_position_rule_id.amount_max < round(
                         inv.account_fiscal_position_rule_id.amount_total +
-                        inv.amount_untaxed - 0.01):
+                        inv.amount_untaxed, 2):
                     raise UserError(
                         _('Fiscal position rule residual amount %s is not '
                           'enough to validate this invoice with amount %s. '
@@ -45,9 +45,9 @@ class AccountInvoice(models.Model):
             if inv.account_fiscal_position_rule_id and inv.type in [
                 'out_invoice',
             ]:
-                if inv.account_fiscal_position_rule_id.amount_max < (
+                if inv.account_fiscal_position_rule_id.amount_max < round(
                         inv.account_fiscal_position_rule_id.amount_total +
-                        inv.amount_untaxed):
+                        inv.amount_untaxed, 2):
                     _logger.info(
                         _('Fiscal position rule residual amount %.2f is not '
                           'enough to validate this invoice with amount %.2f. '

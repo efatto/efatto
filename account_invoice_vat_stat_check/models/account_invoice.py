@@ -11,7 +11,7 @@ class AccountInvoice(models.Model):
         for invoice in self:
             date_range = self.env['date.range'].search([
                 ('date_start', '<=', invoice.date_invoice),
-                ('date_stop', '>=', invoice.date_invoice),
+                ('date_end', '>=', invoice.date_invoice),
             ])
             vat_statement = self.env[
                 'account.vat.period.end.statement'].search(
@@ -30,7 +30,7 @@ class AccountInvoice(models.Model):
         for invoice in self:
             date_range = self.env['date.range'].search([
                 ('date_start', '<=', invoice.date_invoice),
-                ('date_stop', '>=', invoice.date_invoice),
+                ('date_end', '>=', invoice.date_invoice),
             ])
             vat_statement = self.env[
                 'account.vat.period.end.statement'].search(

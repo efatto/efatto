@@ -35,7 +35,7 @@
         'account',
     ],
     'data': [
-        'views/account_journal_sequence_view.xml',
+        # 'views/account_journal_sequence_view.xml',
     ],
     'installable': True
 }

@@ -1,4 +1,4 @@
-id,description,chart_template_id:id,name,sequence,amount,amount_type,type_tax_use,price_include,tag_ids/id,children_tax_ids/id,account_id/id,refund_account_id/id
+id,description,chart_template_id/id,name,sequence,amount,amount_type,type_tax_use,price_include,tag_ids/id,children_tax_ids/id,account_id/id,refund_account_id/id
 22v,22v,l10n_it_chart_generic,Iva al 22% (debito),1,22,percent,sale,False,tax_tag_22v,,4805045,4805045
 22a,22a,l10n_it_chart_generic,Iva al 22% (credito),2,22,percent,purchase,False,tax_tag_22a,,1820005,1820005
 22v INC,22v INC,l10n_it_chart_generic,Iva al 22% (debito) INCL,3,22,percent,sale,True,tax_tag_22vINC,,4805045,4805045

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Better view of task on calendar',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'View task on calendar based on date_end and date_start',
     'description':

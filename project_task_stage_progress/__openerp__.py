@@ -19,7 +19,7 @@
 #
 {
     'name': 'Project task stage progress',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Add ability to mark a task type of a project as user '

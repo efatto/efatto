@@ -28,7 +28,7 @@
     'website': 'https://efatto.it',
     'depends': [
         'analytic',
-        'contract',
+        'contract_show_sale',
         'project',
     ],
     'data': [

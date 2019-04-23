@@ -2,6 +2,35 @@
 <openerp>
     <data>
 
+        <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
+            <field name="name">account.analytic.account.tree.sal</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="contract.view_account_analytic_account_journal_tree"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="display_name" position="replace">
+                    <field name="name"/>
+                </field>
+                <field name="debit" position="before">
+                    <field name="amount_remaining" sum="Total Remaining" string="Remaining"/>
+                    <field name="hours_planned" sum="Hours Planned" string="Hours Planned"/>
+                    <field name="hours_done" sum="Hours" string="Hours Done"/>
+                    <field name="progress_hours" widget="progressbar"/>
+                </field>
+                <field name="debit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="credit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="balance" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
         <record id="view_account_analytic_account_form_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.inherit.sal</field>
             <field name="model">account.analytic.account</field>
@@ -10,10 +39,10 @@
             <field name="arch" type="xml">
                 <group name='main' position="after">
                     <group col="4">
-                        <field name="amount_max"/>
-                        <field name="amount_invoiced"/>
                         <field name="amount_remaining"/>
-                        <field name="amount_sale_to_invoice"/>
+                        <field name="hours_planned"/>
+                        <field name="hours_done"/>
+                        <field name="progress_hours" widget="progressbar"/>
                     </group>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
@@ -34,9 +63,6 @@
                                     <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
                                     <field name="done"/>
                                     <field name="invoiced"/>
-                                    <!--<field name="action_id"/>-->
-                                    <!--<field name="action_res_model_id"/>-->
-                                    <!--<field name="action_res_id"/>-->
                                 </tree>
                             </field>
                         </group>

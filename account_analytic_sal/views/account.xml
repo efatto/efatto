@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.tree.sal</field>
@@ -159,5 +158,4 @@
             groups="analytic.group_analytic_accounting"
             sequence="100"/>
 
-    </data>
-</openerp>
+</odoo>

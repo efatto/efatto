@@ -44,10 +44,6 @@ class StockPickingPackagePreparation(models.Model):
             picking_type = package.picking_type_id or \
                            package.picking_type_ddt_id or default_picking_type
             moves = []
-            # add invoiceable from ddt type
-            if package.invoiceable:
-                package.line_ids.write({'invoiceable': package.invoiceable})
-            # end fix
             # check partner_invoice_id of order origin of pickings is only 1
             if len(package.picking_ids.mapped('sale_partner_invoice_id.id'))>1:
                 raise UserError(

@@ -217,7 +217,7 @@ id,code,name,user_type_id:id,reconcile,chart_template_id:id
 2405015,2405015,BANCA C/ANTICIPI,account.data_account_type_receivable,TRUE,l10n_it_chart_generic
 2405021,2405021,CASTELETTO ANTICIPO EFFETTI SBF,account.data_account_type_receivable,TRUE,l10n_it_chart_generic
 2405025,2405025,BANCA C/VINCOLATO,account.data_account_type_liquidity,FALSE,l10n_it_chart_generic
-2405030,2405030,CARTA DI CREDITO,account.data_account_type_credit_card,FALSE,l10n_it_chart_generic
+2405030,2405030,CARTA DI CREDITO,account.data_account_type_liquidity,FALSE,l10n_it_chart_generic
 2405045,2405045,BANCA C/VALUTARIO,account.data_account_type_liquidity,FALSE,l10n_it_chart_generic
 2405065,2405065,C/C POSTALE,account.data_account_type_liquidity,FALSE,l10n_it_chart_generic
 2410005,2410005,ASSEGNI BANCARI,account.data_account_type_liquidity,FALSE,l10n_it_chart_generic

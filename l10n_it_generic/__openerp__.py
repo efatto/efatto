@@ -36,6 +36,7 @@
         'data/account_chart.xml',
         'data/data_account_type.xml',
         'data/account.account.template.csv',
+        'data/account.tax.group.csv',
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'data/account.fiscal.position.tax.template.csv',

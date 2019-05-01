@@ -13,7 +13,7 @@
             <field name="bank_account_code_prefix">1202</field>
             <field name="currency_id" ref="base.EUR"/>
             <field name="code_digits" eval="7"/>
-            <field name="transfer_account_id" ref="l10n_it_generic.transfer_account_id"/>
+            <field name="transfer_account_id" ref="transfer_account_id"/>
         </record>
         <record id="transfer_account_id" model="account.account.template">
             <field name="chart_template_id" ref="l10n_it_chart_generic"/>

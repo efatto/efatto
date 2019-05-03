@@ -19,6 +19,7 @@
                     <field name="hours_planned" sum="Hours Planned"/>
                     <field name="hours_done" sum="Hours"/>
                     <field name="progress_hours" widget="progressbar"/>
+                    <field name="date_start"/>
                     <field name="manager_id"/>
                 </field>
                 <field name="debit" position="attributes">
@@ -32,9 +33,6 @@
                 </field>
                 <field name="recurring_next_date" position="attributes">
                     <attribute name="invisible">1</attribute>
-                </field>
-                <field name="recurring_next_date" position="after">
-                    <field name="date_start"/>
                 </field>
                 <field name="code" position="replace"/>
                 <field name="partner_id" position="after">

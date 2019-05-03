@@ -91,6 +91,8 @@ class AccountAnalyticAccount(models.Model):
     amount_sal_to_invoice = fields.Float(
         compute='_get_amount_sal_to_invoice',
         help='Amount to invoice from SAL')
+    manager_id = fields.Many2one(
+        'res.users', 'Account Manager', track_visibility='onchange')
 
 
 class AccountInvoiceLine(models.Model):

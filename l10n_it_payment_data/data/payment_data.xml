@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+		<record id="payment_term_16_MS" model="account.payment.term">
+            <field name="name">F24 16 GG M.S.</field>
+            <field name="note">F24 16 Giorni Mese Successivo</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 16, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">F4</field>-->
+        </record>
+        <record id="payment_direct" model="account.payment.term">
+            <field name="name">Direct Payment</field>
+            <field name="note">Direct Payment</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_30" model="account.payment.term">
+            <field name="name">30 DAYS FROM INVOICE DATE</field>
+            <field name="note">Direct Payment 30 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_45" model="account.payment.term">
+            <field name="name">45 DAYS FROM INVOICE DATE</field>
+            <field name="note">Direct Payment 45 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 45, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_60" model="account.payment.term">
+            <field name="name">60 DAYS FROM INVOICE DATE</field>
+            <field name="note">Direct Payment 60 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_90" model="account.payment.term">
+            <field name="name">90 DAYS FROM INVOICE DATE</field>
+            <field name="note">Direct Payment 90 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_30_days" model="account.payment.term">
+            <field name="name">30 DAYS END OF MONTH</field>
+            <field name="note">Direct Payment 30 Days End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_60_days" model="account.payment.term">
+            <field name="name">60 DAYS END OF MONTH</field>
+            <field name="note">Direct Payment 60 Days End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_90_days" model="account.payment.term">
+            <field name="name">90 DAYS END OF MONTH</field>
+            <field name="note">Direct Payment 90 Days End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_120_days" model="account.payment.term">
+            <field name="name">120 DAYS END OF MONTH</field>
+            <field name="note">Direct Payment 120 Days End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_180_days" model="account.payment.term">
+            <field name="name">180 DAYS END OF MONTH</field>
+            <field name="note">Direct Payment 180 Days End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'fix_day_following_month'})]"/>
+            <field name="type">RD</field>
+        </record>
+        <record id="payment_direct_30_60_days" model="account.payment.term">
+            <field name="name">Direct Payment 30/60 Days Inv. End Month</field>
+            <field name="note">Direct Payment 30/60 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_60_90_days" model="account.payment.term">
+            <field name="name">Direct Payment 60/90 Days Inv. End Month</field>
+            <field name="note">Direct Payment 60/90 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_consignment" model="account.payment.term">
+            <field name="name">On Delivery</field>
+            <field name="note">On Delivery</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_30order_70beforeshipment" model="account.payment.term">
+            <field name="name">30% ON PROFORMA INVOICE, 70% BEFORE SHIPMENT</field>
+            <field name="note">30% ON PROFORMA INVOICE, 70% BEFORE SHIPMENT</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 30.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 1, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_50order_50beforeshipment" model="account.payment.term">
+            <field name="name">50% ON PROFORMA INVOICE, 50% BEFORE SHIPMENT</field>
+            <field name="note">50% ON PROFORMA INVOICE, 50% BEFORE SHIPMENT</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 1, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_30order_70beforedelivery" model="account.payment.term">
+            <field name="name">30% on order 70% before delivery</field>
+            <field name="note">30% on order 70% before delivery</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 30.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 1, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_50proforma_50beforedelivery" model="account.payment.term">
+            <field name="name">50% on proforma 50% before delivery</field>
+            <field name="note">50% on proforma 50% before delivery</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 1, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_direct_50proforma_50delivery" model="account.payment.term">
+            <field name="name">50% on proforma 50% on delivery</field>
+            <field name="note">50% on proforma 50% on delivery</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 1, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_consignment_7_days" model="account.payment.term">
+            <field name="name">7 Days after delivery</field>
+            <field name="note">7 Days after delivery</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 7, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_consignment_6_weeks" model="account.payment.term">
+            <field name="name">6 weeks after delivery</field>
+            <field name="note">6 weeks after delivery</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'weeks': 6, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_consignment_30_days" model="account.payment.term">
+            <field name="name">30 Days after delivery</field>
+            <field name="note">30 Days after delivery</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_paid" model="account.payment.term">
+            <field name="name">PAYMENT MADE</field>
+            <field name="note">PAYMENT MADE</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_delivery" model="account.payment.term">
+            <field name="name">Cash on delivery</field>
+            <field name="note">Cash on delivery</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+    <!-- Payment Same day of Month -->
+		<record id="payment_term_advance" model="account.payment.term">
+            <field name="name">PREPAYMENT</field>
+            <field name="note">PREPAYMENT in Advance on order</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+		<record id="payment_term_proforma" model="account.payment.term">
+            <field name="name">100% ON PROFORMA INVOICE</field>
+            <field name="note">100% ON PROFORMA INVOICE</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+		<record id="payment_term_creditcard" model="account.payment.term">
+            <field name="name">Credit Card</field>
+            <field name="note">Credit Card</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">CC</field>-->
+        </record>
+		<record id="payment_term_sight" model="account.payment.term">
+            <field name="name">PAYMENT AT SIGHT</field>
+            <field name="note">PAYMENT AT SIGHT</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+		<record id="payment_term_15_net_1" model="account.payment.term">
+            <field name="name">B.T. 15 Days Inv.</field>
+            <field name="note">B.T. 15 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 15, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+		<record id="payment_term_45_net_1" model="account.payment.term">
+            <field name="name">B.T. 45 Days Inv.</field>
+            <field name="note">B.T. 45 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 45, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_net_1" model="account.payment.term">
+            <field name="name">B.T. 60 DAYS INVOICE</field>
+            <field name="note">B.T. 60 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_net_1" model="account.payment.term">
+            <field name="name">B.T. 90 DAYS INVOICE</field>
+            <field name="note">B.T. 90 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_120_net_1" model="account.payment.term">
+            <field name="name">120 DAYS FROM INVOICE DATE</field>
+            <field name="note">120 days from invoice date</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 120, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_180_net_1" model="account.payment.term">
+            <field name="name">B.T. 180 Days Inv.</field>
+            <field name="note">B.T. 180 days invoice</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 180, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_50order_50_net" model="account.payment.term">
+            <field name="name">50% on order, 50% B.T. 30 Days End Month</field>
+            <field name="note">50% on order, 50% B.T. 30 Days End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+            <!--prima riga pagamento <field name="type">RD</field>-->
+            <!--seconda riga pagamento <field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_50order_50_net_30days" model="account.payment.term">
+            <field name="name">50% ON PROFORMA INVOICE, 50% 30 DAYS FROM INVOICE DATE</field>
+            <field name="note">50% ON PROFORMA INVOICE, 50% 30 DAYS FROM INVOICE DATE</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">RD</field>-->
+        </record>
+        <record id="payment_term_30_60_net_2" model="account.payment.term">
+            <field name="name">B.T. 30/60 Days Inv.</field>
+            <field name="note">B.T. 30/60 Days Date Invoice</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 60, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_net_2" model="account.payment.term">
+            <field name="name">B.T. 60/90 Days Inv.</field>
+            <field name="note">B.T. 60/90 Days Date Invoice</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_120_net_2" model="account.payment.term">
+            <field name="name">B.T. 90/120 Days Inv.</field>
+            <field name="note">B.T. 90/120 Days Date Invoice</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 90, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 120, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_30_60_90_net_3" model="account.payment.term">
+            <field name="name">B.T. 30/60/90 Days Inv.</field>
+            <field name="note">B.B 30/60/90 Days Date Invoice</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 60, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_120_net_3" model="account.payment.term">
+            <field name="name">B.T. 60/90/120 Days Inv.</field>
+            <field name="note">B.T. 60/90/120 Days Date Invoice</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 90, 'option': 'day_after_invoice_date'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 120, 'option': 'day_after_invoice_date'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+	<!-- Payment End of Month -->
+        <record id="payment_term_dffm" model="account.payment.term">
+            <field name="name">END OF MONTH</field>
+            <field name="note">END OF MONTH</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_current_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+    	<record id="payment_term_30_days_1" model="account.payment.term">
+            <field name="name">B.T. 30 Days Inv. End Month</field>
+            <field name="note">B.T. 30 Days Date invoice End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+	    <record id="payment_term_60_days_1" model="account.payment.term">
+            <field name="name">B.T. 60 Days Inv. End Month</field>
+            <field name="note">B.T. 60 Days Date invoice End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_days_1" model="account.payment.term">
+            <field name="name">B.T. 90 Days Inv. End Month</field>
+            <field name="note">B.T. 90 Days Date invoice End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_120_days_1" model="account.payment.term">
+            <field name="name">B.T. 120 Days Inv. End Month</field>
+            <field name="note">B.T. 120 Days Date invoice End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_180_days_1" model="account.payment.term">
+            <field name="name">B.T. 180 Days Inv. End Month</field>
+            <field name="note">B.T. 180 Days Date invoice End of Month</field>
+            <field name="line_ids" eval="[(0, 0, {
+            'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_30_60_days_2" model="account.payment.term">
+            <field name="name">B.T. 30/60 Days Inv. End Month</field>
+            <field name="note">B.T. 30/60 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_days_2" model="account.payment.term">
+            <field name="name">B.T. 60/90 Days Inv. End Month</field>
+            <field name="note">B.T. 60/90 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_120_days_2" model="account.payment.term">
+            <field name="name">B.T. 90/120 Days Inv. End Month</field>
+            <field name="note">B.T. 90/120 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_30_60_90_days_3" model="account.payment.term">
+            <field name="name">B.T. 30/60/90 Days Inv. End Month</field>
+            <field name="note">B.T. 30/60/90 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_120_days_3" model="account.payment.term">
+            <field name="name">B.T. 60/90/120 Days Inv. End Month</field>
+            <field name="note">B.T. 60/90/120 Days Date invoice End of Month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+	<!-- Payment Day 10 of Month -->
+        <record id="payment_term_30_days_10_monthly_1" model="account.payment.term">
+            <field name="name">B.T. 30 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30 days invoice End of Month at 10 of next month</field>
+            <field name="line_ids" eval="[(0, 0,
+            {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_days_10_monthly_1" model="account.payment.term">
+            <field name="name">B.T. 60 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60 days invoice End of Month at 10 of next month</field>
+            <field name="line_ids" eval="[(0, 0,
+            {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_days_10_monthly_1" model="account.payment.term">
+            <field name="name">B.T. 90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 90 days invoice End of Month at 10 of next month</field>
+            <field name="line_ids" eval="[(0, 0,
+            {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_120_days_10_monthly_1" model="account.payment.term">
+            <field name="name">B.T. 120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 120 days invoice End of Month at 10 of next month</field>
+            <field name="line_ids" eval="[(0, 0,
+            {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_30_60_days_10_monthly_2" model="account.payment.term">
+            <field name="name">B.T. 30/60 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30/60 days invoice End of Month at 10 of next month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_days_10_monthly_2" model="account.payment.term">
+            <field name="name">B.T. 60/90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60/90 days invoice End of Month at 10 of next month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_90_120_days_10_monthly_2" model="account.payment.term">
+            <field name="name">B.T. 90/120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 90/120 days invoice End of Month at 10 of next month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_30_60_90_days_10_monthly_3" model="account.payment.term">
+            <field name="name">B.T. 30/60/90 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 30/60/90 days invoice End of Month at 10 of next month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+        <record id="payment_term_60_90_120_days_10_monthly_3" model="account.payment.term">
+            <field name="name">B.T. 60/90/120 Days Inv. 10 Next Month</field>
+            <field name="note">B.T. 60/90/120 days invoice End of Month at 10 of next month</field>
+            <field name="sequential_lines">True</field>
+            <field name="line_ids" eval="[
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'}),
+            (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+            <!--<field name="type">BB</field>-->
+        </record>
+
+    </data>
+</openerp>

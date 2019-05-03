@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
+            <field name="name">account.analytic.account.tree.sal</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="contract.view_account_analytic_account_journal_tree"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="display_name" position="replace">
+                    <field name="name"/>
+                </field>
+                <field name="debit" position="before">
+                    <field name="amount_remaining" sum="Total Remaining" string="Remaining"/>
+                    <field name="hours_planned" sum="Hours Planned" string="Hours Planned"/>
+                    <field name="hours_done" sum="Hours" string="Hours Done"/>
+                    <field name="progress_hours" widget="progressbar"/>
+                </field>
+                <field name="debit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="credit" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="balance" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
 
         <record id="view_account_analytic_account_form_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.inherit.sal</field>
@@ -9,6 +37,12 @@
             <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
                 <group name='main' position="after">
+                    <group col="4">
+                        <field name="amount_remaining"/>
+                        <field name="hours_planned"/>
+                        <field name="hours_done"/>
+                        <field name="progress_hours" widget="progressbar"/>
+                    </group>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
                            />
@@ -17,10 +51,6 @@
                         <label for="use_sal" />
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
                             <field name="amount_sal_to_invoice"/>
-                            <field name="amount_max"/>
-                            <field name="ca_invoiced"/>
-                            <field name="remaining_ca"/>
-                            <field name="fix_price_to_invoice"/>
                         </group>
                         <group col="4" attrs="{'invisible': [('use_sal','!=',True)]}">
                             <field name="account_analytic_sal_ids" nolabel="1">
@@ -32,9 +62,6 @@
                                     <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
                                     <field name="done"/>
                                     <field name="invoiced"/>
-                                    <!--<field name="action_id"/>-->
-                                    <!--<field name="action_res_model_id"/>-->
-                                    <!--<field name="action_res_id"/>-->
                                 </tree>
                             </field>
                         </group>
@@ -91,11 +118,37 @@
                 </tree>
             </field>
         </record>
+        <record id="view_account_analytic_sal_form" model="ir.ui.view">
+            <field name="name">account.analytic.sal.form</field>
+            <field name="model">account.analytic.sal</field>
+            <field name="arch" type="xml">
+                <form string="Analytic SAL">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="account_analytic_id" options="{'no_create_edit': True}"/>
+                        </group>
+                        <group col="4">
+                            <field name="percent_completion"/>
+                            <field name="percent_toinvoice"/>
+                            <field name="amount_invoiced" sum="Total Invoiced"/>
+                            <field name="amount_toinvoice" sum="Total to Invoice"/>
+                            <field name="done"/>
+                            <field name="invoiced"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
         <record id="action_account_analytic_sal_line_form" model="ir.actions.act_window">
             <field name="name">Analytic SAL to invoice</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">account.analytic.sal</field>
             <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_to_invoice": 1}</field>
             <field name="view_id" ref="view_account_analytic_sal_tree"/>
             <field name="search_view_id" ref="view_account_analytic_sal_filter"/>

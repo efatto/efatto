@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account analytic SAL',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
@@ -28,7 +28,7 @@
     'website': 'https://efatto.it',
     'depends': [
         'analytic',
-        'contract_show_sale',
+        'contract',
         'project',
     ],
     'data': [

@@ -27,6 +27,9 @@
                 <field name="balance" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
+                <field name="debit" position="after">
+                    <field name="manager_id"/>
+                </field>
             </field>
         </record>
 

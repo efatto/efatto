@@ -12,11 +12,14 @@
                 <field name="display_name" position="replace">
                     <field name="name"/>
                 </field>
-                <field name="debit" position="before">
+                <field name="balance" position="after">
+                    <field name="total_invoiced" sum="Total Invoiced" string="Invoiced"/>
                     <field name="amount_remaining" sum="Total Remaining" string="Remaining"/>
-                    <field name="hours_planned" sum="Hours Planned" string="Hours Planned"/>
-                    <field name="hours_done" sum="Hours" string="Hours Done"/>
+                    <field name="amount_sal_to_invoice" sum="Total SAL To Invoice"/>
+                    <field name="hours_planned" sum="Hours Planned"/>
+                    <field name="hours_done" sum="Hours"/>
                     <field name="progress_hours" widget="progressbar"/>
+                    <field name="manager_id"/>
                 </field>
                 <field name="debit" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -27,8 +30,15 @@
                 <field name="balance" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
-                <field name="debit" position="after">
-                    <field name="manager_id"/>
+                <field name="recurring_next_date" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="recurring_next_date" position="after">
+                    <field name="date_start"/>
+                </field>
+                <field name="code" position="replace"/>
+                <field name="partner_id" position="after">
+                    <field name="code"/>
                 </field>
             </field>
         </record>

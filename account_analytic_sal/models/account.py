@@ -67,9 +67,6 @@ class AccountAnalyticAccount(models.Model):
 
     use_sal = fields.Boolean(
         string='Use SAL')
-    fix_price_to_invoice = fields.Float(
-        string='Contract Fix Amount',
-        digits=dp.get_precision('Account'))
     amount_remaining = fields.Float(
         compute='_get_amount_remaining',
         string='Remaining Revenue',

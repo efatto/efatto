@@ -34,6 +34,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/account.xml',
+        'views/project.xml',
     ],
     'installable': True,
 }

@@ -34,4 +34,5 @@
         'data/payment_data.xml',
     ],
     "installable": True,
+    "auto_install": True,
 }

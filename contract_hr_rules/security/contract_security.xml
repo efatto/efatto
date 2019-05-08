@@ -7,5 +7,11 @@
         <field name="domain_force">[('user_id', '=', user.id)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
     </record>
+    <record model="ir.rule" id="hr_employee_visibility_all">
+        <field name="name">Manager and Responsible: all</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager')), (4, ref('hr.group_hr_user'))]"/>
+    </record>
 
 </odoo>

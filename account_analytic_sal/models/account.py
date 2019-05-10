@@ -22,12 +22,13 @@ class AccountAnalyticAccount(models.Model):
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
             hours_planned = 0.0
-            hours_done = 0.0
             analytic_fetch_data = analytic_line_model.read_group(
                 [('project_id', 'in', analytic.project_ids.ids)],
                 ['unit_amount'], [],
             )
             hours_done = analytic_fetch_data[0]['unit_amount']
+            if not hours_done:
+                hours_done = 0.0
             analytic.hours_done = hours_done
             sale_fetch_data = sale_line_model.read_group(
                 [('order_id.project_id', '=', analytic.id),

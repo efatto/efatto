@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+<!--        <record model="ir.ui.view" id="account_analytic_line_tree_invoice">-->
+<!--            <field name="name">account.analytic.line.tree.invoice</field>-->
+<!--            <field name="model">account.analytic.line</field>-->
+<!--            <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="amount" position="before">-->
+<!--                    <field name="invoice_id"/>-->
+<!--                </field>-->
+<!--            </field>-->
+<!--        </record>-->
+
         <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.tree.sal</field>
             <field name="model">account.analytic.account</field>
@@ -16,10 +27,10 @@
                     <field name="total_invoiced" sum="Total Invoiced" string="Invoiced"/>
                     <field name="amount_remaining" sum="Total Remaining" string="Remaining"/>
                     <field name="amount_sal_to_invoice" sum="Total SAL To Invoice"/>
-                    <field name="hours_planned" sum="Hours Planned"/>
-                    <field name="hours_done" sum="Hours"/>
+                    <field name="hours_residual" sum="Hours Residual"/>
                     <field name="progress_hours" widget="progressbar"/>
                     <field name="date_start"/>
+                    <field name="date_end"/>
                     <field name="manager_id"/>
                 </field>
                 <field name="debit" position="attributes">

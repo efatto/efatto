@@ -16,28 +16,25 @@ class AccountAnalyticAccount(models.Model):
                     account.hours_done / account.hours_planned * 100
 
     @api.multi
-    def _compute_done_hours(self):
+    def _compute_hours(self):
         analytic_line_model = self.env['account.analytic.line']
-        for analytic in self:
-            fetch_data = analytic_line_model.read_group(
-                [('project_id', 'in', analytic.project_ids.ids)],
-                ['unit_amount'], [],
-            )
-            analytic.hours_done = fetch_data[0]['unit_amount']
-
-    @api.multi
-    def _compute_planned_hours(self):
         sale_line_model = self.env['sale.order.line']
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
-            fetch_data = sale_line_model.read_group(
+            analytic_fetch_data = analytic_line_model.read_group(
+                [('project_id', 'in', analytic.project_ids.ids)],
+                ['unit_amount'], [],
+            )
+            hours_done = analytic_fetch_data[0]['unit_amount']
+            analytic.hours_done = hours_done
+            sale_fetch_data = sale_line_model.read_group(
                 [('order_id.project_id', '=', analytic.id),
                  ('product_uom.category_id', '=', time_type_id.id),
                  ('order_id.state', 'not in', ['draft', 'sent', 'cancel'])],
                 ['product_uom_qty', 'product_uom'], ['product_uom'],
             )
             hours_planned = 0.0
-            for d in fetch_data:
+            for d in sale_fetch_data:
                 if not d['product_uom_qty']:
                     continue
                 # get total hours planned
@@ -46,6 +43,7 @@ class AccountAnalyticAccount(models.Model):
                 hours_planned += uom_base._compute_quantity(
                     d['product_uom_qty'], uom)
             analytic.hours_planned = hours_planned
+            analytic.hours_residual = hours_planned - hours_done
 
     @api.multi
     def _get_amount_sal_to_invoice(self):
@@ -74,10 +72,13 @@ class AccountAnalyticAccount(models.Model):
         digits=dp.get_precision('Account'))
     hours_planned = fields.Float(
         string="Planned Hours",
-        compute='_compute_planned_hours')
+        compute='_compute_hours')
     hours_done = fields.Float(
         string="Done Hours",
-        compute='_compute_done_hours')
+        compute='_compute_hours')
+    hours_residual = fields.Float(
+        string="Residual Hours",
+        compute='_compute_hours')
     progress_hours = fields.Float(
         help='Progress on hours planned on contract',
         compute='get_progress')
@@ -90,6 +91,8 @@ class AccountAnalyticAccount(models.Model):
         help='Amount to invoice from SAL')
     manager_id = fields.Many2one(
         'res.users', 'Account Manager', track_visibility='onchange')
+    date_end = fields.Date(
+        'End Date', oldname='date')
 
 
 class AccountInvoiceLine(models.Model):

@@ -21,6 +21,8 @@ class AccountAnalyticAccount(models.Model):
         sale_line_model = self.env['sale.order.line']
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
+            hours_planned = 0.0
+            hours_done = 0.0
             analytic_fetch_data = analytic_line_model.read_group(
                 [('project_id', 'in', analytic.project_ids.ids)],
                 ['unit_amount'], [],
@@ -33,7 +35,6 @@ class AccountAnalyticAccount(models.Model):
                  ('order_id.state', 'not in', ['draft', 'sent', 'cancel'])],
                 ['product_uom_qty', 'product_uom'], ['product_uom'],
             )
-            hours_planned = 0.0
             for d in sale_fetch_data:
                 if not d['product_uom_qty']:
                     continue

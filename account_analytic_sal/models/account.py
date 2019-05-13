@@ -65,6 +65,21 @@ class AccountAnalyticAccount(models.Model):
             account.amount_remaining = \
                 account.total_sale - account.total_invoiced
 
+    @api.multi
+    def _get_last_date_invoice(self):
+        invoice_model = self.env['account.invoice']
+        for analytic in self:
+            fetch_data = invoice_model.search_read(
+                [('invoice_line_ids.account_analytic_id', '=', analytic.id),
+                 ('state', 'in', ['open', 'paid']),
+                 ('type', 'in', ['out_invoice', 'out_refund'])],
+                ['date_invoice'], limit=1, order='date_invoice desc',
+            )
+            if fetch_data:
+                analytic.last_date_invoice = fetch_data[0]['date_invoice']
+
+    last_date_invoice = fields.Date(
+        string='Last invoice Date', compute='_get_last_date_invoice')
     use_sal = fields.Boolean(
         string='Use SAL')
     amount_remaining = fields.Float(

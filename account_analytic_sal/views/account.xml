@@ -31,6 +31,7 @@
                     <field name="progress_hours" widget="progressbar"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
+                    <field name="last_date_invoice"/>
                     <field name="manager_id"/>
                 </field>
                 <field name="debit" position="attributes">

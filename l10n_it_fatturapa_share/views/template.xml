@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <template id="index" name="Index template">
+            <t t-foreach="atts" t-as="att">
+                <div class="row">
+                    <a t-attf-href="/web/binary/saveas?model={{att._model}}&amp;field=datas&amp;filename_field=datas_fname&amp;id={{att.id}}">
+                        <span t-field="att.name"/>
+                    </a>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>

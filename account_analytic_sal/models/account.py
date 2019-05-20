@@ -108,8 +108,7 @@ class AccountAnalyticAccount(models.Model):
         help='Amount to invoice from SAL')
     manager_id = fields.Many2one(
         'res.users', 'Account Manager', track_visibility='onchange')
-    date_end = fields.Date(
-        'End Date', oldname='date')
+    date_end = fields.Date('End Date')
 
 
 class AccountInvoiceLine(models.Model):

@@ -31,6 +31,7 @@
         'contract_show_invoice',
         'contract_show_sale',
         'project',
+        'contacts',
     ],
     'data': [
         'security/ir.model.access.csv',

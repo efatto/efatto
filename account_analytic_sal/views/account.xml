@@ -24,14 +24,15 @@
                     <field name="name"/>
                 </field>
                 <field name="balance" position="after">
-                    <field name="total_invoiced" sum="Total Invoiced" string="Invoiced"/>
-                    <field name="amount_remaining" sum="Total Remaining" string="Remaining"/>
-                    <field name="amount_sal_to_invoice" sum="Total SAL To Invoice"/>
-                    <field name="hours_residual" sum="Hours Residual"/>
-                    <field name="progress_hours" widget="progressbar"/>
+                    <field name="total_invoiced" sum="Total Invoiced" string="Invoiced" groups="account.group_account_manager"/>
+                    <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
+                    <field name="amount_sal_to_invoice" sum="Total SAL To Invoice" groups="account.group_account_manager"/>
+<!--                    <field name="hours_tobe_invoiced" sum="Total Hours To Invoice" groups="account.group_account_manager"/>-->
+                    <field name="hours_residual" sum="Hours Residual" groups="account.group_account_manager"/>
+                    <field name="progress_hours" widget="progressbar" groups="account.group_account_manager"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
-                    <field name="last_date_invoice"/>
+                    <field name="last_date_invoice" groups="account.group_account_manager"/>
                     <field name="manager_id"/>
                 </field>
                 <field name="debit" position="attributes">

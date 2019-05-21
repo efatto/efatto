@@ -17,11 +17,14 @@ class AccountAnalyticAccount(models.Model):
 
     @api.multi
     def _compute_hours(self):
+        newself = self.sudo()
         analytic_line_model = self.env['account.analytic.line']
-        sale_line_model = self.env['sale.order.line']
+        sale_line_model = newself.env['sale.order.line']
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
             hours_planned = 0.0
+            hours_delivered = 0.0
+            hours_invoiced = 0.0
             analytic_fetch_data = analytic_line_model.read_group(
                 [('project_id', 'in', analytic.project_ids.ids)],
                 ['unit_amount'], [],
@@ -34,18 +37,32 @@ class AccountAnalyticAccount(models.Model):
                 [('order_id.project_id', '=', analytic.id),
                  ('product_uom.category_id', '=', time_type_id.id),
                  ('order_id.state', 'not in', ['draft', 'sent', 'cancel'])],
-                ['product_uom_qty', 'product_uom'], ['product_uom'],
+                ['product_uom_qty', 'qty_delivered', 'qty_invoiced',
+                 'product_uom'], ['product_uom'],
             )
             for d in sale_fetch_data:
-                if not d['product_uom_qty']:
+                if not d.get('product_uom_qty') and not d.get('qty_delivered')\
+                        and not d.get('qty_invoiced'):
                     continue
                 # get total hours planned
                 uom = self.env.ref('product.product_uom_hour')
                 uom_base = self.env['product.uom'].browse(d['product_uom'][0])
-                hours_planned += uom_base._compute_quantity(
-                    d['product_uom_qty'], uom)
+                if d.get('product_uom_qty'):
+                    hours_planned += uom_base._compute_quantity(
+                        d['product_uom_qty'], uom)
+                if d.get('qty_delivered'):
+                    hours_delivered += uom_base._compute_quantity(
+                        d['qty_delivered'], uom)
+                if d.get('qty_invoiced'):
+                    hours_invoiced += uom_base._compute_quantity(
+                        d['qty_invoiced'], uom)
             analytic.hours_planned = hours_planned
             analytic.hours_residual = hours_planned - hours_done
+            analytic.hours_delivered = hours_delivered
+            analytic.hours_invoiced = hours_invoiced
+            #FIXME le ore sono da fatturare se non gia chiuso l'ordine
+            # e se l'ordine va fatturato ad ore (le singole righe a sto punto)
+            analytic.hours_tobe_invoiced = hours_delivered - hours_invoiced
 
     @api.multi
     def _get_amount_sal_to_invoice(self):
@@ -92,6 +109,15 @@ class AccountAnalyticAccount(models.Model):
         compute='_compute_hours')
     hours_done = fields.Float(
         string="Done Hours",
+        compute='_compute_hours')
+    hours_delivered = fields.Float(
+        string="Delivered Hours",
+        compute='_compute_hours')
+    hours_tobe_invoiced = fields.Float(
+        string="Hours to be Invoiced",
+        compute='_compute_hours')
+    hours_invoiced = fields.Float(
+        string="Hours Invoiced",
         compute='_compute_hours')
     hours_residual = fields.Float(
         string="Residual Hours",

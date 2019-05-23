@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--        <record model="ir.ui.view" id="account_analytic_line_tree_invoice">-->
-<!--            <field name="name">account.analytic.line.tree.invoice</field>-->
-<!--            <field name="model">account.analytic.line</field>-->
-<!--            <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <field name="amount" position="before">-->
-<!--                    <field name="invoice_id"/>-->
-<!--                </field>-->
-<!--            </field>-->
-<!--        </record>-->
-
         <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.tree.sal</field>
             <field name="model">account.analytic.account</field>
@@ -28,7 +17,8 @@
                     <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
                     <field name="amount_sal_to_invoice" sum="Total SAL To Invoice" groups="account.group_account_manager"/>
 <!--                    <field name="hours_tobe_invoiced" sum="Total Hours To Invoice" groups="account.group_account_manager"/>-->
-                    <field name="hours_residual" sum="Hours Residual" groups="account.group_account_manager"/>
+                    <field name="hours_planned" sum="Planned Hours" groups="account.group_account_manager"/>
+                    <field name="hours_residual" sum="Residual Hours" groups="account.group_account_manager"/>
                     <field name="progress_hours" widget="progressbar" groups="account.group_account_manager"/>
                     <field name="date_start"/>
                     <field name="date_end"/>

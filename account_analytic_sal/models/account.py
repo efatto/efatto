@@ -76,6 +76,7 @@ class AccountAnalyticAccount(models.Model):
         help='Amount to invoice from SAL',
         compute='_get_amount_sal_to_invoice',
     )
+    date_end = fields.Date(related='date')
 
 
 class AccountInvoiceLine(models.Model):

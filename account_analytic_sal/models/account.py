@@ -94,7 +94,7 @@ class AccountAnalyticAccount(models.Model):
     manager_id = fields.Many2one(
         'res.users', 'Account Manager', track_visibility='onchange')
     date_end = fields.Date(
-        'End Date', oldname='date')
+        'End Date')
 
 
 class AccountInvoiceLine(models.Model):

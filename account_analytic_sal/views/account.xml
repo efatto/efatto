@@ -53,11 +53,20 @@
             <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
                 <group name='main' position="after">
-                    <group col="4">
-                        <field name="amount_remaining"/>
-                        <field name="hours_planned"/>
-                        <field name="hours_done"/>
-                        <field name="progress_hours" widget="progressbar"/>
+                    <group col="6">
+                        <group col="4">
+                            <label for="hours_planned"/>
+                            <div>
+                                <field name="hours_done" class="oe_inline"/> / <field name="hours_planned"/>
+                                <field name="progress_hours" widget="progressbar" nolabel="1"/>
+                                <field name="hours_residual" class="oe_inline"/> Units Remaining
+                            </div>
+                        </group>
+                        <group col="2">
+                            <field name="amount_remaining"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
                     </group>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
@@ -173,5 +182,20 @@
             parent="account.menu_finance_receivables"
             groups="analytic.group_analytic_accounting"
             sequence="100"/>
+
+    <!-- Remove default filter recurring invoices -->
+    <record id="contract.action_account_analytic_overdue_all" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="res_model">account.analytic.account</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'is_contract':1, 'search_default_not_finished':1}</field>
+        <field name="search_view_id" ref="analytic.view_account_analytic_account_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new contract.
+            </p>
+        </field>
+    </record>
 
 </odoo>

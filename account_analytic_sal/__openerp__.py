@@ -29,6 +29,7 @@
     'depends': [
         'analytic',
         'account_analytic_analysis',
+        'project',
     ],
     'data': [
         'security/ir.model.access.csv',

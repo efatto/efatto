@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+
 from openerp import models, fields, api, exceptions
 import openerp.addons.decimal_precision as dp
 

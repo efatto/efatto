@@ -7,4 +7,4 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
 
     favorite_user_ids = fields.Many2many(
-        related='members', string='Project Members')
+        related='members', string='Project Members', store=True)

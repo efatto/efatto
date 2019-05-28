@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-24 13:02+0000\n"
-"PO-Revision-Date: 2019-05-24 13:02+0000\n"
+"POT-Creation-Date: 2019-05-27 14:00+0000\n"
+"PO-Revision-Date: 2019-05-27 14:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -160,6 +160,11 @@ msgid "Planned Hours"
 msgstr "Ore Pianificate"
 
 #. module: account_analytic_sal
+#: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_form_sal
+msgid "Planned)"
+msgstr "Previste)"
+
+#. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_progress_hours
 #: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_progress_hours
 msgid "Progress hours"
@@ -182,6 +187,7 @@ msgid "Related Model for server action done by the event"
 msgstr "Modello collegato all'azione eseguito dall'evento"
 
 #. module: account_analytic_sal
+#: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_form_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
 msgid "Remaining"
 msgstr "Residuo"
@@ -263,6 +269,11 @@ msgstr "Azione server da fare"
 #: model:ir.model,name:account_analytic_sal.model_project_task
 msgid "Task"
 msgstr "Attività"
+
+#. module: account_analytic_sal
+#: model:ir.ui.view,arch_db:account_analytic_sal.edit_project
+msgid "Team Members"
+msgstr "Membri del Team"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_sal_action_id

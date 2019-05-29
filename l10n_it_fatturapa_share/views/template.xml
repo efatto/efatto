@@ -5,7 +5,7 @@
             <t t-foreach="atts" t-as="att">
                 <div class="row">
                     <a t-attf-href="/web/binary/saveas?model={{att._model}}&amp;field=datas&amp;filename_field=datas_fname&amp;id={{att.id}}">
-                        <span t-field="att.name"/>
+                        <t t-raw="att.name"/>
                     </a>
                 </div>
             </t>

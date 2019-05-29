@@ -80,9 +80,6 @@
                 <field name="display_name" position="replace">
                     <field name="name"/>
                 </field>
-                <field name="balance" position="before">
-                    <field name="last_date_invoice" groups="account.group_account_manager"/>
-                </field>
                 <field name="balance" position="after">
                     <field name="total_invoiced" sum="Total Invoiced" string="Invoiced" groups="account.group_account_manager"/>
                     <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
@@ -110,6 +107,7 @@
                 <field name="code" position="replace"/>
                 <field name="partner_id" position="after">
                     <field name="code"/>
+                    <field name="last_date_invoice" groups="account.group_account_manager"/>
                 </field>
             </field>
         </record>

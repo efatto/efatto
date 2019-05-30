@@ -10,7 +10,7 @@ from openerp.tools import html_escape
 
 class FatturaPAAttachmentDownload(Controller):
 
-    @route('/download/<model>', type='http', auth='user', methods=['GET'])
+    @route('/download/<model>', type='http', auth='none', methods=['GET'])
     def index(self, model=None, **kwargs):
         res = {}
         if model not in ['fatturapa.attachment.out',

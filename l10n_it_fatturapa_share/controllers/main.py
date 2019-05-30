@@ -10,14 +10,14 @@ from openerp.tools import html_escape
 
 class FatturaPAAttachmentDownload(Controller):
 
-    @route('/download/<model>', type='http', auth='none', methods=['GET'])
+    @route('/download/<model>', type='http', auth='user', methods=['GET'])
     def index(self, model=None, **kwargs):
         res = {}
         if model not in ['fatturapa.attachment.out',
                          'fatturapa.attachment.in']:
             return '<h1>Only type \'out\' or \'in\' are accepted</h1>'
-        atts = request.env[model].sudo().search([])
-        config_obj = request.env['ir.config_parameter'].sudo().get_param(
+        atts = request.env[model].search([])
+        config_obj = request.env['ir.config_parameter'].get_param(
             'web.base.url')
         attachment_url = config_obj + "/web/attachments/token/"
         for att_obj in atts:

@@ -39,7 +39,7 @@ class FatturaPAAttachmentDownload(Controller):
                         url_quote(attachment_obj.datas_fname)
                     return request.make_response(
                         file_content,
-                        [('Content-Type', attachment_obj.mimetype),
+                        [('Content-Type', attachment_obj.file_type),
                          ('Content-Length', len(file_content)),
                          ('Content-Disposition', disposition)])
             else:

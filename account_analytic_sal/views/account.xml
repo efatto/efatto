@@ -121,15 +121,14 @@
                 <group name='main' position="after">
                     <group>
                         <group>
-                            <label for="hours_done"/>
-                            <div>
-                                <field name="hours_done" class="oe_inline"/> (<field name="hours_planned"/> Planned)
-                                <field name="progress_hours" widget="progressbar" nolabel="1"/>
-                                <field name="hours_residual" class="oe_inline"/> Remaining
-                            </div>
+                            <field name="hours_planned"/>
+                            <field name="hours_done"/>
+                            <field name="hours_residual"/>
+                            <field name="progress_hours" widget="progressbar"/>
                         </group>
                         <group>
-                            <field name="amount_remaining"/>
+                            <field name="total_invoiced"/>
+                            <field name="amount_remaining" class="oe_bold"/>
                             <field name="date_start"/>
                             <field name="date_end"/>
                         </group>

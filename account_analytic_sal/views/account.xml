@@ -133,6 +133,7 @@
                             <field name="date_end"/>
                         </group>
                     </group>
+                    <field name="invoice_line_ids" invisible="1"/>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
                            />

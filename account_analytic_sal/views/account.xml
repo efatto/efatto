@@ -128,7 +128,7 @@
                         </group>
                         <group>
                             <field name="total_invoiced"/>
-                            <field name="amount_remaining" class="oe_bold"/>
+                            <field name="amount_remaining" style="font-weight: bold;"/>
                             <field name="date_start"/>
                             <field name="date_end"/>
                         </group>

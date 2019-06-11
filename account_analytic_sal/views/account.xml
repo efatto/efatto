@@ -127,8 +127,8 @@
                             <field name="progress_hours" widget="progressbar"/>
                         </group>
                         <group>
-                            <field name="total_sale"/>
-                            <field name="total_invoiced"/>
+                            <field name="total_sale_form"/>
+                            <field name="total_invoiced_form"/>
                             <field name="amount_remaining" style="font-weight: bold;"/>
                             <field name="date_start"/>
                             <field name="date_end"/>

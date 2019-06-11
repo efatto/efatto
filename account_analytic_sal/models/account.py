@@ -141,6 +141,8 @@ class AccountAnalyticAccount(models.Model):
     manager_id = fields.Many2one(
         'res.users', 'Account Manager', track_visibility='onchange')
     date_end = fields.Date('End Date')
+    total_invoiced_form = fields.Float(related='total_invoiced')
+    total_sale_form = fields.Float(related='total_sale')
 
 
 class AccountAnalyticLine(models.Model):

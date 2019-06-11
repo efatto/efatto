@@ -84,7 +84,7 @@ class AccountAnalyticAccount(models.Model):
 
     @api.multi
     @api.depends('invoice_line_ids')
-    def _get_last_date_invoice(self):
+    def _get_last_invoice_date(self):
         invoice_model = self.env['account.invoice']
         for analytic in self:
             fetch_data = invoice_model.search_read(
@@ -94,14 +94,14 @@ class AccountAnalyticAccount(models.Model):
                 ['date_invoice'], limit=1, order='date_invoice desc',
             )
             if fetch_data:
-                analytic.last_date_invoice = fetch_data[0]['date_invoice']
+                analytic.last_invoice_date = fetch_data[0]['date_invoice']
 
     invoice_line_ids = fields.One2many(
         string='Invoice lines',
         comodel_name='account.invoice.line',
         inverse_name='account_analytic_id')
-    last_date_invoice = fields.Date(
-        string='Last invoice Date', compute='_get_last_date_invoice',
+    last_invoice_date = fields.Date(
+        string='Last invoice Date', compute='_get_last_invoice_date',
         store=True)
     use_sal = fields.Boolean(
         string='Use SAL')

@@ -161,8 +161,8 @@ msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
 #. module: account_analytic_sal
-#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_last_date_invoice
-#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_last_date_invoice
+#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_last_invoice_date
+#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_last_invoice_date
 msgid "Last invoice Date"
 msgstr "Ultima Data Fattura"
 

@@ -107,7 +107,7 @@
                 <field name="code" position="replace"/>
                 <field name="partner_id" position="after">
                     <field name="code"/>
-                    <field name="last_date_invoice" groups="account.group_account_manager"/>
+                    <field name="last_invoice_date" groups="account.group_account_manager"/>
                 </field>
             </field>
         </record>

@@ -24,4 +24,8 @@ class StockPicking(models.Model):
                 else:
                     values['account_id'] = partner_id. \
                         property_account_payable.id
+            partner_shipping_id = move.package_ids.mapped(
+                'partner_shipping_id')
+            if partner_shipping_id != partner_id:
+                values['address_shipping_id'] = partner_shipping_id.id
         return values

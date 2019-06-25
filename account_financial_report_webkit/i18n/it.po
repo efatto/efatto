@@ -16,6 +16,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_financial_report_webkit
+#: view:partner.balance.webkit:0
+msgid "This report is an analysis done by a partner, It is a PDF report containing one line per partner representing the cumulative credit balance"
+msgstr "Questo rapporto è l'analisi fatta per un partner, è un report in formato PDF contenente una riga per partner che rappresenta il saldo cumulato"
+
+#. module: account_financial_report_webkit
+#: model:ir.model,name:account_financial_report_webkit.model_partner_invoiced_webkit
+msgid "Partner Invoiced Report"
+msgstr "Report Fatturato Partner"
+
+#. module: account_financial_report_webkit
 #: report:addons/account_financial_report_webkit/report/templates/account_report_partner_balance.mako:175
 #: report:addons/account_financial_report_webkit/report/templates/account_report_profit_loss.mako:135
 #: report:addons/account_financial_report_webkit/report/templates/account_report_trial_balance.mako:150

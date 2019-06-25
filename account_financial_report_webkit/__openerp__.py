@@ -49,6 +49,7 @@
              'wizard/aged_open_invoices_wizard.xml',
              'wizard/aged_partner_balance_wizard.xml',
              'wizard/print_journal_view.xml',
+             'wizard/partner_invoiced_wizard_view.xml',
              'report_menus.xml',
              ],
     # tests order matter

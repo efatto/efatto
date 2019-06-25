@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- inheriting views from more than 2 differents inherited models like
+        partner.balance.webkit -> account.common.balance.report -> account.common.account.report
+        is not supported so we have to copy paste the same view for partner balance, balance sheet, profit & loss
+          -->
+        <record id="account_partner_invoiced_view_webkit" model="ir.ui.view">
+            <field name="name">Partner Invoiced</field>
+            <field name="model">partner.invoiced.webkit</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.account_common_report_view"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/label[@string='']" position="replace">
+                        <separator string="Partner Invoiced" colspan="4"/>
+                        <label nolabel="1" colspan="4" string="This report is an analysis done by a partner, It is a PDF report containing one line per partner representing the invoiced amounts"/>
+                    </xpath>
+                    <field name="chart_account_id" position='attributes'>
+                        <attribute name="colspan">4</attribute>
+                    </field>
+                    <field name="target_move" position="replace">
+                        <field name="display_only_total"/>
+                        <field name="account_view_selection" on_change="onchange_account_view_selection(account_view_selection)"/>
+                    </field>
+                    <page name="filters" position="after">
+                        <page string="Accounts Filters" name="accounts">
+                            <separator string="Print only (and all its children)" colspan="4"/>
+                            <field name="account_ids" colspan="4" nolabel="1" domain="[('type', 'in', ['view', 'payable', 'receivable'])]">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="company_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </page>
+
+                    <page name="filters" position="attributes">
+                        <attribute name="string">Time Filters</attribute>
+                    </page>
+                    <field name="period_from" position="attributes">
+                        <attribute name="domain">[('fiscalyear_id', '=', fiscalyear_id), ('special', '=', False)]</attribute>
+                    </field>
+                    <field name="period_to" position="attributes">
+                        <attribute name="domain">[('fiscalyear_id', '=', fiscalyear_id), ('special', '=', False)]</attribute>
+                    </field>
+                    <field name="fiscalyear_id" position="attributes">
+                        <attribute name="attrs">{'required': [('filter', '=', 'filter_opening')]}</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="action_account_partner_invoiced_menu_webkit" model="ir.actions.act_window">
+            <field name="name">Partner Invoiced</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.invoiced.webkit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_partner_invoiced_view_webkit"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="action_account_partner_invoiced_values_webkit">
+            <field name="model_id" ref="account.model_account_account"/>
+            <field name="object" eval="1"/>
+            <field name="name">Partner Invoiced</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value"
+                eval="'ir.actions.act_window,' +str(ref('action_account_partner_invoiced_menu_webkit'))"/>
+            <field name="key">action</field>
+            <field name="model">account.account</field>
+        </record>
+
+    </data>
+</openerp>

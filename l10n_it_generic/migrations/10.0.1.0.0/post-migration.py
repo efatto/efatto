@@ -20,8 +20,14 @@ def account_templates(env):
             # right one
             company.write({
                 'chart_template_id': account_templates.id,
-                'transfer_account_id': account_templates.transfer_account_id.id
             })
+            transfer_account_id = env['account.account'].search([
+                ('code', '=', '5505200')
+            ])
+            if transfer_account_id:
+                company.write({
+                    'transfer_account_id': transfer_account_id.id
+                })
             continue
 
 

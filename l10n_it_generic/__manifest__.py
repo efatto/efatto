@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italy - PDC 7 number generic',
-    'version': '10.0.1.1.0',
+    'version': '10.0.1.1.1',
     'category': 'Localization/Account Charts',
     'description': """
     Italy PDC with 7 number generic

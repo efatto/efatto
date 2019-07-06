@@ -18,7 +18,7 @@
 #
 #
 {
-    'name': 'Aeroo sale order report',
+    'name': 'Aeroo sale order report DEPRECATED',
     'version': '8.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',

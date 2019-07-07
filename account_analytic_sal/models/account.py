@@ -26,13 +26,12 @@ class AccountAnalyticAccount(models.Model):
             hours_delivered = 0.0
             hours_invoiced = 0.0
             analytic_fetch_data = analytic_line_model.read_group(
-                [('project_id', 'in', analytic.project_ids.ids)],
+                [('project_id', 'in', analytic.sudo().project_ids.ids)],
                 ['unit_amount'], [],
             )
             hours_done = analytic_fetch_data[0]['unit_amount']
             if not hours_done:
                 hours_done = 0.0
-            analytic.hours_done = hours_done
             sale_fetch_data = sale_line_model.read_group(
                 [('order_id.project_id', '=', analytic.id),
                  ('product_uom.category_id', '=', time_type_id.id),
@@ -56,6 +55,7 @@ class AccountAnalyticAccount(models.Model):
                 if d.get('qty_invoiced'):
                     hours_invoiced += uom_base._compute_quantity(
                         d['qty_invoiced'], uom)
+            analytic.hours_done = hours_done
             analytic.hours_planned = hours_planned
             analytic.hours_residual = hours_planned - hours_done
             analytic.hours_delivered = hours_delivered

@@ -27,7 +27,6 @@
     'description': 'Open a tree view with stock moves related to procurement '
                    'group.',
     'depends': [
-        'stock_picking_package_preparation',
         'l10n_it_ddt',
     ],
     'data': [

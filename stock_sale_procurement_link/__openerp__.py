@@ -27,10 +27,8 @@
     'description': 'Open a tree view with stock moves related to procurement '
                    'group.',
     'depends': [
-        'sale',
         'stock_picking_package_preparation',
         'l10n_it_ddt',
-        'stock_picking_tree_sales',
     ],
     'data': [
         'views/stock_view.xml',

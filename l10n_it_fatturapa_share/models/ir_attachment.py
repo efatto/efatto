@@ -24,13 +24,25 @@ import uuid
 from openerp import api, fields, models
 
 
-class Attachment(models.Model):
-    _inherit = "ir.attachment"
+class FatturaPAAttachment(models.Model):
+    _inherit = "fatturapa.attachment.out"
 
     access_token = fields.Char('Token', readonly=True)
 
     @api.model
     def create(self, vals):
-        res = super(Attachment, self).create(vals)
+        res = super(FatturaPAAttachment, self).create(vals)
+        res.access_token = uuid.uuid4()
+        return res
+
+
+class FatturaPAAttachmentIn(models.Model):
+    _inherit = "fatturapa.attachment.in"
+
+    access_token = fields.Char('Token', readonly=True)
+
+    @api.model
+    def create(self, vals):
+        res = super(FatturaPAAttachmentIn, self).create(vals)
         res.access_token = uuid.uuid4()
         return res

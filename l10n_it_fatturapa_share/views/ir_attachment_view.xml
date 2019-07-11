@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="bt_view_attachment_form_inherit">
-            <field name="name">ir.attachment.form.inherit</field>
-            <field name="model">ir.attachment</field>
-            <field name="inherit_id" ref="base.view_attachment_form"/>
+        <record model="ir.ui.view" id="view_fatturapa_out_attachment_form_inherit">
+            <field name="name">fatturapa.attachment.out.form.inherit</field>
+            <field name="model">fatturapa.attachment.out</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa_out.view_fatturapa_out_attachment_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='url']" position="after">
+                <xpath expr="//field[@name='invoice_partner_id']" position="after">
+                    <field name="access_token" groups="base.group_no_one"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_fatturapa_in_attachment_form_inherit">
+            <field name="name">fatturapa.attachment.in.form.inherit</field>
+            <field name="model">fatturapa.attachment.in</field>
+            <field name="inherit_id" ref="l10n_it_fatturapa_in.view_fatturapa_in_attachment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoices_total']" position="after">
                     <field name="access_token" groups="base.group_no_one"/>
                 </xpath>
             </field>

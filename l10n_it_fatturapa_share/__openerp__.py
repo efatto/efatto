@@ -28,10 +28,13 @@
     'website': 'https://efatto.it',
     'depends': [
         'web',
+        'l10n_it_fatturapa_out',
+        'l10n_it_fatturapa_in',
     ],
     'data': [
         'views/ir_attachment_view.xml',
         'views/template.xml',
     ],
     'installable': True,
+    'post_init_hook': 'post_init_hook',
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="ddt_stock_picking_package_preparation_form_groups" model="ir.ui.view">
+            <field name="name">ddt.stock.picking.package.preparation.form.groups</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+            <field name="arch" type="xml">
+                <button name="set_done" position="after">
+                    <button name="open_procurement_groups" type="object" string="Related Moves"/>
+                </button>
+
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -15,11 +15,12 @@ class FatturaPAAttachmentDownload(Controller):
         res = {}
         if model not in ['fatturapa.attachment.out',
                          'fatturapa.attachment.in']:
-            return '<h1>Only type \'out\' or \'in\' are accepted</h1>'
+            return '<h1>Only type \'fatturapa.attachment.out\' or' \
+                   ' \'fatturapa.attachment.in\' are accepted</h1>'
         atts = request.env[model].search([])
         config_obj = request.env['ir.config_parameter'].get_param(
             'web.base.url')
-        attachment_url = config_obj + "/web/attachments/token/"
+        attachment_url = config_obj + "/web/" + model + "/token/"
         for att_obj in atts:
             if att_obj.access_token:
                 att_link = attachment_url + att_obj.access_token
@@ -27,10 +28,10 @@ class FatturaPAAttachmentDownload(Controller):
                     att_obj.name: att_link})
         return request.render('l10n_it_fatturapa_share.index', {'atts': res})
 
-    @route('/web/attachments/token/<string:token>', type='http', auth="none")
-    def get_attachments(self, token, **kwargs):
+    @route('/web/<string:model>/token/<string:token>', type='http', auth="none")
+    def get_attachments(self, model, token, **kwargs):
         try:
-            attachment_ids = request.env['ir.attachment'].sudo().search(
+            attachment_ids = request.env[model].sudo().search(
                 [('access_token', '=', token)])
             if attachment_ids:
                 for attachment_obj in attachment_ids:

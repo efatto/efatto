@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account analytic SAL',
-    'version': '10.0.1.0.25',
+    'version': '10.0.1.0.26',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
@@ -38,6 +38,7 @@
         'security/ir.model.access.csv',
         'views/account.xml',
         'views/project.xml',
+        'views/sale.xml',
     ],
     'installable': True,
 }

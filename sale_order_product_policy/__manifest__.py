@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale order product policy',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Extra Tools',
     'description':
         'Show product invoice policy in sale order line',

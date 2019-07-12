@@ -85,6 +85,7 @@
                     <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
                     <field name="amount_sal_to_invoice" sum="Total SAL To Invoice" groups="account.group_account_manager"/>
 <!--                    <field name="hours_tobe_invoiced" sum="Total Hours To Invoice" groups="account.group_account_manager"/>-->
+                    <field name="hours_saled" sum="Saled Hours" groups="account.group_account_manager"/>
                     <field name="hours_planned" sum="Planned Hours" groups="account.group_account_manager"/>
                     <field name="hours_residual" sum="Residual Hours" groups="account.group_account_manager"/>
                     <field name="progress_hours" widget="progressbar" groups="account.group_account_manager"/>
@@ -121,6 +122,7 @@
                 <group name='main' position="after">
                     <group>
                         <group>
+                            <field name="hours_saled"/>
                             <field name="hours_planned"/>
                             <field name="hours_done"/>
                             <field name="hours_residual"/>

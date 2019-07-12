@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-03 17:20+0000\n"
-"PO-Revision-Date: 2019-06-03 17:20+0000\n"
+"POT-Creation-Date: 2019-07-12 09:01+0000\n"
+"PO-Revision-Date: 2019-07-12 09:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Conto Analitico"
 #. module: account_analytic_sal
 #: model:ir.model,name:account_analytic_sal.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Voce conto analitico"
+msgstr "Linea conto analitico"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_invoice_line_account_analytic_sal_id
@@ -94,7 +94,7 @@ msgstr "Ore Fatte"
 #. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_sal_display_name
 msgid "Display Name"
-msgstr "Visualizza Nome"
+msgstr "Nome Mostrato"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_done
@@ -117,6 +117,11 @@ msgstr "Ore Fatturate"
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_project_contract
 msgid "Hours Planned"
 msgstr "Ore Previste"
+
+#. module: account_analytic_sal
+#: model:ir.ui.view,arch_db:account_analytic_sal.view_project_contract
+msgid "Hours Saled"
+msgstr "Ore Vendute"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_tobe_invoiced
@@ -161,12 +166,6 @@ msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
 #. module: account_analytic_sal
-#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_last_invoice_date
-#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_last_invoice_date
-msgid "Last invoice Date"
-msgstr "Ultima Data Fattura"
-
-#. module: account_analytic_sal
 #: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_sal_percent_completion
 msgid "Percent SAL completion. When reached will start action linked."
 msgstr "Completamento % SAL. When reached will start action linked."
@@ -196,7 +195,7 @@ msgid "Project"
 msgstr "Progetto"
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:160
+#: code:addons/account_analytic_sal/models/account.py:170
 #, python-format
 msgid "Purchases"
 msgstr "Acquisti"
@@ -220,7 +219,7 @@ msgstr "Residuo"
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_amount_remaining
 #: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_amount_remaining
 msgid "Remaining Revenue"
-msgstr "Residuo"
+msgstr "Entrate Rimanenti"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_residual
@@ -280,7 +279,14 @@ msgid "SAL percent to invoice"
 msgstr "% SAL da fatturare"
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:158
+#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_saled
+#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_hours_saled
+#: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
+msgid "Saled Hours"
+msgstr "Ore Vendute"
+
+#. module: account_analytic_sal
+#: code:addons/account_analytic_sal/models/account.py:168
 #, python-format
 msgid "Sales"
 msgstr "Vendite"
@@ -306,7 +312,7 @@ msgid "This action will be done on SAL condition if not already done."
 msgstr "This action will be done on SAL condition if not already done."
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:162
+#: code:addons/account_analytic_sal/models/account.py:172
 #, python-format
 msgid "Timesheets"
 msgstr "Ore lavoro"
@@ -317,12 +323,14 @@ msgid "To invoice"
 msgstr "Da fatturare"
 
 #. module: account_analytic_sal
+#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_total_invoiced_form
+#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_total_invoiced_form
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_form_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_sal_form
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_sal_tree
 msgid "Total Invoiced"
-msgstr "Fatturato"
+msgstr "Fatturato Totale"
 
 #. module: account_analytic_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
@@ -333,6 +341,12 @@ msgstr "Residuo"
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
 msgid "Total SAL To Invoice"
 msgstr "Totale SAL da Fatturare"
+
+#. module: account_analytic_sal
+#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_total_sale_form
+#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_total_sale_form
+msgid "Total Sales"
+msgstr "Totale Contratto"
 
 #. module: account_analytic_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_form_sal

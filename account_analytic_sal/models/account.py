@@ -19,19 +19,23 @@ class AccountAnalyticAccount(models.Model):
     def _compute_hours(self):
         newself = self.sudo()
         analytic_line_model = self.env['account.analytic.line']
+        project_task_model = self.env['project.task']
         sale_line_model = newself.env['sale.order.line']
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
-            hours_planned = 0.0
+            hours_saled = 0.0
             hours_delivered = 0.0
             hours_invoiced = 0.0
+            project_fetch_data = project_task_model.read_group(
+                [('project_id', 'in', analytic.sudo().project_ids.ids)],
+                ['planned_hours'], [],
+            )
+            hours_planned = project_fetch_data[0]['planned_hours'] or 0.0
             analytic_fetch_data = analytic_line_model.read_group(
                 [('project_id', 'in', analytic.sudo().project_ids.ids)],
                 ['unit_amount'], [],
             )
-            hours_done = analytic_fetch_data[0]['unit_amount']
-            if not hours_done:
-                hours_done = 0.0
+            hours_done = analytic_fetch_data[0]['unit_amount'] or 0.0
             sale_fetch_data = sale_line_model.read_group(
                 [('order_id.project_id', '=', analytic.id),
                  ('product_uom.category_id', '=', time_type_id.id),
@@ -47,7 +51,7 @@ class AccountAnalyticAccount(models.Model):
                 uom = self.env.ref('product.product_uom_hour')
                 uom_base = self.env['product.uom'].browse(d['product_uom'][0])
                 if d.get('product_uom_qty'):
-                    hours_planned += uom_base._compute_quantity(
+                    hours_saled += uom_base._compute_quantity(
                         d['product_uom_qty'], uom)
                 if d.get('qty_delivered'):
                     hours_delivered += uom_base._compute_quantity(
@@ -56,6 +60,7 @@ class AccountAnalyticAccount(models.Model):
                     hours_invoiced += uom_base._compute_quantity(
                         d['qty_invoiced'], uom)
             analytic.hours_done = hours_done
+            analytic.hours_saled = hours_saled
             analytic.hours_planned = hours_planned
             analytic.hours_residual = hours_planned - hours_done
             analytic.hours_delivered = hours_delivered
@@ -110,6 +115,9 @@ class AccountAnalyticAccount(models.Model):
         string='Remaining Revenue',
         help="Computed using the formula: Sale Amount - Invoiced Amount",
         digits=dp.get_precision('Account'))
+    hours_saled = fields.Float(
+        string="Saled Hours",
+        compute='_compute_hours')
     hours_planned = fields.Float(
         string="Planned Hours",
         compute='_compute_hours')

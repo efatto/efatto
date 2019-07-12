@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account analytic SAL',
-    'version': '10.0.1.0.23',
+    'version': '10.0.1.0.24',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
@@ -30,6 +30,7 @@
         'analytic',
         'contract_show_invoice',
         'contract_show_sale',
+        'hr_timesheet',
         'project',
         'contacts',
     ],

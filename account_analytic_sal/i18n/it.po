@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 09:01+0000\n"
-"PO-Revision-Date: 2019-07-12 09:01+0000\n"
+"POT-Creation-Date: 2019-07-12 13:05+0000\n"
+"PO-Revision-Date: 2019-07-12 13:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -124,6 +124,12 @@ msgid "Hours Saled"
 msgstr "Ore Vendute"
 
 #. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_residual
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_residual
+msgid "Hours planned - Hours done"
+msgstr "Ore pianificate - Ore fatte"
+
+#. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_tobe_invoiced
 #: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_hours_tobe_invoiced
 msgid "Hours to be Invoiced"
@@ -178,16 +184,16 @@ msgid "Planned Hours"
 msgstr "Ore Pianificate"
 
 #. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_progress_hours
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_progress_hours
+msgid "Progress % of Hours done / Hours planned"
+msgstr "Progresso % Ore fatte / Ore pianificate"
+
+#. module: account_analytic_sal
 #: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_progress_hours
 #: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_progress_hours
 msgid "Progress hours"
 msgstr "Progresso ore"
-
-#. module: account_analytic_sal
-#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_progress_hours
-#: model:ir.model.fields,help:account_analytic_sal.field_project_project_progress_hours
-msgid "Progress on hours planned on contract"
-msgstr "Progresso sulle ore previste nel contratto"
 
 #. module: account_analytic_sal
 #: model:ir.model,name:account_analytic_sal.model_project_project
@@ -195,7 +201,7 @@ msgid "Project"
 msgstr "Progetto"
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:170
+#: code:addons/account_analytic_sal/models/account.py:176
 #, python-format
 msgid "Purchases"
 msgstr "Acquisti"
@@ -286,10 +292,15 @@ msgid "Saled Hours"
 msgstr "Ore Vendute"
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:168
+#: code:addons/account_analytic_sal/models/account.py:174
 #, python-format
 msgid "Sales"
 msgstr "Vendite"
+
+#. module: account_analytic_sal
+#: model:ir.model,name:account_analytic_sal.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea ordine di vendita"
 
 #. module: account_analytic_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_sal_filter
@@ -302,6 +313,36 @@ msgid "Server Action to do"
 msgstr "Azione server da fare"
 
 #. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_delivered
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_delivered
+msgid "Sum hours delivered as shown in sale order lines"
+msgstr "Somma ore consegnate come mostrato nelle righe ordine di vendita"
+
+#. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_done
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_done
+msgid "Sum hours done in timesheets"
+msgstr "Somma ore fatte da fogli di lavoro"
+
+#. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_invoiced
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_invoiced
+msgid "Sum hours invoiced as shown in sale order lines"
+msgstr "Somma ore fatturate come mostrato nelle righe ordine di vendita"
+
+#. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_saled
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_saled
+msgid "Sum hours ordered as shown in sale order lines"
+msgstr "Somma ore ordinate come mostrato nelle righe ordine di vendita"
+
+#. module: account_analytic_sal
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_planned
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_planned
+msgid "Sum hours planned in tasks"
+msgstr "Somma ore pianificate nelle attività"
+
+#. module: account_analytic_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.edit_project
 msgid "Team Members"
 msgstr "Membri del Team"
@@ -312,7 +353,7 @@ msgid "This action will be done on SAL condition if not already done."
 msgstr "This action will be done on SAL condition if not already done."
 
 #. module: account_analytic_sal
-#: code:addons/account_analytic_sal/models/account.py:172
+#: code:addons/account_analytic_sal/models/account.py:178
 #, python-format
 msgid "Timesheets"
 msgstr "Ore lavoro"

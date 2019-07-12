@@ -19,11 +19,11 @@
 #
 ##############################################################################
 {
-    'name': 'Sale order line product setting',
+    'name': 'Sale order product policy',
     'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'description':
-        'Show product invoice settings in sale order line',
+        'Show product invoice policy in sale order line',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'depends': [

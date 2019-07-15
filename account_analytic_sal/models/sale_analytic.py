@@ -17,6 +17,7 @@ class SaleOrderLine(models.Model):
                         'product.product_uom_categ_unit'):
                 # le ore pianificate sono la somma di tutti i task esclusi
                 # quelli collegati alle singole righe
+                hours_planned = 0.0
                 project_fetch_data = project_task_model.read_group(
                     [('project_id', 'in',
                       line.order_id.sudo().related_project_id.project_ids.ids)],
@@ -29,5 +30,8 @@ class SaleOrderLine(models.Model):
                             break
                     else:
                         hours_planned = line_data['planned_hours'] or 0.0
-                line.qty_delivered = line.qty_delivered / hours_planned
+                if hours_planned != 0.0:
+                    line.qty_delivered = line.qty_delivered / hours_planned
+                else:
+                    line.qty_delivered = 0.0
         return True

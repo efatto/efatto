@@ -120,8 +120,8 @@ msgstr "Ore Previste"
 
 #. module: account_analytic_sal
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_project_contract
-msgid "Hours Saled"
-msgstr "Ore Vendute"
+msgid "Ordered Qty"
+msgstr "Qtà Ordinata"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_residual
@@ -285,11 +285,11 @@ msgid "SAL percent to invoice"
 msgstr "% SAL da fatturare"
 
 #. module: account_analytic_sal
-#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_hours_saled
-#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_hours_saled
+#: model:ir.model.fields,field_description:account_analytic_sal.field_account_analytic_account_qty_ordered
+#: model:ir.model.fields,field_description:account_analytic_sal.field_project_project_qty_ordered
 #: model:ir.ui.view,arch_db:account_analytic_sal.view_account_analytic_account_tree_sal
-msgid "Saled Hours"
-msgstr "Ore Vendute"
+msgid "Ordered Qty"
+msgstr "Qtà Ordinata"
 
 #. module: account_analytic_sal
 #: code:addons/account_analytic_sal/models/account.py:174
@@ -331,10 +331,10 @@ msgid "Sum hours invoiced as shown in sale order lines"
 msgstr "Somma ore fatturate come mostrato nelle righe ordine di vendita"
 
 #. module: account_analytic_sal
-#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_saled
-#: model:ir.model.fields,help:account_analytic_sal.field_project_project_hours_saled
-msgid "Sum hours ordered as shown in sale order lines"
-msgstr "Somma ore ordinate come mostrato nelle righe ordine di vendita"
+#: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_qty_ordered
+#: model:ir.model.fields,help:account_analytic_sal.field_project_project_qty_ordered
+msgid "Sum qty ordered as shown in sale order lines"
+msgstr "Somma qtà ordinate come mostrato nelle righe ordine di vendita"
 
 #. module: account_analytic_sal
 #: model:ir.model.fields,help:account_analytic_sal.field_account_analytic_account_hours_planned

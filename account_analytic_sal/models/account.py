@@ -23,7 +23,7 @@ class AccountAnalyticAccount(models.Model):
         sale_line_model = newself.env['sale.order.line']
         time_type_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
-            hours_saled = 0.0
+            qty_ordered = 0.0
             hours_delivered = 0.0
             hours_invoiced = 0.0
             project_fetch_data = project_task_model.read_group(
@@ -51,7 +51,7 @@ class AccountAnalyticAccount(models.Model):
                 uom = self.env.ref('product.product_uom_hour')
                 uom_base = self.env['product.uom'].browse(d['product_uom'][0])
                 if d.get('product_uom_qty'):
-                    hours_saled += uom_base._compute_quantity(
+                    qty_ordered += uom_base._compute_quantity(
                         d['product_uom_qty'], uom)
                 if d.get('qty_delivered'):
                     hours_delivered += uom_base._compute_quantity(
@@ -60,7 +60,7 @@ class AccountAnalyticAccount(models.Model):
                     hours_invoiced += uom_base._compute_quantity(
                         d['qty_invoiced'], uom)
             analytic.hours_done = hours_done
-            analytic.hours_saled = hours_saled
+            analytic.qty_ordered = qty_ordered
             analytic.hours_planned = hours_planned
             analytic.hours_residual = hours_planned - hours_done
             analytic.hours_delivered = hours_delivered
@@ -115,9 +115,9 @@ class AccountAnalyticAccount(models.Model):
         string='Remaining Revenue',
         help="Computed using the formula: Sale Amount - Invoiced Amount",
         digits=dp.get_precision('Account'))
-    hours_saled = fields.Float(
-        string="Saled Hours",
-        help="Sum hours ordered as shown in sale order lines",
+    qty_ordered = fields.Float(
+        string="Ordered Qty",
+        help="Sum qty ordered as shown in sale order lines",
         compute='_compute_hours')
     hours_planned = fields.Float(
         string="Planned Hours",

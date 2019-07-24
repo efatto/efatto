@@ -27,12 +27,14 @@ class AccountAnalyticAccount(models.Model):
             hours_delivered = 0.0
             hours_invoiced = 0.0
             project_fetch_data = project_task_model.read_group(
-                [('project_id', 'in', analytic.sudo().project_ids.ids)],
+                [('project_id', 'in', analytic.sudo().with_context(
+                    active_test=False).project_ids.ids)],
                 ['planned_hours'], [],
             )
             hours_planned = project_fetch_data[0]['planned_hours'] or 0.0
             analytic_fetch_data = analytic_line_model.read_group(
-                [('project_id', 'in', analytic.sudo().project_ids.ids)],
+                [('project_id', 'in', analytic.sudo().with_context(
+                    active_test=False).project_ids.ids)],
                 ['unit_amount'], [],
             )
             hours_done = analytic_fetch_data[0]['unit_amount'] or 0.0

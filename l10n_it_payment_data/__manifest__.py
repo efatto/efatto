@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2015-2018 Sergio Corato
+#    Copyright (C) 2015-2019 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italy common payment data',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'other',
     'description': """
     Italy common payment data
@@ -29,6 +29,7 @@
     'license': 'AGPL-3',
     "depends": [
         'account_payment_term_month',
+        'l10n_it_fiscal_payment_term',
     ],
     "data": [
         'data/payment_data.xml',

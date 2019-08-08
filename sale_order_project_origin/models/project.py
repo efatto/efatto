@@ -27,5 +27,12 @@ class ProcurementOrder(models.Model):
     def _get_project(self):
         project = super(ProcurementOrder, self)._get_project()
         if self.sale_line_id:
-            project.origin = self.sale_line_id.order_id.origin
+            if not project:
+                project = self.env['project.project'].with_context(
+                    active_test=False).search([
+                        ('name', '=', self.sale_line_id.order_id.
+                         unrevisioned_name)
+                    ])
+            if project:
+                project.origin = self.sale_line_id.order_id.origin
         return project

@@ -16,12 +16,13 @@ class AccountAnalyticAccount(models.Model):
                     account.hours_done / account.hours_planned * 100
 
     @api.multi
+    @api.depends('project_ids')
     def _compute_hours(self):
         newself = self.sudo()
         analytic_line_model = self.env['account.analytic.line']
         project_task_model = self.env['project.task']
         sale_line_model = newself.env['sale.order.line']
-        time_type_id = self.env.ref('product.uom_categ_wtime')
+        uom_time_categ_id = self.env.ref('product.uom_categ_wtime')
         for analytic in self:
             qty_ordered = 0.0
             hours_delivered = 0.0
@@ -40,27 +41,25 @@ class AccountAnalyticAccount(models.Model):
             hours_done = analytic_fetch_data[0]['unit_amount'] or 0.0
             sale_fetch_data = sale_line_model.read_group(
                 [('order_id.project_id', '=', analytic.id),
-                 ('product_uom.category_id', '=', time_type_id.id),
                  ('order_id.state', 'not in', ['draft', 'sent', 'cancel'])],
                 ['product_uom_qty', 'qty_delivered', 'qty_invoiced',
                  'product_uom'], ['product_uom'],
             )
             for d in sale_fetch_data:
-                if not d.get('product_uom_qty') and not d.get('qty_delivered')\
-                        and not d.get('qty_invoiced'):
-                    continue
-                # get total hours planned
-                uom = self.env.ref('product.product_uom_hour')
+                uom_hour = self.env.ref('product.product_uom_hour')
                 uom_base = self.env['product.uom'].browse(d['product_uom'][0])
                 if d.get('product_uom_qty'):
                     qty_ordered += uom_base._compute_quantity(
-                        d['product_uom_qty'], uom)
+                        d['product_uom_qty'], uom_hour if uom_base.category_id
+                        == uom_time_categ_id else uom_base)
                 if d.get('qty_delivered'):
                     hours_delivered += uom_base._compute_quantity(
-                        d['qty_delivered'], uom)
+                        d['qty_delivered'], uom_hour if uom_base.category_id ==
+                        uom_time_categ_id else uom_base)
                 if d.get('qty_invoiced'):
                     hours_invoiced += uom_base._compute_quantity(
-                        d['qty_invoiced'], uom)
+                        d['qty_invoiced'], uom_hour if uom_base.category_id ==
+                        uom_time_categ_id else uom_base)
             analytic.hours_done = hours_done
             analytic.qty_ordered = qty_ordered
             analytic.hours_planned = hours_planned

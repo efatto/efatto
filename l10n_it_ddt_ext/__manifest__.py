@@ -19,7 +19,7 @@
 #
 {
     'name': 'DDT various fixes',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
@@ -36,7 +36,7 @@ This module add:
 * check ddt number progression on date last ddt emitted on the same sequence
 and fix date when not right,
 * fill ddt data from ddt type when not filled in sale order of partner,
-* block cancel of sale order is ddt and picking linked are in states done or 
+* block cancel of sale order is ddt and picking linked are in states done or
 in pack.''',
     'depends': [
         'stock_picking_package_preparation',

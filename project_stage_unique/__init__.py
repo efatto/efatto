@@ -13,7 +13,7 @@ def pre_init_hook(cr):
                "id <= %s", tuple((old_id, max_id - 8)))
     cr.execute("DELETE from project_task_type where id not in "
                "(select stage_id from project_task) and id > %s",
-               tuple(max_id))
+               tuple((max_id, )))
 
     cr.execute(
         "SELECT id, name from project_task_type where name in (SELECT name"
@@ -33,4 +33,4 @@ def pre_init_hook(cr):
                "id <= %s", tuple((old_id, max_id - 8)))
     cr.execute("DELETE from project_task_type where id not in "
                "(select stage_id from project_task) and id > %s",
-               tuple(max_id))
+               tuple((max_id, )))

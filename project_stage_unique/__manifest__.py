@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Project task type name unique',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Extra Tools',
     'summary': 'Set project task type name (aka "stage") unique',
     'description':

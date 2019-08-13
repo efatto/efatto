@@ -7,12 +7,12 @@
 {
     'name': 'Contract Show Sale',
     'summary': 'Button in contracts to show their sales',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'license': 'AGPL-3',
     'author': 'Sergio Corato,'
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/contract',
-    'depends': ['analytic', 'sale'],
+    'depends': ['analytic', 'sale', 'contract'],
     'category': 'Sales Management',
     'data': [
         'views/contract_view.xml',

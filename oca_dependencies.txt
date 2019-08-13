@@ -5,6 +5,7 @@ commission
 contract
 l10n-italy
 partner-contact
+project
 server-tools
 stock-logistics-workflow
 web

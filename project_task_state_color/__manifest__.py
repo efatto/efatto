@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Project task colors',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Extra Tools',
     'description':
         'Change task color on state.',

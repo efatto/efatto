@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from odoo import models, fields, api, _, exceptions
+
+from odoo import models, fields, api
 
 
 class ProjectProject(models.Model):
@@ -59,4 +57,4 @@ class ProjectTask(models.Model):
         for task in self:
             if task.hex_value:
                 task.hex_value_reduced = task.colorscale(
-                        task.hex_value, .5)
+                    task.hex_value, .5)

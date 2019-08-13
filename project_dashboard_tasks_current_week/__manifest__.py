@@ -19,7 +19,7 @@
 #
 {
     'name': 'Project dashboard tasks current week',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Extend project dashboard showing tasks of current week.',

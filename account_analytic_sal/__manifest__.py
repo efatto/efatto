@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account analytic SAL',
-    'version': '10.0.1.0.30',
+    'version': '10.0.1.0.31',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',

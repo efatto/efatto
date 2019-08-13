@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, _
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
@@ -19,8 +19,8 @@ class SaleOrderLine(models.Model):
                 # quelli collegati alle singole righe
                 hours_planned = 0.0
                 project_fetch_data = project_task_model.read_group(
-                    [('project_id', 'in',
-                      line.order_id.sudo().related_project_id.project_ids.ids)],
+                    [('project_id', 'in', line.order_id.sudo(
+                        ).related_project_id.project_ids.ids)],
                     ['planned_hours', 'sale_line_id'], ['sale_line_id'],
                 )
                 for line_data in project_fetch_data:

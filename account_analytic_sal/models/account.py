@@ -67,8 +67,8 @@ class AccountAnalyticAccount(models.Model):
             analytic.hours_residual = hours_planned - hours_done
             analytic.hours_delivered = hours_delivered
             analytic.hours_invoiced = hours_invoiced
-            #FIXME le ore sono da fatturare se non gia chiuso l'ordine
-            # e se l'ordine va fatturato ad ore (le singole righe a sto punto)
+            # FIXME le ore sono da fatturare se non gia chiuso l'ordine
+            #  e se l'ordine va fatturato ad ore (le singole righe a sto punto)
             analytic.hours_tobe_invoiced = hours_delivered - hours_invoiced
 
     @api.multi
@@ -226,7 +226,7 @@ class AccountAnalyticSal(models.Model):
                 sal.invoiced = True
             # set automatically sal done when progress>sal percent completion
             if sal.percent_completion > 0.0:
-                #sal.account_analytic_id.progress_works_planned >
+                # sal.account_analytic_id.progress_works_planned >
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 

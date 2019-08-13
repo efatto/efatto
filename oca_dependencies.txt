@@ -1,0 +1,10 @@
+account-financial-reporting
+account-invoicing
+account-payment
+commission
+efatto
+l10n-italy
+partner-contact
+server-tools
+stock-logistics-workflow
+web

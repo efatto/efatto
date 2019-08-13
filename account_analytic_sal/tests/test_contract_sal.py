@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from odoo.exceptions import ValidationError
 from odoo.addons.contract.tests.test_contract import TestContractBase
 import time
 
@@ -23,7 +22,7 @@ class AccountAnalyticAccount(TestContractBase):
             'taxes_id': [(6, 0, cls.env['account.tax'].search(
                 [('type_tax_use', '=', 'sale')], limit=1).ids)]
         })
-        #product_uom_day
+        # product_uom_day
         cls.product_on_timesheet_delivered = cls.product_model.create({
             'name': 'Product on timesheet delivered',
             'track_service': 'timesheet',
@@ -121,4 +120,3 @@ class AccountAnalyticAccount(TestContractBase):
         self.assertAlmostEqual(
             contract.qty_ordered, 10.0,
             msg="Qty ordered is different from sale")
-

@@ -24,8 +24,8 @@ def pre_init_hook(cr):
         rest.remove(duplication_id)
         for r in rest:
             if duplication_id[1] == r[1]:
-                cr.execute("UPDATE project_task SET stage_id = {0} WHERE"
-                           " stage_id = {1}".format(duplication_id[0], r[0]))
+                cr.execute("UPDATE project_task SET stage_id = %s WHERE"
+                           " stage_id = %s" % (duplication_id[0], r[0]))
 
     # finally remove unused task type resulting from removing duplications
     cr.execute("DELETE from project_task_type where id not in "

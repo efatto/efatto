@@ -32,4 +32,3 @@ def pre_init_hook(cr):
                "id <= %s", (old_id, max_id - 8))
     cr.execute("DELETE from project_task_type where id not in "
                "(select stage_id from project_task) and id > %s", max_id)
-

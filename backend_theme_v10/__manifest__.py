@@ -25,4 +25,3 @@
         'views/sidebar.xml',
     ],
 }
-

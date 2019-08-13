@@ -4,7 +4,7 @@
 
 {
     "name": "Account invoice check VAT statement",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.0.2",
     "category": "Accounting",
     "description": """
 Check if exists a closed VAT statement for period used to register the invoice:

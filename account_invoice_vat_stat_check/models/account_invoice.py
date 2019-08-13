@@ -21,7 +21,7 @@ class AccountInvoice(models.Model):
                     raise UserError(
                         _('Period %s have already a closed vat statement. '
                           'Set registration date to a greater period.')
-                           % date_range.name
+                        % date_range.name
                     )
         return super(AccountInvoice, self)._check_invoice_reference()
 
@@ -41,6 +41,6 @@ class AccountInvoice(models.Model):
                         _('Period %s have already a closed vat statement. '
                           'Reset to draft vat statement to cancel this '
                           'invoice.')
-                          % date_range.name
+                        % date_range.name
                     )
         return super(AccountInvoice, self).action_cancel()

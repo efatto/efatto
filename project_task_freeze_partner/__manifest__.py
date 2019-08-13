@@ -19,7 +19,7 @@
 #
 {
     'name': 'Project task freeze partner',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Changing project no more change partner to project '

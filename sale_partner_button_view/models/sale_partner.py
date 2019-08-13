@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, api, fields
+
+from openerp import models, fields
 
 
 class ResPartner(models.Model):
@@ -34,8 +32,8 @@ class ResPartner(models.Model):
             # up there
             partner_ids = filter(
                 lambda r: r['id'] == partner.id, partner_child_ids)[0]
-            partner_ids = [partner_ids.get('id')] + \
-                          partner_ids.get('child_ids')
+            partner_ids = [partner_ids.get('id')] + partner_ids.get(
+                'child_ids')
             # then we can sum for all the partner's child
             partner.sale_order_count = sum(
                 mapped_sale_data.get(child, 0) for child in partner_ids)

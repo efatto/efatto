@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato
+#    Copyright (C) 2016-2019 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italian central journal fix',
-    'version': '8.0.1.2.0',
+    'version': '8.0.1.2.1',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Italian Central journal various fix',

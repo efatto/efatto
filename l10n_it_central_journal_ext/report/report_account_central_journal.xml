@@ -16,7 +16,16 @@
                             table {border: 0px;}
                             thead {background: #F5F5F5;}
                             .left_without_line {
-                                text-align:left; vertical-align:text-top; padding:5px;
+                                text-align:left; vertical-align:text-top; padding:5px; width: 40mm; min-width: 40mm; max-width: 40mm;
+                            }
+                            .left_without_line_short {
+                                text-align:left; vertical-align:text-top; padding:5px; width: 10mm; min-width: 22mm; max-width: 22mm;
+                            }
+                            .left_without_line_row {
+                                text-align:left; vertical-align:text-top; padding:5px; width: 12mm; min-width: 12mm; max-width: 12mm;
+                            }
+                            .left_without_line_name {
+                                text-align:left; vertical-align:text-top; padding:5px; width: 75mm; min-width: 75mm; max-width: 75mm;
                             }
                             .right_without_line {
                                 text-align:right; vertical-align:text-top; padding:5px;
@@ -30,13 +39,13 @@
                             <td colspan="9" style="padding:10;" t-esc="'LIBRO GIORNALE - Periodo di stampa dal ' + formatLang(date_move_line_from, date=True) + ' al ' + formatLang(date_move_line_to, date=True)"/>
                         </tr>
                         <tr style="page-break-inside: avoid; border:1px solid #A1A1A1; ">
-                            <th class="left_without_line">Row</th>
-                            <th class="left_without_line">Date</th>
+                            <th class="left_without_line_row">Row</th>
+                            <th class="left_without_line_short">Date</th>
                             <th class="left_without_line">Ref</th>
                             <th class="left_without_line">Account move</th>
-                            <th class="left_without_line">Account code</th>
+                            <th class="left_without_line_short">Account code</th>
                             <th class="left_without_line">Account name</th>
-                            <th class="left_without_line">Name</th>
+                            <th class="left_without_line_name">Name</th>
                             <th class="right_without_line">Debit</th>
                             <th class="right_without_line">Credit</th>
                         </tr>
@@ -50,13 +59,13 @@
 
                     <tbody>
                         <tr style="page-break-inside: avoid;" >
+                            <td class="left_without_line_row"> </td>
+                            <td class="left_without_line_short"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
+                            <td class="left_without_line_short"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line">Initial Balance</td>
+                            <td class="left_without_line_name">Initial Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 
@@ -85,12 +94,12 @@
                             
                             <tr style="page-break-inside: avoid;" t-att-class="class_new_move">
                                 <!-- Row -->
-                                <td class="left_without_line">
+                                <td class="left_without_line_row">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="counter"/>
                                 </td>
                                 <!-- Date -->
-                                <td class="left_without_line">
+                                <td class="left_without_line_short">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="formatLang(line.date, date=True)"/>
                                 </td>
@@ -105,7 +114,7 @@
                                     t-esc="line.move_id.name" />
                                 </td>
                                 <!-- Account code -->
-                                <td class="left_without_line">
+                                <td class="left_without_line_short">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="line.account_id.code" />
                                 </td>
@@ -115,7 +124,7 @@
                                     t-esc="line.account_id.name" />
                                 </td>
                                 <!-- Name -->
-                                <td class="left_without_line">
+                                <td class="left_without_line_name">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="line.name" />
                                 </td>
@@ -135,13 +144,13 @@
                         </t>
                         <t t-set="class_new_move" t-value="'new_move'"/>
                         <tr style="page-break-inside: avoid;" t-att-class="class_new_move">
+                            <td class="left_without_line_row"> </td>
+                            <td class="left_without_line_short"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
+                            <td class="left_without_line_short"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line"> </td>
-                            <td class="left_without_line">Final Balance</td>
+                            <td class="left_without_line_name">Final Balance</td>
                             <!-- Debit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 

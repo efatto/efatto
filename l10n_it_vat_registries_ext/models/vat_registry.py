@@ -61,6 +61,10 @@ class VatRegistryParser(Parser):
                         child.tax_code_id)
         return (total_undeduct, total_deduct)
 
+    def _get_invoice_total(self, move):
+        taxes = self._get_tax_lines(move)
+        return sum(tax['base'] + tax['tax'] for tax in taxes)
+
     def __init__(self, cr, uid, name, context):
         super(VatRegistryParser, self).__init__(cr, uid, name, context=context)
 

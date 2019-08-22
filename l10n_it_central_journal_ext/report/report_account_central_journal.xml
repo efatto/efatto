@@ -2,96 +2,90 @@
 <openerp>
 <data>
 
-
-
 <template id="l10n_it_central_journal.report_giornale">
     <t t-call="report.html_container">
         <t t-set="title" t-value="'Stampa libro giornale'"/>
         <t t-call="l10n_it_account.internal_layout">
-
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
-                <table style="width:100%; font-size: small;" cellspacing="0">
-                        <style>
-                            table {border: 0px;}
-                            thead {background: #F5F5F5;}
-                            .left_without_line {
-                                text-align:left; vertical-align:text-top; padding:5px; width: 40mm; min-width: 40mm; max-width: 40mm;
-                            }
-                            .left_without_line_short {
-                                text-align:left; vertical-align:text-top; padding:5px; width: 10mm; min-width: 22mm; max-width: 22mm;
-                            }
-                            .left_without_line_row {
-                                text-align:left; vertical-align:text-top; padding:5px; width: 12mm; min-width: 12mm; max-width: 12mm;
-                            }
-                            .left_without_line_name {
-                                text-align:left; vertical-align:text-top; padding:5px; width: 75mm; min-width: 75mm; max-width: 75mm;
-                            }
-                            .right_without_line {
-                                text-align:right; vertical-align:text-top; padding:5px;
-                            }
-                            .new_move {
-                                border-top: 1px solid #A1A1A1;
-                            }
-                     </style>
+                <t t-set="counter" t-value="start_row"/>
+                <t t-set="save_move_id" t-value="0"/>
+                <t t-set="tot_credit" t-value="progressive_credit"/>
+                <t t-set="tot_debit" t-value="progressive_debit"/>
+                <t t-set="class_new_move" t-value="''"/>
+                <table style="width:100%;" cellspacing="0">
+                    <style>
+                        table {border: 0px;}
+                        thead {background: #F5F5F5;}
+                        .left_without_line_row {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:35px; min-width:35px; max-width:35px;
+                        }
+                        .left_without_line_date {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:55px; min-width:55px; max-width:55px;
+                        }
+                        .left_without_line_code {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:60px; min-width:60px; max-width:60px;
+                        }
+                        .left_without_line {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:70px; min-width:70px; max-width:70px;
+                        }
+                        .left_without_line_account_name {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:185px; min-width:185px; max-width:185px;
+                        }
+                        .left_without_line_name {
+                            font-size: 10px; text-align:left; vertical-align:text-top; padding:1px 5px; width:225px; min-width:225px; max-width:225px;
+                        }
+                        .right_without_line {
+                            font-size: 10px; text-align:right; vertical-align:text-top; padding:1px 5px; width:70px; min-width:70px; max-width:70px;
+                        }
+                        .new_move {
+                            border-top: 1px solid #A1A1A1;
+                        }
+                    </style>
                     <thead>
                         <tr class="first_th_row">
-                            <td colspan="9" style="padding:10;" t-esc="'LIBRO GIORNALE - Periodo di stampa dal ' + formatLang(date_move_line_from, date=True) + ' al ' + formatLang(date_move_line_to, date=True)"/>
+                            <td colspan="9" style="padding:10px; font-weight: bold; font-size: 12px;" t-esc="'LIBRO GIORNALE - Periodo di stampa dal ' + formatLang(date_move_line_from, date=True) + ' al ' + formatLang(date_move_line_to, date=True)"/>
                         </tr>
                         <tr style="page-break-inside: avoid; border:1px solid #A1A1A1; ">
                             <th class="left_without_line_row">Row</th>
-                            <th class="left_without_line_short">Date</th>
+                            <th class="left_without_line_date">Date</th>
                             <th class="left_without_line">Ref</th>
                             <th class="left_without_line">Account move</th>
-                            <th class="left_without_line_short">Account code</th>
-                            <th class="left_without_line">Account name</th>
+                            <th class="left_without_line_code">Account code</th>
+                            <th class="left_without_line_account_name">Account name</th>
                             <th class="left_without_line_name">Name</th>
-                            <th class="right_without_line">Debit</th>
-                            <th class="right_without_line">Credit</th>
+                            <th class="right_without_line">Debit<div style="text-align: left; color: gray;">Progressivo</div></th>
+                            <th class="right_without_line">Credit<div style="text-align: left; color: gray;">Progressivo</div></th>
                         </tr>
                     </thead>
-                    
-                    <t t-set="counter" t-value="start_row"/>
-                    <t t-set="save_move_id" t-value="0"/>
-                    <t t-set="tot_credit" t-value="progressive_credit"/>
-                    <t t-set="tot_debit" t-value="progressive_debit"/>
-                    <t t-set="class_new_move" t-value="''"/>
-
                     <tbody>
                         <tr style="page-break-inside: avoid;" >
-                            <td class="left_without_line_row"> </td>
-                            <td class="left_without_line_short"> </td>
+                            <td class="left_without_line_row">
+                                <div style="page-break-inside: avoid" t-esc="counter"/>
+                            </td>
+                            <td class="left_without_line_date"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line_short"> </td>
-                            <td class="left_without_line"> </td>
+                            <td class="left_without_line_code"> </td>
+                            <td class="left_without_line_account_name"> </td>
                             <td class="left_without_line_name">Initial Balance</td>
-                            <!-- Debit -->
                             <td class="right_without_line">
-                                <div style="page-break-inside: avoid" 
-                                t-esc="formatLang(tot_debit)" />
+                                <div style="page-break-inside: avoid" t-esc="formatLang(tot_debit)" />
                             </td>
-                            <!-- Credit -->
                             <td class="right_without_line">
-                                <div style="page-break-inside: avoid" 
-                                t-esc="formatLang(tot_credit)" />
+                                <div style="page-break-inside: avoid" t-esc="formatLang(tot_credit)" />
                             </td>
-                        </tr>                   
-                    
+                        </tr>
                         <t t-foreach="get_move(data['ids'])" t-as="line">
                             <t t-set="counter" t-value="counter + 1"/>
                             <t t-set="tot_credit" t-value="tot_credit + line.credit"/>
                             <t t-set="tot_debit" t-value="tot_debit + line.debit"/>
-                            
                             <t t-if="line.move_id.id != save_move_id">
                                <t t-set="class_new_move" t-value="'new_move'"/>
                             </t>
                             <t t-if="line.move_id.id == save_move_id">
                                <t t-set="class_new_move" t-value="''"/>
                             </t>
-                            
-                            
-                            
                             <tr style="page-break-inside: avoid;" t-att-class="class_new_move">
                                 <!-- Row -->
                                 <td class="left_without_line_row">
@@ -99,7 +93,7 @@
                                     t-esc="counter"/>
                                 </td>
                                 <!-- Date -->
-                                <td class="left_without_line_short">
+                                <td class="left_without_line_date">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="formatLang(line.date, date=True)"/>
                                 </td>
@@ -114,12 +108,12 @@
                                     t-esc="line.move_id.name" />
                                 </td>
                                 <!-- Account code -->
-                                <td class="left_without_line_short">
+                                <td class="left_without_line_code">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="line.account_id.code" />
                                 </td>
                                 <!-- Account name -->
-                                <td class="left_without_line">
+                                <td class="left_without_line_account_name">
                                     <div style="page-break-inside: avoid" 
                                     t-esc="line.account_id.name" />
                                 </td>
@@ -130,33 +124,30 @@
                                 </td>
                                 <!-- Debit -->
                                 <td class="right_without_line">
-                                    <div style="page-break-inside: avoid" 
-                                    t-esc="formatLang(line.debit)" />
+                                    <div style="page-break-inside: avoid" t-esc="formatLang(line.debit)" />
+                                    <div style="page-break-inside: avoid; text-align: left; color: gray;" t-esc="formatLang(tot_debit)" />
                                 </td>
                                 <!-- Credit -->
                                 <td class="right_without_line">
-                                    <div style="page-break-inside: avoid" 
-                                    t-esc="formatLang(line.credit)" />
+                                    <div style="page-break-inside: avoid" t-esc="formatLang(line.credit)" />
+                                    <div style="page-break-inside: avoid; text-align: left; color: gray;" t-esc="formatLang(tot_credit)" />
                                 </td>
                             </tr>
-
                             <t t-set="save_move_id" t-value="line.move_id.id"/>
                         </t>
                         <t t-set="class_new_move" t-value="'new_move'"/>
                         <tr style="page-break-inside: avoid;" t-att-class="class_new_move">
                             <td class="left_without_line_row"> </td>
-                            <td class="left_without_line_short"> </td>
+                            <td class="left_without_line_date"> </td>
                             <td class="left_without_line"> </td>
                             <td class="left_without_line"> </td>
-                            <td class="left_without_line_short"> </td>
-                            <td class="left_without_line"> </td>
+                            <td class="left_without_line_code"> </td>
+                            <td class="left_without_line_account_name"> </td>
                             <td class="left_without_line_name">Final Balance</td>
-                            <!-- Debit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 
                                 t-esc="formatLang(tot_debit)" />
                             </td>
-                            <!-- Credit -->
                             <td class="right_without_line">
                                 <div style="page-break-inside: avoid" 
                                 t-esc="formatLang(tot_credit)" />
@@ -167,16 +158,9 @@
                 <br/>
             </div>
             <t t-set="save_move_id" t-value="save_print_info(fiscalyear,date_move_line_to,counter,tot_debit,tot_credit)"/>
-           
-            
-            
         </t>
     </t>
 </template>
-
-
-
-
 
 </data>
 </openerp>

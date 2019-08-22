@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016 Sergio Corato - SimplERP srl (<http://www.simplerp.it>)
+#    Copyright (C) 2016-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,15 +21,19 @@
     'name': 'Italia vat registries extension',
     'version': '8.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - SimplERP SRL',
-    'website': 'http://www.simplerp.it',
+    'author': 'Sergio Corato',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
-    'description': 'Italia vat registries extension',
+    'description': '''Italia vat registries fixes:
+                   - amount of total undeductible taxes;
+                   - fy in report on period;
+                   - total amount of invoice on taxes lines;
+                   - customized report.''',
     'depends': [
         'l10n_it_vat_registries',
     ],
     'data': [
         'views/vat_registries_report.xml',
     ],
-    'installable': False
+    'installable': True
 }

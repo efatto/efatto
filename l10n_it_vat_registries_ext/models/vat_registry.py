@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+
 from openerp.addons.l10n_it_vat_registries.vat_registry import Parser
 from openerp.osv import osv
 from datetime import datetime
@@ -10,11 +8,9 @@ from datetime import datetime
 class VatRegistryParser(Parser):
 
     def _get_fy(self, period_ids):
-        period_obj = self.pool['account.period']
-        fy_obj = self.pool['account.fiscalyear']
+        date_range_obj = self.pool['date.range']
         end_date = False
-        for period in period_obj.browse(
-            self.cr, self.uid,
+        for period in date_range_obj.browse(
             period_ids,
         ):
             period_end = datetime.strptime(period.date_stop, '%Y-%m-%d')

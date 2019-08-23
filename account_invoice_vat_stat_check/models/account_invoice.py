@@ -9,9 +9,12 @@ class AccountInvoice(models.Model):
 
     def _check_invoice_reference(self):
         for invoice in self:
+            date_range_type = self.env['date.range.type'].search(
+                [('fiscal_year', '=', True)])
             date_range = self.env['date.range'].search([
                 ('date_start', '<=', invoice.date_invoice),
                 ('date_end', '>=', invoice.date_invoice),
+                ('type_id', '!=', date_range_type.id),
             ])
             vat_statement = self.env[
                 'account.vat.period.end.statement'].search(
@@ -28,9 +31,12 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_cancel(self):
         for invoice in self:
+            date_range_type = self.env['date.range.type'].search(
+                [('fiscal_year', '=', True)])
             date_range = self.env['date.range'].search([
                 ('date_start', '<=', invoice.date_invoice),
                 ('date_end', '>=', invoice.date_invoice),
+                ('type_id', '!=', date_range_type.id),
             ])
             vat_statement = self.env[
                 'account.vat.period.end.statement'].search(

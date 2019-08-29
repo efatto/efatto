@@ -15,7 +15,7 @@
                 <t t-set="class_new_move" t-value="''"/>
                 <t t-set="first_page" t-value="True"/>
                 <t t-set="num_rows" t-value="len(get_move(data['ids']))"/>
-                <t t-set="page_rows" t-value="40"/>
+                <t t-set="page_rows" t-value="38"/>
                 <t t-set="result_rows" t-value="get_move(data['ids'])"/>
                 <t t-set="last_page" t-value="num_rows/page_rows"/>
                 <t t-foreach="(num_rows/page_rows)+1" t-as="num_block">

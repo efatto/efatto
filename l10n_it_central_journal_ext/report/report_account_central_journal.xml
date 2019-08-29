@@ -17,8 +17,8 @@
                 <t t-set="num_rows" t-value="len(get_move(data['ids']))"/>
                 <t t-set="page_rows" t-value="43"/>
                 <t t-set="result_rows" t-value="get_move(data['ids'])"/>
-                <t t-set="last_page" t-value="(num_rows/page_rows)-2"/>
-                <t t-foreach="(num_rows/page_rows)-1" t-as="num_block">
+                <t t-set="last_page" t-value="num_rows/page_rows"/>
+                <t t-foreach="(num_rows/page_rows)+1" t-as="num_block">
                     <table style="width:100%;" cellspacing="0">
                         <style>
                             table {border: 0px;}
@@ -116,7 +116,7 @@
                                     <!-- Row -->
                                     <td class="left_without_line_row">
                                         <div style="page-break-inside: avoid"
-                                        t-esc="counter"/>
+                                        t-esc="counter"/> <span t-esc="num_rows"/>
                                     </td>
                                     <!-- Date -->
                                     <td class="left_without_line_date">

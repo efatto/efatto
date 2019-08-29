@@ -28,3 +28,17 @@ msgstr "Data già stampata"
 msgid "No documents found in the current selection"
 msgstr "Nessun document trovata per la selezione corrente"
 
+#. module: l10n_it_central_journal_ext
+#: view:website:l10n_it_central_journal.report_giornale
+msgid "Final Balance"
+msgstr "Saldo Finale"
+
+#. module: l10n_it_central_journal_ext
+#: view:website:l10n_it_central_journal.report_giornale
+msgid "Initial Balance"
+msgstr "Saldo Iniziale"
+
+#. module: l10n_it_central_journal_ext
+#: view:website:l10n_it_central_journal.report_giornale
+msgid "Progressive ==>"
+msgstr "Progressivo ==>"

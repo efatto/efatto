@@ -8,7 +8,7 @@
         <t t-call="l10n_it_account.internal_layout">
             <div class="page">
                 <t t-set="print_details" t-value="1"/>
-                <t t-set="counter" t-value="start_row"/>
+                <t t-set="counter" t-value="start_row - 1"/>
                 <t t-set="save_move_id" t-value="0"/>
                 <t t-set="tot_credit" t-value="progressive_credit"/>
                 <t t-set="tot_debit" t-value="progressive_debit"/>
@@ -80,11 +80,7 @@
                         </thead>
                         <tbody>
                             <tr style="page-break-inside: avoid;" >
-                                <td class="left_without_line_row">
-                                    <span t-if="first_page == True">
-                                        <div style="page-break-inside: avoid" t-esc="counter"/>
-                                    </span>
-                                </td>
+                                <td class="left_without_line_row"> </td>
                                 <td class="left_without_line_date"> </td>
                                 <td class="left_without_line"> </td>
                                 <td class="left_without_line"> </td>

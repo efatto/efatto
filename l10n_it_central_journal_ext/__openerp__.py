@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italian central journal fix',
-    'version': '8.0.1.2.3',
+    'version': '8.0.1.2.4',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Italian Central journal various fix',

@@ -75,9 +75,8 @@ class AccountAnalyticAccount(models.Model):
         for account in self:
             total = 0.0
             for sal in account.account_analytic_sal_ids:
-                if sal.done or sal.percent_completion > 0.0:
-                    # account.progress_works_planned >
-                    # and not sal.invoiced:
+                if (sal.done or account.progress_hours > sal.percent_completion
+                        > 0.0) and not sal.invoiced:
                     total += sal.amount_toinvoice
                     total -= sal.amount_invoiced
             account.amount_sal_to_invoice += total
@@ -223,9 +222,8 @@ class AccountAnalyticSal(models.Model):
                     amount_invoiced += line.price_subtotal
             if amount_invoiced >= sal.amount_toinvoice > 0.0:
                 sal.invoiced = True
-            # set automatically sal done when progress>sal percent completion
-            if sal.percent_completion > 0.0:
-                # sal.account_analytic_id.progress_works_planned >
+            if sal.account_analytic_id.progress_hours > \
+                    sal.percent_completion > 0.0:
                 sal.done = True
             sal.amount_invoiced = amount_invoiced
 
@@ -237,9 +235,8 @@ class AccountAnalyticSal(models.Model):
 
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
-        'SAL percent completion',
-        digits=dp.get_precision('Account'),
-        help='Percent SAL completion. When reached will start action linked.'
+        'SAL percent done',
+        digits=dp.get_precision('Account')
     )
     percent_toinvoice = fields.Float(
         'SAL percent to invoice',

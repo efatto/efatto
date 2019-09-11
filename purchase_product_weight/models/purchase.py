@@ -15,11 +15,7 @@ class PurchaseOrderLine(models.Model):
             line.weight_total = line.product_id.weight * \
                 line.product_qty
 
-    @api.onchange('product_id.weight', 'weight_total')
-    def _onchange_product_weight(self):
-        self._onchange_quantity()
-
-    @api.onchange('product_qty', 'product_uom')
+    @api.onchange('product_qty', 'product_uom', 'weight_total')
     def _onchange_quantity(self):
         if not self.product_id:
             return

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
@@ -41,7 +41,9 @@ class PurchaseOrderLine(models.Model):
 
             price_unit = self.env['account.tax'].\
                 _fix_tax_included_price_company(
-                    seller.price * (self.weight_total / self.product_qty),
+                    seller.price * (self.weight_total / self.product_qty if
+                                    self.weight_total else
+                                    self.product_id.weight),
                     self.product_id.supplier_taxes_id, self.taxes_id,
                     self.company_id) if seller else 0.0
             if price_unit and seller and self.order_id.currency_id \

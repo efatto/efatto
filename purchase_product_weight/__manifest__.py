@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Purchase product on weight',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Purchase',
     'description':
         'Compute purchase unit price on weight of product',

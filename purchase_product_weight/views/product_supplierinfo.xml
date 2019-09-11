@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <field name="price" position="after">
                 <field name="compute_price_on_weight" invisible="1"/>
-                <p class="oe_inline" attrs="{'invisible': [('compute_price_on_weight', '=', False)]}"> kg </p>
+                <span class="oe_inline" attrs="{'invisible': [('compute_price_on_weight', '=', False)]}"> kg </span>
             </field>
         </field>
     </record>

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import models, fields, api
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class PurchaseOrderLine(models.Model):
@@ -9,8 +10,8 @@ class PurchaseOrderLine(models.Model):
 
     weight_total = fields.Float(string='Total weight')
 
-    @api.onchange('product_id', 'product_id.weight', 'product_qty')
-    def _compute_total_weight(self):
+    @api.onchange('product_id', 'product_qty')
+    def _onchange_total_weight(self):
         for line in self:
             line.weight_total = line.product_id.weight * \
                 line.product_qty
@@ -27,10 +28,6 @@ class PurchaseOrderLine(models.Model):
                 date=self.order_id.date_order and
                 self.order_id.date_order[:10],
                 uom_id=self.product_uom)
-
-            if seller or not self.date_planned:
-                self.date_planned = self._get_date_planned(seller).strftime(
-                    DEFAULT_SERVER_DATETIME_FORMAT)
 
             if not seller:
                 return
@@ -53,3 +50,30 @@ class PurchaseOrderLine(models.Model):
                     price_unit, self.product_uom)
 
             self.price_unit = price_unit
+
+
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
+
+    @api.multi
+    def _add_supplier_to_product(self):
+        self.ensure_one()
+        super(PurchaseOrder, self)._add_supplier_to_product()
+        for line in self.order_line:
+            if line.product_id.compute_price_on_weight:
+                partner = self.partner_id if not self.partner_id.parent_id\
+                    else self.partner_id.parent_id
+                seller = line.product_id.seller_ids.filtered(
+                    lambda x: x.name == partner
+                )
+                if seller:
+                    currency = partner.property_purchase_currency_id or \
+                        self.env.user.company_id.currency_id
+                    weight = line.weight_total / line.product_qty if \
+                        line.weight_total else line.product_id.weight
+                    seller.write({
+                        'price': self.currency_id.compute(
+                            line.price_unit / (
+                                weight or 1
+                            ), currency),
+                    })

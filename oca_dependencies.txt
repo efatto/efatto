@@ -1,3 +1,4 @@
+account-analytic
 account-financial-reporting
 account-invoicing
 account-payment
@@ -5,7 +6,9 @@ commission
 contract
 l10n-italy
 partner-contact
+product-attribute
 project
 server-tools
+server-ux
 stock-logistics-workflow
 web

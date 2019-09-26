@@ -18,10 +18,10 @@ It also set invoice policy default to delivery.
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'license': 'LGPL-3',
-    "depends": [
-        'sale',
+    'depends': [
+        'stock',
     ],
-    "data": [
+    'data': [
         'data/group.xml',
     ],
     'installable': True

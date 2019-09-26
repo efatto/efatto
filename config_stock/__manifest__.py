@@ -39,5 +39,5 @@ It also set invoice policy default to delivery.
     "data": [
         'data/group.xml',
     ],
-    'installable': True
+    'installable': False
 }

@@ -11,6 +11,6 @@
     <record id="base.main_company" model="res.company">
         <field name="tax_calculation_rounding_method"  eval="'round_globally'"/>
     </record>
-    <function id="sale_default_group_sale_delivery_address_set" model="ir.values" name="set_default"
-      eval="('sale.config.settings', 'group_sale_delivery_address', 1)"/>
+    <function id="default_invoice_policy_set" model="ir.default" name="set"
+        eval="('product.template', 'invoice_policy', 'delivery')"/>
 </odoo>

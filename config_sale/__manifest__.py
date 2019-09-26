@@ -11,7 +11,7 @@ Add the next groups to base user:
 * sale.group_delivery_invoice_address
 * sale.group_warning_sale
 * sale.group_sale_order_dates
-Also set tax calculation rouding method as 'globally' and enable group sale 
+Also set tax calculation rouding method as 'globally' and enable group sale
 delivery address.
 """,
     'author': 'Sergio Corato',

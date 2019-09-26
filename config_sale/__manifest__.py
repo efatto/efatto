@@ -40,5 +40,5 @@ Add the next groups to base user:
     "data": [
         'data/group.xml',
     ],
-    'installable': True
+    'installable': False
 }

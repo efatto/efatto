@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="0">
-        <record model="res.groups" id="base.group_user">
-            <field name="implied_ids" eval="[
-            (4, ref('stock_account.group_inventory_valuation')),
-            (4, ref('stock.group_stock_multi_locations')),
-            (4, ref('product.group_stock_packaging'))]"/>
-        </record>
-        <function id="default_invoice_policy_set" model="ir.values" name="set_default"
-                  eval="('product.template', 'invoice_policy', 'delivery')"/>
-    </data>
-</openerp>
-        <!--# todo decimal_precision stock 3-->
+<odoo noupdate="1">
+    <record model="res.groups" id="base.group_user">
+        <field name="implied_ids" eval="[
+        (4, ref('stock.group_lot_on_delivery_slip')),
+        (4, ref('stock.group_stock_multi_locations')),
+        (4, ref('stock.group_stock_production_lot')),
+        (4, ref('stock.group_stock_adv_location')),
+        (4, ref('uom.group_uom')),
+        (4, ref('product.group_stock_packaging'))]"/>
+    </record>
+    <function id="default_invoice_policy_set" model="ir.values" name="set_default"
+              eval="('product.template', 'invoice_policy', 'delivery')"/>
+</odoo>
+<!--# todo decimal_precision stock 3-->

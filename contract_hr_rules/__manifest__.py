@@ -16,5 +16,5 @@
     'data': [
         'security/contract_security.xml',
     ],
-    'installable': True
+    'installable': False
 }

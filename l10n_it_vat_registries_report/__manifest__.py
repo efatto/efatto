@@ -15,5 +15,5 @@
     'data': [
         'views/vat_registries_report.xml',
     ],
-    'installable': True
+    'installable': False
 }

@@ -40,5 +40,5 @@
         'views/project.xml',
         'views/sale.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

@@ -43,5 +43,5 @@
         'data/account.chart.template.csv',
         'data/account_chart_template_data.yml',
     ],
-    "installable": True,
+    "installable": False,
 }

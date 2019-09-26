@@ -17,5 +17,5 @@ if true, raise an error.
         "account",
         "account_vat_period_end_statement",
     ],
-    "installable": True
+    "installable": False
 }

@@ -9,5 +9,5 @@
     "license": "LGPL-3",
     "category": "Accounting",
     "depends": ["account"],
-    "installable": True,
+    "installable": False,
 }

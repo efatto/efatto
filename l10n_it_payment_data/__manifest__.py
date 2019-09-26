@@ -34,5 +34,5 @@
     "data": [
         'data/payment_data.xml',
     ],
-    "installable": True,
+    "installable": False,
 }

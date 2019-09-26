@@ -17,5 +17,5 @@
         'views/product.xml',
         'views/product_supplierinfo.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

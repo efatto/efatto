@@ -16,5 +16,5 @@
     'data': [
         'views/account_report.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

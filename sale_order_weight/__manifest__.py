@@ -35,5 +35,5 @@ This module add:
     'data': [
         'views/sale_order_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

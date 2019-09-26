@@ -38,5 +38,5 @@
         'data/ddt_type.xml',
         'data/stock_location.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

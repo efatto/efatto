@@ -34,5 +34,5 @@
     'data': [
         'views/hr.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

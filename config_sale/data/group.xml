@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
-        <record id="base.group_user" model="res.groups">
-            <field name="implied_ids" eval="[
-             (4, ref('sale.group_discount_per_so_line')),
-             (4, ref('sale.group_delivery_invoice_address')),
-             (4, ref('account.group_proforma_invoices')),
-             (4, ref('sale.group_warning_sale')),
-             ]"/>
-        </record>
-        <record id="base.main_company" model="res.company">
-            <field name="tax_calculation_rounding_method"  eval="'round_globally'"/>
-        </record>
-        <function id="sale_default_group_sale_delivery_address_set" model="ir.values" name="set_default"
-          eval="('sale.config.settings', 'group_sale_delivery_address', 1)"/>
-    </data>
-</openerp>
+<odoo noupdate="1">
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[
+         (4, ref('sale.group_discount_per_so_line')),
+         (4, ref('sale.group_delivery_invoice_address')),
+         (4, ref('sale.group_warning_sale')),
+         (4, ref('sale.group_sale_order_dates')),
+         ]"/>
+    </record>
+    <record id="base.main_company" model="res.company">
+        <field name="tax_calculation_rounding_method"  eval="'round_globally'"/>
+    </record>
+    <function id="sale_default_group_sale_delivery_address_set" model="ir.values" name="set_default"
+      eval="('sale.config.settings', 'group_sale_delivery_address', 1)"/>
+</odoo>

@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* config_stock
+#	* config_mrp
 #
 msgid ""
 msgstr ""

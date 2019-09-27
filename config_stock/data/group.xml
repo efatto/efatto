@@ -2,9 +2,7 @@
 <odoo noupdate="1">
     <record model="res.groups" id="base.group_user">
         <field name="implied_ids" eval="[
-        (4, ref('stock.group_lot_on_delivery_slip')),
         (4, ref('stock.group_stock_multi_locations')),
-        (4, ref('stock.group_production_lot')),
         (4, ref('stock.group_adv_location')),
         (4, ref('uom.group_uom')),
         (4, ref('product.group_stock_packaging'))]"/>

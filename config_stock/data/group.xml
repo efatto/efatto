@@ -5,7 +5,7 @@
         (4, ref('stock.group_stock_multi_locations')),
         (4, ref('stock.group_adv_location')),
         (4, ref('uom.group_uom')),
-        (4, ref('product.group_stock_packaging'))]"/>
+        ]"/>
     </record>
 </odoo>
 <!--# todo decimal_precision stock 3-->

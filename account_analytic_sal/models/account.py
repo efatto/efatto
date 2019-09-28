@@ -94,7 +94,6 @@ class AccountAnalyticAccount(models.Model):
         for analytic in self:
             fetch_data = invoice_model.search_read(
                 [('invoice_line_ids.account_analytic_id', '=', analytic.id),
-                 ('state', 'in', ['open', 'paid']),
                  ('type', 'in', ['out_invoice', 'out_refund'])],
                 ['date_invoice'], limit=1, order='date_invoice desc',
             )

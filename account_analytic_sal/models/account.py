@@ -88,7 +88,7 @@ class AccountAnalyticAccount(models.Model):
                 account.total_sale - account.total_invoiced
 
     @api.multi
-    @api.depends('invoice_line_ids')
+    @api.depends('invoice_line_ids.invoice_id.date_invoice')
     def _get_last_invoice_date(self):
         invoice_model = self.env['account.invoice']
         for analytic in self:

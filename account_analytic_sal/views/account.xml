@@ -154,6 +154,7 @@
                                     <field name="percent_toinvoice"/>
                                     <field name="amount_toinvoice" readonly="1" sum="Total to Invoice"/>
                                     <field name="amount_invoiced" readonly="1" sum="Total Invoiced"/>
+                                    <field name="residual_toinvoice" readonly="1" sum="Residual to Invoice"/>
                                     <field name="done"/>
                                     <field name="invoiced"/>
                                 </tree>
@@ -207,6 +208,7 @@
                     <field name="percent_toinvoice"/>
                     <field name="amount_toinvoice" sum="Total to Invoice"/>
                     <field name="amount_invoiced" sum="Total Invoiced"/>
+                    <field name="residual_toinvoice" sum="Residual to Invoice"/>
                     <field name="done"/>
                     <field name="invoiced"/>
                 </tree>
@@ -230,6 +232,7 @@
                             <field name="percent_toinvoice"/>
                             <field name="amount_invoiced" sum="Total Invoiced"/>
                             <field name="amount_toinvoice" sum="Total to Invoice"/>
+                            <field name="residual_toinvoice" sum="Residual to Invoice"/>
                             <field name="done"/>
                             <field name="invoiced"/>
                         </group>

@@ -73,13 +73,9 @@ class AccountAnalyticAccount(models.Model):
     @api.multi
     def _get_amount_sal_to_invoice(self):
         for account in self:
-            total = 0.0
-            for sal in account.account_analytic_sal_ids:
-                if (sal.done or account.progress_hours > sal.percent_completion
-                        > 0.0) and not sal.invoiced:
-                    total += sal.amount_toinvoice
-                    total -= sal.amount_invoiced
-            account.amount_sal_to_invoice += total
+            account.amount_sal_to_invoice = sum([
+                x.residual_toinvoice for x in account.account_analytic_sal_ids]
+            )
 
     @api.multi
     def _get_amount_remaining(self):
@@ -88,7 +84,8 @@ class AccountAnalyticAccount(models.Model):
                 account.total_sale - account.total_invoiced
 
     @api.multi
-    @api.depends('invoice_line_ids.invoice_id.date_invoice')
+    @api.depends('invoice_line_ids.account_analytic_id',
+                 'invoice_line_ids.invoice_id.date_invoice')
     def _get_last_invoice_date(self):
         invoice_model = self.env['account.invoice']
         for analytic in self:
@@ -150,7 +147,7 @@ class AccountAnalyticAccount(models.Model):
         inverse_name='account_analytic_id',
         string='Analytic SAL progression')
     amount_sal_to_invoice = fields.Float(
-        compute='_get_amount_sal_to_invoice',
+        compute=_get_amount_sal_to_invoice,
         help='Amount to invoice from SAL')
     manager_id = fields.Many2one(
         'res.users', 'Account Manager', track_visibility='onchange')
@@ -212,26 +209,31 @@ class AccountAnalyticSal(models.Model):
     _order = 'id ASC'
 
     @api.multi
+    @api.depends('account_analytic_id.invoice_line_ids.price_subtotal',
+                 'account_analytic_id.invoice_line_ids.invoice_id.state')
     def get_invoiced_sal(self):
         for sal in self:
-            amount_invoiced = 0.0
-            account_invoice_line_ids = self.env['account.invoice.line'].search(
-                [('account_analytic_sal_id', '=', sal.id)])
-            for line in account_invoice_line_ids:
-                if line.invoice_id.state in ['open', 'done']:
-                    amount_invoiced += line.price_subtotal
-            if amount_invoiced >= sal.amount_toinvoice > 0.0:
-                sal.invoiced = True
-            if sal.account_analytic_id.progress_hours > \
-                    sal.percent_completion > 0.0:
-                sal.done = True
-            sal.amount_invoiced = amount_invoiced
+            for line in sal.account_analytic_id.invoice_line_ids.filtered(
+                lambda x: x.account_analytic_sal_id == sal and
+                x.invoice_id.state in ['open', 'done']
+            ):
+                sal.amount_invoiced += line.price_subtotal
+                sal.residual_toinvoice = sal.amount_toinvoice - \
+                                         sal.amount_invoiced
+            # if amount_invoiced >= sal.amount_toinvoice > 0.0:
+            #     sal.invoiced = True
+            # if sal.account_analytic_id.progress_hours > \
+            #         sal.percent_completion > 0.0:
+            #     sal.done = True
+            #
 
     @api.multi
+    @api.depends('account_analytic_id.total_sale', 'percent_toinvoice')
     def _compute_amount_toinvoice(self):
         for sal in self:
             sal.amount_toinvoice = sal.account_analytic_id.\
                 total_sale * sal.percent_toinvoice / 100
+            sal.residual_toinvoice = sal.amount_toinvoice - sal.amount_invoiced
 
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
@@ -243,11 +245,18 @@ class AccountAnalyticSal(models.Model):
         digits=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
-        compute='_compute_amount_toinvoice',
+        compute=_compute_amount_toinvoice,
+        store=True,
         digits=dp.get_precision('Account'))
     amount_invoiced = fields.Float(
         'SAL amount invoiced',
-        compute='get_invoiced_sal',
+        compute=get_invoiced_sal,
+        store=True,
+        digits=dp.get_precision('Account'))
+    residual_toinvoice = fields.Float(
+        'SAL residual to invoice',
+        compute=_compute_amount_toinvoice,
+        store=True,
         digits=dp.get_precision('Account'))
     done = fields.Boolean(
         string='SAL done',

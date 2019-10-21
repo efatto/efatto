@@ -1,3 +1,0 @@
-import sale_order_line
-import sale_configuration_setting
-import product_pricelist

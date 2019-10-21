@@ -19,8 +19,8 @@
 #
 {
     'name': 'Italy - PDC 7 number generic',
-    'version': '10.0.1.0.0',
-    'category': 'Localization/Account Charts',
+    'version': '11.0.0.0.1',
+    'category': 'Localization',
     'description': """
     Italy PDC with 7 number generic
     """,
@@ -33,9 +33,10 @@
         'base_iban',
     ],
     "data": [
-        'data/account_chart.xml',
+        'data/l10n_it_chart_data.xml',
         'data/data_account_type.xml',
         'data/account.account.template.csv',
+        'data/account.tax.group.csv',
         'data/account.tax.template.csv',
         'data/account.fiscal.position.template.csv',
         'data/account.fiscal.position.tax.template.csv',

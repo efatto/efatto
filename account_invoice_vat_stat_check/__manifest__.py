@@ -3,12 +3,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Account invoice check VAT statement",
+    "name": "Account invoice check VAT statement and duplicated vendor reference",
     "version": "10.0.1.0.4",
     "category": "Accounting",
     "description": """
 Check if exists a closed VAT statement for period used to register the invoice:
 if true, raise an error.
+Check correctly if a vendor reference is duplicated, adding date_invoice to check.
 """,
     "author": "Sergio Corato",
     "website": "https://efatto.it",

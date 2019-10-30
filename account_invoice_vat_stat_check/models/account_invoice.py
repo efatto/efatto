@@ -16,6 +16,19 @@ class AccountInvoice(models.Model):
                 ('date_end', '>=', invoice.date_invoice),
                 ('type_id', '!=', date_range_type.id),
             ])
+            if invoice.type in ('in_invoice', 'in_refund') and invoice.reference:
+                if self.search(
+                        [('type', '=', invoice.type),
+                         ('reference', '=', invoice.reference),
+                         ('company_id', '=', invoice.company_id.id),
+                         ('commercial_partner_id', '=',
+                          invoice.commercial_partner_id.id),
+                         ('id', '!=', invoice.id),
+                         ('date_invoice', '=', invoice.date_invoice)]):
+                    raise UserError(_(
+                        "Duplicated vendor reference detected. You probably encoded"
+                        " twice the same vendor bill/refund."))
+
             vat_statement = self.env[
                 'account.vat.period.end.statement'].search(
                     [('date_range_ids', 'in', date_range.id)])
@@ -26,7 +39,8 @@ class AccountInvoice(models.Model):
                           'Set registration date to a greater period.')
                         % date_range.name
                     )
-        return super(AccountInvoice, self)._check_invoice_reference()
+        # do not super() to avoid raise of original function
+        # return super(AccountInvoice, self)._check_invoice_reference()
 
     @api.multi
     def action_cancel(self):

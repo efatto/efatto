@@ -137,13 +137,11 @@ class ir_exports( models.Model ):
     @api.multi
     def export_and_send(self):
         self.ensure_one()
-        if not self.attachment_id:
-            # call popup_wizard, do export and save
-            wizard = self.env['export.wizard.ept']
-            config = wizard.default_get(
-                    list(wizard.fields_get()))
-            wiz_id = wizard.create(config)
-            wiz_id.download_file()
+        # call popup_wizard, do export and save always to regenerate
+        wizard = self.env['export.wizard.ept']
+        config = wizard.default_get(list(wizard.fields_get()))
+        wiz_id = wizard.create(config)
+        wiz_id.with_context(active_id=self.id).download_file()
         template = self.env.ref('ir_export_extended_ept.'
                                 'email_template_export_with_domain_ept')
         compose_form = self.env.ref('mail.email_compose_message_wizard_form')

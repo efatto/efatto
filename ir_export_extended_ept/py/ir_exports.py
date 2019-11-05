@@ -153,7 +153,6 @@ class ir_exports( models.Model ):
             'default_use_template': bool(template),
             'default_template_id': template.id,
             'default_composition_mode': 'comment',
-            'mark_so_as_sent': True,
         }
         if self._context.get('auto_send', False):
             composer = self.env['mail.compose.message'].with_context(

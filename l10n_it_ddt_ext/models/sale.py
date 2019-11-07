@@ -64,7 +64,8 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_view_ddt()
         for so in self:
             if len(so.ddt_ids) == 0:
-                res['context'] = {'default_partner_id': so.partner_id.id}
+                res['context'] = {'default_partner_id': so.partner_id.id,
+                                  'default_ddt_type_id': so.ddt_type_id.id}
                 if so.goods_description_id:
                     res['context'].update(
                         goods_description_id=so.goods_description_id.id)

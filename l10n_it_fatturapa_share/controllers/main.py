@@ -17,7 +17,13 @@ class FatturaPAAttachmentDownload(Controller):
                          'fatturapa.attachment.in']:
             return '<h1>Only type \'fatturapa.attachment.out\' or' \
                    ' \'fatturapa.attachment.in\' are accepted</h1>'
-        atts = request.env[model].search([])
+        domain = []
+        for key, value in kwargs.items():
+            if key == 'date_start':
+                domain.append(('create_date', '>=', value))
+            elif key == 'date_end':
+                domain.append(('create_date', '<=', value))
+        atts = request.env[model].search(domain)
         config_obj = request.env['ir.config_parameter'].get_param(
             'web.base.url')
         attachment_url = config_obj + "/web/" + model + "/token/"

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Download e-invoices',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Extra Tools',
     'description':
         'Download e-invoice via https',

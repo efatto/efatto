@@ -163,11 +163,9 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def create(self, values):
-        # todo add tag from creator model?
-        #  create tag, if missing, for creator model
-        #  then assign it to line
-        if self._context.get('invoice') and self._context.get('type'):
-            if self._context['type'] in ['out_invoice', 'out_refund']:
+        if self._context.get('invoice'):
+            invoice = self._context['invoice']
+            if invoice.type in ['out_invoice', 'out_refund']:
                 tag_id = self._get_tag(_('Sales'))
             else:
                 tag_id = self._get_tag(_('Purchases'))

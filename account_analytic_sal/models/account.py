@@ -208,30 +208,19 @@ class AccountAnalyticSal(models.Model):
 
     @api.multi
     @api.depends('account_analytic_id.invoice_line_ids.price_subtotal',
-                 'account_analytic_id.invoice_line_ids.invoice_id.state')
-    def get_invoiced_sal(self):
+                 'account_analytic_id.invoice_line_ids.invoice_id.state',
+                 'account_analytic_id.total_sale', 'percent_toinvoice')
+    def compute_invoiced_sal(self):
         for sal in self:
             for line in sal.account_analytic_id.invoice_line_ids.filtered(
-                lambda x: x.account_analytic_sal_id == sal and
-                x.invoice_id.state in ['open', 'done']
+                lambda x: x.account_analytic_sal_id == sal
             ):
                 sal.amount_invoiced += line.price_subtotal
-                sal.residual_toinvoice = sal.amount_toinvoice - \
-                                         sal.amount_invoiced
-            # if amount_invoiced >= sal.amount_toinvoice > 0.0:
-            #     sal.invoiced = True
-            # if sal.account_analytic_id.progress_hours > \
-            #         sal.percent_completion > 0.0:
-            #     sal.done = True
-            #
-
-    @api.multi
-    @api.depends('account_analytic_id.total_sale', 'percent_toinvoice')
-    def _compute_amount_toinvoice(self):
-        for sal in self:
-            sal.amount_toinvoice = sal.account_analytic_id.\
-                total_sale * sal.percent_toinvoice / 100
+            sal.amount_toinvoice = \
+                sal.account_analytic_id.total_sale * sal.percent_toinvoice / 100
             sal.residual_toinvoice = sal.amount_toinvoice - sal.amount_invoiced
+            if sal.amount_invoiced >= sal.amount_toinvoice > 0.0:
+                sal.invoiced = True
 
     name = fields.Char('SAL name')
     percent_completion = fields.Float(
@@ -243,17 +232,17 @@ class AccountAnalyticSal(models.Model):
         digits=dp.get_precision('Account'))
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
-        compute=_compute_amount_toinvoice,
+        compute=compute_invoiced_sal,
         store=True,
         digits=dp.get_precision('Account'))
     amount_invoiced = fields.Float(
         'SAL amount invoiced',
-        compute=get_invoiced_sal,
+        compute=compute_invoiced_sal,
         store=True,
         digits=dp.get_precision('Account'))
     residual_toinvoice = fields.Float(
         'SAL residual to invoice',
-        compute=_compute_amount_toinvoice,
+        compute=compute_invoiced_sal,
         store=True,
         digits=dp.get_precision('Account'))
     done = fields.Boolean(
@@ -263,6 +252,7 @@ class AccountAnalyticSal(models.Model):
     )
     invoiced = fields.Boolean(
         string='SAL invoiced',
+        compute=compute_invoiced_sal,
         help='SAL is marked invoiced when amount invoice lines with sal '
              'reference is superior '
              'of SAL amount. It can be marked even manually.'

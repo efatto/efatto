@@ -12,3 +12,11 @@ class SaleOrder(models.Model):
         for old_revision in self.old_revision_ids:
             old_revision.order_line.write({'state': 'cancel'})
         return res
+
+    @api.multi
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if self.env.context.get('new_sale_revision'):
+            self.write({'procurement_group_id': False})
+        return super(SaleOrder, self).copy(default=default)

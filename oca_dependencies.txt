@@ -1,3 +1,4 @@
+account-fiscal-rule
 account-invoicing
 account-payment
 partner-contact

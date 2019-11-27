@@ -84,8 +84,6 @@ class AccountAnalyticAccount(models.Model):
                 account.total_sale - account.total_invoiced
 
     @api.multi
-    @api.depends('invoice_line_ids.account_analytic_id',
-                 'invoice_line_ids.invoice_id.date_invoice')
     def _get_last_invoice_date(self):
         invoice_model = self.env['account.invoice']
         for analytic in self:
@@ -103,8 +101,7 @@ class AccountAnalyticAccount(models.Model):
         comodel_name='account.invoice.line',
         inverse_name='account_analytic_id')
     last_invoice_date = fields.Date(
-        string='Last invoice Date', compute='_get_last_invoice_date',
-        store=True)
+        string='Last invoice Date', compute=_get_last_invoice_date)
     use_sal = fields.Boolean(
         string='Use SAL')
     amount_remaining = fields.Float(

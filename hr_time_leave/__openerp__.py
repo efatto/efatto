@@ -68,7 +68,7 @@ As hr_holidays, synchronization with an internal agenda (Meetings of the CRM mod
     # 'test': ['test/test_hr_time_leave.yml',
     #          'test/hr_time_leave_report.yml',
     # ],
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
     'price': 10.00,

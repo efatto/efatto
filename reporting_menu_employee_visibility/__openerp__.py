@@ -28,6 +28,7 @@
     'license': 'AGPL-3',
     'depends': [
         'base',
+        'hr',
     ],
     'data': [
         'views/reporting.xml',

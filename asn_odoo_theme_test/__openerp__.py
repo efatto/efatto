@@ -7,7 +7,7 @@
     ''',
     'category': 'Themes/ASN',
     'depends': [
-        'base',
+        'web',
     ],
     'data': [
         'views/custom_view.xml',

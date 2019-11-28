@@ -31,6 +31,7 @@ install:
   - pip install PyXB==1.2.5
   - pip install asn1crypto==0.24.0
   - pip install num2words
+  - pip install git+https://github.com/aeroo/aeroolib.git@py2.x
 
 script:
   - travis_run_tests

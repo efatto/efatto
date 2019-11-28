@@ -30,6 +30,7 @@
     "depends": [
         'stock_picking_package_preparation',
         'l10n_it_ddt',
+        'sale_order_weight',
     ],
     "data": [
         'views/stock_picking.xml',

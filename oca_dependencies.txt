@@ -7,6 +7,6 @@ stock-logistics-workflow
 aeroo_reports git://github.com/sergiocorato/aeroo_reports.git fix_logger
 misc-addons git://github.com/it-projects-llc/misc-addons.git 8.0
 e-account https://gitlab.com/sergio-corato/e-account.git 8.0
-e-efatto https://githubb.com/efatto/efatto.git 8.0
+e-efatto https://github.com/efatto/efatto.git 8.0
 e-variant https://gitlab.com/sergio-corato/e-variant.git 8.0
 e-stock https://gitlab.com/sergio-corato/e-stock.git 8.0

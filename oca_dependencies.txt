@@ -1,5 +1,6 @@
 account-fiscal-rule
 account-invoicing
 account-payment
+l10n-italy
 partner-contact
 stock-logistics-workflow

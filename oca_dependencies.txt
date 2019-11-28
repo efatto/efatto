@@ -5,3 +5,4 @@ l10n-italy
 partner-contact
 stock-logistics-workflow
 aeroo_reports git://github.com/sergiocorato/aeroo_reports.git fix_logger
+misc-addons git://github.com/it-projects-llc/misc-addons.git 8.0

@@ -4,3 +4,4 @@ account-payment
 l10n-italy
 partner-contact
 stock-logistics-workflow
+aeroo_reports git://github.com/sergiocorato/aeroo_reports.git fix_logger

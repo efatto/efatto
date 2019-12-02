@@ -37,11 +37,21 @@ def post_init_hook(cr, registry):
     fiscal_position_id = account_fiscalposition_model.search(
         cr, SUPERUSER_ID, [('name', '=', 'Italia')], limit=1)
     sale_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
-        ('type', 'in', ['sale', ]), ('code', '=', 'SAJ')], limit=1
-    )
+        ('type', 'in', ['sale', ]), ('code', '=', 'SAJ')], limit=1)
+    if not sale_journal_id:
+        sale_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
+            ('type', 'in', ['sale', ]), ('code', 'ilike', 'VEN')], limit=1)
+    if not sale_journal_id:
+        sale_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
+            ('type', 'in', ['sale', ])], limit=1)
     purchase_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
-        ('type', 'in', ['purchase', ]), ('code', '=', 'EXJ')], limit=1
-    )
+        ('type', 'in', ['purchase', ]), ('code', '=', 'EXJ')], limit=1)
+    if not purchase_journal_id:
+        purchase_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
+            ('type', 'in', ['purchase', ]), ('code', 'ilike', 'ACQ')], limit=1)
+    if not purchase_journal_id:
+        purchase_journal_id = account_journal_model.search(cr, SUPERUSER_ID, [
+            ('type', 'in', ['purchase', ])], limit=1)
     account_fiscalposition_model.write(cr, SUPERUSER_ID, fiscal_position_id, {
         'sale_journal_id': sale_journal_id[0],
         'purchase_journal_id': purchase_journal_id[0],

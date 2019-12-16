@@ -28,7 +28,6 @@
     'depends': [
         'account',
         'report_aeroo',
-        'report_branding',
         'sale',
         'sale_order_report_hide_prices',
         'report_aeroo_parser',

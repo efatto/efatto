@@ -27,7 +27,6 @@
     'depends': [
         'account',
         'report_aeroo',
-        'report_branding',
         'report_aeroo_parser',
         'purchase',
     ],

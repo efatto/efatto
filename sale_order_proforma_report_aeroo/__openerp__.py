@@ -29,7 +29,6 @@
         'account',
         'sale',
         'report_aeroo',
-        'report_branding',
         'report_aeroo_parser',
     ],
     'data': [

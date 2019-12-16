@@ -30,7 +30,6 @@
         'report_aeroo_parser',
         'stock',
         'l10n_it_ddt_ext',
-        'report_branding',
     ],
     'data': [
         'data/reports.xml',

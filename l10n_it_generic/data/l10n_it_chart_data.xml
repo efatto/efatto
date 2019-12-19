@@ -235,22 +235,6 @@
         <field name="name">22vINC</field>
         <field name="applicability">taxes</field>
     </record>
-    <record id="tax_tag_232ra" model="account.account.tag">
-        <field name="name">232ra</field>
-        <field name="applicability">taxes</field>
-    </record>
-    <record id="tax_tag_232rv" model="account.account.tag">
-        <field name="name">232rv</field>
-        <field name="applicability">taxes</field>
-    </record>
-    <record id="tax_tag_235ra" model="account.account.tag">
-        <field name="name">235ra</field>
-        <field name="applicability">taxes</field>
-    </record>
-    <record id="tax_tag_235rv" model="account.account.tag">
-        <field name="name">235rv</field>
-        <field name="applicability">taxes</field>
-    </record>
     <record id="tax_tag_2a" model="account.account.tag">
         <field name="name">2a</field>
         <field name="applicability">taxes</field>
@@ -281,14 +265,6 @@
     </record>
     <record id="tax_tag_4vINC" model="account.account.tag">
         <field name="name">4vINC</field>
-        <field name="applicability">taxes</field>
-    </record>
-    <record id="tax_tag_710ena" model="account.account.tag">
-        <field name="name">710ena</field>
-        <field name="applicability">taxes</field>
-    </record>
-    <record id="tax_tag_710env" model="account.account.tag">
-        <field name="name">710env</field>
         <field name="applicability">taxes</field>
     </record>
 </odoo>

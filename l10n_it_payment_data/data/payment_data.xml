@@ -5,7 +5,7 @@
         <field name="name">F24 16 GG M.S.</field>
         <field name="note">F24 16 Giorni Mese Successivo</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 16, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 16, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp14"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -53,7 +53,7 @@
         <field name="name">30 DAYS END OF MONTH</field>
         <field name="note">Direct Payment 30 Days End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -61,7 +61,7 @@
         <field name="name">60 DAYS END OF MONTH</field>
         <field name="note">Direct Payment 60 Days End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -69,14 +69,14 @@
         <field name="name">90 DAYS END OF MONTH</field>
         <field name="note">Direct Payment 90 Days End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
     </record>
     <record id="payment_direct_120_days" model="account.payment.term">
         <field name="name">120 DAYS END OF MONTH</field>
         <field name="note">Direct Payment 120 Days End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -84,7 +84,7 @@
         <field name="name">180 DAYS END OF MONTH</field>
         <field name="note">Direct Payment 180 Days End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -93,8 +93,8 @@
         <field name="note">Direct Payment 30/60 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -103,8 +103,8 @@
         <field name="note">Direct Payment 60/90 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -294,7 +294,7 @@
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'option': 'day_after_invoice_date',
         'fatturapa_pm_id': ref('l10n_it_fiscal_payment_term.fatturapa_mp01')}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'fix_day_following_month',
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month',
         'fatturapa_pm_id': ref('l10n_it_fiscal_payment_term.fatturapa_mp05')})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
@@ -315,7 +315,7 @@
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 60, 'option': 'day_after_invoice_date'})]"/>
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -325,7 +325,7 @@
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -335,7 +335,7 @@
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 90, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 120, 'option': 'day_after_invoice_date'})]"/>
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -345,7 +345,7 @@
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 30, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 60, 'option': 'day_after_invoice_date'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'}),
         (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 90, 'option': 'day_after_invoice_date'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
@@ -356,8 +356,8 @@
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
         (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 60, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 90, 'option': 'day_after_invoice_date'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 120, 'option': 'day_after_invoice_date'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 30, 'option': 'day_after_invoice_date'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 30, 'option': 'day_after_invoice_date'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -366,7 +366,7 @@
         <field name="name">END OF MONTH</field>
         <field name="note">END OF MONTH</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_current_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 31, 'option': 'day_current_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -374,7 +374,7 @@
         <field name="name">B.T. 30 Days Inv. End Month</field>
         <field name="note">B.T. 30 Days Date invoice End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'option': 'last_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -382,7 +382,7 @@
         <field name="name">B.T. 60 Days Inv. End Month</field>
         <field name="note">B.T. 60 Days Date invoice End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -390,7 +390,7 @@
         <field name="name">B.T. 90 Days Inv. End Month</field>
         <field name="note">B.T. 90 Days Date invoice End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -398,7 +398,7 @@
         <field name="name">B.T. 120 Days Inv. End Month</field>
         <field name="note">B.T. 120 Days Date invoice End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 4, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -406,7 +406,7 @@
         <field name="name">B.T. 180 Days Inv. End Month</field>
         <field name="note">B.T. 180 Days Date invoice End of Month</field>
         <field name="line_ids" eval="[(0, 0, {
-        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'fix_day_following_month'})]"/>
+        'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 6, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -415,8 +415,8 @@
         <field name="note">B.T. 30/60 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -425,8 +425,8 @@
         <field name="note">B.T. 60/90 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -435,8 +435,8 @@
         <field name="note">B.T. 90/120 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -445,9 +445,9 @@
         <field name="note">B.T. 30/60/90 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -456,9 +456,9 @@
         <field name="note">B.T. 60/90/120 Days Date invoice End of Month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 3, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 0, 'months': 2, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 0, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 0, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -467,7 +467,7 @@
         <field name="name">B.T. 30 Days Inv. 10 Next Month</field>
         <field name="note">B.T. 30 days invoice End of Month at 10 of next month</field>
         <field name="line_ids" eval="[(0, 0,
-        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'})]"/>
+        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -475,7 +475,7 @@
         <field name="name">B.T. 60 Days Inv. 10 Next Month</field>
         <field name="note">B.T. 60 days invoice End of Month at 10 of next month</field>
         <field name="line_ids" eval="[(0, 0,
-        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -483,7 +483,7 @@
         <field name="name">B.T. 90 Days Inv. 10 Next Month</field>
         <field name="note">B.T. 90 days invoice End of Month at 10 of next month</field>
         <field name="line_ids" eval="[(0, 0,
-        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -491,7 +491,7 @@
         <field name="name">B.T. 120 Days Inv. 10 Next Month</field>
         <field name="note">B.T. 120 days invoice End of Month at 10 of next month</field>
         <field name="line_ids" eval="[(0, 0,
-        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        {'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 10, 'months': 4, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
@@ -500,8 +500,8 @@
         <field name="note">B.T. 30/60 days invoice End of Month at 10 of next month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 0, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -510,8 +510,8 @@
         <field name="note">B.T. 60/90 days invoice End of Month at 10 of next month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 0, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -520,8 +520,8 @@
         <field name="note">B.T. 90/120 days invoice End of Month at 10 of next month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'sequence': 1, 'days': 10, 'months': 3, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 2, 'days': 10, 'months': 0, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -530,9 +530,9 @@
         <field name="note">B.T. 30/60/90 days invoice End of Month at 10 of next month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 1, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 0, 'option': 'day_following_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 0, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>
@@ -541,9 +541,9 @@
         <field name="note">B.T. 60/90/120 days invoice End of Month at 10 of next month</field>
         <field name="sequential_lines">True</field>
         <field name="line_ids" eval="[
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 3, 'option': 'fix_day_following_month'}),
-        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 4, 'option': 'fix_day_following_month'})]"/>
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 1, 'days': 10, 'months': 2, 'option': 'after_invoice_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'sequence': 2, 'days': 10, 'months': 0, 'option': 'day_following_month'}),
+        (0, 0, {'value': 'balance', 'value_amount': 0.0, 'sequence': 3, 'days': 10, 'months': 0, 'option': 'day_following_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp05"/>
         <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_TP01"/>
     </record>

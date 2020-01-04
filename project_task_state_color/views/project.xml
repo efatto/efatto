@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
     <record id="edit_project_hex_value" model="ir.ui.view">
         <field name="name">project.project.form.hex.value</field>
         <field name="model">project.project</field>
@@ -24,17 +23,15 @@
             </field>
         </field>
     </record>
-    <record id="view_task_calendar_partner_shipping_color" model="ir.ui.view">
-        <field name="name">project.task.calendar.partner.shipping.color</field>
+    <record id="view_task_calendar_partner_color" model="ir.ui.view">
+        <field name="name">project.task.calendar.partner.color</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_calendar"/>
         <field name="arch" type="xml">
             <calendar position="replace">
                 <calendar color="project_id" date_start="date_start"
                           date_stop="date_end" string="Tasks"
-                          mode="week" quick_add="False"
-                          display="[name] c/o [partner_shipping_id] - [user_id] - [project_id]"
-                >
+                          mode="week" quick_add="False">
                     <field name="name"/>
                     <field name="hex_value"/>
                     <field name="hex_value_reduced"/>
@@ -43,10 +40,8 @@
                     <field name="user_id"/>
                     <field name="project_id"/>
                     <field name="partner_id"/>
-                    <field name="partner_shipping_id"/>
                 </calendar>
             </calendar>
         </field>
     </record>
-    </data>
-</openerp>
+</odoo>

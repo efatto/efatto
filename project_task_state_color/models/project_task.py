@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2018-2020 Sergio Corato <https://github.com/sergiocorato>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import models, fields, api
 
@@ -50,7 +51,7 @@ class ProjectTask(models.Model):
         g = clamp(g * scalefactor)
         b = clamp(b * scalefactor)
 
-        return "#%02x%02x%02x" % (r, g, b)
+        return "#{:02X}{:02X}{:02X}".format(int(r), int(g), int(b))
 
     @api.multi
     def _get_hex_task_value(self):

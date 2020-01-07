@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
 
 		<record id="payment_term_16_MS" model="account.payment.term">
             <field name="name">F24 16 GG M.S.</field>

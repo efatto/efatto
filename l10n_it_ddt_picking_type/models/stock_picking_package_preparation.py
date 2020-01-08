@@ -49,7 +49,7 @@ class StockPickingPackagePreparation(models.Model):
             picking_type = package.picking_type_id or \
                            package.picking_type_ddt_id or default_picking_type
             moves = []
-            # add invoiceable from ddt type
+            # change lines invoiceability on ddt type (can be 'none' or 'invoiceable')
             if package.invoiceable:
                 package.line_ids.write({'invoiceable': package.invoiceable})
             # end fix

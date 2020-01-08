@@ -5,5 +5,5 @@ from openupgradelib import openupgrade
 def migrate(env, version):
     cr = env.cr
     openupgrade.load_data(
-        cr, 'account', 'migrations/9.0.1.0.0/noupdate_changes.xml',
+        cr, 'l10n_it_generic', 'migrations/9.0.1.0.0/noupdate_changes.xml',
     )

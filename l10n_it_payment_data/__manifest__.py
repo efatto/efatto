@@ -29,7 +29,6 @@
     'license': 'AGPL-3',
     "depends": [
         'account_payment_term_month',
-        'l10n_it_generic',
     ],
     "data": [
         'data/payment_data.xml',

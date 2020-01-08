@@ -31,6 +31,7 @@
         'account',
         'base_vat',
         'base_iban',
+        'account_payment_term_month',
     ],
     "data": [
         'data/account_chart.xml',

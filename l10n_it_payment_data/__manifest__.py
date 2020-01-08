@@ -28,7 +28,7 @@
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     "depends": [
-        'account_payment_term_month',
+        'account_payment_term_extension',
     ],
     "data": [
         'data/payment_data.xml',

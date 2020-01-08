@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
-    <delete id="mail.icp_mail_catchall_alias" model="ir.config_parameter"/>
-    <delete search="[('key', 'ilike', 'mail.icp_mail_catchall_alias')]" model="ir.config_parameter"/>
-
-
- </data>
-</openerp>

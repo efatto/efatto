@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
     <record model="ir.ui.view" id="view_calendar_event_form_task">
         <field name="name">Calendar - Event Form</field>
@@ -13,12 +12,7 @@
                     context="{'default_project_id': project_id}"
                     domain="[('project_id', '=', project_id)]"
                     attrs="{'invisible':[('project_id', '=', False)]}"/>
-                <field name="timesheet_done" invisible="1"/>
-                <button name="record_task_work" type="object"
-                    string="Record time work"
-                    attrs="{'invisible':['|',
-                    ('timesheet_done', '=', True),
-                    ('project_task_id', '=', False)]}"/>
+                <field name="timesheet_done"/>
             </field>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheet works" groups="base.group_user">
@@ -47,9 +41,14 @@
         <field name="arch" type="xml">
             <calendar position="replace">
                 <calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday"
-                 display="[name]" attendee="partner_ids" avatar_model="res.partner"
-                 use_contacts="True" event_open_popup="%(calendar.view_calendar_event_form_popup)s"
-                 quick_add="False">
+                 readonly_form_view_id="%(calendar.view_calendar_event_form_popup)s"
+                event_open_popup="true"
+                event_limit="3"
+                color="partner_id"
+                quick_add="False">
+                    <field name="name"/>
+                    <field name="partner_ids" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_small"/>
+                    <field name="is_highlighted" invisible="1"/>
                     <field name="name"/>
                     <field name="user_id"/>
                     <field name="partner_ids"/>
@@ -66,12 +65,7 @@
             <field name="name" position="after">
                 <field name="project_id"/>
                 <field name="project_task_id"/>
-                <field name="timesheet_done" invisible="1"/>
-                <button name="record_task_work" type="object"
-                    string="Record time work" icon="gtk-execute"
-                    attrs="{'invisible':['|',
-                    ('timesheet_done', '=', True),
-                    ('project_task_id', '=', False)]}"/>
+                <field name="timesheet_done"/>
                 <field name="task_done" invisible="1"/>
                 <button name="set_task_done" type="object"
                     class="oe_highlight"
@@ -83,11 +77,11 @@
         </field>
     </record>
     <record id="hr_timesheet_line_tree_event" model="ir.ui.view">
-        <field name="name">hr.analytic.timesheet.tree.event</field>
-        <field name="model">hr.analytic.timesheet</field>
+        <field name="name">account.analytic.line.tree.event</field>
+        <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='account_id']" position="after">
+            <xpath expr="//tree/field[@name='task_id']" position="after">
                 <field name="event_id" invisible="1"/>
                 <button type="object" name="action_view_event"
                 icon="terp-go-today" help="Open linked event"
@@ -97,7 +91,7 @@
             </xpath>
         </field>
     </record>
-    </data>
-</openerp>
+
+</odoo>
 
 

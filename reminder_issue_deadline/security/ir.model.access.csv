@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_calendar_alarm_all_user,calendar.alarm_all_user,calendar.model_calendar_alarm,base.group_portal,1,0,0,0

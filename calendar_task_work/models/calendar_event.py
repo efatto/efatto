@@ -170,6 +170,10 @@ class Timesheet(models.Model):
         comodel_name='calendar.event',
         string='Calendar event',
     )
+    task_id = fields.Many2one(
+        comodel_name='project.task',
+        string='Task',
+    )
 
     @api.multi
     def write(self, vals):

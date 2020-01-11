@@ -82,11 +82,11 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//tree/field[@name='task_id']" position="after">
-                <field name="event_id" invisible="1"/>
+                <field name="calendar_event_id" invisible="1"/>
                 <button type="object" name="action_view_event"
                 icon="terp-go-today" help="Open linked event"
-                attrs="{'invisible': [('event_id', '=', False)]}"
-                context="{'default_event_id': event_id}"
+                attrs="{'invisible': [('calendar_event_id', '=', False)]}"
+                context="{'default_calendar_event_id': calendar_event_id}"
                 />
             </xpath>
         </field>

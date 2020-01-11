@@ -19,7 +19,7 @@
 #
 {
     'name': 'Italian central journal fix',
-    'version': '8.0.1.2.4',
+    'version': '8.0.1.3.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Italian Central journal various fix',
@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_central_journal',
+        'account_history',
     ],
     'data': [
         'report/report_account_central_journal.xml',

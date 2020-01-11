@@ -14,6 +14,8 @@
 
 from openerp.report import report_sxw
 from openerp.osv import osv
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from datetime import datetime
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -44,11 +46,24 @@ class Parser(report_sxw.rml_parse):
                 self.cr, self.uid, fiscalyear_ids, print_info)
         return res
 
+    def _get_account_history(self, date, account_id):
+        res = account_id.name
+        if account_id.account_history_ids:
+            history = account_id.account_history_ids.filtered(
+                lambda x: datetime.strptime(x.date_from, DEFAULT_SERVER_DATE_FORMAT)
+                <= datetime.strptime(date, DEFAULT_SERVER_DATE_FORMAT)
+                <= datetime.strptime(x.date_to, DEFAULT_SERVER_DATE_FORMAT)
+            )
+            if history:
+                res = history.name
+        return res
+
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'get_move': self._get_move,
             'save_print_info': self._save_print_info,
+            'get_account_history': self._get_account_history,
         })
 
     def set_context(self, objects, data, ids, report_type=None):

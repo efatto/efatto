@@ -137,7 +137,7 @@
                                     <!-- Account name -->
                                     <td class="left_without_line_account_name">
                                         <div style="page-break-inside: avoid"
-                                        t-esc="line.account_id.name" />
+                                        t-esc="get_account_history(line.date, line.account_id)" />
                                     </td>
                                     <!-- Name -->
                                     <td class="left_without_line_name">

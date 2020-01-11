@@ -75,9 +75,8 @@ class CalendarEvent(models.Model):
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    calendar_event_id = fields.Many2one(
+    event_id = fields.Many2one(
         comodel_name='calendar.event',
-        oldname='event_id',
         string='Calendar event',
     )
 
@@ -89,7 +88,7 @@ class AccountAnalyticLine(models.Model):
         view_id = False
         if view_rec:
             view_id = view_rec and view_rec[1] or False
-        res_id = self._context.get('default_calendar_event_id', False)
+        res_id = self._context.get('default_event_id', False)
         return {
             'view_type': 'form',
             'name': "Event",

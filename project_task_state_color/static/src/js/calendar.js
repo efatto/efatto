@@ -1,7 +1,7 @@
 odoo.define('project_task_state_color.calendar', function (require) {
 "use strict";
 
-var CalendarView = require('web_calendar.CalendarView');
+var CalendarView = require('web.CalendarView');
 
 CalendarView.include({
     event_data_transform: function (evt) {

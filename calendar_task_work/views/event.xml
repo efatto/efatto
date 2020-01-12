@@ -6,14 +6,14 @@
         <field name="model">calendar.event</field>
         <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
         <field name="arch" type="xml">
-            <field name="partner_ids" position="after">
+            <xpath expr="//field[@name='partner_ids']/.." position="after">
                 <field name="project_id"/>
                 <field name="project_task_id"
                     context="{'default_project_id': project_id}"
                     domain="[('project_id', '=', project_id)]"
                     attrs="{'invisible':[('project_id', '=', False)]}"/>
-                <field name="timesheet_done"/>
-            </field>
+                <field name="timesheet_done" invisible="1"/>
+            </xpath>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheet works" groups="base.group_user">
                     <field name="timesheet_ids" />

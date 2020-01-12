@@ -1,16 +1,43 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	*
+#	* project_task_state_color
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 12:59+0000\n"
-"PO-Revision-Date: 2017-05-19 12:59+0000\n"
+"POT-Creation-Date: 2020-01-12 22:32+0000\n"
+"PO-Revision-Date: 2020-01-12 22:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: project_task_state_color
+#: model:ir.model.fields,field_description:project_task_state_color.field_project_project__hex_value
+#: model:ir.model.fields,field_description:project_task_state_color.field_project_task__hex_value
+msgid "Hex Value"
+msgstr "Colore"
+
+#. module: project_task_state_color
+#: model:ir.model.fields,field_description:project_task_state_color.field_project_task__hex_value_reduced
+msgid "Hex Value Reduced"
+msgstr "Colore se completato"
+
+#. module: project_task_state_color
+#: model:ir.model,name:project_task_state_color.model_project_project
+msgid "Project"
+msgstr "Progetti"
+
+#. module: project_task_state_color
+#: model:ir.model,name:project_task_state_color.model_project_task
+msgid "Task"
+msgstr "Attività"
+
+#. module: project_task_state_color
+#: model_terms:ir.ui.view,arch_db:project_task_state_color.view_task_calendar_partner_color
+msgid "Tasks"
+msgstr "Attività"
+

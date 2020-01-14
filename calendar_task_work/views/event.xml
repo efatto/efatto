@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_ids']/.." position="after">
-                <field name="project_id"/>
-                <field name="project_task_id"
+                <field name="project_id" groups="project.group_project_manager"/>
+                <field name="project_task_id" groups="project.group_project_manager"
                     context="{'default_project_id': project_id}"
                     domain="[('project_id', '=', project_id)]"
                     attrs="{'invisible':[('project_id', '=', False)]}"/>
@@ -28,8 +28,8 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_form_popup"/>
         <field name="arch" type="xml">
             <field name="partner_ids" position="after">
-                <field name="project_id"/>
-                <field name="project_task_id"/>
+                <field name="project_id" groups="project.group_project_manager"/>
+                <field name="project_task_id" groups="project.group_project_manager"/>
             </field>
         </field>
     </record>
@@ -51,8 +51,6 @@
                     <field name="is_highlighted" invisible="1"/>
                     <field name="name"/>
                     <field name="user_id"/>
-                    <field name="partner_ids"/>
-                    <field name="timesheet_done"/>
                 </calendar>
             </calendar>
         </field>
@@ -63,9 +61,9 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="project_id"/>
-                <field name="project_task_id"/>
-                <field name="timesheet_done"/>
+                <field name="project_id" groups="project.group_project_manager"/>
+                <field name="project_task_id" groups="project.group_project_manager"/>
+                <field name="timesheet_done" invisible="1"/>
                 <field name="task_done" invisible="1"/>
                 <button name="set_task_done" type="object"
                     class="oe_highlight"

@@ -13,6 +13,7 @@
                     # to subscribe check access to the record, follower is not enough at creation
                     '|',
                         ('user_id', '=', user.id),
+                    # modified: add managed and favourite tasks
                     '|',
                         ('project_id.user_id', '=', user.id),
                         ('project_id.favorite_user_ids', 'in', [user.id]),
@@ -24,6 +25,7 @@
         '|',
             ('privacy_visibility', '!=', 'followers'),
                 '|',
+                    # modified: add managed and favourite tasks
                     ('user_id', '=', user.id),
                     # to subscribe check access to the record, follower is not enough at creation
                     '|',
@@ -34,7 +36,7 @@
     </record>
 
     <record model="ir.rule" id="project.project_manager_all_project_tasks_rule">
-        <field name="name">Project/Task: project manager: manager or (followers and following) or ( or member) of project</field>
+        <field name="name">Project/Task: project manager: manager or (followers and following) or ( or member) of project (Identical to a project user)</field>
         <field name="domain_force">[
         '|',
             ('project_id.privacy_visibility', '!=', 'followers'),
@@ -45,11 +47,12 @@
                     # to subscribe check access to the record, follower is not enough at creation
                     '|',
                         ('user_id', '=', user.id),
+                    # modified: add managed and favourite tasks
                     '|',
                         ('project_id.user_id', '=', user.id),
                         ('project_id.favorite_user_ids', 'in', [user.id]),
         ]</field>
-        <field name="groups" eval="[(4,ref('project.group_project_manager'))]"/>
+        <field name="groups" eval="[(4, ref('project.group_project_manager'))]"/>
         <field name="perm_read" eval="1"/><field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/><field name="perm_unlink" eval="1"/>
     </record>

@@ -12,18 +12,22 @@ class CalendarEvent(models.Model):
                 event.task_done = True
 
     @api.multi
+    @api.depends('project_task_id.timesheet_ids', 'user_id', 'start_datetime',
+                 'stop_datetime')
     def _get_timesheet_done(self):
         for event in self.sudo():
+            done = False
             if event.project_task_id.timesheet_ids:
                 employee = self.env['hr.employee'].search(
                     [('user_id', '=', event.user_id.id)])
                 if employee:
                     timesheet = event.project_task_id.timesheet_ids.filtered(
-                        lambda x: x.user_id == event.user_id
+                        lambda x: x.employee_id == employee
                         and x.date_time == event.start_datetime
                     )
                     if timesheet:
-                        event.timesheet_done = True
+                        done = True
+            event.done = done
 
     project_id = fields.Many2one(
         comodel_name='project.project',
@@ -40,8 +44,11 @@ class CalendarEvent(models.Model):
     task_done = fields.Boolean(
         compute='_get_task_done',
     )
-    timesheet_done = fields.Boolean(
-        compute='_get_timesheet_done',
+    done = fields.Boolean(
+        compute='_get_timesheet_done', store=False
+    )
+    work_done = fields.Boolean(
+        related='done', store=True
     )
 
     @api.onchange('project_id')

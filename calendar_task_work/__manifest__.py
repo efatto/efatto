@@ -3,13 +3,14 @@
 
 {
     'name': 'Task and work in calendar event',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Extra Tools',
     'description':
         'Add task and project on calendar event',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
     'depends': [
+        'project_timesheet_time_control',
         'calendar',
         'hr_timesheet',
         'project',

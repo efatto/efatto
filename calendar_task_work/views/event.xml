@@ -12,7 +12,6 @@
                     context="{'default_project_id': project_id}"
                     domain="[('project_id', '=', project_id)]"
                     attrs="{'invisible':[('project_id', '=', False)]}"/>
-                <field name="timesheet_done" invisible="1"/>
             </xpath>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheet works" groups="base.group_user">
@@ -41,11 +40,11 @@
         <field name="arch" type="xml">
             <calendar position="replace">
                 <calendar string="Meetings" date_start="start" date_stop="stop" date_delay="duration" all_day="allday"
-                 readonly_form_view_id="%(calendar.view_calendar_event_form_popup)s"
-                event_open_popup="true"
-                event_limit="3"
-                color="partner_id"
-                quick_add="False">
+                        readonly_form_view_id="%(calendar.view_calendar_event_form_popup)s"
+                        event_open_popup="true"
+                        event_limit="3"
+                        color="partner_id"
+                        quick_add="False">
                     <field name="name"/>
                     <field name="partner_ids" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_small"/>
                     <field name="is_highlighted" invisible="1"/>
@@ -65,9 +64,13 @@
                 <field name="project_task_id" groups="project.group_project_manager"/>
                 <field name="timesheet_done" invisible="1"/>
                 <field name="task_done" invisible="1"/>
+                <button name="record_task_work" type="object"
+                    string="Record time work" icon="fa-cogs"
+                    attrs="{'invisible':['|',
+                    ('timesheet_done', '=', True),
+                    ('project_task_id', '=', False)]}"/>
                 <button name="set_task_done" type="object"
-                    class="oe_highlight"
-                    string="Set task done" icon="gtk-apply"
+                    string="Set task done" icon="fa-check"
                     attrs="{'invisible':['|',
                     ('task_done', '=', True),
                     ('project_task_id', '=', False)]}"/>

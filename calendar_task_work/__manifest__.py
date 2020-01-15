@@ -3,7 +3,7 @@
 
 {
     'name': 'Task and work in calendar event',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Extra Tools',
     'description':
         'Add task and project on calendar event',

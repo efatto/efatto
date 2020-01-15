@@ -15,23 +15,15 @@ class CalendarEvent(models.Model):
     def _get_timesheet_done(self):
         for event in self.sudo():
             if event.project_task_id.timesheet_ids:
-                #TODO more specific check on attendes by percent?
-                # for partner_id in event.partner_ids:
-                #     user = self.env['res.users'].search(
-                #         [('partner_id', '=', partner_id.id)], limit=1)
-                #     # todo test if all lines are correct with times recorded
-                #     # if not, user has changed time in event and timesheet
-                #     # is no more correct
-                #     if user:
-                #         employee = self.env['hr.employee'].search(
-                #             [('user_id', '=', user[0].id)])
-                #         if employee:
-                #             timesheet = event.timesheet_ids.filtered(
-                #                 lambda x: x.user_id == user and
-                #                 x.task_id == event.project_task_id
-                #             )
-                #             if timesheet:
-                event.timesheet_done = True
+                employee = self.env['hr.employee'].search(
+                    [('user_id', '=', event.user_id.id)])
+                if employee:
+                    timesheet = event.project_task_id.timesheet_ids.filtered(
+                        lambda x: x.user_id == event.user_id
+                        and x.date_time == event.start_datetime
+                    )
+                    if timesheet:
+                        event.timesheet_done = True
 
     project_id = fields.Many2one(
         comodel_name='project.project',
@@ -55,6 +47,48 @@ class CalendarEvent(models.Model):
     @api.onchange('project_id')
     def onchange_project_id(self):
         self.project_task_id = False
+
+    @api.multi
+    @api.depends('project_id', 'project_task_id')
+    def record_task_work(self):
+        for event in self:
+            # record task work for this task for only user owner of this event
+            stop_datetime = event.stop_datetime
+            start_datetime = event.start_datetime
+            if not (stop_datetime or start_datetime):
+                raise exceptions.ValidationError(_(
+                    'Missing date start or date stop'))
+            diff = fields.Datetime.from_string(stop_datetime) - \
+                fields.Datetime.from_string(start_datetime)
+            if diff:
+                duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
+
+            employee = self.env['hr.employee'].search(
+                [('user_id', '=', event.user_id.id)])
+            if employee:
+                timesheet = event.project_task_id.timesheet_ids.filtered(
+                    lambda x: x.employee_id == employee
+                    and x.date_time == event.start_datetime)
+                # todo extend filter to event + timedelta(duration)?
+                # If analytic line for this user exists, update it
+                if timesheet:
+                    timesheet.write({
+                        'name': event.name,
+                        'unit_amount': round(duration, 2),
+                        'amount': round(duration, 2) * employee.timesheet_cost,
+                    })
+                # Else create
+                else:
+                    self.env['account.analytic.line'].create({
+                        'name': event.name,
+                        'employee_id': employee.id,
+                        'date_time': event.start_datetime,
+                        'project_id': event.project_id.id,
+                        'task_id': event.project_task_id.id,
+                        'unit_amount': round(duration, 2),
+                        'amount': employee.timesheet_cost * round(duration, 2),
+                    })
+            return True
 
     @api.multi
     def set_task_done(self):

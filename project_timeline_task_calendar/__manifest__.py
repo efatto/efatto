@@ -3,13 +3,14 @@
 
 {
     'name': 'Better view of task on calendar',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Extra Tools',
     'summary': 'View task on calendar based on date_end and date_start',
     'description':
         'View task on calendar based on date_end and date_start',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
+    'license': 'LGPL-3',
     'depends': [
         'project',
     ],

@@ -1,7 +1,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
-    'name': 'Attachment menu visibility',
+    'name': 'Attachment visibility',
     'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',

@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Attachment visibility',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
     'description':
@@ -14,6 +14,7 @@
     ],
     'data': [
         'security/ir_attachment_security.xml',
+        'views/attachment.xml',
     ],
     'installable': True,
 }

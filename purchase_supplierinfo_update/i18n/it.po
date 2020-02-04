@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_supplierinfo_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-04 08:33+0000\n"
+"PO-Revision-Date: 2020-02-04 08:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_supplierinfo_update
+#: model:ir.model,name:purchase_supplierinfo_update.model_purchase_order
+#: model:ir.model.fields,field_description:purchase_supplierinfo_update.field_product_supplierinfo__purchase_order_id
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: purchase_supplierinfo_update
+#: model:ir.model.fields,help:purchase_supplierinfo_update.field_product_supplierinfo__purchase_order_id
+msgid "Purchase order generator of this line, if exists."
+msgstr "Ordine di acquisto che ha generato questa riga, se esiste."
+
+#. module: purchase_supplierinfo_update
+#: model:ir.model,name:purchase_supplierinfo_update.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Listino prezzi fornitore"
+

@@ -2,6 +2,16 @@ from datetime import timedelta
 from odoo import models, fields, api
 
 
+class SupplierInfo(models.Model):
+    _inherit = "product.supplierinfo"
+
+    purchase_order_id = fields.Many2one(
+        comodel_name='purchase.order',
+        string='Purchase Order',
+        help='Purchase order generator of this line, if exists.'
+    )
+
+
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -18,6 +28,7 @@ class PurchaseOrder(models.Model):
                 'date_start': fields.Date.today(),
                 'date_end': False,
                 'currency_id': line.order_id.currency_id.id,
+                'purchase_order_id': line.order_id.id,
             }
             if line.product_id.seller_ids:
                 for seller in line.product_id.seller_ids.filtered(

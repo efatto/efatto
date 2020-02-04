@@ -10,8 +10,10 @@
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'depends': [
-        'purchase',
         'purchase_order_approved',
+    ],
+    'data': [
+        'views/supplierinfo.xml',
     ],
     'installable': True,
 }

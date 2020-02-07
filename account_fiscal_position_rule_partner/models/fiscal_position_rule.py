@@ -61,7 +61,7 @@ class AccountFiscalPositionRule(models.Model):
     def _map_domain(self, partner, addrs, company, **kwargs):
         domain = super(AccountFiscalPositionRule, self)._map_domain(
             partner, addrs, company, **kwargs)
-        domain += [('partner_id', '=', partner.id)]
+        domain += [('partner_id', '=', partner.id), ('inactive', '!=', True)]
         return domain
 
     def apply_fiscal_mapping(self, result, **kwargs):

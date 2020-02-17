@@ -3,7 +3,7 @@
 
 {
     'name': 'Purchase supplierinfo update',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Extra Tools',
     'description':
         'Update supplierinfo on purchase approve - before purchase order creation',

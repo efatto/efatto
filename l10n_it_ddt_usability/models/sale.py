@@ -20,8 +20,6 @@ class SaleOrder(models.Model):
             if not res.get('transportation_method_id', False):
                 res['transportation_method_id'] = \
                     ddt_type.default_transportation_method_id.id
-            if not res.get('ddt_type_id', False):
-                res['ddt_type_id'] = self.ddt_type_id.id
         return res
 
     @api.multi

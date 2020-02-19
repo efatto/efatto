@@ -13,7 +13,7 @@ This module add:
 * show related pickings in sale order,
 * fill ddt data from ddt type when not filled in sale order of partner,
 * block cancel of sale order is ddt and picking linked are in states done or
-in pack, else delete ddt too.''',
+in pack, else delete ddt updating last sequence number if the very last.''',
     'depends': [
         'stock_picking_package_preparation',
         'l10n_it_ddt',

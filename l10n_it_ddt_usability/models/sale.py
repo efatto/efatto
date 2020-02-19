@@ -28,13 +28,23 @@ class SaleOrder(models.Model):
             for ddt in order.ddt_ids:
                 if ddt.state in ['done', 'in_pack']:
                     raise exceptions.Warning(_(
-                        'DDT is already done or in pack.'))
-                for picking in ddt.picking_ids:
-                    if picking.state in ['done', 'in_pack']:
-                        raise exceptions.Warning(
-                            _('Picking is already done or in pack.'))
-                # all pickings are cancelled, so remove ddt
+                        'DDT is already done or in pack. Put in draft state to '
+                        'remove this warning.'))
+                if ddt.ddt_number:
+                    sequence = ddt.ddt_type_id.sequence_id
+                    prefix, suffix = sequence._get_prefix_suffix()
+                    ddt_number = ddt.ddt_number.replace(prefix, '').replace(suffix, '')
+                    number_next = sequence._get_current_sequence(
+                        sequence_date=ddt.date).number_next_actual
+                    ddt_number_int = int(ddt_number)
+                    if ddt_number_int + 1 == number_next:
+                        if sequence.use_date_range:
+                            date_range_sequence = sequence.date_range_ids.filtered(
+                                lambda x: x.date_from <= ddt.date <= x.date_to
+                            )
+                            if date_range_sequence:
+                                date_range_sequence.number_next_actual = ddt_number_int
+                        else:
+                            sequence.number_next_actual = ddt_number_int
                 ddt.unlink()
-                # todo if ddt had a number because it was put in pack and then
-                # todo cancelled, the sequence will have a hole
         return super(SaleOrder, self).action_cancel()

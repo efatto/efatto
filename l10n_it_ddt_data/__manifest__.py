@@ -6,7 +6,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'description': '''
-    Default datas for DDTs.
+    Add usual DDT type for Italy, with default date range from 01-01 to 12-31.
     ''',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',

@@ -25,6 +25,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_creso" model="stock.ddt.type">
         <field name="name">DDT C/RESO</field>
@@ -42,6 +45,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_cresoforn" model="stock.ddt.type">
         <field name="name">DDT C/RESO A FORNITORE</field>
@@ -59,6 +65,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_cvisione" model="stock.ddt.type">
         <field name="name">DDT C/VISIONE</field>
@@ -76,6 +85,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_reso_cvisione" model="stock.ddt.type">
         <field name="name">DDT RESO C/VISIONE</field>
@@ -96,6 +108,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_accredito" model="stock.ddt.type">
         <field name="name">DDT RESO PER ACCREDITO</field>
@@ -116,6 +131,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_sostituzione" model="stock.ddt.type">
         <field name="name">DDT RESO PER SOSTITUZIONE</field>
@@ -136,6 +154,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_clavorazione" model="stock.ddt.type">
         <field name="name">DDT C/LAVORAZIONE</field>
@@ -156,6 +177,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_reso_clavorazione" model="stock.ddt.type">
         <field name="name">DDT RESO DA C/LAVORAZIONE</field>
@@ -176,6 +200,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_criparazione" model="stock.ddt.type">
         <field name="name">DDT C/RIPARAZIONE</field>
@@ -193,6 +220,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_reso_criparazione" model="stock.ddt.type">
         <field name="name">DDT RESO DA RIPARAZIONE</field>
@@ -213,6 +243,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_criparazione_garanzia" model="stock.ddt.type">
         <field name="name">DDT C/RIPARAZIONE IN GARANZIA</field>
@@ -245,6 +278,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_csostituzione_garanzia" model="stock.ddt.type">
         <field name="name">DDT C/SOSTITUZIONE IN GARANZIA</field>
@@ -265,6 +301,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_omaggio" model="stock.ddt.type">
         <field name="name">DDT C/OMAGGIO</field>
@@ -285,6 +324,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_comodato" model="stock.ddt.type">
         <field name="name">DDT C/COMODATO</field>
@@ -305,6 +347,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_installazione" model="stock.ddt.type">
         <field name="name">DDT C/INSTALLAZIONE</field>
@@ -325,6 +370,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_noleggio" model="stock.ddt.type">
         <field name="name">DDT C/NOLEGGIO</field>
@@ -342,6 +390,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_reso_noleggio" model="stock.ddt.type">
         <field name="name">DDT RESO C/NOLEGGIO</field>
@@ -362,6 +413,9 @@
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
+        <field name="date_range_ids" eval="[(0, 0, {
+        'date_from': time.strftime(str(DateTime.today().year) + '-01-01'),
+        'date_to': time.strftime(str(DateTime.today().year) + '-12-31'), 'number_next_actual': 1})]"/>
     </record>
     <record id="ddt_type_ddt_ctrasferimento" model="stock.ddt.type">
         <field name="name">DDT C/TRASFERIMENTO</field>

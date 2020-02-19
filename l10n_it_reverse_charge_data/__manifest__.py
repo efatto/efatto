@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2019-2020 Sergio Corato <https://github.com/sergiocorato>
 
 {
     'name': 'ITA - Reverse charge data',
-    'version': '10.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Account',
-    'description': 'Add reverse charge data',
-    'author': 'Sergio Corato <info@efatto.it>',
+    'description': 'Add default reverse charge data',
+    'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'license': 'LGPL-3',
     'depends': [

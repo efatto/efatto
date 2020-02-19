@@ -7,6 +7,7 @@
         <field name="prefix">DDTVE/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="l10n_it_ddt.ddt_type_ddt" model="stock.ddt.type">
         <field name="name">DDT C/VENDITA</field>
@@ -23,6 +24,7 @@
         <field name="prefix">DDTRE/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_creso" model="stock.ddt.type">
         <field name="name">DDT C/RESO</field>
@@ -39,6 +41,7 @@
         <field name="prefix">DDTRF/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_cresoforn" model="stock.ddt.type">
         <field name="name">DDT C/RESO A FORNITORE</field>
@@ -55,6 +58,7 @@
         <field name="prefix">DDTV/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_cvisione" model="stock.ddt.type">
         <field name="name">DDT C/VISIONE</field>
@@ -71,6 +75,7 @@
         <field name="prefix">DDTRV/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_reso_cvisione" model="stock.ddt.type">
         <field name="name">DDT RESO C/VISIONE</field>
@@ -90,6 +95,7 @@
         <field name="prefix">DDTAC/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_accredito" model="stock.ddt.type">
         <field name="name">DDT RESO PER ACCREDITO</field>
@@ -109,6 +115,7 @@
         <field name="prefix">DDTSO/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_sostituzione" model="stock.ddt.type">
         <field name="name">DDT RESO PER SOSTITUZIONE</field>
@@ -128,6 +135,7 @@
         <field name="prefix">DDTL/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_clavorazione" model="stock.ddt.type">
         <field name="name">DDT C/LAVORAZIONE</field>
@@ -147,6 +155,7 @@
         <field name="prefix">DDTLR/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_reso_clavorazione" model="stock.ddt.type">
         <field name="name">DDT RESO DA C/LAVORAZIONE</field>
@@ -166,6 +175,7 @@
         <field name="prefix">DDTR/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_criparazione" model="stock.ddt.type">
         <field name="name">DDT C/RIPARAZIONE</field>
@@ -182,6 +192,7 @@
         <field name="prefix">DDTRR/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_reso_criparazione" model="stock.ddt.type">
         <field name="name">DDT RESO DA RIPARAZIONE</field>
@@ -201,6 +212,7 @@
         <field name="prefix">DDTG/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_criparazione_garanzia" model="stock.ddt.type">
         <field name="name">DDT C/RIPARAZIONE IN GARANZIA</field>
@@ -232,6 +244,7 @@
         <field name="prefix">DDTS/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_csostituzione_garanzia" model="stock.ddt.type">
         <field name="name">DDT C/SOSTITUZIONE IN GARANZIA</field>
@@ -251,6 +264,7 @@
         <field name="prefix">DDTO/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_omaggio" model="stock.ddt.type">
         <field name="name">DDT C/OMAGGIO</field>
@@ -270,6 +284,7 @@
         <field name="prefix">DDTCO/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_comodato" model="stock.ddt.type">
         <field name="name">DDT C/COMODATO</field>
@@ -289,6 +304,7 @@
         <field name="prefix">DDTI/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_installazione" model="stock.ddt.type">
         <field name="name">DDT C/INSTALLAZIONE</field>
@@ -308,6 +324,7 @@
         <field name="prefix">DDTN/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_noleggio" model="stock.ddt.type">
         <field name="name">DDT C/NOLEGGIO</field>
@@ -324,6 +341,7 @@
         <field name="prefix">DDTRN/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_reso_noleggio" model="stock.ddt.type">
         <field name="name">DDT RESO C/NOLEGGIO</field>
@@ -343,6 +361,7 @@
         <field name="prefix">DDTTR/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
+        <field name="use_date_range" eval="True"/>
     </record>
     <record id="ddt_type_ddt_ctrasferimento" model="stock.ddt.type">
         <field name="name">DDT C/TRASFERIMENTO</field>

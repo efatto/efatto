@@ -1,5 +1,6 @@
 
 from odoo import models, fields, api
+from odoo.exceptions import Warning as UserError
 
 
 class StockLocation(models.Model):
@@ -14,5 +15,6 @@ class StockLocation(models.Model):
                 ('stock_location_ids', 'in', stock_location.id)
             ])
             if len(type_ddt_ids) > 1:
-                pass
+                raise UserError('Stock location can be configured only in one '
+                                'stock ddt type!')
             stock_location.type_ddt_id = type_ddt_ids and type_ddt_ids[0] or False

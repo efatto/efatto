@@ -1,5 +1,2 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from . import stock_picking_package_preparation
+from . import stock_ddt_type
+from . import stock_location

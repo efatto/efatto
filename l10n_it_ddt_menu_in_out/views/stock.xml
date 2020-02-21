@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ddt_type_tree_picking_type" model="ir.ui.view">
+        <field name="name">stock.ddt.type.tree.type</field>
+        <field name="model">stock.ddt.type</field>
+        <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="partner_type"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_ddt_type_form_picking_type" model="ir.ui.view">
+        <field name="name">stock.ddt.type.tree.type</field>
+        <field name="model">stock.ddt.type</field>
+        <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_form"/>
+        <field name="arch" type="xml">
+            <field name="picking_type_id" position="after">
+                <field name="partner_type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="ddt_stock_picking_package_preparation_form_out" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form.out</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="l10n_it_ddt.ddt_stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+        <field name="ddt_type_id" position="replace">
+            <field name="ddt_type_id" domain="[('partner_type','=','customer')]"/>
+        </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_package_preparation_form_customer" model="ir.ui.view">
+        <field name="name">ddt.stock.picking.package.preparation.form</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="inherit_id" ref="stock_picking_package_preparation.stock_picking_package_preparation_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">[('customer','=',True),('parent_id','=',False)]</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_package_preparation.action_stock_picking_package_preparation" model="ir.actions.act_window">
+        <field name="name">Customer Package Preparations</field>
+        <field name="res_model">stock.picking.package.preparation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|','&amp;',('ddt_type_id','=',False),
+            ('ddt_type_id.picking_type_id','!=',False),('ddt_type_id.partner_type','=','customer')]
+        </field>
+        <field name="context">{'ddt_type_id.partner_type': 'customer'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+              Click to prepare a new customer package preparation.
+            </p>
+        </field>
+    </record>
+
+    <!--#### DDT SUPPLIER ####        -->
+
+    <record id="stock_picking_package_preparation_form_supplier" model="ir.ui.view">
+        <field name="name">stock.picking.package.preparation.form.supplier</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="arch" type="xml">
+            <form string="Package Preparation">
+                <header>
+                <button name="action_put_in_pack" states="draft" string="Put in pack" type="object" class="oe_highlight" groups="base.group_user"/>
+                <button name="action_done" states="in_pack" string="Package done" type="object" class="oe_highlight" groups="base.group_user"/>
+                <button name="action_cancel" states="draft,in_pack" string="Cancel" groups="base.group_user" type="object"/>
+                <button name="action_draft" states="cancel" string="Reset to draft" type="object" class="oe_highlight" groups="base.group_user"/>
+                <button name="create_invoice" type="object" string="Create Invoice"
+                     attrs="{'invisible':['|', '|', ('state', '!=', 'done'), ('ddt_type_id', '=', False), ('invoice_id', '!=', False)]}"/>
+                <button name="set_done" type="object" string="Set done"
+                     attrs="{'invisible':[('state', 'in', ['done', 'in_pack'])]}"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,partially_available,assigned,done" statusbar_colors='{"shipping_except":"red","invoice_except":"red","waiting_date":"blue"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_right oe_button_box">
+                    </div>
+                    <h1>
+                        <field name="name" class="oe_inline" attrs="{'invisible': [('name','=','/')]}" readonly="1"/>
+                        <field name="ddt_number" readonly="1"
+                               attrs="{'invisible':[('ddt_number', '=', ''), ('ddt_type_id', '=', False)]}"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="ddt_type_id" domain="[('partner_type','=','supplier')]"/>
+                            <field name="partner_id" domain="[('supplier','=',True),('parent_id','=',False)]"/>
+                            <field name="partner_invoice_id"
+                                   domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
+                                   attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+                            <field name="partner_shipping_id"
+                                   domain="['|', ('id',  '=', partner_id), ('parent_id', '=', partner_id)]"
+                                   attrs="{'invisible':[('ddt_type_id', '=', False)], 'required':[('ddt_type_id', '!=', False)]}"/>
+                            <field name="date"/>
+                            <field name="date_done" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                            <field name="package_id" attrs="{'invisible': [('package_id', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <!--<field name="ul_id"/>-->
+                            <field name="packaging_id"/>
+                            <field name="company_id"/>
+                            <field name="ddt_date_start"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Transfers">
+                            <field name="picking_ids"
+                              options="{'no_create': True}"
+                              domain="[('partner_id', '=', partner_id)]"
+                              context="{'search_default_available': 1,}"/>
+                        </page>
+                        <page string="Operations">
+                            <field name="pack_operation_ids">
+                                <tree>
+                                    <field name="package_id" groups="stock.group_tracking_lot"/>
+                                    <field name="product_id"/>
+                                    <field name="product_uom_id" groups="product.group_uom"/>
+                                    <!--<field name="lot_id" context="{'product_id': product_id}" groups="stock.group_production_lot"/>-->
+                                    <field name="picking_id" invisible="1"/>
+                                    <field name="owner_id" groups="stock.group_tracking_owner"/>
+                                    <field name="product_qty"/>
+                                    <field name="location_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="result_package_id" groups="stock.group_tracking_lot" context="{'location_id': location_dest_id}"/>
+                                </tree>
+                            </field>
+                        <p class="oe_grey" groups="stock.group_tracking_lot">
+                          If there is no product but a source package, this means the source package was moved entirely.  If there is a product and a source package, the product was taken from the source package.
+                        </p>
+                        </page>
+                        <page string="Shipping Informations"
+                              attrs="{'invisible':[('ddt_type_id', '=', False)]}">
+                            <group>
+                                <field name="carriage_condition_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="goods_description_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="transportation_reason_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="transportation_method_id"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="carrier_id"/>
+                                <field name="parcels"
+                                       attrs="{'required':[('ddt_type_id', '!=', False)]}"/>
+                                <field name="volume"/>
+                                <field name="weight"/>
+                                <field name="gross_weight"/>
+                                <field name="weight_manual"/>
+                                <field name="invoice_id" />
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_picking_package_preparation_tree_supplier" model="ir.ui.view">
+        <field name="name">stock.picking.package.preparation.tree</field>
+        <field name="model">stock.picking.package.preparation</field>
+        <field name="priority">40</field>
+        <field name="arch" type="xml">
+        <tree colors="grey:state == 'cancel';" string="Package Preparations">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="date"/>
+            <field name="date_done"/>
+            <field name="package_id"/>
+            <field name="state"/>
+        </tree>
+        </field>
+    </record>
+
+    <record id="action_stock_picking_package_preparation_supplier" model="ir.actions.act_window">
+        <field name="name">Supplier Package Preparations</field>
+        <field name="res_model">stock.picking.package.preparation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|','&amp;',('ddt_type_id','=',False),
+            ('ddt_type_id.picking_type_id','!=',False),('ddt_type_id.partner_type','=','supplier')]
+        </field>
+        <field name="context">{'ddt_type_id.partner_type': 'supplier'}</field>
+    </record>
+
+    <record id="action_stock_picking_package_preparation_supplier_form" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_picking_package_preparation_form_supplier"/>
+        <field name="act_window_id" ref="action_stock_picking_package_preparation_supplier"/>
+    </record>
+    <record id="action_stock_picking_package_preparation_supplier_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="stock_picking_package_preparation_tree_supplier"/>
+        <field name="act_window_id" ref="action_stock_picking_package_preparation_supplier"/>
+    </record>
+
+    <menuitem
+        action="action_stock_picking_package_preparation_supplier"
+        string="Supplier Package Preparations"
+        id="menu_stock_picking_package_preparation_supplier"
+        parent="stock.menu_stock_warehouse_mgmt" sequence="4"/>
+
+</odoo>

@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Italy common payment data',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'other',
     'description': """
     Italy common payment data

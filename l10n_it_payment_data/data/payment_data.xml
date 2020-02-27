@@ -71,6 +71,7 @@
         <field name="line_ids" eval="[(0, 0, {
         'value': 'balance', 'value_amount': 0.0, 'sequence': 1, 'days': 0, 'months': 3, 'option': 'after_invoice_month'})]"/>
         <field name="fatturapa_pm_id" ref="l10n_it_fiscal_payment_term.fatturapa_mp01"/>
+        <field name="fatturapa_pt_id" ref="l10n_it_fiscal_payment_term.fatturapa_tp02"/>
     </record>
     <record id="payment_direct_120_days" model="account.payment.term">
         <field name="name">120 DAYS END OF MONTH</field>

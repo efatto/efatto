@@ -3,7 +3,7 @@
 
 {
     'name': 'DDT date start and multi-year sequence ability',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
@@ -17,7 +17,6 @@ This module add:
 and fix date when not right.''',
     'depends': [
         'stock_picking_package_preparation',
-        'l10n_it_ddt',
     ],
     'data': [
         'views/stock.xml',

@@ -173,10 +173,10 @@ class report_balancesheet_horizontal(
             for account in accounts:
                 # Show normal accounts
                 if account.user_type.report_type and account.user_type.report_type == typ and (
-                    account.parent_id.code != rec_account.code) and (
-                    account.parent_id.code != pay_account.code) and (
-                    account.code != rec_account.code) and (
-                    account.code != pay_account.code
+                    rec_account and account.parent_id.code != rec_account.code or True) and (
+                    pay_account and account.parent_id.code != pay_account.code or True) and (
+                    rec_account and account.code != rec_account.code or True) and (
+                    pay_account and account.code != pay_account.code or True
                 ):
                     account_dict = {
                         'id': account.id,
@@ -293,29 +293,30 @@ class report_balancesheet_horizontal(
 
             
             #add supplier and customer total
-            if typ == 'liability':
+            if typ == 'liability' and pay_account:
                 account_view_id = account_pool.search(cr, uid, [('code', '=', pay_account.code)])
-            if typ == 'asset':
+            if typ == 'asset' and rec_account:
                 account_view_id = account_pool.search(cr, uid, [('code', '=', rec_account.code)])
-            account_view = account_pool.browse(cr, uid, account_view_id[0], context=ctx)
-            account_dict = {
-                    'id': account_view.id,
-                    'code': account_view.code,
-                    'name': account_view.name,
-                    'level': account_view.level,
-                    'balance': (
-                        account_view.balance and typ == 'liability' and -1 or 1
-                    ) * account_view.balance,
-                    'type': account_view.type,
-                    'parent_id': account_view.parent_id.id,
-                    'parent_code': account_view.code,
-                }
-            if typ == 'liability':
-                self.result_sum_dr += account_dict['balance']
-                accounts_l_temp.update({account_dict['id']: account_dict})
-            if typ == 'asset':
-                self.result_sum_cr += account_dict['balance']
-                accounts_a_temp.update({account_dict['id']: account_dict})
+            if account_view_id:
+                account_view = account_pool.browse(cr, uid, account_view_id[0], context=ctx)
+                account_dict = {
+                        'id': account_view.id,
+                        'code': account_view.code,
+                        'name': account_view.name,
+                        'level': account_view.level,
+                        'balance': (
+                            account_view.balance and typ == 'liability' and -1 or 1
+                        ) * account_view.balance,
+                        'type': account_view.type,
+                        'parent_id': account_view.parent_id.id,
+                        'parent_code': account_view.code,
+                    }
+                if typ == 'liability':
+                    self.result_sum_dr += account_dict['balance']
+                    accounts_l_temp.update({account_dict['id']: account_dict})
+                if typ == 'asset':
+                    self.result_sum_cr += account_dict['balance']
+                    accounts_a_temp.update({account_dict['id']: account_dict})
         
         account_l_temp = accounts_l_temp.values()
         account_a_temp = accounts_a_temp.values()

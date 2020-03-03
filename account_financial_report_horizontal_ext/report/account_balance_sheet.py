@@ -172,11 +172,12 @@ class report_balancesheet_horizontal(
         for typ in types:
             for account in accounts:
                 # Show normal accounts
-                if account.user_type.report_type and account.user_type.report_type == typ and (
-                    rec_account and account.parent_id.code != rec_account.code or True) and (
-                    pay_account and account.parent_id.code != pay_account.code or True) and (
-                    rec_account and account.code != rec_account.code or True) and (
-                    pay_account and account.code != pay_account.code or True
+                if account.user_type.report_type and (
+                    account.user_type.report_type == typ and
+                    rec_account and account.parent_id.code != rec_account.code and
+                    pay_account and account.parent_id.code != pay_account.code and
+                    rec_account and account.code != rec_account.code and
+                    pay_account and account.code != pay_account.code
                 ):
                     account_dict = {
                         'id': account.id,
@@ -293,6 +294,7 @@ class report_balancesheet_horizontal(
 
             
             #add supplier and customer total
+            account_view_id = []
             if typ == 'liability' and pay_account:
                 account_view_id = account_pool.search(cr, uid, [('code', '=', pay_account.code)])
             if typ == 'asset' and rec_account:

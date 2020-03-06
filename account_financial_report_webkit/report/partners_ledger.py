@@ -151,7 +151,7 @@ class PartnersLedgerWebkit(report_sxw.rml_parse,
                 partner_ids = False
         if not accounts:
             raise osv.except_osv(_('Error'), _('No accounts to print.'))
-
+        accounts = list(set(accounts))
         if main_filter == 'filter_date':
             start = start_date
             stop = stop_date

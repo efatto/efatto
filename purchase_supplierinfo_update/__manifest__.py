@@ -9,6 +9,7 @@
         'Update supplierinfo on purchase approve - before purchase order creation',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
+    'license': 'LGPL-3',
     'depends': [
         'purchase_order_approved',
     ],

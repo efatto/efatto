@@ -8,7 +8,7 @@
     'description':
         'Hide hr menu (timesheet and holidays) for not employed user.',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'hr',
         'hr_holidays',

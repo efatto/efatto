@@ -7,7 +7,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'description': '''
 This module add:
 * show related pickings in sale order,

@@ -8,7 +8,7 @@
     'description':
         'Limit visibility of attachment to creator user, excluding erp manager.',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'base',
     ],

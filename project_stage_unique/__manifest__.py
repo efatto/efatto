@@ -13,6 +13,7 @@
         'This module must be installed before createat db creation.',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
+    'license': 'LGPL-3',
     'depends': [
         'project_task_default_stage',
     ],

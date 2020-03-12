@@ -8,7 +8,7 @@
     'description':
         'Limit visibility of event to involved users, excluding hr employee.',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'calendar',
     ],

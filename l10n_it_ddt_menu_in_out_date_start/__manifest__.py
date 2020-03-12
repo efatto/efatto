@@ -7,7 +7,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'description': '''This auto-install module add date start in supplier DDT''',
     'depends': [
         'l10n_it_ddt_menu_in_out',

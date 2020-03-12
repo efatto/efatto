@@ -7,7 +7,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'description': '''This module split DDT menu in outgoing and incoming.''',
     'depends': [
         'l10n_it_ddt',

@@ -10,7 +10,7 @@
     ''',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'l10n_it_ddt',
     ],

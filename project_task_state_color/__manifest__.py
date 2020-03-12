@@ -8,6 +8,7 @@
         'Change task color on state.',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
+    'license': 'LGPL-3',
     'depends': [
         'calendar',
         'project',

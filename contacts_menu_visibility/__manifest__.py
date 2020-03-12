@@ -8,7 +8,7 @@
     'description':
         'Hide contacts menu for basic user.',
     'website': 'https://efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'contacts',
     ],

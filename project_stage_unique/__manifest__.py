@@ -4,13 +4,8 @@
     'name': 'Project task type name unique',
     'version': '12.0.1.0.0',
     'category': 'Extra Tools',
-    'summary': 'Set project task type name (aka "stage") unique',
     'description':
-        'With this module the task type name does not accept duplicates (case'
-        ' insensitive). '
-        'For better result, rename task with the same function but different '
-        'name with the same name ("source" name) before installation.'
-        'This module must be installed before createat db creation.',
+        'With this module the task type name does not accept duplicates.',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'license': 'LGPL-3',

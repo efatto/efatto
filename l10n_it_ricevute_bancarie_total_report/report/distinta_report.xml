@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="l10n_it_ricevute_bancarie.distinta_qweb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="l10n_it_ricevute_bancarie.distinta_layout">
+                    <div class="page">
+                        <div class="row" style="padding: 2px;">
+                            <h3>Distinta SBF n. <span t-esc="o.name or 'Bozza'"/> su banca <span t-esc="o.config_id.name or ''"/> del <span t-field="o.registration_date"/></h3>
+                        </div>
+                        <p/>
+                        <t t-set="gen_amount" t-value="0" />
+                        <t t-as="due_date" t-foreach="get_riba_group[1]">
+                            <div class="row">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="6" style="font-size: 14px;">
+                                                <p>Scadenze del <span t-esc="due_date"/></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 5%; max-width: 5%;">
+                                                Pos.
+                                            </th>
+                                            <th style="width: 15%; max-width: 15%;">
+                                                Invoice Number
+                                            </th>
+                                            <th style="width: 10%; max-width: 10%;">
+                                                Invoice Date
+                                            </th>
+                                            <th style="width: 50%; max-width: 50%;">
+                                                Customer
+                                            </th>
+                                            <th style="width: 10%; max-width: 10%;">
+                                                Due Date
+                                            </th>
+                                            <th style="width: 10%; max-width: 10%;">
+                                                Amount
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="tot_amount" t-value="0"/>
+                                        <t t-set="nr" t-value="1"/>
+                                        <tr t-foreach="get_riba_group[0][due_date]" t-as="line">
+                                            <td>
+                                                <span t-esc="nr"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.invoice_number"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.invoice_date" />
+                                            </td>
+                                            <td>
+                                                <span t-field="line.partner_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.due_date"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="line.amount"
+                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                            </td>
+                                            <t t-set="tot_amount" t-value="tot_amount + line.amount" />
+                                            <t t-set="nr" t-value="nr + 1" />
+                                            <t t-set="gen_amount" t-value="gen_amount + line.amount" />
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"/>
+                                            <td>Total</td>
+                                            <td class="text-right">
+                                                <span t-esc="tot_amount"
+                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </t>
+                        <div class="row" style="border-bottom: 2px;">
+                            <div class="col-8 text-right">
+                                <h5>TOTALE COMPLESSIVO</h5>
+                            </div>
+                            <div class="col-4 text-right">
+                                <h5><span t-esc="gen_amount"
+                                          t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                                    />
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

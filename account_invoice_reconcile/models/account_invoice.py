@@ -19,5 +19,6 @@ class AccountInvoice(models.Model):
                 ['account_id', '=', self.account_id.id],
                 ['reconcile_id', '=', False],
                 ['period_id.special', '=', False],
+                ['partner_id', '=', self.partner_id.id],
             ],
         }

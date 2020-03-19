@@ -18,7 +18,7 @@ class PurchaseOrder(models.Model):
     def update_supplierinfo(self):
         supplierinfo_obj = self.env['product.supplierinfo']
         for line in self.order_line.filtered(
-            lambda x: x.price_unit and x.product_id.seller_ids
+            lambda x: x.price_unit != 0.0 and x.product_id.seller_ids
         ):
             vals = {
                 'product_tmpl_id': line.product_id.product_tmpl_id.id,

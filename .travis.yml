@@ -12,6 +12,7 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - cups
+      - python-dev
 
 env:
   global:

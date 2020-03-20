@@ -11,7 +11,9 @@ addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - cups-devel
+      - cups
+      - libcups2-dev
+      - python-dev
 
 env:
   global:

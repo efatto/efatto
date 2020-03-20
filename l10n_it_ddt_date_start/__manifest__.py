@@ -17,6 +17,7 @@ This module add:
 and fix date when not right.''',
     'depends': [
         'stock_picking_package_preparation',
+        'l10n_it_ddt',
     ],
     'data': [
         'views/stock.xml',

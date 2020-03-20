@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
                 'currency_id': line.order_id.currency_id.id,
                 'purchase_order_id': line.order_id.id,
             }
-            update = False
+            updated = False
             for seller in line.product_id.seller_ids.filtered(
                     lambda x: x.name == line.order_id.partner_id):
                 if seller.price != line.price_unit \
@@ -47,8 +47,8 @@ class PurchaseOrder(models.Model):
                     })
                 if seller.purchase_order_id == self:
                     seller.write(vals)
-                    update = True
-            if not update:
+                    updated = True
+            if not updated:
                 supplierinfo_obj.create(vals)
 
     @api.multi

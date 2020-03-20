@@ -37,6 +37,7 @@ install:
   - pip install num2words
   - pip install pycups
   - pip install git+https://github.com/aeroo/aeroolib.git@py2.x
+  - pip install email_validator
 
 script:
   - travis_run_tests

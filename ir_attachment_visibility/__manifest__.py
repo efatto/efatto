@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Attachment visibility',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.3',
     'category': 'other',
     'author': 'Sergio Corato',
     'description':

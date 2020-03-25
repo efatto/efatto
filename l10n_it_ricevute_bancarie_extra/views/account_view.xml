@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record model="ir.ui.view" id="view_riba_da_emettere_tree">
+    <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_da_emettere_tree" />
+    <field name="model">account.move.line</field>
+    <field name="arch" type="xml">
+        <field name="iban" position="replace">
+            <field name="abi" readonly="1"/>
+            <field name="cab" readonly="1"/>
+        </field>
+        <field name="riba" position="replace">
+            <field name="payment_term_type" />
+        </field>
+    </field>
+</record>
+
+<record id="riba_filter" model="ir.ui.view">
+    <field name="name">Ri.Ba. filter</field>
+    <field name="inherit_id" ref="l10n_it_ricevute_bancarie.riba_filter" />
+    <field name="model">account.move.line</field>
+    <field name="arch" type="xml">
+        <field name="date_maturity" position="after">
+            <field name="payment_term_type"/>
+        </field>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="l10n_it_ricevute_bancarie.action_riba_da_emettere">
+    <field name="name">Issue Ri.Ba.</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">account.move.line</field>
+    <field name="src_model">account.move.line</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="view_riba_da_emettere_tree" />
+    <field name="context">{'search_default_da_emettere':1, 'search_default_to_reconcile':1}</field>
+    <field name="domain">['&amp;','|',('payment_term_type','=','RB'),('riba','=','True'),('account_id.type','=','receivable')]</field>
+    <field name="search_view_id" ref="riba_filter"/>
+</record>
+
+</odoo>

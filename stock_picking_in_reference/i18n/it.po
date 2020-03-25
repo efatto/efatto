@@ -16,12 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_picking_in_reference
-#: field:stock.picking,in_date:0
+#: field:stock.picking,ddt_supplier_date:0
 msgid "In date"
 msgstr "Data DDT acquisto"
 
 #. module: stock_picking_in_reference
-#: field:stock.picking,in_reference:0
+#: field:stock.picking,ddt_supplier_number:0
 msgid "In reference"
 msgstr "Nr DDT acquisto"
 

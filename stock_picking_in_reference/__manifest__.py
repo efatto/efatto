@@ -3,11 +3,11 @@
 
 {
     'name': 'Stock picking in reference',
-    'version': '12.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'description': """
     Add reference of in document in stock picking.
     """,

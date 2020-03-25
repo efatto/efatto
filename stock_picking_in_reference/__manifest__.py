@@ -3,7 +3,7 @@
 
 {
     'name': 'Stock picking in reference',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',
@@ -14,6 +14,7 @@
     'depends': [
         'stock',
         'stock_picking_invoice_link',
+        'l10n_it_ddt',
     ],
     'data': [
         'views/picking_view.xml',

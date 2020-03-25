@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, api, fields, exceptions, _
+from odoo import models, api, fields, exceptions, _
 from datetime import datetime
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class AccountInvoice(models.Model):

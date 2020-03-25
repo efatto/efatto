@@ -1,6 +1,4 @@
 from odoo import models, api, fields, exceptions, _
-from datetime import datetime
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class AccountInvoice(models.Model):
@@ -15,10 +13,7 @@ class AccountInvoice(models.Model):
                 pickings_in_ref = ' - '.join([
                     '_'.join([
                         x.ddt_supplier_number if x.ddt_supplier_number else '',
-                        (
-                            datetime.strptime(
-                                x.ddt_supplier_date, DEFAULT_SERVER_DATE_FORMAT
-                            )).strftime('%d/%m/%Y')
+                        x.ddt_supplier_date.strftime('%d/%m/%Y')
                         if x.ddt_supplier_date else ''
                     ])
                     for x in inv.picking_ids])

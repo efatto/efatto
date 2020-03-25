@@ -4,13 +4,10 @@
 <record id="supplier_invoice_tree_in" model="ir.ui.view">
     <field name="name">supplier.account.invoice.tree.in</field>
     <field name="model">account.invoice</field>
-    <field name="inherit_id" ref="account.invoice_tree"/>
+    <field name="inherit_id" ref="account.invoice_supplier_tree"/>
     <field name="arch" type="xml">
         <field name="origin" position="before">
-            <field name="pickings_in_ref"
-                   invisible="context.get('type') in ['out_invoice', 'out_refund']"
-                   string="Pickings"
-            />
+            <field name="pickings_in_ref" string="Pickings"/>
         </field>
     </field>
 </record>

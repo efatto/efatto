@@ -7,8 +7,8 @@
     <field name="inherit_id" ref="stock.vpicktree"/>
     <field name="arch" type="xml">
         <field name="name" position="before">
-            <field name="in_reference"/>
-            <field name="in_date"/>
+            <field name="ddt_supplier_number"/>
+            <field name="ddt_supplier_date"/>
         </field>
     </field>
 </record>
@@ -19,8 +19,8 @@
     <field name="inherit_id" ref="stock.view_picking_internal_search"/>
     <field name="arch" type="xml">
         <field name="name" position="before">
-            <field name="in_reference"/>
-            <field name="in_date"/>
+            <field name="ddt_supplier_number"/>
+            <field name="ddt_supplier_date"/>
             <newline/>
         </field>
     </field>
@@ -32,8 +32,8 @@
     <field name="inherit_id" ref="stock.view_picking_form"/>
     <field name="arch" type="xml">
         <field name="origin" position="after">
-            <field name="in_reference"/>
-            <field name="in_date" attrs="{'required':[ ('in_reference', '!=', False)]}"/>
+            <field name="ddt_supplier_number"/>
+            <field name="ddt_supplier_date" attrs="{'required':[ ('ddt_supplier_number', '!=', False)]}"/>
         </field>
     </field>
 </record>

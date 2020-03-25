@@ -14,12 +14,12 @@ class AccountInvoice(models.Model):
             if inv.picking_ids:
                 pickings_in_ref = ' - '.join([
                     '_'.join([
-                        x.in_reference if x.in_reference else '',
+                        x.ddt_supplier_number if x.ddt_supplier_number else '',
                         (
                             datetime.strptime(
-                                x.in_date, DEFAULT_SERVER_DATE_FORMAT
+                                x.ddt_supplier_date, DEFAULT_SERVER_DATE_FORMAT
                             )).strftime('%d/%m/%Y')
-                        if x.in_date else ''
+                        if x.ddt_supplier_date else ''
                     ])
                     for x in inv.picking_ids])
             inv.pickings_in_ref = pickings_in_ref

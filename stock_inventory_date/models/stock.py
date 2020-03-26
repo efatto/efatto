@@ -86,31 +86,32 @@ class StockInventory(models.Model):
                     ('product_id', 'in', product_ids.ids),
                     ('date', '<', date_inventory)])
             for move in move_ids:
-                for quant in move.quant_ids.filtered(
-                        lambda x: x.qty > 0.0):
-                    lot_id = quant.lot_id.id
-                    prod_id = quant.product_id.id
-                    if move.location_dest_id.id == location.id:
-                        qty = uom_obj._compute_qty(move.product_uom.id,
-                                                   quant.qty,
-                                                   quant.product_id.uom_id.id)
-                    else:
-                        qty = -uom_obj._compute_qty(move.product_uom.id,
-                                                    quant.qty,
-                                                    quant.product_id.uom_id.id)
+                if move.location_dest_id != move.location_id:
+                    for quant in move.quant_ids.filtered(
+                            lambda x: x.qty > 0.0):
+                        lot_id = quant.lot_id.id
+                        prod_id = quant.product_id.id
+                        if move.location_dest_id.id == location.id:
+                            qty = uom_obj._compute_qty(move.product_uom.id,
+                                                       quant.qty,
+                                                       quant.product_id.uom_id.id)
+                        else:
+                            qty = -uom_obj._compute_qty(move.product_uom.id,
+                                                        quant.qty,
+                                                        quant.product_id.uom_id.id)
 
-                    if datas.get((prod_id, lot_id)):
-                        qty += datas[(prod_id, lot_id)]['product_qty']
+                        if datas.get((prod_id, lot_id)):
+                            qty += datas[(prod_id, lot_id)]['product_qty']
 
-                    datas[(prod_id, lot_id)] = {
-                        'product_id': prod_id,
-                        'location_id': location.id,
-                        'product_qty': qty,
-                        'theoretical_qty': qty,
-                        'product_uom_id': quant.product_id.uom_id.id,
-                        'prod_lot_id': lot_id,
-                        'inventory_id': inventory.id,
-                    }
+                        datas[(prod_id, lot_id)] = {
+                            'product_id': prod_id,
+                            'location_id': location.id,
+                            'product_qty': qty,
+                            'theoretical_qty': qty,
+                            'product_uom_id': quant.product_id.uom_id.id,
+                            'prod_lot_id': lot_id,
+                            'inventory_id': inventory.id,
+                        }
             if datas:
                 flag = True
                 res[location.id] = datas

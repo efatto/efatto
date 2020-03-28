@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 14:43+0000\n"
-"PO-Revision-Date: 2020-03-20 14:43+0000\n"
+"POT-Creation-Date: 2020-03-28 08:28+0000\n"
+"PO-Revision-Date: 2020-03-28 08:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Ubicazione Interna"
 #. module: l10n_it_ddt_menu_in_out
 #: model:ir.model,name:l10n_it_ddt_menu_in_out.model_stock_location
 msgid "Inventory Locations"
-msgstr "Ubicazione d'Inventario"
+msgstr "Ubicazioni di magazzino"
 
 #. module: l10n_it_ddt_menu_in_out
 #: selection:stock.ddt.type,usage:0
@@ -78,12 +78,12 @@ msgstr "Movimenti"
 #. module: l10n_it_ddt_menu_in_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
 msgid "Package Preparation"
-msgstr "DDT Fornitori"
+msgstr "DDT Fornitore"
 
 #. module: l10n_it_ddt_menu_in_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_tree_supplier
 msgid "Package Preparations"
-msgstr "Preparazione Pacchi"
+msgstr "DDT Fornitori"
 
 #. module: l10n_it_ddt_menu_in_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
@@ -103,7 +103,7 @@ msgstr "Produzione"
 #. module: l10n_it_ddt_menu_in_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
 msgid "Put in pack"
-msgstr "Crea collo"
+msgstr "Crea DDT"
 
 #. module: l10n_it_ddt_menu_in_out
 #: model_terms:ir.ui.view,arch_db:l10n_it_ddt_menu_in_out.stock_picking_package_preparation_form_supplier
@@ -123,7 +123,7 @@ msgstr "Informazioni di spedizione"
 #. module: l10n_it_ddt_menu_in_out
 #: model:ir.model,name:l10n_it_ddt_menu_in_out.model_stock_ddt_type
 msgid "Stock TD Type"
-msgstr "Tipo DdT"
+msgstr "Tipo DDT"
 
 #. module: l10n_it_ddt_menu_in_out
 #: model:ir.model.fields,field_description:l10n_it_ddt_menu_in_out.field_stock_ddt_type__stock_location_ids

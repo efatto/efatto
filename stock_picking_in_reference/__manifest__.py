@@ -16,8 +16,6 @@
         'stock_picking_invoice_link',
     ],
     'data': [
-        'views/picking_view.xml',
-        'views/invoice.xml',
     ],
     'installable': True
 }

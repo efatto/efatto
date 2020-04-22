@@ -14,6 +14,13 @@
             <attribute name="invisible">0</attribute>
             <attribute name="groups">l10n_it_ddt_force_number.group_allow_ddt_force_number</attribute>
         </field>
+<!--
++    # date = fields.Date(
++    #     states={'draft': [('readonly', False)],
++    #             'done': [('readonly', False)],
++    #             'in_pack': [('readonly', False)],
++    #             'cancel': [('readonly', True)]})
+-->
     </field>
 </record>
 

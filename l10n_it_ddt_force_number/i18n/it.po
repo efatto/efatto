@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-02 23:00+0000\n"
-"PO-Revision-Date: 2018-02-02 23:00+0000\n"
+"POT-Creation-Date: 2020-04-22 12:12+0000\n"
+"PO-Revision-Date: 2020-04-22 12:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,19 @@ msgid "Allow \"DDT Force Number\""
 msgstr "Permetti \"Forza Numero DDT\""
 
 #. module: l10n_it_ddt_force_number
-#: view:stock.picking.package.preparation:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
+#: model:ir.model.fields,field_description:l10n_it_ddt_force_number.field_stock_picking_package_preparation__date
+msgid "Document Date"
+msgstr "Data Documento"
+
+#. module: l10n_it_ddt_force_number
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt_force_number.stock_picking_package_preparation_form_supplier_force_number
 msgid "Force Number"
 msgstr "Forza Numero"
 
 #. module: l10n_it_ddt_force_number
-#: view:stock.picking.package.preparation:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
+#: model_terms:ir.ui.view,arch_db:l10n_it_ddt_force_number.stock_picking_package_preparation_form_supplier_force_number
 msgid "Force ddt number. Use this field if you don't want to use the default numbering"
 msgstr "Forza numero DDT. Indicare se non si vuole usare il numero standard della sequenza"
 
@@ -34,14 +41,4 @@ msgstr "Forza numero DDT. Indicare se non si vuole usare il numero standard dell
 #: model:ir.model,name:l10n_it_ddt_force_number.model_stock_picking_package_preparation
 msgid "Package Preparation"
 msgstr "DDT"
-
-#. module: l10n_it_ddt_force_number
-#: view:stock.picking.package.preparation:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
-msgid "l10n_it_ddt_force_number.group_allow_ddt_force_number"
-msgstr "l10n_it_ddt_force_number.group_allow_ddt_force_number"
-
-#. module: l10n_it_ddt_force_number
-#: view:stock.picking.package.preparation:l10n_it_ddt_force_number.ddt_stock_picking_package_preparation_form_force_number
-msgid "{'invisible': [('ddt_number', '=', ''), ('ddt_type_id', '=', False),('state', '!=', 'draft')], 'readonly': [('state', '!=', 'draft')]}"
-msgstr "{'invisible': [('ddt_number', '=', ''), ('ddt_type_id', '=', False),('state', '!=', 'draft')], 'readonly': [('state', '!=', 'draft')]}"
 

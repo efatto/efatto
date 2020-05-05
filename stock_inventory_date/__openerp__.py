@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2016-2017 Sergio Corato
+#    Copyright (C) 2017-2018 Sergio Corato
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,21 +18,21 @@
 #
 #
 {
-    'name': 'Update discount in sale order',
+    'name': 'Stock inventory by date',
     'version': '8.0.1.0.0',
-    'category': 'Sale Management',
-    'license': 'AGPL-3',
+    'category': 'other',
     'description': """
-    Add the ability to update discount in all sale order lines with a button.
-    n.b. Remove if partner_default_sale_discount module is installed, it add
-    a duplicated function and more.
+    Stock inventory by date
     """,
-    'author': "Sergio Corato",
-    'depends': [
-        'sale',
+    'author': 'Sergio Corato',
+    'website': 'http://www.efatto.it',
+    'license': 'AGPL-3',
+    "depends": [
+        'stock',
+        'stock_inventory_preparation_filter',
     ],
-    'data': [
-        'views/sale.xml'
+    "data": [
+        'views/stock_inventory.xml',
     ],
-    'installable': True,
+    "installable": True,
 }

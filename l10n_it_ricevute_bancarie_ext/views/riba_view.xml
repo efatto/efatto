@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_riba_distinta_form" model="ir.ui.view">
+    	    <field name="name">riba.distinta.form</field>
+            <field name="model">riba.distinta</field>
+            <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_distinta_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form[@string='Ri.Ba. list']/notebook/page[@string='General']/field[@name='line_ids']/tree[@string='Detail']" position="attributes">
+                    <attribute name="editable">top</attribute>
+                </xpath>
+                <field name="date_accepted" position="replace"/>
+                <field name="date_accreditation" position="replace"/>
+                <field name="date_paid" position="replace"/>
+                <xpath expr="//form/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="config_id" widget="selection"/>
+                            <field name="registration_date" />
+                        </group>
+                        <group>
+                            <field name="date_accepted" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="date_accreditation" attrs="{'readonly':[('state','not in',['draft','accepted'])]}"/>
+                            <field name="date_paid"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_riba_da_emettere_tree">
+            <field name="name">Issue Ri.Ba.</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_da_emettere_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_residual" position="replace">
+                    <field name="credit" readonly="1" sum="Total Credit"/>
+                    <field name="amount_residual_signed" readonly="1" sum="Total Amount"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

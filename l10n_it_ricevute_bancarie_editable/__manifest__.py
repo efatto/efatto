@@ -19,7 +19,7 @@
 #
 {
     'name': 'Ricevute bancarie editable',
-    'version': '8.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'http://www.efatto.it',

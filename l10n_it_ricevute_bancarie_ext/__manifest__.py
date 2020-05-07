@@ -21,8 +21,6 @@
         'l10n_it_ricevute_bancarie',
     ],
     'data': [
-        'views/partner_view.xml',
-        'views/res_bank_view.xml',
         'views/riba_view.xml',
     ],
     'installable': True

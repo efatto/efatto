@@ -9,37 +9,6 @@
             <xpath expr="/form/notebook/page/field[@name='line_ids']/tree" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
-            <field name="date_accepted" position="replace"/>
-            <field name="date_accreditation" position="replace"/>
-            <field name="date_paid" position="replace"/>
-            <xpath expr="//form/group" position="replace">
-                <group>
-                    <group>
-                        <field name="name" />
-                        <field name="config_id" widget="selection"/>
-                        <field name="registration_date" />
-                    </group>
-                    <group>
-                        <field name="date_accepted" attrs="{'readonly':[('state','!=','draft')]}" />
-                        <field name="date_accreditation" attrs="{'readonly':[('state','not in',['draft','accepted'])]}"/>
-                        <field name="date_paid"/>
-                    </group>
-                </group>
-            </xpath>
-        </field>
-    </record>
-    <record model="ir.ui.view" id="view_riba_da_emettere_tree">
-        <field name="name">Issue Ri.Ba.</field>
-        <field name="model">account.move.line</field>
-        <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_riba_da_emettere_tree"/>
-        <field name="arch" type="xml">
-            <field name="debit" position="after">
-                <field name="credit" readonly="1" sum="Total Credit"/>
-            </field>
-            <field name="iban" position="after">
-                <field name="abi" readonly="1"/>
-                <field name="cab" readonly="1"/>
-            </field>
         </field>
     </record>
 

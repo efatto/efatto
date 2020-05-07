@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="workflow.activity" id="act_accrued">
+            <field name="wkf_id" ref="l10n_it_ricevute_bancarie.wkf_riba_distinta" />
+            <field name="name">accrued</field>
+            <field name="kind">function</field>
+            <field name="action">riba_accrued()</field>
+        </record>
+        <record model="workflow.transition" id="accepted_to_accredited">
+            <field name="act_from" ref="act_accepted" />
+            <field name="act_to" ref="act_accrued" />
+            <field name="signal">accrued</field>
+        </record>
+    </data>
+</openerp>

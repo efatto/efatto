@@ -1,26 +1,15 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
+<odoo>
 
-        <!--========================================================-->
-        <!--                    RES.PARTNER - FORM                    -->
-        <!--========================================================-->
-        <record id="view_partner_form_riba" model="ir.ui.view">
-            <field name="name">res.parner.form.riba</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_partner_form_riba"/>
-            <field name="arch" type="xml">
-                <field name="group_riba" position="replace"/>
-                <separator string="Ri.Ba. properties" position="replace"/>
-                <field name="bank_ids" position="before">
-                    <separator string="Ri.Ba. properties" colspan="4"/>
-                    <group col="6" colspan="4">
-                        <field name="group_riba"/>
-                        <field name="bank_riba_id" colspan="4"/>
-                    </group>
-                </field>
+    <record id="view_partner_form_riba" model="ir.ui.view">
+        <field name="name">res.parner.form.riba</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_ricevute_bancarie.view_partner_form_riba"/>
+        <field name="arch" type="xml">
+            <field name="group_riba" position="after">
+                <field name="bank_riba_id" colspan="4"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-    </data>
-</openerp>
+</odoo>

@@ -53,7 +53,7 @@ class RibaAccreditation(models.TransientModel):
         if self._context.get('active_model', False) == 'riba.distinta.line':
             riba_lines = self.env['riba.distinta.line'].browse(
                 self._context['active_ids'])
-            if len(riba_lines.mapped('distinta_id.config')) != 1:
+            if len(riba_lines.mapped('distinta_id.config_id')) != 1:
                 raise UserError(
                     _('Accreditation of only one bank configuration is possible'))
             amount = sum([l.amount for l in riba_lines if l.state == 'confirmed'])
@@ -67,7 +67,7 @@ class RibaAccreditation(models.TransientModel):
         if self._context.get('active_model', False) == 'riba.distinta.line':
             riba_lines = self.env['riba.distinta.line'].browse(
                 self._context['active_ids'])
-            if len(riba_lines.mapped('distinta_id.config')) != 1:
+            if len(riba_lines.mapped('distinta_id.config_id')) != 1:
                 raise UserError(
                     _('It is only possible to accrue one bank configuration'))
             amount = sum([l.amount for l in riba_lines if l.state == 'accredited'])
@@ -84,10 +84,9 @@ class RibaAccreditation(models.TransientModel):
                 if not line.state == "accredited":
                     line.state = 'accredited'
             # if all of line of distinta are accredited, set distinta accredited
-            distinta_accredited_ids = distinta_lines.mapped('distinta_id').filtered(
-                lambda x: all(x.mapped('line_ids.state') == 'accredited'))
-            if distinta_accredited_ids:
-                distinta_accredited_ids.state = 'accredited'
+            for distinta in distinta_lines.mapped('distinta_id'):
+                if all([x == 'accredited' for x in distinta.mapped('line_ids.state')]):
+                    distinta.state = 'accredited'
             return {'type': 'ir.actions.act_window_close'}
         else:
             return super().skip()
@@ -144,10 +143,9 @@ class RibaAccreditation(models.TransientModel):
             if line.state != "accredited":
                 line.write({'accreditation_move_id': move_id.id,
                             'state': 'accredited'})
-        distinta_accredited_ids = distinta_lines.mapped('distinta_id').filtered(
-            lambda x: all(x.mapped('line_ids.state') == 'accredited'))
-        if distinta_accredited_ids:
-            distinta_accredited_ids.state = 'accredited'
+        for distinta in distinta_lines.mapped('distinta_id'):
+            if all([x == 'accredited' for x in distinta.mapped('line_ids.state')]):
+                distinta.state = 'accredited'
         return {
             'name': _('Accreditation Entry'),
             'view_type': 'form',
@@ -201,8 +199,9 @@ class RibaAccreditation(models.TransientModel):
         move_id = self.env['account.move'].create(move_vals)
         distinta_lines.write({'accruement_move_id': move_id.id, 'state': 'accrued'})
         # if all lines of distinta are accrued, set distinta accrued
-        if all(distinta_lines.mapped('distinta_id.line_ids.state') == 'accrued'):
-            distinta_lines.mapped('distinta_id').state = 'accrued'
+        for distinta in distinta_lines.mapped('distinta_id'):
+            if all([x == 'accrued' for x in distinta.mapped('line_ids.state')]):
+                distinta.state = 'accrued'
 
         return {
             'name': _('C/O Accrue move'),

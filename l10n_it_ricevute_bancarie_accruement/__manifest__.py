@@ -39,6 +39,7 @@ seguenti passaggi:
         'views/riba_view.xml',
         'views/wizard_accreditation.xml',
         'views/wizard_unsolved.xml',
+        'views/wizard_accruement.xml',
         'views/account_view.xml',
     ],
     'installable': True

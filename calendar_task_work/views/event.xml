@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_calendar_event_search_project" model="ir.ui.view">
+        <field name="name">calendar.event.search.project</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="project_id"/>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_calendar_event_form_task">
         <field name="name">Calendar - Event Form</field>
         <field name="model">calendar.event</field>
         <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_ids']/.." position="after">
-                <field name="project_id" groups="project.group_project_manager"/>
-                <field name="project_task_id" groups="project.group_project_manager"
-                    context="{'default_project_id': project_id}"
-                    domain="[('project_id', '=', project_id)]"
-                    attrs="{'invisible':[('project_id', '=', False)]}"/>
+                <group>
+                    <field name="project_id" groups="project.group_project_manager"/>
+                    <field name="project_task_id" groups="project.group_project_manager"
+                        context="{'default_project_id': project_id}"
+                        domain="[('project_id', '=', project_id)]"
+                        attrs="{'invisible':[('project_id', '=', False)]}"/>
+                    <field name="sale_line_id" groups="project.group_project_manager"/>
+                </group>
             </xpath>
             <xpath expr="/form/sheet/notebook" position="inside">
                 <page string="Timesheet works" groups="base.group_user">
@@ -62,6 +76,7 @@
             <field name="name" position="after">
                 <field name="project_id" groups="project.group_project_manager"/>
                 <field name="project_task_id" groups="project.group_project_manager"/>
+                <field name="sale_line_id" groups="project.group_project_manager"/>
                 <field name="work_done" invisible="1"/>
                 <field name="task_done" invisible="1"/>
                 <button name="record_task_work" type="object"

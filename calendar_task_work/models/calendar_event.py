@@ -37,6 +37,10 @@ class CalendarEvent(models.Model):
         comodel_name='project.task',
         string='Project task'
     )
+    sale_line_id = fields.Many2one(
+        related='project_task_id.sale_line_id',
+        string='Sale line'
+    )
     timesheet_ids = fields.One2many(
         related='project_task_id.timesheet_ids',
         string='Timesheet records'

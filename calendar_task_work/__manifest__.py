@@ -3,7 +3,7 @@
 
 {
     'name': 'Task and work in calendar event',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.3',
     'category': 'Extra Tools',
     'description':
         'Add task and project on calendar event',
@@ -14,6 +14,7 @@
         'calendar',
         'hr_timesheet',
         'project',
+        'sale_timesheet',
     ],
     'data': [
         'views/event.xml',

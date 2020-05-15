@@ -107,8 +107,7 @@ class AccountAnalyticAccount(models.Model):
     amount_remaining = fields.Float(
         compute='_get_amount_remaining',
         string='Remaining Revenue',
-        help="Computed using the formula: Sale Amount - Invoiced Amount",
-        digits=dp.get_precision('Account'))
+        help="Computed using the formula: Sale Amount - Invoiced Amount")
     qty_ordered = fields.Float(
         string="Ordered Qty",
         help="Sum qty ordered as shown in sale order lines",
@@ -230,18 +229,15 @@ class AccountAnalyticSal(models.Model):
     amount_toinvoice = fields.Float(
         'SAL amount to invoice',
         compute=compute_invoiced_sal,
-        store=True,
-        digits=dp.get_precision('Account'))
+        store=True)
     amount_invoiced = fields.Float(
         'SAL amount invoiced',
         compute=compute_invoiced_sal,
-        store=True,
-        digits=dp.get_precision('Account'))
+        store=True)
     residual_toinvoice = fields.Float(
         'SAL residual to invoice',
         compute=compute_invoiced_sal,
-        store=True,
-        digits=dp.get_precision('Account'))
+        store=True)
     done = fields.Boolean(
         string='SAL done',
         help='SAL is marked done when completion percent is superior'

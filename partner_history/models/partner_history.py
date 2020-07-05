@@ -7,8 +7,10 @@ class ResPartnerHistory(models.Model):
     _description = 'Partner history'
 
     name = fields.Char(required=True)
-    date_from = fields.Date()
-    date_to = fields.Date()
+    date_from = fields.Date(
+        required=True,
+        default=lambda x: fields.Date.from_string('1900-01-01'))
+    date_to = fields.Date(required=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', ondelete='cascade'
     )

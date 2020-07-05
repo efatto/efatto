@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="report_giornale_history" inherit_id="l10n_it_central_journal.report_giornale">
+    <xpath expr="//t/div[hasclass('article')]/table/tbody/t/tr/td/t[@t-if=&quot;line.account_id.user_type_id.type in ['receivable', 'payable']&quot;]/div" position="replace">
+        <div style="page-break-inside: avoid" t-esc="get_partner_history(line.date, line.partner_id)" />
+    </xpath>
+</template>
+
+</odoo>

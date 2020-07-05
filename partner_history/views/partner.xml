@@ -10,8 +10,8 @@
                     <field name="res_partner_history_ids" nolabel="1">
                         <tree name="partner_history" editable="bottom">
                             <field name="name"/>
-                            <field name="date_from" widget="date"/>
-                            <field name="date_to" widget="date"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
                         </tree>
                     </field>
                 </group>

@@ -1,28 +1,16 @@
-# -*- coding: utf-8 -*-
-
-from openerp import fields, models, api, _
-from openerp.exceptions import ValidationError
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 
-class AccountAccount(models.Model):
-    _inherit = 'account.account'
-
-    account_history_ids = fields.One2many(
-        comodel_name='account.account.history',
-        inverse_name='account_id',
-        string='Account history'
-    )
-
-
-class AccountAccountHistory(models.Model):
-    _name = 'account.account.history'
-    _description = 'Account history'
+class ResPartnerHistory(models.Model):
+    _name = 'res.partner.history'
+    _description = 'Partner history'
 
     name = fields.Char(required=True)
     date_from = fields.Date()
     date_to = fields.Date()
-    account_id = fields.Many2one(
-        comodel_name='account.account', string='Account', ondelete='cascade'
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', string='Partner', ondelete='cascade'
     )
 
     @api.multi

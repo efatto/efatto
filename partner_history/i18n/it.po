@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_it_account_ext
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-06 09:47+0000\n"
+"PO-Revision-Date: 2016-07-06 09:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_it_account_ext
+#: field:account.fiscal.position,purchase_journal_id:0
+msgid "Default Purchase Journal"
+msgstr "Sezionale Acquisti Standard"
+
+#. module: l10n_it_account_ext
+#: field:account.fiscal.position,sale_journal_id:0
+msgid "Default Sale Journal"
+msgstr "Sezionale Vendite Standard"
+
+#. module: l10n_it_account_ext
+#: model:ir.model,name:l10n_it_account_ext.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posizione fiscale"
+
+#. module: l10n_it_account_ext
+#: model:ir.model,name:l10n_it_account_ext.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: l10n_it_account_ext
+#: model:ir.model,name:l10n_it_account_ext.model_account_journal
+msgid "Journal"
+msgstr "Giornale"
+

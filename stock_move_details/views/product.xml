@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_template_form_view_stock_move_domain">
+            <field name="name">product.template.stock.move.domain</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']/button[@name='action_view_stock_moves']" position="attributes">
+                    <attribute name="context">{'search_default_done': 1}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

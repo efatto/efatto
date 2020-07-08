@@ -15,7 +15,12 @@ class StockMove(models.Model):
                 -1 if move.location_dest_id.usage in [
                     'customer', 'inventory', 'production', 'procurement',
                     'supplier'
-                ] else 1)
+                ] and move.location_id.usage == 'internal' else
+                0 if move.location_dest_id.usage in [
+                    'customer', 'inventory', 'production', 'procurement',
+                    'supplier'
+                ] and move.location_id.usage != 'internal'
+                else 1)
 
     qty_available = fields.Float(
         related='product_id.qty_available',

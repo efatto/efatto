@@ -95,6 +95,8 @@ class ir_exports( models.Model ):
             field_names = map( lambda x:x.name, rexport_fields_sorted)
             field_headings = map( lambda x:x.heading, rexport_fields_sorted)
             domain = eval(self.domain) if self.domain else []
+            if self._context.get('export_domain', False):
+                domain = eval(self._context['export_domain'])
             record_ids = self.env[self.resource ].search(domain)
             if record_ids :
                 export_data = record_ids.export_data(

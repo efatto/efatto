@@ -129,20 +129,9 @@ xmlid_renames = [
 ]
 
 
-def install_new_modules(cr):
-    sql = """
-    UPDATE ir_module_module
-    SET state='to install'
-    WHERE name in %s AND state='uninstalled'
-    """ % (tuple(['l10n_it_payment_data']),)
-    openupgrade.logged_query(cr, sql)
-
-
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
     cr = env.cr
     cr.execute("delete from ir_ui_view where arch like '%invoice_type_id%';")
     cr.execute('delete from ir_ui_view where id = 1260;')
     openupgrade.rename_xmlids(cr, xmlid_renames)
-    install_new_modules(cr)
-

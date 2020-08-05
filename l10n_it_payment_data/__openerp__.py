@@ -35,4 +35,5 @@
         'data/payment_data.xml',
     ],
     "installable": True,
+    "pre_init_hook": "rename_xmlids_hook",
 }

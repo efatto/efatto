@@ -1,4 +1,6 @@
-from openupgradelib import openupgrade
+# -*- coding: utf-8 -*-
+# Copyright 2017 Tecnativa - Vicent Cubells
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 xmlid_renames = [
@@ -129,9 +131,16 @@ xmlid_renames = [
 ]
 
 
-def migrate(cr, version):
-    # This is not decorated with @openupgrade.migrate as the module is being
-    # installed and thus, the migration script should be run unconditionally
-    cr.execute("delete from ir_ui_view where arch like '%invoice_type_id%';")
-    cr.execute('delete from ir_ui_view where id = 1260;')
+# def column_exists(cr, table, column):
+#     cr.execute("""
+#         SELECT column_name
+#         FROM information_schema.columns
+#         WHERE table_name = %s AND column_name = %s""", (table, column))
+#     return bool(cr.fetchall())
+
+
+def rename_xmlids_hook(cr):
+    # Retrieve column phone_id saved on crm migration
+    # if column_exists(cr, 'calendar_event', 'phonecall_id'):
+    from openupgradelib import openupgrade
     openupgrade.rename_xmlids(cr, xmlid_renames)

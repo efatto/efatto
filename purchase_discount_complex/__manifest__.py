@@ -18,8 +18,8 @@
 #
 ##############################################################################
 {
-    'name': 'Purchase complex discount',
-    'version': '8.0.1.0.0',
+    'name': 'Purchase complex discount - module for migrate data to purchase_triple_discount',
+    'version': '10.0.1.0.0',
     'category': 'other',
     'description': 'Add multiple discount field, like 50+14.5+5',
     'author': 'Sergio Corato',
@@ -29,7 +29,6 @@
         'purchase_discount',
     ],
     'data': [
-        'views/purchase_view.xml',
     ],
     'installable': True
 }

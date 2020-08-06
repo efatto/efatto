@@ -30,8 +30,9 @@ def _create_partner_history(cr):
             WHERE ip.name IN (
                 'property_account_receivable_id', 'property_account_payable_id'
             )
-            AND ip.value_reference = CONCAT('account.account,', aah.account_id) limit 1)
-            WHERE ip.res_id IS NOT NULL AND aah.account_id IS NOT NULL;
+            AND ip.value_reference = CONCAT('account.account,', aah.account_id)
+            AND ip.res_id IS NOT NULL limit 1
+        );
         """
     )
 

@@ -1,11 +1,6 @@
+# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openupgradelib import openupgrade
-
-# _column_renames = {
-#     'res_partner': [
-#         ('account_history_ids', None),
-#     ],
-#  }
 
 _model_renames = [
     ('account.account.history', 'res.partner.history'),
@@ -23,7 +18,7 @@ def _create_partner_history(cr):
         cr,
         """
     ALTER TABLE account_account_history
-        ADD COLUMN IF NOT EXISTS partner_id     INTEGER
+        ADD COLUMN IF NOT EXISTS partner_id INTEGER
     """,
     )
     # get first partner for property_account_receivable or property_account_payable
@@ -48,6 +43,5 @@ def migrate(env, version):
         cr, 'account_account_history',
     ):
         _create_partner_history(cr)
-    # openupgrade.rename_columns(cr, _column_renames)
     openupgrade.rename_models(cr, _model_renames)
     openupgrade.rename_tables(cr, _table_renames)

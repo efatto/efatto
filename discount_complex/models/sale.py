@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-
-from odoo import models, fields, api
-from odoo.exceptions import Warning as UserError
-from odoo.tools.translate import _
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
+from openerp import models, fields, api
+from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 class SaleOrderLine(models.Model):

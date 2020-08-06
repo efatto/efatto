@@ -8,9 +8,9 @@ def split_discount_to_triple(env):
         env.cr, """
             UPDATE sale_order_line 
                 SET 
-                discount = (string_to_array(complex_discount, '+'))[1],
-                discount2 = (string_to_array(complex_discount, '+'))[2],
-                discount3 = (string_to_array(complex_discount, '+'))[3]
+                discount = (string_to_array(complex_discount, '+'))[1]::numeric,
+                discount2 = (string_to_array(complex_discount, '+'))[2]::numeric,
+                discount3 = (string_to_array(complex_discount, '+'))[3]::numeric
                 WHERE complex_discount is not null;
             """
     )

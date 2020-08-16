@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_account_ext
+#	* partner_history
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-06 09:47+0000\n"
-"PO-Revision-Date: 2016-07-06 09:47+0000\n"
+"POT-Creation-Date: 2020-08-16 15:06+0000\n"
+"PO-Revision-Date: 2020-08-16 15:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,28 +15,86 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_account_ext
-#: field:account.fiscal.position,purchase_journal_id:0
-msgid "Default Purchase Journal"
-msgstr "Sezionale Acquisti Standard"
+#. module: partner_history
+#: model:ir.model,name:partner_history.model_account_account
+msgid "Account"
+msgstr "Conto"
 
-#. module: l10n_it_account_ext
-#: field:account.fiscal.position,sale_journal_id:0
-msgid "Default Sale Journal"
-msgstr "Sezionale Vendite Standard"
+#. module: partner_history
+#: model:ir.model,name:partner_history.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
 
-#. module: l10n_it_account_ext
-#: model:ir.model,name:l10n_it_account_ext.model_account_fiscal_position
-msgid "Fiscal Position"
-msgstr "Posizione fiscale"
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_create_uid
+msgid "Created by"
+msgstr "Creato da"
 
-#. module: l10n_it_account_ext
-#: model:ir.model,name:l10n_it_account_ext.model_account_invoice
-msgid "Invoice"
-msgstr "Fattura"
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_create_date
+msgid "Created on"
+msgstr "Creato il"
 
-#. module: l10n_it_account_ext
-#: model:ir.model,name:l10n_it_account_ext.model_account_journal
-msgid "Journal"
-msgstr "Giornale"
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_date_from
+msgid "Date From"
+msgstr "Dalla data"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_date_to
+msgid "Date To"
+msgstr "Alla data"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_display_name
+msgid "Display Name"
+msgstr "Nome Visualizzato"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_id
+msgid "ID"
+msgstr ""
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history___last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_account_account_history_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: partner_history
+#: code:addons/partner_history/models/partner_history.py:32
+#, python-format
+msgid "Partner history term %s overlaps with %s"
+msgstr "Lo storico del partner %s si sovrappone con %s"
+
+#. module: partner_history
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: partner_history
+#: model_terms:ir.ui.view,arch_db:partner_history.view_partner_form
+msgid "Partner History"
+msgstr "Storico Partner"
+
+#. module: partner_history
+#: model:ir.model,name:partner_history.model_res_partner_history
+#: model:ir.model.fields,field_description:partner_history.field_res_partner__res_partner_history_ids
+#: model:ir.model.fields,field_description:partner_history.field_res_users__res_partner_history_ids
+msgid "Partner history"
+msgstr "Storico Partner"
 

@@ -25,9 +25,9 @@ class ResPartnerHistory(models.Model):
                 ('date_from', '<=', rec.date_to),
                 ('date_to', '>=', rec.date_from)]
 
-            overlap = self.search(date_domain + [('id', '!=', self.id)])
+            overlap = self.search(date_domain + [('id', '!=', rec.id)])
 
             if overlap:
                 raise ValidationError(
-                    _('Overdue Term %s overlaps with %s') %
+                    _('Partner history term %s overlaps with %s') %
                     (rec.name, overlap[0].name))

@@ -23,5 +23,5 @@
     'data': [
         'views/riba_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

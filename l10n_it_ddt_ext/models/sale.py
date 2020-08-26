@@ -47,16 +47,13 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_cancel(self):
-        res = super(SaleOrder, self).action_cancel()
-        for ddt in self.ddt_ids:
-            if ddt.state not in ['cancel', 'draft']:
-                raise exceptions.Warning(_('DDT is already done or in pack.'))
-            for picking in ddt.picking_ids:
-                if picking.state not in ['cancel', 'draft']:
-                    raise exceptions.Warning(
-                        _('Picking is not in draft or cancel state.'))
-                picking.unlink()
-            ddt.unlink()
+        for order in self:
+            if order.ddt_ids:
+                if any([ddt.state not in ['cancel', 'draft'] for ddt in order.ddt_ids]):
+                    raise exceptions.Warning(_('DDT is already done or in pack.'))
+                order.ddt_ids.action_cancel()
+        res = super(SaleOrder, self.with_context(
+            skip_update_line_ids=True)).action_cancel()
         return res
 
     @api.multi

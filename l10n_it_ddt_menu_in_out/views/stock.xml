@@ -189,8 +189,7 @@
                         <field name="gross_weight"/>
                         <field name="gross_weight_uom_id" groups="uom.group_uom" widget="selection"/>
                     </div>
-                <field name="show_price"/>
-                <!--field name="invoice_id" /-->
+                <field name="ddt_show_price"/>
               </group>
               <group>
                 <field name="carriage_condition_id"

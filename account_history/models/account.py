@@ -19,8 +19,8 @@ class AccountAccountHistory(models.Model):
     _description = 'Account history'
 
     name = fields.Char(required=True)
-    date_from = fields.Date()
-    date_to = fields.Date()
+    date_from = fields.Date(required=True)
+    date_to = fields.Date(required=True)
     account_id = fields.Many2one(
         comodel_name='account.account', string='Account', ondelete='cascade'
     )

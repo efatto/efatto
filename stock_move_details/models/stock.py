@@ -1,35 +1,65 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import fields, models, api, _
+# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import fields, models, api, _
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
     @api.multi
+    @api.depends('product_uom_qty', 'location_dest_id', 'location_id')
     def _set_sign_product_qty(self):
         for move in self:
-            move.qty = move.product_uom_qty * (
+            move.qty_signed = move.product_uom_qty * (
                 -1 if move.location_dest_id.usage in [
                     'customer', 'inventory', 'production', 'procurement',
                     'supplier'
-                ] else 1)
+                ] and move.location_id.usage == 'internal' else
+                0 if move.location_dest_id.usage in [
+                    'customer', 'inventory', 'production', 'procurement',
+                    'supplier'
+                ] and move.location_id.usage != 'internal' else
+                0 if move.location_dest_id.usage == move.location_id.usage
+                else 1)
 
-    qty_available = fields.Float(
-        related='product_id.qty_available',
+    product_uom_qty = fields.Float(
+        group_operator=False
     )
-    virtual_available = fields.Float(
-        related='product_id.virtual_available',
+    qty_signed = fields.Float(
+        compute=_set_sign_product_qty,
+        store=True,
+        group_operator="sum"
     )
-    qty = fields.Float(
-        compute='_set_sign_product_qty',
+
+
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+
+    @api.multi
+    @api.depends('qty_done', 'location_dest_id', 'location_id')
+    def _set_sign_product_qty(self):
+        for line in self:
+            line.qty_signed = line.qty_done * (
+                -1 if line.location_dest_id.usage in [
+                    'customer', 'inventory', 'production', 'procurement',
+                    'supplier'
+                ] and line.location_id.usage == 'internal' else
+                0 if line.location_dest_id.usage in [
+                    'customer', 'inventory', 'production', 'procurement',
+                    'supplier'
+                ] and line.location_id.usage != 'internal' else
+                0 if line.location_dest_id.usage == line.location_id.usage
+                else 1)
+
+    qty_done = fields.Float(
+        group_operator=False
+    )
+    qty_signed = fields.Float(
+        compute=_set_sign_product_qty,
+        store=True,
+        group_operator="sum"
     )
     picking_partner_id = fields.Many2one(
-        'res.partner', string='Picking Partner', store=True,
-        related='picking_id.partner_id', help='Partner of the picking')
-    product_code = fields.Char(
-        string='Product Code',
-        related='product_id.default_code'
-    )
+        'res.partner', string='Partner', store=True,
+        related='move_id.picking_partner_id')

@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
-    <record id="view_move_tree_possess" model="ir.ui.view">
-        <field name="name">view.move.tree.possess</field>
+<odoo>
+    <record id="view_move_line_tree_qty_signed" model="ir.ui.view">
+        <field name="name">view.move.line.tree.qty.signed</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="reference" position="after">
+                <field name="picking_partner_id" />
+            </field>
+            <field name="qty_done" position="after">
+                <field name="qty_signed" string="Qty Signed" sum="Total Qty"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_move_tree_qty_signed" model="ir.ui.view">
+        <field name="name">view.move.tree.qty.signed</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_tree"/>
         <field name="arch" type="xml">
-            <field name="product_uom_qty" position="replace"/>
-            <field name="origin" position="replace"/>
-            <field name="name" position="before">
-                <field name="origin"/>
+            <field name="product_id" position="after">
                 <field name="picking_partner_id" />
-                <field name="product_code"/>
             </field>
-            <field name="picking_type_id" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <field name="date" position="replace"/>
-            <field name="name" position="after">
-                <field name="qty" string='Quantity Move' sum="Total Qty"/>
-                <field name="date"/>
-            </field>
-            <field name="product_id" position="attributes">
-                <attribute name="invisible">1</attribute>
+            <field name="product_uom_qty" position="after">
+                <field name="qty_signed" string="Qty Signed" sum="Total Qty"/>
             </field>
         </field>
     </record>
-    <record id="view_move_picking_tree_inh_pickingpartner" model="ir.ui.view">
-        <field name="name">view.move.picking.tree.inh.pickingpartner</field>
-        <field name="model">stock.move</field>
-        <field name="inherit_id" ref="stock.view_move_picking_tree" />
+    <record id="stock_move_line_view_search_picking_partner" model="ir.ui.view">
+        <field name="name">view.move.line.search.picking.partner</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search" />
         <field name="arch" type="xml">
-            <field name="picking_id" position="after">
-                <field name="picking_partner_id" invisible="1"/>
-            </field>
-        </field>
-    </record>
-    <record id="view_move_search_inh_pickingpartner" model="ir.ui.view">
-        <field name="name">view.move.search.inh.pickingpartner</field>
-        <field name="model">stock.move</field>
-        <field name="inherit_id" ref="stock.view_move_search" />
-        <field name="arch" type="xml">
-            <filter string="Product" position="before">
-                <filter string="Picking Partner" name="by_picking_partner" domain="[]"  context="{'group_by':'picking_partner_id'}"/>
+            <filter name="groupby_product_id" position="before">
+                <filter string="Picking Partner"
+                        name="by_picking_partner" domain="[]"
+                        context="{'group_by': 'picking_partner_id'}"/>
             </filter>
         </field>
     </record>
-  </data>
-</openerp>
+</odoo>

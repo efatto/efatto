@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 12:58+0000\n"
-"PO-Revision-Date: 2017-04-21 12:58+0000\n"
+"POT-Creation-Date: 2020-09-24 13:23+0000\n"
+"PO-Revision-Date: 2020-09-24 13:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_move_details
-#: view:stock.move:stock_move_details.view_move_tree_possess
-msgid "Quantity Move"
-msgstr "Qtà Movimento"
+#: model:ir.model.fields,field_description:stock_move_details.field_stock_move_line__picking_partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: stock_move_details
+#: model_terms:ir.ui.view,arch_db:stock_move_details.stock_move_line_view_search_picking_partner
+msgid "Picking Partner"
+msgstr "Partner Trasferimento"
+
+#. module: stock_move_details
+#: model:ir.model,name:stock_move_details.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimenti prodotto (riga movimento magazzino)"
+
+#. module: stock_move_details
+#: model:ir.model.fields,field_description:stock_move_details.field_stock_move__qty_signed
+#: model:ir.model.fields,field_description:stock_move_details.field_stock_move_line__qty_signed
+#: model_terms:ir.ui.view,arch_db:stock_move_details.view_move_line_tree_qty_signed
+#: model_terms:ir.ui.view,arch_db:stock_move_details.view_move_tree_qty_signed
+msgid "Qty Signed"
+msgstr "Qtà con segno"
 
 #. module: stock_move_details
 #: model:ir.model,name:stock_move_details.model_stock_move
@@ -26,12 +44,7 @@ msgid "Stock Move"
 msgstr "Movimento di magazzino"
 
 #. module: stock_move_details
-#: view:stock.move:stock_move_details.view_move_tree_possess
-msgid "Tot. Available"
-msgstr "Tot. Disponibile"
-
-#. module: stock_move_details
-#: view:stock.move:stock_move_details.view_move_tree_possess
-msgid "Tot. Stock"
-msgstr "Tot. Giacenza"
+#: model_terms:ir.ui.view,arch_db:stock_move_details.view_move_tree_qty_signed
+msgid "Total Qty"
+msgstr "Qtà totale"
 

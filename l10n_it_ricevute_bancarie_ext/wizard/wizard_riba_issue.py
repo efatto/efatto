@@ -68,14 +68,19 @@ class RibaIssue(models.TransientModel):
         grouped_lines = {}
         move_lines = move_line_obj.search(
             [('id', 'in', self._context['active_ids'])])
-        for move_line in move_lines:
-            if move_line.partner_id.group_riba:
-                if not grouped_lines.get((move_line.partner_id.id,
-                                          move_line.date_maturity), False):
+        do_group_riba = True
+        if len(set(['%s%s' % (x.cig, x.cup) for x in
+                move_lines.mapped('invoice.related_documents')])) > 1:
+            do_group_riba = False
+        if do_group_riba:
+            for move_line in move_lines:
+                if move_line.partner_id.group_riba:
+                    if not grouped_lines.get((move_line.partner_id.id,
+                                              move_line.date_maturity), False):
+                        grouped_lines[(move_line.partner_id.id,
+                                       move_line.date_maturity)] = []
                     grouped_lines[(move_line.partner_id.id,
-                                   move_line.date_maturity)] = []
-                grouped_lines[(move_line.partner_id.id,
-                               move_line.date_maturity)].append(move_line)
+                                   move_line.date_maturity)].append(move_line)
 
         # create lines
         countme = 1
@@ -91,7 +96,7 @@ class RibaIssue(models.TransientModel):
                     _('Attention!'),
                     _('Partner %s has not bank!!!') %
                     move_line.partner_id.name)
-            if move_line.partner_id.group_riba:
+            if move_line.partner_id.group_riba and do_group_riba:
                 for key in grouped_lines:
                     if (key[0] == move_line.partner_id.id and
                             key[1] == move_line.date_maturity):

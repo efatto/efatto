@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_move_line_tree_qty_signed" model="ir.ui.view">
-        <field name="name">view.move.line.tree.qty.signed</field>
         <field name="model">stock.move.line</field>
         <field name="inherit_id" ref="stock.view_move_line_tree"/>
         <field name="arch" type="xml">
@@ -14,7 +13,6 @@
         </field>
     </record>
     <record id="stock_move_tree_qty_signed" model="ir.ui.view">
-        <field name="name">view.move.tree.qty.signed</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.stock_move_tree"/>
         <field name="arch" type="xml">
@@ -27,7 +25,6 @@
         </field>
     </record>
     <record id="stock_move_line_view_search_picking_partner" model="ir.ui.view">
-        <field name="name">view.move.line.search.picking.partner</field>
         <field name="model">stock.move.line</field>
         <field name="inherit_id" ref="stock.stock_move_line_view_search" />
         <field name="arch" type="xml">

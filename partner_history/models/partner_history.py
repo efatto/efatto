@@ -22,10 +22,12 @@ class ResPartnerHistory(models.Model):
     def check_overlap(self):
         for rec in self:
             date_domain = [
+                ('partner_id', '=', rec.partner_id.id),
+                ('id', '!=', rec.id),
                 ('date_from', '<=', rec.date_to),
                 ('date_to', '>=', rec.date_from)]
 
-            overlap = self.search(date_domain + [('id', '!=', rec.id)])
+            overlap = self.search(date_domain)
 
             if overlap:
                 raise ValidationError(

@@ -140,7 +140,6 @@ class SaleOrder(models.Model):
         # l'ordine deve avere stato MISSING_COMPONENTS_BUY, perchè peggiore.
         cal_order = [
             NOT_EVALUATED,
-            TOPROCESS,
             MISSING_COMPONENTS_BUY,
             MISSING_COMPONENTS_PRODUCE,
             PRODUCTION_READY,
@@ -169,8 +168,6 @@ class SaleOrder(models.Model):
                 calendar_state = DONE_DELIVERY
             elif any([x.state == 'done' for x in picking_ids]):
                 calendar_state = WAITING_FOR_PACKING
-            else:
-                calendar_state = TOPROCESS
             calendar_states.append((calendar_state, fields.Datetime.now()))
         # this is needed if picking are not done only i presume, tocheck
         # group_id in purchase.order
@@ -194,7 +191,6 @@ class SaleOrder(models.Model):
                         calendar_states.append((AVAILABLEREADY, fields.Datetime.now()))
         mrp_production_ids = self.env['mrp.production'].search([
             ('procurement_group_id', '=', procurement.id),
-            ('sale_id', '=', self.id),
         ])
         if mrp_production_ids:
             for mrp_production in mrp_production_ids:

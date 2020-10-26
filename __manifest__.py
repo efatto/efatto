@@ -11,7 +11,6 @@
     'depends': [
         'sale',
         'sale_order_line_date',
-        'mrp_sale_info',
         'web',
     ],
     'data': [

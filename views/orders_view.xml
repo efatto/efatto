@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='other_information']/group/group/field[@name='commitment_date']" position="before">
+                <field name="max_commitment_date" invisible="0"/>
+                <div>
+                    <button name="alert_customer_changed_delivery" type="object"
+                            string="Alert customer of change" class="oe_inline oe_link"
+                    />
+                </div>
+                <!--  attrs="{'invisible': [('commitment_date', '&lt;=', max_commitment_date)]}"-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_calendar" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sale_order_calendar"/>
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="date_start">max_commitment_date</attribute>
+                <attribute name="color">calendar_state</attribute>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="order_form_priority" model="ir.ui.view">
+        <field name="name">sale.order.form.priority</field>
+	    <field name="model">sale.order</field>
+  	    <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <notebook position="before">
+                <group>
+                    <group>
+                        <label for="calendar_state"
+                              attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"/>
+                        <div class="oe_inline" attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}">
+                           <field name="calendar_state" />
+                           <button name="update_forecast_state" type="object"
+                                   string="Calculate" class="oe_inline oe_link"/>
+                        </div>
+                    </group>
+                </group>
+            </notebook>
+        </field>
+    </record>
+<!-- this kanban view is to show the SO for each week (the columns are the weeks)  -->
+    <record id="view_sale_order_kanban_delivery" model="ir.ui.view">
+        <field name="name">sale.order.kanban.delivery</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_gray" default_group_by="delivery_week" quick_create="false">
+                <field name="delivery_week"/>
+                <field name="color"/>
+                <field name="note"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_hyddemo_color_#{kanban_getcolor(record.color.raw_value)}">
+                        <div class="oe_kanban_content">
+                            <h4><field name="name"/></h4>
+                            <div style="margin-bottom: 5px"><field name="partner_id" widget="one2many"/></div>
+                            <div>Commitment date: <field name="commitment_date"/></div>
+                            <div>Max Commitment date: <field name="max_commitment_date"/></div>
+                        </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_sale_order_search_delivery" model="ir.ui.view">
+        <field name="name">sale.order.search.delivery</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <separator/>
+                <filter name="production_not_started" string="To Produce"
+                      domain="[('calendar_state', 'in', ('to_evaluate','to_produce','to_receive','production_ready'))]"/>
+                <filter name="production_started" string="In Production"
+                      domain="[('calendar_state', '=', 'production_started')]"/>
+                <filter name="production_done" string="Production Done"
+                      domain="[('calendar_state', '=', 'production_done')]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="act_sale_order_delivery" model="ir.actions.act_window">
+        <field name="name">Orders to deliver</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_sale_order_kanban_delivery"/>
+        <field name="view_mode">kanban,form,calendar</field>
+        <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
+        <field name="context">{'search_default_production_not_started': True}</field>
+    </record>
+
+    <menuitem action="act_sale_order_delivery"
+        id="menu_act_sale_order_delivery" parent="sale.sale_order_menu"
+        sequence="15" groups="sales_team.group_sale_salesman" />
+
+</odoo>

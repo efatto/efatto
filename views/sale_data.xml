@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+      Mail template is done in a NOUPDATE block
+      so users can freely customize/delete them
+  -->
+  <data noupdate="1">
+
+    <record id="email_template_delivery_date_changed" model="mail.template">
+      <field name="name">Delivery Date Change Alert</field>
+      <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+      <field name="subject">Delivery date for order ${object.name} revision ${object.revision + 1}</field>
+      <field name="email_to">${object.partner_id.email|safe}</field>
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="auto_delete" eval="True"/>
+      <field name="body_html"><![CDATA[
+Dear ${object.partner_id.name},<br>
+The expected delivery date has changed from ${object.max_commitment_date or 'TBD'} to ${object.delivery_time},
+we hope this won't be a problem.<br>
+The revision number for your order is now ${object.revision + 1}.<br>
+<br>
+Best Regards,<br>
+${user.name}
+]]>
+      </field>
+    </record>
+
+  </data>
+</odoo>

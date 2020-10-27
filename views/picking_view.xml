@@ -1,47 +1,22 @@
 <?xml version="1.0" ?>
 <odoo>
-    <record id="picking_form_view_pesi" model="ir.ui.view">
-        <field name="name">picking.form.pesi</field>
+    <record id="view_picking_form" model="ir.ui.view">
 		<field name="model">stock.picking</field>
 		<field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <field name="location_dest_id" position="after">
-                <field name="ready_to_deliver"  attrs="{'invisible': [('picking_type_code', 'in', ['incoming','internal','mrp_operation'])]}" />
-                <field name="date_ready_to_deliver" attrs="{'invisible': [('picking_type_code', 'in', ['incoming','internal','mrp_operation'])]}"/>
+            <field name="origin" position="before">
+                <field name="date_ready_to_deliver"
+                       attrs="{'invisible': [('picking_type_code', 'in', ['incoming', 'internal', 'mrp_operation'])]}"/>
             </field>
         </field>
     </record>
-
-    <record id="picking_tree_ready_to_deliver_inherit" model="ir.ui.view">
-        <field name="name">picking.tree.ready_to_deliver.inherit</field>
+    <record id="vpicktree" model="ir.ui.view">
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
             <field name="state" position="before">
                 <field name="date_ready_to_deliver" />
-                <field name="ready_to_deliver" />
             </field>
-        </field>
-    </record>
-    <record id="vpicktreeout" model="ir.ui.view">
-        <field name="name">stock.picking.tree</field>
-        <field name="model">stock.picking</field>
-        <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-danger="state not in ('cancel', 'done') and min_date &lt; current_date" string="Picking list">
-                <field name="name"/>
-                <field name="location_dest_id"/>
-                <field name="partner_id"/>
-                <field name="date" invisible="1"/>
-                <field name="min_date"/>
-                <field name="origin"/>
-                <field name="group_id" invisible="1"/>
-                <field name="backorder_id"/>
-                <field name="date_ready_to_deliver" />
-                <field name="ready_to_deliver" />
-                <field name="state"/>
-                <field name="priority" invisible="1"/>
-                <field name="picking_type_id" invisible="1"/>
-            </tree>
         </field>
     </record>
 </odoo>

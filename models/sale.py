@@ -249,27 +249,23 @@ class SaleOrder(models.Model):
         with the "changed delivery date" template opened by default.
         """
         self.ensure_one()
-        template_id = self.env.ref(
+        template = self.env.ref(
             'sale_order_calendar_state.email_template_delivery_date_changed',
             raise_if_not_found=False)
-        compose_form_id = self.env.ref('mail.email_compose_message_wizard_form',
-                                       raise_if_not_found=False)
-        ctx = dict()
-        ctx.update({
-            'default_model': 'sale.order',
-            'default_res_id': self.ids[0],
-            'default_use_template': bool(template_id),
-            'default_template_id': template_id and template_id.id or False,
-            'default_composition_mode': 'comment',
-            'change_agreed_date': True,
-        })
+        local_context = dict(
+            default_model='sale.order',
+            default_res_id=self.id,
+            default_use_template=bool(template),
+            default_template_id=template and template.id or False,
+            default_composition_mode='comment',
+            change_agreed_date=True,
+        )
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
-            'views': [(compose_form_id, 'form')],
-            'view_id': compose_form_id,
+            'views': [(False, 'form')],
             'target': 'new',
-            'context': ctx,
+            'context': local_context,
         }

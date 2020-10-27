@@ -3,4 +3,5 @@
 
 from . import mail
 from . import mrp
+from . import picking
 from . import sale

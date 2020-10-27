@@ -8,6 +8,7 @@ from dateutil.relativedelta import relativedelta
 
 TOPROCESS = 'to_process'
 NOT_EVALUATED = 'to_evaluate'
+PRODUCTION_NOT_EVALUATED = 'to_evaluate_production'
 MISSING_COMPONENTS_PRODUCE = 'to_produce'
 MISSING_COMPONENTS_BUY = 'to_receive'
 PRODUCTION_READY = 'production_ready'  # EX production_ready_toproduce
@@ -16,6 +17,7 @@ WAITING_FOR_PACKING = 'to_pack'
 DONE = 'production_done'
 DONE_DELIVERY = 'delivery_done'
 AVAILABLEREADY = 'available'
+PARTIALLYDELIVERED = 'partially_delivered'
 
 
 class SaleOrder(models.Model):
@@ -24,6 +26,7 @@ class SaleOrder(models.Model):
     STATES = [
         ('to_process', 'To process'),
         ('to_evaluate', 'Some procurements not yet processed'),
+        ('to_evaluate_production', 'Production not yet processed'),
         ('to_produce', 'Missing components to produce'),
         ('to_receive', 'Missing components to receive'),
         ('production_ready', 'Ready to produce'),
@@ -36,6 +39,7 @@ class SaleOrder(models.Model):
     ]
     STATES_COLOR_INDEX_MAP = {
         'to_evaluate': 0,
+        'to_evaluate_production': 0,
         'to_produce': 5,
         'to_receive': 4,
         'production_ready': 1,
@@ -142,13 +146,15 @@ class SaleOrder(models.Model):
         # l'ordine deve avere stato MISSING_COMPONENTS_BUY, perchè peggiore.
         cal_order = [
             NOT_EVALUATED,
+            PRODUCTION_NOT_EVALUATED,
             MISSING_COMPONENTS_BUY,
             MISSING_COMPONENTS_PRODUCE,
             PRODUCTION_READY,
             PRODUCTION_STARTED,
-            WAITING_FOR_PACKING,
             DONE,
+            PARTIALLYDELIVERED,
             AVAILABLEREADY,
+            WAITING_FOR_PACKING,
             DONE_DELIVERY,
         ]
         if self.procurement_group_id:
@@ -168,13 +174,14 @@ class SaleOrder(models.Model):
             ('group_id', '=', procurement.id),
         ])
         if picking_ids:
-            calendar_state = WAITING_FOR_PACKING
+            calendar_state = WAITING_FOR_PACKING  # == AVAILABLEREADY
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
             elif all([x.state == 'assigned' for x in picking_ids]):
                 calendar_state = AVAILABLEREADY
-            elif any([x.state == 'done' for x in picking_ids]):
-                calendar_state = WAITING_FOR_PACKING
+            elif any([x.state == 'done' for x in picking_ids])\
+                    and any([x.state != 'done' for x in picking_ids]):
+                calendar_state = PARTIALLYDELIVERED
             calendar_states.append((calendar_state, fields.Datetime.now()))
         # this is needed if picking are not done only i presume, tocheck
         # group_id in purchase.order
@@ -201,32 +208,28 @@ class SaleOrder(models.Model):
         ])
         if mrp_production_ids:
             for mrp_production in mrp_production_ids:
-                # confirmed planned progress done cancel
                 if mrp_production.state == 'done':
                     calendar_states.append((DONE, fields.Datetime.now()))
-                elif mrp_production.state == 'progress':
-                    if any([x for x in mrp_production.move_raw_ids if x.state not in
-                            ['cancel', 'assigned']]):
+                elif mrp_production.state == 'confirmed':
+                    calendar_states.append(
+                        (PRODUCTION_NOT_EVALUATED, fields.Datetime.now())
+                    )
+                elif mrp_production.state == 'planned':
+                    if any([x for x in mrp_production.move_raw_ids
+                            if x.state not in ['cancel', 'assigned']]):
+                        datetime_planned = fields.Datetime.now() + relativedelta(
+                            days=mrp_production.product_id.produce_delay)
                         calendar_states.append(
-                            (MISSING_COMPONENTS_BUY, fields.Datetime.now())
+                            (MISSING_COMPONENTS_PRODUCE, datetime_planned)
                         )
                     else:
                         calendar_states.append(
                             (PRODUCTION_READY, fields.Datetime.now())
                         )
-                elif mrp_production.state == 'planned':  # e anche 'confirmed' no?
-                    time = fields.Datetime.now() + relativedelta(
-                        days=mrp_production.product_id.produce_delay)
-                    planned_date = max(fields.Datetime.now(), time)
-                    if planned_date > max_commitment_date:
-                        calendar_states.append(
-                            (MISSING_COMPONENTS_PRODUCE, planned_date)
-                        )
-                    else:
-                        # availableready is just a state i made to make a difference
-                        # between buy and maufacture products
-                        calendar_states.append((DONE, fields.Datetime.now()))
-
+                elif mrp_production.state == 'progress':
+                    calendar_states.append(
+                        (PRODUCTION_STARTED, fields.Datetime.now())
+                    )
         return calendar_states
 
     @api.depends('picking_ids', 'picking_ids.state')

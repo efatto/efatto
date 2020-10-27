@@ -10,6 +10,7 @@
                'a stati',
     'depends': [
         'sale',
+        'sale_stock',
         'sale_order_line_date',
         'web',
     ],

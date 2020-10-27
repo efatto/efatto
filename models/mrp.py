@@ -4,12 +4,12 @@
 from odoo import models, api
 
 
-class MrpProductProduce(models.TransientModel):
-    _inherit = "mrp.product.produce"
+class MrpProduction(models.Model):
+    _inherit = "mrp.production"
 
     @api.multi
-    def do_produce(self):
-        res = super(MrpProductProduce, self).do_produce()
-        if self.production_id.sale_id:
-            self.production_id.sale_id.update_forecast_state()
+    def write(self, vals):
+        res = super(MrpProduction, self).write(vals)
+        for mo in self.filtered(lambda x: x.procurement_group_id.sale_id):
+            mo.procurement_group_id.sale_id.update_forecast_state()
         return res

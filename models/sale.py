@@ -53,6 +53,8 @@ class SaleOrder(models.Model):
         selection=STATES,
         default='to_process',
         required=True,
+        compute='_compute_calendar_state',
+        store=True,
         oldname='a_calendario')
     max_commitment_date = fields.Datetime(
         compute='_compute_max_commitment_date',
@@ -152,9 +154,11 @@ class SaleOrder(models.Model):
         if self.procurement_group_id:
             calendar_states = self.forecast_procurement(
                     self.procurement_group_id, max_commitment_date)
-            calendar_states = filter(None, calendar_states)
-            calendar_state = min(calendar_states, key=lambda x: cal_order.index(x[0]))
-            return calendar_state[0]
+            if calendar_states:
+                calendar_states = filter(None, calendar_states)
+                calendar_state = min(calendar_states, key=lambda x: cal_order.index(x[0]))
+                return calendar_state[0]
+            return False
         return False
 
     def forecast_procurement(self, procurement, max_commitment_date):
@@ -164,8 +168,11 @@ class SaleOrder(models.Model):
             ('group_id', '=', procurement.id),
         ])
         if picking_ids:
+            calendar_state = WAITING_FOR_PACKING
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
+            elif all([x.state == 'assigned' for x in picking_ids]):
+                calendar_state = AVAILABLEREADY
             elif any([x.state == 'done' for x in picking_ids]):
                 calendar_state = WAITING_FOR_PACKING
             calendar_states.append((calendar_state, fields.Datetime.now()))
@@ -195,13 +202,19 @@ class SaleOrder(models.Model):
         if mrp_production_ids:
             for mrp_production in mrp_production_ids:
                 # confirmed planned progress done cancel
-                if mrp_production.state == 'progress':
-                    calendar_states.append(
-                        (PRODUCTION_READY, fields.Datetime.now())
-                    )
-                elif mrp_production.state == 'done':
+                if mrp_production.state == 'done':
                     calendar_states.append((DONE, fields.Datetime.now()))
-                elif mrp_production.state == 'planned':
+                elif mrp_production.state == 'progress':
+                    if any([x for x in mrp_production.move_raw_ids if x.state not in
+                            ['cancel', 'assigned']]):
+                        calendar_states.append(
+                            (MISSING_COMPONENTS_BUY, fields.Datetime.now())
+                        )
+                    else:
+                        calendar_states.append(
+                            (PRODUCTION_READY, fields.Datetime.now())
+                        )
+                elif mrp_production.state == 'planned':  # e anche 'confirmed' no?
                     time = fields.Datetime.now() + relativedelta(
                         days=mrp_production.product_id.produce_delay)
                     planned_date = max(fields.Datetime.now(), time)
@@ -216,12 +229,19 @@ class SaleOrder(models.Model):
 
         return calendar_states
 
+    @api.depends('picking_ids', 'picking_ids.state')
+    def _compute_calendar_state(self):
+        for order in self:
+            calendar_state = order.get_forecast_calendar_state()
+            if calendar_state:
+                order.calendar_state = calendar_state
+
     @api.multi
     def update_forecast_state(self):
         for order in self:
             calendar_state = order.get_forecast_calendar_state()
             if calendar_state:
-                order.write({'calendar_state': calendar_state})
+                order.calendar_state = calendar_state
 
     def alert_customer_changed_delivery(self):
         """

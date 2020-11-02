@@ -63,7 +63,7 @@ class SaleOrder(models.Model):
     max_commitment_date = fields.Datetime(
         compute='_compute_max_commitment_date',
         store=True,
-    )
+        oldname='last_agreed_delivery_date')
     delivery_week = fields.Integer(
         compute='_get_delivery_week',
         store=True)
@@ -157,15 +157,15 @@ class SaleOrder(models.Model):
             WAITING_FOR_PACKING,
             DONE_DELIVERY,
         ]
+        calendar_state = False
         if self.procurement_group_id:
             calendar_states = self.forecast_procurement(
-                    self.procurement_group_id, max_commitment_date)
+                self.procurement_group_id, max_commitment_date)
             if calendar_states:
                 calendar_states = filter(None, calendar_states)
-                calendar_state = min(calendar_states, key=lambda x: cal_order.index(x[0]))
-                return calendar_state[0]
-            return False
-        return False
+                calendar_state = min(
+                    calendar_states, key=lambda x: cal_order.index(x[0]))[0]
+        return calendar_state
 
     def forecast_procurement(self, procurement, max_commitment_date):
         calendar_states = []
@@ -232,12 +232,11 @@ class SaleOrder(models.Model):
                     )
         return calendar_states
 
-    @api.depends('picking_ids', 'picking_ids.state')
+    @api.depends('order_line', 'picking_ids', 'picking_ids.state')
     def _compute_calendar_state(self):
         for order in self:
-            calendar_state = order.get_forecast_calendar_state()
-            if calendar_state:
-                order.calendar_state = calendar_state
+            order.calendar_state = order.get_forecast_calendar_state() or \
+                                   order.calendar_state or 'to_process'
 
     @api.multi
     def update_forecast_state(self):

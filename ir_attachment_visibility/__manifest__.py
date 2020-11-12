@@ -11,6 +11,7 @@
     'license': 'LGPL-3',
     'depends': [
         'base',
+        'project',
     ],
     'data': [
         'security/ir.model.access.csv',

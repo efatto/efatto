@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_order_form_inherit_product" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.product</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                <field name="product_invoice_policy" invisible="1"/>
+                <field name="product_track_service"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-bf">product_invoice_policy == 'order'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='tax_id']" position="after">
+                <field name="product_invoice_policy"/>
+                <field name="product_track_service"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

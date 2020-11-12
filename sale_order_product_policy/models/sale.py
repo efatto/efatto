@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields
 
@@ -8,5 +9,7 @@ class SaleOrderLine(models.Model):
 
     product_invoice_policy = fields.Selection(
         related='product_id.invoice_policy', readonly=True)
-    product_track_service = fields.Selection(
-        related='product_id.track_service', readonly=True)
+    product_service_policy = fields.Selection(
+        related='product_id.service_policy', readonly=True)
+    product_service_tracking = fields.Selection(
+        related='product_id.service_tracking', readonly=True)

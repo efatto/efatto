@@ -1,4 +1,5 @@
-This module is a replacement of *account_invoice_constraint_chronology* to helps ensuring the chronology of supplier invoice numbers.
+This module is a replacement of *account_invoice_constraint_chronology* to helps ensuring the chronology of supplier invoice numbers, and
+ excluding check on draft invoices.
 
 It prevents the validation of invoices when:
 

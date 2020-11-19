@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2019-2020 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Account analytic SAL',
-    'version': '10.0.1.0.41',
+    'version': '12.0.1.0.0',
     'category': 'Extra Tools',
     'description':
         'Account analytic SAL',
@@ -11,11 +10,12 @@
     'website': 'https://efatto.it',
     'depends': [
         'analytic',
-        'contract_show_invoice',
-        'contract_show_sale',
+        'contract',  # _show_invoice
+        # 'contract_show_sale', inutile direi
         'hr_timesheet',
         'project',
         'contacts',
+        'sale_delivered_percent',
     ],
     'data': [
         'security/ir.model.access.csv',

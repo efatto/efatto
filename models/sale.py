@@ -196,7 +196,7 @@ class SaleOrder(models.Model):
                     # I think if we have not recieved the product yet, it should
                     # just return missing buy component. but I kept the old version
                     planned_date = max(
-                        fields.Datetime.now(), purchase_line.purchase_id.date_planned)
+                        fields.Datetime.now(), purchase_line.order_id.date_planned)
                     if planned_date > max_commitment_date:
                         calendar_states.append((MISSING_COMPONENTS_BUY, planned_date))
                     else:

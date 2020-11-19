@@ -197,7 +197,8 @@ class SaleOrder(models.Model):
                     # just return missing buy component. but I kept the old version
                     planned_date = max(
                         fields.Datetime.now(), purchase_line.order_id.date_planned)
-                    if planned_date > max_commitment_date:
+                    if planned_date and max_commitment_date and \
+                            planned_date > max_commitment_date:
                         calendar_states.append((MISSING_COMPONENTS_BUY, planned_date))
                     else:
                         # availableready is just a state i made to make a difference

@@ -15,7 +15,7 @@ class Picking(models.Model):
     @api.depends('state')
     def _compute_date_ready_to_deliver(self):
         for pick in self:
-            date_ready_to_deliver = False
-            if pick.state == 'assigned':
-                date_ready_to_deliver = fields.Datetime.now()
-            pick.date_ready_to_deliver = date_ready_to_deliver
+            if pick.state in ['draft', 'waiting', 'confirmed', 'cancel']:
+                pick.date_ready_to_deliver = False
+            elif pick.state == 'assigned':
+                pick.date_ready_to_deliver = fields.Datetime.now()

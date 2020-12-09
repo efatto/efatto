@@ -13,8 +13,8 @@
         'contract',  # _show_invoice
         # 'contract_show_sale', inutile direi
         'hr_timesheet',
-        'project',
-        'contacts',
+        # 'project',
+        # 'contacts',
         'sale_delivered_percent',
     ],
     'data': [

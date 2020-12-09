@@ -1,1 +1,1 @@
-from . import account, project
+from . import account

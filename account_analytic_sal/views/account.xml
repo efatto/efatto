@@ -1,117 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <record model="ir.actions.act_window" id="analytic.account_analytic_line_action">
-            <field name="context">{'search_default_group_tag': 1, 'search_default_group_date': 1, 'default_account_id': active_id}</field>
-            <field name="domain">[('account_id','=', active_id)]</field>
-            <field name="name">Costs &amp; Revenues</field>
-            <field name="res_model">account.analytic.line</field>
-            <field name="view_mode">tree,form,graph,pivot</field>
-            <field name="view_id" ref="analytic.view_account_analytic_line_tree"/>
-            <field name="view_type">form</field>
-            <field name="help" type="html">
-              <p>
-                No activity yet on this account.
-              </p><p>
-                In Odoo, sale orders and projects are implemented using
-                analytic accounts. You can track costs and revenues to analyse
-                your margins easily.
-              </p><p>
-                Costs will be created automatically when you register supplier
-                invoices, expenses or timesheets.
-              </p><p>
-                Revenues will be created automatically when you create customer
-                invoices. Customer invoices can be created based on sale orders
-                (fixed price invoices), on timesheets (based on the work done) or
-                on expenses (e.g. reinvoicing of travel costs).
-              </p>
-            </field>
-        </record>
-        <record id="hr_timesheet_line_tree" model="ir.ui.view">
-            <field name="name">account.analytic.line.tree.hr_timesheet</field>
-            <field name="model">account.analytic.line</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
-            <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="tag_id"/>
-                </field>
-            </field>
-        </record>
-        <record id="hr_timesheet_line_search" model="ir.ui.view">
-            <field name="name">account.analytic.line.search</field>
-            <field name="model">account.analytic.line</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
-            <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="tag_id"/>
-                </field>
-                <xpath expr="/search/group" position="inside">
-                    <filter string="By tag" name="group_tag" context="{'group_by':'tag_id'}"/>
-                </xpath>
-            </field>
-        </record>
-        <record id="hr_timesheet.act_hr_timesheet_line_by_project" model="ir.actions.act_window">
-            <field name="name">Activities</field>
-            <field name="res_model">account.analytic.line</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
-            <field name="domain">[('project_id', '!=', False)]</field>
-            <field name="context">{'search_default_group_tag': 1, "default_project_id": active_id, "search_default_project_id": [active_id]}</field>
-            <field name="search_view_id" ref="hr_timesheet.hr_timesheet_line_search"/>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to record activities.
-              </p><p>
-                You can register and track your workings hours by project every
-                day. Every time spent on a project will become a cost and can be re-invoiced to
-                customers if required.
-              </p>
-            </field>
-        </record>
-
-        <record id="view_account_analytic_account_tree_sal" model="ir.ui.view">
-            <field name="name">account.analytic.account.tree.sal</field>
-            <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="contract.view_account_analytic_account_journal_tree"/>
-            <field name="arch" type="xml">
-                <field name="journal_id" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="display_name" position="replace">
-                    <field name="name"/>
-                </field>
-                <field name="balance" position="after">
-                    <field name="total_invoiced" sum="Total Invoiced" string="Invoiced" groups="account.group_account_manager"/>
-                    <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
-                    <field name="amount_sal_to_invoice" sum="Total SAL To Invoice" groups="account.group_account_manager"/>
-<!--                    <field name="hours_tobe_invoiced" sum="Total Hours To Invoice" groups="account.group_account_manager"/>-->
-                    <field name="qty_ordered" sum="Ordered Qty" groups="account.group_account_manager"/>
-                    <field name="hours_planned" sum="Planned Hours" groups="account.group_account_manager"/>
-                    <field name="hours_residual" sum="Residual Hours" groups="account.group_account_manager"/>
-                    <field name="progress_hours" widget="progressbar" groups="account.group_account_manager"/>
-                    <field name="date_start"/>
-                    <field name="date_end"/>
-                    <field name="manager_id"/>
-                </field>
-                <field name="debit" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="credit" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="balance" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="recurring_next_date" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="code" position="replace"/>
-                <field name="partner_id" position="after">
-                    <field name="code"/>
-                    <field name="last_invoice_date" groups="account.group_account_manager"/>
-                </field>
-            </field>
-        </record>
 
         <record id="view_account_analytic_account_form_sal" model="ir.ui.view">
             <field name="name">account.analytic.account.inherit.sal</field>
@@ -120,22 +8,6 @@
             <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
                 <group name='main' position="after">
-                    <group>
-                        <group>
-                            <field name="qty_ordered"/>
-                            <field name="hours_planned"/>
-                            <field name="hours_done"/>
-                            <field name="hours_residual"/>
-                            <field name="progress_hours" widget="progressbar"/>
-                        </group>
-                        <group>
-                            <field name="total_sale_form"/>
-                            <field name="total_invoiced_form"/>
-                            <field name="amount_remaining" style="font-weight: bold;"/>
-                            <field name="date_start"/>
-                            <field name="date_end"/>
-                        </group>
-                    </group>
                     <field name="invoice_line_ids" invisible="1"/>
                     <separator string="Use SAL"
                            attrs="{'invisible': [('use_sal','!=',True)]}"
@@ -254,20 +126,4 @@
             parent="account.menu_finance_receivables"
             groups="analytic.group_analytic_accounting"
             sequence="100"/>
-
-    <!-- Remove default filter recurring invoices -->
-    <record id="contract.action_account_analytic_overdue_all" model="ir.actions.act_window">
-        <field name="name">Contracts</field>
-        <field name="res_model">account.analytic.account</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{'is_contract':1, 'search_default_not_finished':1}</field>
-        <field name="search_view_id" ref="analytic.view_account_analytic_account_search"/>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click to create a new contract.
-            </p>
-        </field>
-    </record>
-
 </odoo>

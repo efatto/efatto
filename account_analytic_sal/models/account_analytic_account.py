@@ -1,7 +1,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import api, exceptions, fields, models, _
 
 
 class AccountAnalyticAccount(models.Model):
@@ -27,3 +27,19 @@ class AccountAnalyticAccount(models.Model):
         string='Invoice lines',
         comodel_name='account.invoice.line',
         inverse_name='account_analytic_id')
+    total_percent_toinvoice = fields.Float(
+        compute='compute_total_percent_toinvoice',
+        store=True
+    )
+
+    @api.multi
+    @api.depends('account_analytic_sal_ids',
+                 'account_analytic_sal_ids.percent_toinvoice')
+    def compute_total_percent_toinvoice(self):
+        for analytic in self:
+            total = sum(analytic.mapped(
+                'account_analytic_sal_ids.percent_toinvoice'))
+            if total > 100.0:
+                raise exceptions.ValidationError(
+                    "SAL total % to invoice must be <= 100%")
+            analytic.total_percent_toinvoice = total

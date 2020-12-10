@@ -1,7 +1,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api
 import odoo.addons.decimal_precision as dp
 
 
@@ -69,13 +69,3 @@ class AccountAnalyticSal(models.Model):
              'reference is superior '
              'of SAL amount. It can be marked even manually.'
     )
-
-    @api.multi
-    @api.constrains('percent_toinvoice')
-    def _check_percent_toinvoice(self):
-        percent_toinvoice_total = 0.0
-        for sal in self.account_analytic_id.account_analytic_sal_ids:
-            percent_toinvoice_total += sal.percent_toinvoice
-        if percent_toinvoice_total > 100.0:
-            raise exceptions.ValidationError(
-                "SAL total % to invoice must be <= 100%")

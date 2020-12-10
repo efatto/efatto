@@ -1,3 +1,1 @@
-# -*- coding: utf-8 -*-
-
-from . import test_contract_sal
+from . import test_account_analytic_sal

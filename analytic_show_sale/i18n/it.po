@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* analytic_show_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-10 08:00+0000\n"
+"PO-Revision-Date: 2020-12-10 08:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: analytic_show_sale
+#: model_terms:ir.ui.view,arch_db:analytic_show_sale.account_analytic_account_button_sale
+msgid "<span class=\"o_stat_text\">Sales</span>"
+msgstr "<span class=\"o_stat_text\">Vendite</span>"
+
+#. module: analytic_show_sale
+#: model:ir.model,name:analytic_show_sale.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Conto Analitico"
+
+#. module: analytic_show_sale
+#: model:ir.actions.act_window,name:analytic_show_sale.act_analytic_sales
+#: model_terms:ir.ui.view,arch_db:analytic_show_sale.view_account_analytic_account_sale_tree
+msgid "Sales"
+msgstr "Vendite"
+
+#. module: analytic_show_sale
+#: model_terms:ir.ui.view,arch_db:analytic_show_sale.account_analytic_account_button_sale
+msgid "Sales related with this analytic account"
+msgstr "Vendite collegate a questo conto analitico"
+
+#. module: analytic_show_sale
+#: model:ir.model.fields,field_description:analytic_show_sale.field_account_analytic_account__total_sale
+#: model_terms:ir.ui.view,arch_db:analytic_show_sale.view_account_analytic_account_sale_tree
+msgid "Total Sales"
+msgstr "Totale Contratto"
+

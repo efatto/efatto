@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_analytic_line_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-11 09:23+0000\n"
+"PO-Revision-Date: 2020-12-11 09:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_analytic_line_tag
+#: model:ir.model,name:account_analytic_line_tag.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: account_analytic_line_tag
+#: model_terms:ir.ui.view,arch_db:account_analytic_line_tag.hr_timesheet_line_search
+msgid "By tag"
+msgstr "Per tag"
+
+#. module: account_analytic_line_tag
+#: code:addons/account_analytic_line_tag/models/account_analytic_line.py:19
+#, python-format
+msgid "Purchases"
+msgstr "Acquisti"
+
+#. module: account_analytic_line_tag
+#: code:addons/account_analytic_line_tag/models/account_analytic_line.py:17
+#, python-format
+msgid "Sales"
+msgstr "Vendite"
+
+#. module: account_analytic_line_tag
+#: model:ir.model.fields,field_description:account_analytic_line_tag.field_account_analytic_line__tag_id
+#: model:ir.model.fields,field_description:account_analytic_line_tag.field_hr_timesheet_switch__tag_id
+msgid "Tag"
+msgstr ""
+
+#. module: account_analytic_line_tag
+#: code:addons/account_analytic_line_tag/models/account_analytic_line.py:21
+#, python-format
+msgid "Timesheets"
+msgstr "Ore lavoro"
+

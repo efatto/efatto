@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_analytic_account_tree_project" model="ir.ui.view">
+        <field name="name">account.analytic.account.tree.project</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+        <field name="arch" type="xml">
+            <field name="balance" position="after">
+                <field name="total_invoiced" sum="Total Invoiced" string="Invoiced" groups="account.group_account_manager"/>
+                <field name="amount_remaining" sum="Total Remaining" string="Remaining" groups="account.group_account_manager"/>
+<!--                    <field name="amount_sal_to_invoice" sum="Total SAL To Invoice" groups="account.group_account_manager"/>-->
+                <field name="qty_ordered" sum="Ordered Qty" groups="account.group_account_manager"/>
+                <field name="hours_planned" sum="Planned Hours" groups="account.group_account_manager"/>
+                <field name="hours_residual" sum="Residual Hours" groups="account.group_account_manager"/>
+                <field name="progress_hours" widget="progressbar" groups="account.group_account_manager"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="manager_id"/>
+            </field>
+            <field name="debit" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="credit" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="balance" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="code" position="move"/>
+                <field name="last_invoice_date" groups="account.group_account_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_account_form_project" model="ir.ui.view">
+        <field name="name">account.analytic.account.form.project</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+        <field name="arch" type="xml">
+            <group name='main' position="after">
+                <group>
+                    <group>
+                        <field name="qty_ordered"/>
+                        <field name="hours_planned"/>
+                        <field name="hours_done"/>
+                        <field name="hours_residual"/>
+                        <field name="progress_hours" widget="progressbar"/>
+                    </group>
+                    <group>
+                        <field name="total_sale_form"/>
+                        <field name="total_invoiced_form"/>
+                        <field name="amount_remaining" style="font-weight: bold;"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

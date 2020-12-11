@@ -1,0 +1,161 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_analytic_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-11 10:58+0000\n"
+"PO-Revision-Date: 2020-12-11 10:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__manager_id
+msgid "Account Manager"
+msgstr "Gestore Conti"
+
+#. module: account_analytic_project
+#: model:ir.model,name:account_analytic_project.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Conto analitico"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__amount_remaining
+msgid "Computed using the formula: Sale Amount - Invoiced Amount"
+msgstr "Calcolato con la formula: Importo Venduto - Importo Fatturato"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__hours_delivered
+msgid "Delivered Hours"
+msgstr "Ore Consegnate"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__hours_done
+msgid "Done Hours"
+msgstr "Ore Fatte"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__date_end
+msgid "End Date"
+msgstr "Data di fine"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__hours_invoiced
+msgid "Hours Invoiced"
+msgstr "Ore Fatturate"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__hours_residual
+msgid "Hours planned - Hours done"
+msgstr "Ore pianificate - Ore fatte"
+
+#. module: account_analytic_project
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Invoiced"
+msgstr "Fatturato"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__last_invoice_date
+msgid "Last invoice Date"
+msgstr "Ultima Data Fattura"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__qty_ordered
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Ordered Qty"
+msgstr "Quantità ordinata"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__hours_planned
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Planned Hours"
+msgstr "Ore Pianificate"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__progress_hours
+msgid "Progress % of Hours done / Hours planned"
+msgstr "Progresso % Ore fatte / Ore pianificate"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__progress_hours
+msgid "Progress Hours"
+msgstr "Progresso Ore"
+
+#. module: account_analytic_project
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Remaining"
+msgstr "Residuo"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__amount_remaining
+msgid "Remaining Revenue"
+msgstr "Entrate Rimanenti"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__hours_residual
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Residual Hours"
+msgstr "Ore Residue"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__date_start
+msgid "Start Date"
+msgstr "Data di inizio"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__hours_delivered
+msgid "Sum hours delivered as shown in sale order lines"
+msgstr "Somma ore consegnate come mostrate nelle righe ordine di vendita"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__hours_done
+msgid "Sum hours done in timesheets"
+msgstr "Somma ore fatte nei fogli ore lavoro"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__hours_invoiced
+msgid "Sum hours invoiced as shown in sale order lines"
+msgstr "Somma ore fatturate come mostrato nelle righe ordine di vendita"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__hours_planned
+msgid "Sum hours planned in tasks"
+msgstr "Somma ora pianificate nei lavori"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,help:account_analytic_project.field_account_analytic_account__qty_ordered
+msgid "Sum qty ordered as shown in sale order lines"
+msgstr "Somma quantità ordinate come mostrato nelle righe ordine di vendita"
+
+#. module: account_analytic_project
+#: model:ir.model,name:account_analytic_project.model_project_task
+msgid "Task"
+msgstr "Lavoro"
+
+#. module: account_analytic_project
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.edit_project
+msgid "Team Members"
+msgstr "Iscritti al team"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__total_invoiced_form
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Total Invoiced"
+msgstr "Totale fatturato"
+
+#. module: account_analytic_project
+#: model_terms:ir.ui.view,arch_db:account_analytic_project.view_account_analytic_account_tree_project
+msgid "Total Remaining"
+msgstr "Totale Residuo"
+
+#. module: account_analytic_project
+#: model:ir.model.fields,field_description:account_analytic_project.field_account_analytic_account__total_sale_form
+msgid "Total Sales"
+msgstr "Totale Contratto"
+

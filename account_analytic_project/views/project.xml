@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project.open_view_project_all" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page name="members" string="Team Members">
+                    <field name="favorite_user_ids" widget="many2many_kanban" options="{'not_delete': True}">
+                        <kanban quick_create="false" create="true" delete="true">
+                            <field name="name"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click" style="position: relative">
+                                        <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                                        <div class="oe_module_vignette">
+                                            <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                            <div class="oe_module_desc">
+                                                <field name="name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_task_form2_inherited_sal">
+        <field name="name">project.task.form.inherited.sal</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+        <field name="arch" type="xml">
+            <field name="planned_hours" position="attributes">
+                <attribute name="groups">project.group_project_manager</attribute>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_task_tree2_inherited_sal">
+        <field name="name">project.task.tree.inherited.sal</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_tree2_inherited" />
+        <field name="arch" type="xml">
+            <field name="planned_hours" position="attributes">
+                <attribute name="groups">project.group_project_manager</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

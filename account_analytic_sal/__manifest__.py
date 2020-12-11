@@ -9,7 +9,7 @@
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
     'depends': [
-        'analytic',
+        'contract',
         'analytic_show_sale',
         'hr_timesheet',
         'sale_delivered_percent',

@@ -4,8 +4,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Analytic Show Invoice',
-    'summary': 'Button in analityc to show their invoices',
+    'name': 'Contract Show Invoice Amount',
+    'summary': 'Show invoiced amount in contract invoiced button',
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Domatix,'
@@ -13,10 +13,10 @@
               'Sergio Corato,'
               'Odoo Community Association (OCA)',
     'website': 'https://efatto.it',
-    'depends': ['account', 'analytic'],
+    'depends': ['account', 'contract'],
     'category': 'Sales Management',
     'data': [
-        'views/analytic_view.xml',
+        'views/contract.xml',
     ],
     'installable': True,
 }

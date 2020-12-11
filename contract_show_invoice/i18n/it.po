@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* contract_show_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-10 17:22+0000\n"
+"PO-Revision-Date: 2020-12-10 17:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: contract_show_invoice
+#: model_terms:ir.ui.view,arch_db:contract_show_invoice.contract_contract_form_view
+msgid "<span class=\"o_stat_text\">Invoiced</span>"
+msgstr "<span class=\"o_stat_text\">Fatturato</span>"
+
+#. module: contract_show_invoice
+#: model:ir.model,name:contract_show_invoice.model_contract_contract
+msgid "Contract"
+msgstr "Contratto"
+
+#. module: contract_show_invoice
+#: model_terms:ir.ui.view,arch_db:contract_show_invoice.contract_contract_form_view
+msgid "Invoices related with this contract"
+msgstr "Fatture collegate a questo contratto"
+
+#. module: contract_show_invoice
+#: model:ir.model.fields,field_description:contract_show_invoice.field_contract_contract__total_invoiced
+msgid "Total Invoiced"
+msgstr "Totale fatturato"
+

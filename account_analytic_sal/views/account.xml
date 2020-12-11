@@ -5,7 +5,6 @@
             <field name="name">account.analytic.account.inherit.sal</field>
             <field name="model">account.analytic.account</field>
             <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
-            <field name="priority" eval="9999"/>
             <field name="arch" type="xml">
                 <group name='main' position="after">
                     <field name="invoice_line_ids" invisible="1"/>

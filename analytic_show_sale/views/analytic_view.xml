@@ -14,14 +14,14 @@
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="sale.view_order_tree"/>
-        <field name="act_window_id" ref="act_analytic_sales"/>
+        <field name="act_window_id" ref="analytic_show_sale.act_analytic_sales"/>
     </record>
 
     <record id="action_analytic_show_sale_form" model="ir.actions.act_window.view">
         <field name="sequence" eval="2"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="sale.view_order_form"/>
-        <field name="act_window_id" ref="act_analytic_sales"/>
+        <field name="act_window_id" ref="analytic_show_sale.act_analytic_sales"/>
     </record>
 
     <record id="view_account_analytic_account_sale_tree" model="ir.ui.view">

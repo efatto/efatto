@@ -4,6 +4,10 @@ from openupgradelib import openupgrade
 xmlids_to_rename = [
     ('contract_show_sale.act_analytic_sales',
      'analytic_show_sale.act_analytic_sales'),
+    ('contract_show_sale.action_analytic_show_sale_tree',
+     'analytic_show_sale.action_analytic_show_sale_tree'),
+    ('contract_show_sale.action_analytic_show_sale_form',
+     'analytic_show_sale.action_analytic_show_sale_form'),
 ]
 
 

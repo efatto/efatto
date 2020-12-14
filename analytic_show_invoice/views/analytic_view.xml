@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="act_analytic_invoices" model="ir.actions.act_window">
+    <record id="act_analytic_invoice" model="ir.actions.act_window">
         <field name="context">{'search_default_analytic_account_ids':
             [active_id], 'default_analytic_account_ids': [active_id]}</field>
         <field name="name">Invoices</field>
         <field name="res_model">account.invoice</field>
         <field name="domain">[('analytic_account_ids','=',active_id), ('type','in', ['out_invoice', 'out_refund']), ('state', 'not in', ['draft', 'cancel'])]</field>
         <field name="search_view_id" ref="account.view_account_invoice_filter" />
+    </record>
+
+    <record id="action_analytic_show_invoice_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_tree"/>
+        <field name="act_window_id" ref="analytic_show_invoice.act_analytic_invoice"/>
+    </record>
+
+    <record id="action_analytic_show_invoice_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_form"/>
+        <field name="act_window_id" ref="analytic_show_invoice.act_analytic_invoice"/>
     </record>
 
     <record id="account_analytic_account_button_invoice" model="ir.ui.view">

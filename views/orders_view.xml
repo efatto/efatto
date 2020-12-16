@@ -24,6 +24,7 @@
             <calendar position="attributes">
                 <attribute name="date_start">max_commitment_date</attribute>
                 <attribute name="color">calendar_state</attribute>
+                <attribute name="mode">month</attribute>
             </calendar>
         </field>
     </record>

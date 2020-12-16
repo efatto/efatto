@@ -222,6 +222,7 @@
     <field name="arch" type="xml">
     <tree colors="grey:state == 'cancel';" string="Package Preparations">
       <field name="name"/>
+      <field name="ddt_number"/>
       <field name="partner_id"/>
       <field name="date"/>
       <field name="date_done"/>

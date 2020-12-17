@@ -38,20 +38,20 @@ class SaleOrder(models.Model):
         ('available', 'Available'),
     ]
     STATES_COLOR_INDEX_MAP = {
-        'to_evaluate': 0,
-        'to_evaluate_production': 0,
-        'to_produce': 5,
-        'to_receive': 4,
-        'production_ready': 1,
-        'production_started': 2, 
-        'to_pack': 6,
-        'production_done': 3,
-        'partially_delivered': 7,
-        'delivery_done': 8,
-        'available': 9,
+        'to_evaluate': '#aa309d',
+        'to_evaluate_production': '#aa309d',
+        'to_produce': '#0522ff',
+        'to_receive': '#c70000',
+        'production_ready': '#f8ca03',
+        'production_started': '#59b300',
+        'to_pack': '#a47c48',
+        'production_done': '#303030',
+        'partially_delivered': '#1e90ff',
+        'delivery_done': '#00e07a',
+        'available': '#30aa7a',
     }
 
-    color = fields.Integer(compute='_get_color')
+    color = fields.Char(compute='_get_color')
     revision = fields.Integer(default=1)
     calendar_state = fields.Selection(
         selection=STATES,
@@ -121,10 +121,8 @@ class SaleOrder(models.Model):
     @api.multi
     def _get_color(self):
         for order in self:
-            order.write({
-                'color': order.STATES_COLOR_INDEX_MAP.get(
-                    order.calendar_state, 0)
-            })
+            color = order.STATES_COLOR_INDEX_MAP.get(order.calendar_state, 0)
+            order.color = color
 
     @api.onchange('order_line', 'commitment_date')
     def _onchange_commitment_date(self):

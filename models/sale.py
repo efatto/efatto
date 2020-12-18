@@ -38,20 +38,20 @@ class SaleOrder(models.Model):
         ('available', 'Available'),
     ]
     STATES_COLOR_INDEX_MAP = {
-        'to_evaluate': '#aa309d',
-        'to_evaluate_production': '#aa309d',
-        'to_produce': '#0522ff',
-        'to_receive': '#c70000',
-        'production_ready': '#f8ca03',
-        'production_started': '#59b300',
-        'to_pack': '#a47c48',
-        'production_done': '#303030',
-        'partially_delivered': '#1e90ff',
-        'delivery_done': '#00e07a',
-        'available': '#30aa7a',
+        'to_evaluate': 302,
+        'to_evaluate_production': 302,
+        'to_produce': 307,
+        'to_receive': 306,
+        'production_ready': 303,
+        'production_started': 304,
+        'to_pack': 308,
+        'production_done': 305,
+        'partially_delivered': 309,
+        'delivery_done': 310,
+        'available': 311,
     }
 
-    color = fields.Char(compute='_get_color')
+    color = fields.Integer(compute='_get_color')
     revision = fields.Integer(default=1)
     calendar_state = fields.Selection(
         selection=STATES,

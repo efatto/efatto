@@ -38,6 +38,7 @@ class SaleOrder(models.Model):
         ('available', 'Available'),
     ]
     STATES_COLOR_INDEX_MAP = {
+        'to_process': 301,
         'to_evaluate': 302,
         'to_evaluate_production': 302,
         'to_produce': 307,

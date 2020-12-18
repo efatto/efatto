@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
     def _get_color(self):
         for order in self:
             color = order.STATES_COLOR_INDEX_MAP.get(order.calendar_state, 0)
-            order.color = color
+            order.color = color * -1
 
     @api.onchange('order_line', 'commitment_date')
     def _onchange_commitment_date(self):

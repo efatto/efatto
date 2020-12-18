@@ -52,7 +52,7 @@
             </notebook>
         </field>
     </record>
-<!-- this kanban view is to show the SO for each week (the columns are the weeks)  -->
+
     <record id="view_sale_order_kanban_delivery" model="ir.ui.view">
         <field name="name">sale.order.kanban.delivery</field>
         <field name="model">sale.order</field>
@@ -63,7 +63,7 @@
                 <field name="note"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_hyddemo_color_#{kanban_getcolor(record.color.raw_value)}">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}">
                         <div class="oe_kanban_content">
                             <h4><field name="name"/></h4>
                             <div style="margin-bottom: 5px"><field name="partner_id" widget="one2many"/></div>

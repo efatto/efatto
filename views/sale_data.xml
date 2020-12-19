@@ -11,7 +11,7 @@
       <field name="auto_delete" eval="True"/>
       <field name="body_html"><![CDATA[
 Dear ${object.partner_id.name},<br>
-The expected delivery date has changed from ${object.max_commitment_date or 'TBD'} to ${object.delivery_time},
+The expected delivery date has changed from ${object.commitment_date or 'TBD'} to ${object.max_commitment_date},
 we hope this won't be a problem.<br>
 The revision number for your order is now ${object.revision + 1}.<br>
 <br>

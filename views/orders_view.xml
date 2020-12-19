@@ -6,13 +6,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='other_information']/group/group/field[@name='commitment_date']" position="before">
-                <field name="max_commitment_date" invisible="0"/>
+                <field name="max_commitment_date"/>
                 <div>
                     <button name="alert_customer_changed_delivery" type="object"
                             string="Alert customer of change" class="oe_inline oe_link"
                     />
                 </div>
-                <!--  attrs="{'invisible': [('commitment_date', '&lt;=', max_commitment_date)]}"-->
             </xpath>
         </field>
     </record>

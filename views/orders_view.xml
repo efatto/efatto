@@ -62,7 +62,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
         <field name="view_type">form</field>
-        <field name="view_id" ref="view_sale_order_kanban_delivery"/>
+        <field name="view_id" ref="view_sale_order_kanban_color"/>
         <field name="view_mode">kanban,form,calendar</field>
         <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
         <field name="context">{'search_default_production_not_started': True}</field>

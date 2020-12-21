@@ -1,6 +1,34 @@
 <?xml version="1.0" ?>
 <odoo>
 
+    <record id="view_order_form_calendar_state" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='other_information']/group/group/field[@name='commitment_date']" position="before">
+                <field name="max_commitment_date"/>
+                <div>
+                    <button name="alert_customer_changed_delivery" type="object"
+                            string="Alert customer of change" class="oe_inline oe_link"
+                    />
+                </div>
+            </xpath>
+            <notebook position="before">
+                <group>
+                    <group>
+                        <label for="calendar_state"
+                              attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"/>
+                        <div class="oe_inline" attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}">
+                           <field name="calendar_state" />
+                           <button name="update_forecast_state" type="object"
+                                   string="Calculate" class="oe_inline oe_link"/>
+                        </div>
+                    </group>
+                </group>
+            </notebook>
+        </field>
+    </record>
+
     <record id="view_sale_order_calendar" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sale_order_calendar"/>

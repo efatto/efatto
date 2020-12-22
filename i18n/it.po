@@ -50,7 +50,7 @@ msgstr "Disponibile"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.order_form_priority
-msgid "Calculate"
+msgid "Compute"
 msgstr "Calcola"
 
 #. module: sale_order_calendar_state

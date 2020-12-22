@@ -21,7 +21,7 @@
                         <div class="oe_inline" attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}">
                            <field name="calendar_state" />
                            <button name="update_forecast_state" type="object"
-                                   string="Calculate" class="oe_inline oe_link"/>
+                                   string="Compute" class="oe_inline oe_link"/>
                         </div>
                     </group>
                 </group>

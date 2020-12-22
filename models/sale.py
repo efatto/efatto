@@ -18,6 +18,8 @@ DONE = 'production_done'
 DONE_DELIVERY = 'delivery_done'
 AVAILABLEREADY = 'available'
 PARTIALLYDELIVERED = 'partially_delivered'
+INVOICED = 'invoiced'
+SHIPPED = 'shipped'
 
 
 class SaleOrder(models.Model):
@@ -36,6 +38,8 @@ class SaleOrder(models.Model):
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),
         ('available', 'Available'),
+        ('invoiced', 'Invoiced'),
+        ('shipped', 'Shipped'),
     ]
     STATES_COLOR_INDEX_MAP = {
         'to_process': 301,
@@ -50,6 +54,8 @@ class SaleOrder(models.Model):
         'partially_delivered': 309,
         'delivery_done': 310,
         'available': 311,
+        'invoiced': 312,
+        'shipped': 313,
     }
 
     color = fields.Integer(compute='_get_color')
@@ -155,6 +161,8 @@ class SaleOrder(models.Model):
             AVAILABLEREADY,
             WAITING_FOR_PACKING,
             DONE_DELIVERY,
+            INVOICED,
+            SHIPPED,
         ]
         calendar_state = False
         if self.procurement_group_id:
@@ -230,9 +238,18 @@ class SaleOrder(models.Model):
                     calendar_states.append(
                         (PRODUCTION_STARTED, fields.Datetime.now())
                     )
+        # check if all lines of type product or consu of so are invoiced
+        if all([ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty for ol in
+                self.order_line if ol.product_id
+                and ol.product_id.type in ['product', 'consu']]):
+            calendar_states = [(INVOICED, fields.Datetime.now())]
+            # check if all invoices linked to SO have tracking_ref filled
+            if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
+                calendar_states = [(SHIPPED, fields.Datetime.now())]
         return calendar_states
 
-    @api.depends('order_line', 'picking_ids', 'picking_ids.state')
+    @api.depends('order_line', 'picking_ids', 'picking_ids.state',
+                 'invoice_ids', 'invoice_ids.carrier_tracking_ref')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

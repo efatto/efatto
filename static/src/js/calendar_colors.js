@@ -42,6 +42,8 @@ CalendarRenderer.include({
                 'partially_delivered': -309,   //'#1e90ff',
                 'delivery_done':  -310,    //'#00e07a',
                 'available' : -311,     //'#30aa7a',
+                'invoiced': -312,
+                'shipped': -313,
             }
         }
     }

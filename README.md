@@ -21,7 +21,7 @@ Cambiando la delivery date, ad es. da novembre 2014 a gennaio 2015 lo stato vien
 
 La stessa cosa succede trascinando l'ordine nella vista kanban.
 
-E' possibile forzare il ricalcolo dello stato cliccando “calculate” vicino a “a calendario”. Possono essere visualizzati dei messaggi d'errore:
+E' possibile forzare il ricalcolo dello stato cliccando “compute” vicino a “a calendario”. Possono essere visualizzati dei messaggi d'errore:
 
 Launch scheduler and/or check orderpoints: significa che c'è un procurement make to stock in eccezione e manca un order point per soddisfare la richiesta – se le regole sono corrette e lo scheduler è passato non dovrebbe succedere
 altri messaggi riguardano situazioni particolari, se capitano avvisateci

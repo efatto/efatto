@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo noupdate="0">
 
     <record id="email_template_delivery_date_changed" model="mail.template">
       <field name="name">Delivery Date Change Alert</field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-19 09:52+0000\n"
-"PO-Revision-Date: 2020-12-19 09:52+0000\n"
+"POT-Creation-Date: 2020-12-22 16:49+0000\n"
+"PO-Revision-Date: 2020-12-22 16:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "\n"
 "      "
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
 msgid "Alert customer of change"
 msgstr "Avvisa il cliente della modifica"
 
@@ -49,7 +49,7 @@ msgid "Available"
 msgstr "Disponibile"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.order_form_priority
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
 msgid "Compute"
 msgstr "Calcola"
 
@@ -59,12 +59,12 @@ msgid "Calendar State"
 msgstr "Stato di Calendario"
 
 #. module: sale_order_calendar_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__color
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order_color
 msgid "Color"
 msgstr "Colore"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
 msgid "Commitment date:"
 msgstr "Data Impegno:"
 
@@ -91,12 +91,17 @@ msgstr "Consegna completata"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_mail_compose_message
 msgid "Email composition wizard"
-msgstr "Wizard Creazione Email"
+msgstr "Procedura guidata composizione email"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "In Production"
 msgstr "In Produzione"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Invoiced"
+msgstr "Fatturato"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__max_commitment_date
@@ -104,9 +109,9 @@ msgid "Max Commitment Date"
 msgstr "Massima Data Impegno"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
 msgid "Max Commitment date:"
-msgstr "Massima Data Impegno:"
+msgstr "Massima data Impegno:"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -130,14 +135,14 @@ msgid "Partially delivered"
 msgstr "Parzialmente consegnato"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "Production Done"
 msgstr "Produzione Completata"
 
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di Produzione"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -162,12 +167,12 @@ msgstr "Pronto da produrre"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_mrp_product_produce
 msgid "Record Production"
-msgstr "Registrare la produzione"
+msgstr "Registrare la Produzione"
 
 #. module: sale_order_calendar_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__revision
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order_revision
 msgid "Revision"
-msgstr ""
+msgstr "Revisione"
 
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order
@@ -177,7 +182,12 @@ msgstr "Ordine di vendita"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga d'Ordine di Vendita"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Shipped"
+msgstr "Spedito"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -185,7 +195,7 @@ msgid "Some procurements not yet processed"
 msgstr "Alcuni acquisti non ancora processati"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "To Produce"
 msgstr "Da Produrre"
 
@@ -197,7 +207,7 @@ msgstr "Da processare"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_stock_picking
 msgid "Transfer"
-msgstr "Trasferisci"
+msgstr "Trasferimento"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0

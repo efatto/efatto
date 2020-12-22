@@ -10,6 +10,9 @@
                     <field name="valuation_price_unit"/>
                     <field name="valuation_price_subtotal"/>
                 </xpath>
+                <xpath expr="//group/group/field[@name='location_id']" position="attributes">
+                    <attribute name="domain">[]</attribute>
+                </xpath>
             </field>
         </record>
         <record id="view_inventory_form_date_valuation" model="ir.ui.view">

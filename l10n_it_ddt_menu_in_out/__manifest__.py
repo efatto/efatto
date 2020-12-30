@@ -3,7 +3,7 @@
 
 {
     'name': 'DDT in and out menu',
-    'version': '12.0.1.0.3',
+    'version': '12.0.1.0.4',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',

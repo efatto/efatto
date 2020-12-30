@@ -11,8 +11,7 @@
     'depends': [
         'l10n_it_ddt',
         'mrp',
-        'purchase',
-        'sale',
+        'purchase_line_procurement_group',
         'sale_stock',
         'sale_order_line_date',
         'web',

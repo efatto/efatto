@@ -53,9 +53,9 @@ il calendario invece riguarda ordini che hanno già generato acquisti e MO, attr
 Nel caso un fornitore ritardi la consegna, è opportuno cambiare la expected date nel PO parte “incoming shipments & invoices”, in modo che il calendario ne tenga conto.
 
 SC: nota:
-- SO centralina > so con nome centralina
-  > genera un MO
-    > controlla disponibilità
-      > produrre!
-       - stato in corso
-        > marca come completato quando la linea produzione ha prodotto
+SO centralina > so con nome centralina
+genera un MO
+controlla disponibilità
+produrre!
+stato in corso
+marca come completato quando la linea produzione ha prodotto

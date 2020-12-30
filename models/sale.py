@@ -248,7 +248,8 @@ class SaleOrder(models.Model):
                 calendar_states = [(SHIPPED, fields.Datetime.now())]
         return calendar_states
 
-    @api.depends('order_line', 'picking_ids', 'picking_ids.state')
+    @api.depends('order_line', 'order_line.qty_invoiced',
+                 'picking_ids', 'picking_ids.state')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

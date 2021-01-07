@@ -66,6 +66,7 @@ class SaleOrder(models.Model):
     # invoiced - ORANGE 312
     # shipped - GREEN 313
 
+    commitment_date = fields.Datetime(string='Scheduled Delivery Date')
     color = fields.Integer(compute='_get_color')
     revision = fields.Integer(default=1)
     calendar_state = fields.Selection(

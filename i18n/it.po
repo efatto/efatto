@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-22 16:49+0000\n"
-"PO-Revision-Date: 2020-12-22 16:49+0000\n"
+"POT-Creation-Date: 2021-01-07 15:31+0000\n"
+"PO-Revision-Date: 2021-01-07 15:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,11 +49,6 @@ msgid "Available"
 msgstr "Disponibile"
 
 #. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
-msgid "Compute"
-msgstr "Calcola"
-
-#. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__calendar_state
 msgid "Calendar State"
 msgstr "Stato di Calendario"
@@ -67,6 +62,11 @@ msgstr "Colore"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
 msgid "Commitment date:"
 msgstr "Data Impegno:"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
+msgid "Compute"
+msgstr "Calcola"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__date_ready_to_deliver
@@ -97,6 +97,11 @@ msgstr "Procedura guidata composizione email"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "In Production"
 msgstr "In Produzione"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -182,7 +187,12 @@ msgstr "Ordine di vendita"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga d'Ordine di Vendita"
+msgstr "Linea d'ordine di vendita"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__commitment_date
+msgid "Scheduled Delivery Date"
+msgstr "Data Consegna Programmata"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -193,6 +203,11 @@ msgstr "Spedito"
 #: selection:sale.order,calendar_state:0
 msgid "Some procurements not yet processed"
 msgstr "Alcuni acquisti non ancora processati"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,help:sale_order_calendar_state.field_sale_order__commitment_date
+msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
+msgstr "Questa è la data di consegna promessa al cliente. Se è definita, l'ordine di consegna sarà programmato in base a questa data piuttosto che a quella basata sui tempi di consegna del prodotto."
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color

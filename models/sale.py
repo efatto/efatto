@@ -124,15 +124,26 @@ class SaleOrder(models.Model):
                 continue
             order.delivery_week = order.commitment_date.isocalendar()[1]
 
-    @api.depends('order_line')
+    @api.depends('order_line.commitment_date',
+                 'commitment_date',
+                 'confirmation_date')
     def _compute_max_commitment_date(self):
         for order in self.filtered(
-                lambda x: any(x.mapped('order_line.commitment_date'))):
-            order.max_commitment_date = max(
-                order.order_line.filtered(
-                    lambda z: z.commitment_date
-                ).mapped('commitment_date')
-            )
+                lambda x:
+                x.commitment_date or
+                x.confirmation_date or
+                any(x.mapped('order_line.commitment_date'))):
+            dates = []
+            if order.commitment_date:
+                dates.extend([order.commitment_date])
+            if order.confirmation_date:
+                dates.extend([order.confirmation_date])
+            line_dates = order.order_line.filtered(
+                lambda z: z.commitment_date
+            ).mapped('commitment_date')
+            if line_dates:
+                dates.extend(line_dates)
+            order.max_commitment_date = max(dates)
 
     @api.multi
     def _get_color(self):

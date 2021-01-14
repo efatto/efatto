@@ -66,6 +66,23 @@ class SaleOrder(models.Model):
     # invoiced - ORANGE 312
     # shipped - GREEN 313
 
+    # quando si crea l'ordine di vendita e quindi arriva in WHS automaticamente,
+    # lo stato dell'SO deve essere 'da processare' (o 'disponibile'),
+    # dunque di colore bianco - il magazzino lo vede in WHS ma non lo sta ancora
+    # preparando, in attesa di miei comandi.
+    #
+    # Quando poi l'utente clicca su 'controlla disponibilità' e lo stato dell'OUT
+    # passa a 'pronto', lo stato dell'SO deve passare a 'in preparazione a magazzino'
+    # e prendere il colore giallo - il magazzino ha l'autorizzazione a prelevare
+    # l'ordine (anche perché porto giù il foglio con la distinta di prelievo dell'OUT).
+    #
+    # Lo stato 'disponibile' evidenzia ordini per il quale materiale è appunto
+    # disponibile, ma seguendo la logica di cui sopra, dovrebbe rimanere bianco,
+    # in quanto sarebbe ancora da processare/stampare.
+    #
+    # Detto ciò, l'unico colore giallo deve essere dato allo stato SO
+    # 'in preparazione a magazzino', tutto il resto rimane bianco.
+
     commitment_date = fields.Datetime(string='Scheduled Delivery Date')
     color = fields.Integer(compute='_get_color')
     revision = fields.Integer(default=1)
@@ -170,6 +187,7 @@ class SaleOrder(models.Model):
         # ed una con stato MISSING_COMPONENTS_BUY
         # l'ordine deve avere stato MISSING_COMPONENTS_BUY, perchè peggiore.
         cal_order = [
+            TOPROCESS,
             NOT_EVALUATED,
             PRODUCTION_NOT_EVALUATED,
             MISSING_COMPONENTS_BUY,
@@ -201,11 +219,11 @@ class SaleOrder(models.Model):
             ('group_id', '=', procurement.id),
         ])
         if picking_ids:
-            calendar_state = WAITING_FOR_PACKING  # == AVAILABLEREADY
+            calendar_state = TOPROCESS
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
             elif all([x.state == 'assigned' for x in picking_ids]):
-                calendar_state = AVAILABLEREADY
+                calendar_state = WAITING_FOR_PACKING
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED

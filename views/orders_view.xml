@@ -58,8 +58,8 @@
                         <div class="oe_kanban_content">
                             <h4><field name="name"/></h4>
                             <div style="margin-bottom: 5px"><field name="partner_id" widget="one2many"/></div>
-                            <div>Commitment date: <field name="commitment_date"/></div>
-                            <div>Max Commitment date: <field name="max_commitment_date"/></div>
+                            <div>Scheduled Delivery Date: <field name="commitment_date"/></div>
+                            <div>Max Scheduled Delivery Date: <field name="max_commitment_date"/></div>
                         </div>
                         </div>
                     </t>

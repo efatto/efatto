@@ -96,6 +96,7 @@ class SaleOrder(models.Model):
     max_commitment_date = fields.Datetime(
         compute='_compute_max_commitment_date',
         store=True,
+        string='Max Scheduled Delivery Date',
         oldname='last_agreed_delivery_date')
     delivery_week = fields.Integer(
         compute='_get_delivery_week',

@@ -48,7 +48,7 @@ class SaleOrder(models.Model):
         'to_produce': 301,
         'to_receive': 301,
         'production_ready': 301,
-        'production_started': 301,
+        'production_started': 304,
         'to_pack': 308,
         'production_done': 305,
         'partially_delivered': 309,
@@ -59,9 +59,10 @@ class SaleOrder(models.Model):
     }
 
     # to_process - to_evaluate - to_evaluate_production - available - WHITE 301
-    # to_produce - to_receive - production_ready - production_started - WHITE 301
+    # to_produce - to_receive - production_ready - WHITE 301
     # to_pack - YELLOW 308
     # partially_delivered - CYAN 309
+    # production_started - PURPLE 304
     # production_done - delivery_done - BLACK 305
     # invoiced - ORANGE 312
     # shipped - GREEN 313

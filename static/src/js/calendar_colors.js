@@ -36,7 +36,7 @@ CalendarRenderer.include({
                 'to_produce': -301,
                 'to_receive': -301,
                 'production_ready': -301,
-                'production_started': -301,
+                'production_started': -304,
                 'to_pack': -308,
                 'production_done': -305,
                 'partially_delivered': -309,

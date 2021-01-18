@@ -1,6 +1,9 @@
 .oe_kanban_color_301 {
     background-color: white !important;
 }
+.oe_kanban_color_304 {
+    background-color: purple !important;
+}
 .oe_kanban_color_305 {
     background-color: black !important;
 }
@@ -21,6 +24,12 @@
             color: black !important;
             background-color: white !important;
             border-color: white !important;
+            opacity: 0.7;
+}
+.o_calendar_color_304 {
+            color: black !important;
+            background-color: purple !important;
+            border-color:  purple !important;
             opacity: 0.7;
 }
 .o_calendar_color_305 {
@@ -56,6 +65,9 @@
 
 .o_underline_color_301 {
             border-bottom: 4px solid white;
+}
+.o_underline_color_304 {
+            border-bottom: 4px solid purple;
 }
 .o_underline_color_305 {
             border-bottom: 4px solid black;

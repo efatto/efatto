@@ -221,7 +221,7 @@ class SaleOrder(models.Model):
             ('group_id', '=', procurement.id),
         ])
         if picking_ids:
-            calendar_state = TOPROCESS
+            calendar_state = []
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
             elif all([x.state == 'assigned' for x in picking_ids]):
@@ -229,7 +229,8 @@ class SaleOrder(models.Model):
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED
-            calendar_states.append((calendar_state, fields.Datetime.now()))
+            if calendar_state:
+                calendar_states.append((calendar_state, fields.Datetime.now()))
         # this is needed if picking are not done only i presume, tocheck
         # group_id in purchase.order
         purchase_line_ids = self.env['purchase.order.line'].search([
@@ -286,6 +287,8 @@ class SaleOrder(models.Model):
             # check if all invoices linked to SO have tracking_ref filled
             if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
                 calendar_states = [(SHIPPED, fields.Datetime.now())]
+        if not calendar_states:
+            calendar_states = [(TOPROCESS, fields.Datetime.now())]
         return calendar_states
 
     @api.depends('order_line', 'order_line.qty_invoiced',

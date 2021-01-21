@@ -1,10 +1,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields
 from odoo.tests.common import TransactionCase
-from odoo.addons.base_external_dbsource.exceptions import ConnectionSuccessError
-from odoo.exceptions import UserError
 
 
 class TestSaleOrderCalendarState(TransactionCase):

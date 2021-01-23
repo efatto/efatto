@@ -10,8 +10,9 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[last()]" position="after">
                 <page name="members" string="Team Members">
-                    <field name="favorite_user_ids" widget="many2many_kanban" options="{'not_delete': True}">
+                    <field name="favorite_user_ids" widget="many2many" options="{'not_delete': True}">
                         <kanban quick_create="false" create="true" delete="true">
+                            <field name="id"/>
                             <field name="name"/>
                             <templates>
                                 <t t-name="kanban-box">

@@ -38,7 +38,7 @@ class TestSaleOrderCalendarState(TransactionCase):
         self._create_sale_order_line(order1, self.product1, 5)
         order1.action_confirm()
         self.assertEqual(order1.state, 'sale')
-        self.assertEqual(order1.calendar_state, 'available')
+        self.assertEqual(order1.calendar_state, 'to_pack')
         picking = order1.picking_ids[0]
         picking.action_assign()
         for sml in picking.move_lines.mapped('move_line_ids'):

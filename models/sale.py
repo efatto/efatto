@@ -96,44 +96,13 @@ class SaleOrder(models.Model):
         oldname='a_calendario')
     max_commitment_date = fields.Datetime(
         compute='_compute_max_commitment_date',
+        inverse='_set_max_commitment_date',
         store=True,
         string='Max Scheduled Delivery Date',
         oldname='last_agreed_delivery_date')
     delivery_week = fields.Integer(
         compute='_get_delivery_week',
         store=True)
-        # inverse='_set_delivery_week',
-
-    # @api.onchange('delivery_week')
-    # def _set_delivery_week(self):
-    #     # We must use max_commitment_date because it's the only one that can
-    #     # always be modified
-    #     # the kanban seems to work fine but  the delivery_week gets only the
-    #     # isocalendar[1] we only have the week number and since 2018 is near,
-    #     # isnt it possible we have some problems if we change the date from december
-    #     # to january
-    #     if self.state == 'sale' and self.delivery_week:
-    #         # get the day max_commitment_date (the old date),
-    #         # get the new delivery week,
-    #         # set the new lastagreeddate to the old day of the week on the new delivery
-    #         # week
-    #         if self.commitment_date:
-    #             if not self.max_commitment_date:
-    #                 self.max_commitment_date = self.commitment_date
-    #             old_delivery_week = self.max_commitment_date.isocalendar()[1]
-    #             new_date = self.max_commitment_date + relativedelta(
-    #                 days=(self.delivery_week - old_delivery_week) * 7)
-    #         else:
-    #             new_iso_date = fields.Datetime.now().replace(
-    #
-    #             )
-    #             new_iso_date = str(dt.datetime.now().year) + '-' + str(
-    #                 self.delivery_week) + '-1'
-    #             new_date = fields.Datetime.from_string(new_iso_date, "%Y-%W-%w")
-    #             self.commitment_date = new_date
-    #
-    #         new_date_string = new_date.strftime(DATE_FORMAT)
-    #         self.max_commitment_date = new_date_string
 
     @api.depends('commitment_date')
     def _get_delivery_week(self):
@@ -142,6 +111,11 @@ class SaleOrder(models.Model):
                 order.delivery_week = False
                 continue
             order.delivery_week = order.commitment_date.isocalendar()[1]
+
+    @api.multi
+    def _set_max_commitment_date(self):
+        for order in self:
+            order.order_line.write({'commitment_date': order.max_commitment_date})
 
     @api.depends('order_line.commitment_date',
                  'commitment_date',

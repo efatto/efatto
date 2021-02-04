@@ -32,8 +32,10 @@
         'stock_picking_package_preparation',
         'l10n_it_ddt',
         'web_widget_digitized_signature',
+        'report_aeroo_parser',
     ],
     'data': [
+        'data/reports.xml',
         'views/sale.xml',
         'views/stock.xml',
         'views/config.xml',

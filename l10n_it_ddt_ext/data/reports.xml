@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="stock.action_report_picking_parcel_label" model="ir.actions.report.xml">
+            <field name="name">Parcel label</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">stock.picking.package.preparation</field>
+            <field name="report_name">stock.report_picking_parcel_label</field>
+            <field name="report_type">aeroo</field>
+            <field name="tml_source">file</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" eval="ref('report_aeroo.report_mimetypes_pdf_odt')"/>
+            <field name="parser_loc">report_aeroo_parser/models/parser.py</field>
+            <field name="report_rml">l10n_it_ddt_ext/data/parcel_label.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="attachment"/>
+            <field name="attachment_use" eval="0"/>
+        </record>
+    </data>
+</openerp>
+

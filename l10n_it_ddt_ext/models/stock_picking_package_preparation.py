@@ -141,3 +141,8 @@ class StockPickingPackagePreparation(models.Model):
                     self.transportation_method_id = \
                         self.ddt_type_id.transportation_method_id.id \
                         if self.ddt_type_id.transportation_method_id else False
+
+    @api.multi
+    def print_parcel_label(self):
+        return self.env['report'].get_action(
+            self, 'stock.report_picking_parcel_label')

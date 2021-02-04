@@ -13,7 +13,11 @@
             <button name="action_cancel" states="draft,in_pack" icon="STOCK_CANCEL" groups="base.group_user" type="object"/>
             <button name="action_draft" states="cancel" string="Reset to draft" type="object" class="oe_highlight" groups="base.group_user"/>
             <button name="%(l10n_it_ddt.action_report_ddt)d" icon="STOCK_PRINT" type="action" class="oe_highlight" groups="base.group_user"/>
-            <field name="state" invisible="1"/>
+            <button name="print_parcel_label"
+                    string="Print Parcel Label"
+                    groups="stock.group_stock_user"
+                    type="object"/>
+              <field name="state" invisible="1"/>
           </header>
           <sheet>
           <field name="name" class="oe_inline" invisible="1" readonly="1"/>

@@ -257,7 +257,7 @@ class SaleOrder(models.Model):
         if all([ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty for ol in
                 self.order_line if ol.product_id
                 and ol.product_id.type in ['product', 'consu']])\
-                or self.state == 'invoiced':
+                or self.state == 'invoiced' or self.force_invoiced:
             calendar_states = [(INVOICED, fields.Datetime.now())]
             # check if all invoices linked to SO have tracking_ref filled
             if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):

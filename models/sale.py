@@ -227,7 +227,7 @@ class SaleOrder(models.Model):
                         # between buy and maufacture products
                         calendar_states.append((AVAILABLEREADY, fields.Datetime.now()))
         mrp_production_ids = self.env['mrp.production'].search([
-            ('procurement_group_id', '=', procurement.id),
+            ('sale_id', '=', procurement.sale_id.id),
         ])
         if mrp_production_ids:
             for mrp_production in mrp_production_ids:

@@ -8,7 +8,9 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.multi
-    @api.depends('analytic_line_ids.project_id')
+    @api.depends('analytic_line_ids.project_id',
+                 'analytic_line_ids.project_id.task_ids',
+                 'analytic_line_ids.project_id.task_ids.planned_hours')
     def _compute_qty_delivered(self):
         """
         Function to correct the display of the delivered quantity on

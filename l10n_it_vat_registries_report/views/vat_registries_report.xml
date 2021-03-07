@@ -6,6 +6,19 @@
         <xpath expr="//div[hasclass('article')]/table" position="attributes">
             <attribute name="style">width:100%; font-size: 11px;</attribute>
         </xpath>
+        <xpath expr="//div[hasclass('article')]/table" position="after">
+            <colgroup>
+                <col span="1" style="width: 7%;"/>
+                <col span="1" style="width: 8%;"/>
+                <col span="1" style="width: 4%;"/>
+                <col span="1" style="width: 6%;"/>
+                <col span="1" style="width: 8%;"/>
+                <col span="1" style="width: 40%;"/>
+                <col span="1" style="width: 9%;"/>
+                <col span="1" style="width: 9%;"/>
+                <col span="1" style="width: 9%;"/>
+            </colgroup>
+        </xpath>
         <xpath expr="//tr[@name='vat_header_invoice']" position="attributes">
             <attribute name="style">page-break-inside: avoid; border:1px solid #A1A1A1;</attribute>
         </xpath>

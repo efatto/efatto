@@ -3,6 +3,9 @@
     <template id="report_registro_iva"
               name="report_registro_iva_layouted"
               inherit_id="l10n_it_vat_registries.report_registro_iva">
+        <xpath expr="//div[hasclass('article')]/table" position="attributes">
+            <attribute name="style">width:100%; font-size: 11px;</attribute>
+        </xpath>
         <xpath expr="//tr[@name='vat_header_invoice']" position="attributes">
             <attribute name="style">page-break-inside: avoid; border:1px solid #A1A1A1;</attribute>
         </xpath>

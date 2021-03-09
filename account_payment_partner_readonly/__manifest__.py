@@ -4,6 +4,7 @@
     'name': 'Write account payment order on open invoices',
     'version': '12.0.1.0.0',
     'category': 'Accounting',
+    'license': 'AGPL-3',
     'description':
         'Write account payment order on open invoices',
     'author': 'Sergio Corato',

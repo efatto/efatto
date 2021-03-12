@@ -2,7 +2,7 @@
 <templates>
     <div t-extend="sale_stock.qtyAtDate">
         <t t-jquery="t[t-if^='widget.data.virtual_available_at_date']" t-operation="attributes">
-            <attribute name="t-if">widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and !widget.data.is_mto or widget.data.scheduled_date &gt; widget.data.commitment_date and widget.data.is_mto</attribute>
+            <attribute name="t-if">widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and !widget.data.is_mto and widget.data.scheduled_date &gt; widget.data.commitment_date or widget.data.scheduled_date &gt; widget.data.commitment_date and widget.data.is_mto</attribute>
         </t>
     </div>
 </templates>

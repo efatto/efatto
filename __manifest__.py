@@ -16,5 +16,8 @@
     ],
     "data": [
     ],
+    "qweb": [
+        "static/src/xml/qty_at_date.xml",
+    ],
     "installable": True
 }

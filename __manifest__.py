@@ -12,7 +12,7 @@
     2. do not set scheduled date equal to commitment date,""",
     "depends": [
         "mrp",
-        "sale_stock",
+        "sale_stock_info_popup",
     ],
     "data": [
     ],

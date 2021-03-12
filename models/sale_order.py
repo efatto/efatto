@@ -17,6 +17,7 @@ class SaleOrderLine(models.Model):
         """ Based on _compute_free_qty method of sale.order.line
                     model in Odoo v13 'sale_stock' module.
                 """
+        super()._compute_qty_at_date()
         qty_processed_per_product = defaultdict(lambda: 0)
         grouped_lines = defaultdict(lambda: self.env['sale.order.line'])
         now = fields.Datetime.now()
@@ -24,18 +25,15 @@ class SaleOrderLine(models.Model):
             if not line.display_qty_widget:
                 continue
             line.warehouse_id = line.order_id.warehouse_id
-            # REMOVE use of commitment_date for scheduled date
-            # if line.order_id.commitment_date:
-            #     date = line.order_id.commitment_date
-            # else:
+            # REMOVE use of commitment_date as scheduled date shown in popup
             if line.order_id.state in ['sale', 'done']:
                 confirm_date = line.order_id.date_order
             else:
                 confirm_date = now
-            lead_date = confirm_date + timedelta(line.customer_lead or 0.0)
             # add produce_delay to customer_lead (equal to line.product_id.sale_delay)
-            date = lead_date + timedelta(
-                line.product_id.produce_delay or 0.0)
+            date = confirm_date + timedelta(
+                days=((line.customer_lead or 0.0) +
+                      (line.product_id.produce_delay or 0.0)))
             grouped_lines[(line.warehouse_id.id, date)] |= line
         treated = self.browse()
         for (warehouse, scheduled_date), lines in grouped_lines.items():
@@ -69,7 +67,7 @@ class SaleOrder(models.Model):
     @api.model
     def _get_customer_lead(self, product_tmpl_id):
         super()._get_customer_lead(product_tmpl_id)
-        return product_tmpl_id.sale_delay + product_tmpl_id.produce_delay
+        return (product_tmpl_id.sale_delay + product_tmpl_id.produce_delay)
 
     @api.depends('picking_policy')
     def _compute_expected_date(self):
@@ -81,9 +79,9 @@ class SaleOrder(models.Model):
                  ) if order.state == 'sale' else fields.Datetime.now())
             for line in order.order_line.filtered(
                     lambda x: x.state != 'cancel' and not x._is_delivery()):
-                dt_lead = confirm_date + timedelta(days=line.customer_lead or 0.0)
-                dt = dt_lead + timedelta(
-                    days=line.product_id.produce_delay or 0.0)
+                dt = confirm_date + timedelta(
+                    days=((line.customer_lead or 0.0) +
+                          (line.product_id.produce_delay or 0.0)))
                 dates_list.append(dt)
             if dates_list:
                 expected_date = min(dates_list) if order.picking_policy == 'direct' \

@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends('product_id', 'customer_lead', 'product_uom_qty',
                  'order_id.warehouse_id', 'order_id.commitment_date',
-                 'product_id.produce_delay')
+                 'product_id.produce_delay', 'product_id.purchase_delay')
     def _compute_qty_at_date(self):
         """ Based on _compute_free_qty method of sale.order.line
                     model in Odoo v13 'sale_stock' module.
@@ -32,8 +32,12 @@ class SaleOrderLine(models.Model):
                 confirm_date = now
             # add produce_delay to customer_lead (equal to line.product_id.sale_delay)
             date = confirm_date + timedelta(
-                days=((line.customer_lead or 0.0) +
-                      (line.product_id.produce_delay or 0.0)))
+                days=(
+                    (line.customer_lead or 0.0) +
+                    (line.product_id.produce_delay or 0.0) +
+                    (line.product_id.purchase_delay or 0.0)
+                )
+            )
             grouped_lines[(line.warehouse_id.id, date)] |= line
         treated = self.browse()
         for (warehouse, scheduled_date), lines in grouped_lines.items():
@@ -67,7 +71,11 @@ class SaleOrder(models.Model):
     @api.model
     def _get_customer_lead(self, product_tmpl_id):
         super()._get_customer_lead(product_tmpl_id)
-        return (product_tmpl_id.sale_delay + product_tmpl_id.produce_delay)
+        return (
+            product_tmpl_id.sale_delay +
+            product_tmpl_id.produce_delay +
+            product_tmpl_id.purchase_delay
+        )
 
     @api.depends('picking_policy')
     def _compute_expected_date(self):
@@ -80,8 +88,12 @@ class SaleOrder(models.Model):
             for line in order.order_line.filtered(
                     lambda x: x.state != 'cancel' and not x._is_delivery()):
                 dt = confirm_date + timedelta(
-                    days=((line.customer_lead or 0.0) +
-                          (line.product_id.produce_delay or 0.0)))
+                    days=(
+                        (line.customer_lead or 0.0) +
+                        (line.product_id.produce_delay or 0.0) +
+                        (line.product_id.purchase_delay or 0.0)
+                    )
+                )
                 dates_list.append(dt)
             if dates_list:
                 expected_date = min(dates_list) if order.picking_policy == 'direct' \

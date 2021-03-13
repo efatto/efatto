@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Ernesto Tejeda
+# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from collections import defaultdict
@@ -12,7 +13,8 @@ class SaleOrderLine(models.Model):
 
     @api.depends('product_id', 'customer_lead', 'product_uom_qty',
                  'order_id.warehouse_id', 'order_id.commitment_date',
-                 'product_id.produce_delay', 'product_id.purchase_delay')
+                 'product_id.produce_delay', 'product_id.purchase_delay',
+                 'product_id.sale_delay')
     def _compute_qty_at_date(self):
         """ Based on _compute_free_qty method of sale.order.line
                     model in Odoo v13 'sale_stock' module.
@@ -43,7 +45,7 @@ class SaleOrderLine(models.Model):
         for (warehouse, scheduled_date), lines in grouped_lines.items():
             for line in lines:
                 product = line.product_id.with_context(
-                    to_date=scheduled_date, warehouse=warehouse)
+                    to_date=line.commitment_date, warehouse=warehouse)
                 qty_available = product.qty_available
                 free_qty = product.free_qty
                 virtual_available = product.virtual_available

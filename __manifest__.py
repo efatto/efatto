@@ -14,6 +14,7 @@
     3. set icon of stock info red accordingly.""",
     "depends": [
         "mrp",
+        "purchase_stock",
         "sale_stock_info_popup",
     ],
     "data": [

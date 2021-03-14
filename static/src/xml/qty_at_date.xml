@@ -11,6 +11,9 @@
     <div t-extend="sale_stock.QtyDetailPopOver">
         <t t-jquery="table > tbody > t > tr > td > small:first" t-operation="replace">
             <small>First delivery date available <span t-esc="data.delivery_date"/></small>
+            <div>
+            <small>Sale delay to customer <b><span t-esc="data.customer_lead"/> days</b></small>
+            </div>
         </t>
     </div>
 </templates>

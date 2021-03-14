@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
             for line in lines:
                 product = line.product_id.with_context(
                     to_date=(line.commitment_date + timedelta(
-                        days=-line.product_id.sale_delay or 0.0)
+                        days=-(line.product_id.sale_delay or 0.0))
                     ), warehouse=warehouse)
                 qty_available = product.qty_available
                 free_qty = product.free_qty

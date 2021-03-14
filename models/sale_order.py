@@ -17,8 +17,8 @@ class SaleOrderLine(models.Model):
                  'product_id.sale_delay')
     def _compute_qty_at_date(self):
         """ Based on _compute_free_qty method of sale.order.line
-                    model in Odoo v13 'sale_stock' module.
-                """
+            model in Odoo v13 'sale_stock' module.
+        """
         super()._compute_qty_at_date()
         qty_processed_per_product = defaultdict(lambda: 0)
         grouped_lines = defaultdict(lambda: self.env['sale.order.line'])
@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
             line.warehouse_id = line.order_id.warehouse_id
             # REMOVE use of commitment_date as scheduled date shown in popup
             if line.order_id.state in ['sale', 'done']:
-                confirm_date = line.order_id.date_order
+                confirm_date = line.order_id.confirmation_date
             else:
                 confirm_date = now
             # add produce_delay to customer_lead (equal to line.product_id.sale_delay)

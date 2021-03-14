@@ -44,11 +44,10 @@ class SaleOrderLine(models.Model):
         treated = self.browse()
         for (warehouse, scheduled_date), lines in grouped_lines.items():
             for line in lines:
-                to_date = (
-                    line.commitment_date + timedelta(
-                        days=-(line.customer_lead or 0.0)
-                    ) if line.customer_lead else line.commitment_date
-                )
+                to_date = line.commitment_date or line.scheduled_date
+                if line.customer_lead:
+                    to_date = to_date + timedelta(
+                        days=-(line.customer_lead or 0.0))
                 product = line.product_id.with_context(
                     to_date=to_date, warehouse=warehouse)
                 qty_available = product.qty_available

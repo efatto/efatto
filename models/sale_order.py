@@ -35,7 +35,7 @@ class SaleOrderLine(models.Model):
             # add produce_delay to customer_lead (equal to line.product_id.sale_delay)
             date = confirm_date + timedelta(
                 days=(
-                    (line.customer_lead or 0.0) +
+                    (line.product_id.sale_delay or 0.0) +
                     (line.product_id.produce_delay or 0.0) +
                     (line.product_id.purchase_delay or 0.0)
                 )
@@ -45,9 +45,9 @@ class SaleOrderLine(models.Model):
         for (warehouse, scheduled_date), lines in grouped_lines.items():
             for line in lines:
                 to_date = line.commitment_date or line.scheduled_date
-                if line.customer_lead:
+                if line.product_id.sale_delay:
                     to_date = to_date + timedelta(
-                        days=-(line.customer_lead or 0.0))
+                        days=-(line.product_id.sale_delay or 0.0))
                 product = line.product_id.with_context(
                     to_date=to_date, warehouse=warehouse)
                 qty_available = product.qty_available
@@ -95,7 +95,7 @@ class SaleOrder(models.Model):
                     lambda x: x.state != 'cancel' and not x._is_delivery()):
                 dt = confirm_date + timedelta(
                     days=(
-                        (line.customer_lead or 0.0) +
+                        (line.product_id.sale_delay or 0.0) +
                         (line.product_id.produce_delay or 0.0) +
                         (line.product_id.purchase_delay or 0.0)
                     )

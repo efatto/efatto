@@ -44,13 +44,15 @@ class ProductProduct(models.Model):
 
     def _search_bookmarked_qty(self, operator, value):
         # TDE FIXME: should probably clean the search methods
-        return self._search_product_bookmarked_quantity(operator, value, 'bookmarked_qty')
+        return self._search_product_bookmarked_quantity(
+            operator, value, 'bookmarked_qty')
 
     def _compute_bookmarked_quantities_dict(
             self, lot_id, owner_id, package_id, from_date=False, to_date=False):
         res = super()._compute_quantities_dict(
             lot_id, owner_id, package_id, from_date, to_date)
-        domain_sol = [('product_id', 'in', self.ids), ('order_id.bookmarked', '=', True),
+        domain_sol = [('product_id', 'in', self.ids),
+                      ('order_id.bookmarked', '=', True),
                       ('state', 'not in', ('cancel', 'sale', 'done'))]
         SaleOrderLine = self.env['sale.order.line']
         sol_res = dict((

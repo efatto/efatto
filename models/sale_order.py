@@ -93,12 +93,10 @@ class SaleOrder(models.Model):
                  ) if order.state == 'sale' else fields.Datetime.now())
             for line in order.order_line.filtered(
                     lambda x: x.state != 'cancel' and not x._is_delivery()):
-                dt = confirm_date + timedelta(
-                    days=(
-                        (line.product_id.sale_delay or 0.0) +
-                        (line.product_id.produce_delay or 0.0) +
-                        (line.product_id.purchase_delay or 0.0)
-                    )
+                fields_list = ['sale_delay', 'produce_delay', 'purchase_delay']
+                data = line.product_id.read(fields_list)
+                dt = confirm_date + timedelta(days=sum(
+                    [sum([x[f] or 0.0 for x in data if x.get(f)]) for f in fields_list])
                 )
                 dates_list.append(dt)
             if dates_list:

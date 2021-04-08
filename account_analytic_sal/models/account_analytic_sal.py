@@ -44,7 +44,7 @@ class AccountAnalyticSal(models.Model):
     )
     percent_toinvoice = fields.Float(
         'SAL percent to invoice',
-        digits=dp.get_precision('Account'))
+        digits=dp.get_precision('Account SAL'))
     amount_toinvoice = fields.Monetary(
         'SAL amount to invoice',
         compute=compute_invoiced_sal,

@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Sale Bookmark',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.3',
     'author': 'Sergio Corato',
     'category': 'Tools',
     'license': 'AGPL-3',

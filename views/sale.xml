@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="bookmarked" attrs="{'invisible': ['|', ('bookmarked', '=', False), ('bookmarked_manual', '=', True)]}"/>
-                <field name="bookmarked_manual" attrs="{'invisible': 1}"/>
+                <field name="bookmarked_manual"/>
             </field>
         </field>
     </record>

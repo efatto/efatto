@@ -48,7 +48,7 @@
         <field name="name">sale.order.kanban.color</field>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
-            <kanban class="oe_background_gray" default_group_by="delivery_week" quick_create="false">
+            <kanban class="oe_background_grey" default_group_by="delivery_week" quick_create="false">
                 <field name="delivery_week"/>
                 <field name="color"/>
                 <field name="note"/>

@@ -45,6 +45,9 @@
                 <button name="%(l10n_it_ricevute_bancarie.riba_unsolved_action)d" position="attributes">
                     <attribute name="attrs">{'invisible':['|',('type','=','incasso'),('state','not in',['accredited','accrued'])]}</attribute>
                 </button>
+                 <button name="action_cancel_draft" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', '!=', 'cancel')]}</attribute>
+                </button>
                 <field name='accreditation_move_id' position="replace">
                     <field name='accreditation_move_ids' colspan="4" nolabel="1"/>
                     <separator colspan="4" string="Accruement Entry"/>

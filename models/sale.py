@@ -10,7 +10,9 @@ class SaleOrder(models.Model):
     bookmarked = fields.Boolean(
         string='Computed bookmarked',
         compute='_compute_bookmarked', store=True)
-    bookmarked_manual = fields.Boolean()
+    bookmarked_manual = fields.Boolean(
+        readonly=True,
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
     @api.multi
     @api.depends('state', 'bookmarked_manual')

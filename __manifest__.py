@@ -15,6 +15,7 @@
     "depends": [
         "mrp",
         "purchase_stock",
+        "sale_order_line_date",
         "sale_stock_info_popup",
     ],
     "data": [

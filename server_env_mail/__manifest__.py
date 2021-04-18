@@ -12,6 +12,7 @@
     'depends': [
         'fetchmail',
         'mail',
+        'server_env',
     ],
     'installable': True
 }

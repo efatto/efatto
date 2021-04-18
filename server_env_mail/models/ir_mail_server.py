@@ -2,13 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
-from odoo.addons.server_running_env.models.server_running_env import server_running_env
+from odoo.addons.server_env.models.server import running
 
 
 class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
 
-    @server_running_env
+    @running
     @api.model
     def send_email(
             self, message, mail_server_id=None, smtp_server=None,

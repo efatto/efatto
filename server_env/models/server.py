@@ -7,7 +7,7 @@ from odoo.tools.config import config as system_base_config
 logger = logging.getLogger(__name__)
 
 
-def server_running_env(func):
+def running(func):
     @functools.wraps(func)
     def wrap(*args, **kwargs):
         if not system_base_config.get("running_env"):

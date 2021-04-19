@@ -2,15 +2,15 @@
 <odoo noupdate="1">
 
     <record id="l10n_it_ddt.seq_ddt" model="ir.sequence">
-        <field name="name">DDT C/VENDITA</field>
+        <field name="name">DDT</field>
         <field name="code">stock.ddt</field>
-        <field name="prefix">DDTVE/%(range_year)s/</field>
+        <field name="prefix">DDT/%(range_year)s/</field>
         <field name="padding" eval="4"/>
         <field name="implementation">no_gap</field>
         <field name="use_date_range" eval="True"/>
     </record>
     <record id="l10n_it_ddt.ddt_type_ddt" model="stock.ddt.type">
-        <field name="name">DDT C/VENDITA</field>
+        <field name="name">DDT</field>
         <field name="sequence_id" ref="l10n_it_ddt.seq_ddt" />
         <field name="default_carriage_condition_id" ref="l10n_it_ddt.carriage_condition_PF"/>
         <field name="default_goods_description_id" ref="l10n_it_ddt.goods_description_SFU"/>

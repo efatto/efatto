@@ -6,6 +6,9 @@
     <field name="model">stock.ddt.type</field>
     <field name="inherit_id" ref="l10n_it_ddt.view_ddt_type_tree"/>
     <field name="arch" type="xml">
+      <field name="name" position="before">
+        <field name="sequence" widget="handle"/>
+      </field>
       <field name="name" position="after">
         <field name="stock_location_ids" widget="many2many_tags"/>
         <field name="usage"/>

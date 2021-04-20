@@ -1,14 +1,14 @@
-# Copyright 2017-2020 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2017-2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'DDT in and out menu',
-    'version': '12.0.1.0.4',
+    'name': 'DDT menu for in and out',
+    'version': '12.0.1.0.5',
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'LGPL-3',
-    'description': '''This module split DDT menu in outgoing and incoming.''',
+    'license': 'AGPL-3',
+    'description': 'This module split DDT menu in outgoing and incoming.',
     'depends': [
         'l10n_it_ddt',
     ],

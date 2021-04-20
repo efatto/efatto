@@ -1,3 +1,5 @@
+# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
 from odoo.exceptions import Warning as UserError
@@ -5,6 +7,7 @@ from odoo.exceptions import Warning as UserError
 
 class StockDdtType(models.Model):
     _inherit = 'stock.ddt.type'
+    _order = 'sequence, id'
 
     @api.multi
     @api.depends('stock_location_ids')
@@ -15,17 +18,7 @@ class StockDdtType(models.Model):
                 raise UserError('Usage must be only one!')
             stock_ddt_type.usage = usage and usage[0] or False
 
-    @api.constrains('stock_location_ids')
-    def _check_multiple_stock_location(self):
-        for stock_ddt_type in self:
-            multiple_location_usage = self.search([
-                ('id', '!=', stock_ddt_type.id),
-                ('stock_location_ids', 'in', stock_ddt_type.stock_location_ids.ids)
-            ])
-            if multiple_location_usage:
-                raise UserError('Stock location can be configured only in one '
-                                'stock ddt type!')
-
+    sequence = fields.Integer('Priority', default=10)
     stock_location_ids = fields.Many2many(
         comodel_name='stock.location',
         string='Stock locations',

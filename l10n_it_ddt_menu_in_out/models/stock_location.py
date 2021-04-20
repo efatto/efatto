@@ -1,6 +1,7 @@
+# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
-from odoo.exceptions import Warning as UserError
 
 
 class StockLocation(models.Model):
@@ -11,10 +12,7 @@ class StockLocation(models.Model):
     @api.multi
     def _compute_type_ddt_id(self):
         for stock_location in self:
-            type_ddt_ids = self.env['stock.ddt.type'].search([
+            type_ddt_id = self.env['stock.ddt.type'].search([
                 ('stock_location_ids', 'in', stock_location.id)
-            ])
-            if len(type_ddt_ids) > 1:
-                raise UserError('Stock location can be configured only in one '
-                                'stock ddt type!')
-            stock_location.type_ddt_id = type_ddt_ids and type_ddt_ids[0] or False
+            ], order='sequence asc, id asc', limit=1)
+            stock_location.type_ddt_id = type_ddt_id or False

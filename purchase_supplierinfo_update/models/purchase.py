@@ -44,6 +44,11 @@ class PurchaseOrder(models.Model):
                     'delay': 0,
                     'discount': line.discount,  ### add discount
                 }
+                if hasattr(line, 'discount2'):
+                    supplierinfo.update({
+                        'discount2': line.discount2,
+                        'discount3': line.discount3,
+                    })
                 # In case the order partner is a contact address, a new supplierinfo
                 # is created on
                 # the parent company. In this case, we keep the product name and code.
@@ -62,10 +67,9 @@ class PurchaseOrder(models.Model):
                     if partner in line.product_id.seller_ids.mapped('name'):
                         seller = line.product_id.seller_ids.filtered(
                             lambda x: x.name == partner)
-                        seller.write({
-                            'price': price,
-                            'discount': line.discount,
-                        })
+                        for key in ['name', 'sequence', 'min_qty', 'delay']:
+                            supplierinfo.pop(key)
+                        seller.write(supplierinfo)
                     else:
                         line.product_id.write(vals)
                 except AccessError:  # no write access rights -> just ignore

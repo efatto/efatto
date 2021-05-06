@@ -25,8 +25,20 @@
                         </div>
                 </button>
             </xpath>
-            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']/div/span/span/field[@name='incoming_qty']" position="after">
-                -<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']" position="attributes">
+                <attribute name="icon"></attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']/div" position="replace">
+                <div class="o_field_widget o_stat_value mr4">
+                    <div>
+                        V:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-<field name="bookmarked_qty" nolabel="1"/>
+                    </div>
+                    <div>
+                        -<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
@@ -35,8 +47,20 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']/div/span/span/field[@name='incoming_qty']" position="after">
-                -<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']" position="attributes">
+                <attribute name="icon"></attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']/div" position="replace">
+                <div class="o_field_widget o_stat_value mr4">
+                    <div>
+                        V:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-<field name="bookmarked_qty" nolabel="1"/>
+                    </div>
+                    <div>
+                        -<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>

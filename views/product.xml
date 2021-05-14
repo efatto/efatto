@@ -31,12 +31,12 @@
             <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']/div" position="replace">
                 <div class="o_field_widget o_stat_value mr4">
                     <div>
-                        V:<field name="virtual_available" widget="statinfo" nolabel="1"/>
-                        (-<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+                        v:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
                     </div>
                     <div>
-                        -<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
-                        +<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                        -u<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +e<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
                     </div>
                 </div>
             </xpath>
@@ -53,12 +53,12 @@
             <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']/div" position="replace">
                 <div class="o_field_widget o_stat_value mr4">
                     <div>
-                        V:<field name="virtual_available" widget="statinfo" nolabel="1"/>
-                        (-<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+                        v:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
                     </div>
                     <div>
-                        -<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
-                        +<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                        -u<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +e<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
                     </div>
                 </div>
             </xpath>

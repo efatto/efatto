@@ -1,10 +1,14 @@
-from odoo import models, api, fields, exceptions, _
+# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import models, api, fields
 
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     @api.multi
+    @api.depends('picking_ids.ddt_supplier_number', 'picking_ids.ddt_supplier_date')
     def _get_pickings(self):
         for inv in self.filtered(
                 lambda x: x.type in ['in_invoice', 'in_refund']):
@@ -19,4 +23,5 @@ class AccountInvoice(models.Model):
                     for x in inv.picking_ids])
             inv.pickings_in_ref = pickings_in_ref
 
-    pickings_in_ref = fields.Char(compute=_get_pickings)
+    pickings_in_ref = fields.Char(
+        compute=_get_pickings, store=True, index=True)

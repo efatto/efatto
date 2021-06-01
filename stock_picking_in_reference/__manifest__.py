@@ -1,15 +1,14 @@
-# Copyright 2017-2020 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2017-2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Stock picking in reference',
-    'version': '12.0.1.0.0',
+    'name': 'IN DDT reference',
+    'version': '12.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
-    'license': 'LGPL-3',
+    'website': 'https://efatto.it',
     'description': """
-    Add reference of in document in stock picking.
+    Show reference of incoming DDT in supplier invoice in tree view and in picking.
     """,
     'depends': [
         'stock',

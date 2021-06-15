@@ -28,19 +28,19 @@
         <xpath expr="//div[hasclass('article')]/div/table/tr/td/table/tr" position="attributes">
             <attribute name="style">border:1px solid #A1A1A1; background-color:#F5F5F5;</attribute>
         </xpath>
-        <xpath expr="//t[@t-foreach=&quot;total_used_taxes&quot;]/tr/td[@t-esc=&quot;tax_code_tuple[0]&quot;]" position="attributes">
+        <xpath expr="//t[@t-foreach=&quot;total_used_taxes.sorted(key='sequence')&quot;]/tr/td[@t-esc=&quot;tax_code_tuple[0]&quot;]" position="attributes">
             <attribute name="class">left_with_line</attribute>
         </xpath>
-        <xpath expr="//t[@t-foreach=&quot;total_used_taxes&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[1])&quot;]" position="attributes">
+        <xpath expr="//t[@t-foreach=&quot;total_used_taxes.sorted(key='sequence')&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[1])&quot;]" position="attributes">
             <attribute name="class">right_with_line</attribute>
         </xpath>
-        <xpath expr="//t[@t-foreach=&quot;total_used_taxes&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[2])&quot;]" position="attributes">
+        <xpath expr="//t[@t-foreach=&quot;total_used_taxes.sorted(key='sequence')&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[2])&quot;]" position="attributes">
             <attribute name="class">right_with_line</attribute>
         </xpath>
-        <xpath expr="//t[@t-foreach=&quot;total_used_taxes&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[3])&quot;]" position="attributes">
+        <xpath expr="//t[@t-foreach=&quot;total_used_taxes.sorted(key='sequence')&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[3])&quot;]" position="attributes">
             <attribute name="class">right_with_line</attribute>
         </xpath>
-        <xpath expr="//t[@t-foreach=&quot;total_used_taxes&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[4])&quot;]" position="attributes">
+        <xpath expr="//t[@t-foreach=&quot;total_used_taxes.sorted(key='sequence')&quot;]/tr/td[@t-esc=&quot;formatLang(env, tax_code_tuple[4])&quot;]" position="attributes">
             <attribute name="class">right_with_line</attribute>
         </xpath>
         <xpath expr="//tbody" position="before">

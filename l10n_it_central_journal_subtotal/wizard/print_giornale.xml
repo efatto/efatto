@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_giornale" model="ir.ui.view">
+        <field name="name">General Journal</field>
+        <field name="model">wizard.giornale</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="l10n_it_central_journal.wizard_giornale"/>
+        <field name="arch" type="xml">
+            <field name="start_row" position="after">
+                <field name="print_row"/>
+            </field>
+        </field>
+    </record>
+</odoo>

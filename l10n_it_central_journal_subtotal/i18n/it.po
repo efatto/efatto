@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_central_journal_ext
+#	* l10n_it_central_journal_monospace
 #
 msgid ""
 msgstr ""
@@ -15,30 +15,30 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_it_central_journal_ext
-#: code:addons/l10n_it_central_journal_ext/wizard/print_giornale.py:52
+#. module: l10n_it_central_journal_monospace
+#: code:addons/l10n_it_central_journal_monospace/wizard/print_giornale.py:52
 #, python-format
 msgid "Date already printed"
 msgstr "Data già stampata"
 
-#. module: l10n_it_central_journal_ext
-#: code:addons/l10n_it_central_journal_ext/wizard/print_giornale.py:27
-#: code:addons/l10n_it_central_journal_ext/wizard/print_giornale.py:67
+#. module: l10n_it_central_journal_monospace
+#: code:addons/l10n_it_central_journal_monospace/wizard/print_giornale.py:27
+#: code:addons/l10n_it_central_journal_monospace/wizard/print_giornale.py:67
 #, python-format
 msgid "No documents found in the current selection"
 msgstr "Nessun document trovata per la selezione corrente"
 
-#. module: l10n_it_central_journal_ext
+#. module: l10n_it_central_journal_monospace
 #: view:website:l10n_it_central_journal.report_giornale
 msgid "Final Balance"
 msgstr "Saldo Finale"
 
-#. module: l10n_it_central_journal_ext
+#. module: l10n_it_central_journal_monospace
 #: view:website:l10n_it_central_journal.report_giornale
 msgid "Initial Balance"
 msgstr "Saldo Iniziale"
 
-#. module: l10n_it_central_journal_ext
+#. module: l10n_it_central_journal_monospace
 #: view:website:l10n_it_central_journal.report_giornale
 msgid "Progressive ==>"
 msgstr "Progressivo ==>"

@@ -91,7 +91,7 @@
                                     <td class="left_without_line width_175"></td>
                                     <td class="left_without_line width_215">
                                         <span t-if="first_page == True">Initial Balance</span>
-                                        <span t-if="first_page == False">Progressive ==></span>
+                                        <span t-if="first_page == False">Progressivo ==></span>
                                     </td>
                                     <td class="right_without_line width_70">
                                         <div style="page-break-inside: avoid"
@@ -183,7 +183,7 @@
                                     <td class="left_without_line width_55"></td>
                                     <td class="left_without_line width_175"></td>
                                     <td class="left_without_line width_215">
-                                        <span t-if="last_page != num_block">Progressive ==></span>
+                                        <span t-if="last_page != num_block">Progressivo ==></span>
                                         <span t-if="last_page == num_block">Final Balance</span>
                                     </td>
                                     <!-- Debit -->

@@ -13,9 +13,9 @@ Italian central journal subtotal
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
-    :target: https://github.com/efatto/efatto/tree/12.0/l10n_it_central_journal_subtotal
-    :alt: efatto/efatto
+.. |badge3| image:: https://img.shields.io/badge/github-sergiocorato%2Fefatto-lightgray.png?logo=github
+    :target: https://github.com/sergiocorato/efatto/tree/12.0/l10n_it_central_journal_subtotal
+    :alt: sergiocorato/efatto
 
 |badge1| |badge2| |badge3| 
 
@@ -31,17 +31,17 @@ Configuration
 
 La stampa del libro giornale mostra i totali progressivi ad inizio:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/12.0/l10n_it_central_journal_subtotal/static/description/progressivo_inizio_pagina.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/l10n_it_central_journal_subtotal/static/description/progressivo_inizio_pagina.png
     :alt: Progressivo inizio pagina
 
 e a fine pagina.
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/12.0/l10n_it_central_journal_subtotal/static/description/progressivo_fine_pagina.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/l10n_it_central_journal_subtotal/static/description/progressivo_fine_pagina.png
     :alt: Progressivo fine pagina
 
 La scelta del numero di righe stampate per pagina è possibile da questo campo:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/12.0/l10n_it_central_journal_subtotal/static/description/righe_per_pagina.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/l10n_it_central_journal_subtotal/static/description/righe_per_pagina.png
     :alt: Progressivo inizio pagina
 
 che è un default e può essere modificato.
@@ -49,10 +49,10 @@ che è un default e può essere modificato.
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/efatto/efatto/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/sergiocorato/efatto/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/efatto/efatto/issues/new?body=module:%20l10n_it_central_journal_subtotal%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/sergiocorato/efatto/issues/new?body=module:%20l10n_it_central_journal_subtotal%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -72,6 +72,6 @@ Contributors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/12.0/l10n_it_central_journal_subtotal>`_ project on GitHub.
+This module is part of the `sergiocorato/efatto <https://github.com/sergiocorato/efatto/tree/12.0/l10n_it_central_journal_subtotal>`_ project on GitHub.
 
 You are welcome to contribute.

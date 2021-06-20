@@ -1,1 +1,1 @@
-Add progressive amount by page to journal report.
+Landscape layout for general ledger report.

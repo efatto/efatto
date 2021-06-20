@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_financial_report_ledger
+#	* account_financial_report_landscape
 #
 msgid ""
 msgstr ""

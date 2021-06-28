@@ -11,7 +11,7 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.depends('product_id', 'customer_lead', 'product_uom_qty',
+    @api.depends('product_id', 'customer_lead', 'product_uom_qty', 'commitment_date',
                  'order_id.warehouse_id', 'order_id.commitment_date',
                  'product_id.produce_delay', 'product_id.purchase_delay',
                  'product_id.sale_delay')

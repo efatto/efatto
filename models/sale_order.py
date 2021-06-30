@@ -231,19 +231,19 @@ class SaleOrderLine(models.Model):
                 availables.sort(key=lambda self: self['date'])
                 available_date = availables[0]
                 scheduled_date = fields.Datetime.from_string(available_date['date'])
-                product = line.product_id.with_context(
-                    to_date=scheduled_date, warehouse=line.warehouse_id.id)
-                qty_available = product.qty_available
-                free_qty = product.free_qty
+                # product = line.product_id.with_context(
+                #     to_date=scheduled_date, warehouse=line.warehouse_id.id)
+                # qty_available = available['cumulative_quantity']
+                # free_qty = product.free_qty
                 # show the lower quantity available
                 virtual_available = available['cumulative_quantity']
-                qty_processed = qty_processed_per_product[product.id]
+                qty_processed = qty_processed_per_product[line.product_id.id]
                 line.scheduled_date = scheduled_date
-                line.qty_available_today = qty_available - qty_processed
-                line.free_qty_today = free_qty - qty_processed
+                line.qty_available_today = 0
+                line.free_qty_today = available['cumulative_quantity']
                 virtual_available_at_date = virtual_available - qty_processed
                 line.virtual_available_at_date = virtual_available_at_date
-                qty_processed_per_product[product.id] += line.product_uom_qty
+                qty_processed_per_product[line.product_id.id] += line.product_uom_qty
             else:
                 line.virtual_available_at_date = lower_available_qty
                 line.scheduled_date = line.commitment_date\

@@ -9,16 +9,32 @@
         </t>
     </div>
     <div t-extend="sale_stock.QtyDetailPopOver">
-        <t t-jquery="table > tbody > t > tr > td > small:first" t-operation="replace">
-            <t t-if="data.virtual_available_at_date > 0">
-                <small>Stock available date<span t-esc="data.delivery_date"/></small>
-            </t>
-            <t t-else="data.virtual_available_at_date = 0">
-                <small>Stock unavailable</small>
-            </t>
-<!--            <div>-->
-<!--            <small>TODO put delivery date if reordered?<b><span t-esc="data.customer_lead"/> days</b></small>-->
-<!--            </div>-->
+        <t t-jquery="table > tbody" t-operation="replace">
+            <tbody>
+                <t t-if="!data.is_mto">
+                    <tr>
+                        <td><strong>Forecasted Stock</strong><br />
+                            <t t-if="data.virtual_available_at_date > 0">
+                                <small>Stock available date<span t-esc="data.delivery_date"/></small>
+                            </t>
+                            <t t-else="data.virtual_available_at_date = 0">
+                                <small>Stock unavailable</small>
+                            </t>
+                        </td>
+                        <td><t t-esc='data.virtual_available_at_date'/>
+                            <t t-esc='data.product_uom.data.display_name'/></td>
+                    </tr>
+                </t>
+                <t t-else="">
+<!--                    <tr>-->
+<!--                        <td><strong>Expected Delivery</strong></td>-->
+<!--                        <td class="oe-right"><span t-esc="data.delivery_date"/></td>-->
+<!--                    </tr>-->
+                    <tr>
+                        <p>This product is replenished on demand.</p>
+                    </tr>
+                </t>
+            </tbody>
         </t>
     </div>
 </templates>

@@ -22,6 +22,20 @@ class SaleOrderLine(models.Model):
     warehouse_id = fields.Many2one(
         'stock.warehouse', compute='_compute_stock_qty_at_date', store=True)
 
+    @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
+                 'commitment_date', 'order_id.commitment_date')
+    def _compute_qty_to_deliver(self):
+        """ Based on _compute_qty_to_deliver method of sale.order.line
+            model in Odoo v13 'sale_stock' module.
+        """
+        for line in self:
+            line.qty_to_deliver = line.product_uom_qty - line.qty_delivered
+            line.display_qty_widget = (line.state == 'draft'
+                                       and not line.commitment_date
+                                       and not line.order_id.commitment_date
+                                       and line.product_type == 'product'
+                                       and line.qty_to_deliver > 0)
+
     @api.depends('product_id', 'product_uom_qty', 'commitment_date')
     def _compute_stock_qty_at_date(self):
         """ Based on _compute_free_qty method of sale.order.line
@@ -36,27 +50,56 @@ class SaleOrderLine(models.Model):
             if not line.product_id:
                 continue
             line.warehouse_id = line.order_id.warehouse_id
-            # todo aggiungere le vendite sent con data di impegno come nell'altro
             self._cr.execute("""
             SELECT
                 sub.date,
                 sub.product_id,
                 sub.child_product_id,
                 SUM(sub.quantity) AS quantity,
-                CASE WHEN MIN(sub.name) = 'B - Stock'
-                THEN
                 SUM(SUM(sub.quantity))
                 OVER (PARTITION BY sub.child_product_id ORDER BY sub.date)
-                ELSE NULL
-                END
                 AS cumulative_quantity
             FROM
             (
-            SELECT 
-                to_char(date, 'YYYY-MM-DD') as date,
+            SELECT
+                min(l.id) AS id,
+                s.id AS order_id,
+                'A - Sale' AS name,
+                l.product_id AS product_id,
+                l.product_id AS child_product_id,
+                CASE WHEN l.commitment_date IS NOT NULL
+                THEN to_char(l.commitment_date, 'YYYY-MM-DD')
+                ELSE to_char(s.commitment_date, 'YYYY-MM-DD') END
+                AS date,
+                sum(l.product_uom_qty / u.factor * u2.factor) * -1 as quantity,
+                s.company_id as company_id
+            FROM
+                sale_order_line l
+                  join sale_order s on (l.order_id=s.id)
+                  join res_partner partner on s.partner_id = partner.id
+                    left join product_product p on (l.product_id=p.id)
+                        left join product_template t on (p.product_tmpl_id=t.id)
+                left join uom_uom u on (u.id=l.product_uom)
+                left join uom_uom u2 on (u2.id=t.uom_id)
+            WHERE
+                s.state IN ('draft', 'sent')
+                AND s.active = 't'
+                AND (s.commitment_date IS NOT NULL OR l.commitment_date IS NOT NULL)
+                AND l.product_id = %s
+            GROUP BY
+                l.product_id,
+                l.order_id,
+                t.uom_id,
+                l.commitment_date,
+                s.company_id,
+                s.id
+            UNION SELECT
+                MIN(id) as id,
+                null as order_id,
                 'B - Stock' AS name,
                 product_id as product_id,
                 product_id as child_product_id,
+                to_char(date, 'YYYY-MM-DD') as date,
                 sum(product_qty) AS quantity,
                 company_id
             FROM 
@@ -154,7 +197,7 @@ class SaleOrderLine(models.Model):
                 GROUP BY product_id, date, company_id
                 ) AS sub
                 GROUP BY product_id, child_product_id, date
-            """, (line.product_id.id, ))
+            """, (line.product_id.id, line.product_id.id,))
             res = self._cr.dictfetchall()
             # dates on which availability is enough for requested qty
             candidate_availables = [
@@ -170,13 +213,30 @@ class SaleOrderLine(models.Model):
                 if not_available:
                     continue
                 availables.append(candidate_available)
+            lower_available_qty = 0
             if availables:
-                scheduled_date = fields.Datetime.from_string(availables[0]['date'])
+                # check if this move, available in a certain date, will remove product
+                # reserved for future, so stock will become negative
+                lower_available_qty = availables[0]['cumulative_quantity']
+                for available in availables:
+                    if available['cumulative_quantity'] < lower_available_qty:
+                        lower_available_qty = available['cumulative_quantity']
+                if lower_available_qty < line.product_uom_qty:
+                    availables = []
+            if availables:
+                # there are multiple available dates: get the lower qty
+                availables.sort(key=lambda self: self['cumulative_quantity'])
+                available = availables[0]
+                # show the first available date
+                availables.sort(key=lambda self: self['date'])
+                available_date = availables[0]
+                scheduled_date = fields.Datetime.from_string(available_date['date'])
                 product = line.product_id.with_context(
                     to_date=scheduled_date, warehouse=line.warehouse_id.id)
                 qty_available = product.qty_available
                 free_qty = product.free_qty
-                virtual_available = product.virtual_available
+                # show the lower quantity available
+                virtual_available = available['cumulative_quantity']
                 qty_processed = qty_processed_per_product[product.id]
                 line.scheduled_date = scheduled_date
                 line.qty_available_today = qty_available - qty_processed
@@ -185,7 +245,7 @@ class SaleOrderLine(models.Model):
                 line.virtual_available_at_date = virtual_available_at_date
                 qty_processed_per_product[product.id] += line.product_uom_qty
             else:
-                line.virtual_available_at_date = 0
+                line.virtual_available_at_date = lower_available_qty
                 line.scheduled_date = line.commitment_date\
                     and line.commitment_date + timedelta(days=1)\
                     or fields.Datetime.now()

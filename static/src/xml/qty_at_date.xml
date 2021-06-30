@@ -10,9 +10,14 @@
     </div>
     <div t-extend="sale_stock.QtyDetailPopOver">
         <t t-jquery="table > tbody > t > tr > td > small:first" t-operation="replace">
-            <small>Stock available date<span t-esc="data.delivery_date"/></small>
+            <t t-if="data.virtual_available_at_date > 0">
+                <small>Stock available date<span t-esc="data.delivery_date"/></small>
+            </t>
+            <t t-else="data.virtual_available_at_date = 0">
+                <small>Stock unavailable</small>
+            </t>
 <!--            <div>-->
-<!--            <small>TODO put delivery date if reordered <b><span t-esc="data.customer_lead"/> days</b></small>-->
+<!--            <small>TODO put delivery date if reordered?<b><span t-esc="data.customer_lead"/> days</b></small>-->
 <!--            </div>-->
         </t>
     </div>

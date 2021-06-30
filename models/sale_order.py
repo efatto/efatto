@@ -30,6 +30,7 @@ class SaleOrderLine(models.Model):
         #  we expose the first date in which the products are really
         #  available from stock to customer
         # do not do super() as this override other logic and consume time
+        # storing fields will not recall this method on all record at every change
         qty_processed_per_product = defaultdict(lambda: 0)
         for line in self.sorted(key=lambda r: r.sequence):
             if not line.product_id:
@@ -185,6 +186,8 @@ class SaleOrderLine(models.Model):
                 qty_processed_per_product[product.id] += line.product_uom_qty
             else:
                 line.virtual_available_at_date = 0
-                line.scheduled_date = line.commitment_date + timedelta(days=1)
+                line.scheduled_date = line.commitment_date\
+                    and line.commitment_date + timedelta(days=1)\
+                    or fields.Datetime.now()
                 line.free_qty_today = 0
                 line.qty_available_today = 0

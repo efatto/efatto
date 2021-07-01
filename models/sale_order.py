@@ -21,6 +21,9 @@ class SaleOrderLine(models.Model):
         compute='_compute_stock_qty_at_date', store=True)
     warehouse_id = fields.Many2one(
         'stock.warehouse', compute='_compute_stock_qty_at_date', store=True)
+    qty_to_deliver = fields.Float(store=True)
+    is_mto = fields.Boolean(store=True)
+    display_qty_widget = fields.Boolean(store=True)
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
                  'commitment_date', 'order_id.commitment_date')

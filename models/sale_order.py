@@ -27,7 +27,10 @@ class SaleOrder(models.Model):
             day_limit = 3
 
         now = datetime.now()
-        for order in self.search([('state', '=', 'sent')]):
+        for order in self.search([('state', '=', 'sent'),
+                                  '|',
+                                  ('commitment_date', '!=', False),
+                                  ('max_commitment_date', '!=', False)]):
             days_between = 0
             for day in rrule.rrule(rrule.DAILY, dtstart=order.date_order, until=now,
                                    byweekday=[0, 1, 2, 3, 4]):

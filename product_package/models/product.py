@@ -30,26 +30,22 @@ class ProductProduct(models.Model):
                 product.product_tmpl_id.volume
 
     @api.depends('product_tmpl_id.product_pack_id',
-                 'product_tmpl_id.weight',
-                 'product_tmpl_id.product_pack_id.weight')
-    def _get_weight(self):
-        for product in self:
-            # the weight is the sum of package if exists and product_template
-            product.weight = product.product_tmpl_id.product_pack_id.weight + \
-                product.product_tmpl_id.weight if \
-                product.product_tmpl_id.product_pack_id else \
-                product.product_tmpl_id.weight
-
-    @api.depends('product_tmpl_id.product_pack_id',
                  'product_tmpl_id.weight_net',
                  'product_tmpl_id.product_pack_id.weight_net')
-    def _get_weight_net(self):
+    def _get_weight(self):
         for product in self:
-            # the weight is the sum of package if exists and product_template
-            product.weight_net = product.product_tmpl_id.product_pack_id.\
-                weight_net + product.product_tmpl_id.weight_net if \
+            # gross weight is the sum of net weight of package if exists and
+            # net weight of product_template
+            product.weight = product.product_tmpl_id.product_pack_id.weight_net + \
+                product.product_tmpl_id.weight_net if \
                 product.product_tmpl_id.product_pack_id else \
                 product.product_tmpl_id.weight_net
+
+    @api.depends('product_tmpl_id.weight_net')
+    def _get_weight_net(self):
+        for product in self:
+            # net weight is the same of the product_template
+            product.weight_net = product.product_tmpl_id.weight_net
 
     volume = fields.Float(compute='_get_volume',
                           digits_compute=dp.get_precision('Stock Volume'),

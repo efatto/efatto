@@ -33,7 +33,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_move_create(self):
-        previously_validated = self.filtered(lambda inv: inv.move_name)
+        previously_validated = self.filtered(lambda x: x.move_name)
         res = super(AccountInvoice, self).action_move_create()
         for inv in self:
             if not inv.journal_id.check_chronology:

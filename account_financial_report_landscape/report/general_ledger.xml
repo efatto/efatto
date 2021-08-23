@@ -312,7 +312,41 @@
             </div>
 
             <!-- Display each lines -->
+            <t t-set="orphan_space" t-value="False"/>
+            <t t-set="first_non_orphan" t-value="True"/>
             <t t-foreach="account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence).filtered(lambda y: y.credit != 0.0 or y.debit != 0.0)" t-as="line">
+                <t t-if="o.group_method == 'group_invoices' and line.is_orphan">
+                    <t t-set="orphan_space" t-value="True"/>
+                </t>
+                <t t-if="o.group_method == 'group_invoices' and not line.is_orphan and first_non_orphan">
+                    <t t-set="first_non_orphan" t-value="False"/>
+                    <div class="act_as_row lines">
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                        </div>
+                        <t t-if="foreign_currency">
+                            <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                            </div>
+                            <div class="act_as_cell" style="border-bottom: 1px solid black;">
+                            </div>
+                        </t>
+                    </div>
+                </t>
                 <!-- # lines or centralized lines -->
                 <div class="act_as_row lines">
                     <!--## date-->

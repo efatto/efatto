@@ -45,9 +45,13 @@ class GeneralLedgerReportCompute(models.TransientModel):
                 for line in lines:
                     sorted_lines = self._get_sorted_invoices(line.move_line_ids)
                     i = 1
+                    cumul_balance = line.initial_balance
                     for sorted_line in sorted_lines:
-                        sorted_line.sequence = i
-                        i += 1
+                        cumul_balance += (sorted_line.debit - sorted_line.credit)
+                        sorted_line.cumul_balance = cumul_balance
+                        if not sorted_line.is_orphan:
+                            sorted_line.sequence = i
+                            i += 1
         return res
 
     @staticmethod
@@ -127,5 +131,6 @@ class GeneralLedgerReportCompute(models.TransientModel):
         if len(res_lines) > 0:
             for reline in res_lines:
                 reline.is_orphan = True
-            inv_lines += res_lines
+            # move res_lines first
+            inv_lines = res_lines + inv_lines
         return inv_lines

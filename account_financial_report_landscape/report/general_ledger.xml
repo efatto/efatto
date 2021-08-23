@@ -312,7 +312,7 @@
             </div>
 
             <!-- Display each lines -->
-            <t t-foreach="account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence)" t-as="line">
+            <t t-foreach="account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence).filtered(lambda y: y.credit != 0.0 or y.debit != 0.0)" t-as="line">
                 <!-- # lines or centralized lines -->
                 <div class="act_as_row lines">
                     <!--## date-->

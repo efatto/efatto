@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_general_ledger_lines_sorted" inherit_id="account_financial_report.report_general_ledger_lines">
+        <xpath expr="//t[@t-foreach='account_or_partner_object.move_line_ids']" position="attributes">
+            <attribute name="t-foreach">account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence)</attribute>
+            <attribute name="t-as">line</attribute>
+        </xpath>
+    </template>
+
+</odoo>

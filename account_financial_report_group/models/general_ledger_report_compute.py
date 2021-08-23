@@ -10,13 +10,14 @@ class GeneralLedgerReportMoveLine(models.TransientModel):
 
     is_orphan = fields.Boolean()
     sequence = fields.Integer(default=0)
+    merged = fields.Boolean()
 
 
 class GeneralLedgerReportCompute(models.TransientModel):
     _inherit = 'report_general_ledger'
 
     group_method = fields.Selection([
-        ('group_payments', 'Group payments'),
+        ('group_payments', 'Merge payments'),
         ('group_invoices', 'Group Invoices'),
         ('no_group', 'No Group')
     ], string="Group method")
@@ -28,21 +29,7 @@ class GeneralLedgerReportCompute(models.TransientModel):
         res = super().compute_data_for_report(
             with_line_details=with_line_details,
             with_partners=with_partners)
-        if self.group_method == 'group_payments':
-            lines = {}
-            report_account_model = self.env['report_general_ledger_account']
-            lines['receivable'] = report_account_model.search([
-                ('report_id', '=', self.id),
-                ('account_id', 'in', self.filter_account_ids.ids),
-            ])
-            report_partner_model = self.env[
-                'report_general_ledger_partner'
-            ]
-            lines['partner_receivable'] = report_partner_model.search([
-                ('report_account_id', '=', lines['receivable'].id),
-                ('partner_id', 'in', self.filter_partner_ids.ids),
-            ])
-        elif self.group_method == 'group_invoices':
+        if self.group_method != 'no_group':
             receivable_lines = self.env['report_general_ledger_account'].search([
                 ('report_id', '=', self.id),
                 ('account_id', 'in', self.filter_account_ids.ids),
@@ -51,13 +38,36 @@ class GeneralLedgerReportCompute(models.TransientModel):
                 ('report_account_id', 'in', receivable_lines.ids),
                 ('partner_id', 'in', self.filter_partner_ids.ids),
             ])
-            for line in lines:
-                sorted_lines = self._get_sorted_invoices(line.move_line_ids)
-                i = 0
-                for sorted_line in sorted_lines:
-                    sorted_line.sequence = i
-                    i += 1
+            if self.group_method == 'group_payments':
+                for line in lines:
+                    self._merge_lines(line.move_line_ids)
+            elif self.group_method == 'group_invoices':
+                for line in lines:
+                    sorted_lines = self._get_sorted_invoices(line.move_line_ids)
+                    i = 1
+                    for sorted_line in sorted_lines:
+                        sorted_line.sequence = i
+                        i += 1
         return res
+
+    @staticmethod
+    def _merge_lines(lines):
+        for line in lines:
+            for l in [x for x in lines if x.id != line.id and not x.merged]:
+                if l.date == line.date and \
+                        l.entry == line.entry and \
+                        l.journal == line.journal and \
+                        l.partner == line.partner and \
+                        l.label == line.label and \
+                        l.currency_id == line.currency_id:
+                        # l['supplier_invoice_number'] == \
+                        #     line['supplier_invoice_number']:
+                    line.debit += l.debit
+                    line.credit += l.credit
+                    line.amount_currency += l.amount_currency
+                    line.cumul_balance = l.cumul_balance
+                    line.date_maturity = ''
+                    l.credit = l.debit = l.amount_currency = 0.0
 
     @staticmethod
     def _get_sorted_invoices(lines):

@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account_financial_report',
+        'account_financial_report_group',
     ],
     'data': [
         'report/reports.xml',

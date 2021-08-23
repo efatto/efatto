@@ -60,8 +60,6 @@ class GeneralLedgerReportCompute(models.TransientModel):
                         l.partner == line.partner and \
                         l.label == line.label and \
                         l.currency_id == line.currency_id:
-                        # l['supplier_invoice_number'] == \
-                        #     line['supplier_invoice_number']:
                     line.debit += l.debit
                     line.credit += l.credit
                     line.amount_currency += l.amount_currency

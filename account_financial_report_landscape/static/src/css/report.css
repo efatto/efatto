@@ -14,7 +14,7 @@
     background-color: #d6d4d4;
 }
 .bb_black {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black !important;
 }
 .act_as_thead {
     display: table-header-group !important;

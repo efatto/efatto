@@ -86,8 +86,6 @@ class GeneralLedgerReportCompute(models.TransientModel):
             if line.move_line_id.invoice_id:
                 inv = line.move_line_id.invoice_id
                 line.invoice_number = line.move_line_id.invoice_id.number
-            #todo aggiungere il numero fattura fornitore ma in tutte le righe, anche le
-            # res_lines
             for res_line in res_lines:
                 # line with reconcile_id are never passed with name search
                 if inv and res_line in [x for x in inv.unsolved_move_line_ids]:

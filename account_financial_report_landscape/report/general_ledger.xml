@@ -312,40 +312,64 @@
             </div>
 
             <!-- Display each lines -->
-            <t t-set="orphan_space" t-value="False"/>
             <t t-set="first_non_orphan" t-value="True"/>
-            <t t-foreach="account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence).filtered(lambda y: y.credit != 0.0 or y.debit != 0.0)" t-as="line">
-                <t t-if="o.group_method == 'group_invoices' and line.is_orphan">
-                    <t t-set="orphan_space" t-value="True"/>
-                </t>
+            <t t-set="total_invoice_debit" t-value="0.0"/>
+            <t t-set="total_invoice_credit" t-value="0.0"/>
+            <t t-set="last_invoice_number" t-value="False"/>
+            <t t-set="invoice_break" t-value="False"/>
+            <t t-set="lines" t-value="account_or_partner_object.move_line_ids.sorted(key=lambda x: x.sequence).filtered(lambda y: y.credit != 0.0 or y.debit != 0.0)"/>
+            <t t-foreach="lines" t-as="line">
                 <t t-if="o.group_method == 'group_invoices' and not line.is_orphan and first_non_orphan">
                     <t t-set="first_non_orphan" t-value="False"/>
                     <div class="act_as_row lines">
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
-                        <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                        </div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
+                        <div class="act_as_cell bb_black"></div>
                         <t t-if="foreign_currency">
-                            <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                            </div>
-                            <div class="act_as_cell" style="border-bottom: 1px solid black;">
-                            </div>
+                            <div class="act_as_cell bb_black"></div>
+                            <div class="act_as_cell bb_black"></div>
                         </t>
                     </div>
+                </t>
+                <t t-if="line.invoice_number">
+                    <t t-if="last_invoice_number and line.invoice_number != last_invoice_number">
+                        <t t-set="invoice_break" t-value="True"/>
+                    </t>
+                </t>
+                <t t-if="o.group_method == 'group_invoices' and invoice_break and last_invoice_number">
+                    <div class="act_as_row lines">
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell bg_grey">Total Invoice Settlement</div>
+                        <div class="act_as_cell bg_grey">Invoice <t t-esc="last_invoice_number"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_debit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_credit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_debit - total_invoice_credit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <t t-if="foreign_currency">
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                        </t>
+                    </div>
+                    <t t-set="invoice_break" t-value="False"/>
+                </t>
+                <t t-if="line.invoice_number and last_invoice_number and line.invoice_number != last_invoice_number">
+                    <t t-set="total_invoice_debit" t-value="0.0"/>
+                    <t t-set="total_invoice_credit" t-value="0.0"/>
+                </t>
+                <t t-if="not line.is_orphan">
+                    <t t-set="total_invoice_debit" t-value="total_invoice_debit + line.debit or 0.0"/>
+                    <t t-set="total_invoice_credit" t-value="total_invoice_credit + line.credit or 0.0"/>
+                </t>
+                <t t-if="line.invoice_number">
+                    <t t-set="last_invoice_number" t-value="line.invoice_number"/>
                 </t>
                 <!-- # lines or centralized lines -->
                 <div class="act_as_row lines">
@@ -505,6 +529,23 @@
                         </t>
                     </t>
                 </div>
+                <t t-if="o.group_method == 'group_invoices' and line == lines[-1]">
+                    <div class="act_as_row lines">
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell bg_grey">Total Invoice Settlement</div>
+                        <div class="act_as_cell bg_grey">Invoice <t t-esc="last_invoice_number"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_debit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_credit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <div class="act_as_cell bg_grey"><t t-esc="total_invoice_debit - total_invoice_credit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></div>
+                        <t t-if="foreign_currency">
+                            <div class="act_as_cell"></div>
+                            <div class="act_as_cell"></div>
+                        </t>
+                    </div>
+                </t>
             </t>
         </div>
     </template>

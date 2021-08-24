@@ -10,6 +10,12 @@
     display: table-cell !important;
     page-break-inside: avoid;
 }
+.bg_grey {
+    background-color: #d6d4d4;
+}
+.bb_black {
+    border-bottom: 1px solid black;
+}
 .act_as_thead {
     display: table-header-group !important;
 }

@@ -1,16 +1,82 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_fiscal_year_closing_reporting
+#	* account_financial_report_group
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 11:37+0000\n"
-"PO-Revision-Date: 2020-04-19 11:37+0000\n"
+"POT-Creation-Date: 2021-08-25 06:47+0000\n"
+"PO-Revision-Date: 2021-08-25 06:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: account_financial_report_group
+#: model:ir.model,name:account_financial_report_group.model_general_ledger_report_wizard
+msgid "General Ledger Report Wizard"
+msgstr "Procedura rendiconto libro mastro"
+
+#. module: account_financial_report_group
+#: selection:general.ledger.report.wizard,group_method:0
+#: selection:report_general_ledger,group_method:0
+msgid "Group Invoices"
+msgstr "Raggruppa Fattura"
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,field_description:account_financial_report_group.field_general_ledger_report_wizard__group_method
+#: model:ir.model.fields,field_description:account_financial_report_group.field_report_general_ledger__group_method
+msgid "Group method"
+msgstr "Metodo Raggruppamento"
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,help:account_financial_report_group.field_general_ledger_report_wizard__group_method
+msgid "Group payments will merge rows which differs only for credit, debit, balance and date maturity values, so when an invoice has multiple rows of payment with differents maturity dates, them will be grouped.\n"
+"Group invoices will group rows by invoices, showing first payment for invoices not present in current report, then invoices with related payment, lastly invoices not yet reconciled."
+msgstr "Raggruppa Fattura raggruppa le riga per fattura, mostrando prima i pagamenti per le fatture non presenti nel report corrente, poi le fatture con i relativi pagamenti, e alla fine le fatture non ancora riconciliate."
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,field_description:account_financial_report_group.field_report_general_ledger_move_line__invoice_number
+msgid "Invoice Number"
+msgstr "Numero fattura"
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,field_description:account_financial_report_group.field_report_general_ledger_move_line__is_orphan
+msgid "Is Orphan"
+msgstr "È Orfano"
+
+#. module: account_financial_report_group
+#: selection:general.ledger.report.wizard,group_method:0
+#: selection:report_general_ledger,group_method:0
+msgid "Merge payments"
+msgstr "Unisci pagamenti"
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,field_description:account_financial_report_group.field_report_general_ledger_move_line__merged
+msgid "Merged"
+msgstr "Unito"
+
+#. module: account_financial_report_group
+#: selection:general.ledger.report.wizard,group_method:0
+#: selection:report_general_ledger,group_method:0
+msgid "No Group"
+msgstr "Nessun Raggruppamento"
+
+#. module: account_financial_report_group
+#: model:ir.model.fields,field_description:account_financial_report_group.field_report_general_ledger_move_line__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: account_financial_report_group
+#: model:ir.model,name:account_financial_report_group.model_report_general_ledger
+msgid "report_general_ledger"
+msgstr ""
+
+#. module: account_financial_report_group
+#: model:ir.model,name:account_financial_report_group.model_report_general_ledger_move_line
+msgid "report_general_ledger_move_line"
+msgstr ""
+

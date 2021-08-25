@@ -134,7 +134,7 @@
                         Label</div>
 <!--                    <t t-if="show_cost_center">-->
                         <!--## cost_center-->
-                    <div class="act_as_cell" style="width: 8.03%;">Date maturity</div>
+                    <div class="act_as_cell" style="width: 8.03%;">Date Maturity</div>
 <!--                    </t>-->
                     <t t-if="show_analytic_tags">
                         <!--## analytic tags-->

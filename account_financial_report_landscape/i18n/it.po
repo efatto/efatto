@@ -6,11 +6,110 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 08:02+0000\n"
-"PO-Revision-Date: 2021-06-18 08:02+0000\n"
+"POT-Creation-Date: 2021-08-25 06:52+0000\n"
+"PO-Revision-Date: 2021-08-25 06:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Amount cur."
+msgstr "Importo val."
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Credit"
+msgstr "Credito"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Cumul. Bal."
+msgstr "Saldo progr."
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Cur."
+msgstr "Val."
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Date"
+msgstr "Data"
+
+#. module: account_financial_report_landscape
+#: model:ir.model.fields,field_description:account_financial_report_landscape.field_report_general_ledger_move_line__date_maturity
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Date Maturity"
+msgstr "Data di Maturazione"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Debit"
+msgstr "Dare"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Entry"
+msgstr "Registrazione"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_base
+msgid "General Ledger -"
+msgstr "Libro mastro -"
+
+#. module: account_financial_report_landscape
+#: model:ir.actions.report,name:account_financial_report_landscape.action_report_general_ledger_qweb_landscape
+msgid "General Ledger Landscape"
+msgstr "Libro Mastro Orizzontale"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Initial balance"
+msgstr "Saldo iniziale"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Journal"
+msgstr "Registro"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Partner"
+msgstr ""
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Ref -\n"
+"                        Label"
+msgstr "Rif. -\n"
+"                        Etichetta"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Tags"
+msgstr "Etichette"
+
+#. module: account_financial_report_landscape
+#: model_terms:ir.ui.view,arch_db:account_financial_report_landscape.report_general_ledger_lines
+msgid "Total Invoice Settlement"
+msgstr "Totale Partita"
+
+#. module: account_financial_report_landscape
+#: model:ir.model,name:account_financial_report_landscape.model_report_general_ledger
+msgid "report_general_ledger"
+msgstr ""
+
+#. module: account_financial_report_landscape
+#: model:ir.model,name:account_financial_report_landscape.model_report_general_ledger_move_line
+msgid "report_general_ledger_move_line"
+msgstr ""
+

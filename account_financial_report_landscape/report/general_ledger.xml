@@ -563,7 +563,8 @@
                          style="width: 22.9%;">Ending balance</div>
                 </t>
                 <t t-if='type == "partner_type"'>
-                    <div class="act_as_cell first_column" style="width: 41.32%;"/>
+                    <div class="act_as_cell first_column" style="width: 41.32%;"><span
+                            t-field="account_or_partner_object.name"/></div>
                     <div class="act_as_cell right" style="width: 22.9%;">Partner ending balance</div>
                 </t>
                 <t t-if="show_cost_center">

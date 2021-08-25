@@ -37,6 +37,14 @@ Nel wizard di stampa del libro mastro è possibile impostare il raggruppamento d
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/account_financial_report_group/static/description/options.png
     :alt: Opzioni
 
+La stampa verrà quindi suddivisa in modo da evidenziare:
+
+#. i pagamenti di fatture non presenti nella stampa;
+#. le fatture pagate completamente o parzialmente;
+#. le fatture aperte.
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/account_financial_report_group/static/description/report.png
+    :alt: Stampa
 
 Bug Tracker
 ===========

@@ -1,20 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<?xml version="1.0"?>
 
+<openerp>
+	<data>
+
+    <record model="ir.ui.view" id="sale_discount_order_line_form_complex">
+        <field name="name">order.line.form.complex</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_form2"/>
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                 <field name="complex_discount"/>
+            </field>
+        </field>
+    </record>
+    
     <record model="ir.ui.view" id="sale_discount_form_complex">
         <field name="name">order.form.complex</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
+            <field name="price_unit" position="after">
                 <field name="complex_discount"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
-                <field name="complex_discount"/>
-            </xpath>
+            </field>
         </field>
     </record>
-
+    
     <record model="ir.ui.view" id="sale_discount_order_line_tree_complex">
         <field name="name">order.line.tree.complex</field>
         <field name="model">sale.order.line</field>
@@ -26,5 +36,6 @@
             </field>
         </field>
     </record>
-
-</odoo>
+    
+	</data>
+</openerp>

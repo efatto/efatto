@@ -4,11 +4,10 @@
 ##############################################################################
 from openerp import models, fields
 
-class StockMove(models.Model):
-    _inherit = 'stock.move'
 
-    package_ids = fields.Many2many(
-        related='picking_id.ddt_ids',
-        store=True,
-        string='DdT',
-    )
+class PurchaseOrderLine(models.Model):
+    _inherit = "purchase.order.line"
+
+    complex_discount = fields.Char(
+        'Complex Discount', size=32,
+        help='E.g.: 15.5+5, or 50+10+3.5')

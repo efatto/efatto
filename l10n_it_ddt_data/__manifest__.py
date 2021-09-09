@@ -39,4 +39,5 @@
         'data/stock_location.xml',
     ],
     'installable': True,
+    "pre_init_hook": "rename_xmlids_hook",
 }

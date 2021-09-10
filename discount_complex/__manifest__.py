@@ -10,7 +10,7 @@
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
+        'sale_triple_discount',
     ],
     'data': [
         'views/sale_view.xml',

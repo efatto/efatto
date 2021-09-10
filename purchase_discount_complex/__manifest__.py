@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'depends': [
         'purchase_discount',
+        'purchase_triple_discount',
     ],
     'data': [
     ],

@@ -49,3 +49,7 @@ def migrate(cr, version):
     # This is not decorated with @openupgrade.migrate as the module is being
     # installed and thus, the migration script should be run unconditionally
     openupgrade.rename_xmlids(cr, xmlid_renames)
+    modules = [
+        ('stock_ddt_data', 'l10n_it_ddt_data'),
+    ]
+    openupgrade.update_module_names(cr, modules, merge_modules=True)

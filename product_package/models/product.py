@@ -36,10 +36,9 @@ class ProductProduct(models.Model):
         for product in self:
             # gross weight is the sum of net weight of package if exists and
             # net weight of product_template
-            product.weight = product.product_tmpl_id.product_pack_id.weight_net + \
-                product.product_tmpl_id.weight_net if \
-                product.product_tmpl_id.product_pack_id else \
-                product.product_tmpl_id.weight_net
+            product.weight = product.product_tmpl_id.weight_net + (
+                product.product_tmpl_id.product_pack_id.weight_net if
+                product.product_tmpl_id.product_pack_id else 0.0)
 
     @api.depends('product_tmpl_id.weight_net')
     def _get_weight_net(self):

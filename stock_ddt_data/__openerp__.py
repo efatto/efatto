@@ -29,7 +29,7 @@
     'license': 'AGPL-3',
     "depends": [
         'account_auto_fy_sequence',
-        'l10n_it_ddt_ext',
+        # 'l10n_it_ddt_ext',
         'sale',
         'stock_account',
         'stock',

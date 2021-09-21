@@ -30,10 +30,9 @@ class ProductProduct(models.Model):
             # - net weight of package if exists
             # - net weight of bag if exists
             # - net weight of product_template
-            product.weight = product.product_tmpl_id.product_pack_id.weight_net + \
-                product.product_tmpl_id.weight_net if \
-                product.product_tmpl_id.product_pack_id else \
-                product.product_tmpl_id.weight_net
+            product.weight = product.product_tmpl_id.weight_net + (
+                product.product_tmpl_id.product_pack_id.weight_net if
+                product.product_tmpl_id.product_pack_id else 0.0)
             product.weight += product.product_tmpl_id.product_bag_id.weight_net \
                 if product.product_tmpl_id.product_bag_id else 0.0
 

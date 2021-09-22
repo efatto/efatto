@@ -1,6 +1,5 @@
-# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-
+# Copyright 2020-2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Purchase supplierinfo on approved RFQ',
     'version': '12.0.1.1.0',
@@ -9,7 +8,7 @@
         'Update supplierinfo on purchase approve - before purchase order creation',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'purchase_discount',
         'purchase_order_approved',

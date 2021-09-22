@@ -38,7 +38,8 @@ class ProductProduct(models.Model):
             # net weight of product_template
             product.weight = product.product_tmpl_id.weight_net + (
                 product.product_tmpl_id.product_pack_id.weight_net if
-                product.product_tmpl_id.product_pack_id else 0.0)
+                product.product_tmpl_id.product_pack_id else
+                product.product_tmpl_id.weight_net * 0.3)
 
     @api.depends('product_tmpl_id.weight_net')
     def _get_weight_net(self):

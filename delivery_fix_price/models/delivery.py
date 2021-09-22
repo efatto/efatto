@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp.osv import osv
+# Copyright 2017-2021 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
 
 
-class delivery_grid(osv.osv):
-    _inherit = "delivery.grid"
+class ProviderGrid(models.Model):
+    _inherit = "delivery.carrier"
 
-    def get_price(self, cr, uid, id, order, dt, context=None):
+    def _get_price_available(self, order):
+        self.ensure_one()
         total = weight = volume = quantity = 0
-        product_uom_obj = self.pool.get('product.uom')
         for line in order.order_line:
             if line.state == 'cancel':
                 continue
@@ -18,16 +17,14 @@ class delivery_grid(osv.osv):
                 total += line.price_subtotal
             if not line.product_id or line.is_delivery:
                 continue
-            q = product_uom_obj._compute_qty(
-                cr, uid, line.product_uom.id, line.product_uom_qty,
+            qty = line.product_uom._compute_quantity(
+                line.product_uom_qty,
                 line.product_id.uom_id.id)
-            weight += (line.product_id.weight or 0.0) * q
-            volume += (line.product_id.volume or 0.0) * q
-            quantity += q
-        ctx = context.copy()
-        ctx['date'] = order.date_order
-        total = self.pool['res.currency'].compute(
-            cr, uid, order.currency_id.id, order.company_id.currency_id.id,
-            total, context=ctx)
-        return self.get_price_from_picking(
-            cr, uid, id, total,weight, volume, quantity, context=context)
+            weight += (line.product_id.weight or 0.0) * qty
+            volume += (line.product_id.volume or 0.0) * qty
+            quantity += qty
+
+        total = order.currency_id._convert(
+            total, order.company_id.currency_id,
+            order.company_id, order.date_order or fields.Date.today())
+        return self._get_price_from_picking(total, weight, volume, quantity)

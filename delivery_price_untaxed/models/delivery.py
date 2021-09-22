@@ -19,7 +19,7 @@ class ProviderGrid(models.Model):
                 continue
             qty = line.product_uom._compute_quantity(
                 line.product_uom_qty,
-                line.product_id.uom_id.id)
+                line.product_id.uom_id)
             weight += (line.product_id.weight or 0.0) * qty
             volume += (line.product_id.volume or 0.0) * qty
             quantity += qty

@@ -18,6 +18,6 @@ class MailComposeMessage(models.TransientModel):
         if (self._context.get('default_model', False) == 'sale.order' and
             self._context.get('default_res_id', False) and self._context.get(
                 'change_agreed_date', False)):
-            self.env['sale.order'].set_new_agreed_delivery_date(
+            self.env['sale.order']._set_max_commitment_date(
                 self._context['default_res_id'])
         return super(MailComposeMessage, self).send_mail()

@@ -86,7 +86,6 @@ class SaleOrder(models.Model):
 
     commitment_date = fields.Datetime(string='Scheduled Delivery Date')
     color = fields.Integer(compute='_get_color')
-    revision = fields.Integer(default=1)
     calendar_state = fields.Selection(
         selection=STATES,
         default='to_process',

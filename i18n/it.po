@@ -73,8 +73,8 @@ msgstr "Settimana di Consegna"
 
 #. module: sale_order_calendar_state
 #: model:mail.template,subject:sale_order_calendar_state.email_template_delivery_date_changed
-msgid "Delivery date for order ${object.name} revision ${object.revision + 1}"
-msgstr "Data di consegna per l'ordine ${object.name} revisione ${object.revision + 1}"
+msgid "Delivery date for order ${object.name}"
+msgstr "Data di consegna per l'ordine ${object.name}"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -167,10 +167,6 @@ msgstr "Pronto da produrre"
 msgid "Record Production"
 msgstr "Registrare la Produzione"
 
-#. module: sale_order_calendar_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__revision
-msgid "Revision"
-msgstr "Revisione"
 
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order

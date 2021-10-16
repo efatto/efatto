@@ -8,6 +8,24 @@ from odoo.tools.float_utils import float_round
 from odoo.addons.stock.models.product import OPERATORS
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    def open_view_stock_reserved(self):
+        domain = [('product_id.product_tmpl_id', 'in', self.ids),
+                  ('state', 'not in', ['cancel', 'done'])]
+        view = self.env.ref(
+            'stock_move_available_date_expected.view_stock_reserved_tree')
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Stock reserved',
+            'domain': domain,
+            'views': [(view.id, 'tree'), (False, 'pivot')],
+            'res_model': 'stock.move',
+            'context': {'search_default_date_expected_from_today': 1}
+        }
+
+
 class Product(models.Model):
     _inherit = "product.product"
 
@@ -16,6 +34,20 @@ class Product(models.Model):
         search='_search_virtual_available_by_date_expected',
         digits=dp.get_precision('Product Unit of Measure')
     )
+
+    def open_view_stock_reserved(self):
+        domain = [('product_id', '=', self.id),
+                  ('state', 'not in', ['cancel', 'done'])]
+        view = self.env.ref(
+            'stock_move_available_date_expected.view_stock_reserved_tree')
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Stock reserved',
+            'domain': domain,
+            'views': [(view.id, 'tree'), (False, 'pivot')],
+            'res_model': 'stock.move',
+            'context': {'search_default_date_expected_from_today': 1}
+        }
 
     def _search_virtual_available_by_date_expected(self, operator, value):
         # TDE FIXME: should probably clean the search methods

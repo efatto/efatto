@@ -51,7 +51,7 @@ Le prenotazioni (riserve) presenti sono visualizzate in questa colonna:
 
 È inoltre possibile togliere la riserva su un prodotto con un tasto che apre una procedura guidata (accessibile anche dai trasferimenti):
 
-.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_move_available_date_expected/static/description/modifica_prenotazione.png.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_move_available_date_expected/static/description/modifica_prenotazione.png
     :alt: Modifica prenotazione
 
 Bug Tracker

@@ -20,5 +20,5 @@ Le prenotazioni (riserve) presenti sono visualizzate in questa colonna:
 
 È inoltre possibile togliere la riserva su un prodotto con un tasto che apre una procedura guidata (accessibile anche dai trasferimenti):
 
-.. image:: ../static/description/modifica_prenotazione.png.png
+.. image:: ../static/description/modifica_prenotazione.png
     :alt: Modifica prenotazione

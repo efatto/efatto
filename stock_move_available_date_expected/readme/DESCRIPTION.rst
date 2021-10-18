@@ -1,1 +1,1 @@
-This module add some field to product moves views linked to origin objets to open them simply.
+This module add a detailed view for stock move on product by date expected.

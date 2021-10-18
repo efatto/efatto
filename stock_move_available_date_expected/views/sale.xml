@@ -8,7 +8,7 @@
             <xpath expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                 <button name="open_view_stock_reserved"
                         string="Stock Reserved" type="object"
-                        class="oe_stat_button" icon="fa-area-chart" groups="base.group_user"
+                        class="oe_stat_button" icon="fa-arrows-v" groups="base.group_user"
                         attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
             </xpath>
         </field>

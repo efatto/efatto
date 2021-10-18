@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 20:41+0000\n"
-"PO-Revision-Date: 2021-10-16 20:41+0000\n"
+"POT-Creation-Date: 2021-10-18 07:33+0000\n"
+"PO-Revision-Date: 2021-10-18 07:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,32 +28,33 @@ msgstr "Data prevista"
 #. module: stock_move_available_date_expected
 #: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_move_search_date_expected
 msgid "Date expected from today"
-msgstr "Data prevista da oggi"
+msgstr "Data impegno da oggi"
 
 #. module: stock_move_available_date_expected
 #: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_form_view_procurement_button_date_expected
+#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_template_form_view_procurement_button_date_expected
 msgid "Expected Moves"
-msgstr "Movimenti per data prevista"
+msgstr "Movimenti per data impegno"
 
 #. module: stock_move_available_date_expected
 #: model:ir.model.fields,field_description:stock_move_available_date_expected.field_product_product__virtual_available_at_date_expected
 msgid "Forecast Quantity"
-msgstr "Quantità Prevista"
+msgstr "Quantità prevista"
 
 #. module: stock_move_available_date_expected
-#: code:addons/stock_move_available_date_expected/models/product.py:45
+#: code:addons/stock_move_available_date_expected/models/product.py:63
 #, python-format
 msgid "Invalid domain left operand %s"
 msgstr ""
 
 #. module: stock_move_available_date_expected
-#: code:addons/stock_move_available_date_expected/models/product.py:47
+#: code:addons/stock_move_available_date_expected/models/product.py:65
 #, python-format
 msgid "Invalid domain operator %s"
 msgstr ""
 
 #. module: stock_move_available_date_expected
-#: code:addons/stock_move_available_date_expected/models/product.py:49
+#: code:addons/stock_move_available_date_expected/models/product.py:67
 #, python-format
 msgid "Invalid domain right operand %s"
 msgstr ""
@@ -69,9 +70,14 @@ msgid "Product"
 msgstr "Prodotto"
 
 #. module: stock_move_available_date_expected
+#: model:ir.model,name:stock_move_available_date_expected.model_product_template
+msgid "Product Template (Multi-Company)"
+msgstr ""
+
+#. module: stock_move_available_date_expected
 #: model:ir.model.fields,field_description:stock_move_available_date_expected.field_stock_move__qty_available_at_date_expected
 msgid "Qty Available At Date Expected"
-msgstr "Qtà Disponibile Alla Data Prevista"
+msgstr "Qtà Disponibile Alla Data Impegno"
 
 #. module: stock_move_available_date_expected
 #: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_stock_reserved_tree

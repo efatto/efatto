@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
+    qty_available = fields.Float(related='product_id.qty_available')
     qty_available_at_date_expected = fields.Float(
         compute='_compute_qty_available_at_date_expected')
 

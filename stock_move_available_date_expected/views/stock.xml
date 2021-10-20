@@ -20,6 +20,7 @@
                 <field name="product_id"/>
                 <field name="product_uom_qty"/>
                 <field name="qty_available_at_date_expected"/>
+                <field name="qty_available"/>
                 <field name="move_line_ids" widget="many2many_tags" string="Reservations"/>
                 <button name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
                     type="action" icon="fa-tags"

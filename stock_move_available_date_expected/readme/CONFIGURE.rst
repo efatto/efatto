@@ -22,3 +22,8 @@ Le prenotazioni (riserve) presenti sono visualizzate in questa colonna:
 
 .. image:: ../static/description/modifica_prenotazione.png
     :alt: Modifica prenotazione
+
+Ecco un esempio dettagliato dei movimenti di un prodotto:
+
+.. image:: ../static/description/dettaglio_movimenti.png
+    :alt: Dettaglio movimenti

@@ -62,7 +62,7 @@ msgstr ""
 #. module: stock_move_available_date_expected
 #: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_stock_reserved_tree
 msgid "Manual Quants"
-msgstr ""
+msgstr "Riserva Manualmente"
 
 #. module: stock_move_available_date_expected
 #: model:ir.model,name:stock_move_available_date_expected.model_product_product

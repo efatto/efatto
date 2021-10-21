@@ -10,6 +10,14 @@ class StockMove(models.Model):
     qty_available = fields.Float(related='product_id.qty_available')
     qty_available_at_date_expected = fields.Float(
         compute='_compute_qty_available_at_date_expected')
+    move_line_qty_done = fields.Boolean(compute='_compute_move_line_qty_done')
+
+    @api.multi
+    def _compute_move_line_qty_done(self):
+        for move in self:
+            move.move_line_qty_done = bool(any([
+                x.qty_done > 0 for x in move.move_line_ids
+            ]))
 
     @api.multi
     def _compute_qty_available_at_date_expected(self):

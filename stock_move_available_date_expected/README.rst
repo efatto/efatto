@@ -54,6 +54,11 @@ Le prenotazioni (riserve) presenti sono visualizzate in questa colonna:
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_move_available_date_expected/static/description/modifica_prenotazione.png
     :alt: Modifica prenotazione
 
+Ecco un esempio dettagliato dei movimenti di un prodotto:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_move_available_date_expected/static/description/dettaglio_movimenti.png
+    :alt: Dettaglio movimenti
+
 Bug Tracker
 ===========
 

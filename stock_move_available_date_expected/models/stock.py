@@ -11,6 +11,10 @@ class StockMove(models.Model):
     qty_available_at_date_expected = fields.Float(
         compute='_compute_qty_available_at_date_expected')
     move_line_qty_done = fields.Boolean(compute='_compute_move_line_qty_done')
+    sale_partner_id = fields.Many2one(
+        string='Sale Partner',
+        related='sale_line_id.order_id.partner_id',
+    )
 
     @api.multi
     def _compute_move_line_qty_done(self):

@@ -32,6 +32,7 @@
                 <field name="product_uom" invisible="1" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
                 <field name="picking_id"/>
                 <field name="sale_line_id"/>
+                <field name="sale_partner_id"/>
                 <field name="purchase_line_id"/>
                 <field name="production_id"/>
                 <field name="raw_material_production_id"/>

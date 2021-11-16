@@ -11,7 +11,9 @@ class SaleOrderLine(models.Model):
         product = self.product_id.id if self.product_id.type != 'service' else False
         if product:
             domain = [('product_id', '=', product),
-                      ('state', 'not in', ['cancel', 'done'])]
+                      ('state', '!=', 'cancel'),
+                      ('date_expected', '>=',
+                       product.product_tmpl_id.date_oldest_open_move)]
             view = self.env.ref(
                 'stock_move_available_date_expected.view_stock_reserved_tree')
             return {

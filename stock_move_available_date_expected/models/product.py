@@ -11,9 +11,22 @@ from odoo.addons.stock.models.product import OPERATORS
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    date_oldest_open_move = fields.Datetime(compute='_compute_date_oldest_open_move')
+
+    @api.multi
+    def _compute_date_oldest_open_move(self):
+        for product_template in self:
+            product_template.date_oldest_open_move = min(
+                [x.date_expected for x in self.env['stock.move'].search([
+                    ('product_id.product_tmpl_id', 'in', self.ids),
+                    ('state', 'not in', ['cancel', 'done']),
+                ])
+                ])
+
     def open_view_stock_reserved(self):
         domain = [('product_id.product_tmpl_id', 'in', self.ids),
-                  ('state', 'not in', ['cancel', 'done'])]
+                  ('state', '!=', 'cancel'),
+                  ('date_expected', '>=', self.date_oldest_open_move)]
         view = self.env.ref(
             'stock_move_available_date_expected.view_stock_reserved_tree')
         return {
@@ -37,7 +50,8 @@ class Product(models.Model):
 
     def open_view_stock_reserved(self):
         domain = [('product_id', '=', self.id),
-                  ('state', 'not in', ['cancel', 'done'])]
+                  ('state', '!=', 'cancel'),
+                  ('date_expected', '>=', self.product_tmpl_id.date_oldest_open_move)]
         view = self.env.ref(
             'stock_move_available_date_expected.view_stock_reserved_tree')
         return {

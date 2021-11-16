@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
                     ('product_id.product_tmpl_id', 'in', self.ids),
                     ('state', 'not in', ['cancel', 'done']),
                 ])
-                ])
+                ]) or fields.Datetime.now()
 
     def open_view_stock_reserved(self):
         domain = [('product_id.product_tmpl_id', 'in', self.ids),

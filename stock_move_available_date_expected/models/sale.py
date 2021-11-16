@@ -8,9 +8,9 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     def open_view_stock_reserved(self):
-        product = self.product_id.id if self.product_id.type != 'service' else False
+        product = self.product_id if self.product_id.type != 'service' else False
         if product:
-            domain = [('product_id', '=', product),
+            domain = [('product_id', '=', product.id),
                       ('state', '!=', 'cancel'),
                       ('date_expected', '>=',
                        product.product_tmpl_id.date_oldest_open_move)]

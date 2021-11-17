@@ -16,12 +16,16 @@ class ProductTemplate(models.Model):
     @api.multi
     def _compute_date_oldest_open_move(self):
         for product_template in self:
-            product_template.date_oldest_open_move = min(
-                [x.date_expected for x in self.env['stock.move'].search([
+            moves = self.env['stock.move'].search([
+                ('product_id.product_tmpl_id', 'in', self.ids),
+                ('state', 'not in', ['cancel', 'done']),
+            ])
+            if not moves:
+                moves = self.env['stock.move'].search([
                     ('product_id.product_tmpl_id', 'in', self.ids),
-                    ('state', 'not in', ['cancel', 'done']),
                 ])
-                ] or [fields.Datetime.now(), ])
+            product_template.date_oldest_open_move = min(
+                [x.date_expected for x in moves] or [fields.Datetime.now(), ])
 
     def open_view_stock_reserved(self):
         domain = [('product_id.product_tmpl_id', 'in', self.ids),

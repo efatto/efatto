@@ -27,7 +27,7 @@
                 <button name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
                     type="action" icon="fa-tags"
                     string="Manual Quants"
-                    attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','not in',('confirmed','assigned','partially_available'))]}"
+                    attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done'))]}"
                     />
                 <field name="product_uom" invisible="1" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
                 <field name="picking_id"/>

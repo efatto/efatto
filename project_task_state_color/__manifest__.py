@@ -11,7 +11,7 @@
     'license': 'LGPL-3',
     'depends': [
         'calendar',
-        'project',
+        'project_stage_closed',
         'web_widget_color',
     ],
     'data': [

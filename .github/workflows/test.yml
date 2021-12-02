@@ -32,6 +32,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
+      - name: Install libreoffice
+        run: sudo apt-get install libreoffice
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Initialize test db

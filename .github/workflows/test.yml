@@ -33,7 +33,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install libreoffice
-        run: apt-get update && apt-get install -y –no-install-recommends libreoffice
+        run: apt-get update && apt-get –no-install-recommends install -y libreoffice
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Initialize test db

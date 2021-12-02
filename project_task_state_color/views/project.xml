@@ -35,7 +35,7 @@
                     <field name="hex_value"/>
                     <field name="hex_value_reduced"/>
                     <field name="kanban_state"/>
-                    <field name="state"/>
+                    <field name="stage_id"/>
                     <field name="user_id"/>
                     <field name="project_id"/>
                     <field name="partner_id"/>

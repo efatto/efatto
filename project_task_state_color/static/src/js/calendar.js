@@ -16,7 +16,7 @@ CalendarView.include({
                 x[j].style.backgroundColor = evt.hex_value;
                 x[j].classList.remove(original_class_color);
             }
-            if (evt.kanban_state === 'done' || evt.state === 'done') {
+            if (evt.kanban_state === 'done' || evt.stage_id.closed) {
                 r.backgroundColor = evt.hex_value_reduced;
             }else{
                 r.backgroundColor = evt.hex_value;

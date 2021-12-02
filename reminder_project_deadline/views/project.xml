@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='options_active']" position="after">
                 <field name="reminder_alarm_ids" widget="many2many_tags"
-                       attrs="{'readonly':[('date', '=', False)]}" string="Reminders"/>
+                       string="Reminders"/>
             </xpath>
         </field>
     </record>

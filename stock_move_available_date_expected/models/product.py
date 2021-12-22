@@ -47,7 +47,8 @@ class Product(models.Model):
     _inherit = "product.product"
 
     virtual_available_at_date_expected = fields.Float(
-        'Forecast Quantity', compute='_compute_quantities_by_date_expected',
+        'Forecast Quantity Expected Date',
+        compute='_compute_quantities_by_date_expected',
         search='_search_virtual_available_by_date_expected',
         digits=dp.get_precision('Product Unit of Measure')
     )

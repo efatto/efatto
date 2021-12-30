@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_invoice_line_form"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <separator colspan="4" string="Moves"/>
+                <separator colspan="4" string="Purchase Moves"/>
                 <field colspan="4" name="purchase_move_ids" nolabel="1">
                     <tree name="Stock Moves">
                         <field name="date_expected"/>

@@ -8,6 +8,7 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     purchase_move_ids = fields.One2many(
+        string='Purchase Moves',
         comodel_name='stock.move',
         related='purchase_line_id.move_ids',
     )

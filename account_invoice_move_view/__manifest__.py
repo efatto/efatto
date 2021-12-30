@@ -1,11 +1,11 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    'name': 'Stock move lots in invoice line details tree',
+    'name': 'Stock move with lots in invoice line form',
     'version': '12.0.1.0.0',
     'category': 'other',
     'description': """
-    Stock product lots visibile in invoice line stock move tree
+    Stock product lots visibile in invoice line form
     """,
     'author': 'Sergio Corato',
     'website': 'https://www.efatto.it',

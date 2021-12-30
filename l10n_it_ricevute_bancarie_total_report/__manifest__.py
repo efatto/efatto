@@ -12,6 +12,7 @@
         'l10n_it_ricevute_bancarie',
     ],
     'data': [
+        'report/report_view.xml',
         'report/distinta_report.xml',
     ],
 }

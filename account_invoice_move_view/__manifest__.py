@@ -5,7 +5,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'description': """
-    Stock product lots visibile in invoice line form
+    Stock move and lots visibile in invoice line form
     """,
     'author': 'Sergio Corato',
     'website': 'https://www.efatto.it',

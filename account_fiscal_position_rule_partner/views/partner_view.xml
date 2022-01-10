@@ -13,6 +13,7 @@
                         </group>
                         <group string="Dates" colspan="4">
                             <field name="number_protocol"/>
+                            <field name="telematic_protocol"/>
                             <field name="date_issue"/>
                             <field name="date_reception"/>
                         </group>

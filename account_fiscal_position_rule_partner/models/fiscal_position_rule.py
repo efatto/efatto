@@ -8,6 +8,7 @@ from openerp import models, fields, api, _
 class AccountFiscalPositionRule(models.Model):
     _inherit = 'account.fiscal.position.rule'
 
+    telematic_protocol = fields.Char()
     number_protocol = fields.Integer(
         'VAT Exemption declaration protocol Number')
     partner_id = fields.Many2one('res.partner', 'Partner')

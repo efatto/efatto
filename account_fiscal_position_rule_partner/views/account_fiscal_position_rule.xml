@@ -10,6 +10,8 @@
                     <field name="partner_id"/>
                 </field>
                 <field name="description" position="after">
+                    <field name="telematic_protocol"/>
+                    <field name="date_issue"/>
                     <field name="amount_max"/>
                     <field name="amount_total"/>
                     <field name="operation_type"/>

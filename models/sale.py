@@ -95,6 +95,7 @@ class SaleOrder(models.Model):
         oldname='a_calendario')
     max_commitment_date = fields.Datetime(
         compute='_compute_max_commitment_date',
+        inverse='_set_max_commitment_date',
         store=True,
         string='Max Scheduled Delivery Date',
         oldname='last_agreed_delivery_date')
@@ -109,6 +110,11 @@ class SaleOrder(models.Model):
                 order.delivery_week = False
                 continue
             order.delivery_week = order.commitment_date.isocalendar()[1]
+
+    @api.multi
+    def _set_max_commitment_date(self):
+        for order in self:
+            order.order_line.write({'commitment_date': order.max_commitment_date})
 
     @api.depends('order_line.commitment_date',
                  'commitment_date',

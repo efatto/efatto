@@ -52,6 +52,11 @@ class WizardExportFatturapa(models.TransientModel):
                 RiferimentoData=dec.date_issue
             )
             DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
+            dati_gestionali = AltriDatiGestionaliType(
+                TipoDato="VAT",
+                RiferimentoTesto="NR",
+            )
+            DettaglioLinea.AltriDatiGestionali.append(dati_gestionali)
             body.DatiBeniServizi.DettaglioLinee.append(DettaglioLinea)
         return res
 

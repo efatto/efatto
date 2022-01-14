@@ -6,11 +6,11 @@
         <field name="inherit_id" ref="sale_advance_invoice.view_sale_advance_payment_inv_inh"/>
         <field name="arch" type="xml">
             <field name="order_line_ids" position="after">
-                <field name="order_id" invisible="1"/>
-                <field name="analytic_account_id" invisible="1"/>
+                <field name="order_ids" invisible="1"/>
+                <field name="analytic_account_ids" invisible="1"/>
                 <field name="sal_id"
                        attrs="{'invisible': [('advance_payment_method','!=','percentage')]}"
-                       domain="[('account_analytic_id', '=', analytic_account_id)]"/>
+                       domain="[('account_analytic_id', 'in', analytic_account_ids)]"/>
             </field>
         </field>
     </record>

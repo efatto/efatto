@@ -8,10 +8,16 @@ class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = "sale.advance.payment.inv"
 
     @api.model
-    def _get_order(self):
+    def _get_orders(self):
         sale_orders = self.env['sale.order'].browse(
             self._context.get('active_ids', []))
         return sale_orders
+
+    @api.model
+    def _get_analytic_account_ids(self):
+        analytic_ids = self.env['sale.order'].browse(
+            self.order_ids).mapped('analytic_account_id')
+        return analytic_ids
 
     @api.onchange('sal_id')
     def _get_sal_percent(self):
@@ -19,12 +25,13 @@ class SaleAdvancePaymentInv(models.TransientModel):
             if self.sal_id:
                 self.amount = self.sal_id.percent_toinvoice
 
-    order_id = fields.Many2one(
+    order_ids = fields.Many2many(
         comodel_name='sale.order',
-        default=_get_order
+        default=_get_orders,
     )
-    analytic_account_id = fields.Many2one(
-        related='order_id.analytic_account_id'
+    analytic_account_ids = fields.Many2many(
+        comodel_name='account.analytic.account',
+        default=_get_analytic_account_ids,
     )
     sal_id = fields.Many2one(
         comodel_name='account.analytic.sal',

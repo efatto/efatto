@@ -6,15 +6,15 @@
     'category': 'Stock',
     'summary': "Allows to force number on specific DN",
     'description': """
-This module allows to force the ddt numbering.
-It make visible the ddt_number field. If user fills that field, the typed
-value will be used as ddt number.
-Otherwise, the next sequence number will be retrieved and saved.
+This module allows to force the ddt numbering.\n
+It add the ddt name field to ddt wizard creation. If user fills that field, the typed
+value will be used as ddt number.\n
+Otherwise, the next sequence number will be retrieved and saved.\n
 So, the new field has to be used when user doesn't want to use the default
 ddt numbering for a specific ddt.
     """,
     'author': "Sergio Corato",
-    'website': 'http://www.efatto.it',
+    'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_delivery_note',

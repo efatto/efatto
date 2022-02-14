@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="stock_delivery_note_create_form_view_force_number">
+        <field name="name">stock.delivery.note.create.form.force.number</field>
+        <field name="model">stock.delivery.note.create.wizard</field>
+        <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_create_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="name" groups="l10n_it_delivery_note.can_change_number"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

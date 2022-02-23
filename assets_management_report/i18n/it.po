@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 18:56+0000\n"
-"PO-Revision-Date: 2022-02-22 18:56+0000\n"
+"POT-Creation-Date: 2022-02-23 10:55+0000\n"
+"PO-Revision-Date: 2022-02-23 10:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: assets_management_report
+#: model_terms:ir.ui.view,arch_db:assets_management_report.document_layout
+msgid "<span>Fiscalcode:</span>"
+msgstr "<span>C.F.:</span>"
+
+#. module: assets_management_report
+#: model_terms:ir.ui.view,arch_db:assets_management_report.document_layout
+msgid "<span>P.IVA:</span>"
+msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
@@ -40,7 +50,7 @@ msgstr ""
 #: model:ir.model,name:assets_management_report.model_report_assets_management_report_report_asset
 #: model:ir.ui.menu,name:assets_management_report.menu_asset_report
 msgid "Assets Report"
-msgstr ""
+msgstr "Registro Cespiti"
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.wizard_asset_report
@@ -60,12 +70,12 @@ msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Coefficiente di ammortamento"
+msgid "Coefficiente amm.to"
 msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Costo storico di acquisto"
+msgid "Costo storico"
 msgstr ""
 
 #. module: assets_management_report
@@ -121,12 +131,12 @@ msgstr "Anno Fiscale"
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Fondo di amm.to anni precedenti"
+msgid "Fondo amm.to anno"
 msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Fondo di amm.to fine esercizio in corso"
+msgid "Fondo amm.to precedenti"
 msgstr ""
 
 #. module: assets_management_report
@@ -162,6 +172,11 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: assets_management_report
+#: model_terms:ir.ui.view,arch_db:assets_management_report.document_layout
+msgid "Pag:"
+msgstr ""
+
+#. module: assets_management_report
 #: selection:wizard.asset.report,type:0
 msgid "Posted Asset Report"
 msgstr ""
@@ -173,7 +188,7 @@ msgstr "Stampa"
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Quota annuale di ammortamento"
+msgid "Quota annuale amm.to"
 msgstr ""
 
 #. module: assets_management_report
@@ -193,7 +208,7 @@ msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Rivalutazioni o svalutazioni"
+msgid "Rivalutazioni / Svalutazioni"
 msgstr ""
 
 #. module: assets_management_report
@@ -218,7 +233,12 @@ msgstr ""
 
 #. module: assets_management_report
 #: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
-msgid "Stampa libro giornale"
+msgid "Stampa registro cespiti"
+msgstr ""
+
+#. module: assets_management_report
+#: model_terms:ir.ui.view,arch_db:assets_management_report.report_asset
+msgid "Stampa registro cespiti SIMULATO"
 msgstr ""
 
 #. module: assets_management_report

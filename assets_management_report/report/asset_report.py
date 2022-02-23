@@ -129,8 +129,11 @@ class ReportAsset(models.AbstractModel):
                 # ('asset_id.state', 'in', state),
                 ('date_start', '<=', fy.date_to),
                 '|',
-                ('last_depreciation_date', '>', fy.date_from),
-                ('last_depreciation_date', '=', False),
+                ('asset_id.sale_date', '>', fy.date_to),
+                ('asset_id.sale_date', '=', False),
+                '|',
+                ('date_remove', '>', fy.date_to),
+                ('date_remove', '=', False),
             ])
             res.update({
                 ctg.id: {

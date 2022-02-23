@@ -55,9 +55,12 @@ class WizardAssetReport(models.TransientModel):
             ('asset_id.category_id', 'in', wizard.category_ids.ids),
             # ('state', 'in', state),
             ('date_start', '<=', wizard.fy_id.date_to),
-            # '|',
-            ('last_depreciation_date', '>', wizard.fy_id.date_from),
-            # ('last_depreciation_date', '=', False),
+            '|',
+            ('asset_id.sale_date', '>', wizard.fy_id.date_to),
+            ('asset_id.sale_date', '=', False),
+            '|',
+            ('date_remove', '>', wizard.fy_id.date_to),
+            ('date_remove', '=', False),
         ], order='date_start')
         sorted_depreciation_ids = depreciation_ids.sorted(
             key=lambda x: (

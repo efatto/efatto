@@ -14,6 +14,7 @@
         'l10n_it_account',
     ],
     'data': [
+        'views/assets.xml',
         'report/layout.xml',
         'report/asset_report.xml',
         'wizard/print_asset_report.xml',

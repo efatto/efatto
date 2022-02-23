@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_asset_depreciation_form">
+        <field name="name">asset.depreciation.form.view</field>
+        <field name="inherit_id" ref="assets_management.view_asset_depreciation_form"/>
+        <field name="model">asset.depreciation</field>
+        <field name="arch" type="xml">
+            <field name="date_start" position="after">
+                <field name="date_remove"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

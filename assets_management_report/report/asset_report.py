@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models
 from odoo.tools.misc import formatLang
-from datetime import datetime
+from odoo.tools.float_utils import float_round
 
 
 class ReportAsset(models.AbstractModel):
@@ -35,8 +35,10 @@ class ReportAsset(models.AbstractModel):
         line_ids = depr_asset.line_ids.filtered(
             lambda x: x.date <= fy.date_to and x.move_type in ['in', 'out'])
         if line_ids:
-            res = sum(x.balance for x in line_ids
-                      if x.amount != x.asset_id.purchase_amount)
+            res = float_round(
+                sum(x.balance for x in line_ids
+                    if x.amount != x.asset_id.purchase_amount),
+                precision_digits=2)
             # res -= asset.purchase_amount il sistema precedente cercava i valori
             # di acquisto e creazione (che adesso non ci sono più) e li detraeva dal
             # valore di acquisto per desumere le variazioni

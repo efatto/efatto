@@ -12,3 +12,14 @@ class AccountInvoiceLine(models.Model):
         comodel_name='stock.move',
         related='purchase_line_id.move_ids',
     )
+    purchase_prod_lot_ids = fields.Many2many(
+        comodel_name='stock.production.lot',
+        compute='_compute_purchase_prod_lot_ids',
+        string="Lots",
+    )
+
+    def _compute_purchase_prod_lot_ids(self):
+        for line in self:
+            line.purchase_prod_lot_ids = line.mapped(
+                'purchase_move_ids.move_line_ids.lot_id'
+            )

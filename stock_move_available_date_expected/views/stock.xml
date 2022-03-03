@@ -38,9 +38,9 @@
                 <field name="raw_material_production_id"/>
                 <field name="location_id" groups="stock.group_stock_multi_locations"/>
                 <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
-                <field name="create_date" groups="base.group_no_one"/>
-                <field name="date" string="Date" groups="base.group_no_one"/>
-                <field name="date_expected" string="Date Expected"/>
+                <field name="create_date" groups="base.group_no_one" widget="date"/>
+                <field name="date" string="Date" groups="base.group_no_one" widget="date"/>
+                <field name="date_expected" string="Date Expected" widget="date"/>
                 <field name="state"/>
             </tree>
         </field>

@@ -60,6 +60,3 @@ class StockMoveLine(models.Model):
         store=True,
         group_operator="sum"
     )
-    picking_partner_id = fields.Many2one(
-        'res.partner', string='Partner', store=True,
-        related='move_id.picking_partner_id')

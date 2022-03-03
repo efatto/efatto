@@ -14,6 +14,7 @@
         'mrp',
         'purchase_stock',
         'sale_stock',
+        'stock_move_details',
         'stock_quant_manual_assign',
     ],
     'data': [

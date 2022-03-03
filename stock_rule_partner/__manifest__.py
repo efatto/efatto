@@ -11,6 +11,7 @@
         'stock',
     ],
     'data': [
+        'views/stock_rule.xml',
     ],
     'installable': True,
 }

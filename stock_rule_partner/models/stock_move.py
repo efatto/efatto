@@ -26,6 +26,39 @@ class StockMove(models.Model):
                 ('printed', '=', False),
                 ('state', 'in', ['draft', 'confirmed', 'waiting', 'assigned'])
             ], limit=1)
+            if picking:
+                if self.origin not in picking.origin:
+                    picking.origin = ', '.join([picking.origin or '', self.origin])
         else:
             return super()._search_picking_for_assignation()
         return picking
+
+    def _action_confirm(self, merge=True, merge_into=False):
+        if all(self.mapped('rule_id.propagate_partner')):
+            return super(StockMove, self.with_context(propagate_partner=True)
+                         )._action_confirm(merge, merge_into)
+        return super()._action_confirm(merge, merge_into)
+
+    def _assign_picking(self):
+        """Redefine method to include picking created from multiple origin."""
+        if "propagate_partner" not in self.env.context:
+            return super()._assign_picking()
+        Picking = self.env['stock.picking']
+        for move in self:
+            recompute = False
+            picking = move._search_picking_for_assignation()
+            if picking:
+                if picking.partner_id.id != move.partner_id.id or \
+                        move.origin not in picking.origin:
+                    picking.write({
+                        'partner_id': False,
+                        'origin': False,
+                    })
+            else:
+                recompute = True
+                picking = Picking.create(move._get_new_picking_values())
+            move.write({'picking_id': picking.id})
+            move._assign_picking_post_process(new=recompute)
+            if recompute:
+                move.recompute()
+        return True

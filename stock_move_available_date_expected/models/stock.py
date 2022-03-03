@@ -15,6 +15,42 @@ class StockMove(models.Model):
         string='Sale Partner',
         related='sale_line_id.order_id.partner_id',
     )
+    reserved_move_info = fields.Char(
+        compute='_compute_reserved_move_info',
+    )
+
+    @api.multi
+    def _compute_reserved_move_info(self):
+        for move in self:
+            move_info = []
+            if move.sale_line_id:
+                move_info.append(
+                    '[SO: %s %s]' % (
+                        move.sale_partner_id.name,
+                        move.sale_line_id.order_id.name,
+                    ))
+            if move.purchase_line_id:
+                move_info.append(
+                    '[PO: %s %s]' % (
+                        move.purchase_line_id.order_id.partner_id.name,
+                        move.purchase_line_id.order_id.name,
+                    ))
+            if move.production_id:
+                move_info.append(
+                    '[MO: %s %s %s]' % (
+                        move.production_id.partner_id.name,
+                        move.production_id.sale_id.name,
+                        move.production_id.name,
+                    ))
+            if move.raw_material_production_id:
+                move_info.append(
+                    '[MO consumed: %s %s %s]' % (
+                        move.raw_material_production_id.partner_id.name,
+                        move.raw_material_production_id.sale_id.name,
+                        move.raw_material_production_id.name,
+                    ))
+            move.reserved_move_info = ', '.join(move_info)
+            # NOTA: serve anche il piching partner?
 
     @api.multi
     def _compute_move_line_qty_done(self):

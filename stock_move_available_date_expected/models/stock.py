@@ -15,15 +15,15 @@ class StockMove(models.Model):
         string='Sale Partner',
         related='sale_line_id.order_id.partner_id',
     )
-    reserved_move_info = fields.Char(
-        compute='_compute_reserved_move_info',
+    move_origin = fields.Char(
+        compute='_compute_move_origin',
         store=True,
     )
 
     @api.multi
     @api.depends('sale_line_id', 'purchase_line_id', 'production_id',
                  'raw_material_production_id')
-    def _compute_reserved_move_info(self):
+    def _compute_move_origin(self):
         for move in self:
             move_info = []
             if move.sale_line_id:
@@ -52,7 +52,7 @@ class StockMove(models.Model):
                         move.raw_material_production_id.sale_id.name,
                         move.raw_material_production_id.name,
                     ))
-            move.reserved_move_info = ', '.join(move_info)
+            move.move_origin = ', '.join(move_info)
 
     @api.multi
     def _compute_move_line_qty_done(self):

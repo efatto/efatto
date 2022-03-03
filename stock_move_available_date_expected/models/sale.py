@@ -1,7 +1,7 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import _, models
 
 
 class SaleOrderLine(models.Model):
@@ -18,7 +18,7 @@ class SaleOrderLine(models.Model):
                 'stock_move_available_date_expected.view_stock_reserved_tree')
             return {
                 'type': 'ir.actions.act_window',
-                'name': 'Stock reserved',
+                'name': _('Reserved Stock: %s') % product.name,
                 'domain': domain,
                 'views': [(view.id, 'tree'), (False, 'pivot')],
                 'res_model': 'stock.move',

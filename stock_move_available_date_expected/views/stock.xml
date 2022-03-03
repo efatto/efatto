@@ -16,9 +16,10 @@
         <field name="name">view.stock.move.tree</field>
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="state == 'cancel'" string="Reserved Moves" create="false" default_order="date_expected">
+            <tree decoration-muted="state == 'cancel'" decoration-danger="date_expected&lt;current_date and state not in ('done', 'cancel')" string="Reserved Moves" create="false" default_order="date_expected">
                 <field name="product_id"/>
-                <field name="product_uom_qty"/>
+                <field name="date_expected" string="Date Expected" widget="date"/>
+                <field name="qty_signed"/>
                 <field name="qty_available_at_date_expected"/>
                 <field name="qty_available"/>
                 <field name="move_line_ids" widget="many2many_tags" string="Reservations"/>
@@ -38,10 +39,9 @@
                 <field name="raw_material_production_id"/>
                 <field name="location_id" groups="stock.group_stock_multi_locations"/>
                 <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
+                <field name="state"/>
                 <field name="create_date" groups="base.group_no_one" widget="date"/>
                 <field name="date" string="Date" groups="base.group_no_one" widget="date"/>
-                <field name="date_expected" string="Date Expected" widget="date"/>
-                <field name="state"/>
             </tree>
         </field>
     </record>

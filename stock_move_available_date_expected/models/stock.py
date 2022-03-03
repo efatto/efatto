@@ -17,9 +17,12 @@ class StockMove(models.Model):
     )
     reserved_move_info = fields.Char(
         compute='_compute_reserved_move_info',
+        store=True,
     )
 
     @api.multi
+    @api.depends('sale_line_id', 'purchase_line_id', 'production_id',
+                 'raw_material_production_id')
     def _compute_reserved_move_info(self):
         for move in self:
             move_info = []
@@ -50,7 +53,6 @@ class StockMove(models.Model):
                         move.raw_material_production_id.name,
                     ))
             move.reserved_move_info = ', '.join(move_info)
-            # NOTA: serve anche il piching partner?
 
     @api.multi
     def _compute_move_line_qty_done(self):
@@ -64,3 +66,14 @@ class StockMove(models.Model):
         for move in self:
             move.qty_available_at_date_expected = move.product_id.with_context(
                 {'to_date': move.date_expected}).virtual_available_at_date_expected
+
+    @api.multi
+    def remove_stock_move_reservation(self):
+        for move in self:
+            wizard = self.env['assign.manual.quants'].with_context({
+                'active_id': move.id,
+            }).create({})
+            for quants_line in wizard.quants_lines:
+                quants_line.qty = 0.0
+                quants_line.selected = False
+            wizard.assign_quants()

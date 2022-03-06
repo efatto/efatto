@@ -27,18 +27,21 @@
                     icon="fa-unlock-alt"
                     attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done','confirmed'))]}"
                 />
-                <field name="qty_available_at_date_expected"/>
-                <field name="qty_available" string="Qty Available Today"/>
-                <field name="move_line_ids" widget="many2many_tags" string="Reservations"/>
-                <field name="picking_code" invisible="1"/>
-                <field name="move_line_qty_done" invisible="1"/>
                 <button name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
-                    type="action" icon="fa-tags"
+                    type="action" icon="fa-lock"
                     string="Manual Quants"
                     attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done'))]}"
-                    />
+                />
+                <field name="reserve_origin"/>
+                <field name="reserve_date" widget="date"/>
+                <field name="purchase_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="qty_available_at_date_expected"/>
+                <field name="qty_available" string="Qty Available Today"/>
+                <field name="move_line_ids" widget="many2many_tags" string="Reservations" invisible="1"/>
+                <field name="picking_code" invisible="1"/>
+                <field name="move_line_qty_done" invisible="1"/>
                 <field name="product_uom" invisible="1" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
-                <field name="picking_id"/>
+                <field name="picking_id" invisible="1"/>
                 <field name="sale_line_id" invisible="1"/>
                 <field name="sale_partner_id" invisible="1"/>
                 <field name="purchase_line_id" invisible="1"/>

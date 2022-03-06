@@ -12,12 +12,16 @@
     'license': 'AGPL-3',
     'depends': [
         'mrp',
+        'purchase_line_procurement_group',
         'purchase_stock',
         'sale_stock',
         'stock_move_details',
         'stock_quant_manual_assign',
+        'web_widget_color',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/purchase.xml',
         'views/stock.xml',
         'views/sale.xml',
         'views/product.xml',

@@ -19,6 +19,48 @@ class StockMove(models.Model):
         compute='_compute_move_origin',
         store=True,
     )
+    reserve_origin = fields.Selection([
+        ('purchase', 'Purchase'),
+        ('stock', 'Stock'),
+        ('manufacture', 'Manufacture'),
+        ('', ''),
+    ], string="Reserve Origin",
+        compute='_compute_reserve')
+    reserve_date = fields.Datetime(
+        compute='_compute_reserve',
+        string="Max reserve date")
+    purchase_ids = fields.Many2many(
+        'purchase.order',
+        compute='_compute_reserve')
+
+    @api.multi
+    def _compute_reserve(self):
+        for move in self:
+            # excludes internal and in moves
+            if (move.location_id.usage == 'internal' and
+                move.location_dest_id.usage == 'internal') or (
+                move.location_id.usage != 'internal' and
+                move.location_dest_id.usage == 'internal'
+            ):
+                move.reserve_origin = ''
+                move.reserve_date = False
+                move.purchase_ids = False
+                continue
+            # search RFQ and PO generated for this product
+            purchase_order_line_ids = self.env['purchase.order.line'].search([
+                ('procurement_group_id', '=', move.group_id.id),
+                ('product_id', '=', move.product_id.id),
+            ])
+
+            if purchase_order_line_ids:
+                purchase_ids = purchase_order_line_ids.mapped('order_id')
+                move.reserve_origin = 'purchase'
+                move.reserve_date = max(purchase_order_line_ids.mapped('date_planned'))
+                move.purchase_ids = purchase_ids
+            else:
+                move.reserve_origin = 'stock'
+                move.reserve_date = move.date_expected
+                move.purchase_ids = False
 
     @api.multi
     @api.depends('sale_line_id', 'purchase_line_id', 'production_id',

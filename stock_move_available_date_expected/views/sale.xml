@@ -9,7 +9,7 @@
                 <button name="open_view_stock_reserved"
                         string="Stock Reserved" type="object"
                         class="oe_stat_button" icon="fa-arrows-v" groups="base.group_user"
-                        attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"/>
+                        attrs="{'invisible': [('state', 'not in', ['draft', 'sent', 'sale'])]}"/>
             </xpath>
         </field>
     </record>

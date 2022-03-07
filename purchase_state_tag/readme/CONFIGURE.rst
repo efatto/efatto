@@ -1,13 +1,10 @@
-Nella configurazione vendite vengono aggiunti due campi in cui impostare il margine minimo e quello massimo ritenuti congrui per le righe di ordine di vendita:
+Nell'ordine di acquisto viene aggiunto un campo in cui selezionare delle etichette, filtrate per lo stato dell'ordine. Una volta creata, si può impostare il colore dell'etichetta. Il colore della prima etichetta sarà usato nelle viste ad elenco in cui sono visualizzati gli ordini di acquisto, per aver chiaro lo stato dell'ordine.
 
-.. image:: ../static/description/configurazione_margini.png
-    :alt: configurazione margini
+.. image:: ../static/description/etichette.png
+    :alt: Etichette
 
-Nelle righe di ordine di vendita è stato aggiunto un pallino di colore:
-# verde se entro i margini minimo e massimo
-# rosso se inferiore al margine minimo e superiore a zero
-# grigio se il margine non è impostato o superiore al massimo
+Nella configurazione degli acquisti è disponibile una vista ad elenco delle etichette:
 
-.. image:: ../static/description/stato_margini_riga.png
-    :alt: stato margini riga
+.. image:: ../static/description/configurazione.png
+    :alt: Configurazione
 

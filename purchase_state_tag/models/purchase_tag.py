@@ -12,9 +12,7 @@ class PurchaseOrderTag(models.Model):
         default=True,
         help="Set active to false to hide the Purchase Order Tag without removing it.")
     color = fields.Integer()
-    order_state = fields.Selection(
-        selection='_get_order_state',
-        string='State color')
+    order_state = fields.Selection(selection='_get_order_state')
     company_id = fields.Many2one('res.company', string='Company')
 
     _sql_constraints = [(

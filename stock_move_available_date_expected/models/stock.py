@@ -22,7 +22,7 @@ class StockMove(models.Model):
     reserve_origin = fields.Selection([
         ('purchase', 'Purchase'),
         ('stock', 'Stock'),
-        ('manufacture', 'Manufacture'),
+        ('production', 'Production'),
         ('', ''),
     ], string="Reserve Origin",
         compute='_compute_reserve')
@@ -31,7 +31,9 @@ class StockMove(models.Model):
         string="Max reserve date")
     purchase_ids = fields.Many2many(
         'purchase.order',
-        index=True,
+        compute='_compute_reserve')
+    production_ids = fields.Many2many(
+        'mrp.production',
         compute='_compute_reserve')
 
     @api.multi
@@ -58,12 +60,16 @@ class StockMove(models.Model):
                 ])
                 if move_origin_ids:
                     purchase_order_line_ids = move_origin_ids.mapped('purchase_line_id')
-
+            production_ids = move.sale_line_id.order_id.production_ids
             if purchase_order_line_ids:
                 purchase_ids = purchase_order_line_ids.mapped('order_id')
                 move.reserve_origin = 'purchase'
                 move.reserve_date = max(purchase_order_line_ids.mapped('date_planned'))
                 move.purchase_ids = purchase_ids
+            elif production_ids:
+                move.reserve_origin = 'production'
+                move.reserve_date = max(production_ids.mapped('date_planned_finished'))
+                move.production_ids = production_ids
             else:
                 move.reserve_origin = 'stock'
                 move.reserve_date = move.date_expected

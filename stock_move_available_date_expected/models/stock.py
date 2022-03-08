@@ -25,20 +25,16 @@ class StockMove(models.Model):
         ('manufacture', 'Manufacture'),
         ('', ''),
     ], string="Reserve Origin",
-        store=True,
         compute='_compute_reserve')
     reserve_date = fields.Datetime(
         compute='_compute_reserve',
-        store=True,
         string="Max reserve date")
     purchase_ids = fields.Many2many(
         'purchase.order',
-        store=True,
         index=True,
         compute='_compute_reserve')
 
     @api.multi
-    @api.depends('state', 'location_id', 'location_dest_id', 'group_id', 'product_id')
     def _compute_reserve(self):
         for move in self:
             # excludes internal and in moves
@@ -56,6 +52,12 @@ class StockMove(models.Model):
                 ('procurement_group_id', '=', move.group_id.id),
                 ('product_id', '=', move.product_id.id),
             ])
+            if not purchase_order_line_ids:
+                move_origin_ids = self.env['stock.move'].search([
+                    ('move_dest_ids', 'in', move.ids)
+                ])
+                if move_origin_ids:
+                    purchase_order_line_ids = move_origin_ids.mapped('purchase_line_id')
 
             if purchase_order_line_ids:
                 purchase_ids = purchase_order_line_ids.mapped('order_id')

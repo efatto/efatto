@@ -148,9 +148,13 @@ class TestDeliveryAutoRefreshProgressive(common.HttpCase):
         self.assertEqual(line_delivery.price_unit, 50 + 140)
         inv_id = self.order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(inv_id)
-        self.assertAlmostEqual(invoice.invoice_line_ids.filtered(
+        self.assertTrue(invoice)
+        self.assertEqual(len(invoice.invoice_line_ids), 2)
+        invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.product_id == self.carrier.product_id
-        )[0].price_subtotal, 50 + 140)
+        )
+        self.assertTrue(invoice_lines)
+        self.assertAlmostEqual(invoice_lines[0].price_subtotal, 50 + 140)
         picking2 = self.order.picking_ids - (picking + picking1)
         picking2.action_assign()
         picking2.move_line_ids[0].qty_done = 4

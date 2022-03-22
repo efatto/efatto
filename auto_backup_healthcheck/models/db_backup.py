@@ -13,7 +13,7 @@ class DbBackup(models.Model):
     def action_backup(self):
         super().action_backup()
         url = self.env['ir.config_parameter'].sudo().get_param(
-            "healthcheck_url", False)
+            "auto_backup_healthcheck.url", False)
         if url:
             for backup in self:
                 if _("Database backup succeeded.") in backup.message_ids[0].body:

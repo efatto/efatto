@@ -138,7 +138,7 @@ msgstr "Etichetta ordine acquisto"
 #. module: stock_move_available_date_expected
 #: model:ir.model.fields,field_description:stock_move_available_date_expected.field_stock_move__qty_available_at_date_expected
 msgid "Qty Available At Date Expected"
-msgstr "Qtà Disponibile Alla Data Impegnata"
+msgstr "Qtà Disponibile Data Impegno"
 
 #. module: stock_move_available_date_expected
 #: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_stock_reserved_tree

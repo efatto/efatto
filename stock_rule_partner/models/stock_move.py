@@ -48,8 +48,9 @@ class StockMove(models.Model):
             recompute = False
             picking = move._search_picking_for_assignation()
             if picking:
-                if picking.partner_id.id != move.partner_id.id or \
-                        move.origin not in picking.origin:
+                if picking.partner_id.id != move.partner_id.id or (
+                    move.origin and move.origin not in (picking.origin or '')
+                ):
                     picking.write({
                         'partner_id': False,
                         'origin': False,

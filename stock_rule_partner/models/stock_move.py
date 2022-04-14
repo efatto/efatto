@@ -35,6 +35,7 @@ class StockMove(models.Model):
 
     def _action_confirm(self, merge=True, merge_into=False):
         if all(self.mapped('rule_id.propagate_partner')):
+            self.picking_id.onchange_picking_type()
             return super(StockMove, self.with_context(propagate_partner=True)
                          )._action_confirm(merge, merge_into)
         return super()._action_confirm(merge, merge_into)

@@ -8,7 +8,7 @@
     'description': 'Add partner for stock picking created by dropship.',
     'website': 'https://efatto.it',
     'depends': [
-        'stock',
+        'stock_dropshipping',
     ],
     'data': [
         'views/stock_rule.xml',

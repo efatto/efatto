@@ -103,3 +103,4 @@ class TestStockRulePartner(common.TransactionCase):
         ])
         self.assertEqual(len(return_picking_from_vendor), 1)
         self.assertEqual(return_picking_from_vendor.move_lines[0].product_id, product)
+        self.assertEqual(return_picking_from_vendor.partner_id, vendor)

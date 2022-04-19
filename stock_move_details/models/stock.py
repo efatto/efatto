@@ -23,9 +23,6 @@ class StockMove(models.Model):
                 0 if move.location_dest_id.usage == move.location_id.usage
                 else 1)
 
-    product_uom_qty = fields.Float(
-        group_operator=False
-    )
     qty_signed = fields.Float(
         compute=_set_sign_product_qty,
         store=True,
@@ -52,9 +49,6 @@ class StockMoveLine(models.Model):
                 0 if line.location_dest_id.usage == line.location_id.usage
                 else 1)
 
-    qty_done = fields.Float(
-        group_operator=False
-    )
     qty_signed = fields.Float(
         compute=_set_sign_product_qty,
         store=True,

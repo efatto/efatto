@@ -39,12 +39,20 @@ Selezionandolo, è possibile fare in modo che il partner nel dropshipping venga 
     :alt: Percorso di consegna
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/percorso-rientro.png
     :alt: Percorso di rientro
-.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/trasferimenti.png
-    :alt: Trasferimenti
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/operazione-consegna.png
     :alt: Operazione consegna
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/operazione-rientro.png
     :alt: Operazione rientro
+
+Ad esempio, impostando un acquisto con il tipo di trasferimento "Sede: Consegna a fornitori in c/lavoro" e indicando l'indirizzo di dropshipping:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/acquisto.png
+    :alt: Acquisto
+
+verranno creati i seguenti trasferimenti:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_rule_partner/static/description/trasferimenti.png
+    :alt: Trasferimenti
 
 Bug Tracker
 ===========

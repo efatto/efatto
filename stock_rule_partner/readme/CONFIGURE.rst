@@ -11,9 +11,17 @@ Selezionandolo, è possibile fare in modo che il partner nel dropshipping venga 
     :alt: Percorso di consegna
 .. image:: ../static/description/percorso-rientro.png
     :alt: Percorso di rientro
-.. image:: ../static/description/trasferimenti.png
-    :alt: Trasferimenti
 .. image:: ../static/description/operazione-consegna.png
     :alt: Operazione consegna
 .. image:: ../static/description/operazione-rientro.png
     :alt: Operazione rientro
+
+Ad esempio, impostando un acquisto con il tipo di trasferimento "Sede: Consegna a fornitori in c/lavoro" e indicando l'indirizzo di dropshipping:
+
+.. image:: ../static/description/acquisto.png
+    :alt: Acquisto
+
+verranno creati i seguenti trasferimenti:
+
+.. image:: ../static/description/trasferimenti.png
+    :alt: Trasferimenti

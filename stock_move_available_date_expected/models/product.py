@@ -39,7 +39,7 @@ class ProductTemplate(models.Model):
             'domain': domain,
             'views': [(view.id, 'tree'), (False, 'pivot')],
             'res_model': 'stock.move',
-            'context': {'search_default_date_expected_from_today': 1}
+            'context': {},
         }
 
 
@@ -65,7 +65,7 @@ class Product(models.Model):
             'domain': domain,
             'views': [(view.id, 'tree'), (False, 'pivot')],
             'res_model': 'stock.move',
-            'context': {'search_default_date_expected_from_today': 1}
+            'context': {},
         }
 
     def _search_virtual_available_by_date_expected(self, operator, value):

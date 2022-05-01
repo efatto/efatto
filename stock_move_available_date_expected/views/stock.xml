@@ -20,7 +20,9 @@
                 <field name="product_id" invisible="1"/>
                 <field name="date_expected" string="Date Expected" widget="date"/>
                 <field name="move_origin"/>
-                <field name="qty_signed"/>
+                <field name="qty_signed" string="Quantity"/>
+                <field name="qty_available_at_date_expected"/>
+                <field name="qty_available" string="Qty by hand"/>
                 <button name="remove_stock_move_reservation"
                     string="Remove reservation"
                     type="object"
@@ -36,8 +38,6 @@
                 <field name="reserve_date" widget="date"/>
                 <field name="purchase_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="production_ids" widget="many2many_tags"/>
-                <field name="qty_available_at_date_expected"/>
-                <field name="qty_available" string="Qty Available Today"/>
                 <field name="move_line_ids" widget="many2many_tags" string="Reservations" invisible="1"/>
                 <field name="picking_code" invisible="1"/>
                 <field name="move_line_qty_done" invisible="1"/>

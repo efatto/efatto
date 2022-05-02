@@ -17,7 +17,7 @@
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
             <tree decoration-muted="state == 'cancel'" decoration-danger="date_expected&lt;current_date and state not in ('done', 'cancel')" string="Reserved Moves" create="false" default_order="date_expected">
-                <field name="product_id" invisible="1"/>
+                <field name="product_id"/>
                 <field name="date_expected" string="Date Expected" widget="date"/>
                 <field name="move_origin"/>
                 <field name="qty_signed" string="Quantity"/>

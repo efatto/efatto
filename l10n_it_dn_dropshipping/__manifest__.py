@@ -13,6 +13,7 @@
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_delivery_note',
+        'stock_dropshipping',
     ],
     'data': [
     ],

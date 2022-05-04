@@ -7,6 +7,14 @@ class StockPicking(models.Model):
     _name = 'stock.picking'
     _inherit = ['stock.picking', 'shipping.information.updater.mixin']
 
+    def _create_delivery_note(self):
+        partners = self.get_partners()
+        return self.env['stock.delivery.note'].create({
+            'partner_sender_id': partners[0].id,
+            'partner_id': partners[1].id,
+            'partner_shipping_id': partners[2].id
+        })
+
     @api.multi
     @api.returns('res.partner')
     def get_partners(self):
@@ -54,4 +62,14 @@ class StockPicking(models.Model):
         elif not dest_partner_id:
             dest_partner_id = partner_id
 
-        return (src_partner_id, dest_partner_id)
+        if self.mapped('sale_id'):
+            partner_ids = self.mapped('sale_id.partner_id')
+            if len(partner_ids) > 1:
+                raise ValueError(
+                    "Multiple partner found for sale order linked to pickings!"
+                )
+            partner_id = partner_ids[0]
+        else:
+            partner_id = dest_partner_id.commercial_partner_id
+
+        return (src_partner_id, partner_id, dest_partner_id)

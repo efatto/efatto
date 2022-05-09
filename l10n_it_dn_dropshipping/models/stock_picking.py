@@ -20,7 +20,7 @@ class StockPicking(models.Model):
     def get_partners(self):
         partner_id = self.mapped('partner_id')
 
-        if len(partner_id) != 1 and self.location_dest_id.usage == 'customer':
+        if len(partner_id) != 1 and 'customer' in self.mapped('location_dest_id.usage'):
             raise ValueError(
                 "You have just called this method on an heterogeneous set "
                 "of pickings.\n"

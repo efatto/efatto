@@ -1,7 +1,7 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class StockMove(models.Model):
@@ -76,7 +76,7 @@ class StockMove(models.Model):
                 move.purchase_ids = False
 
     @api.multi
-    @api.depends('sale_line_id', 'purchase_line_id', 'production_id',
+    @api.depends('sale_line_id', 'production_id', 'purchase_ids', 'purchase_line_id',
                  'raw_material_production_id')
     def _compute_move_origin(self):
         for move in self:
@@ -93,6 +93,12 @@ class StockMove(models.Model):
                         move.purchase_line_id.order_id.partner_id.name,
                         move.purchase_line_id.order_id.name,
                     ))
+            if move.purchase_ids and not move.purchase_line_id:
+                move_info.append(
+                    '[PO: %s]' % (
+                        move.purchase_ids.mapped(
+                            lambda x: '%s %s' % (x.partner_id.name, x.name)
+                        )))
             if move.production_id:
                 move_info.append(
                     '[MO: %s %s %s]' % (
@@ -108,6 +114,62 @@ class StockMove(models.Model):
                         move.raw_material_production_id.name,
                     ))
             move.move_origin = ', '.join(move_info)
+
+    def open_outgoing_move_origin(self):
+        self.ensure_one()
+        if self.sale_line_id:
+            view = self.env.ref('sale.view_order_tree')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.sale_line_id.order_id.id)],
+                'views': [(view.id, 'tree'), (False, 'pivot')],
+                'res_model': 'sale.order',
+                'context': {},
+            }
+        elif self.raw_material_production_id:
+            view = self.env.ref('mrp.mrp_production_tree_view')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.raw_material_production_id.id)],
+                'views': [(view.id, 'tree'), (False, 'pivot')],
+                'res_model': 'mrp.production',
+                'context': {},
+            }
+
+    def open_incoming_move_origin(self):
+        self.ensure_one()
+        if self.purchase_line_id:
+            view = self.env.ref('purchase.purchase_order_tree')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.purchase_line_id.order_id.id)],
+                'views': [(view.id, 'tree'), (False, 'pivot')],
+                'res_model': 'purchase.order',
+                'context': {},
+            }
+        if self.purchase_ids and not self.purchase_line_id:
+            view = self.env.ref('purchase.purchase_order_tree')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', 'in', self.purchase_ids.ids)],
+                'views': [(view.id, 'tree'), (False, 'pivot')],
+                'res_model': 'purchase.order',
+                'context': {},
+            }
+        if self.production_id:
+            view = self.env.ref('mrp.mrp_production_tree_view')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.production_id.id)],
+                'views': [(view.id, 'tree'), (False, 'pivot')],
+                'res_model': 'mrp.production',
+                'context': {},
+            }
 
     @api.multi
     def _compute_move_line_qty_done(self):

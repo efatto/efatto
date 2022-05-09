@@ -20,6 +20,12 @@
                 <field name="product_id"/>
                 <field name="date_expected" string="Date Expected" widget="date"/>
                 <field name="move_origin"/>
+                <button name="open_incoming_move_origin"
+                        string='IN' type="object"
+                        class="oe_stat_button" icon="fa-sign-in" groups="base.group_user"/>
+                <button name="open_outgoing_move_origin"
+                        string='OUT' type="object"
+                        class="oe_stat_button" icon="fa-sign-out-alt" groups="base.group_user"/>
                 <field name="qty_signed" string="Quantity"/>
                 <field name="qty_available_at_date_expected"/>
                 <field name="qty_available" string="Qty by hand"/>

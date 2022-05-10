@@ -15,6 +15,7 @@
         'purchase_line_procurement_group',
         'purchase_stock',
         'purchase_state_tag',
+        'sale_mrp_link',
         'sale_stock',
         'stock_move_details',
         'stock_quant_manual_assign',

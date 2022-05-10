@@ -113,7 +113,9 @@ class StockMove(models.Model):
                         move.raw_material_production_id.sale_id.name,
                         move.raw_material_production_id.name,
                     ))
-            if move.picking_id and move.picking_id.picking_type_id.code == 'incoming':
+            if not (move.purchase_ids or move.purchase_line_id) and \
+                    move.picking_id and \
+                    move.picking_id.picking_type_id.code == 'incoming':
                 move_info.append(
                     '[IN] PICK: %s %s' % (
                         move.picking_id.partner_id.name,

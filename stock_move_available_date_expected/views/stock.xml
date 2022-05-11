@@ -22,11 +22,11 @@
                 <field name="move_origin"/>
                 <button name="open_incoming_move_origin"
                         string="Open income's origin" type="object"
-                        attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', 'OUT')]}"
+                        attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', '[OUT]')]}"
                         class="oe_stat_button" icon="fa-sign-in" groups="base.group_user"/>
                 <button name="open_outgoing_move_origin"
                         string="Open outgo's origin" type="object"
-                        attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', 'IN')]}"
+                        attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', '[IN]')]}"
                         class="oe_stat_button" icon="fa-sign-out-alt" groups="base.group_user"/>
                 <field name="qty_signed" string="Quantity"/>
                 <field name="qty_available_at_date_expected"/>

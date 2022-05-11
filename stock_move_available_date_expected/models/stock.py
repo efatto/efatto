@@ -39,10 +39,8 @@ class StockMove(models.Model):
     @api.multi
     def _compute_reserve(self):
         for move in self:
-            # excludes internal and in moves
+            # excludes internal moves
             if (move.location_id.usage == 'internal' and
-                move.location_dest_id.usage == 'internal') or (
-                move.location_id.usage != 'internal' and
                 move.location_dest_id.usage == 'internal'
             ):
                 move.reserve_origin = ''
@@ -113,6 +111,16 @@ class StockMove(models.Model):
                         move.raw_material_production_id.sale_id.name,
                         move.raw_material_production_id.name,
                     ))
+            if move.inventory_id:
+                move_type = 'OUT'
+                if move.qty_signed > 0:
+                    move_type = 'IN'
+                move_info.append(
+                    '[%s] INV: %s %s' % (
+                        move_type,
+                        move.inventory_id.name,
+                        move.inventory_id.date.strftime('%d/%m/%Y'),
+                    ))
             if not (move.purchase_ids or move.purchase_line_id) and \
                     move.picking_id and \
                     move.picking_id.picking_type_id.code == 'incoming':
@@ -135,7 +143,7 @@ class StockMove(models.Model):
                 'res_model': 'sale.order',
                 'context': {},
             }
-        elif self.raw_material_production_id:
+        if self.raw_material_production_id:
             view = self.env.ref('mrp.mrp_production_tree_view')
             return {
                 'type': 'ir.actions.act_window',
@@ -143,6 +151,16 @@ class StockMove(models.Model):
                 'domain': [('id', '=', self.raw_material_production_id.id)],
                 'views': [(view.id, 'tree'), (False, 'form')],
                 'res_model': 'mrp.production',
+                'context': {},
+            }
+        if self.inventory_id and self.qty_signed < 0:
+            view = self.env.ref('stock.view_inventory_tree')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.inventory_id.id)],
+                'views': [(view.id, 'tree'), (False, 'form')],
+                'res_model': 'stock.inventory',
                 'context': {},
             }
 
@@ -186,6 +204,16 @@ class StockMove(models.Model):
                 'domain': [('id', '=', self.picking_id.id)],
                 'views': [(view.id, 'tree'), (False, 'form')],
                 'res_model': 'stock.picking',
+                'context': {},
+            }
+        if self.inventory_id and self.qty_signed > 0:
+            view = self.env.ref('stock.view_inventory_tree')
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Reserved Stock: %s') % self.product_id.name,
+                'domain': [('id', '=', self.inventory_id.id)],
+                'views': [(view.id, 'tree'), (False, 'form')],
+                'res_model': 'stock.inventory',
                 'context': {},
             }
 

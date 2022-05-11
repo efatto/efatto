@@ -97,7 +97,7 @@ class SaleOrder(models.Model):
         compute='_compute_max_commitment_date',
         inverse='_set_max_commitment_date',
         store=True,
-        string='Max Scheduled Delivery Date',
+        string='New Scheduled Delivery Date',
         oldname='last_agreed_delivery_date')
     delivery_week = fields.Integer(
         compute='_get_delivery_week',

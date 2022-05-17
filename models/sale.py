@@ -178,9 +178,13 @@ class SaleOrder(models.Model):
             SHIPPED,
         ]
         calendar_state = False
-        if self.procurement_group_id:
-            calendar_states = self.forecast_procurement(
-                self.procurement_group_id, max_commitment_date)
+        if self.procurement_group_id or self.order_line.mapped('procurement_group_id'):
+            calendar_states = []
+            procurement_group_ids = self.procurement_group_id
+            procurement_group_ids |= self.order_line.mapped('procurement_group_id')
+            for procurement_group in procurement_group_ids:
+                calendar_states += self.forecast_procurement(
+                    procurement_group, max_commitment_date)
             if calendar_states:
                 calendar_states = filter(None, calendar_states)
                 calendar_state = min(

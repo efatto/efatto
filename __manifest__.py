@@ -15,6 +15,7 @@
         'purchase',
         'purchase_line_procurement_group',
         'sale_force_invoiced',
+        'sale_procurement_group_by_line',
         'sale_stock',
         'sale_order_line_date',
         'web',

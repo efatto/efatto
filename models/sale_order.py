@@ -5,7 +5,8 @@
 from collections import defaultdict
 from datetime import timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
@@ -14,6 +15,10 @@ class SaleOrderLine(models.Model):
     virtual_available_at_date = fields.Float(
         compute='_compute_stock_qty_at_date', store=True)
     scheduled_date = fields.Datetime(
+        compute='_compute_stock_qty_at_date', store=True)
+    available_date = fields.Datetime(
+        compute='_compute_stock_qty_at_date', store=True)
+    available_dates_info = fields.Text(
         compute='_compute_stock_qty_at_date', store=True)
     free_qty_today = fields.Float(
         compute='_compute_stock_qty_at_date', store=True)
@@ -24,6 +29,8 @@ class SaleOrderLine(models.Model):
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
     display_qty_widget = fields.Boolean(store=True)
+    predicted_arrival_late = fields.Boolean(
+        compute='_compute_stock_qty_at_date', store=True)
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
                  'commitment_date', 'order_id.commitment_date')
@@ -232,6 +239,21 @@ class SaleOrderLine(models.Model):
                         lower_available_qty = available['cumulative_quantity']
                 if lower_available_qty < line.product_uom_qty:
                     availables = []
+            avail_date, avail_date_info = \
+                line.product_id.get_available_date(
+                    line.product_uom_qty,
+                    line.commitment_date or
+                    line.order_id.commitment_date or
+                    line.order_id.date_order
+                )
+            line.available_date = avail_date
+            line.available_dates_info = avail_date_info
+            line.predicted_arrival_late = False
+            if line.available_date > (
+                    line.commitment_date or
+                    line.order_id.commitment_date or
+                    line.order_id.date_order):
+                line.predicted_arrival_late = True
             if availables:
                 # there are multiple available dates: get the lower qty
                 availables.sort(key=lambda self: self['cumulative_quantity'])
@@ -260,3 +282,22 @@ class SaleOrderLine(models.Model):
                     or fields.Datetime.now()
                 line.free_qty_today = 0
                 line.qty_available_today = 0
+
+    @api.multi
+    def action_delayed_line(self):
+        commitment_date_tz = fields.Datetime.context_timestamp(
+            self, self.commitment_date or self.order_id.commitment_date or
+            self.order_id.date_order)
+        available_date_tz = fields.Datetime.context_timestamp(
+            self, self.available_date)
+        raise UserError(_(
+            'This line is scheduled for: %s. \n However it is now planned to '
+            'arrive for %s.') % (
+                "%s/%s/%s" % (commitment_date_tz.day,
+                              commitment_date_tz.month,
+                              commitment_date_tz.year),
+                "%s/%s/%s" % (available_date_tz.day,
+                              available_date_tz.month,
+                              available_date_tz.year),
+            )
+        )

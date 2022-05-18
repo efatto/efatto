@@ -36,12 +36,9 @@
                     </tr>
                 </t>
                 <t t-else="">
-<!--                    <tr>-->
-<!--                        <td><strong>Expected Delivery</strong></td>-->
-<!--                        <td class="oe-right"><span t-esc="data.delivery_date"/></td>-->
-<!--                    </tr>-->
                     <tr>
-                        <p>This product is replenished on demand.</p>
+                        <td><strong>Available Delivery</strong></td>
+                        <td class="oe-right"><span t-esc="data.available_date"/></td>
                     </tr>
                 </t>
             </tbody>

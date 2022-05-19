@@ -183,8 +183,10 @@ class SaleOrder(models.Model):
             procurement_group_ids = self.procurement_group_id
             procurement_group_ids |= self.order_line.mapped('procurement_group_id')
             for procurement_group in procurement_group_ids:
-                calendar_states += self.forecast_procurement(
+                states = self.forecast_procurement(
                     procurement_group, max_commitment_date)
+                if states:
+                    calendar_states += states
             if calendar_states:
                 calendar_states = filter(None, calendar_states)
                 calendar_state = min(
@@ -196,6 +198,7 @@ class SaleOrder(models.Model):
         # group_id in stock.move
         picking_ids = self.env['stock.picking'].search([
             ('group_id', '=', procurement.id),
+            ('state', '!=', 'cancel'),
         ])
         if picking_ids:
             calendar_state = []
@@ -211,7 +214,8 @@ class SaleOrder(models.Model):
         # this is needed if picking are not done only i presume, tocheck
         # group_id in purchase.order
         purchase_line_ids = self.env['purchase.order.line'].search([
-            ('procurement_group_id', '=', procurement.id)
+            ('procurement_group_id', '=', procurement.id),
+            ('state', '!=', 'cancel'),
         ])
         if purchase_line_ids:
             for purchase_line in purchase_line_ids:
@@ -231,6 +235,7 @@ class SaleOrder(models.Model):
                         calendar_states.append((AVAILABLEREADY, fields.Datetime.now()))
         mrp_production_ids = self.env['mrp.production'].search([
             ('sale_id', '=', procurement.sale_id.id),
+            ('state', '!=', 'cancel'),
         ])
         if mrp_production_ids:
             for mrp_production in mrp_production_ids:
@@ -260,11 +265,14 @@ class SaleOrder(models.Model):
         if all([ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty for ol in
                 self.order_line if ol.product_id
                 and ol.product_id.type in ['product', 'consu']])\
-                or self.state == 'invoiced' or self.force_invoiced:
+                or self.invoice_status == 'invoiced' or self.force_invoiced:
             calendar_states = [(INVOICED, fields.Datetime.now())]
             # check if all invoices linked to SO have tracking_ref filled
             if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
                 calendar_states = [(SHIPPED, fields.Datetime.now())]
+        if not (picking_ids or purchase_line_ids or mrp_production_ids):
+            # ignore this procurement as it is cancelled
+            return False
         if not calendar_states:
             calendar_states = [(TOPROCESS, fields.Datetime.now())]
         return calendar_states

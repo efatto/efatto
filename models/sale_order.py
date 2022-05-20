@@ -7,6 +7,7 @@ from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.date_utils import relativedelta
 
 
 class SaleOrderLine(models.Model):
@@ -15,10 +16,6 @@ class SaleOrderLine(models.Model):
     virtual_available_at_date = fields.Float(
         compute='_compute_stock_qty_at_date', store=True)
     scheduled_date = fields.Datetime(
-        compute='_compute_stock_qty_at_date', store=True)
-    available_date = fields.Datetime(
-        compute='_compute_stock_qty_at_date', store=True)
-    available_dates_info = fields.Text(
         compute='_compute_stock_qty_at_date', store=True)
     free_qty_today = fields.Float(
         compute='_compute_stock_qty_at_date', store=True)
@@ -29,8 +26,12 @@ class SaleOrderLine(models.Model):
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
     display_qty_widget = fields.Boolean(store=True)
+    available_date = fields.Datetime(
+        compute='_compute_dates', store=True)
+    available_dates_info = fields.Text(
+        compute='_compute_dates', store=True)
     predicted_arrival_late = fields.Boolean(
-        compute='_compute_stock_qty_at_date', store=True)
+        compute='_compute_dates', store=True)
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
                  'commitment_date', 'order_id.commitment_date')
@@ -239,21 +240,6 @@ class SaleOrderLine(models.Model):
                         lower_available_qty = available['cumulative_quantity']
                 if lower_available_qty < line.product_uom_qty:
                     availables = []
-            avail_date, avail_date_info = \
-                line.product_id.get_available_date(
-                    line.product_uom_qty,
-                    line.commitment_date or
-                    line.order_id.commitment_date or
-                    line.order_id.date_order
-                )
-            line.available_date = avail_date
-            line.available_dates_info = avail_date_info
-            line.predicted_arrival_late = False
-            if line.available_date > (
-                    line.commitment_date or
-                    line.order_id.commitment_date or
-                    line.order_id.date_order):
-                line.predicted_arrival_late = True
             if availables:
                 # there are multiple available dates: get the lower qty
                 availables.sort(key=lambda self: self['cumulative_quantity'])
@@ -283,6 +269,117 @@ class SaleOrderLine(models.Model):
                 line.free_qty_today = 0
                 line.qty_available_today = 0
 
+    @api.depends('product_id', 'product_uom_qty', 'commitment_date')
+    def _compute_dates(self):
+        for line in self.sorted(key=lambda r: r.sequence):
+            if not line.product_id:
+                continue
+            avail_date, avail_date_info = \
+                line.get_available_date(
+                    line.product_id,
+                    line.product_uom_qty,
+                    line.commitment_date or
+                    line.order_id.commitment_date or
+                    line.order_id.date_order
+                )
+            line.available_date = avail_date
+            line.available_dates_info = avail_date_info
+            line.predicted_arrival_late = False
+            if line.available_date > (
+                    line.commitment_date or
+                    line.order_id.commitment_date or
+                    line.order_id.date_order):
+                line.predicted_arrival_late = True
+
+    @api.multi
+    def get_available_date(self, product_id, qty, date_start, available_date=False):
+        available_info = []
+        available_dates_info = ''
+        domain_quant_loc, domain_move_in_loc, domain_move_out_loc = \
+            product_id._get_domain_locations()
+        incoming_stock_moves = self.env['stock.move'].search([
+            ('product_id', '=', product_id.id),
+            ('product_uom_qty', '>', 0),
+            ('state', 'not in', ['done', 'cancel']),
+        ] + domain_move_in_loc)
+        reserved_stock_moves = self.env['stock.move'].search([
+            ('product_id', '=', product_id.id),
+            ('product_uom_qty', '>', 0),
+            ('state', 'not in', ['done', 'cancel']),
+            # ('reserved_availability', '>', 0),
+        ] + domain_move_out_loc)
+        for reserve_date in (
+                reserved_stock_moves.mapped('date_expected') +
+                incoming_stock_moves.mapped('date_expected')
+        ):
+            available_info.append({
+                'info': 'Stock move',
+                'date': reserve_date,
+                'qty': product_id.with_context(
+                    to_date=reserve_date
+                ).virtual_available_at_date_expected
+            })
+        #todo remove all availability with a prior availability with qty <
+        # requested qty
+        # get the available date later of the far available date with qty <
+        if available_info:
+            farther_unreservable_dates = [
+                x['date'] for x in available_info if x['qty'] < qty
+            ]
+            if not farther_unreservable_dates:
+                # all dates have a sufficient qty
+                farther_unreservable_dates = [min([
+                    x['date'] for x in available_info
+                ])]
+            if len(farther_unreservable_dates) == len(available_info):
+                # None of the available dates meets the requested quantity
+                available_date = False
+            if farther_unreservable_dates:
+                available_date = min([
+                    x['date'] for x in available_info if x['date']
+                    >= max(farther_unreservable_dates)
+                ] or [False])
+        if product_id.bom_ids:
+            # fixme need to filter boms?
+            bom_id = product_id.bom_ids[0]
+            avail_dates = []
+            for bom_line in bom_id.bom_line_ids:
+                avail_date, avail_text = \
+                    self.get_available_date(
+                        bom_line.product_id,
+                        qty * bom_line.product_qty,
+                        date_start,
+                        available_date)
+                if avail_date:
+                    avail_dates.append(avail_date)
+                if avail_text and avail_text not in available_dates_info:
+                    available_dates_info += avail_text
+            if avail_dates:
+                available_date = max(avail_dates)
+            if bom_id.routing_id:
+                delay = sum(bom_id.mapped(
+                    'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
+                available_date += relativedelta(days=int(delay))
+        # Check if ordering the product the incoming date will be sooneer
+        purchase_available_date = (
+            fields.Datetime.now() + relativedelta(days=int(product_id.purchase_delay))
+        )
+        if not available_date:
+            available_date = purchase_available_date
+        else:
+            if purchase_available_date < available_date:
+                available_date = purchase_available_date
+                available_text = \
+                    _('Possible purchase for %s %s on date %s for qty %s.\n') % (
+                        _('product') if product_id.bom_ids else _('component'),
+                        product_id.display_name,
+                        purchase_available_date.strftime('%d/%m/%Y'),
+                        qty,
+                    )
+                if available_text not in available_dates_info:
+                    available_dates_info += available_text
+        return available_date, available_dates_info
+
     @api.multi
     def action_delayed_line(self):
         commitment_date_tz = fields.Datetime.context_timestamp(
@@ -292,12 +389,13 @@ class SaleOrderLine(models.Model):
             self, self.available_date)
         raise UserError(_(
             'This line is scheduled for: %s. \n However it is now planned to '
-            'arrive for %s.') % (
+            'arrive for %s.\n %s') % (
                 "%s/%s/%s" % (commitment_date_tz.day,
                               commitment_date_tz.month,
                               commitment_date_tz.year),
                 "%s/%s/%s" % (available_date_tz.day,
                               available_date_tz.month,
                               available_date_tz.year),
+                self.available_dates_info,
             )
         )

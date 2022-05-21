@@ -30,4 +30,17 @@
                 </button>
         </field>
     </record>
+    <record model="ir.ui.view" id="product_product_tree_view">
+        <field name="name">product_product_date_expected</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="after">
+               <button name="open_view_stock_reserved"
+                    string="Stock Reserved" type="object"
+                    class="oe_stat_button" icon="fa-arrows-v" groups="base.group_user"
+               />
+            </field>
+        </field>
+    </record>
 </odoo>

@@ -306,7 +306,6 @@ class SaleOrderLine(models.Model):
             ('product_id', '=', product_id.id),
             ('product_uom_qty', '>', 0),
             ('state', 'not in', ['done', 'cancel']),
-            # ('reserved_availability', '>', 0),
         ] + domain_move_out_loc)
         for reserve_date in (
                 reserved_stock_moves.mapped('date_expected') +
@@ -360,17 +359,16 @@ class SaleOrderLine(models.Model):
                 delay = sum(bom_id.mapped(
                     'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
                 available_date += relativedelta(days=int(delay))
-        # Check if ordering the product the incoming date will be sooneer
-        purchase_available_date = (
-            fields.Datetime.now() + relativedelta(days=int(product_id.purchase_delay))
-        )
-        if not available_date:
-            available_date = purchase_available_date
         else:
-            if purchase_available_date < available_date:
+            # Check if ordering the product the incoming date will be sooneer
+            purchase_available_date = (
+                fields.Datetime.now() + relativedelta(days=int(product_id.purchase_delay))
+            )
+            if not available_date or (
+                    available_date and purchase_available_date < available_date):
                 available_date = purchase_available_date
                 available_text = \
-                    _('Possible purchase for %s %s on date %s for qty %s.\n') % (
+                    _('Need purchase for %s %s on date %s for qty %s.\n') % (
                         _('product') if product_id.bom_ids else _('component'),
                         product_id.display_name,
                         purchase_available_date.strftime('%d/%m/%Y'),
@@ -388,8 +386,8 @@ class SaleOrderLine(models.Model):
         available_date_tz = fields.Datetime.context_timestamp(
             self, self.available_date)
         raise UserError(_(
-            'This line is scheduled for: %s. \n However it is now planned to '
-            'arrive for %s.\n %s') % (
+            'This line is scheduled for: %s.\n'
+            'However it is now planned to arrive for %s.\n %s') % (
                 "%s/%s/%s" % (commitment_date_tz.day,
                               commitment_date_tz.month,
                               commitment_date_tz.year),

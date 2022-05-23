@@ -6,6 +6,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <button string="Compute arrival prediction"
+                        name="compute_dates"
+                        type="object"
+                        icon="fa-calendar-check"/>
+            </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="inside">
                 <field name="predicted_arrival_late" invisible="1"/>
                 <button string="Arriving late"

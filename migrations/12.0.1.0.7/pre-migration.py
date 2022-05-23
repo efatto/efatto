@@ -27,7 +27,7 @@ def migrate(env, version):
             env.cr,
             """
         ALTER TABLE sale_order_line
-            ADD COLUMN IF NOT EXISTS available_date TIMESTAMP
+            ADD COLUMN IF NOT EXISTS available_date DATE
         """,
         )
         openupgrade.logged_query(

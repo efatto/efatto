@@ -97,21 +97,36 @@ class TestSaleStockMrpProduceDelay(TestSaleOrderForecast):
                 ]
             ])
         self.assertEqual(line1.available_dates_info, info)
-
-        # add stock and future purchases
+        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 28-5 days (so
+        # before the purchase delay), 30+18 needed
+        # subbom2: 3*2*3 subproduct_1_1 = 18 -> see above
+        #          3*2*4 subproduct_2_1 = 24 -> 0 in stock,  incoming on  days (so
+        # before the purchase delay),  needed
         purchase_order1 = self.env['purchase.order'].create({
             'partner_id': self.partner.id,
         })
+        purchase_planned_date = fields.Datetime.now() + relativedelta(
+                days=self.subproduct_1_1.purchase_delay - 5)
         purchase_line1 = self._create_purchase_order_line(
-            purchase_order1, self.subproduct_1_1, 25,
-            fields.Datetime.now() + relativedelta(
-                days=self.subproduct_1_1.purchase_delay))
+            purchase_order1, self.subproduct_1_1, 25, purchase_planned_date)
         purchase_order1.button_confirm()
         picking = purchase_order1.picking_ids[0]
         self.assertEqual(picking.move_lines[0].product_id, self.subproduct_1_1)
         self.assertAlmostEqual(picking.move_lines[0].product_qty, 25)
         self.assertAlmostEqual(
             self.subproduct_1_1.virtual_available, 25
+        )
+        self.assertEqual(
+            self.subproduct_1_1.with_context(
+                to_date=fields.Date.today()
+            ).virtual_available_at_date_expected,
+            0
+        )
+        self.assertEqual(
+            self.subproduct_1_1.with_context(
+                to_date=purchase_planned_date
+            ).virtual_available_at_date_expected,
+            25
         )
         # now we have:
         # 3 sold top_product in mo confirmed: they are shown in quantity as -3

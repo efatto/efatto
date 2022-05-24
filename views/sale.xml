@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_order_form_component" model="ir.ui.view">
+        <field name="name">sale.order.form.component</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='order_line']/tree/field[@name='product_uom']" position="before">
+                <field name="display_qty_component_widget" invisible="1"/>
+                <button name="%(sale_order_component_info.action_sale_component)d" string="Components"
+                    type="action"
+                    attrs="{'invisible': [('display_qty_component_widget', '=', False)]}"
+                    class="oe_stat_button" icon="fa-info-circle" groups="base.group_user">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

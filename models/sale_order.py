@@ -303,9 +303,10 @@ class SaleOrderLine(models.Model):
             })
         available_info = [
             x for x in available_info if x['date'] >= commitment_date]
-        #todo remove all availability with a previous availability with qty <
-        # requested qty, to prevent "steal" of goods from reserved moves
-        # get the available date later of the far available date with qty <
+        # FIXME when all dates has sufficient availability is ignored!
+        # todo remove all availability with a previous availability with qty <
+        #  requested qty, to prevent "steal" of goods from reserved moves
+        #  get the available date later of the far available date with qty <
         if available_info:
             farther_unreservable_dates = [
                 x['date'] for x in available_info if x['qty'] < qty
@@ -323,29 +324,16 @@ class SaleOrderLine(models.Model):
                     x['date'] for x in available_info if x['date']
                     >= max(farther_unreservable_dates)
                 ] or [False])
+        else:
+            raise UserError('No available info found!')
         if product_id.bom_ids:
             # fixme need to filter boms?
             option = "TO PRODUCE"
             bom_id = product_id.bom_ids[0]
             avail_dates = []
-            for bom_line in bom_id.bom_line_ids.sorted(
-                    key=lambda x: x.product_id.bom_ids, reverse=True):
-                avail_date, avail_text = \
-                    self.get_available_date(
-                        bom_line.product_id,
-                        qty * bom_line.product_qty,
-                        date_start,
-                        available_date,
-                        level=level + 1)
-                if avail_date:
-                    avail_dates.append(avail_date)
-                if avail_text and avail_text not in available_dates_info:
-                    available_dates_info += avail_text
-            if avail_dates:
-                available_date = max(avail_dates)
-                if stock_available_date and available_date > stock_available_date:
-                    available_date = stock_available_date
-                    option = 'FROM STOCK'
+            if stock_available_date:
+                available_date = stock_available_date
+                option = 'FROM STOCK'
                 available_text = \
                     _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * level,
@@ -355,14 +343,38 @@ class SaleOrderLine(models.Model):
                         available_date.strftime('%d/%m/%Y'),
                     )
             else:
-                available_text = \
-                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
-                        vertical * level,
-                        product_id.default_code,
-                        qty,
-                        option,
-                        'Not found',
-                    )
+                for bom_line in bom_id.bom_line_ids.sorted(
+                        key=lambda x: x.product_id.bom_ids, reverse=True):
+                    avail_date, avail_text = \
+                        self.get_available_date(
+                            bom_line.product_id,
+                            qty * bom_line.product_qty,
+                            date_start,
+                            available_date,
+                            level=level + 1)
+                    if avail_date:
+                        avail_dates.append(avail_date)
+                    if avail_text and avail_text not in available_dates_info:
+                        available_dates_info += avail_text
+                if avail_dates:
+                    available_date = max(avail_dates)
+                    available_text = \
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                            vertical * level,
+                            product_id.default_code,
+                            qty,
+                            option,
+                            available_date.strftime('%d/%m/%Y'),
+                        )
+                else:
+                    available_text = \
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                            vertical * level,
+                            product_id.default_code,
+                            qty,
+                            option,
+                            'Not found',
+                        )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
             if bom_id.routing_id:

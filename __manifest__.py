@@ -8,7 +8,6 @@
     "website": "https://efatto.it",
     "depends": [
         "mrp",
-        "sale_order_forecast",
         "sale_order_line_date",
         "sale_stock_info_popup",
         "stock_move_available_date_expected",

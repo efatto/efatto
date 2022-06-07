@@ -65,3 +65,26 @@ class AccountInvoice(models.Model):
                         "or greater date than {date_invoice}.").format(
                         date_invoice=date_invoice_tz))
         return res
+
+    @api.multi
+    def _check_duplicate_supplier_reference(self):
+        for invoice in self:
+            # refuse to validate a vendor bill/credit note if there already exists one
+            # with the same reference for the same partner,
+            # because it's probably a double encoding of the same bill/credit note
+            # ### Whith reference of year ###
+            if invoice.type in ('in_invoice', 'in_refund') and invoice.reference:
+                first_year_date = invoice.date_invoice and invoice.date_invoice.replace(
+                    month=1, day=1) or fields.Date.today().replace(month=1, day=1)
+                last_year_date = first_year_date.replace(month=12, day=31)
+                if self.search([
+                    ('date_invoice', '>=', first_year_date),
+                    ('date_invoice', '<=', last_year_date),
+                    ('type', '=', invoice.type),
+                    ('reference', '=', invoice.reference),
+                    ('company_id', '=', invoice.company_id.id),
+                    ('commercial_partner_id', '=', invoice.commercial_partner_id.id),
+                        ('id', '!=', invoice.id)]):
+                    raise UserError(_(
+                        "Duplicated vendor reference detected. You probably encoded "
+                        "twice the same vendor bill/credit note."))

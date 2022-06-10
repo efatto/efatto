@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_product_template_form_inherited" model="ir.ui.view">
+        <field name="name">product.form.purchase.delay.inherited</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='route_ids']" position="after">
+                <label for="purchase_delay" attrs="{'invisible':[('type','=','service')]}"/>
+                <div attrs="{'invisible':[('type','=','service')]}">
+                    <field name="purchase_delay" class="oe_inline"/> days
+                </div>
+                <label for="purchase_multiple_qty" attrs="{'invisible':[('type','=','service')]}"/>
+                <div attrs="{'invisible':[('type','=','service')]}">
+                    <field name="purchase_multiple_qty" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form.view</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='price']" position="before">
+                <label for="multiple_qty"/>
+                <div>
+                    <field name="multiple_qty" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

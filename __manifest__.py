@@ -8,12 +8,12 @@
     "website": "https://efatto.it",
     "depends": [
         "mrp",
+        "product_sellers_info",
         "sale_order_line_date",
         "sale_stock_info_popup",
         "stock_move_available_date_expected",
     ],
     "data": [
-        "views/product.xml",
         "views/sale_order_view.xml",
     ],
     "qweb": [

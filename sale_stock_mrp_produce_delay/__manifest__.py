@@ -14,6 +14,7 @@
         "stock_move_available_date_expected",
     ],
     "data": [
+        "views/product_view.xml",
         "views/sale_order_view.xml",
     ],
     "qweb": [

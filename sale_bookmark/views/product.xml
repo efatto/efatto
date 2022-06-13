@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record model="ir.actions.act_window" id="product_open_sale_order_lines"> <!-- product_view + python -->
+        <field name="name">Sale Orders bookmarked</field>
+        <field name="context">{}</field>
+        <field name="domain">[('order_line.product_id', '=', active_id), ('bookmarked', '=', True)]</field>
+        <field name="res_model">sale.order</field>
+    </record>
+    <record id="product_form_view_procurement_button" model="ir.ui.view">
+        <field name="name">product.product.procurement</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']"
+                position="after">
+                <button type="action" name="%(sale_bookmark.product_open_sale_order_lines)d"
+                    attrs="{'invisible':[('type', 'not in', ['product','consu'])]}"
+                    class="oe_stat_button" icon="fa-building-o">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="bookmarked_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                            </span>
+                            <span class="o_stat_text">bookmarked</span>
+                        </div>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']" position="attributes">
+                <attribute name="icon"></attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']/div" position="replace">
+                <div class="o_field_widget o_stat_value mr4">
+                    <div>
+                        v:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+                    </div>
+                    <div>
+                        -u<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +e<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_template_form_view_procurement_button" model="ir.ui.view">
+        <field name="name">product.template_procurement</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']" position="attributes">
+                <attribute name="icon"></attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']/div" position="replace">
+                <div class="o_field_widget o_stat_value mr4">
+                    <div>
+                        v:<field name="virtual_available" widget="statinfo" nolabel="1"/>
+                        (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1"/>
+                    </div>
+                    <div>
+                        -u<field name="outgoing_qty" widget="statinfo" nolabel="1"/>
+                        +e<field name="incoming_qty" widget="statinfo" nolabel="1"/>)
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_stock_product_tree" model="ir.ui.view">
+        <field name="name">product.stock.tree.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+        <field name="arch" type="xml">
+            <field name="qty_available" position="after">
+                <field name="bookmarked_qty" attrs="{'invisible':[('type', '!=', 'product')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

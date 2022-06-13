@@ -30,6 +30,7 @@ install:
   - pip install codicefiscale
   - pip install unidecode==0.04.17
   - pip install PyXB==1.2.6
+  - pip install scipy
 
 script:
   - travis_run_tests

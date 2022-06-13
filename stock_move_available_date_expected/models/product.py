@@ -54,17 +54,26 @@ class Product(models.Model):
     )
 
     def open_view_stock_reserved(self):
-        domain = [('product_id', '=', self.id),
-                  ('state', '!=', 'cancel'),
-                  ('date_expected', '>=', self.product_tmpl_id.date_oldest_open_move)]
-        view = self.env.ref(
-            'stock_move_available_date_expected.view_stock_reserved_tree')
+        if self.bom_ids:
+            domain = [
+                ('id', 'in',
+                 self.bom_ids[0].mapped('bom_line_ids.product_id').ids)
+            ]
+            view = self.env.ref('product.product_product_tree_view')
+            res_model = 'product.product'
+        else:
+            domain = [('product_id', '=', self.id),
+                      ('state', '!=', 'cancel'),
+                      ('date_expected', '>=', self.product_tmpl_id.date_oldest_open_move)]
+            view = self.env.ref(
+                'stock_move_available_date_expected.view_stock_reserved_tree')
+            res_model = 'stock.move'
         return {
             'type': 'ir.actions.act_window',
             'name': 'Stock reserved',
             'domain': domain,
             'views': [(view.id, 'tree'), (False, 'pivot')],
-            'res_model': 'stock.move',
+            'res_model': res_model,
             'context': {},
         }
 

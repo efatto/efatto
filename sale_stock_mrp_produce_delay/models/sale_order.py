@@ -29,6 +29,7 @@ class SaleOrderLine(models.Model):
     available_date = fields.Date()
     available_dates_info = fields.Text()
     predicted_arrival_late = fields.Boolean()
+    late_product_ids = fields.Many2many('product.product')
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
                  'commitment_date', 'order_id.commitment_date')
@@ -433,6 +434,15 @@ class SaleOrderLine(models.Model):
             )
         )
 
+    def open_view_stock_reserved(self):
+        # use domain for late components
+        res = super().open_view_stock_reserved()
+        product = self.product_id if self.product_id.type != 'service' else False
+        if product and product.qty_available < self.product_uom_qty \
+                and product.bom_ids and self.late_product_ids:
+            res['context'] = {'search_default_id': self.late_product_ids.ids}
+        return res
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -457,8 +467,15 @@ class SaleOrder(models.Model):
                 )
             line.available_date = avail_date
             dates_info = avail_date_info.split('\n')
-            dates_info.reverse()
-            line.available_dates_info = '\n'.join([x for x in dates_info if x != ''])
+            commitment_date_str = commitment_date.strftime('%d/%m/%Y')
+            dates_info_clean = [x for x in dates_info if commitment_date_str not in x
+                                and x != '']
+            dates_info_clean.reverse()
+            line.available_dates_info = '\n'.join([x for x in dates_info_clean])
+            late_product_codes = [y.split('] [')[1] for y in dates_info_clean]
+            line.late_product_ids = self.env['product.product'].search([
+                ('default_code', 'in', late_product_codes)
+            ]).ids
             predicted_arrival_late = False
             if line.available_date > commitment_date:
                 predicted_arrival_late = True

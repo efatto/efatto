@@ -14,6 +14,7 @@
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="inside">
                 <field name="predicted_arrival_late" invisible="1"/>
+                <field name="late_product_ids" invisible="1"/>
                 <button string="Arriving late"
                         attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
                         name="action_delayed_line"

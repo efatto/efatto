@@ -78,18 +78,17 @@
                     <button name="%(stock.action_orderpoint_form)d"
                             type="action" class="oe_stat_button" icon="fa-list"
                             context="{'search_default_orderpoint_tmpl_id': active_id}">
-<!--                        <div class="o_field_widget o_stat_info">-->
-<!--                            <span class="o_stat_value"><field name="oee" widget="statinfo" nolabel="1"/>%</span>-->
-<!--                            <span class="o_stat_text">OEE</span>-->
-<!--                        </div>-->
+                            <field string="Orderpoints" name="orderpoint_count" widget="statinfo"/>
                     </button>
                 </div>
             </xpath>
             <xpath expr="//notebook/page[@name='auto_rules']" position="attributes">
                 <attribute name="attrs">{'invisible': ['|', ('auto_generate', '=', False), ('product_ctg_id', '!=', False)]}</attribute>
             </xpath>
-            <xpath expr="//notebook/page[@name='auto_rules']" position="after">
-                <field name="log_info"/>
+            <xpath expr="//notebook" position="inside">
+                <page string="Info" name="info">
+                    <field name="log_info"/>
+                </page>
             </xpath>
         </field>
     </record>

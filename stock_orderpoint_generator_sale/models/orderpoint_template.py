@@ -3,7 +3,6 @@
 
 from datetime import datetime
 from odoo.tools.date_utils import relativedelta
-from odoo.exceptions import ValidationError
 from odoo import _, api, fields, models
 from scipy.stats import norm
 import math
@@ -30,6 +29,13 @@ class OrderpointTemplate(models.Model):
     auto_max_qty_criteria = fields.Selection(
         selection_add=[('sum', 'Sum')])
     log_info = fields.Text()
+    orderpoint_count = fields.Integer(
+        '# Orderpoint', compute='_compute_orderpoint_count')
+
+    def _compute_orderpoint_count(self):
+        for record in self:
+            record.orderpoint_count = self.env['stock.warehouse.orderpoint'].\
+                search_count([('orderpoint_tmpl_id', '=', record.id)])
 
     def _check_compute_on_sale(self):
         for rule in self:
@@ -143,8 +149,10 @@ class OrderpointTemplate(models.Model):
                     data.pop(discard_field)
                 for product_id in product_ids:
                     if not product_id.standard_price:
-                        record.log_info += (_('Missing price in product %s!\n') %
-                                            product_id.name)
+                        record.log_info = '\n'.join([
+                            record.log_info,
+                            (_('Missing price in product %s!') % product_id.name),
+                        ])
                         continue
                     vals = data.copy()
                     vals['product_id'] = product_id.id

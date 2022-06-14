@@ -10,11 +10,14 @@
     'license': 'AGPL-3',
     'website': "https://efatto.it",
     'depends': [
+        'mrp',
         'product_sellers_info',
+        'product_state',
         'stock_orderpoint_generator',
     ],
     'data': [
         "views/orderpoint_template_views.xml",
+        "views/product.xml",
     ],
     'installable': True,
     'auto_install': False,

@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="auto_generate" position="after">
                 <field name="move_days"/>
+                <field name="product_ctg_id"/>
             </field>
         </field>
     </record>
@@ -34,6 +35,7 @@
                 <field name="variation_percent"/>
                 <field name="service_level"/>
                 <field name="order_mngt_cost"/>
+                <field name="product_ctg_id"/>
             </field>
             <field name="auto_min_qty" position="attributes">
                 <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
@@ -43,6 +45,24 @@
             </field>
             <field name="qty_multiple" position="attributes">
                 <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="auto_max_qty_criteria" position="attributes">
+                <attribute name="attrs">{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_max_date_start" position="attributes">
+                <attribute name="attrs">{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_max_date_end" position="attributes">
+                <attribute name="attrs">{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_qty_criteria" position="attributes">
+                <attribute name="attrs">{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_date_start" position="attributes">
+                <attribute name="attrs">{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_date_end" position="attributes">
+                <attribute name="attrs">{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
             </field>
             <label for="lead_days" position="attributes">
                 <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
@@ -64,6 +84,12 @@
 <!--                        </div>-->
                     </button>
                 </div>
+            </xpath>
+            <xpath expr="//notebook/page[@name='auto_rules']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('auto_generate', '=', False), ('product_ctg_id', '!=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='auto_rules']" position="after">
+                <field name="log_info"/>
             </xpath>
         </field>
     </record>

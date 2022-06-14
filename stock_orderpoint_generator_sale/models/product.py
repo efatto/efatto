@@ -3,6 +3,12 @@ from datetime import timedelta
 from collections import OrderedDict
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    orderpoint_generate_active = fields.Boolean(default=True)
+
+
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 

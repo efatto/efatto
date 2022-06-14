@@ -1,13 +1,11 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.addons.sale_order_forecast.tests.test_sale_order_forecast import \
-    TestSaleOrderForecast
-from odoo.tests import Form
+from odoo.tests import SavepointCase
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
 
-class TestSaleStockMrpProduceDelay(TestSaleOrderForecast):
+class TestSaleStockMrpProduceDelay(SavepointCase):
 
     @classmethod
     def setUpClass(cls):

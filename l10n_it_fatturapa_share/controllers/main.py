@@ -26,7 +26,9 @@ class FatturaPAAttachmentDownload(Controller):
         atts = request.env[model].search(domain)
         config_obj = request.env['ir.config_parameter'].get_param(
             'web.base.url')
-        attachment_url = config_obj + "/web/" + model + "/token/"
+        attachment_url = "%s/download/%s/web/%s/token/" % (
+            config_obj, config_obj, model
+        )
         for att_obj in atts:
             if att_obj.access_token:
                 att_link = attachment_url + att_obj.access_token

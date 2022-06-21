@@ -81,7 +81,8 @@ class SaleComponentLine(models.TransientModel):
     product_id = fields.Many2one(comodel_name='product.product', readonly=True)
     parent_id = fields.Many2one(
         comodel_name='sale.component.line',  string='Parent', readonly=True)
-    parent_product_id = fields.Many2one(related='parent_id.product_id')
+    parent_product_id = fields.Many2one(related='parent_id.product_id',
+                                        string='Parent Product')
     child_ids = fields.One2many(
         'sale.component.line', 'parent_id', string='Child Lines', readonly=True)
     state = fields.Selection(related='sale_order_line_id.state')

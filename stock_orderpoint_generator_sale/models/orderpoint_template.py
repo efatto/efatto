@@ -4,6 +4,7 @@
 from datetime import datetime
 from odoo.tools.date_utils import relativedelta
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from scipy.stats import norm
 import math
 
@@ -25,7 +26,7 @@ class OrderpointTemplate(models.Model):
     order_mngt_cost = fields.Float()
     variation_percent = fields.Float(
         help="Increment/decrement value of qty by this percent")
-    product_ctg_id = fields.Many2one('product.category', string='Product Category')
+    product_ctg_ids = fields.Many2many('product.category', string='Product Category')
     auto_max_qty_criteria = fields.Selection(
         selection_add=[('sum', 'Sum')])
     log_info = fields.Text()
@@ -51,6 +52,20 @@ class OrderpointTemplate(models.Model):
          ['compute_on_sale', 'auto_max_qty_criteria']),
     ]
 
+    @api.multi
+    @api.constrains('move_days')
+    def check_move_days(self):
+        for template in self:
+            if not template.move_days:
+                raise UserError(_('Move days cannot be equal to 0!'))
+
+    @api.multi
+    @api.constrains('service_level')
+    def check_move_days(self):
+        for template in self:
+            if template.service_level == 50 or template.service_level <= 0.0:
+                raise UserError(_('Service level cannot be equal to 50 or <= 0!'))
+
     @api.model
     def _get_criteria_methods(self):
         res = super()._get_criteria_methods()
@@ -63,10 +78,8 @@ class OrderpointTemplate(models.Model):
         """In order to create every orderpoint we should pop this template
            customization fields """
         res = super()._template_fields_to_discard()
-        for removed_field in ['auto_min_date_start', 'auto_min_date_end',
-                              'auto_max_date_start', 'auto_max_date_end']:
-            res.remove(removed_field)
-        res += ['move_days', 'service_level', 'order_mngt_cost', 'product_ctg_id']
+        res += ['move_days', 'service_level', 'order_mngt_cost', 'compute_on_sale',
+                'log_info', 'variation_percent', 'product_ctg_ids']
         return res
 
     @api.multi
@@ -78,12 +91,11 @@ class OrderpointTemplate(models.Model):
                     template.write_date > template.auto_last_generation):
                 template.auto_last_generation = fields.Datetime.now()
                 product_ids = template.auto_product_ids
-                if template.product_ctg_id:
+                if template.product_ctg_ids:
                     product_ids = self.env['product.product'].search([
-                        ('categ_id', '=', template.product_ctg_id.id),
+                        ('categ_id', 'in', template.product_ctg_ids.ids),
                         ('orderpoint_generate_active', '=', True),
                         ('state', 'not in', ['end', 'obsolete']),
-                        ('bom_ids.type', '!=', 'phantom'),
                     ])
                 template.create_orderpoints(product_ids)
 
@@ -148,21 +160,36 @@ class OrderpointTemplate(models.Model):
                 for discard_field in self._template_fields_to_discard():
                     data.pop(discard_field)
                 for product_id in product_ids:
+                    phantom_bom = self.env['mrp.bom'].search([
+                        ('type', '=', 'phantom'),
+                        '|',
+                        ('product_tmpl_id', '=', product_id.product_tmpl_id.id),
+                        ('product_id', '=', product_id.id),
+                    ])
+                    if phantom_bom:
+                        record.log_info = '\n'.join([
+                            record.log_info,
+                            (_('Product with phantom bom excluded: %s') %
+                             product_id.default_code),
+                        ])
+                        continue
                     if not product_id.standard_price:
                         record.log_info = '\n'.join([
                             record.log_info,
-                            (_('Missing price in product %s!') % product_id.name),
+                            (_('Missing price in product %s!') %
+                             product_id.default_code),
                         ])
                         continue
                     vals = data.copy()
+                    vals['name'] = '%s - %s' % (vals['name'], product_id.default_code)
                     vals['product_id'] = product_id.id
-                    # function taken from calc file
+                    # function replicated from calc file
                     qty_by_day = stock_max_qty[product_id.id] / record.move_days
                     consumed_qty_by_lead_time = (
                             qty_by_day * (1 + record.variation_percent / 100.0)
-                        ) * product_id.purchase_delay
+                        ) * (product_id.purchase_delay or 1)
                     service_factor = norm.ppf(record.service_level/100.0)
-                    lead_time_factor = product_id.purchase_delay ** (1/2)
+                    lead_time_factor = (product_id.purchase_delay or 1) ** (1/2)
                     security_stock = int(math.ceil(
                         qty_by_day *
                         service_factor *
@@ -190,6 +217,14 @@ class OrderpointTemplate(models.Model):
                     vals['qty_multiple'] = product_id.purchase_multiple_qty
                     vals['orderpoint_tmpl_id'] = record.id
                     orderpoint_model.create(vals)
+
+    def _disable_old_instances(self, products):
+        """Clean old instance by setting those inactives"""
+        super()._disable_old_instances(products)
+        orderpoints = self.env['stock.warehouse.orderpoint'].search(
+            [('orderpoint_tmpl_id', '=', self.id)]
+        )
+        orderpoints.write({'active': False})
 
     @api.model
     def _get_product_qty_by_criteria_sale(

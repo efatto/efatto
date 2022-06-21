@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <field name="auto_generate" position="after">
                 <field name="move_days"/>
-                <field name="product_ctg_id"/>
+                <field name="product_ctg_ids" widget="many2many_tags"/>
             </field>
         </field>
     </record>
@@ -35,10 +35,7 @@
                 <field name="variation_percent"/>
                 <field name="service_level"/>
                 <field name="order_mngt_cost"/>
-                <field name="product_ctg_id"/>
-            </field>
-            <field name="auto_min_qty" position="attributes">
-                <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+                <field name="product_ctg_ids" widget="many2many_tags"/>
             </field>
             <field name="product_min_qty" position="attributes">
                 <attribute name="attrs">{'required': [('auto_min_qty','=', False)], 'invisible': [('compute_on_sale', '=', True)]}</attribute>
@@ -83,7 +80,7 @@
                 </div>
             </xpath>
             <xpath expr="//notebook/page[@name='auto_rules']" position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('auto_generate', '=', False), ('product_ctg_id', '!=', False)]}</attribute>
+                <attribute name="attrs">{'invisible': ['|', ('auto_generate', '=', False), ('product_ctg_ids', '!=', False)]}</attribute>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Info" name="info">

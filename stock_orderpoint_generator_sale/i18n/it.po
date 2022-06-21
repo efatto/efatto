@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-13 12:12+0000\n"
-"PO-Revision-Date: 2022-06-13 12:12+0000\n"
+"POT-Creation-Date: 2022-06-21 12:26+0000\n"
+"PO-Revision-Date: 2022-06-21 12:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_orderpoint_generator_sale
-#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_date_end
-msgid "Auto Max Date End"
-msgstr "Auto Max Data di fine"
-
-#. module: stock_orderpoint_generator_sale
-#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_date_start
-msgid "Auto Max Date Start"
-msgstr "Auto Max Data di inizio"
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__orderpoint_count
+msgid "# Orderpoint"
+msgstr "# Regole di Riordino"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_qty_criteria
 msgid "Auto Max Qty Criteria"
 msgstr "Criterio Auto Max per quantità"
-
-#. module: stock_orderpoint_generator_sale
-#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_min_date_end
-msgid "Auto Min Date End"
-msgstr "Auto Min Data di fine"
-
-#. module: stock_orderpoint_generator_sale
-#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_min_date_start
-msgid "Auto Min Date Start"
-msgstr "Auto Min Data di inizio"
 
 #. module: stock_orderpoint_generator_sale
 #: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
@@ -56,6 +41,16 @@ msgid "Increment/decrement value of qty by this percent"
 msgstr "Valore incremento/decremento percentuale"
 
 #. module: stock_orderpoint_generator_sale
+#: model_terms:ir.ui.view,arch_db:stock_orderpoint_generator_sale.view_warehouse_orderpoint_template_form
+msgid "Info"
+msgstr "Informazioni"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__log_info
+msgid "Log Info"
+msgstr "Log Informazioni"
+
+#. module: stock_orderpoint_generator_sale
 #: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
 msgid "Maximum"
 msgstr "Massimo"
@@ -71,6 +66,12 @@ msgid "Minimum Inventory Rule"
 msgstr "Regola di scorta minima"
 
 #. module: stock_orderpoint_generator_sale
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:179
+#, python-format
+msgid "Missing price in product %s!"
+msgstr "Prezzo mancante nel prodotto %s!"
+
+#. module: stock_orderpoint_generator_sale
 #: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
 msgid "Most frequent"
 msgstr "Più frequente"
@@ -81,9 +82,21 @@ msgid "Move Days"
 msgstr "Giorni movimenti precedenti"
 
 #. module: stock_orderpoint_generator_sale
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:60
+#, python-format
+msgid "Move days cannot be equal to 0!"
+msgstr "Giorni movimenti precedenti non possono essere uguali a 0!"
+
+#. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__order_mngt_cost
 msgid "Order Mngt Cost"
 msgstr "Costo Gestione Ordine"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_product__orderpoint_generate_active
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_template__orderpoint_generate_active
+msgid "Orderpoint Generate Active"
+msgstr "Generatore Regole di Riordino Attivo"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint__orderpoint_tmpl_id
@@ -92,9 +105,30 @@ msgid "Orderpoint Tmpl"
 msgstr "Modello Regola di Riordino"
 
 #. module: stock_orderpoint_generator_sale
+#: model_terms:ir.ui.view,arch_db:stock_orderpoint_generator_sale.view_warehouse_orderpoint_template_form
+msgid "Orderpoints"
+msgstr "Regole di Riordino"
+
+#. module: stock_orderpoint_generator_sale
 #: model:ir.model,name:stock_orderpoint_generator_sale.model_product_product
 msgid "Product"
 msgstr "Prodotto"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__product_ctg_ids
+msgid "Product Category"
+msgstr "Categoria prodotto"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model,name:stock_orderpoint_generator_sale.model_product_template
+msgid "Product Template (Multi-Company)"
+msgstr ""
+
+#. module: stock_orderpoint_generator_sale
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:172
+#, python-format
+msgid "Product with phantom bom excluded: %s"
+msgstr "Prodotto con bom di tipo kit escluso: %s"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model,name:stock_orderpoint_generator_sale.model_stock_warehouse_orderpoint_template
@@ -112,17 +146,15 @@ msgid "Service Level"
 msgstr "Livello di Servizio"
 
 #. module: stock_orderpoint_generator_sale
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:67
+#, python-format
+msgid "Service level cannot be equal to 50 or <= 0!"
+msgstr "Il livello di Servizio non può essere uguale a 50 o <= 0!"
+
+#. module: stock_orderpoint_generator_sale
 #: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
 msgid "Sum"
 msgstr "Somma"
-
-#. module: stock_orderpoint_generator_sale
-#: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_date_end
-#: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_date_start
-#: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_min_date_end
-#: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_min_date_start
-msgid "This date is auto-computed every time this template is used."
-msgstr "Questa data è auto-compilata ogni volta che questo modello è utilizzato."
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__variation_percent

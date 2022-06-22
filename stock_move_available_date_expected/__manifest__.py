@@ -11,7 +11,7 @@
     'website': 'https://efatto.it',
     'license': 'AGPL-3',
     'depends': [
-        'mrp_sale_info',
+        'mrp_sale_info_link',
         'purchase_line_procurement_group',
         'purchase_stock',
         'purchase_state_tag',

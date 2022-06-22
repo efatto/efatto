@@ -17,6 +17,7 @@
     ],
     'data': [
         'views/sale_order.xml',
+        'views/mrp_production.xml',
     ],
     'post_init_hook': 'post_init_hook',
 }

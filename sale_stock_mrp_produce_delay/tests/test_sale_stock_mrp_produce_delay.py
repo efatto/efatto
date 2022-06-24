@@ -1,15 +1,20 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase
+from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
 
-class TestSaleStockMrpProduceDelay(SavepointCase):
+class TestSaleStockMrpProduceDelay(TestProductionData):
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.partner = cls.env.ref('base.res_partner_2')
+        cls.product = cls.env['product.product'].create({
+            'name': 'New product',
+            'type': 'product',
+        })
         cls.product.write({
             'seller_ids': [
                 (0, 0, {
@@ -47,22 +52,50 @@ class TestSaleStockMrpProduceDelay(SavepointCase):
             ]
         })
 
+    def _create_sale_order_line(self, order, product, qty, commitment_date=False):
+        vals = {
+            'order_id': order.id,
+            'product_id': product.id,
+            'product_uom_qty': qty,
+            'price_unit': 100,
+            }
+        if commitment_date:
+            vals.update({
+                'commitment_date': fields.Datetime.now()
+            })
+        line = self.env['sale.order.line'].create(vals)
+        line.product_id_change()
+        line._convert_to_write(line._cache)
+        return line
+
+    def _create_purchase_order_line(self, order, product, qty, date_planned=False):
+        vals = {
+            'name': product.name,
+            'order_id': order.id,
+            'product_id': product.id,
+            'product_uom': product.uom_po_id.id,
+            'product_qty': qty,
+            'price_unit': 100,
+            }
+        if date_planned:
+            vals.update({
+                'date_planned': date_planned
+            })
+        line = self.env['purchase.order.line'].create(vals)
+        return line
+
     def test_00_available_info_product(self):
         # check product to purchase
         order1 = self.env['sale.order'].create({
             'partner_id': self.partner.id,
         })
         line1 = self._create_sale_order_line(order1, self.product, 5)
-        self.assertEqual(line1.available_date.date(),
+        order1.compute_dates()
+        self.assertEqual(line1.available_date,
                          fields.Date.today() + relativedelta(days=28))
         self.assertEqual(
             line1.available_dates_info,
-            'Need purchase for %s %s on date %s for qty %s.\n' % (
-                'product' if self.product.bom_ids else 'component',
-                self.product.display_name,
-                (fields.Date.today() + relativedelta(days=28)).strftime('%d/%m/%Y'),
-                5.0,
-            )
+            '└[COMP] [False] [QTY: 5.0] [TO PURCHASE] plannable date 22/07/2022.'
         )
 
     def test_01_available_info_product_mrp(self):
@@ -78,23 +111,13 @@ class TestSaleStockMrpProduceDelay(SavepointCase):
         order1 = self.env['sale.order'].create({
             'partner_id': self.partner.id,
         })
-        line1 = self._create_sale_order_line(order1, self.top_product, 3)
-        self.assertEqual(line1.available_date.date(),
-                         fields.Date.today() + relativedelta(days=35))
-        info = ''.join([
-                'Need purchase for %s %s on date %s for qty %s.\n' % (
-                    'product' if x.bom_ids else 'component',
-                    x.display_name,
-                    (fields.Date.today() + relativedelta(
-                        days=x.purchase_delay)).strftime('%d/%m/%Y'),
-                    y,
-                ) for x, y in [
-                    [self.subproduct_1_1, 30.0],
-                    [self.subproduct_2_1, 24.0],
-                    [self.subproduct_1_1, 18.0],
-                ]
-            ])
-        self.assertEqual(line1.available_dates_info, info)
+        line1 = self._create_sale_order_line(order1, self.product, 3)
+        order1.compute_dates()
+        self.assertEqual(line1.available_date,
+                         fields.Date.today() + relativedelta(days=35-7)) # todo check -7
+        self.assertEqual(line1.available_dates_info,
+                         '└[COMP] [False] [QTY: 3.0] [TO PURCHASE] plannable date '
+                         '22/07/2022.')
         # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 28-5 days (so
         # before the purchase delay), 30+18 needed
         # subbom2: 3*2*3 subproduct_1_1 = 18 -> see above

@@ -7,7 +7,7 @@
     "author": "Sergio Corato - Efatto.it",
     "website": "https://efatto.it",
     "depends": [
-        "mrp",
+        "mrp_production_demo",
         "product_sellers_info",
         "sale_order_archive",
         "sale_order_line_date",

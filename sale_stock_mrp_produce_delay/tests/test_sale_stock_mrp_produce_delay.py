@@ -1,6 +1,7 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
+from odoo.tests import Form
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
@@ -117,6 +118,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         available_date = fields.Date.today() + relativedelta(days=35)
         available_date1 = fields.Date.today() + relativedelta(days=28)
         self.assertEqual(line1.available_date, available_date)
+        # all product are un-available, so info display all at the produce-purchase date
         self.assertEqual(
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
@@ -145,13 +147,13 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         purchase_planned_date = fields.Datetime.now() + relativedelta(
                 days=self.subproduct_1_1.purchase_delay - 5)
         purchase_line1 = self._create_purchase_order_line(
-            purchase_order1, self.subproduct_1_1, 25, purchase_planned_date)
+            purchase_order1, self.subproduct_1_1, 48, purchase_planned_date)
         purchase_order1.button_confirm()
         picking = purchase_order1.picking_ids[0]
         self.assertEqual(picking.move_lines[0].product_id, self.subproduct_1_1)
-        self.assertAlmostEqual(picking.move_lines[0].product_qty, 25)
+        self.assertAlmostEqual(picking.move_lines[0].product_qty, 48)
         self.assertAlmostEqual(
-            self.subproduct_1_1.virtual_available, 25
+            self.subproduct_1_1.virtual_available, 48
         )
         self.assertEqual(
             self.subproduct_1_1.with_context(
@@ -163,7 +165,20 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             self.subproduct_1_1.with_context(
                 to_date=purchase_planned_date
             ).virtual_available_at_date_expected,
-            25
+            48
+        )
+        # MANUF 1-1-1 is incoming so disappear, as bom MANUF 1-1
+        order1.compute_dates()
+        self.assertEqual(
+            line1.available_dates_info,
+            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s."
+            % (
+                available_date.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+            )
         )
         # now we have:
         # 3 sold top_product in mo confirmed: they are shown in quantity as -3
@@ -177,21 +192,21 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         # NOT visible as not in this order product1
         # 2 offered top_product: they are shown in quantity as              -2
         # total top_products                                                -5
-        # order1.action_confirm()
+        order1.action_confirm()
         # now we have outgoing stock.move and mo to be produced             +3
-        # self.assertEqual(order1.state, 'sale')
-        # self.production = self.env['mrp.production'].search(
-        #     [('origin', '=', order1.name)])
-        #
-        # self.production.action_assign()
-        # produce_form = Form(self.env['mrp.product.produce'].with_context(
-        #         active_id=self.production.id,
-        #         active_ids=[self.production.id],
-        #     ))
-        # produce_form.product_qty = 2.0
-        # wizard = produce_form.save()
-        # wizard.do_produce()
-        # self.assertEqual(len(self.production), 1)
+        self.assertEqual(order1.state, 'sale')
+        self.production = self.env['mrp.production'].search(
+            [('origin', '=', order1.name)])
+
+        self.production.action_assign()
+        produce_form = Form(self.env['mrp.product.produce'].with_context(
+                active_id=self.production.id,
+                active_ids=[self.production.id],
+            ))
+        produce_form.product_qty = 2.0
+        wizard = produce_form.save()
+        wizard.do_produce()
+        self.assertEqual(len(self.production), 1)
 
     # def test_negative_forecast_product(self):
     #     order1 = self.env['sale.order'].create({

@@ -158,13 +158,13 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         purchase_planned_date = fields.Datetime.now() + relativedelta(
                 days=self.subproduct_1_1.purchase_delay - 5)
         purchase_line1 = self._create_purchase_order_line(
-            purchase_order1, self.subproduct_1_1, 48, purchase_planned_date)
+            purchase_order1, self.subproduct_1_1, 18, purchase_planned_date)
         purchase_order1.button_confirm()
         picking = purchase_order1.picking_ids[0]
         self.assertEqual(picking.move_lines[0].product_id, self.subproduct_1_1)
-        self.assertAlmostEqual(picking.move_lines[0].product_qty, 48)
+        self.assertAlmostEqual(picking.move_lines[0].product_qty, 18)
         self.assertAlmostEqual(
-            self.subproduct_1_1.virtual_available, 48
+            self.subproduct_1_1.virtual_available, 18
         )
         self.assertEqual(
             self.subproduct_1_1.with_context(
@@ -176,19 +176,26 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             self.subproduct_1_1.with_context(
                 to_date=purchase_planned_date
             ).virtual_available_at_date_expected,
-            48
+            18
         )
         # MANUF 1-1-1 is incoming so disappear, as bom MANUF 1-1
+        # FIXME qty available are checked for every single line, e.g. a 30 qty available
+        #  is sufficient for every lower request, so request for 18 and 30 are all
+        #  satisfied
         order1.compute_dates()
         self.assertEqual(
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
-            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s."
+            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
                 available_date.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
             )
         )
         # now we have:

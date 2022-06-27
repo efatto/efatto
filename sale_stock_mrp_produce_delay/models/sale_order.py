@@ -323,7 +323,8 @@ class SaleOrderLine(models.Model):
             elif farther_unreservable_dates:
                 stock_available_date = min([
                     x['date'] for x in available_info if x['date']
-                    >= max(farther_unreservable_dates)
+                    >= max(farther_unreservable_dates) and
+                    x['qty'] >= qty
                 ] or [False])
         else:
             raise UserError('No available info found!')
@@ -383,7 +384,11 @@ class SaleOrderLine(models.Model):
                     'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
                 available_date += relativedelta(days=int(delay))
         else:
-            if stock_available_date:
+            purchase_available_date = (
+                fields.Date.today()
+                + relativedelta(days=int(product_id.purchase_delay))
+            )
+            if stock_available_date and stock_available_date <= purchase_available_date:
                 available_date = stock_available_date
                 option = 'FROM STOCK'
                 available_text = \
@@ -397,10 +402,6 @@ class SaleOrderLine(models.Model):
             else:
                 # Check if ordering the product the incoming date will be sooneer
                 option = 'TO PURCHASE'
-                purchase_available_date = (
-                    fields.Date.today()
-                    + relativedelta(days=int(product_id.purchase_delay))
-                )
                 if not available_date or (
                         stock_available_date and
                         purchase_available_date < stock_available_date):

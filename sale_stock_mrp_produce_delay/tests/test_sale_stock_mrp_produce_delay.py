@@ -155,14 +155,14 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         purchase_order1 = self.env['purchase.order'].create({
             'partner_id': self.partner.id,
         })
-        purchase_planned_date = fields.Datetime.now() + relativedelta(
+        purchase_planned_date1 = fields.Datetime.now() + relativedelta(
                 days=self.subproduct_1_1.purchase_delay - 5)
-        purchase_line1 = self._create_purchase_order_line(
-            purchase_order1, self.subproduct_1_1, 18, purchase_planned_date)
+        self._create_purchase_order_line(
+            purchase_order1, self.subproduct_1_1, 18, purchase_planned_date1)
         purchase_order1.button_confirm()
-        picking = purchase_order1.picking_ids[0]
-        self.assertEqual(picking.move_lines[0].product_id, self.subproduct_1_1)
-        self.assertAlmostEqual(picking.move_lines[0].product_qty, 18)
+        picking1 = purchase_order1.picking_ids[0]
+        self.assertEqual(picking1.move_lines[0].product_id, self.subproduct_1_1)
+        self.assertAlmostEqual(picking1.move_lines[0].product_qty, 18)
         self.assertAlmostEqual(
             self.subproduct_1_1.virtual_available, 18
         )
@@ -174,30 +174,80 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         )
         self.assertEqual(
             self.subproduct_1_1.with_context(
-                to_date=purchase_planned_date
+                to_date=purchase_planned_date1
             ).virtual_available_at_date_expected,
             18
         )
         # MANUF 1-1-1 is incoming so disappear, as bom MANUF 1-1
         # FIXME qty available are checked for every single line, e.g. a 30 qty available
-        #  is sufficient for every lower request, so request for 18 and 30 are all
-        #  satisfied
+        #  is sufficient for every lower request, so two different request for 18 and 30
+        #  are all satisfied
         order1.compute_dates()
         self.assertEqual(
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "──[BOM] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
                 available_date.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
+                purchase_planned_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
             )
         )
+
+        # create an incoming of [MANUF 1-2-1] for 30pc but at a date far then
+        # purchaseable date, this incoming will be ignored
+        purchase_order2 = self.env['purchase.order'].create({
+            'partner_id': self.partner.id,
+        })
+        purchase_planned_date2 = fields.Datetime.now() + relativedelta(
+                days=self.subproduct_2_1.purchase_delay + 5)
+        self._create_purchase_order_line(
+            purchase_order2, self.subproduct_2_1, 25, purchase_planned_date2)
+        purchase_order2.button_confirm()
+        picking2 = purchase_order2.picking_ids[0]
+        self.assertEqual(picking2.move_lines[0].product_id, self.subproduct_2_1)
+        self.assertAlmostEqual(picking2.move_lines[0].product_qty, 25)
+        self.assertAlmostEqual(
+            self.subproduct_2_1.virtual_available, 25
+        )
+        self.assertEqual(
+            self.subproduct_2_1.with_context(
+                to_date=fields.Date.today()
+            ).virtual_available_at_date_expected,
+            0
+        )
+        self.assertEqual(
+            self.subproduct_2_1.with_context(
+                to_date=purchase_planned_date2
+            ).virtual_available_at_date_expected,
+            25
+        )
+        order1.compute_dates()
+        self.assertEqual(
+            line1.available_dates_info,
+            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "──[BOM] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
+            % (
+                available_date.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                purchase_planned_date1.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+            )
+        )
+
         # now we have:
         # 3 sold top_product in mo confirmed: they are shown in quantity as -3
         # components of 3 top product:

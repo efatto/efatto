@@ -112,18 +112,23 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         #       -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
 
         # set all products unavailable to reset prior tests
-        def set_product_unavailable(product):
-            for prod in product.bom_ids.mapped('bom_line_ids.product_id'):
-                if prod.bom_ids:
-                    set_product_unavailable(prod)
-                else:
-                    prod.virtual_available = 0.0
-
-        set_product_unavailable(self.top_product)
+        def set_product_unavailable(product, location, qty):
+            if product.bom_ids:
+                for prod in product.bom_ids.mapped('bom_line_ids.product_id'):
+                    if prod.bom_ids:
+                        set_product_unavailable(prod, location, qty)
+                    else:
+                        self._update_product_qty(prod, location, qty)
+            else:
+                self._update_product_qty(product, location, qty)
 
         order1 = self.env['sale.order'].create({
             'partner_id': self.partner.id,
         })
+        set_product_unavailable(
+            self.top_product,
+            order1.warehouse_id.in_type_id.default_location_dest_id,
+            0)
         line1 = self._create_sale_order_line(order1, self.top_product, 3)
         order1.compute_dates()
         available_date = fields.Date.today() + relativedelta(days=35)
@@ -187,7 +192,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
-            "──[BOM] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
@@ -234,7 +239,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
-            "──[BOM] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
@@ -276,25 +281,21 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         wizard.do_produce()
         self.assertEqual(len(self.production), 1)
 
-    # def test_negative_forecast_product(self):
-    #     order1 = self.env['sale.order'].create({
-    #         'partner_id': self.partner.id,
-    #     })
-    #     self._update_product_qty(
-    #         self.product, order1.warehouse_id.in_type_id.default_location_dest_id, 10)
-    #     self._create_sale_order_line(order1, self.product, 15)
-    #     # forecast = self.get_forecast(order1)
-    #     # self.assertFalse(forecast)
-    #     # set commitment date to view forecast
-    #     order1.commitment_date = fields.Datetime.now()
-    #     forecast = self.get_forecast(order1)
-    #     self.assertEqual(forecast[0].get('product_id')[0], self.product.id)
-    #     self.assertAlmostEqual(forecast[0].get('quantity'), -5)
-    #     order2 = self.env['sale.order'].create({
-    #         'partner_id': self.partner.id,
-    #         'commitment_date': fields.Datetime.now(),
-    #     })
-    #     self._create_sale_order_line(order2, self.product, 10)
-    #     forecast1 = self.get_forecast(order2)
-    #     self.assertAlmostEqual(forecast1[0].get('quantity'), -15)
-    #     order1.action_confirm()
+        order1.compute_dates()
+        self.assertEqual(
+            line1.available_dates_info,
+            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [TO PURCHASE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
+            % (
+                available_date.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+            )
+        )

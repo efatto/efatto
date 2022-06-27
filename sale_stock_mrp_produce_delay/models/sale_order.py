@@ -392,8 +392,8 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = 'FROM STOCK'
                 available_text = \
-                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
-                        vertical * level,
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        vertical * (level - 1) + child,
                         product_id.default_code,
                         qty,
                         option,

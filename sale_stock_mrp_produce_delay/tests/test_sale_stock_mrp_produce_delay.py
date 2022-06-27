@@ -110,6 +110,17 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         #       -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
         #    -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
         #       -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
+
+        # set all products unavailable to reset prior tests
+        def set_product_unavailable(product):
+            for prod in product.bom_ids.mapped('bom_line_ids.product_id'):
+                if prod.bom_ids:
+                    set_product_unavailable(prod)
+                else:
+                    prod.virtual_available = 0.0
+
+        set_product_unavailable(self.top_product)
+
         order1 = self.env['sale.order'].create({
             'partner_id': self.partner.id,
         })

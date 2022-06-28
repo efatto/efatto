@@ -21,7 +21,9 @@ class OrderpointTemplate(models.Model):
     _inherit = 'stock.warehouse.orderpoint.template'
 
     compute_on_sale = fields.Boolean()
-    move_days = fields.Integer()
+    move_days = fields.Integer(
+        help="Used when not filled date from and to in maximum criteria"
+    )
     service_level = fields.Float()
     order_mngt_cost = fields.Float()
     variation_percent = fields.Float(
@@ -52,17 +54,31 @@ class OrderpointTemplate(models.Model):
          ['compute_on_sale', 'auto_max_qty_criteria']),
     ]
 
+    @api.onchange('compute_on_sale')
+    def onchange_compute_on_sale(self):
+        if self.compute_on_sale:
+            self.auto_min_qty = self.auto_max_qty = True
+            self.auto_max_qty_criteria = 'sum'
+        else:
+            self.auto_min_qty = self.auto_max_qty = False
+            self.auto_max_qty_criteria = False
+
     @api.multi
-    @api.constrains('move_days')
+    @api.constrains('move_days', 'auto_max_date_start', 'auto_max_date_end',
+                    'auto_max_qty')
     def check_move_days(self):
-        for template in self:
-            if not template.move_days:
-                raise UserError(_('Move days cannot be equal to 0!'))
+        for template in self.filtered('compute_on_sale'):
+            if not template.move_days and not (
+                template.auto_max_date_start or
+                template.auto_max_date_end
+            ) and template.auto_max_qty:
+                raise UserError(_('Move days cannot be equal to 0 if Auto max qty is '
+                                  'set and no min and max date are set!'))
 
     @api.multi
     @api.constrains('service_level')
-    def check_move_days(self):
-        for template in self:
+    def check_service_level(self):
+        for template in self.filtered('compute_on_sale'):
             if template.service_level == 50 or template.service_level <= 0.0:
                 raise UserError(_('Service level cannot be equal to 50 or <= 0!'))
 
@@ -107,12 +123,16 @@ class OrderpointTemplate(models.Model):
             record.log_info = ''
             # Flag equality so we compute the values just once
             if record.compute_on_sale:
-                date_start = datetime.now() + relativedelta(days=-record.move_days)
-                date_end = datetime.now()
-                auto_max_date_end = date_end
-                auto_max_date_start = date_start
-                auto_min_date_end = date_end
-                auto_min_date_start = date_start
+                if record.auto_max_date_start and record.auto_max_date_end:
+                    auto_max_date_end = record.auto_max_date_end
+                    auto_max_date_start = record.auto_max_date_start
+                else:
+                    date_end = datetime.now()
+                    date_start = date_end + relativedelta(days=-record.move_days)
+                    auto_max_date_end = date_end
+                    auto_max_date_start = date_start
+                auto_min_date_end = auto_max_date_end
+                auto_min_date_start = auto_max_date_start
             else:
                 auto_max_date_end = record.auto_max_date_end
                 auto_max_date_start = record.auto_max_date_start
@@ -184,7 +204,12 @@ class OrderpointTemplate(models.Model):
                     vals['name'] = '%s - %s' % (vals['name'], product_id.default_code)
                     vals['product_id'] = product_id.id
                     # function replicated from calc file
-                    qty_by_day = stock_max_qty[product_id.id] / record.move_days
+                    move_days = record.move_days
+                    if record.auto_max_date_start and record.auto_max_date_end:
+                        move_days = (
+                            record.auto_max_date_end - record.auto_max_date_start
+                        ).days
+                    qty_by_day = stock_max_qty[product_id.id] / move_days
                     consumed_qty_by_lead_time = (
                             qty_by_day * (1 + record.variation_percent / 100.0)
                         ) * (product_id.purchase_delay or 1)
@@ -202,7 +227,7 @@ class OrderpointTemplate(models.Model):
                             2 *
                             record.order_mngt_cost *
                             qty_by_day *
-                            record.move_days / (
+                            move_days / (
                                 0.15 * product_id.standard_price
                             )
                         ) ** (1/2)

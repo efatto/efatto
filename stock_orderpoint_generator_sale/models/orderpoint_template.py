@@ -242,6 +242,15 @@ class OrderpointTemplate(models.Model):
                     vals['qty_multiple'] = product_id.purchase_multiple_qty
                     vals['orderpoint_tmpl_id'] = record.id
                     orderpoint_model.create(vals)
+                    record.log_info = '\n'.join([
+                        record.log_info,
+                        (_('[%s] Product orderpoint created (from max qty in selected '
+                           'date range / move days period: %s)') % (
+                                product_id.default_code,
+                                stock_max_qty[product_id.id],
+                             )
+                         ),
+                    ])
 
     def _disable_old_instances(self, products):
         """Clean old instance by setting those inactives"""

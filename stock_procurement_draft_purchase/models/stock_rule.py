@@ -15,6 +15,23 @@ class StockWarehouseOrderpoint(models.Model):
         string='Virtual with RdP On Location',
         compute='_compute_product_purchase_qty'
     )
+    virtual_location_missing_qty = fields.Float(
+        string='Virtual missing Qty On Location',
+        compute='_compute_product_purchase_qty',
+    )
+    is_virtual_location_missing_qty = fields.Boolean(
+        string='Is Virtual missing Qty On Location',
+        compute='_compute_product_purchase_qty',
+        search='_search_is_virtual_location_missing_qty',
+    )
+
+    def _search_is_virtual_location_missing_qty(self, operator, value):
+        orders = self.env['stock.warehouse.orderpoint'].search([
+            ('product_min_qty', '>', 0)], limit=None)
+        orders = orders.filtered(
+            lambda x: x.product_min_qty > x.virtual_location_draft_purchase_qty
+        )
+        return [('id', 'in', orders.ids)]
 
     @api.multi
     def _compute_product_purchase_qty(self):
@@ -26,10 +43,16 @@ class StockWarehouseOrderpoint(models.Model):
                 ('orderpoint_id', '=', order.id)])
             purchase_qty = sum(
                 purchase_order_line_ids.mapped('product_uom_qty') or [0])
+            virtual_draft_purchase_qty = order.virtual_location_qty \
+                + purchase_qty
+            virtual_missing_qty = virtual_draft_purchase_qty \
+                - order.product_min_qty
             order.update({
                 'draft_purchase_order_qty': purchase_qty,
-                'virtual_location_draft_purchase_qty': order.virtual_location_qty
-                + purchase_qty,
+                'virtual_location_draft_purchase_qty': virtual_draft_purchase_qty,
+                'virtual_location_missing_qty': virtual_missing_qty,
+                'is_virtual_location_missing_qty': True if virtual_missing_qty < 0
+                else False,
             })
 
 

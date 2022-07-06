@@ -10,6 +10,7 @@
                 </field>
                 <field name="virtual_location_qty" position="after">
                     <field name="virtual_location_draft_purchase_qty" />
+                    <field name="virtual_location_missing_qty" sum="Total" />
                 </field>
             </field>
         </record>
@@ -27,6 +28,7 @@
                 </field>
                 <field name="virtual_location_qty" position="after">
                     <field name="virtual_location_draft_purchase_qty" />
+                    <field name="virtual_location_missing_qty" />
                 </field>
             </field>
         </record>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 13:59+0000\n"
-"PO-Revision-Date: 2022-06-28 13:59+0000\n"
+"POT-Creation-Date: 2022-07-11 14:27+0000\n"
+"PO-Revision-Date: 2022-07-11 14:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint_template__include_draft_purchase
 msgid "Include Draft Purchase"
 msgstr "Include Acquisti in Bozza"
+
+#. module: stock_procurement_draft_purchase
+#: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint__is_virtual_location_missing_qty
+#: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint_template__is_virtual_location_missing_qty
+msgid "Is Virtual missing Qty On Location"
+msgstr "Manca quantità virtuale nell'ubicazione"
 
 #. module: stock_procurement_draft_purchase
 #: model:ir.model,name:stock_procurement_draft_purchase.model_stock_warehouse_orderpoint
@@ -36,6 +42,17 @@ msgstr "Gruppo di Approvvigionamento"
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint_template__draft_purchase_order_qty
 msgid "Purchase RdP On Location"
 msgstr "RdP Acquisto nell'ubicazione"
+
+#. module: stock_procurement_draft_purchase
+#: model_terms:ir.ui.view,arch_db:stock_procurement_draft_purchase.view_warehouse_orderpoint_tree
+msgid "Total"
+msgstr "Totale"
+
+#. module: stock_procurement_draft_purchase
+#: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint__virtual_location_missing_qty
+#: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint_template__virtual_location_missing_qty
+msgid "Virtual missing Qty On Location"
+msgstr "Quantità virtuale mancenate nell'ubicazione"
 
 #. module: stock_procurement_draft_purchase
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint__virtual_location_draft_purchase_qty

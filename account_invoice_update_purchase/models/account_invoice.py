@@ -22,14 +22,28 @@ class AccountInvoiceLine(models.Model):
             )
 
     def update_purchase(self):
-        # OK stock move is updated
-        # OK cost of the product is updated
-        # TODO
-        #  supplierinfo: how to? and really to do?
-        #  others ?
         self.purchase_line_id.write({
            'price_unit': self.price_unit,
            'discount': self.discount,
            'discount2': self.discount2,
            'discount3': self.discount3,
         })
+        supplierinfo = self.env['product.supplierinfo'].search([
+            ('name', '=', self.purchase_line_id.order_id.partner_id.id),
+            '|',
+            ('product_id', '=', self.product_id.id),
+            ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
+            '|',
+            ('date_start', '<=', self.invoice_id.date_invoice or fields.Date.today()),
+            ('date_start', '=', False),
+            '|',
+            ('date_end', '<=', self.invoice_id.date_invoice or fields.Date.today()),
+            ('date_end', '=', False),
+        ])
+        if supplierinfo:
+            supplierinfo.write({
+                'price': self.price_unit,
+                'discount': self.discount,
+                'discount2': self.discount2,
+                'discount3': self.discount3,
+            })

@@ -8,11 +8,9 @@ class StockMove(models.Model):
 
     @api.model
     def _prepare_merge_moves_distinct_fields(self):
-        return [
-            'product_id', 'price_unit', 'product_packaging', 'procure_method',
-            'product_uom', 'restrict_partner_id', 'scrapped', 'origin_returned_move_id',
-            'package_level_id', 'partner_id'
-        ]
+        res = super()._prepare_merge_moves_distinct_fields()
+        res.append('partner_id')
+        return res
 
     def _search_picking_for_assignation(self):
         self.ensure_one()

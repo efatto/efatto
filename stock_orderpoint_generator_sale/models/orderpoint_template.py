@@ -209,7 +209,7 @@ class OrderpointTemplate(models.Model):
                         move_days = (
                             record.auto_max_date_end - record.auto_max_date_start
                         ).days
-                    qty_by_day = stock_max_qty[product_id.id] / move_days
+                    qty_by_day = stock_max_qty[product_id.id] / (move_days or 1)
                     consumed_qty_by_lead_time = (
                             qty_by_day * (1 + record.variation_percent / 100.0)
                         ) * (product_id.purchase_delay or 1)

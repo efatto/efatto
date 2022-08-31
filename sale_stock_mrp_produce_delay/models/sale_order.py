@@ -27,6 +27,7 @@ class SaleOrderLine(models.Model):
     is_mto = fields.Boolean(store=True)
     display_qty_widget = fields.Boolean(store=True)
     available_date = fields.Date()
+    last_available_date_compute = fields.Datetime()
     available_dates_info = fields.Text()
     predicted_arrival_late = fields.Boolean()
     late_product_ids = fields.Many2many('product.product')
@@ -284,11 +285,13 @@ class SaleOrderLine(models.Model):
             ('product_id', '=', product_id.id),
             ('product_uom_qty', '>', 0),
             ('state', 'not in', ['done', 'cancel']),
+            ('date', '>=', commitment_date),
         ] + domain_move_in_loc)
         reserved_stock_moves = self.env['stock.move'].search([
             ('product_id', '=', product_id.id),
             ('product_uom_qty', '>', 0),
             ('state', 'not in', ['done', 'cancel']),
+            ('date', '>=', commitment_date),
         ] + domain_move_out_loc)
         for reserve_date in (
             [x.date() for x in reserved_stock_moves.mapped('date_expected')] +
@@ -302,8 +305,6 @@ class SaleOrderLine(models.Model):
                     to_date=reserve_date
                 ).virtual_available_at_date_expected
             })
-        available_info = [
-            x for x in available_info if x['date'] >= commitment_date]
         # FIXME when all dates has sufficient availability is ignored!
         # todo remove all availability with a previous availability with qty <
         #  requested qty, to prevent "steal" of goods from reserved moves
@@ -448,6 +449,29 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    available_date = fields.Date(
+        help="First available date computed in date/hour of available_date_compute",
+        compute='_compute_available_date', store=True)
+    last_available_date_compute = fields.Datetime(
+        compute='_compute_available_date', store=True)
+
+    @api.multi
+    @api.depends('order_line.available_date')
+    def _compute_available_date(self):
+        for order in self:
+            available_dates = [
+                x for x in order.order_line.mapped('available_date') if x]
+            last_available_date_computes = [
+                x for x in order.order_line.mapped('last_available_date_compute') if x]
+            if available_dates:
+                order.available_date = max(available_dates)
+            else:
+                order.available_date = False
+            if last_available_date_computes:
+                order.last_available_date_compute = max(last_available_date_computes)
+            else:
+                order.last_available_date_compute = False
+
     @api.multi
     def compute_dates(self):
         for line in self.order_line.sorted(key=lambda r: r.sequence):
@@ -467,6 +491,7 @@ class SaleOrder(models.Model):
                     commitment_date,
                 )
             line.available_date = avail_date
+            line.last_available_date_compute = fields.Datetime.now()
             dates_info = avail_date_info.split('\n')
             commitment_date_str = commitment_date.strftime('%d/%m/%Y')
             dates_info_clean = [x for x in dates_info if commitment_date_str not in x

@@ -10,9 +10,9 @@ Sale stock mrp produce delay
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/github-sergiocorato%2Fe--efatto-lightgray.png?logo=github
-    :target: https://github.com/sergiocorato/e-efatto/tree/12.0/sale_stock_mrp_produce_delay
-    :alt: sergiocorato/e-efatto
+.. |badge2| image:: https://img.shields.io/badge/github-sergiocorato%2Fefatto-lightgray.png?logo=github
+    :target: https://github.com/sergiocorato/efatto/tree/12.0/sale_stock_mrp_produce_delay
+    :alt: sergiocorato/efatto
 
 |badge1| |badge2| 
 
@@ -37,35 +37,53 @@ Quando l'icona è in blu mostra la quantità disponibile per coprire la richiest
 
 Es. con una richiesta di 1 pz con un ordine alla data odierna del 01/07/2021 la disponibilità è immediata:
 
-.. image:: https://raw.githubusercontent.com/sergiocorato/e-efatto/12.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita.png
     :alt: Richiesta quantità iniziale
 
 in quanto l'articolo è disponibile e lo stock previsto finale è superiore alla quantità richiesta. Con una richiesta di 4.662 pz la disponibilità è per il:
 
-.. image:: https://raw.githubusercontent.com/sergiocorato/e-efatto/12.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita_maggiore.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita_maggiore.png
     :alt: Richiesta quantità maggiore
 
 in quanto l'articolo ha una quantità sufficiente a partire da quella data, e la quantità prevista finale è superiore a quella richiesta.
 
 Quando l'icona è rossa segnala che non è possibile fornire da stock il prodotto:
 
-.. image:: https://raw.githubusercontent.com/sergiocorato/e-efatto/12.0/sale_stock_mrp_produce_delay/static/description/non_disponibile.png
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/non_disponibile.png
     :alt: Non disponibile
+
+Sull'ordine di vendita è stato aggiunto un bottone per calcolare la prima consegna possibile per tutte le righe dell'ordine:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/calcola.png
+    :alt: Calcola
+
+Nelle righe, in caso la data di impegno sia precedente la prima data disponibilità per la riga, è visibile un'icona di segnalazione:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/ritardo.png
+    :alt: Ritardo
+
+che apre un messaggio esplicativo dei dettagli dei componenti mancanti:
+
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/messaggio.png
+    :alt: Messaggio
 
 Known issues / Roadmap
 ======================
 
-#. aggiungere la data di consegna possibile in base al tempo di riacquisto/produzione (nel prodotto è stato aggiunto un campo "Tempo di consegna Acquisto" che è calcolato in automatico dal campo "Tempo di consegna" del primo fornitore presente nella tabella "Fornitori" del prodotto nel tab "Acquisto" (si accettano consigli per un metodo di calcolo diverso, media? max? non ci si può basare sull'ordine di vendita comunque) che sommato al "Tempo di consegna cliente" e al "Tempo di produzione" (che dovrebbe essere indicato solo per i prodotti da produrre in quanto viene sempre sommato) che si potrebbe mostrare in caso di prodotto non disponibile da stock)
+#. aggiungere la data di consegna possibile in base al tempo di riacquisto/produzione (nel prodotto è stato aggiunto un campo "Tempo di consegna Acquisto" che è calcolato in automatico dal campo "Tempo di consegna" del primo fornitore presente nella tabella "Fornitori" del prodotto nel tab "Acquisto" (si accettano consigli per un metodo di calcolo diverso, media? max? non ci si può basare sull'ordine di vendita comunque) che sommato al "Tempo di consegna cliente" e al "Tempo di produzione"
+#. il tempo di produzione dovrebbe essere: la data di arrivo più lontana di riacquisto dei componenti non a stock (quindi la data in cui tutti i componenti sono disponibili) + tempi di produzione (ragionando quindi a capacità infinita dei centri di lavoro)
+
+(che dovrebbe essere indicato solo per i prodotti da produrre in quanto viene sempre sommato) che si potrebbe mostrare in caso di prodotto non disponibile da stock)
 
 #. inserire le quantità prodotte e le quantità in previsione di consumo in produzione nelle quantità considerate nella previsione di stock
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/sergiocorato/e-efatto/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/sergiocorato/efatto/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/sergiocorato/e-efatto/issues/new?body=module:%20sale_stock_mrp_produce_delay%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/sergiocorato/efatto/issues/new?body=module:%20sale_stock_mrp_produce_delay%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -85,6 +103,6 @@ Contributors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `sergiocorato/e-efatto <https://github.com/sergiocorato/e-efatto/tree/12.0/sale_stock_mrp_produce_delay>`_ project on GitHub.
+This module is part of the `sergiocorato/efatto <https://github.com/sergiocorato/efatto/tree/12.0/sale_stock_mrp_produce_delay>`_ project on GitHub.
 
 You are welcome to contribute.

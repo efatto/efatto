@@ -13,19 +13,15 @@
                     />
                 </div>
             </xpath>
-            <notebook position="before">
-                <group>
-                    <group>
-                        <label for="calendar_state"
-                              attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"/>
-                        <div class="oe_inline" attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}">
-                           <field name="calendar_state" />
-                           <button name="update_forecast_state" type="object"
-                                   string="Compute" class="oe_inline oe_link"/>
-                        </div>
-                    </group>
-                </group>
-            </notebook>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <label for="calendar_state"
+                      attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"/>
+                <div class="oe_inline" attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}">
+                   <field name="calendar_state" />
+                   <button name="update_forecast_state" type="object"
+                           string="Compute" class="oe_inline oe_link"/>
+                </div>
+            </xpath>
             <field name="expected_date" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>

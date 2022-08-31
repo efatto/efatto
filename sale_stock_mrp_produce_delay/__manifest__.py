@@ -9,6 +9,7 @@
     "depends": [
         "mrp_production_demo",
         "product_sellers_info",
+        "sale_backorder",
         "sale_order_archive",
         "sale_order_line_date",
         "sale_stock_info_popup",

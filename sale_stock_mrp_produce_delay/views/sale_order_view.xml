@@ -6,11 +6,21 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='date_order']" position="after">
-                <button string="Compute arrival prediction"
-                        name="compute_dates"
-                        type="object"
-                        icon="fa-calendar-check"/>
+            <xpath expr="//field[@name='last_date_delivered']" position="after">
+                <label for="available_date"/>
+                <div name="available_date_info">
+                    <div>
+                        <field name="available_date"/>
+                    </div>
+                    <div>
+                        <button
+                            name="compute_dates"
+                            type="object"
+                            class="oe_inline oe_link"
+                            icon="fa-calendar-check">Compute arrival prediction</button>
+                            (Last computed on: <field name="last_available_date_compute" nolabel="True"/>)
+                    </div>
+                </div>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="inside">
                 <field name="predicted_arrival_late" invisible="1"/>

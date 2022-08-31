@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='last_date_delivered']" position="after">
-                <label for="available_date"/>
-                <div name="available_date_info">
+                <label for="available_date" states="draft,sent"/>
+                <div name="available_date_info" states="draft,sent">
                     <div>
                         <field name="available_date"/>
                     </div>

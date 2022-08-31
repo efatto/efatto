@@ -22,3 +22,18 @@ Quando l'icona è rossa segnala che non è possibile fornire da stock il prodott
 
 .. image:: ../static/description/non_disponibile.png
     :alt: Non disponibile
+
+Sull'ordine di vendita è stato aggiunto un bottone per calcolare la prima consegna possibile per tutte le righe dell'ordine:
+
+.. image:: ../static/description/calcola.png
+    :alt: Calcola
+
+Nelle righe, in caso la data di impegno sia precedente la prima data disponibilità per la riga, è visibile un'icona di segnalazione:
+
+.. image:: ../static/description/ritardo.png
+    :alt: Ritardo
+
+che apre un messaggio esplicativo dei dettagli dei componenti mancanti:
+
+.. image:: ../static/description/messaggio.png
+    :alt: Messaggio

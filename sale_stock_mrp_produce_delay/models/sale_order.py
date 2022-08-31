@@ -26,10 +26,10 @@ class SaleOrderLine(models.Model):
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
     display_qty_widget = fields.Boolean(store=True)
-    available_date = fields.Date()
-    last_available_date_compute = fields.Datetime()
-    available_dates_info = fields.Text()
-    predicted_arrival_late = fields.Boolean()
+    available_date = fields.Date(copy=False)
+    last_available_date_compute = fields.Datetime(copy=False)
+    available_dates_info = fields.Text(copy=False)
+    predicted_arrival_late = fields.Boolean(copy=False)
     late_product_ids = fields.Many2many('product.product')
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',

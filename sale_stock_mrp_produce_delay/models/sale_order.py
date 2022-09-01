@@ -9,6 +9,12 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.date_utils import relativedelta
 
+stock_options = {
+    'stock': _('FROM STOCK'),
+    'produce': _('TO PRODUCE'),
+    'purchase': _('TO PURCHASE'),
+}
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -331,12 +337,12 @@ class SaleOrderLine(models.Model):
             raise UserError('No available info found!')
         if product_id.bom_ids:
             # fixme need to filter boms?
-            option = "TO PRODUCE"
+            option = stock_options['produce']
             bom_id = product_id.bom_ids[0]
             avail_dates = []
             if stock_available_date:
                 available_date = stock_available_date
-                option = 'FROM STOCK'
+                option = stock_options['stock']
                 available_text = \
                     _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * level,
@@ -391,7 +397,7 @@ class SaleOrderLine(models.Model):
             )
             if stock_available_date and stock_available_date <= purchase_available_date:
                 available_date = stock_available_date
-                option = 'FROM STOCK'
+                option = stock_options['stock']
                 available_text = \
                     _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * (level - 1) + child,
@@ -402,14 +408,14 @@ class SaleOrderLine(models.Model):
                     )
             else:
                 # Check if ordering the product the incoming date will be sooneer
-                option = 'TO PURCHASE'
+                option = stock_options['purchase']
                 if not available_date or (
                         stock_available_date and
                         purchase_available_date < stock_available_date):
                     available_date = purchase_available_date
                 else:
                     available_date = stock_available_date
-                    option = 'FROM STOCK'
+                    option = stock_options['stock']
                 available_text = \
                     _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * (level - 1) + child,

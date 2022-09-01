@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 10:44+0000\n"
-"PO-Revision-Date: 2022-09-01 10:44+0000\n"
+"POT-Creation-Date: 2022-09-01 11:07+0000\n"
+"PO-Revision-Date: 2022-09-01 11:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:341
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:365
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:374
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:347
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:371
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:380
 #, python-format
 msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
 ""
@@ -26,8 +26,8 @@ msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.\n"
 ""
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:396
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:414
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:402
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:420
 #, python-format
 msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n"
 ""
@@ -48,7 +48,7 @@ msgstr "Arriva in ritardo"
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order__available_date
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__available_date
 msgid "Available Date"
-msgstr "Data Disponibile"
+msgstr "Data Disponibilità"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__available_dates_info
@@ -60,7 +60,7 @@ msgstr "Info Date Disponibili"
 #: code:addons/sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml:40
 #, python-format
 msgid "Available Delivery"
-msgstr "Consegna Disponibile"
+msgstr "Disponibilità Consegna"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model,name:sale_stock_mrp_produce_delay.model_mrp_bom
@@ -81,6 +81,12 @@ msgstr "Calcola previsione d'arrivo"
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__display_qty_widget
 msgid "Display Qty Widget"
 msgstr "Mostra Widget Qtà"
+
+#. module: sale_stock_mrp_produce_delay
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:13
+#, python-format
+msgid "FROM STOCK"
+msgstr "DA MAGAZZINO"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,help:sale_stock_mrp_produce_delay.field_sale_order__available_date
@@ -108,7 +114,7 @@ msgstr "E' MTO"
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order__last_available_date_compute
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__last_available_date_compute
 msgid "Last Available Date Compute"
-msgstr "Ultimo Calcolo Data Disponibile"
+msgstr "Ultimo Calcolo Data Disponibilità"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__late_product_ids
@@ -175,7 +181,19 @@ msgid "Stock unavailable"
 msgstr "Non disponibile a magazzino"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:430
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:14
+#, python-format
+msgid "TO PRODUCE"
+msgstr "DA PRODURRE"
+
+#. module: sale_stock_mrp_produce_delay
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:15
+#, python-format
+msgid "TO PURCHASE"
+msgstr "DA ACQUISTARE"
+
+#. module: sale_stock_mrp_produce_delay
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:436
 #, python-format
 msgid "This line is scheduled for: %s.\n"
 "However it is now planned to arrive for %s.\n"

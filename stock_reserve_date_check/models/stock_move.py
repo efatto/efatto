@@ -10,9 +10,9 @@ class StockMove(models.Model):
 
     def _action_assign(self):
         # do the check after reservation, as a product can be reserved from many moves
+        # and we need to check values after all moves
         res = super()._action_assign()
-        # todo add option to bypass check
-        if self:
+        if self._context.get('enable_reserve_date_check', False):
             product_ids = self.mapped('product_id')
             available_info = {}
             # dict of dict with:
@@ -75,7 +75,7 @@ class StockMove(models.Model):
                         )}
                     if date_not_available_info:
                         raise ValidationError(_(
-                            "Reservation of product %s not possible for date %s!\n"
+                            "Reservation of product [%s] not possible for date %s!\n"
                             "Purchasable date: %s\n"
                             "Exception availability info:\n%s" % (
                                 move.product_id.name,

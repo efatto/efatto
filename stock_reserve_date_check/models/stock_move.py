@@ -77,16 +77,16 @@ class StockMove(models.Model):
                         raise ValidationError(_(
                             "Reservation of product [%s] not possible for date %s!\n"
                             "Purchasable date: %s\n"
-                            "Exception availability info:\n%s" % (
+                            "Exception availability info:\n%s") % (
                                 move.product_id.name,
                                 move.date_expected.strftime('%d/%m/%Y'),
                                 purchasable_date.strftime('%d/%m/%Y'),
                                 ''.join([
-                                    'Date: %s qty: %s\n' % (
+                                    _('Date: %s qty: %s\n') % (
                                         x.strftime('%d/%m/%Y'),
                                         date_not_available_info[x])
-                                    for x in date_not_available_info
+                                    for x in sorted(date_not_available_info)
                                 ]),
                             )
-                        ))
+                        )
         return res

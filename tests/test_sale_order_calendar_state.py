@@ -49,6 +49,7 @@ class TestSaleOrderCalendarState(TransactionCase):
         # create invoice
         inv_id = order1.action_invoice_create()
         self.assertEqual(order1.calendar_state, 'invoiced')
-        invoice = self.env['account.invoice'].browse(inv_id)
-        invoice.carrier_tracking_ref = 'TRACKING - 5555'
-        self.assertEqual(order1.calendar_state, 'shipped')
+        # REMOVED on request
+        # invoice = self.env['account.invoice'].browse(inv_id)
+        # invoice.carrier_tracking_ref = 'TRACKING - 5555'
+        # self.assertEqual(order1.calendar_state, 'shipped')

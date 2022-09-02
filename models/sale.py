@@ -2,8 +2,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models, api, _
-from datetime import timedelta
+from odoo import fields, models, api
 from dateutil.relativedelta import relativedelta
 
 TOPROCESS = 'to_process'
@@ -11,7 +10,8 @@ NOT_EVALUATED = 'to_evaluate'
 PRODUCTION_NOT_EVALUATED = 'to_evaluate_production'
 MISSING_COMPONENTS_PRODUCE = 'to_produce'
 MISSING_COMPONENTS_BUY = 'to_receive'
-PRODUCTION_READY = 'production_ready'  # EX production_ready_toproduce
+PRODUCTION_PLANNED = 'production_planned'
+PRODUCTION_READY = 'production_ready'
 PRODUCTION_STARTED = 'production_started'
 WAITING_FOR_PACKING = 'to_pack'
 DONE = 'production_done'
@@ -31,6 +31,7 @@ class SaleOrder(models.Model):
         ('to_evaluate_production', 'Production not yet processed'),
         ('to_produce', 'Missing components to produce'),
         ('to_receive', 'Missing components to receive'),
+        ('production_planned', 'Production planned'),
         ('production_ready', 'Ready to produce'),
         ('production_started', 'Production started'),
         ('to_pack', 'Waiting for packing'),
@@ -45,27 +46,28 @@ class SaleOrder(models.Model):
         'to_process': 301,
         'to_evaluate': 301,
         'to_evaluate_production': 301,
-        'to_produce': 301,
+        'to_produce': 312,
         'to_receive': 301,
-        'production_ready': 301,
+        'production_planned': 301,
+        'production_ready': 312,
         'production_started': 304,
         'to_pack': 308,
         'production_done': 305,
         'partially_delivered': 309,
         'delivery_done': 305,
         'available': 301,
-        'invoiced': 312,
-        'shipped': 313,
+        'invoiced': 313,
+        'shipped': 301,
     }
 
-    # to_process - to_evaluate - to_evaluate_production - available - WHITE 301
-    # to_produce - to_receive - production_ready - WHITE 301
+    # to_process - to_evaluate - to_evaluate_production - production_planned -
+    #  available - shipped - to_receive - WHITE 301
     # to_pack - YELLOW 308
     # partially_delivered - CYAN 309
     # production_started - PURPLE 304
     # production_done - delivery_done - BLACK 305
-    # invoiced - ORANGE 312
-    # shipped - GREEN 313
+    # to_produce - production_ready - ORANGE 312
+    # invoiced - GREEN 313
 
     # quando si crea l'ordine di vendita e quindi arriva in WHS automaticamente,
     # lo stato dell'SO deve essere 'da processare' (o 'disponibile'),
@@ -102,6 +104,23 @@ class SaleOrder(models.Model):
     delivery_week = fields.Integer(
         compute='_get_delivery_week',
         store=True)
+    has_custom_production = fields.Boolean(
+        compute='_compute_has_custom_production',
+        store=True)
+
+    @api.multi
+    @api.depends('order_line.product_id.categ_id')
+    def _compute_has_custom_production(self):
+        custom_ctg_id = self.env['product.category'].search([
+            ('name', '=', 'CUSTOM')
+        ])
+        for order in self:
+            if any([
+                x.product_id.categ_id == custom_ctg_id for x in order.order_line
+            ]):
+                order.has_custom_production = True
+            else:
+                order.has_custom_production = False
 
     @api.depends('commitment_date')
     def _get_delivery_week(self):
@@ -167,6 +186,7 @@ class SaleOrder(models.Model):
             PRODUCTION_NOT_EVALUATED,
             MISSING_COMPONENTS_BUY,
             MISSING_COMPONENTS_PRODUCE,
+            PRODUCTION_PLANNED,
             PRODUCTION_READY,
             PRODUCTION_STARTED,
             DONE,
@@ -242,10 +262,6 @@ class SaleOrder(models.Model):
                 if mrp_production.state == 'done':
                     calendar_states.append((DONE, fields.Datetime.now()))
                 elif mrp_production.state == 'confirmed':
-                    calendar_states.append(
-                        (PRODUCTION_NOT_EVALUATED, fields.Datetime.now())
-                    )
-                elif mrp_production.state == 'planned':
                     if any([x for x in mrp_production.move_raw_ids
                             if x.state not in ['cancel', 'assigned']]):
                         datetime_planned = fields.Datetime.now() + relativedelta(
@@ -253,10 +269,18 @@ class SaleOrder(models.Model):
                         calendar_states.append(
                             (MISSING_COMPONENTS_PRODUCE, datetime_planned)
                         )
+                    elif mrp_production.date_planned_start >= fields.Datetime.now():
+                        calendar_states.append(
+                            (PRODUCTION_PLANNED, fields.Datetime.now())
+                        )
                     else:
                         calendar_states.append(
                             (PRODUCTION_READY, fields.Datetime.now())
                         )
+                elif mrp_production.state == 'planned':
+                    calendar_states.append(
+                        (PRODUCTION_PLANNED, fields.Datetime.now())
+                    )
                 elif mrp_production.state == 'progress':
                     calendar_states.append(
                         (PRODUCTION_STARTED, fields.Datetime.now())
@@ -268,8 +292,9 @@ class SaleOrder(models.Model):
                 or self.invoice_status == 'invoiced' or self.force_invoiced:
             calendar_states = [(INVOICED, fields.Datetime.now())]
             # check if all invoices linked to SO have tracking_ref filled
-            if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
-                calendar_states = [(SHIPPED, fields.Datetime.now())]
+            # DISABLED by direct request
+            # if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
+            #     calendar_states = [(SHIPPED, fields.Datetime.now())]
         if not (picking_ids or purchase_line_ids or mrp_production_ids):
             # ignore this procurement as it is cancelled
             return False

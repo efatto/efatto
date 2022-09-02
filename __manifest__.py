@@ -21,6 +21,7 @@
         'web',
     ],
     'data': [
+        'data/cron.xml',
         'views/assets.xml',
         'views/orders_view.xml',
         'views/picking_view.xml',

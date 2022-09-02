@@ -33,17 +33,18 @@ CalendarRenderer.include({
                 'to_process': -301,
                 'to_evaluate': -301,
                 'to_evaluate_production': -301,
-                'to_produce': -301,
+                'to_produce': -312,
                 'to_receive': -301,
-                'production_ready': -301,
+                'production_planned': -301,
+                'production_ready': -312,
                 'production_started': -304,
                 'to_pack': -308,
                 'production_done': -305,
                 'partially_delivered': -309,
                 'delivery_done':  -305,
                 'available' : -301,
-                'invoiced': -312,
-                'shipped': -313,
+                'invoiced': -313,
+                'shipped': -301,
             }
         }
     }

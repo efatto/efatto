@@ -74,8 +74,8 @@
         <field name="arch" type="xml">
             <filter name="my_sale_orders_filter" position="after">
                 <separator/>
-                <filter name="production_not_started" string="To Produce"
-                      domain="[('calendar_state', 'in', ('to_evaluate','to_produce','to_receive','production_ready'))]"/>
+                <filter name="production_to_produce" string="To Produce"
+                      domain="[('calendar_state', 'in', ('to_produce', 'production_ready'))]"/>
                 <filter name="production_started" string="In Production"
                       domain="[('calendar_state', '=', 'production_started')]"/>
                 <filter name="production_done" string="Production Done"
@@ -92,7 +92,7 @@
         <field name="view_id" ref="view_sale_order_kanban_color"/>
         <field name="view_mode">kanban,form,calendar</field>
         <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
-        <field name="context">{'search_default_production_not_started': True}</field>
+        <field name="context">{'search_default_production_to_produce': True}</field>
     </record>
 
     <menuitem action="act_sale_order_delivery"

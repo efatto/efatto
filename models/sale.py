@@ -104,13 +104,13 @@ class SaleOrder(models.Model):
     delivery_week = fields.Integer(
         compute='_get_delivery_week',
         store=True)
-    has_custom_production = fields.Boolean(
-        compute='_compute_has_custom_production',
+    custom_production_qty = fields.Integer(
+        compute='_compute_custom_production',
         store=True)
 
     @api.multi
     @api.depends('order_line.product_id.categ_id')
-    def _compute_has_custom_production(self):
+    def _compute_custom_production(self):
         custom_ctg_id = self.env['product.category'].search([
             ('name', '=', 'CUSTOM')
         ])
@@ -118,9 +118,13 @@ class SaleOrder(models.Model):
             if any([
                 x.product_id.categ_id == custom_ctg_id for x in order.order_line
             ]):
-                order.has_custom_production = True
+                order.custom_production_qty = sum([
+                    x.product_qty for x in order.order_line.filtered(
+                        lambda y: y.product_id.categ_id == custom_ctg_id
+                    )
+                ])
             else:
-                order.has_custom_production = False
+                order.custom_production_qty = 0
 
     @api.depends('commitment_date')
     def _get_delivery_week(self):

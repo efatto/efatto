@@ -25,16 +25,22 @@ SHIPPED = 'shipped'
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    # richiesta di stati aggiuntivi
+    # PRONTE PER SPED
+    # In assemblaggio esterno
+    # tornate da assemblaggio esterno
+    # Prova collaudo
+
     STATES = [
-        ('to_process', 'To process'),
-        ('to_evaluate', 'Some procurements not yet processed'),
-        ('to_evaluate_production', 'Production not yet processed'),
-        ('to_produce', 'Missing components to produce'),
-        ('to_receive', 'Missing components to receive'),
-        ('production_planned', 'Production planned'),
-        ('production_ready', 'Ready to produce'),
-        ('production_started', 'Production started'),
-        ('to_pack', 'Waiting for packing'),
+        ('to_process', 'To process'),  # BLOCCO
+        ('to_evaluate', 'Some procurements not yet processed'),  # BLOCCO
+        ('to_evaluate_production', 'Production not yet processed'),  # BLOCCO
+        ('to_produce', 'Missing components to produce'),  # ATTESA MATERIALE
+        ('to_receive', 'Missing components to receive'),  # ATTESA MATERIALE
+        ('production_planned', 'Production planned'),  # ATTESA LAVORAZIONE
+        ('production_ready', 'Ready to produce'),  # DA FARE
+        ('production_started', 'Production started'),  # IN ASSEMBLAGGIO
+        ('to_pack', 'Waiting for packing'),  # DA IMBALLARE
         ('production_done', 'Production done'),
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),

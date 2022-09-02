@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-06 17:31+0000\n"
-"PO-Revision-Date: 2021-10-06 17:31+0000\n"
+"POT-Creation-Date: 2022-09-02 13:38+0000\n"
+"PO-Revision-Date: 2022-09-02 13:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,11 @@ msgstr "\n"
 "${user.name}\n"
 "\n"
 "      "
+
+#. module: sale_order_calendar_state
+#: model:mail.template,report_name:sale_order_calendar_state.email_template_delivery_date_changed
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
@@ -87,6 +92,11 @@ msgid "Email composition wizard"
 msgstr "Procedura guidata composizione email"
 
 #. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__has_custom_production
+msgid "Has Custom Production"
+msgstr "Ha Produzioni Custom"
+
+#. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "In Production"
 msgstr "In Produzione"
@@ -102,11 +112,6 @@ msgid "Invoiced"
 msgstr "Fatturato"
 
 #. module: sale_order_calendar_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__max_commitment_date
-msgid "New Scheduled Delivery Date"
-msgstr "Nuova Data prevista di consegna"
-
-#. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
 msgid "Max Scheduled Delivery Date:"
 msgstr "Massima Data prevista di consegna:"
@@ -120,6 +125,11 @@ msgstr "Componenti mancanti per produrre"
 #: selection:sale.order,calendar_state:0
 msgid "Missing components to receive"
 msgstr "Componenti mancanti da ricevere"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__max_commitment_date
+msgid "New Scheduled Delivery Date"
+msgstr "Nuova Data prevista di consegna"
 
 #. module: sale_order_calendar_state
 #: model:ir.actions.act_window,name:sale_order_calendar_state.act_sale_order_delivery
@@ -154,6 +164,11 @@ msgstr "Produzione non ancora eseguita"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
+msgid "Production planned"
+msgstr "Produzione Pianificata"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
 msgid "Production started"
 msgstr "Produzione iniziata"
 
@@ -167,11 +182,17 @@ msgstr "Pronto da produrre"
 msgid "Record Production"
 msgstr "Registrare la Produzione"
 
-
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order
 msgid "Sale Order"
 msgstr "Ordine di vendita"
+
+#. module: sale_order_calendar_state
+#: model:ir.actions.server,name:sale_order_calendar_state.ir_cron_sale_order_calendar_state_ir_actions_server
+#: model:ir.cron,cron_name:sale_order_calendar_state.ir_cron_sale_order_calendar_state
+#: model:ir.cron,name:sale_order_calendar_state.ir_cron_sale_order_calendar_state
+msgid "Sale order calendar state"
+msgstr "Stato di calendario ordine di vendita"
 
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order_line

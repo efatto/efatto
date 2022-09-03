@@ -41,6 +41,7 @@ CalendarRenderer.include({
                 'to_pack': -308,
                 'production_done': -305,
                 'partially_delivered': -309,
+                'delivery_ready':  -308,
                 'delivery_done':  -305,
                 'available' : -301,
                 'invoiced': -313,

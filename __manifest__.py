@@ -9,6 +9,7 @@
     'summary': 'Add states to sale order based on manufacturing, deliveries and '
                'purchase, used in calendar view.',
     'depends': [
+        'delivery',
         'l10n_it_ddt',
         'mrp',
         'mrp_sale_info',

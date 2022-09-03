@@ -15,6 +15,7 @@ PRODUCTION_READY = 'production_ready'
 PRODUCTION_STARTED = 'production_started'
 WAITING_FOR_PACKING = 'to_pack'
 DONE = 'production_done'
+DELIVERY_READY = 'delivery_ready'
 DONE_DELIVERY = 'delivery_done'
 AVAILABLEREADY = 'available'
 PARTIALLYDELIVERED = 'partially_delivered'
@@ -26,7 +27,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     # richiesta di stati aggiuntivi
-    # PRONTE PER SPED
     # In assemblaggio esterno
     # tornate da assemblaggio esterno
     # Prova collaudo
@@ -41,6 +41,7 @@ class SaleOrder(models.Model):
         ('production_ready', 'Ready to produce'),  # DA FARE
         ('production_started', 'Production started'),  # IN ASSEMBLAGGIO
         ('to_pack', 'Waiting for packing'),  # DA IMBALLARE
+        ('delivery_ready', 'Ready to deliver'),  # PRONTE PER SPED
         ('production_done', 'Production done'),
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),
@@ -58,6 +59,7 @@ class SaleOrder(models.Model):
         'production_ready': 312,
         'production_started': 304,
         'to_pack': 308,
+        'delivery_ready': 308,
         'production_done': 305,
         'partially_delivered': 309,
         'delivery_done': 305,
@@ -199,13 +201,14 @@ class SaleOrder(models.Model):
             PRODUCTION_PLANNED,
             PRODUCTION_READY,
             PRODUCTION_STARTED,
-            DONE,
             PARTIALLYDELIVERED,
             AVAILABLEREADY,
             WAITING_FOR_PACKING,
+            DELIVERY_READY,
             DONE_DELIVERY,
             INVOICED,
             SHIPPED,
+            DONE,
         ]
         calendar_state = False
         if self.procurement_group_id or self.order_line.mapped('procurement_group_id'):
@@ -235,7 +238,10 @@ class SaleOrder(models.Model):
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
             elif all([x.state == 'assigned' for x in picking_ids]):
-                calendar_state = WAITING_FOR_PACKING
+                if all([x.carrier_tracking_ref for x in picking_ids]):
+                    calendar_state = DELIVERY_READY
+                else:
+                    calendar_state = WAITING_FOR_PACKING
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED

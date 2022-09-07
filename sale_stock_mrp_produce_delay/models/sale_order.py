@@ -386,10 +386,13 @@ class SaleOrderLine(models.Model):
                         )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
-            if bom_id.routing_id:
-                delay = sum(bom_id.mapped(
-                    'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
-                available_date += relativedelta(days=int(delay))
+            if available_date:
+                if product_id.produce_delay:
+                    available_date += relativedelta(days=int(product_id.produce_delay))
+                elif bom_id.routing_id:
+                    delay = sum(bom_id.mapped(
+                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
+                    available_date += relativedelta(days=int(delay))
         else:
             purchase_available_date = (
                 fields.Date.today()

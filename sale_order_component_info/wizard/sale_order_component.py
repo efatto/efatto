@@ -52,6 +52,9 @@ class SaleComponent(models.TransientModel):
                         'parent_id': parent_id[0]
                     })
                 vals.append(product_dict)
+            if vals:
+                # sort vals to create sale component line parent before children
+                vals.sort(key=lambda t: t.get('parent_id', 0))
             for val in vals:
                 if val.get('parent_id', False):
                     parent_id = [x for x in res if x.product_id.id == val['parent_id']]

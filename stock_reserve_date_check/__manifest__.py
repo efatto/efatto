@@ -10,10 +10,12 @@
                'possible',
     'website': 'https://efatto.it',
     'depends': [
+        'mrp',
         'sale',
         'stock_move_available_date_expected',
     ],
     'data': [
+        'views/mrp.xml',
         'views/sale.xml',
     ],
     'installable': True,

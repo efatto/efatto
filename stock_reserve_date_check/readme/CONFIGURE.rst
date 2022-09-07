@@ -1,4 +1,4 @@
-Nell'ordine di vendita è stata aggiunta un'opzione, attivata di default ma che l'utente può disabilitare, che blocca la vendita con date di impegno non possibili:
+Nell'ordine di vendita e nell'ordine di produzione è stata aggiunta un'opzione, attivata di default ma che l'utente può disabilitare, che blocca la vendita con date di impegno non possibili:
 
 .. image:: ../static/description/enable.png
     :alt: Abilita

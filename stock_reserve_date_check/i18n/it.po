@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 08:38+0000\n"
-"PO-Revision-Date: 2022-09-01 08:38+0000\n"
+"POT-Creation-Date: 2022-09-07 17:10+0000\n"
+"PO-Revision-Date: 2022-09-07 17:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_reserve_date_check
-#: code:addons/stock_reserve_date_check/models/stock_move.py:85
+#: code:addons/stock_reserve_date_check/models/stock_move.py:93
 #, python-format
 msgid "Date: %s qty: %s\n"
 ""
@@ -24,17 +24,32 @@ msgstr "Data: %s q.tà: %s\n"
 ""
 
 #. module: stock_reserve_date_check
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_mrp_production__enable_reserve_date_check
 #: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
 msgid "Enable Reserve Date Check"
 msgstr "Abilita Controllo Riserva per Date"
 
 #. module: stock_reserve_date_check
+#: model:ir.model.fields,help:stock_reserve_date_check.field_mrp_production__enable_reserve_date_check
 #: model:ir.model.fields,help:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
 msgid "Forbid reservation on not possible date"
 msgstr "Vieta la riserva in date non possibili"
 
 #. module: stock_reserve_date_check
-#: code:addons/stock_reserve_date_check/models/stock_move.py:77
+#: code:addons/stock_reserve_date_check/models/mrp.py:30
+#, python-format
+msgid "Planned date start cannot be previous than planned!\n"
+"To change it, unreserve the production, change the date planned start and re-reserve, to ensure the reservation is done with the new date."
+msgstr "La data pianificata di avvio non può essere precedente a quella presente attualmente!\n"
+"Per modificarla, cliccare su 'Non riservare', cambiare la Scadenza d'inizio e cliccare su 'Controlla disponibilità', per assicurarsi che la riserva venga eseguita con la nuova data."
+
+#. module: stock_reserve_date_check
+#: model:ir.model,name:stock_reserve_date_check.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di Produzione"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/stock_move.py:85
 #, python-format
 msgid "Reservation of product [%s] not possible for date %s!\n"
 "Available date: %s\n"

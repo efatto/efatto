@@ -11,7 +11,15 @@ class StockMove(models.Model):
     def _action_assign(self):
         # do the check after reservation, as a product can be reserved from many moves
         # and we need to check values after all moves
+        if self._context.get('params', False) and self._context.get('params').get(
+                'model', '') == 'mrp.production':
+            # for production do the check before super() because of mrp_subproduction
+            self.check_reserve_date()
         res = super()._action_assign()
+        self.check_reserve_date()
+        return res
+
+    def check_reserve_date(self):
         if self._context.get('enable_reserve_date_check', False):
             product_ids = self.mapped('product_id')
             available_info = {}
@@ -89,4 +97,3 @@ class StockMove(models.Model):
                                 ]),
                             )
                         )
-        return res

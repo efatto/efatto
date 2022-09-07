@@ -84,7 +84,7 @@ class StockMove(models.Model):
                     if date_not_available_info:
                         raise ValidationError(_(
                             "Reservation of product [%s] not possible for date %s!\n"
-                            "Purchasable date: %s\n"
+                            "Available date: %s\n"
                             "Exception availability info:\n%s") % (
                                 move.product_id.name,
                                 move.date_expected.strftime('%d/%m/%Y'),

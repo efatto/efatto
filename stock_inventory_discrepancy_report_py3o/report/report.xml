@@ -4,7 +4,7 @@
     <record id="stock_inventory_discrepancy_report_py3o" model="ir.actions.report">
         <field name="name">Inventory discrepancy (XLS)</field>
         <field name="model">stock.inventory</field>
-        <field name="report_name">stock_inventory_discrepancy_ods</field>
+        <field name="report_name">stock_inventory_discrepancy_xls</field>
         <field name="report_type">py3o</field>
         <field name="py3o_filetype">xls</field>
         <field name="module">stock_inventory_discrepancy_report_py3o</field>

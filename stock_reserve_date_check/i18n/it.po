@@ -37,7 +37,7 @@ msgstr "Vieta la riserva in date non possibili"
 #: code:addons/stock_reserve_date_check/models/stock_move.py:77
 #, python-format
 msgid "Reservation of product [%s] not possible for date %s!\n"
-"Purchasable date: %s\n"
+"Available date: %s\n"
 "Exception availability info:\n"
 "%s"
 msgstr "Non è possibile riservare il prodotto [%s] per la data %s!\n"

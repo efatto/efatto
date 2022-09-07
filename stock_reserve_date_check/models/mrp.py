@@ -24,9 +24,11 @@ class MrpProduction(models.Model):
     def _onchange_date_planned_start(self):
         if self.enable_reserve_date_check and self.availability in [
                 'assigned', 'none']:
-            if self.date_planned_start < self._origin.date_planned_start:
-                raise UserError(_(
-                    'Planned date start cannot be previous than planned!\n'
-                    'To change it, unreserve the production, change date'
-                    'planned start and re-reserve, to ensure reservation'
-                    'is done with the new date.'))
+            # exclude new production from check
+            if self._origin.id and not isinstance(self._origin.id, models.NewId):
+                if self.date_planned_start < self._origin.date_planned_start:
+                    raise UserError(_(
+                        'Planned date start cannot be previous than planned!\n'
+                        'To change it, unreserve the production, change the date '
+                        'planned start and re-reserve, to ensure the reservation '
+                        'is done with the new date.'))

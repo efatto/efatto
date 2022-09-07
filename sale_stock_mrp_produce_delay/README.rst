@@ -57,6 +57,8 @@ Sull'ordine di vendita è stato aggiunto un bottone per calcolare la prima conse
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/calcola.png
     :alt: Calcola
 
+N.B.: la data di consegna include la somma dei tempi di produzione indicati nei prodotti ed eventuali semilavorati, per cui è 'cautelativa' (l'utente può prevedere una data di impegno inferiore alla data disponibile, in caso di necessità ed essendo a conoscenza della possibilità di farlo). Non prevede comunque calcoli sulla capacità dei centri di lavoro, per cui si considera infinita. La data di consegna inoltre considera il tempo di consegna degli acquisti dai fornitori. Invece il tempo di consegna al cliente non è considerato.
+
 Nelle righe, in caso la data di impegno sia precedente la prima data disponibilità per la riga, è visibile un'icona di segnalazione:
 
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/ritardo.png
@@ -66,16 +68,6 @@ che apre un messaggio esplicativo dei dettagli dei componenti mancanti:
 
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_stock_mrp_produce_delay/static/description/messaggio.png
     :alt: Messaggio
-
-Known issues / Roadmap
-======================
-
-#. aggiungere la data di consegna possibile in base al tempo di riacquisto/produzione (nel prodotto è stato aggiunto un campo "Tempo di consegna Acquisto" che è calcolato in automatico dal campo "Tempo di consegna" del primo fornitore presente nella tabella "Fornitori" del prodotto nel tab "Acquisto" (si accettano consigli per un metodo di calcolo diverso, media? max? non ci si può basare sull'ordine di vendita comunque) che sommato al "Tempo di consegna cliente" e al "Tempo di produzione"
-#. il tempo di produzione dovrebbe essere: la data di arrivo più lontana di riacquisto dei componenti non a stock (quindi la data in cui tutti i componenti sono disponibili) + tempi di produzione (ragionando quindi a capacità infinita dei centri di lavoro)
-
-(che dovrebbe essere indicato solo per i prodotti da produrre in quanto viene sempre sommato) che si potrebbe mostrare in caso di prodotto non disponibile da stock)
-
-#. inserire le quantità prodotte e le quantità in previsione di consumo in produzione nelle quantità considerate nella previsione di stock
 
 Bug Tracker
 ===========

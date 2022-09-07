@@ -28,7 +28,7 @@ Sull'ordine di vendita è stato aggiunto un bottone per calcolare la prima conse
 .. image:: ../static/description/calcola.png
     :alt: Calcola
 
-N.B.: la data di consegna include la somma dei tempi di produzione indicati nei prodotti ed eventuali semilavorati, per cui è 'cautelativa' (l'utente può prevedere una data di impegno inferiore alla data disponibile, in caso di necessità ed essendo a conoscenza della possibilità di farlo).
+N.B.: la data di consegna include la somma dei tempi di produzione indicati nei prodotti ed eventuali semilavorati, per cui è 'cautelativa' (l'utente può prevedere una data di impegno inferiore alla data disponibile, in caso di necessità ed essendo a conoscenza della possibilità di farlo). Non prevede comunque calcoli sulla capacità dei centri di lavoro, per cui si considera infinita. La data di consegna inoltre considera il tempo di consegna degli acquisti dai fornitori. Invece il tempo di consegna al cliente non è considerato.
 
 Nelle righe, in caso la data di impegno sia precedente la prima data disponibilità per la riga, è visibile un'icona di segnalazione:
 

@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="team_id" position="after">
-                <field name="enable_reserve_date_check" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="enable_reserve_date_check" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>
             </field>
         </field>
     </record>

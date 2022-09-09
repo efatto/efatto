@@ -9,7 +9,7 @@ class MrpProduction(models.Model):
 
     enable_reserve_date_check = fields.Boolean(
         help="Forbid reservation on not possible date",
-        default=True, copy=False)
+        copy=False)
 
     @api.multi
     def action_assign(self):

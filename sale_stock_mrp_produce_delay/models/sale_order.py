@@ -386,7 +386,7 @@ class SaleOrderLine(models.Model):
                         )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
-            if available_date:
+            if available_date and not stock_available_date:
                 if product_id.produce_delay:
                     available_date += relativedelta(days=int(product_id.produce_delay))
                 elif bom_id.routing_id:

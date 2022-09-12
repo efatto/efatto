@@ -10,9 +10,10 @@
                'possible',
     'website': 'https://efatto.it',
     'depends': [
-        'mrp',
+        'mrp_production_demo',
         'product_sellers_info',
         'sale_order_line_date',
+        'sale_stock',
         'stock_move_available_date_expected',
     ],
     'data': [

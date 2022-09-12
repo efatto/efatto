@@ -324,10 +324,11 @@ class SaleOrderLine(models.Model):
                 farther_unreservable_dates = [min([
                     x['date'] for x in available_info
                 ])]
-            if len(farther_unreservable_dates) == len(available_info):
+                stock_available_date = farther_unreservable_dates[0]
+            elif len(farther_unreservable_dates) == len(available_info):
                 # None of the available dates meets the requested quantity
                 stock_available_date = False
-            elif farther_unreservable_dates:
+            else:
                 stock_available_date = min([
                     x['date'] for x in available_info if x['date']
                     >= max(farther_unreservable_dates) and

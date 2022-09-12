@@ -11,7 +11,8 @@
     'website': 'https://efatto.it',
     'depends': [
         'mrp',
-        'sale',
+        'product_sellers_info',
+        'sale_order_line_date',
         'stock_move_available_date_expected',
     ],
     'data': [

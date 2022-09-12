@@ -15,8 +15,12 @@ class MrpProduction(models.Model):
     def action_assign(self):
         # Add variable in context to enable check
         for production in self:
+            if 'enable_reserve_date_check' in self.env.context:
+                enable_reserve_date_check = self._context['enable_reserve_date_check']
+            else:
+                enable_reserve_date_check = production.enable_reserve_date_check
             super(MrpProduction, self.with_context(
-                enable_reserve_date_check=production.enable_reserve_date_check
+                enable_reserve_date_check=enable_reserve_date_check
             )).action_assign()
         return True
 

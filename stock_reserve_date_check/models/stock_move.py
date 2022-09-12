@@ -14,6 +14,9 @@ class StockMove(models.Model):
         if self._context.get('params', False) and self._context.get('params').get(
                 'model', '') == 'mrp.production':
             # for production do the check before super() because of mrp_subproduction
+            # anyway this check will be done after reservation of production, as it is
+            # no more a default check and the only way to activate it from production
+            # is to unreserve and re-reserve the production
             self.check_reserve_date()
         res = super()._action_assign()
         self.check_reserve_date()
@@ -83,14 +86,18 @@ class StockMove(models.Model):
                         if x < available_date
                         and (
                             product_available_info[x] < 0
-                            or
-                            product_available_info[x] < move.product_qty
+                            or (
+                               move.procure_method == 'make_to_order'
+                               and
+                               manufacture_route in move.product_id.route_ids
+                            )
                         )}
                     if date_not_available_info:
                         raise ValidationError(_(
-                            "Reservation of product [%s] not possible for date %s!\n"
-                            "Available date: %s\n"
+                            "Reservation of product [[%s] %s] not possible for date %s!"
+                            "\nAvailable date: %s\n"
                             "Exception availability info:\n%s") % (
+                                move.product_id.default_code,
                                 move.product_id.name,
                                 move.date_expected.strftime('%d/%m/%Y'),
                                 available_date.strftime('%d/%m/%Y'),

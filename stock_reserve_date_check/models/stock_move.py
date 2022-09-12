@@ -21,6 +21,7 @@ class StockMove(models.Model):
 
     def check_reserve_date(self):
         if self._context.get('enable_reserve_date_check', False):
+            manufacture_route = self.env.ref('mrp.route_warehouse0_manufacture')
             product_ids = self.mapped('product_id')
             available_info = {}
             # dict of dict with:
@@ -70,12 +71,16 @@ class StockMove(models.Model):
                     })
                     # remove dates after purchasable date (n.b. a reorder rule must
                     # exits to cover the request)
-                    purchasable_date = today + relativedelta(
-                        days=move.product_id.purchase_delay)
+                    if move.product_id.bom_ids and \
+                            manufacture_route in move.product_id.route_ids:
+                        delay = move.product_id.produce_delay
+                    else:
+                        delay = move.product_id.purchase_delay
+                    available_date = today + relativedelta(days=delay)
                     date_not_available_info = {
                         x: product_available_info[x]
                         for x in product_available_info
-                        if x < purchasable_date
+                        if x < available_date
                         and (
                             product_available_info[x] < 0
                             or
@@ -88,7 +93,7 @@ class StockMove(models.Model):
                             "Exception availability info:\n%s") % (
                                 move.product_id.name,
                                 move.date_expected.strftime('%d/%m/%Y'),
-                                purchasable_date.strftime('%d/%m/%Y'),
+                                available_date.strftime('%d/%m/%Y'),
                                 ''.join([
                                     _('Date: %s qty: %s\n') % (
                                         x.strftime('%d/%m/%Y'),

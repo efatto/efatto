@@ -31,7 +31,7 @@ This module add an option on sale, enabled by default, to forbid the reservation
 Configuration
 =============
 
-Nell'ordine di vendita e nell'ordine di produzione è stata aggiunta un'opzione, attivata di default ma che l'utente può disabilitare, che blocca la vendita con date di impegno non possibili:
+Nell'ordine di vendita è stata aggiunta un'opzione, attivata di default ma che l'utente può disabilitare, che blocca la vendita con date di impegno non possibili:
 
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_reserve_date_check/static/description/enable.png
     :alt: Abilita
@@ -39,9 +39,9 @@ Nell'ordine di vendita e nell'ordine di produzione è stata aggiunta un'opzione,
 Le date di impegno non possibili sono definite come:
 
 #. l'acquisto del prodotto (o dei suoi componenti) per la data richiesta non è possibile, in quanto i tempi di consegna sono più lunghi
-#. E la quantità disponibile nelle date degli scarichi di magazzino già prenotati sono inferiori dalla quantità richiesta O sono minori di zero O sono negativi
+#. la quantità disponibile nelle date degli scarichi di magazzino già prenotati sono inferiori alla quantità richiesta
 
-In caso il campo sia abilitato e l'impegno nella data richiesta non sia possibile esce un messaggio di errore, in cui sono indicati il prodotto o componente, la data di possibile acquisto, le date di disponibilità non conformi:
+In caso il campo sia abilitato e l'impegno nella data richiesta non sia possibile, verrà mostrato un messaggio di errore, in cui sono indicati il prodotto o i suoi componenti, la data di possibile acquisto, le date di disponibilità non conformi:
 
 .. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/stock_reserve_date_check/static/description/errore.png
     :alt: Errore

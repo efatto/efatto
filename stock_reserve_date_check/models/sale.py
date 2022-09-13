@@ -34,14 +34,14 @@ class SaleOrder(models.Model):
                             and x != '']
                         dates_info_clean.reverse()
                         raise UserError(_(
-                            "Reservation of product [[%s] %s] not possible for date %s!"
-                            "\nAvailable date: %s %s\n"
+                            "Reservation of product [[%s] %s] is not possible for date"
+                            " %s!\nAvailable date: %s %s\n"
                             "Exception availability info:\n%s") % (
                                 line.product_id.default_code,
                                 line.product_id.name,
-                                avail_date.strftime('%d/%m/%Y'),
                                 commitment_date.strftime('%d/%m/%Y'),
-                                '(Produce delay: %.0f days)' % int(
+                                avail_date.strftime('%d/%m/%Y'),
+                                _("(Produce delay: %.0f days)") % int(
                                     line.product_id.produce_delay)
                                 if line.product_id.produce_delay else '',
                                 '\n'.join([x for x in dates_info_clean])

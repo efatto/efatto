@@ -11,6 +11,7 @@ class StockMove(models.Model):
     def _action_assign(self):
         # do the check after reservation, as a product can be reserved from many moves
         # and we need to check values after all moves
+        checked = False
         if self._context.get('params', False) and self._context.get('params').get(
                 'model', '') == 'mrp.production':
             # for production do the check before super() because of mrp_subproduction
@@ -18,8 +19,10 @@ class StockMove(models.Model):
             # no more a default check and the only way to activate it from production
             # is to unreserve and re-reserve the production
             self.check_reserve_date()
+            checked = True
         res = super()._action_assign()
-        self.check_reserve_date()
+        if not checked:
+            self.check_reserve_date()
         return res
 
     def check_reserve_date(self):
@@ -74,6 +77,8 @@ class StockMove(models.Model):
                     })
                     # remove dates after purchasable date (n.b. a reorder rule must
                     # exits to cover the request)
+                    # producable product cannot be considered here as production is
+                    # based on components availability
                     if move.product_id.bom_ids and \
                             manufacture_route in move.product_id.route_ids:
                         delay = move.product_id.produce_delay

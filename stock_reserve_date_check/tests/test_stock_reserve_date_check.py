@@ -1,7 +1,7 @@
 from odoo.tools.date_utils import relativedelta
 from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
 from odoo.tools import mute_logger
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 
 from odoo import fields
 
@@ -61,8 +61,9 @@ class TestStockReserveDateCheck(TestProductionData):
             'partner_id': self.partner.id,
         })
         self._create_sale_order_line(order1, self.product, 5)
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             order1.sudo(self.test_user).action_confirm()
+        self.assertEqual(order1.state, 'draft')
 
     def test_01_sale_from_stock(self):
         order2 = self.env['sale.order'].sudo(self.test_user).create({
@@ -73,6 +74,7 @@ class TestStockReserveDateCheck(TestProductionData):
         self._create_sale_order_line(order2, self.product, qty=5,
                                      commitment_date=commitment_date)
         order2.sudo(self.test_user).action_confirm()
+        self.assertEqual(order2.state, 'sale')
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
@@ -86,13 +88,13 @@ class TestStockReserveDateCheck(TestProductionData):
             fields.Datetime.now() + relativedelta(days=10)
         self._create_sale_order_line(order3, self.top_product, qty=5,
                                      commitment_date=commitment_date)
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             order3.sudo(self.test_user).action_confirm()
-        order3.action_cancel()  # FIXME order should not be confirmed!
-        order3.action_draft()  # FIXME idem and others
+        self.assertEqual(order3.state, 'draft')
         commitment_date = \
             fields.Datetime.now() + relativedelta(days=14)
         order_line = order3.order_line[0]
         order_line.write({'commitment_date': commitment_date})
         order_line._convert_to_write(order_line._cache)
         order3.sudo(self.test_user).action_confirm()
+        self.assertEqual(order3.state, 'sale')

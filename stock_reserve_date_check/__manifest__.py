@@ -6,14 +6,13 @@
     'category': 'Stock Management',
     'author': 'Sergio Corato',
     'license': 'AGPL-3',
-    'summary': 'Add logic to block confirmation of stock reservation on date not '
-               'possible',
+    'summary': 'Add logic to block confirmation of sale order on date not possible '
+               'on product stock or predicted arrival and manufacturing time.',
     'website': 'https://efatto.it',
     'depends': [
         'sale_stock_mrp_produce_delay',
     ],
     'data': [
-        'views/mrp.xml',
         'views/sale.xml',
     ],
     'installable': True,

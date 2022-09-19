@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_rule_partner
+#	* stock_unreserve_action
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:55+0000\n"
-"PO-Revision-Date: 2022-03-03 13:55+0000\n"
+"POT-Creation-Date: 2022-09-19 09:47+0000\n"
+"PO-Revision-Date: 2022-09-19 09:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,18 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_rule_partner
-#: model:ir.model.fields,field_description:stock_rule_partner.field_stock_rule__propagate_partner
-msgid "Propagate Partner"
-msgstr "Propaga il Partner"
-
-#. module: stock_rule_partner
-#: model:ir.model,name:stock_rule_partner.model_stock_move
-msgid "Stock Move"
-msgstr "Movimento di magazzino"
-
-#. module: stock_rule_partner
-#: model:ir.model,name:stock_rule_partner.model_stock_rule
-msgid "Stock Rule"
-msgstr "Regola dello stock"
+#. module: stock_unreserve_action
+#: model:ir.actions.server,name:stock_unreserve_action.stock_quant_stock_move_line_desynchronization
+msgid "Correct inconsistencies for reservation (from custom module)"
+msgstr "Correggi le inconsistenze nelle riserve (da modulo custom)"
 

@@ -25,6 +25,7 @@
         'data/cron.xml',
         'views/assets.xml',
         'views/orders_view.xml',
+        'views/mrp_view.xml',
         'views/picking_view.xml',
         'views/sale_data.xml',
     ],

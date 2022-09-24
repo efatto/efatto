@@ -14,6 +14,9 @@ PRODUCTION_PLANNED = 'production_planned'
 PRODUCTION_READY = 'production_ready'
 PRODUCTION_STARTED = 'production_started'
 WAITING_FOR_PACKING = 'to_pack'
+SUBMANUFACTURE_STARTED = 'submanufacture_started'
+SUBMANUFACTURE_DONE = 'submanufacture_done'
+TEST_CHECK = 'test_check'
 DONE = 'production_done'
 DELIVERY_READY = 'delivery_ready'
 DONE_DELIVERY = 'delivery_done'
@@ -26,22 +29,20 @@ SHIPPED = 'shipped'
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    # richiesta di stati aggiuntivi
-    # In assemblaggio esterno
-    # tornate da assemblaggio esterno
-    # Prova collaudo
-
     STATES = [
-        ('to_process', 'To process'),  # BLOCCO
-        ('to_evaluate', 'Some procurements not yet processed'),  # BLOCCO
-        ('to_evaluate_production', 'Production not yet processed'),  # BLOCCO
-        ('to_produce', 'Missing components to produce'),  # ATTESA MATERIALE
-        ('to_receive', 'Missing components to receive'),  # ATTESA MATERIALE
-        ('production_planned', 'Production planned'),  # ATTESA LAVORAZIONE
-        ('production_ready', 'Ready to produce'),  # DA FARE
-        ('production_started', 'Production started'),  # IN ASSEMBLAGGIO
-        ('to_pack', 'Waiting for packing'),  # DA IMBALLARE
-        ('delivery_ready', 'Ready to deliver'),  # PRONTE PER SPED
+        ('to_process', 'BLOCKED - to process'),
+        ('to_evaluate', 'BLOCKED - procurements not yet processed'),
+        ('to_evaluate_production', 'BLOCKED - production not yet processed'),
+        ('to_produce', 'WAIT MATERIAL - for manufacture'),
+        ('to_receive', 'WAIT MATERIAL'),
+        ('production_planned', 'WAIT MANUFACTURE'),
+        ('production_ready', 'TO DO'),
+        ('production_started', 'IN ASSEMBLY'),
+        ('to_pack', 'TO PACK'),
+        ('submanufacture_started', 'Submanufacture started'),  # in assembl. esterno
+        ('submanufacture_done', 'Submanufacture done'),  # tornate da assemblesterno
+        ('test_check', 'Test check'),  # Prova collaudo
+        ('delivery_ready', 'READY TO DELIVER'),  # PRONTE PER SPED
         ('production_done', 'Production done'),
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),
@@ -53,19 +54,22 @@ class SaleOrder(models.Model):
         'to_process': 301,
         'to_evaluate': 301,
         'to_evaluate_production': 301,
-        'to_produce': 312,
-        'to_receive': 301,
-        'production_planned': 301,
-        'production_ready': 312,
-        'production_started': 304,
-        'to_pack': 308,
-        'delivery_ready': 308,
+        'to_produce': 302,
+        'to_receive': 302,
+        'production_planned': 304,
+        'production_ready': 308,
+        'production_started': 306,
+        'to_pack': 307,
+        'submanufacture_started': 314,
+        'submanufacture_done': 315,
+        'test_check': 316,
+        'delivery_ready': 317,
         'production_done': 305,
         'partially_delivered': 309,
         'delivery_done': 305,
-        'available': 301,
+        'available': 312,
         'invoiced': 313,
-        'shipped': 301,
+        'shipped': 312,
     }
 
     # to_process - to_evaluate - to_evaluate_production - production_planned -
@@ -200,6 +204,9 @@ class SaleOrder(models.Model):
             MISSING_COMPONENTS_PRODUCE,
             PRODUCTION_PLANNED,
             PRODUCTION_READY,
+            SUBMANUFACTURE_STARTED,
+            SUBMANUFACTURE_DONE,
+            TEST_CHECK,
             PRODUCTION_STARTED,
             PARTIALLYDELIVERED,
             AVAILABLEREADY,
@@ -300,6 +307,10 @@ class SaleOrder(models.Model):
                 elif mrp_production.state == 'progress':
                     calendar_states.append(
                         (PRODUCTION_STARTED, fields.Datetime.now())
+                    )
+                if mrp_production.additional_state:
+                    calendar_states.append(
+                        (mrp_production.additional_state, fields.Datetime.now())
                     )
         # check if all lines of type product or consu of so are invoiced
         if all([ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty for ol in

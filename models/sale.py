@@ -31,9 +31,9 @@ class SaleOrder(models.Model):
 
     STATES = [
         ('to_process', 'BLOCKED - to process'),
-        ('to_evaluate', 'BLOCKED - procurements not yet processed'),
-        ('to_evaluate_production', 'BLOCKED - production not yet processed'),
-        ('to_produce', 'WAIT MATERIAL - for manufacture'),
+        ('to_evaluate', 'BLOCKED - to procure'),
+        ('to_evaluate_production', 'BLOCKED - to process production'),
+        ('to_produce', 'WAIT MATERIAL manufacture'),
         ('to_receive', 'WAIT MATERIAL'),
         ('production_planned', 'WAIT MANUFACTURE'),
         ('production_ready', 'TO DO'),

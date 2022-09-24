@@ -285,5 +285,5 @@ msgstr "ATTESA MATERIALE"
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
 msgid "WAIT MATERIAL - for manufacture"
-msgstr "ATTESA MATERIALE - per produzione"
+msgstr "ATTESA MATERIALE produzione"
 

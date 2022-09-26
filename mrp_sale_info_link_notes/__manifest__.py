@@ -1,0 +1,20 @@
+# Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+{
+    'name': 'Sale notes on MRP',
+    'summary': 'Show info on manufacturing orders from sales order',
+    'version': '12.0.1.0.0',
+    'category': 'Sales Management',
+    'website': 'https://efatto.it',
+    'author': 'Sergio Corato (Efatto.it)',
+    'license': 'AGPL-3',
+    'application': False,
+    'installable': True,
+    'depends': [
+        'mrp_sale_info_link',
+    ],
+    'data': [
+        'views/sale_order.xml',
+        'views/mrp_production.xml',
+    ],
+}

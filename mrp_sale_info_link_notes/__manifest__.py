@@ -14,6 +14,7 @@
         'mrp_sale_info_link',
     ],
     'data': [
+        'data/calendar.xml',
         'views/sale_order.xml',
         'views/mrp_production.xml',
     ],

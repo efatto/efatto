@@ -203,10 +203,10 @@ class SaleOrder(models.Model):
             MISSING_COMPONENTS_BUY,
             MISSING_COMPONENTS_PRODUCE,
             PRODUCTION_PLANNED,
-            PRODUCTION_READY,
             SUBMANUFACTURE_STARTED,
             SUBMANUFACTURE_DONE,
             TEST_CHECK,
+            PRODUCTION_READY,
             PRODUCTION_STARTED,
             PARTIALLYDELIVERED,
             AVAILABLEREADY,
@@ -330,7 +330,7 @@ class SaleOrder(models.Model):
         return calendar_states
 
     @api.depends('order_line', 'order_line.qty_invoiced',
-                 'picking_ids', 'picking_ids.state')
+                 'picking_ids', 'picking_ids.state', 'production_ids.additional_state')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

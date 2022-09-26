@@ -12,7 +12,7 @@
         'delivery',
         'l10n_it_ddt',
         'mrp',
-        'mrp_sale_info',
+        'mrp_sale_info_link',
         'purchase',
         'purchase_line_procurement_group',
         'sale_force_invoiced',

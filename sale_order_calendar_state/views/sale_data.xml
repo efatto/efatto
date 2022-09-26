@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="email_template_delivery_date_changed" model="mail.template">
+      <field name="name">Delivery Date Change Alert</field>
+      <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+      <field name="subject">Delivery date for order ${object.name}</field>
+      <field name="email_to">${object.partner_id.email_sale|safe}</field>
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="auto_delete" eval="True"/>
+      <field name="report_template" ref="sale.action_report_saleorder"/>
+      <field name="report_name">${(object.name or '').replace('/','_')}</field>
+      <field name="body_html"><![CDATA[
+Dear ${object.partner_id.name},<br>
+The expected delivery date has changed from ${object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} to ${object.max_commitment_date.strftime('%d/%m/%Y')},
+we hope this won't be a problem.<br>
+<br>
+Best Regards,<br>
+${user.name}
+]]>
+      </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="assets_backend_colors" name="sale_order_calendar_state assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/sale_order_calendar_state/static/src/css/calendar.scss"/>
+            <script type="text/javascript" src="/sale_order_calendar_state/static/src/js/calendar_colors.js"/>
+        </xpath>
+    </template>
+</odoo>

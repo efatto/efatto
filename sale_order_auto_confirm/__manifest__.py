@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Sale order auto confirm',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'other',
     'author': 'Sergio Corato - Efatto.it',
     'website': 'https://efatto.it',

@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_auto_confirm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-07 18:00+0000\n"
+"PO-Revision-Date: 2021-01-07 18:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_auto_confirm
+#: model:ir.actions.server,name:sale_order_auto_confirm.ir_cron_confirm_sale_quotation_action_ir_actions_server
+#: model:ir.cron,cron_name:sale_order_auto_confirm.ir_cron_confirm_sale_quotation_action
+#: model:ir.cron,name:sale_order_auto_confirm.ir_cron_confirm_sale_quotation_action
+msgid "Confirm sent sale orders"
+msgstr "Conferma preventivi inviati"
+
+#. module: sale_order_auto_confirm
+#: model:ir.model,name:sale_order_auto_confirm.model_sale_order
+msgid "Sale Order"
+msgstr "Ordine di vendita"
+

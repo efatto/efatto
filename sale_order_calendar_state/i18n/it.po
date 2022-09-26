@@ -1,0 +1,289 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_calendar_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-24 17:23+0000\n"
+"PO-Revision-Date: 2022-09-24 17:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_calendar_state
+#: model:mail.template,body_html:sale_order_calendar_state.email_template_delivery_date_changed
+msgid "\n"
+"Dear ${object.partner_id.name},<br>\n"
+"The expected delivery date has changed from ${object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} to ${object.max_commitment_date.strftime('%d/%m/%Y')},\n"
+"we hope this won't be a problem.<br>\n"
+"<br>\n"
+"Best Regards,<br>\n"
+"${user.name}\n"
+"\n"
+"      "
+msgstr "\n"
+"Spett.le ${object.partner_id.name},<br>\n"
+"La data prevista di consegna è cambiata da ${object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} a ${object.max_commitment_date.strftime('%d/%m/%Y')},\n"
+"ci auguriamo non sia un problema.<br>\n"
+"<br>\n"
+"Cordialmente,<br>\n"
+"${user.name}\n"
+"\n"
+"      "
+
+#. module: sale_order_calendar_state
+#: model:mail.template,report_name:sale_order_calendar_state.email_template_delivery_date_changed
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__additional_state
+msgid "Additional state"
+msgstr "Stato aggiuntivo"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
+msgid "Alert customer of change"
+msgstr "Avvisa il cliente della modifica"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Available"
+msgstr "Disponibile"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "BLOCKED - to process"
+msgstr "BLOCCO - da processare"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "BLOCKED - to process production"
+msgstr "BLOCCO - da processare produzione"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "BLOCKED - to procure"
+msgstr "BLOCCO - da acquistare"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__calendar_state
+msgid "Calendar State"
+msgstr "Stato di Calendario"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__color
+msgid "Color"
+msgstr "Colore"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "Custom In Production"
+msgstr "Custom In Produzione"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "Custom Production Done"
+msgstr "Custom Produzione Completata"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__custom_production_qty
+msgid "Custom Production Qty"
+msgstr "Qtà Produzione Custom"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "Custom To Produce"
+msgstr "Custom Da Produrre"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__date_ready_to_deliver
+msgid "Date Ready To Deliver"
+msgstr "Data Pronto per la Consegna"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__delivery_week
+msgid "Delivery Week"
+msgstr "Settimana di Consegna"
+
+#. module: sale_order_calendar_state
+#: model:mail.template,subject:sale_order_calendar_state.email_template_delivery_date_changed
+msgid "Delivery date for order ${object.name}"
+msgstr "Data di consegna per l'ordine ${object.name}"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Delivery done"
+msgstr "Consegna completata"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Procedura guidata composizione email"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "IN ASSEMBLY"
+msgstr "IN ASSEMBLAGGIO"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "In Production"
+msgstr "In Produzione"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Invoiced"
+msgstr "Fatturato"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
+msgid "Max Scheduled Delivery Date:"
+msgstr "Massima Data prevista di consegna:"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__max_commitment_date
+msgid "New Scheduled Delivery Date"
+msgstr "Nuova Data prevista di consegna"
+
+#. module: sale_order_calendar_state
+#: model:ir.actions.act_window,name:sale_order_calendar_state.act_sale_order_delivery
+#: model:ir.ui.menu,name:sale_order_calendar_state.menu_act_sale_order_delivery
+msgid "Orders to deliver"
+msgstr "Ordini da consegnare"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Partially delivered"
+msgstr "Parzialmente consegnato"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "Production Done"
+msgstr "Produzione Completata"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di Produzione"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Production done"
+msgstr "Produzione Completata"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "READY TO DELIVER"
+msgstr "PRONTO PER SPED"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_mrp_product_produce
+msgid "Record Production"
+msgstr "Registrare la Produzione"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_sale_order
+msgid "Sale Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_order_calendar_state
+#: model:ir.actions.server,name:sale_order_calendar_state.ir_cron_sale_order_calendar_state_ir_actions_server
+#: model:ir.cron,cron_name:sale_order_calendar_state.ir_cron_sale_order_calendar_state
+#: model:ir.cron,name:sale_order_calendar_state.ir_cron_sale_order_calendar_state
+msgid "Sale order calendar state"
+msgstr "Stato di calendario ordine di vendita"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea d'ordine di vendita"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__commitment_date
+msgid "Scheduled Delivery Date"
+msgstr "Data prevista di consegna"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
+msgid "Scheduled Delivery Date:"
+msgstr "Data prevista di consegna:"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "Shipped"
+msgstr "Spedito"
+
+#. module: sale_order_calendar_state
+#: selection:mrp.production,additional_state:0
+#: selection:sale.order,calendar_state:0
+msgid "Submanufacture done"
+msgstr "Tornato da assemblaggio esterno"
+
+#. module: sale_order_calendar_state
+#: selection:mrp.production,additional_state:0
+#: selection:sale.order,calendar_state:0
+msgid "Submanufacture started"
+msgstr "In assemblaggio esterno"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "TO DO"
+msgstr "DA FARE"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "TO PACK"
+msgstr "DA IMBALLARE"
+
+#. module: sale_order_calendar_state
+#: selection:mrp.production,additional_state:0
+#: selection:sale.order,calendar_state:0
+msgid "Test check"
+msgstr "Prova collaudo"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,help:sale_order_calendar_state.field_sale_order__commitment_date
+msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
+msgstr "Questa è la data di consegna promessa al cliente. Se è definita, l'ordine di consegna sarà programmato in base a questa data piuttosto che a quella basata sui tempi di consegna del prodotto."
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
+msgid "To Produce"
+msgstr "Da Produrre"
+
+#. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_stock_picking
+msgid "Transfer"
+msgstr "Trasferimento"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "WAIT MANUFACTURE"
+msgstr "ATTESA LAVORAZIONE"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "WAIT MATERIAL"
+msgstr "ATTESA MATERIALE"
+
+#. module: sale_order_calendar_state
+#: selection:sale.order,calendar_state:0
+msgid "WAIT MATERIAL manufacture"
+msgstr "ATTESA MATERIALE produzione"
+

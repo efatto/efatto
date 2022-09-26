@@ -41,7 +41,9 @@
                 <field name="color" invisible="1"/>
             </field>
             <field name="amount_total" position="replace">
-                <field name="custom_production_qty"/>
+                <field name="custom_production_qty_calendar"/>
+                <field name="production_notes_calendar"/>
+                <field name="is_prototype_calendar"/>
             </field>
         </field>
     </record>

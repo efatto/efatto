@@ -2,7 +2,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models, api
+from odoo import api, fields, models, _
 from dateutil.relativedelta import relativedelta
 
 TOPROCESS = 'to_process'
@@ -119,6 +119,9 @@ class SaleOrder(models.Model):
     custom_production_qty = fields.Integer(
         compute='_compute_custom_production',
         store=True)
+    custom_production_qty_calendar = fields.Text(
+        compute='_compute_custom_production',
+        store=True)
 
     @api.multi
     @api.depends('order_line.product_id.categ_id')
@@ -135,8 +138,11 @@ class SaleOrder(models.Model):
                         lambda y: y.product_id.categ_id == custom_ctg_id
                     )
                 ])
+                order.custom_production_qty_calendar = \
+                    _('Custom production qty: %s') % order.custom_production_qty
             else:
                 order.custom_production_qty = 0
+                order.custom_production_qty_calendar = ''
 
     @api.depends('commitment_date')
     def _get_delivery_week(self):

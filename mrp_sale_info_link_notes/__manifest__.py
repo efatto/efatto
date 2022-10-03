@@ -3,7 +3,7 @@
 {
     'name': 'Sale notes on MRP',
     'summary': 'Show info on manufacturing orders from sales order',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Sales Management',
     'website': 'https://efatto.it',
     'author': 'Sergio Corato (Efatto.it)',

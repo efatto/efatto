@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_editable_list" model="ir.ui.view">
+        <field name="name">purchase.order.form.editable.list</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase_comment_template.purchase_order_form_editable_list"/>
+      <field name="groups_id" eval="[(6, 0, [ref('purchase.group_purchase_user'), ref('uom.group_uom')])]"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='order_line']/tree" position="attributes">
+              <attribute name="editable">bottom</attribute>
+          </xpath>
+      </field>
+    </record>
+</odoo>

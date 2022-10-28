@@ -14,6 +14,7 @@
     ],
     'data': [
         'views/stock.xml',
+        'wizard/ddt_from_picking.xml',
     ],
     'installable': True,
 }

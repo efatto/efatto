@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_ddt_from_pickings" model="ir.ui.view">
+    <field name="name">TD from Pickings Menu</field>
+    <field name="model">ddt.from.pickings</field>
+    <field name="inherit_id" ref="l10n_it_ddt.view_ddt_from_pickings"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='picking_ids']" position="before">
+        <field name="stock_ddt_type_id"/>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

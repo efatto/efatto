@@ -58,18 +58,18 @@ msgstr "Disponibile"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "BLOCKED - to process"
-msgstr "BLOCCO - da processare"
+msgid "TO PROCESS"
+msgstr "DA PIANIFICARE"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "BLOCKED - to process production"
-msgstr "BLOCCO - da processare produzione"
+msgid "TO PROCESS - production"
+msgstr "DA PIANIFICARE - produzione"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "BLOCKED - to procure"
-msgstr "BLOCCO - da acquistare"
+msgid "TO PROCESS - procure"
+msgstr "DA PIANIFICARE - acquistare"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__calendar_state
@@ -259,8 +259,8 @@ msgstr "DA FARE"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "TO PACK"
-msgstr "DA IMBALLARE"
+msgid "READY TO PACK"
+msgstr "PRONTO DA PRELEVARE"
 
 #. module: sale_order_calendar_state
 #: selection:mrp.production,additional_state:0

@@ -30,9 +30,9 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     STATES = [
-        ('to_process', 'BLOCKED - to process'),
-        ('to_evaluate', 'BLOCKED - to procure'),
-        ('to_evaluate_production', 'BLOCKED - to process production'),
+        ('to_process', 'TO PROCESS'),
+        ('to_evaluate', 'TO PROCESS - procure'),
+        ('to_evaluate_production', 'TO PROCESS - production'),
         ('to_produce', 'WAIT MATERIAL manufacture'),
         ('to_receive', 'WAIT MATERIAL'),
         ('production_planned', 'WAIT MANUFACTURE'),
@@ -72,8 +72,8 @@ class SaleOrder(models.Model):
         'shipped': 312,
     }
 
-    # to_process - to_evaluate - to_evaluate_production - production_planned -
-    #  available - shipped - to_receive - WHITE 301
+    # to_process - to_evaluate - to_evaluate_production - WHITE 301
+    # production_planned - available - shipped - to_receive - WHITE 301
     # to_pack - YELLOW 308
     # partially_delivered - CYAN 309
     # production_started - PURPLE 304

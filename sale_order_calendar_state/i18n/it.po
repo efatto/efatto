@@ -195,8 +195,8 @@ msgstr "Ordine di Produzione"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "Production done"
-msgstr "Produzione Completata"
+msgid "DONE - production"
+msgstr "COMPLETATO - produzione"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0

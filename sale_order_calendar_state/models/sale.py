@@ -38,7 +38,7 @@ class SaleOrder(models.Model):
         ('production_planned', 'WAIT MANUFACTURE'),
         ('production_ready', 'TO DO'),
         ('production_started', 'IN ASSEMBLY'),
-        ('to_pack', 'TO PACK'),
+        ('to_pack', 'READY TO PACK'),
         ('submanufacture_started', 'Submanufacture started'),  # in assembl. esterno
         ('submanufacture_done', 'Submanufacture done'),  # tornate da assemblesterno
         ('test_check', 'Test check'),  # Prova collaudo

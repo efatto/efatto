@@ -72,13 +72,14 @@ class SaleOrder(models.Model):
         'shipped': 312,
     }
 
-    # to_process - to_evaluate - to_evaluate_production - WHITE 301
-    # production_planned - available - shipped - to_receive - WHITE 301
+    # to_process - to_evaluate - to_evaluate_production: WHITE 301
+    # to_produce - to_receive: ORANGE 302
+    # production_planned - available - shipped - WHITE 301
     # to_pack - YELLOW 308
     # partially_delivered - CYAN 309
     # production_started - PURPLE 304
     # production_done - delivery_done - BLACK 305
-    # to_produce - production_ready - ORANGE 312
+    # production_ready - ORANGE 312
     # invoiced - GREEN 313
 
     # quando si crea l'ordine di vendita e quindi arriva in WHS automaticamente,

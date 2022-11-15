@@ -8,6 +8,15 @@
             <field name="production_location_id" position="after">
                 <field name="additional_state"/>
             </field>
+            <button name="post_inventory" position="attributes">
+                <attribute name="class">oe_highlight</attribute>
+            </button>
+            <xpath expr="//button[@name='button_mark_done'][1]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('post_visible', '=', True), ('check_to_done', '=', False), ('consumed_less_than_planned', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][2]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('post_visible', '=', True), ('check_to_done', '=', False), ('consumed_less_than_planned', '=', False)]}</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

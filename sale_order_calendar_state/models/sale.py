@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
         ('submanufacture_done', 'Submanufacture done'),  # tornate da assemblesterno
         ('test_check', 'Test check'),  # Prova collaudo
         ('delivery_ready', 'READY TO DELIVER'),  # PRONTE PER SPED
-        ('production_done', 'Production done'),
+        ('production_done', 'DONE - production'),
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),
         ('available', 'Available'),

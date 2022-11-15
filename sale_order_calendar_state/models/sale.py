@@ -35,9 +35,9 @@ class SaleOrder(models.Model):
         ('to_evaluate_production', 'TO PROCESS - production'),
         ('to_produce', 'WAIT MATERIAL manufacture'),
         ('to_receive', 'WAIT MATERIAL'),
-        ('production_planned', 'WAIT MANUFACTURE'),
-        ('production_ready', 'TO DO'),
-        ('production_started', 'IN ASSEMBLY'),
+        ('production_planned', 'WAIT PRODUCTION'),
+        ('production_ready', 'Production ready'),
+        ('production_started', 'READY TO PACK - production'),
         ('to_pack', 'READY TO PACK'),
         ('submanufacture_started', 'Submanufacture started'),  # in assembl. esterno
         ('submanufacture_done', 'Submanufacture done'),  # tornate da assemblesterno
@@ -56,9 +56,9 @@ class SaleOrder(models.Model):
         'to_evaluate_production': 301,
         'to_produce': 302,
         'to_receive': 302,
-        'production_planned': 304,
-        'production_ready': 308,
-        'production_started': 306,
+        'production_planned': 302,
+        'production_ready': 302,
+        'production_started': 307,
         'to_pack': 307,
         'submanufacture_started': 314,
         'submanufacture_done': 315,
@@ -73,13 +73,13 @@ class SaleOrder(models.Model):
     }
 
     # to_process - to_evaluate - to_evaluate_production: WHITE 301
-    # to_produce - to_receive: ORANGE 302
-    # production_planned - available - shipped - WHITE 301
-    # to_pack - YELLOW 308
+    # to_produce - to_receive - production_planned - production_ready: ORANGE 302
+    # production_started - to_pack: YELLOW 307
     # partially_delivered - CYAN 309
     # production_started - PURPLE 304
     # production_done - delivery_done - BLACK 305
-    # production_ready - ORANGE 312
+    #  - ORANGE 312
+    #  - available - shipped - WHITE 301
     # invoiced - GREEN 313
 
     # quando si crea l'ordine di vendita e quindi arriva in WHS automaticamente,

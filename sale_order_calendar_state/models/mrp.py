@@ -19,6 +19,7 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     additional_state = fields.Selection([
+        ('to_produce', 'Waiting material production'),
         ('submanufacture_started', 'Submanufacture started'),
         ('submanufacture_done', 'Submanufacture done'),
         ('test_check', 'Test check'),

@@ -21,6 +21,7 @@
     ],
     'data': [
         'data/cron.xml',
+        'wizard/mark_blocked.xml',
         'views/assets.xml',
         'views/orders_view.xml',
         'views/mrp_view.xml',

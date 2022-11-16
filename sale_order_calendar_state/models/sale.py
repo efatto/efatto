@@ -5,6 +5,7 @@
 from odoo import api, fields, models, _
 from dateutil.relativedelta import relativedelta
 
+BLOCKED = 'blocked'
 TOPROCESS = 'to_process'
 NOT_EVALUATED = 'to_evaluate'
 PRODUCTION_NOT_EVALUATED = 'to_evaluate_production'
@@ -14,9 +15,9 @@ PRODUCTION_PLANNED = 'production_planned'
 PRODUCTION_READY = 'production_ready'
 PRODUCTION_STARTED = 'production_started'
 WAITING_FOR_PACKING = 'to_pack'
-SUBMANUFACTURE_STARTED = 'submanufacture_started'
-SUBMANUFACTURE_DONE = 'submanufacture_done'
-TEST_CHECK = 'test_check'
+TO_ASSEMBLY = 'to_assembly'
+TO_SUBMANUFACTURE = 'to_submanufacture'
+TO_TEST = 'to_test'
 DONE = 'production_done'
 DELIVERY_READY = 'delivery_ready'
 DONE_DELIVERY = 'delivery_done'
@@ -30,6 +31,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     STATES = [
+        ('blocked', 'BLOCKED'),
         ('to_process', 'TO PROCESS'),
         ('to_evaluate', 'TO PROCESS - procure'),
         ('to_evaluate_production', 'TO PROCESS - production'),
@@ -39,10 +41,10 @@ class SaleOrder(models.Model):
         ('production_ready', 'Production ready'),
         ('production_started', 'READY TO PACK - production'),
         ('to_pack', 'READY TO PACK'),
-        ('submanufacture_started', 'Submanufacture started'),  # in assembl. esterno
-        ('submanufacture_done', 'Submanufacture done'),  # tornate da assemblesterno
-        ('test_check', 'Test check'),  # Prova collaudo
-        ('delivery_ready', 'READY TO DELIVER'),  # PRONTE PER SPED
+        ('to_assembly', 'To assembly'),
+        ('to_submanufacture', 'To submanufacture'),
+        ('to_test', 'Test check'),
+        ('delivery_ready', 'READY TO DELIVER'),
         ('production_done', 'DONE - production'),
         ('partially_delivered', 'Partially delivered'),
         ('delivery_done', 'Delivery done'),
@@ -51,6 +53,7 @@ class SaleOrder(models.Model):
         ('shipped', 'Shipped'),
     ]
     STATES_COLOR_INDEX_MAP = {
+        'blocked': 321,
         'to_process': 301,
         'to_evaluate': 301,
         'to_evaluate_production': 301,
@@ -58,29 +61,19 @@ class SaleOrder(models.Model):
         'to_receive': 302,
         'production_planned': 302,
         'production_ready': 302,
-        'production_started': 307,
-        'to_pack': 307,
-        'submanufacture_started': 314,
-        'submanufacture_done': 315,
-        'test_check': 316,
-        'delivery_ready': 317,
-        'production_done': 305,
-        'partially_delivered': 309,
-        'delivery_done': 305,
-        'available': 312,
-        'invoiced': 313,
-        'shipped': 312,
+        'production_started': 303,
+        'to_pack': 303,
+        'to_assembly': 304,
+        'to_submanufacture': 305,
+        'to_test': 306,
+        'delivery_ready': 301,
+        'production_done': 307,
+        'partially_delivered': 308,
+        'delivery_done': 307,
+        'available': 301,
+        'invoiced': 301,
+        'shipped': 301,
     }
-
-    # to_process - to_evaluate - to_evaluate_production: WHITE 301
-    # to_produce - to_receive - production_planned - production_ready: ORANGE 302
-    # production_started - to_pack: YELLOW 307
-    # partially_delivered - CYAN 309
-    # production_started - PURPLE 304
-    # production_done - delivery_done - BLACK 305
-    #  - ORANGE 312
-    #  - available - shipped - WHITE 301
-    # invoiced - GREEN 313
 
     # quando si crea l'ordine di vendita e quindi arriva in WHS automaticamente,
     # lo stato dell'SO deve essere 'da processare' (o 'disponibile'),
@@ -123,6 +116,10 @@ class SaleOrder(models.Model):
     custom_production_qty_calendar = fields.Text(
         compute='_compute_custom_production',
         store=True)
+    additional_state = fields.Selection([
+        ('blocked', 'Blocked'),
+    ], string="Additional state", copy=False)
+    blocked_note = fields.Char()
 
     @api.multi
     @api.depends('order_line.product_id.categ_id')
@@ -204,15 +201,16 @@ class SaleOrder(models.Model):
         # ed una con stato MISSING_COMPONENTS_BUY
         # l'ordine deve avere stato MISSING_COMPONENTS_BUY, perchè peggiore.
         cal_order = [
+            BLOCKED,
             TOPROCESS,
             NOT_EVALUATED,
             PRODUCTION_NOT_EVALUATED,
             MISSING_COMPONENTS_BUY,
             MISSING_COMPONENTS_PRODUCE,
             PRODUCTION_PLANNED,
-            SUBMANUFACTURE_STARTED,
-            SUBMANUFACTURE_DONE,
-            TEST_CHECK,
+            TO_ASSEMBLY,
+            TO_SUBMANUFACTURE,
+            TO_TEST,
             PRODUCTION_READY,
             PRODUCTION_STARTED,
             PARTIALLYDELIVERED,
@@ -234,6 +232,10 @@ class SaleOrder(models.Model):
                     procurement_group, max_commitment_date)
                 if states:
                     calendar_states += states
+            if self.additional_state:
+                calendar_states.append(
+                    (self.additional_state, fields.Datetime.now())
+                )
             if calendar_states:
                 calendar_states = filter(None, calendar_states)
                 calendar_state = min(
@@ -376,3 +378,11 @@ class SaleOrder(models.Model):
             'target': 'new',
             'context': local_context,
         }
+
+    @api.multi
+    def button_mark_not_blocked(self):
+        for rec in self:
+            rec.write({
+                'additional_state': False,
+                'blocked_note': False,
+            })

@@ -339,11 +339,6 @@ msgstr "Spedito"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "Submanufacture done"
-msgstr "Tornato da assemblaggio esterno"
-
-#. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
 msgid "TO PROCESS"
 msgstr "DA PIANIFICARE"
 

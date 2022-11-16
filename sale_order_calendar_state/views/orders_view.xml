@@ -15,7 +15,7 @@
             </xpath>
             <button name="preview_sale_order" position="after">
                 <button name="%(sale_order_calendar_state.action_marked_blocked)d" type="action" string="Mark blocked"
-                        attrs="{'invisible': [('additional_state', '=', 'blocked')]}"/>
+                        attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('additional_state', '=', 'blocked')]}"/>
                 <button name="button_mark_not_blocked" type="object" string="Mark not blocked"
                         attrs="{'invisible': [('additional_state', '!=', 'blocked')]}"/>
             </button>

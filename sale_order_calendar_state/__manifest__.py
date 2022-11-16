@@ -5,12 +5,14 @@
     'name': 'Sale calendar state',
     'author': 'Sergio Corato',
     'website': 'https://efatto.it',
-    'version': '12.0.1.0.17',
+    'version': '12.0.1.1.0',
     'summary': 'Add states to sale order based on manufacturing, deliveries and '
                'purchase, used in calendar view.',
     'depends': [
+        'connector_whs',
         'delivery',
         'l10n_it_ddt',
+        'mrp_production_demo',
         'mrp_sale_info_link_notes',
         'purchase_line_procurement_group',
         'sale_force_invoiced',

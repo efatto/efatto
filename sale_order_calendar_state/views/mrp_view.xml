@@ -6,7 +6,8 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <field name="production_location_id" position="after">
-                <field name="additional_state"/>
+                <field name="additional_state" readonly="1"/>
+                <field name="blocked_note"/>
             </field>
             <button name="post_inventory" position="attributes">
                 <attribute name="class">oe_highlight</attribute>
@@ -17,6 +18,18 @@
             <xpath expr="//button[@name='button_mark_done'][2]" position="attributes">
                 <attribute name="attrs">{'invisible': ['|', '|', ('post_visible', '=', True), ('check_to_done', '=', False), ('consumed_less_than_planned', '=', False)]}</attribute>
             </xpath>
+            <button name="post_inventory" position="after">
+                <button name="%(sale_order_calendar_state.action_marked_blocked)d" type="action" string="Mark blocked"
+                        attrs="{'invisible': [('additional_state', '=', 'blocked')]}"/>
+                <button name="button_mark_not_blocked" type="object" string="Mark not blocked"
+                        attrs="{'invisible': [('additional_state', '!=', 'blocked')]}"/>
+                <button name="button_mark_to_produce" type="object" string="Mark to produce"
+                        attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+                <button name="button_mark_to_submanufacture" type="object" string="Mark to submanufacture"
+                        attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('additional_state', '!=', 'to_assembly')]}"/>
+                <button name="button_mark_to_test" type="object" string="Mark to test"
+                        attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('additional_state', 'not in', ['to_assembly', 'to_submanufacture'])]}"/>
+            </button>
         </field>
     </record>
 </odoo>

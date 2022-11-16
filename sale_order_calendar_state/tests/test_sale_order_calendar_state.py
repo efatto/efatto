@@ -61,6 +61,8 @@ class TestSaleOrderCalendarState(TestProductionData):
         self.assertEqual(order1.calendar_state, 'blocked')
         # TODO possible improvement: block picking validation if so is blocked?
         order1.button_mark_not_blocked()
+        self.assertFalse(order1.additional_state)
+        self.assertEqual(order1.calendar_state, 'to_pack')
 
         for sml in picking.move_lines.mapped('move_line_ids'):
             sml.qty_done = sml.product_qty
@@ -118,3 +120,5 @@ class TestSaleOrderCalendarState(TestProductionData):
         self.assertEqual(sale_order.calendar_state, 'blocked')
         # TODO possible improvement: block manufacture produce if so is blocked?
         man_order.button_mark_not_blocked()
+        self.assertFalse(sale_order.additional_state)
+        self.assertEqual(sale_order.calendar_state, 'to_produce')

@@ -338,7 +338,7 @@ class SaleOrder(models.Model):
             calendar_states = [(TOPROCESS, fields.Datetime.now())]
         return calendar_states
 
-    @api.depends('order_line', 'order_line.qty_invoiced',
+    @api.depends('order_line', 'order_line.qty_invoiced', 'additional_state',
                  'picking_ids', 'picking_ids.state', 'production_ids.additional_state')
     def _compute_calendar_state(self):
         for order in self:

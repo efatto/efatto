@@ -12,8 +12,6 @@ class MrpProductProduce(models.TransientModel):
         res = super(MrpProductProduce, self).do_produce()
         for mo in self.production_id.filtered(lambda x: x.sale_id):
             mo.sale_id.update_forecast_state()
-            if mo.state == 'done':
-                mo.additional_state = False
         return res
 
 

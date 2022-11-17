@@ -122,3 +122,28 @@ class TestSaleOrderCalendarState(TestProductionData):
         man_order.button_mark_not_blocked()
         self.assertFalse(sale_order.additional_state)
         self.assertEqual(sale_order.calendar_state, 'to_produce')
+
+        produce_form = Form(
+            self.env['mrp.product.produce'].with_context(
+                active_id=man_order.id,
+                active_ids=man_order.ids,
+            )
+        )
+        produced_qty = 2.0
+        produce_form.product_qty = produced_qty
+        wizard = produce_form.save()
+        wizard.do_produce()
+        self.assertEqual(sale_order.calendar_state, 'production_started')
+
+        produce_form = Form(
+            self.env['mrp.product.produce'].with_context(
+                active_id=man_order.id,
+                active_ids=man_order.ids,
+            )
+        )
+        produced_qty = 18.0
+        produce_form.product_qty = produced_qty
+        wizard = produce_form.save()
+        wizard.do_produce()
+        man_order.button_mark_done()
+        self.assertEqual(sale_order.calendar_state, 'to_pack')

@@ -146,4 +146,4 @@ class TestSaleOrderCalendarState(TestProductionData):
         wizard = produce_form.save()
         wizard.do_produce()
         man_order.button_mark_done()
-        self.assertEqual(sale_order.calendar_state, 'to_pack')
+        self.assertEqual(sale_order.calendar_state, 'production_done')

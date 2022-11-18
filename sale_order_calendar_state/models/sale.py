@@ -215,12 +215,12 @@ class SaleOrder(models.Model):
             PRODUCTION_STARTED,
             PARTIALLYDELIVERED,
             AVAILABLEREADY,
+            DONE,
             WAITING_FOR_PACKING,
             DELIVERY_READY,
             DONE_DELIVERY,
             INVOICED,
             SHIPPED,
-            DONE,
         ]
         calendar_state = False
         if self.procurement_group_id or self.order_line.mapped('procurement_group_id'):

@@ -59,7 +59,7 @@ class SaleOrder(models.Model):
         'to_evaluate_production': 301,
         'to_produce': 302,
         'to_receive': 302,
-        'production_planned': 302,
+        'production_planned': 301,
         'production_ready': 302,
         'production_started': 303,
         'to_pack': 303,

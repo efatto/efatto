@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 09:52+0000\n"
-"PO-Revision-Date: 2022-11-16 09:52+0000\n"
+"POT-Creation-Date: 2022-11-20 19:39+0000\n"
+"PO-Revision-Date: 2022-11-20 19:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,6 +80,11 @@ msgid "Blocked Note"
 msgstr "Nota Blocco"
 
 #. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__blocked_note_calendar
+msgid "Blocked Note Calendar"
+msgstr "Nota Bloccato"
+
+#. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__calendar_state
 msgid "Calendar State"
 msgstr "Stato di Calendario"
@@ -133,12 +138,6 @@ msgstr "Qtà Produzione Custom in Calendario"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
 msgid "Custom To Produce"
 msgstr "Custom Da Produrre"
-
-#. module: sale_order_calendar_state
-#: code:addons/sale_order_calendar_state/models/sale.py:141
-#, python-format
-msgid "Custom production qty: %s"
-msgstr "Qtà Produzione Custom: %s"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0

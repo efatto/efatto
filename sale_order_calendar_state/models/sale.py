@@ -128,7 +128,7 @@ class SaleOrder(models.Model):
     @api.depends('blocked_note', 'production_ids.blocked_note')
     def _compute_blocked_note_calendar(self):
         for order in self:
-            order.blocked_note_calendar = _('Blocked Notes: %s') % \
+            order.blocked_note_calendar = \
                 order.blocked_note if order.blocked_note else \
                 ' '.join(order.production_ids.filtered(
                     lambda x: x.state != 'cancel').mapped('blocked_note')) if \
@@ -151,7 +151,7 @@ class SaleOrder(models.Model):
                     )
                 ])
                 order.custom_production_qty_calendar = \
-                    _('Custom production qty: %s') % order.custom_production_qty
+                    'Q.tà produzione Custom: %s' % order.custom_production_qty
             else:
                 order.custom_production_qty = 0
                 order.custom_production_qty_calendar = ''

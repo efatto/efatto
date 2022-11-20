@@ -120,6 +120,20 @@ class SaleOrder(models.Model):
         ('blocked', 'Blocked'),
     ], string="Additional state", copy=False)
     blocked_note = fields.Char()
+    blocked_note_calendar = fields.Char(
+        compute='_compute_blocked_note_calendar',
+        store=True)
+
+    @api.multi
+    @api.depends('blocked_note', 'production_ids.blocked_note')
+    def _compute_blocked_note_calendar(self):
+        for order in self:
+            order.blocked_note_calendar = _('Blocked Notes: %s') % \
+                order.blocked_note if order.blocked_note else \
+                ' '.join(order.production_ids.filtered(
+                    lambda x: x.state != 'cancel').mapped('blocked_note')) if \
+                order.production_ids and \
+                any(x.blocked_note for x in order.production_ids) else ''
 
     @api.multi
     @api.depends('order_line.product_id.categ_id')

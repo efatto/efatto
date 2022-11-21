@@ -355,7 +355,8 @@ class SaleOrder(models.Model):
         return calendar_states
 
     @api.depends('order_line', 'order_line.qty_invoiced', 'is_blocked',
-                 'picking_ids', 'picking_ids.state', 'production_ids.additional_state')
+                 'picking_ids', 'picking_ids.state', 'production_ids.additional_state',
+                 'production_ids.is_blocked')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

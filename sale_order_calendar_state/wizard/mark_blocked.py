@@ -14,5 +14,5 @@ class MarkBlockedWizard(models.TransientModel):
         for rec in records:
             rec.write({
                 'blocked_note': self.note,
-                'additional_state': 'blocked',
+                'is_blocked': True,
             })

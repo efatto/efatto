@@ -15,13 +15,13 @@
             </xpath>
             <button name="preview_sale_order" position="after">
                 <button name="%(sale_order_calendar_state.action_marked_blocked)d" type="action" string="Mark blocked"
-                        attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('additional_state', '=', 'blocked')]}"/>
+                        attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('is_blocked', '=', True)]}"/>
                 <button name="button_mark_not_blocked" type="object" string="Mark not blocked"
-                        attrs="{'invisible': [('additional_state', '!=', 'blocked')]}"/>
+                        attrs="{'invisible': [('is_blocked', '!=', True)]}"/>
             </button>
             <xpath expr="//notebook/page[@name='other_information']/group" position="inside">
                 <group string="Additional State Info" name="additional_state_info">
-                    <field name="additional_state"/>
+                    <field name="is_blocked"/>
                     <field name="blocked_note"/>
                 </group>
             </xpath>

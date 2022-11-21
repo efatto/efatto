@@ -220,28 +220,33 @@ msgstr "Ultima modifica il"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_marked_blocked
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
 msgid "Mark blocked"
-msgstr "Marca bloccato"
+msgstr "Bloccato"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
 msgid "Mark not blocked"
-msgstr "Marca non bloccato"
+msgstr "Non bloccato"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to produce"
-msgstr "Marca In attesa materiali"
+msgstr "In attesa materiali"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to submanufacture"
-msgstr "Marca In assemblaggio esterno"
+msgstr "In assemblaggio esterno"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to test"
-msgstr "Marca Da collaudare"
+msgstr "Da collaudare"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
+msgid "Mark to assembly"
+msgstr "In assemblaggio"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color

@@ -41,6 +41,11 @@ class MrpProduction(models.Model):
             mo.additional_state = 'to_produce'
 
     @api.multi
+    def button_mark_to_assembly(self):
+        for mo in self:
+            mo.additional_state = 'to_assembly'
+
+    @api.multi
     def button_mark_to_submanufacture(self):
         for mo in self:
             mo.additional_state = 'to_submanufacture'

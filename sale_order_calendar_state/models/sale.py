@@ -116,9 +116,7 @@ class SaleOrder(models.Model):
     custom_production_qty_calendar = fields.Text(
         compute='_compute_custom_production',
         store=True)
-    additional_state = fields.Selection([
-        ('blocked', 'Blocked'),
-    ], string="Additional state", copy=False)
+    is_blocked = fields.Boolean()
     blocked_note = fields.Char()
     blocked_note_calendar = fields.Char(
         compute='_compute_blocked_note_calendar',
@@ -246,9 +244,9 @@ class SaleOrder(models.Model):
                     procurement_group, max_commitment_date)
                 if states:
                     calendar_states += states
-            if self.additional_state:
+            if self.is_blocked:
                 calendar_states.append(
-                    (self.additional_state, fields.Datetime.now())
+                    ('blocked', fields.Datetime.now())
                 )
             if calendar_states:
                 calendar_states = filter(None, calendar_states)
@@ -335,6 +333,10 @@ class SaleOrder(models.Model):
                     calendar_states.append(
                         (mrp_production.additional_state, fields.Datetime.now())
                     )
+                if mrp_production.is_blocked:
+                    calendar_states.append(
+                        ('blocked', fields.Datetime.now())
+                    )
         # check if all lines of type product or consu of so are invoiced
         if all([ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty for ol in
                 self.order_line if ol.product_id
@@ -352,7 +354,7 @@ class SaleOrder(models.Model):
             calendar_states = [(TOPROCESS, fields.Datetime.now())]
         return calendar_states
 
-    @api.depends('order_line', 'order_line.qty_invoiced', 'additional_state',
+    @api.depends('order_line', 'order_line.qty_invoiced', 'is_blocked',
                  'picking_ids', 'picking_ids.state', 'production_ids.additional_state')
     def _compute_calendar_state(self):
         for order in self:
@@ -397,6 +399,6 @@ class SaleOrder(models.Model):
     def button_mark_not_blocked(self):
         for rec in self:
             rec.write({
-                'additional_state': False,
+                'is_blocked': False,
                 'blocked_note': False,
             })

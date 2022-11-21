@@ -118,7 +118,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         wizard = blocked_form.save()
         wizard.mark_blocked()
         self.assertEqual(sale_order.calendar_state, 'blocked')
-        # TODO possible improvement: block manufacture produce if so is blocked?
+        self.assertTrue(man_order.is_blocked)
         man_order.button_mark_not_blocked()
         self.assertFalse(sale_order.is_blocked)
         self.assertEqual(sale_order.calendar_state, 'to_produce')

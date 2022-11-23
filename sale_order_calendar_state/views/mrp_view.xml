@@ -26,7 +26,7 @@
                         attrs="{'invisible': [('is_blocked', '!=', True)]}"/>
                 <button name="button_mark_to_produce" type="object" string="Mark to produce"
                         attrs="{'invisible': [('state', '!=', 'progress')]}"/>
-                <button name="button_mark_to_produce" type="object" string="Mark to assembly"
+                <button name="button_mark_to_assembly" type="object" string="Mark to assembly"
                         attrs="{'invisible': [('state', '!=', 'progress')]}"/>
                 <button name="button_mark_to_submanufacture" type="object" string="Mark to submanufacture"
                         attrs="{'invisible': [('state', '!=', 'progress')]}"/>

@@ -121,6 +121,18 @@ class SaleOrder(models.Model):
     blocked_note_calendar = fields.Char(
         compute='_compute_blocked_note_calendar',
         store=True)
+    production_id = fields.Many2one(
+        comodel_name='mrp.production',
+        compute='_compute_production_id',
+        store=True)
+
+    @api.multi
+    @api.depends('production_ids')
+    def _compute_production_id(self):
+        for order in self:
+            order.production_id = False if not order.production_ids else\
+                order.production_ids.sorted(key=lambda x: x.partner_id,
+                                            reverse=True)[0]
 
     @api.multi
     @api.depends('blocked_note', 'production_ids.blocked_note')

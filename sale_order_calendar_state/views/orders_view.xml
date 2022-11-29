@@ -51,6 +51,8 @@
             </calendar>
             <field name="partner_id" position="after">
                 <field name="color" invisible="1"/>
+                <field name="name"/>
+                <field name="production_id"/>
             </field>
             <field name="amount_total" position="replace">
                 <field name="custom_production_qty_calendar"/>

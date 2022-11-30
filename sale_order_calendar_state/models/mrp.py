@@ -28,6 +28,12 @@ class MrpProduction(models.Model):
     blocked_note = fields.Char()
 
     @api.multi
+    def post_inventory(self):
+        res = super().post_inventory()
+        self.write({'additional_state': 'to_assembly'})
+        return res
+
+    @api.multi
     def button_mark_done(self):
         res = super(MrpProduction, self).button_mark_done()
         for mo in self.filtered(lambda x: x.sale_id):

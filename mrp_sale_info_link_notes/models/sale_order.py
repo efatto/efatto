@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     production_notes_calendar = fields.Text(
         compute='_compute_production_notes_calendar', store=True)
     is_prototype = fields.Boolean()
-    is_prototype_calendar = fields.Html(
+    is_prototype_calendar = fields.Text(
         compute='_compute_is_prototype_calendar', store=True)
 
     @api.multi

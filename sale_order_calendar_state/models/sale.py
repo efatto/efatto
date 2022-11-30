@@ -318,8 +318,7 @@ class SaleOrder(models.Model):
                 if mrp_production.state == 'done':
                     calendar_states.append((DONE, fields.Datetime.now()))
                 elif mrp_production.state == 'confirmed':
-                    if any([x for x in mrp_production.move_raw_ids
-                            if x.state not in ['cancel', 'assigned']]):
+                    if mrp_production.availability != 'assigned':
                         datetime_planned = fields.Datetime.now() + relativedelta(
                             days=mrp_production.product_id.produce_delay)
                         calendar_states.append(
@@ -368,7 +367,7 @@ class SaleOrder(models.Model):
 
     @api.depends('order_line', 'order_line.qty_invoiced', 'is_blocked',
                  'picking_ids', 'picking_ids.state', 'production_ids.additional_state',
-                 'production_ids.is_blocked')
+                 'production_ids.is_blocked', 'production_ids.availability')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

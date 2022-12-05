@@ -16,6 +16,7 @@ class SaleOrder(models.Model):
         # Add variable in context to enable check
         for order in self:
             if order.enable_reserve_date_check:
+                errors = []
                 for line in order.order_line.filtered('product_id'):
                     commitment_date = line.commitment_date and\
                         line.commitment_date.date() \
@@ -33,7 +34,7 @@ class SaleOrder(models.Model):
                             x for x in dates_info if commitment_date_str not in x
                             and x != '']
                         dates_info_clean.reverse()
-                        raise UserError(_(
+                        errors.append(_(
                             "Reservation of product [[%s] %s] is not possible for date"
                             " %s!\nAvailable date: %s %s\n"
                             "Exception availability info:\n%s") % (
@@ -46,5 +47,7 @@ class SaleOrder(models.Model):
                                 if line.product_id.produce_delay else '',
                                 '\n'.join([x for x in dates_info_clean])
                             ))
+                if errors:
+                    raise UserError(' '.join(errors))
         super().action_confirm()
         return True

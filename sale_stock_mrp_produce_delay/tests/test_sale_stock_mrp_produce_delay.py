@@ -101,15 +101,15 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         )
 
     def test_01_available_info_product_mrp(self):
-        # todo simulate a product with multiple child boms to show a "tree" of
-        #  availability like
-        #  product (stock): [available at date x | purchesable for date x]¹
-        #  top product [MANUF] 3pc (bom): [available at date x | produceable at date x]²
-        #    -> 2pc subproduct2 [MANUF 1-2] * 3 = 6pc (bom): ²
-        #       -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 28 days purch
-        #       -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
-        #    -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
-        #       -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
+        # simulate a product with multiple child boms to show a "tree" of
+        # availability like
+        # product (stock): [available at date x | purchesable for date x]¹
+        # top product [MANUF] 3pc (bom): [available at date x | produceable at date x]²
+        #   -> 2pc subproduct2 [MANUF 1-2] * 3 = 6pc (bom): ²
+        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 28 days purch
+        #      -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
+        #   -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
+        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
 
         # set all products unavailable to reset prior tests
         def set_product_unavailable(product, location, qty):

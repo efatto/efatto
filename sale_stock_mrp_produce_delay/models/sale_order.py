@@ -10,9 +10,9 @@ from odoo.exceptions import UserError
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
-    'stock': _('FROM STOCK'),
-    'produce': _('TO PRODUCE'),
-    'purchase': _('TO PURCHASE'),
+    'from_stock': _('FROM STOCK'),
+    'to_produce': _('TO PRODUCE'),
+    'to_purchase': _('TO PURCHASE'),
 }
 
 
@@ -338,12 +338,12 @@ class SaleOrderLine(models.Model):
             raise UserError('No available info found!')
         if product_id.bom_ids:
             # fixme need to filter boms?
-            option = stock_options['produce']
+            option = stock_options['to_produce']
             bom_id = product_id.bom_ids[0]
             avail_dates = []
             if stock_available_date:
                 available_date = stock_available_date
-                option = stock_options['stock']
+                option = stock_options['from_stock']
                 available_text = \
                     _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * level,
@@ -363,7 +363,8 @@ class SaleOrderLine(models.Model):
                             available_date,
                             level=level + 1)
                     if avail_date:
-                        avail_dates.append(avail_date)
+                        if avail_text and 'FROM STOCK' not in avail_text:
+                            avail_dates.append(avail_date)
                     if avail_text and avail_text not in available_dates_info:
                         available_dates_info += avail_text
                 if avail_dates:
@@ -401,7 +402,7 @@ class SaleOrderLine(models.Model):
             )
             if stock_available_date and stock_available_date <= purchase_available_date:
                 available_date = stock_available_date
-                option = stock_options['stock']
+                option = stock_options['from_stock']
                 available_text = \
                     _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * (level - 1) + child,
@@ -412,14 +413,14 @@ class SaleOrderLine(models.Model):
                     )
             else:
                 # Check if ordering the product the incoming date will be sooneer
-                option = stock_options['purchase']
+                option = stock_options['to_purchase']
                 if not available_date or (
                         stock_available_date and
                         purchase_available_date < stock_available_date):
                     available_date = purchase_available_date
                 else:
                     available_date = stock_available_date
-                    option = stock_options['stock']
+                    option = stock_options['from_stock']
                 available_text = \
                     _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
                         vertical * (level - 1) + child,

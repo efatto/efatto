@@ -35,10 +35,10 @@ class SaleOrder(models.Model):
                             and x != '']
                         dates_info_clean.reverse()
                         produce_delay = 0
-                        if self.product_id.produce_delay:
-                            produce_delay = int(self.product_id.produce_delay)
-                        elif self.product_id.bom_ids:
-                            bom_id = self.product_id.bom_ids[0]
+                        if line.product_id.produce_delay:
+                            produce_delay = int(line.product_id.produce_delay)
+                        elif line.product_id.bom_ids:
+                            bom_id = line.product_id.bom_ids[0]
                             if bom_id.routing_id:
                                 produce_delay = int(
                                     sum(bom_id.mapped(

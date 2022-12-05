@@ -344,6 +344,14 @@ class SaleOrderLine(models.Model):
                 # available in stock
                 available_date = stock_available_date
             else:
+                # product has to be manufactured, so get time to produce and subtract it
+                # from date start requested
+                if product_id.produce_delay:
+                    date_start -= relativedelta(days=int(product_id.produce_delay))
+                elif bom_id.routing_id:
+                    delay = sum(bom_id.mapped(
+                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
+                    date_start -= relativedelta(days=int(delay))
                 for bom_line in bom_id.bom_line_ids.sorted(
                         key=lambda x: x.product_id.bom_ids, reverse=True):
                     avail_date, avail_text = \
@@ -378,13 +386,6 @@ class SaleOrderLine(models.Model):
                         )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
-            if available_date and not stock_available_date:
-                if product_id.produce_delay:
-                    available_date += relativedelta(days=int(product_id.produce_delay))
-                elif bom_id.routing_id:
-                    delay = sum(bom_id.mapped(
-                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
-                    available_date += relativedelta(days=int(delay))
         else:
             purchase_available_date = (
                 fields.Date.today()

@@ -422,11 +422,22 @@ class SaleOrderLine(models.Model):
         commitment_date_tz = fields.Datetime.context_timestamp(
             self, self.commitment_date or self.order_id.commitment_date or
             self.order_id.date_order)
+        produce_delay = 0
+        if self.product_id.produce_delay:
+            produce_delay = int(self.product_id.produce_delay)
+        elif self.product_id.bom_ids:
+            bom_id = self.product_id.bom_ids[0]
+            if bom_id.routing_id:
+                produce_delay = int(
+                    sum(bom_id.mapped(
+                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440)
         raise UserError(_(
             'This line is scheduled for: %s.\n'
-            'However it is now planned to arrive for %s.\n %s') % (
+            'However it is now planned to arrive for %s. %s\n%s') % (
                 commitment_date_tz.strftime('%d/%m/%Y'),
                 self.available_date.strftime('%d/%m/%Y'),
+                _("(Produce delay: %.0f days)") %
+                produce_delay if produce_delay else '',
                 self.available_dates_info,
             )
         )

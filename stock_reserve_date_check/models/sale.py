@@ -34,6 +34,16 @@ class SaleOrder(models.Model):
                             x for x in dates_info if commitment_date_str not in x
                             and x != '']
                         dates_info_clean.reverse()
+                        produce_delay = 0
+                        if self.product_id.produce_delay:
+                            produce_delay = int(self.product_id.produce_delay)
+                        elif self.product_id.bom_ids:
+                            bom_id = self.product_id.bom_ids[0]
+                            if bom_id.routing_id:
+                                produce_delay = int(
+                                    sum(bom_id.mapped(
+                                        'routing_id.operation_ids.time_cycle_manual'
+                                    ) or [0]) / 1440)
                         errors.append(_(
                             "Reservation of product [[%s] %s] is not possible for date"
                             " %s!\nAvailable date: %s %s\n"
@@ -42,9 +52,8 @@ class SaleOrder(models.Model):
                                 line.product_id.name,
                                 commitment_date.strftime('%d/%m/%Y'),
                                 avail_date.strftime('%d/%m/%Y'),
-                                _("(Produce delay: %.0f days)") % int(
-                                    line.product_id.produce_delay)
-                                if line.product_id.produce_delay else '',
+                                _("(Produce delay: %.0f days)") %
+                                produce_delay if produce_delay else '',
                                 '\n'.join([x for x in dates_info_clean])
                             ))
                 if errors:

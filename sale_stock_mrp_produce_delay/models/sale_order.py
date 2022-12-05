@@ -354,8 +354,7 @@ class SaleOrderLine(models.Model):
                             available_date,
                             level=level + 1)
                     if avail_date:
-                        if avail_text:
-                            avail_dates.append(avail_date)
+                        avail_dates.append(avail_date)
                     if avail_text and avail_text not in available_dates_info:
                         available_dates_info += avail_text
                 if avail_dates:

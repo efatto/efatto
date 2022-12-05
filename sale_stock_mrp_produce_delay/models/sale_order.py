@@ -280,11 +280,10 @@ class SaleOrderLine(models.Model):
             or self.order_id.commitment_date and self.order_id.commitment_date.date() \
             or self.order_id.date_order and self.order_id.date_order.date()
         child = "└"
-        child_multi = "├"
         vertical = "─"
-        stock_available_date = False
         available_info = []
         available_dates_info = ''
+        available_text = ''
         domain_quant_loc, domain_move_in_loc, domain_move_out_loc = \
             product_id._get_domain_locations()
         incoming_stock_moves = self.env['stock.move'].search([
@@ -388,7 +387,6 @@ class SaleOrderLine(models.Model):
                         'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
                     available_date += relativedelta(days=int(delay))
         else:
-            available_text = ''
             purchase_available_date = (
                 fields.Date.today()
                 + relativedelta(days=int(product_id.purchase_delay))

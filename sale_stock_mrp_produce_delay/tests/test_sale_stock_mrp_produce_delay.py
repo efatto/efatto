@@ -192,14 +192,12 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
-            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
                 available_date.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
-                purchase_planned_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
@@ -239,14 +237,12 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
-            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
                 available_date.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
-                purchase_planned_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),

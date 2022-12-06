@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 16:56+0000\n"
-"PO-Revision-Date: 2022-12-06 16:56+0000\n"
+"POT-Creation-Date: 2022-12-06 17:39+0000\n"
+"PO-Revision-Date: 2022-12-06 17:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:392
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:357
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:384
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:413
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:435
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:457
+#, python-format
+msgid "### Some moves have date expected lower than date! ###"
+msgstr "### Alcuni movimenti hanno una data impegno più bassa della data! ###"
+
+#. module: sale_stock_mrp_produce_delay
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:390
 #, python-format
 msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
 ""
@@ -25,6 +35,8 @@ msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.\n"
 
 #. module: sale_stock_mrp_produce_delay
 #: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:351
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:378
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:407
 #, python-format
 msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
 ""
@@ -32,17 +44,8 @@ msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
 ""
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:379
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:409
-#, python-format
-msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
-""
-msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
-""
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:432
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:455
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:429
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:451
 #, python-format
 msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
 ""
@@ -55,7 +58,7 @@ msgid "(Last computed on:"
 msgstr "(Ultimo calcolo il:"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:490
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:485
 #, python-format
 msgid "(Produce delay: %.0f days)"
 msgstr "(Tempo di produzione: %.0f giorni)"
@@ -214,7 +217,7 @@ msgid "TO PURCHASE"
 msgstr "DA ACQUISTARE"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:485
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:480
 #, python-format
 msgid "This line is scheduled for: %s.\n"
 "However it is now planned to arrive for %s. %s\n"

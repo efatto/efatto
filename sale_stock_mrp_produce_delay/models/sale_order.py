@@ -348,7 +348,7 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options['from_stock']
                 available_text = \
-                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s. %s\n') % (
+                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * level,
                         product_id.default_code,
                         qty,
@@ -375,7 +375,7 @@ class SaleOrderLine(models.Model):
                 if avail_dates:
                     available_date = max(avail_dates)
                     available_text = \
-                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s. %s\n') % (
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                             vertical * level,
                             product_id.default_code,
                             qty,
@@ -404,7 +404,7 @@ class SaleOrderLine(models.Model):
                 if produce_delay:
                     available_date += relativedelta(days=int(produce_delay))
                     available_text = \
-                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s. %s\n') % (
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                             vertical * level,
                             product_id.default_code,
                             qty,
@@ -426,7 +426,7 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options['from_stock']
                 available_text = \
-                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s. %s\n') % (
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * (level - 1) + child,
                         product_id.default_code,
                         qty,
@@ -448,7 +448,7 @@ class SaleOrderLine(models.Model):
                     available_date = stock_available_date
                     option = stock_options['from_stock']
                 available_text = \
-                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s. %s\n') % (
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * (level - 1) + child,
                         product_id.default_code,
                         qty,

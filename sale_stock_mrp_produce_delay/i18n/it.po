@@ -38,18 +38,18 @@ msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.\n"
 #: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:378
 #: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:407
 #, python-format
-msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s. %s\n"
+msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
 ""
-msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s. %s\n"
+msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
 ""
 
 #. module: sale_stock_mrp_produce_delay
 #: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:429
 #: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:451
 #, python-format
-msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s. %s\n"
+msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
 ""
-msgstr "%s[COMP] [%s] [QTÀ: %s] [%s] data pianificabile %s. %s\n"
+msgstr "%s[COMP] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
 ""
 
 #. module: sale_stock_mrp_produce_delay

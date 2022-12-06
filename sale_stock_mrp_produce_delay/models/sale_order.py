@@ -6,7 +6,7 @@ from collections import defaultdict
 from datetime import timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
@@ -294,7 +294,14 @@ class SaleOrderLine(models.Model):
             ('state', 'not in', ['done', 'cancel']),
             ('date', '>=', date_start),
         ] + domain_move_out_loc)
-        for reserve_date in (
+        # check moves with date > date_expected
+        date_error_moves = [
+            x.date_expected.date()
+            for x in incoming_stock_moves | reserved_stock_moves
+            if x.date > x.date_expected]
+        if date_error_moves:
+            pass
+        for reserve_date in set(
             [x.date() for x in reserved_stock_moves.mapped('date_expected')] +
             [y.date() for y in incoming_stock_moves.mapped('date_expected')] +
             [date_start]
@@ -341,12 +348,15 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options['from_stock']
                 available_text = \
-                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * level,
                         product_id.default_code,
                         qty,
                         option,
                         available_date.strftime('%d/%m/%Y'),
+                        _('### Some moves have date expected lower than date! ###')
+                        if date_error_moves and available_date in date_error_moves
+                        else '',
                     )
             else:
                 for bom_line in bom_id.bom_line_ids.sorted(
@@ -365,12 +375,15 @@ class SaleOrderLine(models.Model):
                 if avail_dates:
                     available_date = max(avail_dates)
                     available_text = \
-                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                             vertical * level,
                             product_id.default_code,
                             qty,
                             option,
                             available_date.strftime('%d/%m/%Y'),
+                            _('### Some moves have date expected lower than date! ###')
+                            if date_error_moves and available_date in date_error_moves
+                            else '',
                         )
                 else:
                     available_text = \
@@ -391,12 +404,15 @@ class SaleOrderLine(models.Model):
                 if produce_delay:
                     available_date += relativedelta(days=int(produce_delay))
                     available_text = \
-                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                             vertical * level,
                             product_id.default_code,
                             qty,
                             option,
                             available_date.strftime('%d/%m/%Y'),
+                            _('### Some moves have date expected lower than date! ###')
+                            if date_error_moves and available_date in date_error_moves
+                            else '',
                         )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
@@ -410,12 +426,15 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options['from_stock']
                 available_text = \
-                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * (level - 1) + child,
                         product_id.default_code,
                         qty,
                         option,
                         available_date.strftime('%d/%m/%Y'),
+                        _('### Some moves have date expected lower than date! ###')
+                        if date_error_moves and available_date in date_error_moves
+                        else '',
                     )
             else:
                 # Check if ordering the product the incoming date will be sooneer
@@ -429,12 +448,15 @@ class SaleOrderLine(models.Model):
                     available_date = stock_available_date
                     option = stock_options['from_stock']
                 available_text = \
-                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n') % (
                         vertical * (level - 1) + child,
                         product_id.default_code,
                         qty,
                         option,
                         available_date.strftime('%d/%m/%Y'),
+                        _('### Some moves have date expected lower than date! ###')
+                        if date_error_moves and available_date in date_error_moves
+                        else '',
                     )
 
             if available_text not in available_dates_info:

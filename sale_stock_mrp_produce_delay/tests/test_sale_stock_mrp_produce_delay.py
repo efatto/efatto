@@ -52,6 +52,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                 }),
             ]
         })
+        cls.top_product.produce_delay = 65
 
     def _create_sale_order_line(self, order, product, qty, commitment_date=False):
         vals = {
@@ -133,7 +134,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         order1.compute_dates()
         available_date = fields.Date.today() + relativedelta(days=35)
         available_date1 = fields.Date.today() + relativedelta(days=28)
-        self.assertEqual(line1.available_date, available_date)
+        available_date2 = fields.Date.today() + relativedelta(
+            days=35 + self.top_product.produce_delay)
+        self.assertEqual(line1.available_date, available_date2)
         # all product are un-available, so info display all at the produce-purchase date
         self.assertEqual(
             line1.available_dates_info,
@@ -144,7 +147,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
-                available_date.strftime('%d/%m/%Y'),
+                available_date2.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
@@ -161,7 +164,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             'partner_id': self.partner.id,
         })
         purchase_planned_date1 = fields.Datetime.now() + relativedelta(
-                days=self.subproduct_1_1.purchase_delay - 5)
+            days=self.subproduct_1_1.purchase_delay - 5)
         self._create_purchase_order_line(
             purchase_order1, self.subproduct_1_1, 18, purchase_planned_date1)
         purchase_order1.button_confirm()
@@ -192,12 +195,14 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
+                available_date2.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
-                available_date.strftime('%d/%m/%Y'),
+                purchase_planned_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
@@ -237,12 +242,14 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             line1.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
+                available_date2.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
-                available_date.strftime('%d/%m/%Y'),
+                purchase_planned_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
@@ -287,7 +294,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
-                available_date.strftime('%d/%m/%Y'),
+                available_date2.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),
                 available_date1.strftime('%d/%m/%Y'),
                 available_date.strftime('%d/%m/%Y'),

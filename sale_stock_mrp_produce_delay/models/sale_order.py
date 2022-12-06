@@ -276,32 +276,28 @@ class SaleOrderLine(models.Model):
 
     def get_available_date(self, product_id, qty, date_start, available_date=False,
                            level=0):
-        commitment_date = self.commitment_date and self.commitment_date.date() \
-            or self.order_id.commitment_date and self.order_id.commitment_date.date() \
-            or self.order_id.date_order and self.order_id.date_order.date()
         child = "└"
         vertical = "─"
         available_info = []
         available_dates_info = ''
-        available_text = ''
         domain_quant_loc, domain_move_in_loc, domain_move_out_loc = \
             product_id._get_domain_locations()
         incoming_stock_moves = self.env['stock.move'].search([
             ('product_id', '=', product_id.id),
             ('product_uom_qty', '>', 0),
             ('state', 'not in', ['done', 'cancel']),
-            ('date', '>=', commitment_date),
+            ('date', '>=', date_start),
         ] + domain_move_in_loc)
         reserved_stock_moves = self.env['stock.move'].search([
             ('product_id', '=', product_id.id),
             ('product_uom_qty', '>', 0),
             ('state', 'not in', ['done', 'cancel']),
-            ('date', '>=', commitment_date),
+            ('date', '>=', date_start),
         ] + domain_move_out_loc)
         for reserve_date in (
             [x.date() for x in reserved_stock_moves.mapped('date_expected')] +
             [y.date() for y in incoming_stock_moves.mapped('date_expected')] +
-            [commitment_date]
+            [date_start]
         ):
             available_info.append({
                 'info': 'Stock move',
@@ -343,15 +339,16 @@ class SaleOrderLine(models.Model):
             if stock_available_date:
                 # available in stock
                 available_date = stock_available_date
+                option = stock_options['from_stock']
+                available_text = \
+                    _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        vertical * level,
+                        product_id.default_code,
+                        qty,
+                        option,
+                        available_date.strftime('%d/%m/%Y'),
+                    )
             else:
-                # product has to be manufactured, so get time to produce and subtract it
-                # from date start requested
-                if product_id.produce_delay:
-                    date_start -= relativedelta(days=int(product_id.produce_delay))
-                elif bom_id.routing_id:
-                    delay = sum(bom_id.mapped(
-                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
-                    date_start -= relativedelta(days=int(delay))
                 for bom_line in bom_id.bom_line_ids.sorted(
                         key=lambda x: x.product_id.bom_ids, reverse=True):
                     avail_date, avail_text = \
@@ -384,6 +381,23 @@ class SaleOrderLine(models.Model):
                             option,
                             'Not found',
                         )
+            if available_date and not stock_available_date:
+                produce_delay = 0
+                if product_id.produce_delay:
+                    produce_delay = int(product_id.produce_delay)
+                elif bom_id.routing_id:
+                    produce_delay = sum(bom_id.mapped(
+                        'routing_id.operation_ids.time_cycle_manual') or [0]) / 1440
+                if produce_delay:
+                    available_date += relativedelta(days=int(produce_delay))
+                    available_text = \
+                        _('%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                            vertical * level,
+                            product_id.default_code,
+                            qty,
+                            option,
+                            available_date.strftime('%d/%m/%Y'),
+                        )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
         else:
@@ -394,6 +408,15 @@ class SaleOrderLine(models.Model):
             if stock_available_date and stock_available_date <= purchase_available_date:
                 # available in stock
                 available_date = stock_available_date
+                option = stock_options['from_stock']
+                available_text = \
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        vertical * (level - 1) + child,
+                        product_id.default_code,
+                        qty,
+                        option,
+                        available_date.strftime('%d/%m/%Y'),
+                    )
             else:
                 # Check if ordering the product the incoming date will be sooneer
                 option = stock_options['to_purchase']
@@ -401,17 +424,18 @@ class SaleOrderLine(models.Model):
                         stock_available_date and
                         purchase_available_date < stock_available_date):
                     available_date = purchase_available_date
-                    available_text = \
-                        _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
-                            vertical * (level - 1) + child,
-                            product_id.default_code,
-                            qty,
-                            option,
-                            available_date.strftime('%d/%m/%Y'),
-                        )
                 else:
                     # available in stock
                     available_date = stock_available_date
+                    option = stock_options['from_stock']
+                available_text = \
+                    _('%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n') % (
+                        vertical * (level - 1) + child,
+                        product_id.default_code,
+                        qty,
+                        option,
+                        available_date.strftime('%d/%m/%Y'),
+                    )
 
             if available_text not in available_dates_info:
                 available_dates_info += available_text
@@ -490,11 +514,13 @@ class SaleOrder(models.Model):
                 line.order_id.commitment_date and \
                 line.order_id.commitment_date.date() or \
                 line.order_id.date_order and line.order_id.date_order.date()
+            # compute first available date from today, then check if requested date is
+            # greater than this date
             avail_date, avail_date_info = \
                 line.get_available_date(
                     line.product_id,
                     line.product_uom_qty,
-                    commitment_date,
+                    fields.Date.context_today(line),
                 )
             line.available_date = avail_date
             line.last_available_date_compute = fields.Datetime.now()

@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
                     avail_date, avail_date_info = line.get_available_date(
                         line.product_id,
                         line.product_uom_qty,
-                        commitment_date)
+                        fields.Date.context_today(line))
                     if avail_date > commitment_date:
                         dates_info = avail_date_info.split('\n')
                         commitment_date_str = commitment_date.strftime('%d/%m/%Y')

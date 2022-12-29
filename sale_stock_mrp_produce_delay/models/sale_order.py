@@ -31,12 +31,22 @@ class SaleOrderLine(models.Model):
         'stock.warehouse', compute='_compute_stock_qty_at_date', store=True)
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
+    is_kit = fields.Boolean(compute='_compute_is_kit', store=True)
     display_qty_widget = fields.Boolean(store=True)
     available_date = fields.Date(copy=False)
     last_available_date_compute = fields.Datetime(copy=False)
     available_dates_info = fields.Text(copy=False)
     predicted_arrival_late = fields.Boolean(copy=False)
     late_product_ids = fields.Many2many('product.product')
+
+    @api.depends('product_id.bom_ids.type')
+    def _compute_is_kit(self):
+        for line in self:
+            line.is_kit = False
+            bom_ids = line.product_id.bom_ids
+            if bom_ids:
+                if any(x.type == 'phantom' for x in bom_ids):
+                    line.is_kit = True
 
     @api.depends('product_id', 'product_uom_qty', 'qty_delivered', 'state',
                  'commitment_date', 'order_id.commitment_date')

@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
     predicted_arrival_late = fields.Boolean(copy=False)
     late_product_ids = fields.Many2many('product.product')
 
-    @api.depends('product_id.bom_ids.type')
+    @api.depends('product_id', 'product_id.bom_ids', 'product_id.bom_ids.type')
     def _compute_is_kit(self):
         for line in self:
             line.is_kit = False

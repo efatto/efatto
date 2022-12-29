@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale stock mrp produce delay",
-    "version": "12.0.1.0.8",
+    "version": "12.0.1.0.9",
     "category": "other",
     "author": "Sergio Corato - Efatto.it",
     "website": "https://efatto.it",

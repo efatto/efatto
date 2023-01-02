@@ -22,7 +22,8 @@ class AccountInvoice(models.Model):
         # check until last date of registration year date_range only
         registration_fy = self.env['account.fiscal.year'].search([
             ('date_from', '<=', invoice.date),
-            ('date_to', '>=', invoice.date)
+            ('date_to', '>=', invoice.date),
+            ('company_id', '=', invoice.company_id.id),
         ])
         if registration_fy:
             domain.append(('date', '<=', registration_fy.date_to))

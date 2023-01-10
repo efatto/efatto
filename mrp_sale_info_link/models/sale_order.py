@@ -7,7 +7,8 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    production_ids = fields.One2many('mrp.production', 'sale_id')
+    production_ids = fields.One2many('mrp.production', 'sale_id',
+                                     string="Productions")
     production_count = fields.Integer(
         compute='_compute_production_count', store=True)
 

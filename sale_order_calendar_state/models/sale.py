@@ -71,7 +71,7 @@ class SaleOrder(models.Model):
         'partially_delivered': 308,
         'delivery_done': 307,
         'available': 301,
-        'invoiced': 301,
+        'invoiced': 309,
         'shipped': 301,
     }
 

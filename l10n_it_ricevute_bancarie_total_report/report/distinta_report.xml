@@ -16,7 +16,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <td colspan="6" style="font-size: 14px;">
+                                            <td colspan="8" style="font-size: 14px;">
                                                 <p>Scadenze del <span t-esc="due_date"/></p>
                                             </td>
                                         </tr>
@@ -30,8 +30,14 @@
                                             <th style="width: 10%; max-width: 10%;">
                                                 <p>Invoice Date</p>
                                             </th>
-                                            <th style="width: 50%; max-width: 50%;">
+                                            <th style="width: 34%; max-width: 34%;">
                                                 <p>Customer</p>
+                                            </th>
+                                            <th style="width: 8%; max-width: 8%;">
+                                                <p>ABI</p>
+                                            </th>
+                                            <th style="width: 8%; max-width: 8%;">
+                                                <p>CAB</p>
                                             </th>
                                             <th style="width: 10%; max-width: 10%;">
                                                 <p>Due Date</p>
@@ -58,6 +64,12 @@
                                                 <p><span t-field="line.partner_id"/></p>
                                             </td>
                                             <td>
+                                                <p><span t-esc="line.bank_id.bank_abi or line.bank_id.acc_number.replace(' ', '')[5:10]"/></p>
+                                            </td>
+                                            <td>
+                                                <p><span t-esc="line.bank_id.bank_cab or line.bank_id.acc_number.replace(' ', '')[10:15]"/></p>
+                                            </td>
+                                            <td>
                                                 <p><span t-field="line.due_date"/></p>
                                             </td>
                                             <td class="text-right">
@@ -69,7 +81,7 @@
                                             <t t-set="gen_amount" t-value="gen_amount + line.amount" />
                                         </tr>
                                         <tr>
-                                            <td colspan="4"/>
+                                            <td colspan="6"/>
                                             <td><p>Total</p></td>
                                             <td class="text-right">
                                                 <p><span t-esc="tot_amount"

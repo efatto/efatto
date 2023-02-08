@@ -79,7 +79,7 @@ msgstr "Nome"
 #: code:addons/partner_history/models/partner_history.py:32
 #, python-format
 msgid "Partner history term %s overlaps with %s"
-msgstr "Lo storico del partner %s si sovrappone con %s"
+msgstr "Lo storico del nome del partner %s si sovrappone con %s"
 
 #. module: partner_history
 #: model:ir.model.fields,field_description:partner_history.field_res_partner_history__partner_id
@@ -89,12 +89,12 @@ msgstr ""
 #. module: partner_history
 #: model_terms:ir.ui.view,arch_db:partner_history.view_partner_form
 msgid "Partner History"
-msgstr "Storico Partner"
+msgstr "Storico Nome Partner"
 
 #. module: partner_history
 #: model:ir.model,name:partner_history.model_res_partner_history
 #: model:ir.model.fields,field_description:partner_history.field_res_partner__res_partner_history_ids
 #: model:ir.model.fields,field_description:partner_history.field_res_users__res_partner_history_ids
 msgid "Partner history"
-msgstr "Storico Partner"
+msgstr "Storico Nome Partner"
 

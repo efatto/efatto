@@ -285,6 +285,10 @@ class SaleOrder(models.Model):
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED
+            elif any([x.state in ['confirmed', 'waiting']
+                      and not x.show_check_availability
+                      for x in picking_ids]):
+                calendar_state = MISSING_COMPONENTS_BUY
             if calendar_state:
                 calendar_states.append((calendar_state, fields.Datetime.now()))
         # this is needed if picking are not done only i presume, tocheck

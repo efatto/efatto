@@ -39,7 +39,9 @@ class TestSaleOrderCalendarState(TestProductionData):
         self._create_sale_order_line(order1, self.product1, 5)
         order1.action_confirm()
         self.assertEqual(order1.state, 'sale')
-        self.assertEqual(order1.calendar_state, 'to_receive')
+        # do not test 'to_process' calendar state as procurement stock rule launch
+        # automatically action_assign()
+        #self.assertEqual(order1.calendar_state, 'to_process')
         picking = order1.picking_ids[0]
         picking.action_assign()
         self.assertEqual(order1.calendar_state, 'to_receive')
@@ -47,6 +49,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         picking.button_assign()
         self.assertEqual(order1.calendar_state, 'to_pack')
         self.assertEqual(picking.state, 'assigned')
+        self.assertTrue(picking.is_assigned)
 
         blocked_form = Form(
             self.env['wizard.mark.blocked'].with_context(

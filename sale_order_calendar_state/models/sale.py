@@ -277,7 +277,7 @@ class SaleOrder(models.Model):
             calendar_state = []
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
-            elif all([x.state == 'assigned' for x in picking_ids]):
+            elif all([x.is_assigned and x.state == 'assigned' for x in picking_ids]):
                 if all([x.carrier_tracking_ref for x in picking_ids]):
                     calendar_state = DELIVERY_READY
                 else:
@@ -285,8 +285,8 @@ class SaleOrder(models.Model):
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED
-            elif any([x.state in ['confirmed', 'waiting']
-                      and not x.show_check_availability
+            elif any([x.is_assigned
+                      and x.state in ['confirmed', 'waiting']
                       for x in picking_ids]):
                 calendar_state = MISSING_COMPONENTS_BUY
             if calendar_state:
@@ -370,7 +370,8 @@ class SaleOrder(models.Model):
         return calendar_states
 
     @api.depends('order_line', 'order_line.qty_invoiced', 'is_blocked',
-                 'picking_ids', 'picking_ids.state', 'production_ids.additional_state',
+                 'picking_ids', 'picking_ids.state', 'picking_ids.is_assigned',
+                 'production_ids.additional_state',
                  'production_ids.is_blocked', 'production_ids.availability')
     def _compute_calendar_state(self):
         for order in self:

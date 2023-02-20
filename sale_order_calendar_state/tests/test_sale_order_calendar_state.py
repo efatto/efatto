@@ -44,9 +44,8 @@ class TestSaleOrderCalendarState(TestProductionData):
         #self.assertEqual(order1.calendar_state, 'to_process')
         picking = order1.picking_ids[0]
         picking.action_assign()
-        self.assertEqual(order1.calendar_state, 'to_receive')
-        self.assertEqual(picking.state, 'waiting')
-        picking.button_assign()
+        self.assertEqual(order1.calendar_state, 'to_process')
+        picking.mark_printed_for_logistic()
         self.assertEqual(order1.calendar_state, 'to_pack')
         self.assertEqual(picking.state, 'assigned')
         self.assertTrue(picking.is_assigned)

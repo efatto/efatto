@@ -14,6 +14,7 @@
         'l10n_it_ddt',
         'mrp_production_demo',
         'mrp_sale_info_link_notes',
+        'partner_priority',
         'purchase_line_procurement_group',
         'sale_force_invoiced',
         'sale_procurement_group_by_line',

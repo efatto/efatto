@@ -43,28 +43,23 @@ class MrpProduction(models.Model):
 
     @api.multi
     def button_mark_to_produce(self):
-        for mo in self:
-            mo.additional_state = 'to_produce'
+        self.write({'additional_state': 'to_produce'})
 
     @api.multi
     def button_mark_to_assembly(self):
-        for mo in self:
-            mo.additional_state = 'to_assembly'
+        self.write({'additional_state': 'to_assembly'})
 
     @api.multi
     def button_mark_to_submanufacture(self):
-        for mo in self:
-            mo.additional_state = 'to_submanufacture'
+        self.write({'additional_state': 'to_submanufacture'})
 
     @api.multi
     def button_mark_to_test(self):
-        for mo in self:
-            mo.additional_state = 'to_test'
+        self.write({'additional_state': 'to_test'})
 
     @api.multi
     def button_mark_not_blocked(self):
-        for mo in self:
-            mo.write({
-                'is_blocked': False,
-                'blocked_note': False,
-            })
+        self.write({
+            'is_blocked': False,
+            'blocked_note': False,
+        })

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-20 19:39+0000\n"
-"PO-Revision-Date: 2022-11-20 19:39+0000\n"
+"POT-Creation-Date: 2023-03-01 17:57+0000\n"
+"PO-Revision-Date: 2023-03-01 17:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,6 @@ msgstr "Informazioni Stato Aggiuntivo"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__additional_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__additional_state
 msgid "Additional state"
 msgstr "Stato aggiuntivo"
 
@@ -66,12 +65,6 @@ msgstr "Disponibile"
 #: selection:sale.order,calendar_state:0
 msgid "BLOCKED"
 msgstr "BLOCCATO"
-
-#. module: sale_order_calendar_state
-#: selection:mrp.production,additional_state:0
-#: selection:sale.order,additional_state:0
-msgid "Blocked"
-msgstr "Bloccato"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__blocked_note
@@ -200,6 +193,12 @@ msgid "Invoiced"
 msgstr "Fatturato"
 
 #. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__is_blocked
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__is_blocked
+msgid "Is Blocked"
+msgstr "È bloccato"
+
+#. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_wizard_mark_blocked____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -230,6 +229,11 @@ msgstr "Non bloccato"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
+msgid "Mark to assembly"
+msgstr "In assemblaggio"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to produce"
 msgstr "In attesa materiali"
 
@@ -242,11 +246,6 @@ msgstr "In assemblaggio esterno"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to test"
 msgstr "Da collaudare"
-
-#. module: sale_order_calendar_state
-#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
-msgid "Mark to assembly"
-msgstr "In assemblaggio"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
@@ -273,6 +272,16 @@ msgstr "Ordini da consegnare"
 #: selection:sale.order,calendar_state:0
 msgid "Partially delivered"
 msgstr "Parzialmente consegnato"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__partner_priority_id
+msgid "Partner Priority"
+msgstr "Priorità del partner"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__production_id
+msgid "Production"
+msgstr "Produzione"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color

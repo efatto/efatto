@@ -1,15 +1,20 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     display_update_purchase_button = fields.Boolean(
-        compute='_compute_display_update_purchase_button')
+        compute='_compute_display_update_purchase_button',
+        store=True)
 
+    @api.depends("purchase_line_id", "purchase_line_id.price_unit",
+                 "purchase_line_id.discount", "purchase_line_id.discount2",
+                 "purchase_line_id.discount3",
+                 "price_unit", "discount", "discount2", "discount3")
     def _compute_display_update_purchase_button(self):
         for line in self:
             line.display_update_purchase_button = (

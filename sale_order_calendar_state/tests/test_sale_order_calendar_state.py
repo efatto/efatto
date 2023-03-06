@@ -44,7 +44,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         #self.assertEqual(order1.calendar_state, 'to_process')
         picking = order1.picking_ids[0]
         picking.action_assign()
-        self.assertEqual(order1.calendar_state, 'to_process')
+        self.assertEqual(order1.calendar_state, 'to_evaluate')
         picking.mark_printed_for_logistic()
         self.assertEqual(order1.calendar_state, 'to_pack')
         self.assertEqual(picking.state, 'assigned')
@@ -77,8 +77,11 @@ class TestSaleOrderCalendarState(TestProductionData):
         self.assertEqual(picking.state, 'done')
         self.assertEqual(order1.calendar_state, 'delivery_done')
         # create invoice
-        inv_id = order1.action_invoice_create()
+        order1.action_invoice_create()
         self.assertEqual(order1.calendar_state, 'invoiced')
+        # sale products partially not available
+        self._create_sale_order_line(order1, self.product1, 50)
+
         # REMOVED on request
         # invoice = self.env['account.invoice'].browse(inv_id)
         # invoice.carrier_tracking_ref = 'TRACKING - 5555'
@@ -124,6 +127,13 @@ class TestSaleOrderCalendarState(TestProductionData):
         man_order.button_mark_not_blocked()
         self.assertFalse(sale_order.is_blocked)
         self.assertEqual(sale_order.calendar_state, 'to_produce')
+        man_order.button_mark_to_submanufacture()
+        self.assertEqual(sale_order.calendar_state, 'to_submanufacture')
+        man_order.button_mark_to_assembly()
+        self.assertEqual(sale_order.calendar_state, 'to_assembly')
+        man_order.button_mark_to_test()
+        self.assertEqual(sale_order.calendar_state, 'to_test')
+        man_order.button_unmark_additional_state()
 
         produce_form = Form(
             self.env['mrp.product.produce'].with_context(

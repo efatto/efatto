@@ -42,6 +42,10 @@ class MrpProduction(models.Model):
         return res
 
     @api.multi
+    def button_unmark_additional_state(self):
+        self.write({'additional_state': False})
+
+    @api.multi
     def button_mark_to_produce(self):
         self.write({'additional_state': 'to_produce'})
 

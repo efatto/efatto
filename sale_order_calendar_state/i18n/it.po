@@ -357,13 +357,13 @@ msgstr "DA PIANIFICARE"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "TO PROCESS - procure"
-msgstr "DA PIANIFICARE - acquistare"
+msgid "TO EVALUATE"
+msgstr "DA VALUTARE"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
-msgid "TO PROCESS - production"
-msgstr "DA PIANIFICARE - produzione"
+msgid "TO EVALUATE - production"
+msgstr "DA VALUTARE IN PRODUZIONE"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0

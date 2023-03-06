@@ -33,8 +33,8 @@ class SaleOrder(models.Model):
     STATES = [
         ('blocked', 'BLOCKED'),
         ('to_process', 'TO PROCESS'),
-        ('to_evaluate', 'TO PROCESS - procure'),
-        ('to_evaluate_production', 'TO PROCESS - production'),
+        ('to_evaluate', 'TO EVALUATE'),
+        ('to_evaluate_production', 'TO EVALUATE - production'),
         ('to_produce', 'WAIT MATERIAL manufacture'),
         ('to_receive', 'WAIT MATERIAL'),
         ('production_planned', 'WAIT PRODUCTION'),
@@ -232,19 +232,19 @@ class SaleOrder(models.Model):
         cal_order = [
             BLOCKED,
             TOPROCESS,
-            NOT_EVALUATED,
             PRODUCTION_NOT_EVALUATED,
-            MISSING_COMPONENTS_BUY,
-            MISSING_COMPONENTS_PRODUCE,
-            PRODUCTION_PLANNED,
             TO_ASSEMBLY,
             TO_SUBMANUFACTURE,
             TO_TEST,
+            MISSING_COMPONENTS_PRODUCE,
+            PRODUCTION_PLANNED,
             PRODUCTION_READY,
             PRODUCTION_STARTED,
+            DONE,
+            NOT_EVALUATED,
+            MISSING_COMPONENTS_BUY,
             PARTIALLYDELIVERED,
             AVAILABLEREADY,
-            DONE,
             WAITING_FOR_PACKING,
             DELIVERY_READY,
             DONE_DELIVERY,
@@ -279,20 +279,26 @@ class SaleOrder(models.Model):
             ('state', '!=', 'cancel'),
         ])
         if picking_ids:
+            # all'inserimento -> bianco to_process
+            # tutti i prodotti riservati -> bianco NOT_EVALUATED
+            # materiali mancanti > arancioni (con righe in rosso) MISSING_COMPONENTS_BUY
+            # stampo > giallo (sempre anche se mancano materiali) WAITING_FOR_PACKING
             calendar_state = []
             if all([x.state == 'done' for x in picking_ids]):
                 calendar_state = DONE_DELIVERY
-            elif all([x.is_assigned and x.state == 'assigned' for x in picking_ids]):
+            elif all(x.is_assigned for x in picking_ids):
+                calendar_state = WAITING_FOR_PACKING
+            elif all(move.state in ['cancel', 'done', 'assigned']
+                     for move in picking_ids.mapped('move_lines')):
                 if all([x.carrier_tracking_ref for x in picking_ids]):
                     calendar_state = DELIVERY_READY
                 else:
-                    calendar_state = WAITING_FOR_PACKING
+                    calendar_state = NOT_EVALUATED
             elif any([x.state == 'done' for x in picking_ids])\
                     and any([x.state != 'done' for x in picking_ids]):
                 calendar_state = PARTIALLYDELIVERED
-            elif any([x.is_assigned
-                      and x.state in ['confirmed', 'waiting']
-                      for x in picking_ids]):
+            elif any([move.state in ['confirmed', 'waiting', 'partially_available']
+                      for move in picking_ids.mapped('move_lines')]):
                 calendar_state = MISSING_COMPONENTS_BUY
             if calendar_state:
                 calendar_states.append((calendar_state, fields.Datetime.now()))
@@ -374,10 +380,14 @@ class SaleOrder(models.Model):
             calendar_states = [(TOPROCESS, fields.Datetime.now())]
         return calendar_states
 
-    @api.depends('order_line', 'order_line.qty_invoiced', 'is_blocked',
-                 'picking_ids', 'picking_ids.state', 'picking_ids.is_assigned',
+    @api.depends('order_line.qty_invoiced',
+                 'is_blocked',
+                 'picking_ids.move_lines.state',
+                 'picking_ids.state',
+                 'picking_ids.is_assigned',
                  'production_ids.additional_state',
-                 'production_ids.is_blocked', 'production_ids.availability')
+                 'production_ids.is_blocked',
+                 'production_ids.availability')
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \

@@ -38,17 +38,19 @@ Nell'ordine di produzione è possibile selezionare uno stato aggiuntivo (in succ
 
 Lo stato di calendario, visto che possono esserci diverse situazioni che si avverano allo stesso tempo (es. la produzione è avviata ma mancano dei componenti, prevale la mancanza di componenti) viene assegnato in base alla seguente priorità in ordine decrescente:
 
+#. BLOCKED
 #. TOPROCESS
-#. NOT_EVALUATED
 #. PRODUCTION_NOT_EVALUATED
-#. MISSING_COMPONENTS_BUY
-#. MISSING_COMPONENTS_PRODUCE
-#. PRODUCTION_PLANNED
 #. TO_ASSEMBLY
 #. TO_SUBMANUFACTURE
 #. TO_TEST
+#. MISSING_COMPONENTS_PRODUCE
+#. PRODUCTION_PLANNED
 #. PRODUCTION_READY
 #. PRODUCTION_STARTED
+#. DONE
+#. NOT_EVALUATED
+#. MISSING_COMPONENTS_BUY
 #. PARTIALLYDELIVERED
 #. AVAILABLEREADY
 #. WAITING_FOR_PACKING
@@ -56,7 +58,6 @@ Lo stato di calendario, visto che possono esserci diverse situazioni che si avve
 #. DONE_DELIVERY
 #. INVOICED
 #. SHIPPED
-#. DONE
 
 Bug Tracker
 ===========

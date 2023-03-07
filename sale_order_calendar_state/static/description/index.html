@@ -390,16 +390,19 @@ ul.auto-toc {
 <img alt="Stato aggiuntivo" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/stato_aggiuntivo.png" />
 <p>Lo stato di calendario, visto che possono esserci diverse situazioni che si avverano allo stesso tempo (es. la produzione è avviata ma mancano dei componenti, prevale la mancanza di componenti) viene assegnato in base alla seguente priorità in ordine decrescente:</p>
 <ol class="arabic simple">
+<li>BLOCKED</li>
 <li>TOPROCESS</li>
-<li>NOT_EVALUATED</li>
 <li>PRODUCTION_NOT_EVALUATED</li>
-<li>MISSING_COMPONENTS_BUY</li>
-<li>MISSING_COMPONENTS_PRODUCE</li>
-<li>PRODUCTION_PLANNED</li>
+<li>TO_ASSEMBLY</li>
 <li>TO_SUBMANUFACTURE</li>
 <li>TO_TEST</li>
+<li>MISSING_COMPONENTS_PRODUCE</li>
+<li>PRODUCTION_PLANNED</li>
 <li>PRODUCTION_READY</li>
 <li>PRODUCTION_STARTED</li>
+<li>DONE</li>
+<li>NOT_EVALUATED</li>
+<li>MISSING_COMPONENTS_BUY</li>
 <li>PARTIALLYDELIVERED</li>
 <li>AVAILABLEREADY</li>
 <li>WAITING_FOR_PACKING</li>
@@ -407,7 +410,6 @@ ul.auto-toc {
 <li>DONE_DELIVERY</li>
 <li>INVOICED</li>
 <li>SHIPPED</li>
-<li>DONE</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">

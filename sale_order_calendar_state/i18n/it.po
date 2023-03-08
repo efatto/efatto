@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-08 13:56+0000\n"
-"PO-Revision-Date: 2023-03-08 13:56+0000\n"
+"POT-Creation-Date: 2023-03-08 15:45+0000\n"
+"PO-Revision-Date: 2023-03-08 15:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -228,6 +228,11 @@ msgid "Mark not blocked"
 msgstr "Non bloccato"
 
 #. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_picking_form
+msgid "Mark printed for logistic"
+msgstr "Marca stampato logistica"
+
+#. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to assembly"
 msgstr "In assemblaggio"
@@ -277,6 +282,11 @@ msgstr "Parzialmente consegnato"
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__partner_priority_id
 msgid "Partner Priority"
 msgstr "Priorità del partner"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__is_assigned
+msgid "Printed for logistic"
+msgstr "Stampato Logistica"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__production_id
@@ -403,9 +413,14 @@ msgid "Transfer"
 msgstr "Trasferimento"
 
 #. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_picking_form
+msgid "Unmark printed for logistic"
+msgstr "Rimuovi stampato logistica"
+
+#. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Unmark state"
-msgstr "Rimuovi stato aggiuntivo"
+msgstr "Cancella stato aggiuntivo"
 
 #. module: sale_order_calendar_state
 #: selection:sale.order,calendar_state:0
@@ -431,8 +446,3 @@ msgstr "In attesa materiali"
 #: model:ir.model,name:sale_order_calendar_state.model_wizard_mark_blocked
 msgid "Wizard mark blocked"
 msgstr "Procedura marca bloccato"
-
-#. module: sale_order_calendar_state
-#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__is_assigned
-msgid "Printed for logistic"
-msgstr "Stampato Logistica"

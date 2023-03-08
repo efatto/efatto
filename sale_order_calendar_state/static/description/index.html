@@ -386,8 +386,14 @@ ul.auto-toc {
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>Nell’ordine di vendita è stato aggiunto un campo calcolato che mostra lo stato della lavorazione dell’ordine in merito alla sua consegnabilità, denominato <cite>Stato di calendario</cite>:</p>
 <img alt="Stato di calendario" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/stato_di_calendario.png" />
-<p>Nell’ordine di produzione è possibile selezionare uno stato aggiuntivo (in successivo sviluppo verrà calcolato in automatico):</p>
+<p>Nell’ordine di produzione è possibile impostare uno stato aggiuntivo (in successivo sviluppo verrà calcolato in automatico):</p>
 <img alt="Stato aggiuntivo" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/stato_aggiuntivo.png" />
+<p>tramite i vari bottoni:</p>
+<img alt="In attesa materiali" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/in_attesa_materiali.png" />
+<img alt="In assemblaggio" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/in_assemblaggio.png" />
+<img alt="In assemblaggio esterno" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/in_assemblaggio_esterno.png" />
+<img alt="Da collaudare" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/da_collaudare.png" />
+<img alt="Cancella stato aggiuntivo" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/cancella_stato_aggiuntivo.png" />
 <p>Lo stato di calendario, visto che possono esserci diverse situazioni che si avverano allo stesso tempo (es. la produzione è avviata ma mancano dei componenti, prevale la mancanza di componenti) viene assegnato in base alla seguente priorità in ordine decrescente:</p>
 <ol class="arabic simple">
 <li>BLOCKED</li>
@@ -411,6 +417,11 @@ ul.auto-toc {
 <li>INVOICED</li>
 <li>SHIPPED</li>
 </ol>
+<p>Gli stati di calendario relativi alla produzione hanno una priorità più alta rispetto a quelli relativi ai trasferimenti, in quanto la produzione precede il trasferimento dei beni prodotti.</p>
+<p>La logica di assegnazione dello stato dà inoltre la priorità alla mancanza di materiali, in seguito se l’OUT è Stampato per logistica, mentre il fatto che tutti i prodotti siano riservati non influisce.</p>
+<p>L’opzione Stampato logistica è comandato da questi due bottoni:</p>
+<img alt="Marca stampato logistica" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/marca_stampato_logistica.png" />
+<img alt="Rimuovi stampato logistica" src="https://raw.githubusercontent.com/sergiocorato/efatto/12.0/sale_order_calendar_state/static/description/rimuovi_stampato_logistica.png" />
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>

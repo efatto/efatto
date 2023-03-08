@@ -11,6 +11,7 @@ class Picking(models.Model):
         compute='_compute_date_ready_to_deliver',
         store=True
     )
+    is_assigned = fields.Boolean(string="Printed for logistic")
 
     @api.depends('state')
     def _compute_date_ready_to_deliver(self):
@@ -19,3 +20,22 @@ class Picking(models.Model):
                 pick.date_ready_to_deliver = False
             elif pick.state == 'assigned':
                 pick.date_ready_to_deliver = fields.Datetime.now()
+
+    @api.multi
+    def mark_printed_for_logistic(self):
+        self.write({'is_assigned': True})
+
+    @api.multi
+    def unmark_printed_for_logistic(self):
+        self.write({'is_assigned': False})
+
+    @api.multi
+    def do_unreserve(self):
+        res = super().do_unreserve()
+        self.write({'is_assigned': False})
+        return res
+
+    @api.multi
+    def action_cancel(self):
+        self.write({'is_assigned': False})
+        return super().action_cancel()

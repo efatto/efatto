@@ -63,7 +63,7 @@ class StockPicking(models.Model):
             dest_partner_id = partner_id
 
         if self.mapped('sale_id'):
-            partner_ids = self.mapped('sale_id.partner_id')
+            partner_ids = self.mapped('sale_id.partner_invoice_id')
             if len(partner_ids) > 1:
                 raise ValueError(
                     "Multiple partner found for sale order linked to pickings!"

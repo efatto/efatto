@@ -1,4 +1,5 @@
 Il modulo rende disponibili i seguenti campi aggiuntivi alla riga della richiesta d'acquisto:
+
  #. ordine di vendita
  #. cliente
  #. data impegno di vendita

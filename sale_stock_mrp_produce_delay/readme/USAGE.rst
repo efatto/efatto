@@ -1,4 +1,5 @@
 Sulla riga ordine di vendita è presente un'icona (i) quando:
+
  #. l'ordine non ha una data di impegno;
  #. la riga non ha una data di impegno.
 

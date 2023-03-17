@@ -45,7 +45,7 @@ class AccountInvoice(models.Model):
                     raise UserError(
                         _("Supplier invoice date %s cannot be later than "
                           "the date %s of registration!" % (
-                            inv.date_invoice, inv.date)
+                              inv.date_invoice, inv.date)
                           )
                     )
             if inv not in previously_validated:

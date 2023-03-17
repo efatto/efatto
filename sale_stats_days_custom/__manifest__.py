@@ -6,7 +6,7 @@
     "version": "12.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales",
-    "website": "https://efatto.it",
+    "website": "https://github.com/sergiocorato/efatto",
     "author": "Sergio Corato",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",

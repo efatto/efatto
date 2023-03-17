@@ -62,9 +62,10 @@ class Product(models.Model):
             view = self.env.ref('product.product_product_tree_view')
             res_model = 'product.product'
         else:
-            domain = [('product_id', '=', self.id),
-                      ('state', '!=', 'cancel'),
-                      ('date_expected', '>=', self.product_tmpl_id.date_oldest_open_move)]
+            domain = [
+                ('product_id', '=', self.id),
+                ('state', '!=', 'cancel'),
+                ('date_expected', '>=', self.product_tmpl_id.date_oldest_open_move)]
             view = self.env.ref(
                 'stock_move_available_date_expected.view_stock_reserved_tree')
             res_model = 'stock.move'

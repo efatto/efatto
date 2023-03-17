@@ -40,7 +40,8 @@ class StockMove(models.Model):
     def _compute_reserve(self):
         for move in self:
             # excludes internal moves
-            if (move.location_id.usage == 'internal' and
+            if (
+                move.location_id.usage == 'internal' and
                 move.location_dest_id.usage == 'internal'
             ):
                 move.reserve_origin = ''

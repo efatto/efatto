@@ -6,7 +6,7 @@
     'version': '12.0.1.0.1',
     'category': 'Accounting & Finance',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'description': 'Partner name history',
     'depends': [

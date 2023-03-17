@@ -13,7 +13,7 @@ Add the next groups to base user:
 It also set invoice policy default to delivery.
 """,
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'stock',

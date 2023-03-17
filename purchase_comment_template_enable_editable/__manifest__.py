@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Warning: this module make impossible to write formatted note '
                    'on purchase order line.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'purchase_comment_template',

@@ -5,7 +5,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'description': 'Add field to precompile carrier for DDT in partner.',
     'depends': [

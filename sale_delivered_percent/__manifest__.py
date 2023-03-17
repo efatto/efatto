@@ -9,7 +9,7 @@
         'invoice policy on order, has u.m. of category unit and is a service that '
         'generate task.',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'analytic',
         'sale_timesheet',

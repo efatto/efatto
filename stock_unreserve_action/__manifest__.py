@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Add stock action to unreserve - this module will be unuseful after '
                    'merge of PR on OCB.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'stock',
     ],

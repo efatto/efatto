@@ -6,10 +6,10 @@
     'category': 'other',
     'description': """
     Default create invoice button in purchase order is hidden as new button create
-    batch invoice is available. 
+    batch invoice is available.
     """,
     'author': 'Sergio Corato',
-    'website': 'https://www.efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'purchase_batch_invoicing',

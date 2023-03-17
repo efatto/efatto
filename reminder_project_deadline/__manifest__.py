@@ -6,7 +6,7 @@
     'author': 'Sergio Corato',
     'license': 'LGPL-3',
     'category': 'Reminders and Agenda',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': ['reminder_base', 'project'],
     'data': [
         'views/project.xml',

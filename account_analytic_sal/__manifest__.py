@@ -7,7 +7,7 @@
     'description':
         'Account analytic SAL',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'contract',
         'analytic_show_sale',

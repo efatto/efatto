@@ -5,7 +5,7 @@
     "version": "12.0.1.0.0",
     "category": "Social",
     "author": "Sergio Corato",
-    "website": "https://efatto.it",
+    "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "description": "Add button to open origin object from popup form view in calendar",
     "depends": [

@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Change project rules: add favourite and set manager as an user, '
                    'viewing only project task managed or following or favourite.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'project',

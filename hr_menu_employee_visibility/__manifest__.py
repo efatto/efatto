@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description':
         'Hide hr menu (timesheet and holidays) for not employed user.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'hr',

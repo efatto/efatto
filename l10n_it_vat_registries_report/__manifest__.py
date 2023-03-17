@@ -5,7 +5,7 @@
     "version": "12.0.1.0.2",
     "category": "Account",
     "author": "Sergio Corato",
-    "website": "https://efatto.it",
+    "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "description": "Italian customized vat registries report",
     "depends": [

@@ -8,7 +8,7 @@
     'author': 'Sergio Corato',
     'description': 'Add ability to select order lines to print details in the'
                    'invoice',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'sale',

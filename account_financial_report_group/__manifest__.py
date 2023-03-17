@@ -6,7 +6,7 @@
     "summary": "Add financial report group methods for partner",
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "https://efatto.it/",
+    "website": "https://github.com/sergiocorato/efatto",
     "author": "Sergio Corato",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",

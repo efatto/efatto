@@ -5,7 +5,7 @@
     'version': '12.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'description': 'Use decorator to block mail fetch and send on server when '
                    'running_env != prod',

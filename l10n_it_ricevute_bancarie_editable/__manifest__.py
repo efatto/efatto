@@ -22,7 +22,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'description': 'Make invoice with ri.ba. editable even after emission.',
     'license': 'AGPL-3',
     'depends': [

@@ -7,7 +7,7 @@
     'description':
         'Show product invoice policy in sale order line',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'sale_timesheet',
     ],

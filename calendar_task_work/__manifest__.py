@@ -8,7 +8,7 @@
     'description':
         'Add task and project on calendar event',
     'author': 'Sergio Corato',
-    'website': 'http://www.efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'project_timesheet_time_control',
         'calendar',

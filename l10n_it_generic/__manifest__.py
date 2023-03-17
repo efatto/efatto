@@ -8,7 +8,7 @@
     Italy PDC with 7 number generic
     """,
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     "depends": [
         'account',

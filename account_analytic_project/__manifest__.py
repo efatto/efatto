@@ -7,7 +7,7 @@
     'description':
         'Account analytic project',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'analytic',
         'analytic_show_invoice',

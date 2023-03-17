@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Add ability to get description from SAL of contract during '
                    'advance invoice creation. Link to SAL on analytic account.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'sale_advance_invoice',

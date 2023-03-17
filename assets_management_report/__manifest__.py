@@ -5,7 +5,7 @@
     'version': '12.0.1.0.0',
     'category': 'Accounting',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'summary': 'Italian asset customized report',
     'depends': [

@@ -9,7 +9,7 @@
         'Project search by origin in sale order. Origin is automatically '
         'get from sale order.',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'project',

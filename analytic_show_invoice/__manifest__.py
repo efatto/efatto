@@ -12,7 +12,7 @@
               'Tecnativa,'
               'Sergio Corato,'
               'Odoo Community Association (OCA)',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': ['account', 'analytic'],
     'category': 'Sales Management',
     'data': [

@@ -7,7 +7,7 @@
     'description':
         'Account analytic line tag',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'analytic',
         'hr_timesheet',

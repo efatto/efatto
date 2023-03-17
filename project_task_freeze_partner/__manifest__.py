@@ -8,7 +8,7 @@
     'author': 'Sergio Corato',
     'description': 'Changing project no more change partner to project '
                    'partner.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'project',

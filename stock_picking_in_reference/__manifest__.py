@@ -6,7 +6,7 @@
     'version': '12.0.1.0.1',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'description': """
     Show reference of incoming DDT in supplier invoice in tree view and in picking.
     """,

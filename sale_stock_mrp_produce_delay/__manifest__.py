@@ -4,8 +4,8 @@
     "name": "Sale stock mrp produce delay",
     "version": "12.0.1.0.9",
     "category": "other",
-    "author": "Sergio Corato - Efatto.it",
-    "website": "https://efatto.it",
+    "author": "Sergio Corato",
+    "website": "https://github.com/sergiocorato/efatto",
     "depends": [
         "mrp_production_demo",
         "product_sellers_info",

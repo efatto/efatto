@@ -15,7 +15,7 @@ Also set tax calculation rouding method as 'globally' and enable group sale
 delivery address.
 """,
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     "depends": [
         'sale',

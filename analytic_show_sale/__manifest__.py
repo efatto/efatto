@@ -9,8 +9,8 @@
     'summary': 'Button in analytic account to show its sales',
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
-    'author': 'Sergio Corato Efatto.it',
-    'website': 'https://efatto.it',
+    'author': 'Sergio Corato',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': ['analytic', 'sale'],
     'category': 'Sales Management',
     'data': [

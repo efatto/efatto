@@ -1,13 +1,12 @@
 {
     "name": """Reminders and Agenda (technical core)""",
     "category": "Reminders and Agenda",
-    "live_test_url": "http://apps.it-projects.info/shop/product/reminders-and-agenda?version=11.0",
     "images": [],
     "version": "12.0.1.0.7",
     "application": False,
     "author": "IT-Projects LLC, Ivan Yelizariev, Pavel Romanchenko",
     "support": "apps@itpp.dev",
-    "website": "https://twitter.com/yelizariev",
+    "website": "https://github.com/sergiocorato/efatto",
     "license": "Other OSI approved licence",  # MIT
     "price": 9.00,
     "currency": "EUR",
@@ -27,7 +26,8 @@
     ],
     "demo_addons_hidden": ["website"],
     "demo_url": "reminders-and-agenda",
-    "demo_summary": "The module provides easy way to configure instant or mail notifications for any supported record with date field.",
+    "demo_summary": "The module provides easy way to configure instant or mail "
+                    "notifications for any supported record with date field.",
     "demo_images": [
         "static/description/icon.png",
         "static/description/mail.png",

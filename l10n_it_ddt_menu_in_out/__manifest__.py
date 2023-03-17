@@ -6,7 +6,7 @@
     'version': '12.0.1.0.5',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'description': 'This module split DDT menu in outgoing and incoming.',
     'depends': [

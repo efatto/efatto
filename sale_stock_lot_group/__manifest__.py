@@ -7,7 +7,7 @@
     'description':
         'Add group to sale button in stock lot',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'depends': [
         'sale_stock',
     ],

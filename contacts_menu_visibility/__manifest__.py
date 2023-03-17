@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description':
         'Hide contacts menu for basic user.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'contacts',

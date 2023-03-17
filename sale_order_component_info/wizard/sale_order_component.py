@@ -121,8 +121,8 @@ class SaleComponentLine(models.TransientModel):
             ('order_id.bookmarked', '=', True),
             ('state', 'not in', ('cancel', 'sale', 'done'))]
         sol_res = dict((
-           item['product_id'][0],
-           item['product_uom_qty']
+            item['product_id'][0],
+            item['product_uom_qty']
         ) for item in self.env['sale.order.line'].read_group(
             domain_sol, ['product_id', 'product_uom_qty'], ['product_id'], orderby='id')
         )
@@ -177,7 +177,7 @@ class SaleComponentLine(models.TransientModel):
         for (warehouse, scheduled_date), lines in grouped_lines.items():
             for line in lines:
                 to_date = line.sale_order_line_id.commitment_date \
-                          or line.sale_order_line_id.scheduled_date
+                    or line.sale_order_line_id.scheduled_date
                 if line.product_id.sale_delay:
                     to_date = to_date + timedelta(
                         days=-(line.product_id.sale_delay or 0.0))

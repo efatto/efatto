@@ -128,8 +128,7 @@ class AccountAnalyticLine(models.Model):
     @api.multi
     def action_view_event(self):
         view_rec = self.env['ir.model.data'].get_object_reference(
-                'calendar',
-                'view_calendar_event_form')
+            'calendar', 'view_calendar_event_form')
         view_id = False
         if view_rec:
             view_id = view_rec and view_rec[1] or False

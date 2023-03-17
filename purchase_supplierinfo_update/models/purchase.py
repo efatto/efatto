@@ -24,7 +24,7 @@ class PurchaseOrder(models.Model):
             # REMOVED limit otherwise prices won't be updated
             # Convert the price into the right currency.
             currency = partner.property_purchase_currency_id \
-                       or self.env.user.company_id.currency_id
+                or self.env.user.company_id.currency_id
             price = self.currency_id._convert(
                 line.price_unit, currency, line.company_id,
                 line.date_order or fields.Date.today(), round=False)
@@ -42,7 +42,7 @@ class PurchaseOrder(models.Model):
                 'price': price,
                 'currency_id': currency.id,
                 'delay': 0,
-                'discount': line.discount,  ### add discount
+                'discount': line.discount,  # todo check discount1 discount2
             }
             if hasattr(line, 'discount2'):
                 supplierinfo.update({

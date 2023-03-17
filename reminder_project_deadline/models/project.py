@@ -6,4 +6,4 @@ class Project(models.Model):
     _inherit = ['project.project', 'reminder']
 
     _reminder_date_field = 'date'
-    _reminder_attendees_fields = ['user_id'] #favorite_user_ids?
+    _reminder_attendees_fields = ['user_id']  # favorite_user_ids?

@@ -9,24 +9,6 @@ class ReportAsset(models.AbstractModel):
     _name = 'report.assets_management_report.report_asset'
     _description = 'Assets Report'
 
-    # def _get_invoiced_account_move_lines(self, asset):
-    #     res = []
-    #     invoice = False
-    #     for move_line in asset.account_move_line_ids:
-    #         if move_line.asset_category_id:
-    #             if move_line.invoice:
-    #                 invoice = move_line.invoice
-    #             account_item = {
-    #                 'amount': move_line.tax_amount,
-    #                 'account_name': move_line.account_id.name,
-    #                 'partner_name': invoice and invoice.partner_id.name or '',
-    #                 'ref': move_line.ref,
-    #                 'invoice_date': invoice and invoice.date_invoice or '',
-    #                 'supplier_invoice_number': invoice and invoice.supplier_invoice_number or '',
-    #             }
-    #             res.append(account_item)
-    #     return res
-
     def _get_asset_fy_increase_decrease_amount(self, depr_asset):
         res = 0.0
         wizard = self.env[self._context['active_model']].browse(
@@ -84,7 +66,7 @@ class ReportAsset(models.AbstractModel):
         if line_ids:
             for line in line_ids:
                 res['amount'] += line.amount
-                res['percentage'] = line.depreciation_id.percentage # FIXME è teorico!
+                res['percentage'] = line.depreciation_id.percentage  # FIXME è teorico!
         incr_amount = self._get_asset_fy_increase_decrease_amount(depr_asset)
         remove_date, remove_amount = self._get_asset_remove_date_amount(depr_asset)
         if not (
@@ -105,7 +87,8 @@ class ReportAsset(models.AbstractModel):
     def _get_ctg_total(self, category_ids):
         res = {}
         asset_depr_obj = self.env['asset.depreciation']
-        wizard = self.env[self._context['active_model']].browse(self._context['active_id'])
+        wizard = self.env[self._context['active_model']].browse(
+            self._context['active_id'])
         state = [wizard.state]
         if state[0] == 'all':
             state = ['open', 'close', 'removed']

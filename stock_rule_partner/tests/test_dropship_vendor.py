@@ -39,7 +39,7 @@ class TestStockRulePartner(common.TransactionCase):
         ))
         picking_type_to_vendor.return_picking_type_id = picking_type_from_vendor
         # Create routing to send and receive from vendor in dropshipping
-        routing_to_vendor = self.env['stock.location.route'].create(dict(
+        self.env['stock.location.route'].create(dict(
             name="Consegna a c/lavoro fornitori",
             sequence=10,
             warehouse_selectable=True,
@@ -57,7 +57,7 @@ class TestStockRulePartner(common.TransactionCase):
                 picking_type_id=picking_type_to_vendor.id,
             ))]
         ))
-        routing_from_vendor = self.env['stock.location.route'].create(dict(
+        self.env['stock.location.route'].create(dict(
             name="Rientro da c/lavoro fornitori",
             sequence=10,
             warehouse_selectable=True,

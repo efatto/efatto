@@ -1,4 +1,4 @@
-from odoo import fields, models, api, _, exceptions
+from odoo import models, api
 
 
 class SaleOrder(models.Model):

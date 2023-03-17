@@ -7,7 +7,7 @@
     'description':
         'With this module the task type name does not accept duplicates.',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'project_task_default_stage',

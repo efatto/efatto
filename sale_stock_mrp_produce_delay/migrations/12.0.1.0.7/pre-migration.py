@@ -34,7 +34,7 @@ def migrate(env, version):
             env.cr,
             """
         UPDATE sale_order_line
-            SET available_date = CURRENT_DATE 
+            SET available_date = CURRENT_DATE
         """,
         )
     if not openupgrade.column_exists(cr, 'sale_order_line', 'available_dates_info'):
@@ -49,6 +49,6 @@ def migrate(env, version):
             env.cr,
             """
         UPDATE sale_order_line
-            SET available_dates_info = '' 
+            SET available_dates_info = ''
         """,
         )

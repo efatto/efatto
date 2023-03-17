@@ -2,7 +2,7 @@
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from dateutil.relativedelta import relativedelta
 
 BLOCKED = 'blocked'
@@ -391,7 +391,7 @@ class SaleOrder(models.Model):
     def _compute_calendar_state(self):
         for order in self:
             order.calendar_state = order.get_forecast_calendar_state() or \
-                                   order.calendar_state or 'to_process'
+                order.calendar_state or 'to_process'
 
     @api.multi
     def update_forecast_state(self):

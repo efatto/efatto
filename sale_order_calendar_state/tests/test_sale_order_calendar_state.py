@@ -41,7 +41,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         self.assertEqual(order1.state, 'sale')
         # do not test 'to_process' calendar state as procurement stock rule launch
         # automatically action_assign()
-        #self.assertEqual(order1.calendar_state, 'to_process')
+        # self.assertEqual(order1.calendar_state, 'to_process')
         picking = order1.picking_ids[0]
         picking.action_assign()
         self.assertEqual(order1.calendar_state, 'to_evaluate')

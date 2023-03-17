@@ -8,7 +8,7 @@
     Add facility to view and change sale reserved on stock moves for MRP components.
     """,
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'AGPL-3',
     'depends': [
         'mrp',

@@ -14,7 +14,7 @@ Sale stock mrp produce delay
     :target: https://github.com/sergiocorato/efatto/tree/12.0/sale_stock_mrp_produce_delay
     :alt: sergiocorato/efatto
 
-|badge1| |badge2| 
+|badge1| |badge2|
 
 This module adds some logic to (i) button in sale order line about first
 availability date of product avoiding negative stock.
@@ -86,7 +86,7 @@ Credits
 Authors
 ~~~~~~~
 
-* Sergio Corato - Efatto.it
+* Sergio Corato
 
 Contributors
 ~~~~~~~~~~~~

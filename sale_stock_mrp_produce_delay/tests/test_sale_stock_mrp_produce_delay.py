@@ -215,7 +215,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             'partner_id': self.partner.id,
         })
         purchase_planned_date2 = fields.Datetime.now() + relativedelta(
-                days=self.subproduct_2_1.purchase_delay + 5)
+            days=self.subproduct_2_1.purchase_delay + 5)
         self._create_purchase_order_line(
             purchase_order2, self.subproduct_2_1, 25, purchase_planned_date2)
         purchase_order2.button_confirm()
@@ -276,9 +276,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
 
         self.production.action_assign()
         produce_form = Form(self.env['mrp.product.produce'].with_context(
-                active_id=self.production.id,
-                active_ids=[self.production.id],
-            ))
+            active_id=self.production.id,
+            active_ids=[self.production.id],
+        ))
         produce_form.product_qty = 2.0
         wizard = produce_form.save()
         wizard.do_produce()

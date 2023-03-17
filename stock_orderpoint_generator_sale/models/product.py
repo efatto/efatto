@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import fields, models
 from datetime import timedelta
 from collections import OrderedDict
 
@@ -31,9 +31,9 @@ class ProductProduct(models.Model):
         #                                         ('state', '=', 'done'),
         #                                     ] + domain_move_in_loc)
         domain_move_out = ([
-           ('product_id', 'in', self.ids),
-           ('state', '!=', 'cancel'),
-           ('location_id', 'child_of', location),
+            ('product_id', 'in', self.ids),
+            ('state', '!=', 'cancel'),
+            ('location_id', 'child_of', location),
         ] + domain_move_out_loc)
         if from_date:
             # domain_move_in += [('date', '>=', from_date)]
@@ -53,7 +53,7 @@ class ProductProduct(models.Model):
         # for move in moves_out:
         #     move['product_qty'] *= -1
         # Merge both results and group them by product id as key
-        moves = moves_out  #+ moves_in
+        moves = moves_out  # + moves_in
         # Obtain a dict with the stock snapshot for the relative date_from
         # otherwise, the first move will counted as first stock value. We
         # default the compute the stock value anyway to default the value

@@ -211,8 +211,8 @@ class OrderpointTemplate(models.Model):
                         ).days
                     qty_by_day = stock_max_qty[product_id.id] / (move_days or 1)
                     consumed_qty_by_lead_time = (
-                            qty_by_day * (1 + record.variation_percent / 100.0)
-                        ) * (product_id.purchase_delay or 1)
+                        qty_by_day * (1 + record.variation_percent / 100.0)
+                    ) * (product_id.purchase_delay or 1)
                     service_factor = norm.ppf(record.service_level/100.0)
                     lead_time_factor = (product_id.purchase_delay or 1) ** (1/2)
                     security_stock = int(math.ceil(
@@ -243,13 +243,15 @@ class OrderpointTemplate(models.Model):
                     vals['orderpoint_tmpl_id'] = record.id
                     orderpoint_model.create(vals)
                     record.log_info = '\n'.join([
-                        record.log_info,
-                        (_('[%s] Product orderpoint created (from max qty in selected '
-                           'date range / move days period: %s)') % (
+                        record.log_info, (
+                            _(
+                                '[%s] Product orderpoint created (from max qty in '
+                                'selected date range / move days period: %s)'
+                            ) % (
                                 product_id.default_code,
                                 stock_max_qty[product_id.id],
-                             )
-                         ),
+                            )
+                        ),
                     ])
 
     def _disable_old_instances(self, products):

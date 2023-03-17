@@ -5,8 +5,8 @@
     'name': 'Sale order info for components',
     'version': '12.0.1.0.0',
     'category': 'other',
-    'author': 'Sergio Corato - Efatto.it',
-    'website': 'https://efatto.it',
+    'author': 'Sergio Corato',
+    'website': 'https://github.com/sergiocorato/efatto',
     'description': 'Sale order info for product with components',
     'license': 'LGPL-3',
     'depends': [

@@ -6,7 +6,7 @@ from collections import defaultdict
 from datetime import timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
@@ -130,12 +130,12 @@ class SaleOrderLine(models.Model):
                 to_char(date, 'YYYY-MM-DD') as date,
                 sum(product_qty) AS quantity,
                 company_id
-            FROM 
+            FROM
                 (SELECT
                 MIN(id) as id,
                 MAIN.product_id as product_id,
                 SUB.date as date,
-                CASE WHEN MAIN.date = SUB.date 
+                CASE WHEN MAIN.date = SUB.date
                     THEN sum(MAIN.product_qty) ELSE 0 END as product_qty,
                 MAIN.company_id as company_id
                 FROM
@@ -169,12 +169,16 @@ class SaleOrderLine(models.Model):
                         LEFT JOIN
                            product_product ON product_product.id = sm.product_id
                         LEFT JOIN
-                        stock_location dest_location ON sm.location_dest_id = dest_location.id
+                        stock_location dest_location
+                        ON sm.location_dest_id = dest_location.id
                         LEFT JOIN
-                        stock_location source_location ON sm.location_id = source_location.id
+                        stock_location source_location
+                        ON sm.location_id = source_location.id
                         WHERE
-                        sm.state IN ('confirmed','partially_available','assigned','waiting') and
-                        source_location.usage != 'internal' and dest_location.usage = 'internal'
+                        sm.state IN
+                        ('confirmed','partially_available','assigned','waiting')
+                        and source_location.usage != 'internal'
+                        and dest_location.usage = 'internal'
                         GROUP BY sm.date_expected, sm.product_id, sm.company_id
                         UNION ALL
                         SELECT
@@ -191,12 +195,16 @@ class SaleOrderLine(models.Model):
                         LEFT JOIN
                            product_product ON product_product.id = sm.product_id
                         LEFT JOIN
-                           stock_location source_location ON sm.location_id = source_location.id
+                           stock_location source_location
+                           ON sm.location_id = source_location.id
                         LEFT JOIN
-                           stock_location dest_location ON sm.location_dest_id = dest_location.id
+                           stock_location dest_location
+                           ON sm.location_dest_id = dest_location.id
                         WHERE
-                            sm.state IN ('confirmed','partially_available','assigned','waiting') and
-                        source_location.usage = 'internal' and dest_location.usage != 'internal'
+                            sm.state IN
+                            ('confirmed','partially_available','assigned','waiting')
+                        and source_location.usage = 'internal'
+                        and dest_location.usage != 'internal'
                         GROUP BY sm.date_expected,sm.product_id, sm.company_id)
                      as MAIN
                      LEFT JOIN
@@ -208,15 +216,17 @@ class SaleOrderLine(models.Model):
                          SELECT sm.date_expected AS date
                          FROM stock_move sm
                          LEFT JOIN
-                         stock_location source_location ON sm.location_id = source_location.id
+                         stock_location source_location
+                         ON sm.location_id = source_location.id
                          LEFT JOIN
-                         stock_location dest_location ON sm.location_dest_id = dest_location.id
+                         stock_location dest_location
+                         ON sm.location_dest_id = dest_location.id
                          WHERE
                          sm.state IN ('confirmed','assigned','waiting')
                          and sm.date_expected > CURRENT_DATE
-                         and ((dest_location.usage = 'internal' 
+                         and ((dest_location.usage = 'internal'
                          AND source_location.usage != 'internal')
-                          or (source_location.usage = 'internal' 
+                          or (source_location.usage = 'internal'
                          AND dest_location.usage != 'internal'))) AS DATE_SEARCH)
                          SUB ON (SUB.date IS NOT NULL)
                     GROUP BY MAIN.product_id,SUB.date, MAIN.date, MAIN.company_id

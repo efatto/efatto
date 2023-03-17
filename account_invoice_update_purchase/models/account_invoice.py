@@ -28,10 +28,10 @@ class AccountInvoiceLine(models.Model):
 
     def update_purchase(self):
         self.purchase_line_id.write({
-           'price_unit': self.price_unit,
-           'discount': self.discount,
-           'discount2': self.discount2,
-           'discount3': self.discount3,
+            'price_unit': self.price_unit,
+            'discount': self.discount,
+            'discount2': self.discount2,
+            'discount3': self.discount3,
         })
         supplierinfo = self.env['product.supplierinfo'].search([
             ('name', '=', self.purchase_line_id.order_id.partner_id.id),

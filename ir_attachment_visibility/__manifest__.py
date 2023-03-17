@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description':
         'Limit visibility of attachment to creator user, excluding erp manager.',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'base',

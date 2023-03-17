@@ -6,8 +6,8 @@
     "category": "other",
     "description": "Add product multiple qty to product sellers; add computed fields "
                    "for product multiple qty and purchase delay of first seller.",
-    "author": "Sergio Corato - Efatto.it",
-    "website": "https://efatto.it",
+    "author": "Sergio Corato",
+    "website": "https://github.com/sergiocorato/efatto",
     "depends": [
         "stock",
     ],

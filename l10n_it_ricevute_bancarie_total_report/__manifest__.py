@@ -5,7 +5,7 @@
     'version': '12.0.1.0.1',
     'category': 'Accounting',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'description': 'Ricevute bancarie report with total by date',
     'license': 'AGPL-3',
     'depends': [

@@ -9,7 +9,7 @@
     Add usual DDT type for Italy, with default date range from 01-01 to 12-31.
     ''',
     'author': 'Sergio Corato',
-    'website': 'https://efatto.it',
+    'website': 'https://github.com/sergiocorato/efatto',
     'license': 'LGPL-3',
     'depends': [
         'l10n_it_ddt',

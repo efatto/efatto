@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- pylint:disable=dangerous-view-replace-wo-priority -->
 <odoo>
      <record model="ir.actions.act_window" id="product_open_sale_order_lines"> <!-- product_view + python -->
         <field name="name">Sale Orders bookmarked</field>

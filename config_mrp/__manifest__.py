@@ -1,5 +1,5 @@
 # Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Module to configure mrp',
     'version': '12.0.1.0.0',
@@ -11,7 +11,7 @@ Add the next groups to base user:
 """,
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'mrp',
     ],

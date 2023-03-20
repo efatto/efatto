@@ -7,6 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Add healthcheck autobackup info to remote service.',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'auto_backup',
     ],

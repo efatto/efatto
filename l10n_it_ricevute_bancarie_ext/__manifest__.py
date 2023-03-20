@@ -1,5 +1,5 @@
 # Copyright 2017-2020 Sergio Corato <https://github.com/sergiocorato>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Ricevute bancarie improvements',
     'version': '12.0.1.0.0',
@@ -15,7 +15,7 @@
     - move date accepted, date accreditation and date paid in front of riba view;
     - get number of invoice from move line if invoice is not linked.
     ''',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_it_abicab',
         'l10n_it_ricevute_bancarie',

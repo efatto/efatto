@@ -10,6 +10,7 @@
         'generate task.',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'analytic',
         'sale_timesheet',

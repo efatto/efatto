@@ -8,6 +8,7 @@
     'description': 'Add stock action to unreserve - this module will be unuseful after '
                    'merge of PR on OCB.',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'stock',
     ],

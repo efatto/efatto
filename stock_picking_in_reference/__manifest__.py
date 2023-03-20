@@ -7,6 +7,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'description': """
     Show reference of incoming DDT in supplier invoice in tree view and in picking.
     """,

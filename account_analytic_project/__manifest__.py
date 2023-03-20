@@ -8,6 +8,7 @@
         'Account analytic project',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'analytic',
         'analytic_show_invoice',

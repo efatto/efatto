@@ -8,6 +8,7 @@
                    "for product multiple qty and purchase delay of first seller.",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
+    "license": "AGPL-3",
     "depends": [
         "stock",
     ],

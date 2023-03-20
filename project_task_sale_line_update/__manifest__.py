@@ -9,6 +9,7 @@
         'to the original sale line.',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'sale',
         'project',

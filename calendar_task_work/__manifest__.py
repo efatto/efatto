@@ -9,6 +9,7 @@
         'Add task and project on calendar event',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'project_timesheet_time_control',
         'calendar',

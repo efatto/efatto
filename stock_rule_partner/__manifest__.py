@@ -7,6 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Add partner for stock picking created by dropship.',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'stock_dropshipping',
     ],

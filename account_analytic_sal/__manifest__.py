@@ -8,6 +8,7 @@
         'Account analytic SAL',
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'contract',
         'analytic_show_sale',

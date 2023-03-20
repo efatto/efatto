@@ -8,6 +8,7 @@
     'summary': 'Include already created purchase order in draft and sent states when '
                'computing stock minimum qty in orderpoint rules.',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'purchase_stock',
         'sale_management',

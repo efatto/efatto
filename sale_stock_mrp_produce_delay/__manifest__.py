@@ -6,6 +6,7 @@
     "category": "other",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
+    "license": "AGPL-3",
     "depends": [
         "mrp_production_demo",
         "product_sellers_info",

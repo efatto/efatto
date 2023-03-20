@@ -7,6 +7,7 @@
     'author': 'Sergio Corato',
     'description': 'Add purchase tag linked to order state.',
     'website': 'https://github.com/sergiocorato/efatto',
+    'license': 'AGPL-3',
     'depends': [
         'purchase',
         'web_widget_color',

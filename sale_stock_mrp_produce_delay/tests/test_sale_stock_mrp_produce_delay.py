@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
 from odoo.tests import Form
+from odoo.tools import mute_logger
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
@@ -28,6 +29,18 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                 }),
             ]
         })
+        cls.op_model = cls.env['stock.warehouse.orderpoint']
+        cls.warehouse = cls.env.ref('stock.warehouse0')
+        cls.op1 = cls.op_model.create([{
+            'name': 'Orderpoint_1',
+            'warehouse_id': cls.warehouse.id,
+            'location_id': cls.warehouse.lot_stock_id.id,
+            'product_id': cls.product.id,
+            'product_min_qty': 10.0,
+            'product_max_qty': 50.0,
+            'qty_multiple': 1.0,
+            'product_uom': cls.product.uom_id.id,
+        }])
         cls.subproduct_1_1.write({
             'seller_ids': [
                 (0, 0, {
@@ -100,6 +113,14 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             '└[COMP] [False] [QTY: 5.0] [TO PURCHASE] plannable date %s.' %
             available_date.strftime('%d/%m/%Y')
         )
+        order1.action_confirm()
+        with mute_logger('odoo.addons.stock.models.procurement'):
+            self.env['procurement.group'].run_scheduler()
+        po = self.env['purchase.order'].search([
+            ('origin', '=', self.op1.name)
+        ])
+        po_line = po.order_line.filtered(lambda x: x.product_id == self.product)
+        self.assertEqual(po_line.date_planned.date(), available_date)
 
     def test_01_available_info_product_mrp(self):
         # simulate a product with multiple child boms to show a "tree" of

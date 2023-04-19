@@ -91,8 +91,8 @@ class TestStockReserveDateCheck(TestProductionData):
         with self.assertRaises(UserError):
             order3.sudo(self.test_user).action_confirm()
         self.assertEqual(order3.state, 'draft')
-        commitment_date = \
-            fields.Datetime.now() + relativedelta(days=14)
+        # top product 14 days + subproduct 28 days
+        commitment_date = fields.Datetime.now() + relativedelta(days=14+28)
         order_line = order3.order_line[0]
         order_line.write({'commitment_date': commitment_date})
         order_line._convert_to_write(order_line._cache)

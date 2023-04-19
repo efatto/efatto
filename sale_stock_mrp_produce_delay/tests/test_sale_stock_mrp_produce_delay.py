@@ -5,7 +5,7 @@ from odoo.tests import Form
 from odoo.tools import mute_logger
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
-
+import time
 
 class TestSaleStockMrpProduceDelay(TestProductionData):
 
@@ -16,6 +16,8 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         cls.product = cls.env['product.product'].create({
             'name': 'New product',
             'type': 'product',
+            'route_ids': [
+                (4, cls.env.ref('purchase_stock.route_warehouse0_buy').id)],
         })
         cls.product.write({
             'seller_ids': [
@@ -41,6 +43,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             'qty_multiple': 1.0,
             'product_uom': cls.product.uom_id.id,
         }])
+        # subproduct_1_1 is MTO and BUY
         cls.subproduct_1_1.write({
             'seller_ids': [
                 (0, 0, {
@@ -53,6 +56,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                 }),
             ]
         })
+        # subproduct_1_1 is BUY, so create an orderpoint
         cls.subproduct_2_1.write({
             'seller_ids': [
                 (0, 0, {
@@ -65,7 +69,28 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                 }),
             ]
         })
+        cls.op3 = cls.op_model.create([{
+            'name': 'Orderpoint_3',
+            'warehouse_id': cls.warehouse.id,
+            'location_id': cls.warehouse.lot_stock_id.id,
+            'product_id': cls.subproduct_2_1.id,
+            'product_min_qty': 25.0,
+            'product_max_qty': 70.0,
+            'qty_multiple': 1.0,
+            'product_uom': cls.subproduct_2_1.uom_id.id,
+        }])
         cls.top_product.produce_delay = 65
+
+    # set all products unavailable to reset prior tests
+    def _set_product_unavailable(self, product, location, qty):
+        if product.bom_ids:
+            for prod in product.bom_ids.mapped('bom_line_ids.product_id'):
+                if prod.bom_ids:
+                    self._set_product_unavailable(prod, location, qty)
+                else:
+                    self._update_product_qty(prod, location, qty)
+        else:
+            self._update_product_qty(product, location, qty)
 
     def _create_sale_order_line(self, order, product, qty, commitment_date=False):
         vals = {
@@ -114,10 +139,12 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             available_date.strftime('%d/%m/%Y')
         )
         order1.action_confirm()
+        self.assertEqual(order1.state, 'sale')
         with mute_logger('odoo.addons.stock.models.procurement'):
             self.env['procurement.group'].run_scheduler()
         po = self.env['purchase.order'].search([
-            ('origin', '=', self.op1.name)
+            ('partner_id', '=', self.product.seller_ids[0].name.id),
+            ('state', '=', 'draft'),
         ])
         po_line = po.order_line.filtered(lambda x: x.product_id == self.product)
         self.assertEqual(po_line.date_planned.date(), available_date)
@@ -133,21 +160,10 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         #   -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
         #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
 
-        # set all products unavailable to reset prior tests
-        def set_product_unavailable(product, location, qty):
-            if product.bom_ids:
-                for prod in product.bom_ids.mapped('bom_line_ids.product_id'):
-                    if prod.bom_ids:
-                        set_product_unavailable(prod, location, qty)
-                    else:
-                        self._update_product_qty(prod, location, qty)
-            else:
-                self._update_product_qty(product, location, qty)
-
         order1 = self.env['sale.order'].create({
             'partner_id': self.partner.id,
         })
-        set_product_unavailable(
+        self._set_product_unavailable(
             self.top_product,
             order1.warehouse_id.in_type_id.default_location_dest_id,
             0)
@@ -323,3 +339,74 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                 available_date1.strftime('%d/%m/%Y'),
             )
         )
+
+    def test_02_available_info_product_mrp_orderpoint(self):
+        # simulate a product with multiple child boms to show a "tree" of
+        # availability like
+        # product (stock): [available at date x | purchesable for date x]¹
+        # top product [MANUF] 3pc (bom): [available at date x | produceable at date x]²
+        #   -> 2pc subproduct2 [MANUF 1-2] * 3 = 6pc (bom): ²
+        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 28 days purch
+        #      -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
+        #   -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
+        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
+        order2 = self.env['sale.order'].create({
+            'partner_id': self.partner.id,
+        })
+        self._set_product_unavailable(
+            self.top_product,
+            order2.warehouse_id.in_type_id.default_location_dest_id,
+            0)
+        line1 = self._create_sale_order_line(order2, self.top_product, 3)
+        order2.compute_dates()
+        available_date = fields.Date.today() + relativedelta(days=35)
+        available_date1 = fields.Date.today() + relativedelta(days=28)
+        available_date2 = fields.Date.today() + relativedelta(
+            days=35 + self.top_product.produce_delay)
+        self.assertEqual(line1.available_date, available_date2)
+        # all product are un-available, so info display all at the produce-purchase date
+        self.assertEqual(
+            line1.available_dates_info,
+            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [TO PURCHASE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
+            "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
+            "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
+            % (
+                available_date2.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+                available_date1.strftime('%d/%m/%Y'),
+            )
+        )
+        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 28-5 days (so
+        # before the purchase delay), 30+18 needed
+        # subbom2: 3*2*3 subproduct_1_1 = 18 -> see above
+        #          3*2*4 subproduct_2_1 = 24 -> 0 in stock,  incoming on  days (so
+        # before the purchase delay),  needed
+        order2.action_confirm()
+        # now we have outgoing stock.move and mo to be produced             +3
+        self.assertEqual(order2.state, 'sale')
+        production2 = self.env['mrp.production'].search(
+            [('origin', '=', order2.name)])
+
+        production2.action_assign()
+        with mute_logger('odoo.addons.stock.models.procurement'):
+            self.env['procurement.group'].run_scheduler()
+        po1 = self.env['purchase.order'].search([
+            ('partner_id', '=', self.subproduct_1_1.seller_ids[0].name.id),
+            ('state', '=', 'draft'),
+        ])
+        po1_line = po1.order_line.filtered(
+            lambda x: x.product_id == self.subproduct_1_1)
+        self.assertEqual(po1_line.date_planned.date(), available_date1)
+        po2 = self.env['purchase.order'].search([
+            ('partner_id', '=', self.subproduct_2_1.seller_ids[0].name.id),
+            ('state', '=', 'draft'),
+        ])
+        po2_line = po2.order_line.filtered(
+            lambda x: x.product_id == self.subproduct_2_1)
+        self.assertEqual(po2_line.date_planned.date(), available_date)

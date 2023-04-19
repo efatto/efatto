@@ -5,7 +5,7 @@ from odoo.tests import Form
 from odoo.tools import mute_logger
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
-import time
+
 
 class TestSaleStockMrpProduceDelay(TestProductionData):
 

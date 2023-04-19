@@ -43,20 +43,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             'qty_multiple': 1.0,
             'product_uom': cls.product.uom_id.id,
         }])
-        # subproduct_1_1 is MTO and BUY
-        cls.subproduct_1_1.write({
-            'seller_ids': [
-                (0, 0, {
-                    'name': cls.env.ref('base.res_partner_3').id,
-                    'price': 5.0,
-                    'min_qty': 0.0,
-                    'sequence': 1,
-                    'date_start': fields.Date.today() - relativedelta(days=100),
-                    'delay': 28,
-                }),
-            ]
-        })
-        # subproduct_1_1 is BUY, so create an orderpoint
+        # subproduct_2_1 is BUY only, so create an orderpoint
         cls.subproduct_2_1.write({
             'seller_ids': [
                 (0, 0, {

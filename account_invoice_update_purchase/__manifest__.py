@@ -9,7 +9,6 @@
     'category': 'Accounting',
     'depends': [
         'account_invoice_triple_discount',
-        'product_cost_price_avco_sync',
         'purchase_batch_invoicing',
         'purchase_stock_price_unit_sync',
         'purchase_triple_discount',

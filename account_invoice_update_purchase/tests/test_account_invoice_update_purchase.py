@@ -55,10 +55,11 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
         self.execute_test()
 
-    def test_02_invoice_update_purchase_with_average_cost_method(self):
-        self.product.categ_id.property_cost_method = 'average'
-        self.assertEqual(self.product.categ_id.property_cost_method, 'average')
-        self.execute_test()
+    # do not test as module dependence has been removed because not used
+    # def test_02_invoice_update_purchase_with_average_cost_method(self):
+    #     self.product.categ_id.property_cost_method = 'average'
+    #     self.assertEqual(self.product.categ_id.property_cost_method, 'average')
+    #     self.execute_test()
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'

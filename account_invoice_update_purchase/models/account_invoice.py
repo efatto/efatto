@@ -4,6 +4,11 @@
 from odoo import api, models, fields
 
 
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    purchase_force_valid = fields.Boolean()
+
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
@@ -13,11 +18,12 @@ class AccountInvoiceLine(models.Model):
 
     @api.depends("purchase_line_id", "purchase_line_id.price_unit",
                  "purchase_line_id.discount", "purchase_line_id.discount2",
-                 "purchase_line_id.discount3",
+                 "purchase_line_id.discount3", "invoice_id.purchase_force_valid",
                  "price_unit", "discount", "discount2", "discount3")
     def _compute_display_update_purchase_button(self):
         for line in self:
             line.display_update_purchase_button = (
+                not line.invoice_id.purchase_force_valid and
                 line.purchase_line_id and (
                     line.purchase_line_id.price_unit != line.price_unit or
                     line.purchase_line_id.discount != line.discount or
@@ -52,3 +58,4 @@ class AccountInvoiceLine(models.Model):
                 'discount2': self.discount2,
                 'discount3': self.discount3,
             })
+        #todo update related stock moves where this product has been used

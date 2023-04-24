@@ -10,5 +10,10 @@ Cliccando il bottone, vengono aggiornati:
 .. image:: ../static/description/bottone.png
     :alt: Bottone
 
+È possibile forzare la validità di una fattura rispetto all'ordine di acquisto tramite il flag `Forza validità acquisto`:
+
+.. image:: ../static/description/forza_validita_acquisto.png
+    :alt: Forza validita acquisto
+
 ¹tramite il modulo incluso nelle dipendenze: purchase_stock_price_unit_sync
-²tramite il modulo incluso nelle dipendenze: product_cost_price_avco_sync
+²se è installato il modulo: product_cost_price_avco_sync

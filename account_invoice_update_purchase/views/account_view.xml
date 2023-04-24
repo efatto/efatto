@@ -12,6 +12,9 @@
                         groups="account_invoice_update_purchase.group_allow_purchase_update"
                         attrs="{'invisible': [('display_update_purchase_button', '=', False)]}"/>
             </xpath>
+            <field name="user_id" position="after">
+                <field name="purchase_force_valid"/>
+            </field>
         </field>
     </record>
 </odoo>

@@ -9,6 +9,7 @@ class AccountInvoice(models.Model):
 
     purchase_force_valid = fields.Boolean()
 
+
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
@@ -58,4 +59,4 @@ class AccountInvoiceLine(models.Model):
                 'discount2': self.discount2,
                 'discount3': self.discount3,
             })
-        #todo update related stock moves where this product has been used
+        # todo update related stock moves where this product has been used

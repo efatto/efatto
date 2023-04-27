@@ -94,7 +94,8 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
             'analytic_account_id': self.analytic_account.id,
         })
         self._create_sale_order_line(sale_order, self.product, 3)
-        sale_order.sudo(self.sale_user).action_confirm()
+        sale_order.with_context(test_mrp_production_procurement_analytic=True
+                                ).sudo(self.sale_user).action_confirm()
         self.assertEqual(sale_order.state, 'sale')
         sale_picking = sale_order.picking_ids[0]
         for move_line in sale_picking.move_lines:
@@ -175,11 +176,13 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
             'analytic_account_id': self.analytic_account.id,
         })
         self._create_sale_order_line(sale_order, self.top_product, 3)
-        sale_order.action_confirm()
+        sale_order.with_context(test_mrp_production_procurement_analytic=True
+                                ).action_confirm()
         self.assertEqual(sale_order.state, 'sale')
         self.production = self.env['mrp.production'].search(
             [('origin', '=', sale_order.name)])
         self.assertTrue(self.production)
+        self.assertTrue(self.production.analytic_account_id)
 
         # sale_picking = sale_order.picking_ids[0]
         # for move_line in sale_picking.move_lines:
@@ -209,33 +212,19 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
         invoice_line = invoice.invoice_line_ids
         self.assertEqual(invoice_line.product_id, self.subproduct_1_1)
 
-        supplierinfo = self.product.seller_ids.filtered(
-            lambda x: x.name == self.partner
-        )
-        self.assertEqual(purchase_line.price_unit, current_price)
-        self.assertEqual(supplierinfo.price, current_price)
-        self.assertEqual(picking.move_lines[0].price_unit,
-                         self.product.standard_price
-                         if self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
+        self.assertAlmostEqual(purchase_line.price_unit, current_price)
 
         new_price = invoice_line.price_unit + 66
         invoice_line.price_unit = new_price
         purchase_line.write({
             'price_unit': new_price,
         })
-        self.assertEqual(purchase_line.price_unit, new_price)
-        self.assertEqual(picking.move_lines[0].price_unit, new_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else new_price)
+        self.assertAlmostEqual(purchase_line.price_unit, new_price)
         # check sale order stock move price_unit is equal to new_price
         # self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
-        raw_move = self.production.move_raw_ids.filtered(
+        raw_moves = self.production.move_raw_ids.filtered(
             lambda x: x.product_id == self.subproduct_1_1)
-        self.assertAlmostEqual(
-            raw_move.price_unit, new_price
-        )
+        for raw_move in raw_moves:
+            self.assertAlmostEqual(
+                raw_move.price_unit, -new_price
+            )

@@ -39,4 +39,4 @@ class PurchaseOrderLine(models.Model):
                     'price_unit': -line.with_context(
                         skip_stock_price_unit_sync=True
                     )._get_stock_move_price_unit(),
-            })
+                })

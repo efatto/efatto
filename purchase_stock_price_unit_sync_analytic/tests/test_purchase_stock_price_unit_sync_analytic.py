@@ -101,7 +101,8 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
             move_line.write({'quantity_done': move_line.product_uom_qty})
         sale_picking.button_validate()
         self.assertEqual(sale_picking.state, 'done')
-        self.assertEqual(sale_picking.move_lines[0].price_unit, -self.product.standard_price)
+        self.assertEqual(sale_picking.move_lines[0].price_unit,
+                         -self.product.standard_price)
         self.assertEqual(purchase_line.product_uom_qty, 18)
         self.assertEqual(purchase_order1.state, 'purchase')
 
@@ -150,7 +151,6 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
         # check sale order stock move price_unit is equal to new_price
         self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
 
-
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
@@ -186,7 +186,8 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
         #     move_line.write({'quantity_done': move_line.product_uom_qty})
         # sale_picking.button_validate()
         # self.assertEqual(sale_picking.state, 'done')
-        # self.assertEqual(sale_picking.move_lines[0].price_unit, -self.product.standard_price)
+        # self.assertEqual(sale_picking.move_lines[0].price_unit,
+        # -self.product.standard_price)
         # self.assertEqual(purchase_line.product_uom_qty, 18)
         # self.assertEqual(purchase_order1.state, 'purchase')
 

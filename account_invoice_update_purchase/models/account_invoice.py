@@ -40,23 +40,25 @@ class AccountInvoiceLine(models.Model):
             'discount2': self.discount2,
             'discount3': self.discount3,
         })
-        supplierinfo = self.env['product.supplierinfo'].search([
+        supplierinfos = self.env['product.supplierinfo'].search([
             ('name', '=', self.purchase_line_id.order_id.partner_id.id),
             '|',
             ('product_id', '=', self.product_id.id),
             ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
-            '|',
-            ('date_start', '<=', self.invoice_id.date_invoice or fields.Date.today()),
-            ('date_start', '=', False),
-            '|',
-            ('date_end', '<=', self.invoice_id.date_invoice or fields.Date.today()),
-            ('date_end', '=', False),
         ])
-        if supplierinfo:
-            supplierinfo.write({
-                'price': self.price_unit,
-                'discount': self.discount,
-                'discount2': self.discount2,
-                'discount3': self.discount3,
-            })
-        # todo update related stock moves where this product has been used
+        for supplierinfo in supplierinfos:
+            if (
+                supplierinfo.date_end and supplierinfo.date_end >= (
+                self.invoice_id.date_invoice or fields.Date.today()
+            ) or not supplierinfo.date_end
+            ) and (
+                supplierinfo.date_start and supplierinfo.date_start <= (
+                self.invoice_id.date_invoice or fields.Date.today()
+            ) or not supplierinfo.date_start
+            ):
+                supplierinfo.write({
+                    'price': self.price_unit,
+                    'discount': self.discount,
+                    'discount2': self.discount2,
+                    'discount3': self.discount3,
+                })

@@ -1,23 +1,26 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 # Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
-from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
+from odoo.tests import SavepointCase
 from odoo.tools import mute_logger
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
 
-class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
+class PurchaseStockPriceUnitSyncAnalytic(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.user_model = cls.env['res.users'].with_context(no_reset_password=True)
+        cls.Product = cls.env['product.product']
         cls.partner = cls.env.ref('base.res_partner_2')
         buy = cls.env.ref('purchase_stock.route_warehouse0_buy')
         cls.vendor = cls.env.ref('base.res_partner_3')
         supplierinfo = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
         })
-        cls.product = cls.env['product.product'].create({
+        cls.product = cls.Product.create({
             'name': 'Product Test',
             'type': 'product',
             'standard_price': 50.0,
@@ -34,6 +37,29 @@ class PurchaseStockPriceUnitSyncAnalytic(TestProductionData):
         cls.analytic_account = cls.env['account.analytic.account'].create({
             'name': 'Sale analytic account test',
         })
+        cls.subproduct_1_1 = cls.Product.create([{
+            'name': 'Subproduct 1.1',
+            'type': 'product',
+        }])
+        cls.subproduct_1_2 = cls.Product.create([{
+            'name': 'Subproduct 1.2',
+            'type': 'product',
+        }])
+        cls.top_product = cls.Product.create([{
+            'name': 'Top Product',
+            'type': 'product',
+            'route_ids': [
+                (6, 0, [cls.env.ref('stock.route_warehouse0_mto').id,
+                        cls.env.ref('mrp.route_warehouse0_manufacture').id]),
+            ],
+        }])
+        cls.main_bom = cls.env['mrp.bom'].create([{
+            'product_tmpl_id': cls.top_product.product_tmpl_id.id,
+            'bom_line_ids': [
+                (0, 0, {'product_id': cls.subproduct_1_1.id, 'product_qty': 5}),
+                (0, 0, {'product_id': cls.subproduct_1_2.id, 'product_qty': 3}),
+            ]
+        }])
 
     def _create_purchase_order_line(self, order, product, qty, date_planned=False):
         vals = {

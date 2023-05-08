@@ -14,14 +14,21 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         cls.partner = cls.env.ref('base.res_partner_2')
         buy = cls.env.ref('purchase_stock.route_warehouse0_buy')
         cls.vendor = cls.env.ref('base.res_partner_3')
-        supplierinfo = cls.env['product.supplierinfo'].create({
+        cls.supplierinfo_expired = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
+            'price': 77,
+            'date_end': fields.Date.today() + relativedelta(days=-10),
+        })
+        cls.supplierinfo = cls.env['product.supplierinfo'].create({
+            'name': cls.vendor.id,
+            'price': 88,
+            'date_start': fields.Date.today() + relativedelta(days=-9),
         })
         cls.product = cls.env['product.product'].create({
             'name': 'Product Test',
             'type': 'product',
-            'standard_price': 50.0,
-            'seller_ids': [(6, 0, [supplierinfo.id])],
+            'lst_price': 77,
+            'seller_ids': [(6, 0, [cls.supplierinfo_expired.id, cls.supplierinfo.id])],
             'route_ids': [(6, 0, [buy.id])],
         })
         cls.test_user = cls.env['res.users'].create({
@@ -31,18 +38,20 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
 
     def _create_purchase_order_line(self, order, product, qty, date_planned=False):
         vals = {
-            'name': product.name,
             'order_id': order.id,
             'product_id': product.id,
-            'product_uom': product.uom_po_id.id,
             'product_qty': qty,
-            'price_unit': 100,
-            }
+            'product_uom': product.uom_po_id.id,
+            'price_unit': product.list_price,
+            'name': product.name,
+        }
         if date_planned:
             vals.update({
                 'date_planned': date_planned
             })
         line = self.env['purchase.order.line'].create(vals)
+        line._onchange_quantity()
+        line._convert_to_write(line._cache)
         return line
 
     @staticmethod
@@ -51,23 +60,13 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
             if op.product_id.type == 'product':
                 op.qty_done = op.move_id.product_uom_qty
 
-    def test_01_invoice_update_purchase_with_standard_cost_method(self):
-        self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
-        self.execute_test()
-
-    # do not test as module dependence has been removed because not used
-    # def test_02_invoice_update_purchase_with_average_cost_method(self):
-    #     self.product.categ_id.property_cost_method = 'average'
-    #     self.assertEqual(self.product.categ_id.property_cost_method, 'average')
-    #     self.execute_test()
-
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
-    def execute_test(self):
-        self.assertNotIn(self.partner, self.product.seller_ids.mapped('name'))
+    def test_01_invoice_update_purchase_with_standard_cost_method(self):
+        self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
         purchase_order1 = self.env['purchase.order'].create({
-            'partner_id': self.partner.id,
+            'partner_id': self.vendor.id,
         })
         purchase_planned_date1 = fields.Datetime.now() + relativedelta(days=5)
         purchase_line = self._create_purchase_order_line(
@@ -91,11 +90,8 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         invoice_line = invoice.invoice_line_ids
         self.assertEqual(invoice_line.product_id, self.product)
 
-        supplierinfo = self.product.seller_ids.filtered(
-            lambda x: x.name == self.partner
-        )
         self.assertEqual(purchase_line.price_unit, current_price)
-        self.assertEqual(supplierinfo.price, current_price)
+        self.assertEqual(self.supplierinfo.price, current_price)
         self.assertEqual(picking.move_lines[0].price_unit,
                          self.product.standard_price
                          if self.product.categ_id.property_cost_method == 'standard'
@@ -108,7 +104,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         invoice_line.price_unit = new_price
         invoice_line.update_purchase()
         self.assertEqual(purchase_line.price_unit, new_price)
-        self.assertEqual(supplierinfo.price, new_price)
+        self.assertEqual(self.supplierinfo.price, new_price)
         self.assertEqual(picking.move_lines[0].price_unit, new_price)
         self.assertEqual(self.product.standard_price, self.product.standard_price if
                          self.product.categ_id.property_cost_method == 'standard'

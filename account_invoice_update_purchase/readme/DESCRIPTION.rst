@@ -15,5 +15,7 @@ Cliccando il bottone, vengono aggiornati:
 .. image:: ../static/description/forza_validita_acquisto.png
     :alt: Forza validita acquisto
 
-¹tramite il modulo incluso nelle dipendenze: purchase_stock_price_unit_sync
-²se è installato il modulo: product_cost_price_avco_sync
+Note:
+
+#. ¹tramite il modulo incluso nelle dipendenze: purchase_stock_price_unit_sync
+#. ²se è installato il modulo: product_cost_price_avco_sync

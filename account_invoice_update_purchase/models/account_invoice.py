@@ -49,12 +49,12 @@ class AccountInvoiceLine(models.Model):
         for supplierinfo in supplierinfos:
             if (
                 supplierinfo.date_end and supplierinfo.date_end >= (
-                self.invoice_id.date_invoice or fields.Date.today()
-            ) or not supplierinfo.date_end
+                    self.invoice_id.date_invoice or fields.Date.today()
+                ) or not supplierinfo.date_end
             ) and (
                 supplierinfo.date_start and supplierinfo.date_start <= (
-                self.invoice_id.date_invoice or fields.Date.today()
-            ) or not supplierinfo.date_start
+                    self.invoice_id.date_invoice or fields.Date.today()
+                ) or not supplierinfo.date_start
             ):
                 supplierinfo.write({
                     'price': self.price_unit,

@@ -27,7 +27,6 @@ class PurchaseOrderLine(models.Model):
                 # stock move from sales or productions
                 used_move_ids = self.env['stock.move'].search([
                     ('product_id', '=', line.product_id.id),
-                    ('id', 'not in', line.move_ids.ids),
                     ('location_dest_id.usage', 'in', ['production', 'customer']),
                     '|',
                     ('sale_line_id.order_id.analytic_account_id', '=',

@@ -6,7 +6,7 @@ from odoo import fields
 from odoo.tools.date_utils import relativedelta
 
 
-class PurchaseStockPriceUnitSyncAnalytic(SavepointCase):
+class AccountStockPriceUnitSyncAnalytic(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
@@ -100,7 +100,7 @@ class PurchaseStockPriceUnitSyncAnalytic(SavepointCase):
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
-    def test_01_invoice_update_purchase_with_standard_cost_method(self):
+    def test_01_invoice_update_purchase(self):
         self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
         self.assertNotIn(self.partner, self.product.seller_ids.mapped('name'))
         purchase_order1 = self.env['purchase.order'].create({
@@ -181,7 +181,7 @@ class PurchaseStockPriceUnitSyncAnalytic(SavepointCase):
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
-    def test_02_invoice_update_purchase_mo_with_standard_cost_method(self):
+    def test_02_invoice_update_purchase_mo(self):
         self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
         self.assertNotIn(self.partner, self.product.seller_ids.mapped('name'))
         # create a

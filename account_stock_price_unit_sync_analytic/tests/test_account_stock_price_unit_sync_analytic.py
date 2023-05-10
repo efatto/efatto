@@ -16,6 +16,9 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         cls.Product = cls.env['product.product']
         cls.partner = cls.env.ref('base.res_partner_2')
         buy = cls.env.ref('purchase_stock.route_warehouse0_buy')
+        expenses = cls.env.ref('account.data_account_type_expenses').id
+        cls.invoice_line_account_id = cls.env['account.account'].search(
+            [('user_type_id', '=', expenses)], limit=1).id
         cls.vendor = cls.env.ref('base.res_partner_3')
         supplierinfo = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
@@ -154,11 +157,44 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         # check a new price in invoice line update price in sale picking move
         invoice_line = invoice.invoice_line_ids
         self.assertEqual(invoice_line.product_id, self.product)
+        self.assertEqual(invoice_line.account_analytic_id, self.analytic_account)
         new_price = invoice_line.price_unit + 66
         invoice_line.price_unit = new_price
         invoice.action_invoice_open()
         self.assertEqual(invoice.state, 'open')
         self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
+
+        # add another manually created invoice to test avg price unit
+        last_price = new_price + 77
+        last_invoice = self.env['account.invoice'].create([{
+            'partner_id': self.partner.id,
+            'type': 'in_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'name': 'test',
+                    'product_id': self.product.id,
+                    'uom_id': self.product.uom_id.id,
+                    'quantity': 10.0,
+                    'price_unit': last_price,
+                    'account_id': self.invoice_line_account_id,
+                    'account_analytic_id': self.analytic_account.id,
+                })
+            ]
+        }])
+        last_invoice_line = last_invoice.invoice_line_ids[0]
+        self.assertEqual(last_invoice_line.account_analytic_id, self.analytic_account)
+        self.assertAlmostEqual(last_invoice_line.price_unit, last_price)
+        avg_price = (
+            last_price * last_invoice_line.quantity
+            + new_price * invoice_line.quantity
+        ) / (
+            last_invoice_line.quantity + invoice_line.quantity
+        )
+        # check last price in invoice line update price in sale picking move
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(sale_picking.move_lines[0].price_unit, - avg_price)
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'

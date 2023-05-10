@@ -91,9 +91,12 @@ class AccountInvoiceLine(models.Model):
                 #  trasferimenti)
                 total_qty = sum(lines.mapped('quantity'))
                 avg_price_unit = [
-                    (line.quantity * line._get_invoice_line_price_unit()) / total_qty
+                    line.quantity * line._get_invoice_line_price_unit()
                     for line in lines]
-
+                if avg_price_unit:
+                    avg_price_unit = sum(avg_price_unit) / total_qty
+                else:
+                    continue
                 # search without date nor state as they are unpredictable
                 # stock move from sales or productions
                 used_move_ids = self.env['stock.move'].search([
@@ -105,5 +108,5 @@ class AccountInvoiceLine(models.Model):
                      analytic.id)
                 ])
                 used_move_ids.write({
-                    'price_unit': - avg_price_unit[0],
+                    'price_unit': - avg_price_unit,
                 })

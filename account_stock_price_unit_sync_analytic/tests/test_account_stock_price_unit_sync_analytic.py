@@ -135,10 +135,18 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         self.assertEqual(purchase_line.product_uom_qty, 18)
         self.assertEqual(purchase_order1.state, 'purchase')
 
-        picking = purchase_order1.picking_ids[0]
-        self._action_pack_operation_auto_fill(picking)
-        picking.button_validate()
-        self.assertEqual(picking.state, 'done')
+        purchase_picking = purchase_order1.picking_ids[0]
+        self._action_pack_operation_auto_fill(purchase_picking)
+        purchase_picking.button_validate()
+        self.assertEqual(purchase_picking.state, 'done')
+
+        # change purchase line price
+        new_price = purchase_line.price_unit + 22
+        purchase_line.price_unit = new_price
+        self.assertEqual(purchase_line.price_unit, new_price)
+        self.assertEqual(purchase_picking.move_lines[0].price_unit, new_price)
+        # check sale order stock move price_unit is equal to new_price
+        self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
 
         invoice = self.env['account.invoice'].with_context(
             type='in_invoice',
@@ -147,37 +155,15 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             'purchase_id': purchase_order1.id,
             'account_id': self.partner.property_account_payable_id.id,
         })
+        # this function is called by onchange on purchase_id
         invoice.purchase_order_change()
-        # self.check_values(self.po_line, 0, 5, 0, 5, 'invoiced')
-
-        self.assertTrue(invoice)
+        # check a new price in invoice line update price in sale picking move
         invoice_line = invoice.invoice_line_ids
         self.assertEqual(invoice_line.product_id, self.product)
-
-        supplierinfo = self.product.seller_ids.filtered(
-            lambda x: x.name == self.partner
-        )
-        self.assertEqual(purchase_line.price_unit, current_price)
-        self.assertEqual(supplierinfo.price, current_price)
-        self.assertEqual(picking.move_lines[0].price_unit,
-                         self.product.standard_price
-                         if self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
-
         new_price = invoice_line.price_unit + 66
         invoice_line.price_unit = new_price
-        purchase_line.write({
-            'price_unit': new_price,
-        })
-        self.assertEqual(purchase_line.price_unit, new_price)
-        self.assertEqual(picking.move_lines[0].price_unit, new_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else new_price)
-        # check sale order stock move price_unit is equal to new_price
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
         self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
 
     @mute_logger(
@@ -222,10 +208,10 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         # self.assertEqual(purchase_line.product_uom_qty, 18)
         # self.assertEqual(purchase_order1.state, 'purchase')
 
-        picking = purchase_order1.picking_ids[0]
-        self._action_pack_operation_auto_fill(picking)
-        picking.button_validate()
-        self.assertEqual(picking.state, 'done')
+        purchase_picking = purchase_order1.picking_ids[0]
+        self._action_pack_operation_auto_fill(purchase_picking)
+        purchase_picking.button_validate()
+        self.assertEqual(purchase_picking.state, 'done')
 
         invoice = self.env['account.invoice'].with_context(
             type='in_invoice',

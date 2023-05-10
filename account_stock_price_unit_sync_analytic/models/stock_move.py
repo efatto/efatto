@@ -23,7 +23,7 @@ class StockMove(models.Model):
                 "raw_material_production_id.analytic_account_id")
             invoice_lines = self.env['account.invoice.line'].search([
                 ('account_analytic_id', 'in', analytic_accounts.ids),
-                ('product_id', 'in', move_lines_to_do.mapped('product_id')),
+                ('product_id', 'in', move_lines_to_do.mapped('product_id.id')),
                 ('invoice_type', '=', 'in_invoice'),
             ])
             invoice_lines.account_stock_price_unit_sync()

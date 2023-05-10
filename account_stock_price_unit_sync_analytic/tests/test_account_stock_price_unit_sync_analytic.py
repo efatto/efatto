@@ -75,6 +75,8 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
                 'date_planned': date_planned
             })
         line = self.env['purchase.order.line'].create(vals)
+        line._onchange_quantity()
+        line._convert_to_write(line._cache)
         return line
 
     def _create_sale_order_line(self, order, product, qty):

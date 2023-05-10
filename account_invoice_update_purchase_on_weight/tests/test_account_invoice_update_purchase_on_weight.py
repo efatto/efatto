@@ -67,7 +67,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
-    def test_01_invoice_update_purchase_with_standard_cost_method(self):
+    def test_01_invoice_update_purchase_on_weight(self):
         self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
         purchase_order1 = self.env['purchase.order'].create({
             'partner_id': self.vendor.id,

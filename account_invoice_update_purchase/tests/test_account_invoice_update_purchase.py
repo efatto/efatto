@@ -92,13 +92,8 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
 
         self.assertEqual(purchase_line.price_unit, current_price)
         self.assertEqual(self.supplierinfo.price, current_price)
-        self.assertEqual(picking.move_lines[0].price_unit,
-                         self.product.standard_price
-                         if self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else current_price)
+        self.assertEqual(picking.move_lines[0].price_unit, self.product.standard_price)
+        self.assertEqual(self.product.standard_price, self.product.standard_price)
 
         new_price = invoice_line.price_unit + 66
         invoice_line.price_unit = new_price
@@ -106,6 +101,4 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(purchase_line.price_unit, new_price)
         self.assertEqual(self.supplierinfo.price, new_price)
         self.assertEqual(picking.move_lines[0].price_unit, new_price)
-        self.assertEqual(self.product.standard_price, self.product.standard_price if
-                         self.product.categ_id.property_cost_method == 'standard'
-                         else new_price)
+        self.assertEqual(self.product.standard_price, self.product.standard_price)

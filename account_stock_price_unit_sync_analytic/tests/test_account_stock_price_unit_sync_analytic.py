@@ -178,7 +178,6 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             purchase_order1, self.subproduct_1_1, 18, purchase_planned_date1)
         purchase_line.account_analytic_id = self.analytic_account
         purchase_order1.button_confirm()
-        current_price = purchase_line.price_unit
 
         # create sale order with self.product and check price_unit of stock move
         # is equal to current price of product

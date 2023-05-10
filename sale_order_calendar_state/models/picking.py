@@ -11,7 +11,10 @@ class Picking(models.Model):
         compute='_compute_date_ready_to_deliver',
         store=True
     )
-    is_assigned = fields.Boolean(string="Printed for logistic")
+    is_assigned = fields.Boolean(
+        string="Printed for logistic",
+        copy=False
+    )
 
     @api.depends('state')
     def _compute_date_ready_to_deliver(self):

@@ -138,13 +138,9 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         purchase_picking.button_validate()
         self.assertEqual(purchase_picking.state, 'done')
 
-        # change purchase line price
+        # change purchase line price, will do nothing
         new_price = purchase_line.price_unit + 22
         purchase_line.price_unit = new_price
-        self.assertEqual(purchase_line.price_unit, new_price)
-        self.assertEqual(purchase_picking.move_lines[0].price_unit, new_price)
-        # check sale order stock move price_unit is equal to new_price
-        self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
 
         invoice = self.env['account.invoice'].with_context(
             type='in_invoice',

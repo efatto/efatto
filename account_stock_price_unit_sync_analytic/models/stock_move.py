@@ -51,6 +51,7 @@ class StockMoveLine(models.Model):
                 ('product_id', 'in', move_lines_to_do.mapped('product_id.id')),
                 ('invoice_type', '=', 'in_invoice'),
             ])
-            invoice_lines.account_stock_price_unit_sync()
+            if invoice_lines:
+                invoice_lines.account_stock_price_unit_sync()
 
         return res

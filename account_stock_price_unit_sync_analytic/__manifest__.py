@@ -13,7 +13,6 @@
     'depends': [
         'account',
         'mrp_production_procurement_analytic',
-        'purchase_stock_price_unit_sync',
         'sale_mrp',
     ],
 }

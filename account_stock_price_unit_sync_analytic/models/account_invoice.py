@@ -14,8 +14,16 @@ class AccountInvoice(models.Model):
         analytic_invoice_line_ids = self.mapped('invoice_line_ids').filtered(
             lambda x: x.product_id and x.account_analytic_id
         )
-        # todo group lines by product and analytic account
-        analytic_invoice_line_ids.account_stock_price_unit_sync()
+        if analytic_invoice_line_ids:
+            analytic_accounts = analytic_invoice_line_ids.mapped('account_analytic_id')
+            invoice_lines = self.env['account.invoice.line'].search([
+                ('account_analytic_id', 'in', analytic_accounts.ids),
+                ('product_id', 'in', analytic_invoice_line_ids.mapped('product_id.id')),
+                ('invoice_type', '=', 'in_invoice'),
+            ])
+            invoice_lines |= analytic_invoice_line_ids
+            if invoice_lines:
+                invoice_lines.account_stock_price_unit_sync()
         return res
 
 
@@ -45,38 +53,57 @@ class AccountInvoiceLine(models.Model):
 
     @api.multi
     def account_stock_price_unit_sync(self):
-        for line in self:
+        # todo group lines by product and analytic account to update with an avg price
+        # {product_id: {account_analytic_id: [invoice_lines]}}
+        lines_grouped = {product: {} for product in self.mapped('product_id')}
+        for product in lines_grouped:
+            lines = self.filtered(lambda x: x.product_id == product)
+            for analytic in lines.mapped('account_analytic_id'):
+                lines_grouped[product].update({
+                    analytic: lines.filtered(
+                    lambda y: y.account_analytic_id == analytic)
+                })
+
+        for product in lines_grouped:
             # todo a phantom bom is possible in account.invoice.line?
             # When the affected product is a kit we do nothing, which is the
             # default behavior on the standard: the move is exploded into moves
             # for the components and those get the default price_unit for the
             # time being. We avoid a hard dependency as well.
             if (
-                hasattr(line.product_id, "bom_ids")
-                and line.product_id._is_phantom_bom()
+                hasattr(product, "bom_ids")
+                and product._is_phantom_bom()
             ):
                 continue
-            # search without date nor state as they are unpredictable
-            # stock move from sales or productions
-            used_move_ids = self.env['stock.move'].search([
-                ('product_id', '=', line.product_id.id),
-                ('location_dest_id.usage', 'in', ['production', 'customer']),
-                '|',
-                ('sale_line_id.order_id.analytic_account_id', '=',
-                 line.account_analytic_id.id),
-                ('raw_material_production_id.analytic_account_id', '=',
-                 line.account_analytic_id.id)
-            ])
-            # todo compute an avg price on qty
-            #  aggiornare il costo dei trasferimenti stessi dalle fatture d'acquisto con
-            #  il costo unitario medio risultante per la quantità trasferita a partire
-            #  dal costo in fattura.
-            #  Deve prendere tutte le righe fattura di quel prodotto
-            #  con quel conto analitico e spalmare il costo ponderato su tutti gli
-            #  scarichi fatti, sempre sul prezzo unitario (acquisto 120 pz a 5 € di
-            #  media ponderata, vado a scrivere 5€ sul costo unitario dei trasferimenti)
-            used_move_ids.write({
-                'price_unit': -line.with_context(
-                    skip_stock_price_unit_sync=True
-                )._get_invoice_line_price_unit(),
-            })
+            for analytic in lines_grouped[product]:
+                lines = lines_grouped[product][analytic]
+                if len(lines.mapped('uom_id')) > 1:
+                    # todo group by different uom_id? or is it possible to compute?
+                    continue
+                # todo compute an avg price on qty
+                #  aggiornare il costo dei trasferimenti stessi dalle fatture d'acquisto
+                #  con il costo unitario medio risultante per la quantità trasferita
+                #  a partire dal costo in fattura.
+                #  Deve prendere tutte le righe fattura di quel prodotto
+                #  con quel conto analitico e spalmare il costo ponderato su tutti gli
+                #  scarichi fatti, sempre sul prezzo unitario (acquisto 120 pz a 5 € di
+                #  media ponderata, vado a scrivere 5€ sul costo unitario dei
+                #  trasferimenti)
+                total_qty = sum(lines.mapped('quantity'))
+                avg_price_unit = [
+                    (line.quantity * line._get_invoice_line_price_unit()) / total_qty
+                    for line in lines]
+
+                # search without date nor state as they are unpredictable
+                # stock move from sales or productions
+                used_move_ids = self.env['stock.move'].search([
+                    ('product_id', '=', product.id),
+                    ('location_dest_id.usage', 'in', ['production', 'customer']),
+                    '|',
+                    ('sale_line_id.order_id.analytic_account_id', '=', analytic.id),
+                    ('raw_material_production_id.analytic_account_id', '=',
+                     analytic.id)
+                ])
+                used_move_ids.write({
+                    'price_unit': - avg_price_unit[0],
+                })

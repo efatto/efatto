@@ -68,14 +68,13 @@ class AccountInvoiceLine(models.Model):
                  line.account_analytic_id.id)
             ])
             # todo compute an avg price on qty
-            """
-            aggiornare il costo dei trasferimenti stessi dalle fatture d'acquisto con
-            il costo unitario medio risultante per la quantità trasferita a partire dal
-            costo in fattura. Deve prendere tutte le righe fattura di quel prodotto
-            con quel conto analitico e spalmare il costo ponderato su tutti gli
-            scarichi fatti, sempre sul prezzo unitario (acquisto 120 pz a 5 € di
-            media ponderata, vado a scrivere 5€ sul costo unitario dei trasferimenti)
-            """
+            #  aggiornare il costo dei trasferimenti stessi dalle fatture d'acquisto con
+            #  il costo unitario medio risultante per la quantità trasferita a partire
+            #  dal costo in fattura.
+            #  Deve prendere tutte le righe fattura di quel prodotto
+            #  con quel conto analitico e spalmare il costo ponderato su tutti gli
+            #  scarichi fatti, sempre sul prezzo unitario (acquisto 120 pz a 5 € di
+            #  media ponderata, vado a scrivere 5€ sul costo unitario dei trasferimenti)
             used_move_ids.write({
                 'price_unit': -line.with_context(
                     skip_stock_price_unit_sync=True

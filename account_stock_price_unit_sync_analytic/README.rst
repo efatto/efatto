@@ -22,10 +22,12 @@ Account stock analytic price unit sync
 Questo modulo aggiorna il prezzo dei movimenti di magazzino di scarico del prodotto (da vendita o produzione) con lo stesso conto analitico a partire da:
 
 #. validazione fattura d'acquisto
-#. validazione ordine d'acquisto
 #. validazione movimento di scarico
 
-Il prezzo viene calcolato su una media ponderata... TODO
+Il prezzo viene calcolato su una media ponderata sulle quantità fatturate, senza un controllo delle quantità (quindi qualsiasi quantità in acquisto viene utilizzata per calcolare il prezzo medio da imputare al prezzo unitario dei trasferimenti).
+
+Es. acquisto 18 pz a 188€ ognuno e 10 pz a 265€ ognuno, per un totale di 28 pz e 6.034,00€, ad un prezzo medio di 215,50€.
+Verrà quindi imputato un prezzo unitario di 215,50€ ai trasferimenti.
 
 **Table of contents**
 

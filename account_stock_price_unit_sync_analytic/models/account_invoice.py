@@ -80,15 +80,11 @@ class AccountInvoiceLine(models.Model):
                 if len(lines.mapped('uom_id')) > 1:
                     # todo group by different uom_id? or is it possible to compute?
                     continue
-                # todo compute an avg price on qty
-                #  aggiornare il costo dei trasferimenti stessi dalle fatture d'acquisto
-                #  con il costo unitario medio risultante per la quantità trasferita
-                #  a partire dal costo in fattura.
-                #  Deve prendere tutte le righe fattura di quel prodotto
-                #  con quel conto analitico e spalmare il costo ponderato su tutti gli
-                #  scarichi fatti, sempre sul prezzo unitario (acquisto 120 pz a 5 € di
-                #  media ponderata, vado a scrivere 5€ sul costo unitario dei
-                #  trasferimenti)
+                # compute an avg price on qty invoiced and put in price unit of stock
+                # moves (without qty limit)
+                # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for a total
+                # of 28 pz and 6.034,00€ at an average price of 215,50€
+                # so put 215,50€ in unit price of stock moves
                 total_qty = sum(lines.mapped('quantity'))
                 avg_price_unit = [
                     line.quantity * line._get_invoice_line_price_unit()

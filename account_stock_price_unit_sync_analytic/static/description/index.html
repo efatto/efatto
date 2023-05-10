@@ -371,10 +371,11 @@ ul.auto-toc {
 <p>Questo modulo aggiorna il prezzo dei movimenti di magazzino di scarico del prodotto (da vendita o produzione) con lo stesso conto analitico a partire da:</p>
 <ol class="arabic simple">
 <li>validazione fattura d’acquisto</li>
-<li>validazione ordine d’acquisto</li>
 <li>validazione movimento di scarico</li>
 </ol>
-<p>Il prezzo viene calcolato su una media ponderata… TODO</p>
+<p>Il prezzo viene calcolato su una media ponderata sulle quantità fatturate, senza un controllo delle quantità (quindi qualsiasi quantità in acquisto viene utilizzata per calcolare il prezzo medio da imputare al prezzo unitario dei trasferimenti).</p>
+<p>Es. acquisto 18 pz a 188€ ognuno e 10 pz a 265€ ognuno, per un totale di 28 pz e 6.034,00€, ad un prezzo medio di 215,50€.
+Verrà quindi imputato un prezzo unitario di 215,50€ ai trasferimenti.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">

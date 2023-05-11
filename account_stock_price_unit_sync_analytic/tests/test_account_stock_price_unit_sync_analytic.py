@@ -253,3 +253,38 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             self.assertAlmostEqual(
                 raw_move.price_unit, -new_price
             )
+
+        # add another manually created invoice to test avg price unit
+        last_price = new_price - 19
+        last_invoice = self.env['account.invoice'].create([{
+            'partner_id': self.partner.id,
+            'type': 'in_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'name': 'test',
+                    'product_id': self.subproduct_1_1.id,
+                    'uom_id': self.subproduct_1_1.uom_id.id,
+                    'quantity': 12.0,
+                    'price_unit': last_price,
+                    'account_id': self.invoice_line_account_id,
+                    'account_analytic_id': self.analytic_account.id,
+                })
+            ]
+        }])
+        last_invoice_line = last_invoice.invoice_line_ids[0]
+        self.assertEqual(last_invoice_line.account_analytic_id, self.analytic_account)
+        self.assertAlmostEqual(last_invoice_line.price_unit, last_price)
+        avg_price = (
+            last_price * last_invoice_line.quantity
+            + new_price * invoice_line.quantity
+        ) / (
+            last_invoice_line.quantity + invoice_line.quantity
+        )
+        # check last price in invoice line update price in mo raw move
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        for raw_move in raw_moves:
+            self.assertAlmostEqual(
+                raw_move.price_unit, - avg_price
+            )

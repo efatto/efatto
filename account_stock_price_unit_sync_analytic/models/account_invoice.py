@@ -61,7 +61,8 @@ class AccountInvoiceLine(models.Model):
             for analytic in lines.mapped('account_analytic_id'):
                 lines_grouped[product].update({
                     analytic: lines.filtered(
-                    lambda y: y.account_analytic_id == analytic)
+                        lambda y: y.account_analytic_id == analytic
+                    )
                 })
 
         for product in lines_grouped:

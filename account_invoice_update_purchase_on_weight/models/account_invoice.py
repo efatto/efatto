@@ -15,9 +15,12 @@ class AccountInvoiceLine(models.Model):
             if self.uom_id != self.purchase_line_id.product_uom:
                 price_unit = self.uom_id._compute_price(
                     price_unit, self.purchase_line_id.product_uom)
-            self.purchase_line_id.write({
+            purchase_line_vals = {
                 'price_unit': price_unit,
-            })
+                'weight_price_unit': price_unit / self.product_id.weight
+            }
+            self.purchase_line_id.with_context(
+                skip_update_weight_price_unit=True).write(purchase_line_vals)
             price_unit = self.price_unit
             # convert price_unit to product uom_id if different
             if self.uom_id != self.product_id.uom_id:

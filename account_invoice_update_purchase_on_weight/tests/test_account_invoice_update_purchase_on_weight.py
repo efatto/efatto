@@ -16,12 +16,12 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         cls.vendor = cls.env.ref('base.res_partner_3')
         cls.supplierinfo_expired = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
-            'price': 77,
+            'price': 5,
             'date_end': fields.Date.today() + relativedelta(days=-10),
         })
         cls.supplierinfo = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
-            'price': 88,
+            'price': 10,
             'date_start': fields.Date.today() + relativedelta(days=-9),
         })
         cls.product = cls.env['product.product'].create({
@@ -29,11 +29,11 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
             'type': 'product',
             'uom_id': cls.env.ref('uom.product_uom_meter').id,
             'uom_po_id': cls.env.ref('uom.product_uom_meter').id,
-            'lst_price': 77,
+            'lst_price': 8,
             'seller_ids': [(6, 0, [cls.supplierinfo_expired.id, cls.supplierinfo.id])],
             'route_ids': [(6, 0, [buy.id])],
             'compute_price_on_weight': True,
-            'weight': 0.15,
+            'weight': 3.15,
             'weight_uom_id': cls.env.ref('uom.product_uom_ton').id,
         })
         cls.product_on_weight = cls.env['product.product'].search([
@@ -95,10 +95,11 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(invoice_line.product_id, self.product)
 
         self.assertAlmostEqual(purchase_line.price_unit, current_price)
-        self.assertAlmostEqual(self.supplierinfo.price, purchase_line.weight_price_unit)
+        self.assertAlmostEqual(purchase_line.price_unit, self.supplierinfo.price)
 
-        new_price = invoice_line.price_unit + 66
+        new_price = invoice_line.price_unit + 20
         invoice_line.price_unit = new_price
         invoice_line.update_purchase()
         self.assertEqual(purchase_line.price_unit, new_price)
         self.assertEqual(picking.move_lines[0].price_unit, new_price)
+        self.assertAlmostEqual(self.supplierinfo.price, purchase_line.weight_price_unit)

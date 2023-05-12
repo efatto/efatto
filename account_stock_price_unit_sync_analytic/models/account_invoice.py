@@ -53,7 +53,6 @@ class AccountInvoiceLine(models.Model):
 
     @api.multi
     def account_stock_price_unit_sync(self):
-        # todo group lines by product and analytic account to update with an avg price
         # {product_id: {account_analytic_id: [invoice_lines]}}
         lines_grouped = {product: {} for product in self.mapped('product_id')}
         for product in lines_grouped:

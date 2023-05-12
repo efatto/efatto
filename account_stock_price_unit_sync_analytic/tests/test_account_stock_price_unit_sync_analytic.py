@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 # Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
-from odoo.tests import SavepointCase
+from odoo.tests import SavepointCase, Form
 from odoo.tools import mute_logger
 from odoo import fields
 from odoo.tools.date_utils import relativedelta
@@ -253,6 +253,22 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             self.assertAlmostEqual(
                 raw_move.price_unit, -new_price
             )
+
+        # do production
+        self.production.action_assign()
+        self.production.button_plan()
+
+        produce_form = Form(
+            self.env['mrp.product.produce'].with_context(
+                active_id=self.production.id,
+                active_ids=[self.production.id],
+            )
+        )
+        produce_form.product_qty = self.production.product_qty
+        wizard = produce_form.save()
+        wizard.do_produce()
+        self.production.button_mark_done()
+        self.assertEqual(self.production.state, 'done')
 
         # add another manually created invoice to test avg price unit
         last_price = new_price - 19

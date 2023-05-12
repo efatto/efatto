@@ -90,7 +90,7 @@ class AccountInvoiceLine(models.Model):
                     line.quantity * line._get_invoice_line_price_unit()
                     for line in lines]
                 if avg_price_unit:
-                    avg_price_unit = sum(avg_price_unit) / total_qty
+                    avg_price_unit = sum(avg_price_unit) / (total_qty or 1)
                 else:
                     continue
                 # search without date nor state as they are unpredictable

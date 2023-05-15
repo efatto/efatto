@@ -42,7 +42,7 @@ class PurchaseOrder(models.Model):
                 'price': price,
                 'currency_id': currency.id,
                 'delay': 0,
-                'discount': line.discount,  # todo check discount1 discount2
+                'discount': line.discount,
             }
             if hasattr(line, 'discount2'):
                 supplierinfo.update({

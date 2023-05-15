@@ -30,12 +30,19 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
+    def _get_price_with_discount(self, price):
+        price = price * (1 - self.discount / 100.0)
+        if hasattr(self, 'discount2'):
+            price = price * (1 - self.discount2 / 100.0)
+            price = price * (1 - self.discount3 / 100.0)
+        return price
+
     @api.multi
     def _get_invoice_line_price_unit(self):
         self.ensure_one()
         line = self[0]
         invoice = line.invoice_id
-        price_unit = line.price_unit
+        price_unit = line._get_price_with_discount(line.price_unit)
         if line.invoice_line_tax_ids:
             price_unit = line.invoice_line_tax_ids.with_context(
                 round=False

@@ -119,6 +119,7 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             'partner_id': self.partner.id,
         })
         purchase_planned_date1 = fields.Datetime.now() + relativedelta(days=5)
+        purchase_planned_date2 = fields.Datetime.now() + relativedelta(days=-4)
         purchase_line1 = self._create_purchase_order_line(
             purchase_order1, self.product1, 18, purchase_planned_date1)
         purchase_line1.account_analytic_id = self.analytic_account
@@ -130,7 +131,13 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         self._create_purchase_order_line(
             purchase_order2, self.product2, 4, purchase_planned_date1)
         purchase_order2.button_confirm()
-        # receive products
+        purchase_order3 = self.env['purchase.order'].create({
+            'partner_id': self.partner.id,
+        })
+        self._create_purchase_order_line(
+            purchase_order3, self.product2, 6, purchase_planned_date2)
+        purchase_order3.button_confirm()
+        # receive products, receiving purchase3 before purchase2 to test invoice sort
         purchase_picking1 = purchase_order1.picking_ids[0]
         self._action_pack_operation_auto_fill(purchase_picking1)
         purchase_picking1.button_validate()
@@ -139,6 +146,12 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         self._action_pack_operation_auto_fill(purchase_picking2)
         purchase_picking2.button_validate()
         self.assertEqual(purchase_picking2.state, 'done')
+        purchase_picking3 = purchase_order3.picking_ids[0]
+        self._action_pack_operation_auto_fill(purchase_picking3)
+        purchase_picking3.button_validate()
+        purchase_picking3.move_lines.write({'date': purchase_planned_date2})
+        self.assertEqual(purchase_picking3.state, 'done')
+        self.assertEqual(purchase_picking3.move_lines[0].date, purchase_planned_date2)
 
         # create sale order with self.product1 and check price_unit of stock move
         # is equal to current price of product
@@ -218,6 +231,33 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         invoice_line2.price_unit = new_price3
         invoice2.action_invoice_open()
         self.assertEqual(invoice2.state, 'open')
+        self.assertEqual(sale_picking2.move_lines.filtered(
+            lambda x: x.product_id == self.product2
+        ).price_unit, -new_price3)
+        # this check can be done only after invoice
+        self.assertEqual(sale_picking2.move_lines.filtered(
+            lambda x: x.product_id == self.product2
+        ).price_unit, -new_price3)
+
+        # create invoice for purchase order 3, which shouldn't go anywhere
+        invoice3 = self.env['account.invoice'].with_context(
+            type='in_invoice',
+        ).create({
+            'partner_id': self.partner.id,
+            'purchase_id': purchase_order3.id,
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        # this function is called by onchange on purchase_id
+        invoice3.purchase_order_change()
+        # check a new price in invoice line update price in sale picking move
+        invoice_line3 = invoice3.invoice_line_ids
+        self.assertEqual(invoice_line3.product_id, self.product2)
+        self.assertFalse(invoice_line3.account_analytic_id)
+        new_price4 = invoice_line2.price_unit + 99
+        invoice_line3.price_unit = new_price4
+        invoice3.action_invoice_open()
+        self.assertEqual(invoice3.state, 'open')
+        # this check can be done only after invoice
         self.assertEqual(sale_picking2.move_lines.filtered(
             lambda x: x.product_id == self.product2
         ).price_unit, -new_price3)

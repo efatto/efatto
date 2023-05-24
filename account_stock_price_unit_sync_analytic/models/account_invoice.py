@@ -11,19 +11,35 @@ class AccountInvoice(models.Model):
         res = super().action_invoice_open()
         if not self:
             return res
-        analytic_invoice_line_ids = self.mapped('invoice_line_ids').filtered(
-            lambda x: x.product_id and x.account_analytic_id
-        )
-        if analytic_invoice_line_ids:
-            analytic_accounts = analytic_invoice_line_ids.mapped('account_analytic_id')
-            invoice_lines = self.env['account.invoice.line'].search([
-                ('account_analytic_id', 'in', analytic_accounts.ids),
-                ('product_id', 'in', analytic_invoice_line_ids.mapped('product_id.id')),
-                ('invoice_type', '=', 'in_invoice'),
-            ])
-            invoice_lines |= analytic_invoice_line_ids
-            if invoice_lines:
-                invoice_lines.account_stock_price_unit_sync()
+        if self.type == 'in_invoice':
+            product_invoice_line_ids = self.mapped('invoice_line_ids').filtered(
+                lambda x: x.product_id
+            )
+            analytic_invoice_line_ids = self.mapped('invoice_line_ids').filtered(
+                lambda x: x.product_id and x.account_analytic_id
+            )
+            # first update analytic, then others with or without analytic
+            if analytic_invoice_line_ids:
+                analytic_accounts = analytic_invoice_line_ids.mapped(
+                    'account_analytic_id')
+                invoice_lines = self.env['account.invoice.line'].search([
+                    ('account_analytic_id', 'in', analytic_accounts.ids),
+                    ('product_id', 'in', analytic_invoice_line_ids.mapped(
+                        'product_id.id')),
+                    ('invoice_type', '=', 'in_invoice'),
+                ])
+                invoice_lines |= analytic_invoice_line_ids
+                if invoice_lines:
+                    invoice_lines.account_stock_price_unit_sync()
+            if product_invoice_line_ids:
+                product_invoice_lines = self.env['account.invoice.line'].search([
+                    ('product_id', 'in', product_invoice_line_ids.mapped(
+                        'product_id.id')),
+                    ('invoice_type', '=', 'in_invoice'),
+                ])
+                product_invoice_lines |= product_invoice_line_ids
+                if product_invoice_lines:
+                    product_invoice_lines.account_stock_price_unit_sync()
         return res
 
 
@@ -70,6 +86,9 @@ class AccountInvoiceLine(models.Model):
                         lambda y: y.account_analytic_id == analytic
                     )
                 })
+            lines_grouped[product].update({
+                False: lines
+            })
 
         for product in lines_grouped:
             # todo a phantom bom is possible in account.invoice.line?
@@ -83,33 +102,69 @@ class AccountInvoiceLine(models.Model):
             ):
                 continue
             for analytic in lines_grouped[product]:
-                lines = lines_grouped[product][analytic]
-                if len(lines.mapped('uom_id')) > 1:
-                    # todo group by different uom_id? or is it possible to compute?
-                    continue
-                # compute an avg price on qty invoiced and put in price unit of stock
-                # moves (without qty limit)
-                # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for a total
-                # of 28 pz and 6.034,00€ at an average price of 215,50€
-                # so put 215,50€ in unit price of stock moves
-                total_qty = sum(lines.mapped('quantity'))
-                avg_price_unit = [
-                    line.quantity * line._get_invoice_line_price_unit()
-                    for line in lines]
-                if avg_price_unit:
-                    avg_price_unit = sum(avg_price_unit) / (total_qty or 1)
+                if analytic:
+                    lines = lines_grouped[product][analytic]
+                    if len(lines.mapped('uom_id')) > 1:
+                        # todo group by different uom_id? or is it possible to compute?
+                        continue
+                    # compute an avg price on qty invoiced and put in price unit of
+                    # stockmoves (without qty limit)
+                    # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for a
+                    # total of 28 pz and 6.034,00€ at an average price of 215,50€
+                    # so put 215,50€ in unit price of stock moves
+                    total_qty = sum(lines.mapped('quantity'))
+                    avg_price_unit = [
+                        line.quantity * line._get_invoice_line_price_unit()
+                        for line in lines]
+                    if avg_price_unit:
+                        avg_price_unit = sum(avg_price_unit) / (total_qty or 1)
+                    else:
+                        continue
+                    # search without date nor state as they are unpredictable
+                    # stock move from sales or productions
+                    used_move_ids = self.env['stock.move'].search([
+                        ('product_id', '=', product.id),
+                        ('location_dest_id.usage', 'in', ['production', 'customer']),
+                        '|',
+                        ('sale_line_id.order_id.analytic_account_id', '=', analytic.id),
+                        ('raw_material_production_id.analytic_account_id', '=',
+                         analytic.id)
+                    ])
+                    used_move_ids.write({
+                        'is_analytic_synced': True,
+                        'price_unit': - avg_price_unit,
+                    })
                 else:
-                    continue
-                # search without date nor state as they are unpredictable
-                # stock move from sales or productions
-                used_move_ids = self.env['stock.move'].search([
-                    ('product_id', '=', product.id),
-                    ('location_dest_id.usage', 'in', ['production', 'customer']),
-                    '|',
-                    ('sale_line_id.order_id.analytic_account_id', '=', analytic.id),
-                    ('raw_material_production_id.analytic_account_id', '=',
-                     analytic.id)
-                ])
-                used_move_ids.write({
-                    'price_unit': - avg_price_unit,
-                })
+                    # update stock moves residual from analytic search
+                    # stock move from sales or productions
+                    # before invoice lines to get price by date incoming move
+                    invoice_lines = lines_grouped[product][False]
+                    used_moves = self.env['stock.move'].search([
+                        ('is_analytic_synced', '=', False),
+                        ('product_id', '=', product.id),
+                        ('location_dest_id.usage', 'in', ['production', 'customer']),
+                        '|',
+                        ('sale_line_id.order_id.analytic_account_id', '!=', False),
+                        ('raw_material_production_id.analytic_account_id', '!=', False),
+                    ])
+                    for used_move in used_moves:
+                        # get best invoice line for price
+                        moved_purchase_invoice_lines = invoice_lines.filtered(
+                            lambda x: x.purchase_line_id.move_ids
+                        )
+                        if moved_purchase_invoice_lines:
+                            lines = moved_purchase_invoice_lines.filtered(
+                                lambda x: x.purchase_line_id.mapped(
+                                    'move_ids.date'
+                                )[0] <= used_move.date
+                            )
+                            if lines:
+                                line = lines.sorted(
+                                    key=lambda y: y.purchase_line_id.mapped(
+                                        'move_ids.date'),
+                                    reverse=True
+                                )[0]
+                                price_unit = line._get_invoice_line_price_unit()
+                                used_move.write({
+                                    'price_unit': - price_unit,
+                                })

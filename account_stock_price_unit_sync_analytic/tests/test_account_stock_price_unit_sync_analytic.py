@@ -23,10 +23,17 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         supplierinfo = cls.env['product.supplierinfo'].create({
             'name': cls.vendor.id,
         })
-        cls.product = cls.Product.create({
-            'name': 'Product Test',
+        cls.product1 = cls.Product.create({
+            'name': 'Product Test 1',
             'type': 'product',
             'standard_price': 50.0,
+            'seller_ids': [(6, 0, [supplierinfo.id])],
+            'route_ids': [(6, 0, [buy.id])],
+        })
+        cls.product2 = cls.Product.create({
+            'name': 'Product Test 2',
+            'type': 'product',
+            'standard_price': 40.0,
             'seller_ids': [(6, 0, [supplierinfo.id])],
             'route_ids': [(6, 0, [buy.id])],
         })
@@ -106,46 +113,73 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
     def test_01_invoice_update_purchase(self):
-        self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
-        self.assertNotIn(self.partner, self.product.seller_ids.mapped('name'))
+        self.assertEqual(self.product1.categ_id.property_cost_method, 'standard')
+        self.assertNotIn(self.partner, self.product1.seller_ids.mapped('name'))
         purchase_order1 = self.env['purchase.order'].create({
             'partner_id': self.partner.id,
         })
         purchase_planned_date1 = fields.Datetime.now() + relativedelta(days=5)
-        purchase_line = self._create_purchase_order_line(
-            purchase_order1, self.product, 18, purchase_planned_date1)
-        purchase_line.account_analytic_id = self.analytic_account
+        purchase_line1 = self._create_purchase_order_line(
+            purchase_order1, self.product1, 18, purchase_planned_date1)
+        purchase_line1.account_analytic_id = self.analytic_account
         purchase_order1.button_confirm()
-        # create sale order with self.product and check price_unit of stock move
+        # create another purchse order without analytic account
+        purchase_order2 = self.env['purchase.order'].create({
+            'partner_id': self.partner.id,
+        })
+        self._create_purchase_order_line(
+            purchase_order2, self.product2, 4, purchase_planned_date1)
+        purchase_order2.button_confirm()
+        # receive products
+        purchase_picking1 = purchase_order1.picking_ids[0]
+        self._action_pack_operation_auto_fill(purchase_picking1)
+        purchase_picking1.button_validate()
+        self.assertEqual(purchase_picking1.state, 'done')
+        purchase_picking2 = purchase_order2.picking_ids[0]
+        self._action_pack_operation_auto_fill(purchase_picking2)
+        purchase_picking2.button_validate()
+        self.assertEqual(purchase_picking2.state, 'done')
+
+        # create sale order with self.product1 and check price_unit of stock move
         # is equal to current price of product
-        sale_order = self.env['sale.order'].sudo(self.sale_user).create({
+        sale_order1 = self.env['sale.order'].sudo(self.sale_user).create({
             'partner_id': self.partner.id,
             'analytic_account_id': self.analytic_account.id,
         })
-        self._create_sale_order_line(sale_order, self.product, 3)
-        sale_order.with_context(test_mrp_production_procurement_analytic=True
-                                ).sudo(self.sale_user).action_confirm()
-        self.assertEqual(sale_order.state, 'sale')
-        sale_picking = sale_order.picking_ids[0]
-        for move_line in sale_picking.move_lines:
+        self._create_sale_order_line(sale_order1, self.product1, 3)
+        sale_order1.with_context(test_mrp_production_procurement_analytic=True
+                                 ).sudo(self.sale_user).action_confirm()
+        self.assertEqual(sale_order1.state, 'sale')
+        sale_picking1 = sale_order1.picking_ids[0]
+        for move_line in sale_picking1.move_lines:
             move_line.write({'quantity_done': move_line.product_uom_qty})
-        sale_picking.button_validate()
-        self.assertEqual(sale_picking.state, 'done')
-        self.assertEqual(sale_picking.move_lines[0].price_unit,
-                         -self.product.standard_price)
-        self.assertEqual(purchase_line.product_uom_qty, 18)
+        sale_picking1.button_validate()
+
+        sale_order2 = self.env['sale.order'].sudo(self.sale_user).create({
+            'partner_id': self.partner.id,
+            'analytic_account_id': self.analytic_account.id,
+        })
+        self._create_sale_order_line(sale_order2, self.product2, 2)
+        sale_order2.with_context(test_mrp_production_procurement_analytic=True
+                                 ).sudo(self.sale_user).action_confirm()
+        self.assertEqual(sale_order2.state, 'sale')
+        sale_picking2 = sale_order2.picking_ids[0]
+        for move_line in sale_picking2.move_lines:
+            move_line.write({'quantity_done': move_line.product_uom_qty})
+        sale_picking2.button_validate()
+        self.assertEqual(sale_picking2.state, 'done')
+        self.assertEqual(sale_picking2.move_lines.filtered(
+            lambda x: x.product_id == self.product2
+        ).price_unit, -self.product2.standard_price)
+
+        self.assertEqual(purchase_line1.product_uom_qty, 18)
         self.assertEqual(purchase_order1.state, 'purchase')
 
-        purchase_picking = purchase_order1.picking_ids[0]
-        self._action_pack_operation_auto_fill(purchase_picking)
-        purchase_picking.button_validate()
-        self.assertEqual(purchase_picking.state, 'done')
-
         # change purchase line price, will do nothing
-        new_price = purchase_line.price_unit + 22
-        purchase_line.price_unit = new_price
-
-        invoice = self.env['account.invoice'].with_context(
+        new_price1 = purchase_line1.price_unit + 22
+        purchase_line1.price_unit = new_price1
+        # create invoice for purchase order 1
+        invoice1 = self.env['account.invoice'].with_context(
             type='in_invoice',
         ).create({
             'partner_id': self.partner.id,
@@ -153,19 +187,43 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             'account_id': self.partner.property_account_payable_id.id,
         })
         # this function is called by onchange on purchase_id
-        invoice.purchase_order_change()
+        invoice1.purchase_order_change()
         # check a new price in invoice line update price in sale picking move
-        invoice_line = invoice.invoice_line_ids
-        self.assertEqual(invoice_line.product_id, self.product)
-        self.assertEqual(invoice_line.account_analytic_id, self.analytic_account)
-        new_price = invoice_line.price_unit + 66
-        invoice_line.price_unit = new_price
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, 'open')
-        self.assertEqual(sale_picking.move_lines[0].price_unit, -new_price)
+        invoice_line1 = invoice1.invoice_line_ids
+        self.assertEqual(invoice_line1.product_id, self.product1)
+        self.assertEqual(invoice_line1.account_analytic_id, self.analytic_account)
+        new_price2 = invoice_line1.price_unit + 66
+        invoice_line1.price_unit = new_price2
+        invoice1.action_invoice_open()
+        self.assertEqual(invoice1.state, 'open')
+        self.assertEqual(sale_picking1.move_lines.filtered(
+            lambda x: x.product_id == self.product1
+        ).price_unit, -new_price2)
+
+        # create invoice for purchase order 2
+        invoice2 = self.env['account.invoice'].with_context(
+            type='in_invoice',
+        ).create({
+            'partner_id': self.partner.id,
+            'purchase_id': purchase_order2.id,
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        # this function is called by onchange on purchase_id
+        invoice2.purchase_order_change()
+        # check a new price in invoice line update price in sale picking move
+        invoice_line2 = invoice2.invoice_line_ids
+        self.assertEqual(invoice_line2.product_id, self.product2)
+        self.assertFalse(invoice_line2.account_analytic_id)
+        new_price3 = invoice_line2.price_unit + 66
+        invoice_line2.price_unit = new_price3
+        invoice2.action_invoice_open()
+        self.assertEqual(invoice2.state, 'open')
+        self.assertEqual(sale_picking2.move_lines.filtered(
+            lambda x: x.product_id == self.product2
+        ).price_unit, -new_price3)
 
         # add another manually created invoice to test avg price unit
-        last_price = new_price + 77
+        last_price = new_price2 + 77
         last_invoice = self.env['account.invoice'].create([{
             'partner_id': self.partner.id,
             'type': 'in_invoice',
@@ -173,8 +231,8 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
             'invoice_line_ids': [
                 (0, 0, {
                     'name': 'test',
-                    'product_id': self.product.id,
-                    'uom_id': self.product.uom_id.id,
+                    'product_id': self.product1.id,
+                    'uom_id': self.product1.uom_id.id,
                     'quantity': 10.0,
                     'price_unit': last_price,
                     'account_id': self.invoice_line_account_id,
@@ -187,21 +245,23 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         self.assertAlmostEqual(last_invoice_line.price_unit, last_price)
         avg_price = (
             last_price * last_invoice_line.quantity
-            + new_price * invoice_line.quantity
+            + new_price2 * invoice_line1.quantity
         ) / (
-            last_invoice_line.quantity + invoice_line.quantity
+            last_invoice_line.quantity + invoice_line1.quantity
         )
         # check last price in invoice line update price in sale picking move
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, 'open')
-        self.assertEqual(sale_picking.move_lines[0].price_unit, - avg_price)
+        invoice1.action_invoice_open()
+        self.assertEqual(invoice1.state, 'open')
+        self.assertEqual(sale_picking1.move_lines.filtered(
+            lambda x: x.product_id == self.product1
+        ).price_unit, - avg_price)
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
     def test_02_invoice_update_purchase_mo(self):
-        self.assertEqual(self.product.categ_id.property_cost_method, 'standard')
-        self.assertNotIn(self.partner, self.product.seller_ids.mapped('name'))
+        self.assertEqual(self.product1.categ_id.property_cost_method, 'standard')
+        self.assertNotIn(self.partner, self.product1.seller_ids.mapped('name'))
         purchase_order1 = self.env['purchase.order'].create({
             'partner_id': self.partner.id,
         })
@@ -211,7 +271,7 @@ class AccountStockPriceUnitSyncAnalytic(SavepointCase):
         purchase_line.account_analytic_id = self.analytic_account
         purchase_order1.button_confirm()
 
-        # create sale order with self.product and check price_unit of stock move
+        # create sale order with self.product1 and check price_unit of stock move
         # is equal to current price of product
         sale_order = self.env['sale.order'].create({
             'partner_id': self.partner.id,

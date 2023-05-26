@@ -80,7 +80,8 @@ class AccountInvoiceLine(models.Model):
         lines_grouped = {product: {} for product in self.mapped('product_id')}
         for product in lines_grouped:
             lines = self.filtered(lambda x: x.product_id == product)
-            for analytic in lines.mapped('account_analytic_id'):
+            analytics = lines.mapped('account_analytic_id')
+            for analytic in analytics:
                 lines_grouped[product].update({
                     analytic: lines.filtered(
                         lambda y: y.account_analytic_id == analytic

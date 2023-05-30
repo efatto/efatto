@@ -2,8 +2,6 @@
 # Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
 from odoo.tests import SavepointCase, Form
 from odoo.tools import mute_logger
-from odoo import fields
-from odoo.tools.date_utils import relativedelta
 
 
 class AccountAnalyticMrpExtraCost(SavepointCase):
@@ -151,7 +149,8 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertTrue(analytic_lines)
         self.assertEqual(len(analytic_lines), 1)
         self.assertEqual(len(self.production.move_raw_ids), 3)
-        # subproduct 1.1 is invoiced for (10 + 2) * (10 + 15) > compute 300 versus 100 -> + 200
+        # subproduct 1.1 is invoiced for (10 + 2) * (10 + 15) >
+        #  compute 300 versus 100 -> + 200
         # subproduct 1.2 is invoiced for (6 - 1) * (price - 100) > not compute
         # subproduct 1.3 is invoiced for (not + 7) * (220) > compute 1540
         # subproduct 1.4 is not invoiced > not in invoice

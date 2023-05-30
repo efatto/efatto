@@ -17,5 +17,6 @@
         'data/calendar.xml',
         'views/sale_order.xml',
         'views/mrp_production.xml',
+        'report/stock_report_deliveryslip.xml',
     ],
 }

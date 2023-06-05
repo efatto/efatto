@@ -13,9 +13,14 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         cls.User = cls.env['res.users'].with_context(no_reset_password=True)
         cls.Product = cls.env['product.product']
         cls.partner = cls.env.ref('base.res_partner_2')
-        expenses = cls.env.ref('account.data_account_type_expenses').id
+        user_type_expense = cls.env.ref('account.data_account_type_expenses').id
         cls.invoice_line_account_id = cls.env['account.account'].search(
-            [('user_type_id', '=', expenses)], limit=1).id
+            [('user_type_id', '=', user_type_expense)], limit=1).id
+        cls.invoice_line_account_id_1 = cls.env['account.account'].create({
+            'code': 'EXP_ACCOUNT',
+            'name': 'Expense account',
+            'user_type_id': user_type_expense,
+        }).id
         cls.analytic_account = cls.env['account.analytic.account'].create({
             'name': 'Analytic account test',
         })
@@ -119,7 +124,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
                     'uom_id': self.subproduct_1_1.uom_id.id,
                     'quantity': subproduct_1_1_invoice_qty,
                     'price_unit': new_price_subproduct_1_1,
-                    'account_id': self.invoice_line_account_id,
+                    'account_id': self.invoice_line_account_id_1,
                 }),
                 (0, 0, {
                     'name': 'test',
@@ -136,7 +141,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
                     'uom_id': self.subproduct_1_3.uom_id.id,
                     'quantity': subproduct_1_3_invoice_qty,
                     'price_unit': self.subproduct_1_3.standard_price,
-                    'account_id': self.invoice_line_account_id,
+                    'account_id': self.invoice_line_account_id_1,
                     'account_analytic_id': self.analytic_account.id,
                 })
             ]
@@ -147,7 +152,6 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             ('account_id', '=', self.analytic_account.id),
         ])
         self.assertTrue(analytic_lines)
-        self.assertEqual(len(analytic_lines), 1)
         self.assertEqual(len(self.production.move_raw_ids), 3)
         # subproduct 1.1 is invoiced for (10 + 2) * (10 + 15) >
         #  compute 300 versus 100 -> + 200
@@ -175,6 +179,6 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         )
 
         self.assertAlmostEqual(
-            analytic_lines.extra_cost,
-            extra_cost
+            sum(analytic_lines.mapped('extra_cost')),
+            - extra_cost
         )

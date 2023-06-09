@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import functools
 import logging
+
 from odoo.tools.config import config as system_base_config
 
 logger = logging.getLogger(__name__)
@@ -19,4 +20,5 @@ def running(func):
             logger.info("Server state != prod, ignored %s function" % func.__name__)
             result = False
         return result
+
     return wrap

@@ -7,7 +7,6 @@
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
-    "description": "Create decorator to bypass function on server running_env",
     "depends": [
         "base",
     ],

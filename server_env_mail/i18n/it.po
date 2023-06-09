@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* server_env_mail
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-19 10:40+0000\n"
+"PO-Revision-Date: 2021-04-19 10:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: server_env_mail
+#: model:ir.model,name:server_env_mail.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server di posta in arrivo"
+
+#. module: server_env_mail
+#: model:ir.model,name:server_env_mail.model_ir_mail_server
+msgid "Mail Server"
+msgstr "Server di posta"
+
+#. module: server_env_mail
+#: model:ir.model,name:server_env_mail.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Mail in Uscita"
+

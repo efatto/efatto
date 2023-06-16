@@ -125,6 +125,12 @@ class SaleOrder(models.Model):
         comodel_name='mrp.production',
         compute='_compute_production_id',
         store=True)
+    product_production_id = fields.Many2one(
+        comodel_name='product.product',
+        related='production_id.product_id',
+        store=True,
+        index=True,
+        string='Manucfactured product')
     partner_priority_id = fields.Many2one(
         related='partner_id.priority_id',
         string='Partner Priority',

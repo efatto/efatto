@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="contacts.menu_contacts" model="ir.ui.menu">
+        <field name="name">Contacts</field>
+        <field name="groups_id" eval="[(3, ref('base.group_user'))]" />
+    </record>
+
+</odoo>

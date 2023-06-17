@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
     <record id="base.group_user" model="res.groups">
-        <field name="implied_ids" eval="[
+        <field
+      name="implied_ids"
+      eval="[
          (4, ref('sale.group_discount_per_so_line')),
          (4, ref('sale.group_delivery_invoice_address')),
          (4, ref('sale.group_warning_sale')),
          (4, ref('sale.group_sale_order_dates')),
-         ]"/>
+         ]"
+    />
     </record>
     <record id="base.main_company" model="res.company">
-        <field name="tax_calculation_rounding_method"  eval="'round_globally'"/>
+        <field name="tax_calculation_rounding_method" eval="'round_globally'" />
     </record>
-    <function id="default_invoice_policy_set" model="ir.default" name="set"
-        eval="('product.template', 'invoice_policy', 'delivery')"/>
+    <function
+    id="default_invoice_policy_set"
+    model="ir.default"
+    name="set"
+    eval="('product.template', 'invoice_policy', 'delivery')"
+  />
 </odoo>

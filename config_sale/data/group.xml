@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="base.group_user" model="res.groups">
+        <field
+      name="implied_ids"
+      eval="[
+         (4, ref('product.group_discount_per_so_line')),
+         (4, ref('sale.group_delivery_invoice_address')),
+         (4, ref('sale.group_warning_sale')),
+         ]"
+    />
+    </record>
+    <record id="base.main_company" model="res.company">
+        <field name="tax_calculation_rounding_method" eval="'round_globally'" />
+    </record>
+    <function
+    model="ir.default"
+    name="set"
+    eval="('product.template', 'invoice_policy', 'delivery')"
+  />
+</odoo>

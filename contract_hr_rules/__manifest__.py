@@ -9,9 +9,9 @@
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [
+        "analytic",
         "contract",
         "hr",
-        "analytic",
     ],
     "data": [
         "security/contract_security.xml",

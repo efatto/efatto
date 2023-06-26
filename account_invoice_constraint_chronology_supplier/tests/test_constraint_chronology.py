@@ -55,7 +55,7 @@ class TestAccountConstraintChronologySupplier(common.SavepointCase):
         return journal
 
     def create_simple_invoice(self, journal_id, date):
-        invoice = self.env['account.invoice'].create({
+        invoice = self.env['account.move'].create({
             'partner_id': self.env.ref('base.res_partner_2').id,
             'account_id': self.account_account.id,
             'type': 'in_invoice',
@@ -64,7 +64,7 @@ class TestAccountConstraintChronologySupplier(common.SavepointCase):
             'state': 'draft',
         })
 
-        self.env['account.invoice.line'].create({
+        self.env['account.move.line'].create({
             'product_id': self.product.id,
             'quantity': 1.0,
             'price_unit': 100.0,

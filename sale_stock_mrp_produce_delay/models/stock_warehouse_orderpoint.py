@@ -19,7 +19,9 @@ class Orderpoint(models.Model):
                 self.product_id,
                 product_qty,
                 date or fields.Date.context_today(self))
-            res["date_planned"] = fields.Datetime.from_string(
-                avail_date).replace(hour=10)
-            # set default to hour 10, as 2 of night seems akward, even if it would be ok
+            if avail_date:
+                res["date_planned"] = fields.Datetime.from_string(
+                    avail_date).replace(hour=10)
+                # set default to hour 10, as 2 of night seems akward, even if it would
+                # be ok
         return res

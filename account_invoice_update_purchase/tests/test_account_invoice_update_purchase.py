@@ -27,6 +27,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         cls.product = cls.env['product.product'].create({
             'name': 'Product Test',
             'type': 'product',
+            'uom_id': cls.env.ref('uom.product_uom_unit').id,
             'lst_price': 77,
             'seller_ids': [(6, 0, [cls.supplierinfo_expired.id, cls.supplierinfo.id])],
             'route_ids': [(6, 0, [buy.id])],
@@ -34,6 +35,13 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         cls.test_user = cls.env['res.users'].create({
             'name': 'John',
             'login': 'test',
+        })
+        cls.uom_hundred = cls.env['uom.uom'].create({
+            'name': 'Hundred',
+            'category_id': cls.env.ref('uom.product_uom_categ_unit').id,
+            'factor_inv': 100,
+            'uom_type': 'bigger',
+            'rounding': 0.01,
         })
 
     def _create_purchase_order_line(self, order, product, qty, date_planned=False):
@@ -102,3 +110,8 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(self.supplierinfo.price, new_price)
         self.assertEqual(picking.move_lines[0].price_unit, new_price)
         self.assertEqual(self.product.standard_price, self.product.standard_price)
+
+        # change uom of invoice and test re-computation
+        invoice_line.uom_id = self.uom_hundred
+        invoice_line.update_purchase()
+        self.assertAlmostEqual(purchase_line.price_unit, new_price/100)

@@ -35,7 +35,9 @@ class AccountInvoiceLine(models.Model):
 
     def update_purchase(self):
         self.purchase_line_id.write({
-            'price_unit': self.price_unit,
+            'price_unit': self.uom_id._compute_price(
+                self.price_unit, self.purchase_line_id.product_uom
+            ),
             'discount': self.discount,
             'discount2': self.discount2,
             'discount3': self.discount3,
@@ -57,7 +59,9 @@ class AccountInvoiceLine(models.Model):
                 ) or not supplierinfo.date_start
             ):
                 supplierinfo.write({
-                    'price': self.price_unit,
+                    'price': self.uom_id._compute_price(
+                        self.price_unit, supplierinfo.product_uom
+                    ),
                     'discount': self.discount,
                     'discount2': self.discount2,
                     'discount3': self.discount3,

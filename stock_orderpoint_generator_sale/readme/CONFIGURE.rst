@@ -40,4 +40,4 @@ Il campo `Categoria prodotti` che filtra i prodotti su cui generare le regole di
 .. image:: ../static/description/categoria_prodotti.png
     :alt: Categoria prodotti
 
-Informazioni sulle formule usate nel file di calcolo allegato.
+Informazioni sulle formule usate nel file di calcolo https://github.com/sergiocorato/efatto/blob/12.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods

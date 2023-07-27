@@ -37,6 +37,15 @@
                 <field name="order_mngt_cost"/>
                 <field name="product_ctg_ids" widget="many2many_tags"/>
             </field>
+            <xpath expr="//field[@name='auto_min_qty']/.." position="attributes">
+                <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </xpath>
+            <field name="auto_min_qty" position="attributes">
+                <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="auto_max_qty" position="attributes">
+                <attribute name="attrs">{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
             <field name="product_min_qty" position="attributes">
                 <attribute name="attrs">{'required': [('auto_min_qty','=', False)], 'invisible': [('compute_on_sale', '=', True)]}</attribute>
             </field>

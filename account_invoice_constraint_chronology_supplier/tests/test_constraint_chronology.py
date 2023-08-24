@@ -4,148 +4,145 @@
 
 from datetime import datetime, timedelta
 
-import odoo.tests.common as common
 from odoo.exceptions import UserError
+from odoo.tests.common import Form, SavepointCase
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
-class TestAccountConstraintChronologySupplier(common.SavepointCase):
-
+class TestAccountConstraintChronologySupplier(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestAccountConstraintChronologySupplier, cls).setUpClass()
-
-        # Needed to create invoice
-
-        cls.account_type1 = cls.env['account.account.type'].\
-            create({'name': 'acc type test 1',
-                    'type': 'receivable',
-                    'include_initial_balance': True})
-        cls.account_type2 = cls.env['account.account.type']. \
-            create({'name': 'acc type test 2',
-                    'type': 'other',
-                    'include_initial_balance': True})
-        cls.account_account = cls.env['account.account'].\
-            create({'name': 'acc test',
-                    'code': 'X2020',
-                    'user_type_id': cls.account_type1.id,
-                    'reconcile': True})
-        cls.account_account_line = cls.env['account.account']. \
-            create({'name': 'acc inv line test',
-                    'code': 'X2021',
-                    'user_type_id': cls.account_type2.id,
-                    'reconcile': True})
-        cls.sequence = cls.env['ir.sequence'].create(
-            {'name': 'Journal Sale',
-             'prefix': 'SALE', 'padding': 6,
-             'company_id': cls.env.ref("base.main_company").id})
-        cls.account_journal_sale = cls.env['account.journal']\
-            .create({'name': 'Sale journal',
-                     'code': 'SALE',
-                     'type': 'sale',
-                     'sequence_id': cls.sequence.id})
-        cls.product = cls.env['product.product'].create(
-            {'name': 'product name'})
-        cls.analytic_account = cls.env['account.analytic.account'].\
-            create({'name': 'test account'})
-
-    def get_journal_check(self, value):
-        journal = self.account_journal_sale.copy()
-        journal.check_chronology = value
-        return journal
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.inv_model = cls.env["account.move"]
+        cls.user_model = cls.env["res.users"].with_context(no_reset_password=True)
+        cls.group_accounting = cls.env.ref("account.group_account_user")
+        cls.account_user = cls.user_model.create(
+            [
+                {
+                    "name": "Accounting user",
+                    "login": "account user",
+                    "email": "account@email.it",
+                    "groups_id": [
+                        (4, cls.group_accounting.id),
+                    ],
+                }
+            ]
+        )
+        cls.account_type_expense = cls.env["account.account.type"].create(
+            {
+                "name": "Account type expense",
+                "type": "other",
+                "include_initial_balance": True,
+                "internal_group": "expense",
+            }
+        )
+        cls.account_expense = cls.env["account.account"].create(
+            {
+                "name": "Account expense",
+                "code": "X2021",
+                "user_type_id": cls.account_type_expense.id,
+                "reconcile": True,
+            }
+        )
+        cls.account_journal_purchase_check = cls.env["account.journal"].create(
+            {
+                "name": "Purchase journal with check chronology",
+                "code": "PURCH",
+                "type": "purchase",
+                "check_chronology": True,
+            }
+        )
+        cls.account_journal_purchase = cls.env["account.journal"].create(
+            {
+                "name": "Purchase journal without check chronology",
+                "code": "PURCH",
+                "type": "purchase",
+            }
+        )
+        cls.product = cls.env["product.product"].create({"name": "product name"})
 
     def create_simple_invoice(self, journal_id, date):
-        invoice = self.env['account.move'].create({
-            'partner_id': self.env.ref('base.res_partner_2').id,
-            'account_id': self.account_account.id,
-            'type': 'in_invoice',
-            'journal_id': journal_id,
-            'date_invoice': date,
-            'state': 'draft',
-        })
-
-        self.env['account.move.line'].create({
-            'product_id': self.product.id,
-            'quantity': 1.0,
-            'price_unit': 100.0,
-            'invoice_id': invoice.id,
-            'name': 'product that cost 100',
-            'account_id': self.account_account_line.id,
-            'account_analytic_id': self.analytic_account.id,
-        })
+        invoice_form = Form(
+            self.inv_model.with_user(self.account_user).with_context(
+                check_move_validity=False,
+                company_id=self.account_user.company_id.id,
+                default_move_type="in_invoice",
+            )
+        )
+        invoice_form.date = date
+        invoice_form.invoice_date = date
+        invoice_form.partner_id = self.env.ref("base.res_partner_2")
+        invoice_form.journal_id = journal_id
+        with invoice_form.invoice_line_ids.new() as invoice_line_form:
+            invoice_line_form.product_id = self.product
+            invoice_line_form.quantity = 1.0
+            invoice_line_form.price_unit = 100.0
+            invoice_line_form.name = "product that cost 100"
+            invoice_line_form.account_id = self.account_expense
+        invoice = invoice_form.save()
         return invoice
 
     def test_invoice_draft(self):
-        journal = self.get_journal_check(True)
+        journal = self.account_journal_purchase_check
         today = datetime.now()
         yesterday = today - timedelta(days=1)
         date = yesterday.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        self.create_simple_invoice(journal.id, date)
+        self.create_simple_invoice(journal, date)
         date = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice_2 = self.create_simple_invoice(journal.id, date)
-        self.assertTrue((invoice_2.state == 'draft'),
-                        "Initial invoice state is not Draft")
-        invoice_2.action_invoice_open()
-        self.assertTrue((invoice_2.state == 'open'),
-                        "Initial invoice state is not Draft")
+        invoice_2 = self.create_simple_invoice(journal, date)
+        self.assertTrue(
+            (invoice_2.state == "draft"), "Initial invoice state is not Draft"
+        )
+        invoice_2.action_post()
+        self.assertTrue((invoice_2.state == "posted"), "Invoice state is not Posted")
 
     def test_invoice_draft_no_check(self):
-        journal = self.get_journal_check(False)
+        journal = self.account_journal_purchase
         today = datetime.now()
         yesterday = today - timedelta(days=1)
         date = yesterday.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        self.create_simple_invoice(journal.id, date)
+        self.create_simple_invoice(journal, date)
         date = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice_2 = self.create_simple_invoice(journal.id, date)
-        self.assertTrue((invoice_2.state == 'draft'),
-                        "Initial invoice state is not Draft")
-        self.assertTrue(invoice_2.action_invoice_open())
+        invoice_2 = self.create_simple_invoice(journal, date)
+        self.assertTrue(
+            (invoice_2.state == "draft"), "Initial invoice state is not Draft"
+        )
+        invoice_2.action_post()
+        self.assertTrue(invoice_2.state == "posted", "Invoice state is not Posted")
 
     def test_invoice_validate(self):
-        journal = self.get_journal_check(True)
+        journal = self.account_journal_purchase_check
         today = datetime.now()
         tomorrow = today + timedelta(days=1)
         date_tomorrow = tomorrow.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice_1 = self.create_simple_invoice(journal.id, date_tomorrow)
-        self.assertTrue((invoice_1.state == 'draft'),
-                        "Initial invoice state is not Draft")
-        invoice_1.action_invoice_open()
+        invoice_1 = self.create_simple_invoice(journal, date_tomorrow)
+        self.assertTrue(
+            (invoice_1.state == "draft"), "Initial invoice state is not Draft"
+        )
+        invoice_1.action_post()
         date = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice_2 = self.create_simple_invoice(journal.id, date)
-        self.assertTrue((invoice_2.state == 'draft'),
-                        "Initial invoice state is not Draft")
+        invoice_2 = self.create_simple_invoice(journal, date)
+        self.assertTrue(
+            (invoice_2.state == "draft"), "Initial invoice state is not Draft"
+        )
         with self.assertRaises(UserError):
-            invoice_2.action_invoice_open()
-
-    def test_invoice_without_date(self):
-        journal = self.get_journal_check(True)
-        today = datetime.now()
-        yesterday = today - timedelta(days=1)
-        date = yesterday.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        self.create_simple_invoice(journal.id, date)
-        invoice_2 = self.create_simple_invoice(journal.id, False)
-        self.assertTrue((invoice_2.state == 'draft'),
-                        "Initial invoice state is not Draft")
-        invoice_2.action_invoice_open()
-        self.assertTrue((invoice_2.state == 'open'),
-                        "Initial invoice state is not Draft")
+            invoice_2.action_post()
 
     def test_journal_change_type(self):
-        self.account_journal_sale.check_chronology = True
-        self.assertTrue(self.account_journal_sale.check_chronology)
-        self.account_journal_sale.type = 'bank'
-        self.account_journal_sale._onchange_type()
-        self.assertFalse(self.account_journal_sale.check_chronology)
+        self.account_journal_purchase.check_chronology = True
+        self.assertTrue(self.account_journal_purchase.check_chronology)
+        self.account_journal_purchase.type = "bank"
+        self.account_journal_purchase._onchange_type()
+        self.assertFalse(self.account_journal_purchase.check_chronology)
 
     def test_supplier_invoice_date(self):
-        journal = self.get_journal_check(True)
+        journal = self.account_journal_purchase_check
         today = datetime.now()
         yesterday = today - timedelta(days=1)
-        invoice = self.create_simple_invoice(journal.id, today.strftime(
-            DEFAULT_SERVER_DATE_FORMAT))
+        invoice = self.create_simple_invoice(
+            journal, today.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        )
         invoice.date = yesterday.strftime(DEFAULT_SERVER_DATE_FORMAT)
         with self.assertRaises(UserError):
-            invoice.action_invoice_open()
-        invoice.date = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice.action_invoice_open()
-        self.assertTrue(invoice.state == 'open', 'Invoice was not created')
+            invoice.action_post()

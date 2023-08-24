@@ -9,6 +9,6 @@
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "category": "Accounting",
-    "depends": ["account"],
+    "depends": ["account", "account_fiscal_year"],
     "data": ["view/account_view.xml"],
 }

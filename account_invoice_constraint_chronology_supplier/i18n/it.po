@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_invoice_constraint_chronology_supplier
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-25 14:00+0000\n"
+"PO-Revision-Date: 2023-08-25 14:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_bank_statement_line__bypass_duplicate_vendor_ref
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_move__bypass_duplicate_vendor_ref
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_payment__bypass_duplicate_vendor_ref
+msgid "Bypass Duplicate Vendor Ref"
+msgstr "Escludi controllo duplicazione fattura fornitore"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_journal__check_chronology
+msgid "Check Chronology"
+msgstr "Controlla cronologicità"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: code:addons/account_invoice_constraint_chronology_supplier/model/account_move.py:0
+#, python-format
+msgid ""
+"Chronology Error. Post the invoice with an equal or greater date than "
+"{invoice_date}."
+msgstr ""
+"Errore cronologicità. Posta la fattura con una data uguale o maggiore di "
+"{invoice_date}."
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_journal__display_name
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_move__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: code:addons/account_invoice_constraint_chronology_supplier/model/account_move.py:0
+#, python-format
+msgid ""
+"Duplicated vendor reference detected. You probably encoded twice the same "
+"vendor bill/credit note."
+msgstr ""
+"Riferimento fattura fornitore duplicato. Probabilmente è stata codificata doppiamente la stessa "
+"fattura/nota di credito fornitore."
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_journal__id
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_move__id
+msgid "ID"
+msgstr ""
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model,name:account_invoice_constraint_chronology_supplier.model_account_journal
+msgid "Journal"
+msgstr "Registro"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model,name:account_invoice_constraint_chronology_supplier.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_journal____last_update
+#: model:ir.model.fields,field_description:account_invoice_constraint_chronology_supplier.field_account_move____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: account_invoice_constraint_chronology_supplier
+#: code:addons/account_invoice_constraint_chronology_supplier/model/account_move.py:0
+#, python-format
+msgid ""
+"Supplier invoice date %s cannot be later than the date of registration %s!"
+msgstr ""
+"La data %s della fattura fornitore non può essere posteriore alla data della registrazione %s!"

@@ -9,6 +9,8 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    bypass_duplicate_vendor_ref = fields.Boolean()
+
     @api.model
     def _prepare_later_invoices_domain(self, invoice):
         domain = [
@@ -70,7 +72,8 @@ class AccountMove(models.Model):
             # fiscal year of vendor is 1/1-31/12),
             # because it's probably a double encoding of the same bill/credit note
             # todo create a boolean to force bypass of this check
-            if invoice.move_type in ("in_invoice", "in_refund") and invoice.ref:
+            if invoice.move_type in ("in_invoice", "in_refund") and invoice.ref \
+                    and not invoice.bypass_duplicate_vendor_ref:
                 first_year_date = (
                     invoice.invoice_date
                     and invoice.invoice_date.replace(month=1, day=1)

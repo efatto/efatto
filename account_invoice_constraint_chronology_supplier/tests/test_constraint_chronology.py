@@ -111,7 +111,7 @@ class TestAccountConstraintChronologySupplier(SavepointCase):
         invoice_2.action_post()
         self.assertTrue(invoice_2.state == "posted", "Invoice state is not Posted")
 
-    def test_invoice_validate(self):
+    def test_invoice_validate_with_date_lesser_then_invoice_date(self):
         journal = self.account_journal_purchase_check
         today = datetime.now()
         tomorrow = today + timedelta(days=1)
@@ -122,7 +122,8 @@ class TestAccountConstraintChronologySupplier(SavepointCase):
         )
         invoice_1.action_post()
         date = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        invoice_2 = self.create_simple_invoice(journal, date)
+        invoice_2 = self.create_simple_invoice(journal, date_tomorrow)
+        invoice_2.write({"date": date})
         self.assertTrue(
             (invoice_2.state == "draft"), "Initial invoice state is not Draft"
         )

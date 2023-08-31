@@ -7,5 +7,4 @@ from odoo import SUPERUSER_ID, api
 def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
 
-    published_slides = env["slide.slide"].search([("website_published", "=", True)])
-    published_slides.write({"has_been_published": True})
+    published_slides = env["slide.slide"]._compute_has_been_published()

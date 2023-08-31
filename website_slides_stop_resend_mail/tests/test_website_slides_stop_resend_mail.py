@@ -48,3 +48,5 @@ class TestIrMailServer(SavepointCase):
         self.assertFalse(slide.has_been_published)
         slide.write({"is_published": True})
         self.assertTrue(slide.has_been_published)
+        slide.write({"is_published": False})
+        self.assertTrue(slide.has_been_published)

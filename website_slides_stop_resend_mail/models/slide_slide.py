@@ -11,7 +11,7 @@ class Slide(models.Model):
         store=True,
         help="This flag is auto-checked when a slide is published, then it is "
         "unchanged even whether the slide is un-published, to block re-sending "
-        "the same email many times for the sames slides."
+        "the same email many times for the sames slides.",
     )
 
     @api.depends("is_published")

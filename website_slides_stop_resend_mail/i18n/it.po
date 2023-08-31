@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_slides_stop_resend_mail
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-31 09:36+0000\n"
+"PO-Revision-Date: 2023-08-31 09:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model.fields,field_description:website_slides_stop_resend_mail.field_slide_slide__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model.fields,field_description:website_slides_stop_resend_mail.field_slide_slide__has_been_published
+msgid "Has Been Published"
+msgstr "È stato pubblicato"
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model.fields,field_description:website_slides_stop_resend_mail.field_slide_slide__id
+msgid "ID"
+msgstr ""
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model.fields,field_description:website_slides_stop_resend_mail.field_slide_slide____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model,name:website_slides_stop_resend_mail.model_slide_slide
+msgid "Slides"
+msgstr "Diapositive"
+
+#. module: website_slides_stop_resend_mail
+#: model:ir.model.fields,help:website_slides_stop_resend_mail.field_slide_slide__has_been_published
+msgid ""
+"This flag is auto-checked when a slide is published, then it is unchanged "
+"even whether the slide is un-published, to block re-sending the same email "
+"many times for the sames slides."
+msgstr ""
+"Questo flag è auto-selezionato quando una slide è pubblicato, poi rimane invariato "
+"anche se una slide è de-pubblicata, per bloccare il re-invio della stessa email "
+"più volte per le stesse slides."

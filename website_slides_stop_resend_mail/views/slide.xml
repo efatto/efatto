@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_slide_slide_form">
+        <field name="model">slide.slide</field>
+        <field name="inherit_id" ref="website_slides.view_slide_slide_form" />
+        <field name="arch" type="xml">
+            <field name="date_published" position="after">
+                <field name="has_been_published" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

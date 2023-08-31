@@ -21,13 +21,11 @@ class AccountAnalyticLine(models.Model):
             if line.move_id.invoice_id.type in [
                 'in_invoice', 'in_refund'
             ]:
-                """
-                N.B. this function work only if it creates analytic lines grouped by
-                account, with account_group_invoice_line and journal has active option
-                'group_invoice_lines': True,
-                'group_method': 'account',
-                So add an error if not configured in this way.
-                """
+                # N.B. this function work only if it creates analytic lines grouped by
+                # account, with account_group_invoice_line and journal has active option
+                # 'group_invoice_lines': True,
+                # 'group_method': 'account',
+                # So add an error if not configured in this way.
                 invoice = line.move_id.invoice_id
                 if not (invoice.journal_id.group_invoice_lines and
                         invoice.journal_id.group_method == 'account'):

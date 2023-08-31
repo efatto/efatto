@@ -18,7 +18,7 @@ class Slide(models.Model):
     def _compute_has_been_published(self):
         for slide in self:
             if slide.is_published:
-                self.write({"has_been_published": True})
+                slide.write({"has_been_published": True})
 
     def _post_publication(self):
         new_self = self.filtered(lambda x: not x.has_been_published)

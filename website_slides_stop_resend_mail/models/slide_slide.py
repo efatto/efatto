@@ -14,10 +14,10 @@ class Slide(models.Model):
         "the same email many times for the sames slides."
     )
 
-    @api.depends("website_published")
+    @api.depends("is_published")
     def _compute_has_been_published(self):
         for slide in self:
-            if slide.website_published:
+            if slide.is_published:
                 self.write({"has_been_published": True})
 
     def _post_publication(self):

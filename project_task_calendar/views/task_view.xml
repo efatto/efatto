@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_task_calendar_date" model="ir.ui.view">
+        <field name="name">project.task.calendar.date</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar" />
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="date_start">date_start</attribute>
+                <attribute name="date_stop">date_end</attribute>
+                <attribute name="mode">week</attribute>
+            </calendar>
+            <field name="user_id" position="before">
+                <field name="name" />
+            </field>
+        </field>
+    </record>
+</odoo>

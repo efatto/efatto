@@ -2,14 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import requests
 
-from odoo import _, api, models
+from odoo import _, models
 from odoo.tools import ustr
 
 
 class DbBackup(models.Model):
     _inherit = "db.backup"
 
-    @api.multi
     def action_backup(self):
         super().action_backup()
         url = (

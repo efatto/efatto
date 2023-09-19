@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_update_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-24 15:51+0000\n"
+"PO-Revision-Date: 2023-04-24 15:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_update_purchase
+#: model:res.groups,name:account_invoice_update_purchase.group_allow_purchase_update
+msgid "Allow \"Purchase update from invoice\""
+msgstr "Abilita \"Aggiorna acquisto da fattura\""
+
+#. module: account_invoice_update_purchase
+#: model:ir.model.fields,field_description:account_invoice_update_purchase.field_account_invoice_line__display_update_purchase_button
+msgid "Display Update Purchase Button"
+msgstr "Mostra il bottone Aggiorna Acquisto"
+
+#. module: account_invoice_update_purchase
+#: model:ir.model,name:account_invoice_update_purchase.model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_invoice_update_purchase
+#: model:ir.model,name:account_invoice_update_purchase.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
+
+#. module: account_invoice_update_purchase
+#: model:ir.model.fields,field_description:account_invoice_update_purchase.field_account_invoice__purchase_force_valid
+msgid "Purchase Force Valid"
+msgstr "Forza validità acquisto"
+
+#. module: account_invoice_update_purchase
+#: model_terms:ir.ui.view,arch_db:account_invoice_update_purchase.invoice_supplier_form_update_purchase
+msgid "Update purchase"
+msgstr "Aggiorna acquisto"
+

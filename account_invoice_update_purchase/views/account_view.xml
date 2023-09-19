@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="invoice_supplier_form_update_purchase" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.update.purchase</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+        expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']"
+        position="after"
+      >
+                <field name="display_update_purchase_button" invisible="1" />
+                <button
+          string="Update purchase"
+          type="object"
+          name="update_purchase"
+          class="oe_stat_button"
+          icon="fa-check-square-o"
+          groups="account_invoice_update_purchase.group_allow_purchase_update"
+          attrs="{'invisible': [('display_update_purchase_button', '=', False)]}"
+        />
+            </xpath>
+            <field name="user_id" position="after">
+                <field name="purchase_force_valid" />
+            </field>
+        </field>
+    </record>
+</odoo>

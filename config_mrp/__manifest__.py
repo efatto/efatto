@@ -5,7 +5,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'description': """
-Module to configure stock.
+Module to configure mrp.
 Add the next groups to base user:
 - mrp.group_mrp_routings
 """,

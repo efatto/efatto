@@ -2,17 +2,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Mail activity open origin",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Social",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
-    "description": "Add button to open origin object from popup form view in calendar",
+    "summary": "Add button to open origin object from popup form view in calendar",
     "depends": [
         "mail_activity_board",
     ],
     "data": [
         "views/mail_activity.xml",
     ],
-    "installable": True
+    "installable": True,
 }

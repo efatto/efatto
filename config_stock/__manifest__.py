@@ -10,7 +10,6 @@ Add the next groups to base user:
 * stock.group_stock_multi_locations
 * stock.group_stock_adv_location
 * uom.group_uom
-It also set invoice policy default to delivery.
 """,
     'author': 'Sergio Corato',
     'website': 'https://github.com/sergiocorato/efatto',

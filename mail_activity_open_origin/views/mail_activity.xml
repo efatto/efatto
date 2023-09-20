@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mail_activity_view_form_popup" model="ir.ui.view">
+        <field name="inherit_id" ref="mail.mail_activity_view_form_popup" />
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <button name="action_close_dialog" position="before">
+                <button
+          name="open_origin"
+          type="object"
+          class="btn-secondary"
+          string="Open origin"
+        />
+            </button>
+        </field>
+    </record>
+</odoo>

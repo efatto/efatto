@@ -27,6 +27,43 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
                 "date_start": fields.Date.today() + relativedelta(days=-9),
             }
         )
+        cls.account_liability = cls.env["account.account"].create(
+            {
+                "code": "TEST_LIABILITY",
+                "name": "Liability account",
+                "user_type_id": cls.env.ref(
+                    "account.data_account_type_current_liabilities"
+                ).id,
+            }
+        )
+        cls.tax22 = cls.env["account.tax"].create(
+            {
+                "name": "22%",
+                "amount": 22,
+                "amount_type": "percent",
+                "type_tax_use": "purchase",
+                "tax_group_id": cls.env.ref("account.tax_group_taxes").id,
+                "invoice_repartition_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "repartition_type": "base",
+                            "factor_percent": 100,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "repartition_type": "tax",
+                            "factor_percent": 100,
+                            "account_id": cls.account_liability.id,
+                        },
+                    ),
+                ],
+            }
+        )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Product Test",
@@ -37,6 +74,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
                     (6, 0, [cls.supplierinfo_expired.id, cls.supplierinfo.id])
                 ],
                 "route_ids": [(6, 0, [buy.id])],
+                "supplier_taxes_id": [(6, 0, [cls.tax22.id])],
             }
         )
         cls.test_user = cls.env["res.users"].create(
@@ -108,14 +146,24 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
 
         self.assertEqual(purchase_line.price_unit, current_price)
         self.assertEqual(self.supplierinfo.price, current_price)
-        self.assertEqual(picking.move_lines[0].price_unit, current_price)
+        self.assertEqual(
+            picking.move_lines.filtered(
+                lambda x: x.product_id == self.product
+            ).price_unit,
+            current_price,
+        )
 
         new_price = invoice_line.price_unit + 66
         invoice_line.with_context(check_move_validity=False).price_unit = new_price
         invoice_line.update_purchase()
         self.assertEqual(purchase_line.price_unit, new_price)
         self.assertEqual(self.supplierinfo.price, new_price)
-        self.assertEqual(picking.move_lines[0].price_unit, new_price)
+        self.assertEqual(
+            picking.move_lines.filtered(
+                lambda x: x.product_id == self.product
+            ).price_unit,
+            new_price,
+        )
 
         # change uom of invoice and test re-computation
         invoice_line.with_context(

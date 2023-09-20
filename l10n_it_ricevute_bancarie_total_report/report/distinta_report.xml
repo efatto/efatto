@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <template id="l10n_it_ricevute_bancarie.distinta_qweb">
@@ -7,9 +7,14 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="distinta_number">
-                            <span>Distinta SBF n. <span t-esc="o.name or 'Bozza'"/> su banca <span t-esc="o.config_id.name or ''"/> del <span t-esc="o.registration_date" t-options='{"widget": "date"}'/></span>
+                            <span>Distinta SBF n. <span
+                  t-esc="o.name or 'Bozza'"
+                /> su banca <span t-esc="o.config_id.name or ''" /> del <span
+                  t-esc="o.registration_date"
+                  t-options='{"widget": "date"}'
+                /></span>
                         </div>
-                        <p/>
+                        <p />
                         <t t-set="gen_amount" t-value="0" />
                         <t t-as="due_date" t-foreach="get_riba_group[1]">
                             <div class="row">
@@ -17,7 +22,9 @@
                                     <thead>
                                         <tr>
                                             <td colspan="8" style="font-size: 14px;">
-                                                <p>Scadenze del <span t-esc="due_date"/></p>
+                                                <p>Scadenze del <span
+                            t-esc="due_date"
+                          /></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -48,44 +55,67 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <t t-set="tot_amount" t-value="0"/>
-                                        <t t-set="nr" t-value="1"/>
-                                        <tr t-foreach="get_riba_group[0][due_date]" t-as="line">
+                                        <t t-set="tot_amount" t-value="0" />
+                                        <t t-set="nr" t-value="1" />
+                                        <tr
+                      t-foreach="get_riba_group[0][due_date]"
+                      t-as="line"
+                    >
                                             <td>
-                                                <p><span t-esc="nr"/></p>
+                                                <p><span t-esc="nr" /></p>
                                             </td>
                                             <td>
-                                                <p><span t-field="line.invoice_number"/></p>
+                                                <p><span
+                            t-field="line.invoice_number"
+                          /></p>
                                             </td>
                                             <td>
-                                                <p><span t-field="line.invoice_date" /></p>
+                                                <p><span
+                            t-field="line.invoice_date"
+                          /></p>
                                             </td>
                                             <td>
-                                                <p><span t-field="line.partner_id"/></p>
+                                                <p><span
+                            t-field="line.partner_id"
+                          /></p>
                                             </td>
                                             <td>
-                                                <p><span t-esc="line.bank_id.bank_abi or line.bank_id.acc_number.replace(' ', '')[5:10]"/></p>
+                                                <p><span
+                            t-esc="line.bank_id.bank_abi or line.bank_id.acc_number.replace(' ', '')[5:10]"
+                          /></p>
                                             </td>
                                             <td>
-                                                <p><span t-esc="line.bank_id.bank_cab or line.bank_id.acc_number.replace(' ', '')[10:15]"/></p>
+                                                <p><span
+                            t-esc="line.bank_id.bank_cab or line.bank_id.acc_number.replace(' ', '')[10:15]"
+                          /></p>
                                             </td>
                                             <td>
-                                                <p><span t-field="line.due_date"/></p>
+                                                <p><span t-field="line.due_date" /></p>
                                             </td>
                                             <td class="text-right">
-                                                <p><span t-field="line.amount"
-                                                         t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></p>
+                                                <p><span
+                            t-field="line.amount"
+                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                          /></p>
                                             </td>
-                                            <t t-set="tot_amount" t-value="tot_amount + line.amount" />
+                                            <t
+                        t-set="tot_amount"
+                        t-value="tot_amount + line.amount"
+                      />
                                             <t t-set="nr" t-value="nr + 1" />
-                                            <t t-set="gen_amount" t-value="gen_amount + line.amount" />
+                                            <t
+                        t-set="gen_amount"
+                        t-value="gen_amount + line.amount"
+                      />
                                         </tr>
                                         <tr>
-                                            <td colspan="6"/>
+                                            <td colspan="6" />
                                             <td><p>Total</p></td>
                                             <td class="text-right">
-                                                <p><span t-esc="tot_amount"
-                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></p>
+                                                <p><span
+                            t-esc="tot_amount"
+                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                          /></p>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -98,9 +128,10 @@
                                 <p>TOTALE COMPLESSIVO</p>
                             </div>
                             <div class="col-4 text-right">
-                                <p><span t-esc="gen_amount"
-                                          t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
-                                    />
+                                <p><span
+                    t-esc="gen_amount"
+                    t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'
+                  />
                                 </p>
                             </div>
                         </div>

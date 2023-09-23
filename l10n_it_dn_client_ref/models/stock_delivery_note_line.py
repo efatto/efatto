@@ -4,8 +4,6 @@ from odoo import fields, models
 
 
 class StockDeliveryNoteLine(models.Model):
-    _inherit = 'stock.delivery.note.line'
+    _inherit = "stock.delivery.note.line"
 
-    client_order_ref = fields.Char(
-        related='sale_line_id.order_id.client_order_ref'
-    )
+    client_order_ref = fields.Char(related="sale_line_id.order_id.client_order_ref")

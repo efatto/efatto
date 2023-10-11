@@ -5,8 +5,7 @@ from odoo import fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     production_ids = fields.One2many(string="Productions")
-    production_count = fields.Integer(
-        string="Production Count")
+    production_count = fields.Integer(string="Production Count")

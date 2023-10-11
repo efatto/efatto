@@ -101,14 +101,12 @@ class SaleOrder(models.Model):
         required=True,
         compute="_compute_calendar_state",
         store=True,
-        oldname="a_calendario",
     )
     max_commitment_date = fields.Datetime(
         compute="_compute_max_commitment_date",
         inverse="_inverse_max_commitment_date",
         store=True,
         string="New Scheduled Delivery Date",
-        oldname="last_agreed_delivery_date",
     )
     delivery_week = fields.Integer(compute="_compute_delivery_week", store=True)
     custom_production_qty = fields.Integer(
@@ -284,7 +282,7 @@ class SaleOrder(models.Model):
                 )[0]
         return calendar_state
 
-    def forecast_procurement(self, procurement, max_commitment_date):
+    def forecast_procurement(self, procurement, max_commitment_date):  # noqa: C901
         calendar_states = []
         # group_id in stock.move
         picking_ids = self.env["stock.picking"].search(
@@ -359,13 +357,19 @@ class SaleOrder(models.Model):
             ]
         )
         if mrp_production_ids:
-            for mrp_production in mrp_production_ids:
-                if mrp_production.state == "done":
-                    calendar_states.append((DONE, fields.Datetime.now()))
-                elif mrp_production.state == "confirmed":
-                    if mrp_production.availability != "assigned":
+            mrp_states = set(mrp_production_ids.mapped("state"))
+            mrp_additional_states = mrp_production_ids.filtered(
+                lambda x: x.additional_state
+            ).mapped("additional_state")
+            if mrp_additional_states:
+                mrp_additional_states = set(mrp_additional_states)
+            if mrp_states & {"to_close", "done"}:
+                calendar_states.append((DONE, fields.Datetime.now()))
+            if mrp_states & {"draft", "confirmed"}:
+                for mrp_production in mrp_production_ids:
+                    if mrp_production.reservation_state != "assigned":
                         datetime_planned = fields.Datetime.now() + relativedelta(
-                            days=mrp_production.product_id.produce_delay
+                            days=int(mrp_production.product_id.produce_delay)
                         )
                         calendar_states.append(
                             (MISSING_COMPONENTS_PRODUCE, datetime_planned)
@@ -378,16 +382,24 @@ class SaleOrder(models.Model):
                         calendar_states.append(
                             (PRODUCTION_READY, fields.Datetime.now())
                         )
-                elif mrp_production.state == "planned":
-                    calendar_states.append((PRODUCTION_PLANNED, fields.Datetime.now()))
-                elif mrp_production.state == "progress":
-                    calendar_states.append((PRODUCTION_STARTED, fields.Datetime.now()))
-                if mrp_production.additional_state:
+            # elif mrp_production.state == "planned": # does not more exist
+            #    calendar_states.append((PRODUCTION_PLANNED, fields.Datetime.now()))
+            if mrp_states & {"progress"}:
+                calendar_states.append((PRODUCTION_STARTED, fields.Datetime.now()))
+            if mrp_additional_states:
+                for mrp_additional_state in mrp_additional_states:
                     calendar_states.append(
-                        (mrp_production.additional_state, fields.Datetime.now())
+                        (mrp_additional_state, fields.Datetime.now())
                     )
-                if mrp_production.is_blocked:
-                    calendar_states.append(("blocked", fields.Datetime.now()))
+            if all(
+                x in [y[0] for y in calendar_states]
+                for x in [MISSING_COMPONENTS_PRODUCE, DONE]
+            ):
+                # set production started as there are many productions in different
+                # states
+                calendar_states = [(PRODUCTION_STARTED, fields.Datetime.now())]
+            if any(production.is_blocked for production in mrp_production_ids):
+                calendar_states.append(("blocked", fields.Datetime.now()))
         # check if all lines of type product or consu of so are invoiced
         if (
             all(
@@ -420,7 +432,7 @@ class SaleOrder(models.Model):
         "picking_ids.is_assigned",
         "production_ids.additional_state",
         "production_ids.is_blocked",
-        "production_ids.availability",
+        "production_ids.reservation_state",
     )
     def _compute_calendar_state(self):
         for order in self:

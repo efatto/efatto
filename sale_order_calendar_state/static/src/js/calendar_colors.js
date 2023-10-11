@@ -5,8 +5,7 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
 
   CalendarModel.include({
     load: function (params) {
-      var self = this;
-      if (params.modelName == "sale.order") {
+      if (params.modelName === "sale.order") {
         params.fieldColor = "color";
       }
       return this._super(params);

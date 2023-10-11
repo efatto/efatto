@@ -1,8 +1,10 @@
 .o_calendar_container {
   .o_calendar_view {
     .o_calendar_widget {
-      .o_field_partner_id, .o_field_is_prototype_calendar, .o_field_production_notes_calendar {
-          font-weight: bold;
+      .o_field_partner_id,
+      .o_field_is_prototype_calendar,
+      .o_field_production_notes_calendar {
+        font-weight: bold;
       }
     }
   }

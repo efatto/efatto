@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<!-- pylint:disable=dangerous-view-replace-wo-priority -->
 <odoo>
 
     <record id="view_order_form_calendar_state" model="ir.ui.view">
@@ -6,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//notebook/page[@name='other_information']/group/group/field[@name='commitment_date']"
+        expr="//notebook/page[@name='other_information']/group/group/div/field[@name='commitment_date']"
         position="before"
       >
                 <field name="max_commitment_date" />
@@ -175,7 +176,6 @@
         <field name="name">Orders to deliver</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order</field>
-        <field name="view_type">form</field>
         <field name="view_id" ref="view_sale_order_kanban_color" />
         <field name="view_mode">kanban,form,calendar</field>
         <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>

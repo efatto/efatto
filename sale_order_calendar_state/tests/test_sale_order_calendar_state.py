@@ -1,5 +1,5 @@
-from datetime import timedelta
-
+# Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields
 from odoo.tests import Form
 
@@ -80,11 +80,11 @@ class TestSaleOrderCalendarState(TestProductionData):
                     "qtamov": whs_list.qta,
                 }
             )
-        picking.action_done()
+        picking._action_done()
         self.assertEqual(picking.state, "done")
         self.assertEqual(order1.calendar_state, "delivery_done")
         # create invoice
-        order1.action_invoice_create()
+        order1._create_invoices()
         self.assertEqual(order1.calendar_state, "invoiced")
         # sale products partially not available
         self._create_sale_order_line(order1, self.product1, 50)
@@ -95,32 +95,21 @@ class TestSaleOrderCalendarState(TestProductionData):
         # self.assertEqual(order1.calendar_state, 'shipped')
 
     def test_02_mrp_from_sale(self):
-        sale_order = self.env["sale.order"].create(
-            {
-                "partner_id": self.env.ref("base.res_partner_12").id,
-                "date_order": fields.Date.today(),
-                "picking_policy": "direct",
-                "expected_date": fields.Date.today() + timedelta(days=20),
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.top_product.id,
-                            "product_uom_qty": 20,
-                            "product_uom": self.top_product.uom_po_id.id,
-                            "price_unit": self.top_product.list_price,
-                            "name": self.top_product.name,
-                        },
-                    ),
-                ],
-            }
-        )
-        sale_order.action_confirm()
-        self.assertEqual(sale_order.calendar_state, "to_produce")
-        man_order = self.env["mrp.production"].search(
-            [("origin", "ilike", sale_order.name)]
-        )
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.env.ref("base.res_partner_12")
+        order_form.date_order = fields.Date.today()
+        order_form.picking_policy = "direct"
+        with order_form.order_line.new() as line:
+            line.product_id = self.top_product
+            line.product_uom_qty = 20
+            line.product_uom = self.top_product.uom_po_id
+            line.price_unit = self.top_product.list_price
+            line.name = self.top_product.name
+        order = order_form.save()
+        order.action_confirm()
+        self.assertEqual(order.state, "sale")
+        self.assertEqual(order.calendar_state, "to_produce")
+        man_order = self.env["mrp.production"].search([("origin", "ilike", order.name)])
         self.assertTrue(man_order)
         man_order.action_assign()
         self.assertEqual(man_order.state, "confirmed")
@@ -135,40 +124,36 @@ class TestSaleOrderCalendarState(TestProductionData):
         blocked_form.note = "Blocked note text"
         wizard = blocked_form.save()
         wizard.mark_blocked()
-        self.assertEqual(sale_order.calendar_state, "blocked")
+        self.assertEqual(order.calendar_state, "blocked")
         self.assertTrue(man_order.is_blocked)
         man_order.button_mark_not_blocked()
-        self.assertFalse(sale_order.is_blocked)
-        self.assertEqual(sale_order.calendar_state, "to_produce")
+        self.assertFalse(order.is_blocked)
+        self.assertEqual(order.calendar_state, "to_produce")
         man_order.button_mark_to_submanufacture()
-        self.assertEqual(sale_order.calendar_state, "to_submanufacture")
+        self.assertEqual(order.calendar_state, "to_submanufacture")
         man_order.button_mark_to_assembly()
-        self.assertEqual(sale_order.calendar_state, "to_assembly")
+        self.assertEqual(order.calendar_state, "to_assembly")
         man_order.button_mark_to_test()
-        self.assertEqual(sale_order.calendar_state, "to_test")
+        self.assertEqual(order.calendar_state, "to_test")
         man_order.button_unmark_additional_state()
 
-        produce_form = Form(
-            self.env["mrp.product.produce"].with_context(
-                active_id=man_order.id,
-                active_ids=man_order.ids,
-            )
+        mo_form = Form(man_order)
+        mo_form.qty_producing = 2
+        man_order = mo_form.save()
+        self.assertEqual(order.calendar_state, "production_started")
+        action = man_order.button_mark_done()
+        self.assertEqual(order.calendar_state, "production_started")
+        backorder = Form(
+            self.env["mrp.production.backorder"].with_context(**action["context"])
         )
-        produced_qty = 2.0
-        produce_form.product_qty = produced_qty
-        wizard = produce_form.save()
-        wizard.do_produce()
-        self.assertEqual(sale_order.calendar_state, "production_started")
+        backorder.save().action_backorder()
+        self.assertEqual(len(man_order.procurement_group_id.mrp_production_ids), 2)
+        self.assertEqual(order.calendar_state, "production_started")
 
-        produce_form = Form(
-            self.env["mrp.product.produce"].with_context(
-                active_id=man_order.id,
-                active_ids=man_order.ids,
-            )
-        )
-        produced_qty = 18.0
-        produce_form.product_qty = produced_qty
-        wizard = produce_form.save()
-        wizard.do_produce()
-        man_order.button_mark_done()
-        self.assertEqual(sale_order.calendar_state, "production_done")
+        mo_backorder = man_order.procurement_group_id.mrp_production_ids[-1]
+        mo_backorder_form = Form(mo_backorder)
+        mo_backorder_form.qty_producing = 18
+        mo_backorder = mo_backorder_form.save()
+        mo_backorder.button_mark_done()
+
+        self.assertEqual(order.calendar_state, "production_done")

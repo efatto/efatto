@@ -4,16 +4,6 @@
 from odoo import fields, models
 
 
-class MrpProductProduce(models.TransientModel):
-    _inherit = "mrp.product.produce"
-
-    def do_produce(self):
-        res = super(MrpProductProduce, self).do_produce()
-        for mo in self.production_id.filtered(lambda x: x.sale_id):
-            mo.sale_id.update_forecast_state()
-        return res
-
-
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
@@ -30,8 +20,8 @@ class MrpProduction(models.Model):
     is_blocked = fields.Boolean()
     blocked_note = fields.Char()
 
-    def post_inventory(self):
-        res = super().post_inventory()
+    def _post_inventory(self, cancel_backorder):
+        res = super()._post_inventory(cancel_backorder=cancel_backorder)
         self.write({"additional_state": "to_assembly"})
         return res
 

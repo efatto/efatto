@@ -9,10 +9,8 @@
                 <field name="additional_state" readonly="1" />
                 <field name="is_blocked" />
                 <field name="blocked_note" />
+                <field name="check_to_done" invisible="1" />
             </field>
-            <button name="post_inventory" position="attributes">
-                <attribute name="class">oe_highlight</attribute>
-            </button>
             <xpath expr="//button[@name='button_mark_done'][1]" position="attributes">
                 <attribute
           name="attrs"
@@ -23,7 +21,7 @@
           name="attrs"
         >{'invisible': ['|', '|', ('post_visible', '=', True), ('check_to_done', '=', False), ('consumed_less_than_planned', '=', False)]}</attribute>
             </xpath>
-            <button name="post_inventory" position="after">
+            <button name="button_scrap" position="after">
                 <button
           name="%(sale_order_calendar_state.action_marked_blocked)d"
           type="action"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+    id="assets_backend"
+    name="mrp_sale_info_link_notes assets"
+    inherit_id="web.assets_backend"
+  >
+          <xpath expr="." position="inside">
+                 <link
+        rel="stylesheet"
+        type="text/scss"
+        href="/mrp_sale_info_link_notes/static/src/scss/web_calendar.scss"
+      />
+          </xpath>
+    </template>
+</odoo>

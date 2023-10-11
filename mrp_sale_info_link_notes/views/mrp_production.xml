@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="mrp_production_form_view" model="ir.ui.view">
         <field name="name">MRP Production Form with Sale Order</field>
@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="mrp_sale_info.mrp_production_form_view" />
         <field name="arch" type="xml">
             <field name="sale_id" position="after">
-                <field name="production_notes"/>
-                <field name="is_prototype"/>
+                <field name="production_notes" />
+                <field name="is_prototype" />
             </field>
         </field>
     </record>

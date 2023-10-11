@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_marked_blocked" model="ir.ui.view">
         <field name="name">marked_blocked_wizard</field>
@@ -7,14 +7,17 @@
             <form string="Mark blocked">
                 <div>
                     <group>
-                        <field name="note"/>
+                        <field name="note" />
                     </group>
                 </div>
                 <footer>
-                    <button class="btn-primary" name="mark_blocked"
-                            string="Confirm" type="object"/>
-                    <button class="btn-secondary" special="cancel"
-                            string="Discard"/>
+                    <button
+            class="btn-primary"
+            name="mark_blocked"
+            string="Confirm"
+            type="object"
+          />
+                    <button class="btn-secondary" special="cancel" string="Discard" />
                 </footer>
             </form>
         </field>

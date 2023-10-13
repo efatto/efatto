@@ -4,7 +4,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="company_id" position="before">
+            <field name="show_update_pricelist" position="after">
                 <field
           name="bookmarked"
           attrs="{'invisible': ['|', ('bookmarked', '=', False), ('bookmarked_manual', '=', True)]}"

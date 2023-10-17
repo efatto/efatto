@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="purchase_order_tag_tree_view" model="ir.ui.view">
         <field name="name">purchase.order.tag.tree</field>
         <field name="model">purchase.order.tag</field>
         <field name="arch" type="xml">
             <tree string="Purchase Tags">
-                <field name="name"/>
-                <field name="order_state"/>
+                <field name="name" />
+                <field name="order_state" />
             </tree>
         </field>
     </record>
@@ -18,15 +18,24 @@
             <form string="Purchase Tags">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        <button
+              class="oe_stat_button"
+              type="object"
+              name="toggle_active"
+              icon="fa-archive"
+            >
+                            <field
+                name="active"
+                widget="boolean_button"
+                options='{"terminology": "archive"}'
+              />
                         </button>
                     </div>
                     <group>
-                        <field name="name"/>
-                        <field name="color"/>
-                        <field name="order_state"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="name" />
+                        <field name="color" />
+                        <field name="order_state" />
+                        <field name="company_id" groups="base.group_multi_company" />
                     </group>
                 </sheet>
             </form>
@@ -36,7 +45,6 @@
     <record id="purchase_order_tag_action" model="ir.actions.act_window">
         <field name="name">Purchase Tags</field>
         <field name="res_model">purchase.order.tag</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
           <p class="o_view_nocontent_smiling_face">
@@ -45,18 +53,23 @@
         </field>
     </record>
     <menuitem
-        action="purchase_order_tag_action"
-        id="menu_tag_in_config_purchase"
-        parent="purchase.menu_purchase_config"
-        sequence="20"/>
+    action="purchase_order_tag_action"
+    id="menu_tag_in_config_purchase"
+    parent="purchase.menu_purchase_config"
+    sequence="20"
+  />
 
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_status']" position="after">
-                <field name="tag_ids" domain="[('order_state', '=', state)]"
-                       widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field
+          name="tag_ids"
+          domain="[('order_state', '=', state)]"
+          widget="many2many_tags"
+          options="{'color_field': 'color'}"
+        />
             </xpath>
         </field>
     </record>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="ir_cron_sale_order_calendar_state" model="ir.cron">
+        <field name="name">Sale order calendar state</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True" />
+        <field name="model_id" ref="model_sale_order" />
+        <field
+      name="code"
+    >model.search([('state', 'not in', ['draft', 'cancel']), ('invoice_status', '!=', 'invoiced'), ('calendar_state', 'not in', ['invoiced', 'shipped', 'delivery_done'])]).update_forecast_state()</field>
+        <field name="doall" eval="False" />
+    </record>
+</odoo>

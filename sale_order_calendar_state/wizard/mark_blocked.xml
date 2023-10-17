@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_marked_blocked" model="ir.ui.view">
+        <field name="name">marked_blocked_wizard</field>
+        <field name="model">wizard.mark.blocked</field>
+        <field name="arch" type="xml">
+            <form string="Mark blocked">
+                <div>
+                    <group>
+                        <field name="note" />
+                    </group>
+                </div>
+                <footer>
+                    <button
+            class="btn-primary"
+            name="mark_blocked"
+            string="Confirm"
+            type="object"
+          />
+                    <button class="btn-secondary" special="cancel" string="Discard" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_marked_blocked" model="ir.actions.act_window">
+        <field name="name">Mark blocked</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.mark.blocked</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

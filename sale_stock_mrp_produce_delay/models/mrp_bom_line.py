@@ -17,8 +17,10 @@ class MrpBomLine(models.Model):
                 delay = self.product_id.purchase_delay
             else:
                 # fixme need to filter boms?
-                delay = max(self.product_id.bom_ids[0].mapped(
-                    'bom_line_ids.product_id.purchase_delay')
+                delay = max(
+                    self.product_id.bom_ids[0].mapped(
+                        "bom_line_ids.product_id.purchase_delay"
+                    )
                 )
         available_date = date_start + relativedelta(days=int(delay))
         return available_date

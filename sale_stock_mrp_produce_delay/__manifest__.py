@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale stock mrp produce delay",
-    "version": "12.0.1.0.9",
+    "version": "14.0.1.0.0",
     "category": "other",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
@@ -13,7 +13,6 @@
         "sale_backorder",
         "sale_order_archive",
         "sale_order_line_date",
-        "sale_stock_info_popup",
         "stock_move_available_date_expected",
     ],
     "data": [
@@ -23,5 +22,5 @@
     "qweb": [
         "static/src/xml/qty_at_date.xml",
     ],
-    "installable": True
+    "installable": True,
 }

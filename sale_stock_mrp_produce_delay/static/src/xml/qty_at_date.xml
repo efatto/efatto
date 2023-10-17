@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <templates>
 <!--  Icon is red when:
       1. qty requested is greater than qty available and date scheduled is greater than date requested
@@ -7,14 +7,16 @@
 -->
     <div t-extend="sale_stock.qtyAtDate">
         <t t-jquery="div" t-operation="replace">
-            <t t-if="widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and widget.data.scheduled_date &gt; widget.data.commitment_date and !widget.data.is_kit">
-                <a tabindex="0" class="fa fa-info-circle text-danger"/>
+            <t
+        t-if="widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and widget.data.scheduled_date &gt; widget.data.commitment_date and !widget.data.is_kit"
+      >
+                <a tabindex="0" class="fa fa-info-circle text-danger" />
             </t>
             <t t-elif="widget.data.is_mto or widget.data.is_kit">
-                <a tabindex="0"/>
+                <a tabindex="0" />
             </t>
             <t t-else="">
-                <a tabindex="0" class="fa fa-info-circle text-primary"/>
+                <a tabindex="0" class="fa fa-info-circle text-primary" />
             </t>
         </t>
     </div>
@@ -25,20 +27,22 @@
                     <tr>
                         <td><strong>Forecasted Stock</strong><br />
                             <t t-if="data.virtual_available_at_date > 0">
-                                <small>Stock available date<span t-esc="data.delivery_date"/></small>
+                                <small>Stock available date<span
+                    t-esc="data.delivery_date"
+                  /></small>
                             </t>
                             <t t-else="data.virtual_available_at_date = 0">
                                 <small>Stock unavailable</small>
                             </t>
                         </td>
-                        <td><t t-esc='data.virtual_available_at_date'/>
-                            <t t-esc='data.product_uom.data.display_name'/></td>
+                        <td><t t-esc='data.virtual_available_at_date' />
+                            <t t-esc='data.product_uom.data.display_name' /></td>
                     </tr>
                 </t>
                 <t t-else="">
                     <tr>
                         <td><strong>Available Delivery</strong></td>
-                        <td class="oe-right"><span t-esc="data.available_date"/></td>
+                        <td class="oe-right"><span t-esc="data.available_date" /></td>
                     </tr>
                 </t>
             </tbody>

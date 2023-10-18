@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
                     ("product_id", "=", product.id),
                     ("state", "!=", "cancel"),
                     (
-                        "date_expected",
+                        "date_deadline",
                         ">=",
                         product.product_tmpl_id.date_oldest_open_move,
                     ),

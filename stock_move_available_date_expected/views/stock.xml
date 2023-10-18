@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_move_search_date_expected" model="ir.ui.view">
+    <record id="view_move_search_date_deadline" model="ir.ui.view">
         <field name="name">stock.move.search</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_search" />
@@ -8,9 +8,9 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <filter
           string="Date expected from today"
-          name="date_expected_from_today"
+          name="date_deadline_from_today"
           domain="[
-                    ('date_expected', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
+                    ('date_deadline', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
         />
             </xpath>
         </field>
@@ -22,13 +22,13 @@
         <field name="arch" type="xml">
             <tree
         decoration-muted="state == 'cancel'"
-        decoration-warning="qty_available_at_date_expected&lt;0 and state not in ('done', 'cancel')"
+        decoration-warning="qty_available_at_date_deadline&lt;0 and state not in ('done', 'cancel')"
         string="Reserved Moves"
         create="false"
-        default_order="date_expected"
+        default_order="date_deadline"
       >
                 <field name="product_id" />
-                <field name="date_expected" string="Date Expected" widget="date" />
+                <field name="date_deadline" string="Date Expected" widget="date" />
                 <field name="move_origin" />
                 <button
           name="open_incoming_move_origin"
@@ -49,7 +49,7 @@
           groups="base.group_user"
         />
                 <field name="qty_signed" string="Quantity" />
-                <field name="qty_available_at_date_expected" />
+                <field name="qty_available_at_date_deadline" />
                 <field name="qty_available" string="Qty by hand" />
                 <button
           name="remove_stock_move_reservation"

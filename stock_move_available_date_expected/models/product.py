@@ -5,7 +5,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_round
 
-from odoo.addons import decimal_precision as dp
 from odoo.addons.stock.models.product import OPERATORS
 
 
@@ -29,7 +28,7 @@ class ProductTemplate(models.Model):
                     ]
                 )
             product_template.date_oldest_open_move = min(
-                [x.date_expected for x in moves]
+                [x.date_deadline for x in moves]
                 or [
                     fields.Datetime.now(),
                 ]
@@ -39,7 +38,7 @@ class ProductTemplate(models.Model):
         domain = [
             ("product_id.product_tmpl_id", "in", self.ids),
             ("state", "!=", "cancel"),
-            ("date_expected", ">=", self.date_oldest_open_move),
+            ("date_deadline", ">=", self.date_oldest_open_move),
         ]
         view = self.env.ref(
             "stock_move_available_date_expected.view_stock_reserved_tree"
@@ -57,11 +56,11 @@ class ProductTemplate(models.Model):
 class Product(models.Model):
     _inherit = "product.product"
 
-    virtual_available_at_date_expected = fields.Float(
+    virtual_available_at_date_deadline = fields.Float(
         "Forecast Quantity Expected Date",
-        compute="_compute_quantities_by_date_expected",
-        search="_search_virtual_available_by_date_expected",
-        digits=dp.get_precision("Product Unit of Measure"),
+        compute="_compute_quantities_by_date_deadline",
+        search="_search_virtual_available_by_date_deadline",
+        digits="Product Unit of Measure",
     )
 
     def open_view_stock_reserved(self):
@@ -75,7 +74,7 @@ class Product(models.Model):
             domain = [
                 ("product_id", "=", self.id),
                 ("state", "!=", "cancel"),
-                ("date_expected", ">=", self.product_tmpl_id.date_oldest_open_move),
+                ("date_deadline", ">=", self.product_tmpl_id.date_oldest_open_move),
             ]
             view = self.env.ref(
                 "stock_move_available_date_expected.view_stock_reserved_tree"
@@ -90,18 +89,18 @@ class Product(models.Model):
             "context": {},
         }
 
-    def _search_virtual_available_by_date_expected(self, operator, value):
+    def _search_virtual_available_by_date_deadline(self, operator, value):
         # TDE FIXME: should probably clean the search methods
         return self._search_product_quantity(
-            operator, value, "virtual_available_at_date_expected"
+            operator, value, "virtual_available_at_date_deadline"
         )
 
-    def _search_product_quantity_by_date_expected(self, operator, value, field):
+    def _search_product_quantity_by_date_deadline(self, operator, value, field):
         # TDE FIXME: should probably clean the search methods
         # to prevent sql injections
         if field not in (
             "qty_available",
-            "virtual_available_at_date_expected",
+            "virtual_available_at_date_deadline",
             "incoming_qty",
             "outgoing_qty",
         ):
@@ -123,8 +122,8 @@ class Product(models.Model):
         return [("id", "in", ids)]
 
     @api.depends("stock_move_ids.product_qty", "stock_move_ids.state")
-    def _compute_quantities_by_date_expected(self):
-        res = self._compute_quantities_by_date_expected_dict(
+    def _compute_quantities_by_date_deadline(self):
+        res = self._compute_quantities_by_date_deadline_dict(
             self._context.get("lot_id"),
             self._context.get("owner_id"),
             self._context.get("package_id"),
@@ -135,11 +134,11 @@ class Product(models.Model):
             # product.qty_available = res[product.id]['qty_available']
             # product.incoming_qty = res[product.id]['incoming_qty']
             # product.outgoing_qty = res[product.id]['outgoing_qty']
-            product.virtual_available_at_date_expected = res[product.id][
-                "virtual_available_at_date_expected"
+            product.virtual_available_at_date_deadline = res[product.id][
+                "virtual_available_at_date_deadline"
             ]
 
-    def _compute_quantities_by_date_expected_dict(
+    def _compute_quantities_by_date_deadline_dict(
         self, lot_id, owner_id, package_id, from_date=False, to_date=False
     ):
         (
@@ -149,6 +148,10 @@ class Product(models.Model):
         ) = self._get_domain_locations()
         domain_quant = [("product_id", "in", self.ids)] + domain_quant_loc
         dates_in_the_past = False
+        moves_in_res_past = False
+        moves_out_res_past = False
+        domain_move_in_done = []
+        domain_move_out_done = []
         # only to_date as to_date will correspond to qty_available
         if to_date:
             to_date = fields.Datetime.to_datetime(to_date).replace(
@@ -171,11 +174,11 @@ class Product(models.Model):
             domain_move_in_done = list(domain_move_in)
             domain_move_out_done = list(domain_move_out)
         if from_date:
-            domain_move_in += [("date_expected", ">=", from_date)]
-            domain_move_out += [("date_expected", ">=", from_date)]
+            domain_move_in += [("date_deadline", ">=", from_date)]
+            domain_move_out += [("date_deadline", ">=", from_date)]
         if to_date:
-            domain_move_in += [("date_expected", "<=", to_date)]
-            domain_move_out += [("date_expected", "<=", to_date)]
+            domain_move_in += [("date_deadline", "<=", to_date)]
+            domain_move_out += [("date_deadline", "<=", to_date)]
 
         Move = self.env["stock.move"]
         Quant = self.env["stock.quant"]
@@ -214,11 +217,11 @@ class Product(models.Model):
             # (as most questions will be recent ones)
             domain_move_in_done = [
                 ("state", "=", "done"),
-                ("date_expected", ">", to_date),
+                ("date_deadline", ">", to_date),
             ] + domain_move_in_done
             domain_move_out_done = [
                 ("state", "=", "done"),
-                ("date_expected", ">", to_date),
+                ("date_deadline", ">", to_date),
             ] + domain_move_out_done
             moves_in_res_past = {
                 item["product_id"][0]: item["product_qty"]
@@ -246,9 +249,9 @@ class Product(models.Model):
             res[product_id] = {}
             if dates_in_the_past:
                 qty_available = (
-                    quants_res.get(product_id, 0.0)
-                    - moves_in_res_past.get(product_id, 0.0)
-                    + moves_out_res_past.get(product_id, 0.0)
+                    quants_res.get(product_id, 0.0) - moves_in_res_past
+                    and moves_in_res_past.get(product_id, 0.0) + moves_out_res_past
+                    and moves_out_res_past.get(product_id, 0.0)
                 )
             else:
                 qty_available = quants_res.get(product_id, 0.0)
@@ -261,7 +264,7 @@ class Product(models.Model):
             res[product_id]["outgoing_qty"] = float_round(
                 moves_out_res.get(product_id, 0.0), precision_rounding=rounding
             )
-            res[product_id]["virtual_available_at_date_expected"] = float_round(
+            res[product_id]["virtual_available_at_date_deadline"] = float_round(
                 qty_available
                 + res[product_id]["incoming_qty"]
                 - res[product_id]["outgoing_qty"],

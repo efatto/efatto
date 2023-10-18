@@ -8,8 +8,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     qty_available = fields.Float(related="product_id.qty_available")
-    qty_available_at_date_expected = fields.Float(
-        compute="_compute_qty_available_at_date_expected"
+    qty_available_at_date_deadline = fields.Float(
+        compute="_compute_qty_available_at_date_deadline"
     )
     move_line_qty_done = fields.Boolean(compute="_compute_move_line_qty_done")
     sale_partner_id = fields.Many2one(
@@ -71,7 +71,7 @@ class StockMove(models.Model):
                 move.production_ids = production_ids
             else:
                 move.reserve_origin = "stock"
-                move.reserve_date = move.date_expected
+                move.reserve_date = move.date_deadline
                 move.purchase_ids = False
                 move.production_ids = False
 
@@ -246,11 +246,11 @@ class StockMove(models.Model):
                 any([x.qty_done > 0 for x in move.move_line_ids])
             )
 
-    def _compute_qty_available_at_date_expected(self):
+    def _compute_qty_available_at_date_deadline(self):
         for move in self:
-            move.qty_available_at_date_expected = move.product_id.with_context(
-                {"to_date": move.date_expected}
-            ).virtual_available_at_date_expected
+            move.qty_available_at_date_deadline = move.product_id.with_context(
+                {"to_date": move.date_deadline}
+            ).virtual_available_at_date_deadline
 
     def remove_stock_move_reservation(self):
         for move in self:
@@ -261,7 +261,7 @@ class StockMove(models.Model):
                         "active_id": move.id,
                     }
                 )
-                .create({})
+                .create([{}])
             )
             for quants_line in wizard.quants_lines:
                 quants_line.qty = 0.0

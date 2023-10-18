@@ -166,8 +166,8 @@ class SaleOrderLine(models.Model):
                         SELECT
                         MIN(-sm.id) as id,
                         sm.product_id,
-                        CASE WHEN sm.date_expected > CURRENT_DATE
-                        THEN sm.date_expected
+                        CASE WHEN sm.date_deadline > CURRENT_DATE
+                        THEN sm.date_deadline
                         ELSE CURRENT_DATE END
                         AS date,
                         SUM(sm.product_qty) AS product_qty,
@@ -187,13 +187,13 @@ class SaleOrderLine(models.Model):
                         ('confirmed','partially_available','assigned','waiting')
                         and source_location.usage != 'internal'
                         and dest_location.usage = 'internal'
-                        GROUP BY sm.date_expected, sm.product_id, sm.company_id
+                        GROUP BY sm.date_deadline, sm.product_id, sm.company_id
                         UNION ALL
                         SELECT
                             MIN(-sm.id) as id,
                             sm.product_id,
-                            CASE WHEN sm.date_expected > CURRENT_DATE
-                                THEN sm.date_expected
+                            CASE WHEN sm.date_deadline > CURRENT_DATE
+                                THEN sm.date_deadline
                                 ELSE CURRENT_DATE END
                             AS date,
                             SUM(-(sm.product_qty)) AS product_qty,
@@ -213,7 +213,7 @@ class SaleOrderLine(models.Model):
                             ('confirmed','partially_available','assigned','waiting')
                         and source_location.usage = 'internal'
                         and dest_location.usage != 'internal'
-                        GROUP BY sm.date_expected,sm.product_id, sm.company_id)
+                        GROUP BY sm.date_deadline,sm.product_id, sm.company_id)
                      as MAIN
                      LEFT JOIN
                      (SELECT DISTINCT date
@@ -221,7 +221,7 @@ class SaleOrderLine(models.Model):
                       (
                          SELECT CURRENT_DATE AS DATE
                          UNION ALL
-                         SELECT sm.date_expected AS date
+                         SELECT sm.date_deadline AS date
                          FROM stock_move sm
                          LEFT JOIN
                          stock_location source_location
@@ -231,7 +231,7 @@ class SaleOrderLine(models.Model):
                          ON sm.location_dest_id = dest_location.id
                          WHERE
                          sm.state IN ('confirmed','assigned','waiting')
-                         and sm.date_expected > CURRENT_DATE
+                         and sm.date_deadline > CURRENT_DATE
                          and ((dest_location.usage = 'internal'
                          AND source_location.usage != 'internal')
                           or (source_location.usage = 'internal'
@@ -285,10 +285,10 @@ class SaleOrderLine(models.Model):
                     availables = []
             if availables:
                 # there are multiple available dates: get the lower qty
-                availables.sort(key=lambda self: self["cumulative_quantity"])
+                availables.sort(key=lambda s: s["cumulative_quantity"])
                 available = availables[0]
                 # show the first available date
-                availables.sort(key=lambda self: self["date"])
+                availables.sort(key=lambda s: s["date"])
                 available_date = availables[0]
                 scheduled_date = fields.Datetime.from_string(available_date["date"])
                 # product = line.product_id.with_context(
@@ -344,17 +344,17 @@ class SaleOrderLine(models.Model):
             ]
             + domain_move_out_loc
         )
-        # check moves with date > date_expected
+        # check moves with date > date_deadline
         date_error_moves = [
-            x.date_expected.date()
+            x.date_deadline.date()
             for x in incoming_stock_moves | reserved_stock_moves
-            if x.date > x.date_expected
+            if x.date > x.date_deadline
         ]
         if date_error_moves:
             pass
         for reserve_date in set(
-            [x.date() for x in reserved_stock_moves.mapped("date_expected")]
-            + [y.date() for y in incoming_stock_moves.mapped("date_expected")]
+            [x.date() for x in reserved_stock_moves.mapped("date_deadline")]
+            + [y.date() for y in incoming_stock_moves.mapped("date_deadline")]
             + [date_start]
         ):
             available_info.append(
@@ -363,7 +363,7 @@ class SaleOrderLine(models.Model):
                     "date": reserve_date,
                     "qty": product_id.with_context(
                         to_date=reserve_date
-                    ).virtual_available_at_date_expected,
+                    ).virtual_available_at_date_deadline,
                 }
             )
         # FIXME when all dates has sufficient availability is ignored!
@@ -457,12 +457,9 @@ class SaleOrderLine(models.Model):
                 produce_delay = 0
                 if product_id.produce_delay:
                     produce_delay = int(product_id.produce_delay)
-                elif bom_id.routing_id:
+                elif bom_id.operation_ids:
                     produce_delay = (
-                        sum(
-                            bom_id.mapped("routing_id.operation_ids.time_cycle_manual")
-                            or [0]
-                        )
+                        sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0])
                         / 1440
                     )
                 if produce_delay:
@@ -543,13 +540,9 @@ class SaleOrderLine(models.Model):
             produce_delay = int(self.product_id.produce_delay)
         elif self.product_id.bom_ids:
             bom_id = self.product_id.bom_ids[0]
-            if bom_id.routing_id:
+            if bom_id.operation_ids:
                 produce_delay = int(
-                    sum(
-                        bom_id.mapped("routing_id.operation_ids.time_cycle_manual")
-                        or [0]
-                    )
-                    / 1440
+                    sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0]) / 1440
                 )
         raise UserError(
             _(

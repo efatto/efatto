@@ -122,6 +122,7 @@ class Product(models.Model):
         return [("id", "in", ids)]
 
     @api.depends("stock_move_ids.product_qty", "stock_move_ids.state")
+    @api.depends_context("from_date", "to_date")
     def _compute_quantities_by_date_deadline(self):
         res = self._compute_quantities_by_date_deadline_dict(
             self._context.get("lot_id"),

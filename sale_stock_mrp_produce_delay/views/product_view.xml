@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_product_product_search_view" model="ir.ui.view">
+        <field name="name">product.product.search</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="mrp.mrp_product_product_search_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="id" string="Product id" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

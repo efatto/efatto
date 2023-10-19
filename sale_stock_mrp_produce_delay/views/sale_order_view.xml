@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='last_date_delivered']" position="after">
+                <label for="available_date" states="draft,sent" />
+                <div name="available_date_info" states="draft,sent">
+                    <div>
+                        <field name="available_date" />
+                    </div>
+                    <div>
+                        <button
+              name="compute_dates"
+              type="object"
+              class="oe_inline oe_link"
+              icon="fa-calendar-check"
+            >Compute arrival prediction</button>
+                            (Last computed on: <field
+              name="last_available_date_compute"
+              nolabel="True"
+            />)
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="predicted_arrival_late" invisible="1" />
+                <field name="late_product_ids" invisible="1" />
+                <field name="is_kit" invisible="1" />
+                <button
+          string="Arriving late"
+          attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
+          name="action_delayed_line"
+          type="object"
+          icon="fa-exclamation-triangle"
+        />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute
+          name="decoration-danger"
+        >predicted_arrival_late is True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

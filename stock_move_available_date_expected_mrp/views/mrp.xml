@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_production_form_reserved" model="ir.ui.view">
+        <field name="name">mrp.production.form.reserved</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+        expr="//notebook/page/field[@name='move_raw_ids']/tree/field[@name='product_id']"
+        position="after"
+      >
+                <button
+          name="open_view_stock_reserved"
+          string="Stock Reserved"
+          type="object"
+          class="oe_stat_button"
+          icon="fa-arrows-v"
+          groups="base.group_user"
+        />
+            </xpath>
+        </field>
+    </record>
+</odoo>

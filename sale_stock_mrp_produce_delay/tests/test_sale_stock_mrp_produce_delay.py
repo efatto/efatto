@@ -1,6 +1,7 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
+from odoo.tests.common import Form
 from odoo.tools import mute_logger
 from odoo.tools.date_utils import relativedelta
 
@@ -11,6 +12,11 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.maxDiff = None
+        config = Form(cls.env["res.config.settings"])
+        config.use_po_lead = False
+        config = config.save()
+        config.execute()
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.product = cls.env["product.product"].create(
             {
@@ -33,7 +39,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                             "min_qty": 0.0,
                             "sequence": 1,
                             "date_start": fields.Date.today() - relativedelta(days=100),
-                            "delay": 28,
+                            "delay": 26,
                         },
                     ),
                 ]
@@ -63,7 +69,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
                         0,
                         0,
                         {
-                            "name": cls.env.ref("base.res_partner_3").id,
+                            "name": cls.env.ref("base.res_partner_4").id,
                             "price": 5.0,
                             "min_qty": 0.0,
                             "sequence": 1,
@@ -138,7 +144,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         )
         line1 = self._create_sale_order_line(order1, self.product, 5)
         order1.compute_dates()
-        available_date = fields.Date.today() + relativedelta(days=28)
+        available_date = fields.Date.today() + relativedelta(days=26)
         self.assertEqual(line1.available_date, available_date)
         self.assertEqual(
             line1.available_dates_info,
@@ -168,7 +174,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         line = self._create_sale_order_line(order, self.top_product, 3)
         order.compute_dates()
         available_date = fields.Date.today() + relativedelta(days=35)
-        available_date1 = fields.Date.today() + relativedelta(days=28)
+        available_date1 = fields.Date.today() + relativedelta(days=26)
         available_date2 = fields.Date.today() + relativedelta(
             days=35 + self.top_product.produce_delay
         )
@@ -199,10 +205,10 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         # product (stock): [available at date x | purchesable for date x]¹
         # top product [MANUF] 3pc (bom): [available at date x | produceable at date x]²
         #   -> 2pc subproduct2 [MANUF 1-2] * 3 = 6pc (bom): ²
-        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 28 days purch
+        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 26 days purch
         #      -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
         #   -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
-        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
+        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 26 days purch
         (
             sale_order,
             sale_line,
@@ -210,7 +216,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             available_date1,
             available_date2,
         ) = self._create_order_()
-        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 28-5 days (so
+        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 26-5 days (so
         # before the purchase delay), 30+18 needed
         # subbom2: 3*2*3 subproduct_1_1 = 18 -> see above
         #          3*2*4 subproduct_2_1 = 24 -> 0 in stock,  incoming on  days (so
@@ -364,10 +370,10 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         # product (stock): [available at date x | purchesable for date x]¹
         # top product [MANUF] 3pc (bom): [available at date x | produceable at date x]²
         #   -> 2pc subproduct2 [MANUF 1-2] * 3 = 6pc (bom): ²
-        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 28 days purch
+        #      -> 3pc subproduct_1_1 [MANUF 1-1-1] * 3 = 18pc (stock) -> 26 days purch
         #      -> 4pc subproduct_2_1 [MANUF 1-2-1] * 3 = 24pc (stock) -> 35 days purch
         #   -> 5pc subproduct1 [MANUF 1-1] * 3 = 15pc (bom): ¹
-        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 28 days purch
+        #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 26 days purch
         (
             sale_order,
             sale_line,
@@ -375,43 +381,57 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             available_date1,
             available_date2,
         ) = self._create_order_()
-        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 28-5 days (so
+        # subbom1: 3*5*2 subproduct_1_1 = 30 -> 2 in stock, 25 incoming on 26-5 days (so
         # before the purchase delay), 30+18 needed
         # subbom2: 3*2*3 subproduct_1_1 = 18 -> see above
         #          3*2*4 subproduct_2_1 = 24 -> 0 in stock,  incoming on  days (so
         # before the purchase delay),  needed
-        sale_order.action_confirm()
+        # cancel existing po to force recreate
         old_po = self.env["purchase.order"].search(
             [
                 ("partner_id", "=", self.subproduct_1_1.seller_ids[0].name.id),
             ]
         )
         old_po.button_cancel()
+        sale_order.action_confirm()
         # now we have outgoing stock.move and mo to be produced             +3
         self.assertEqual(sale_order.state, "sale")
-        production2 = self.env["mrp.production"].search(
-            [("origin", "=", sale_order.name)]
-        )
-
-        production2.action_assign()
-        with mute_logger("odoo.addons.stock.models.procurement"):
-            self.env["procurement.group"].run_scheduler()
-        po1 = self.env["purchase.order"].search(
+        new_po = self.env["purchase.order"].search(
             [
                 ("partner_id", "=", self.subproduct_1_1.seller_ids[0].name.id),
+                ("order_line.product_id", "=", self.subproduct_1_1.id),
                 ("state", "=", "draft"),
             ]
         )
-        po1 -= old_po
-        # po1_line =
-        po1.order_line.filtered(lambda x: x.product_id == self.subproduct_1_1)
-        # self.assertEqual(po1_line.date_planned.date(), available_date1)  # fixme
-        po2 = self.env["purchase.order"].search(
+        new_po -= old_po
+        new_po_line = new_po.order_line.filtered(
+            lambda x: x.product_id == self.subproduct_1_1
+        )
+        self.assertTrue(new_po_line)
+        self.assertEqual(new_po_line.date_planned.date(), available_date)
+        new_po_1 = self.env["purchase.order"].search(
             [
                 ("partner_id", "=", self.subproduct_2_1.seller_ids[0].name.id),
+                ("order_line.product_id", "=", self.subproduct_2_1.id),
                 ("state", "=", "draft"),
             ]
         )
-        # po2_line =
-        po2.order_line.filtered(lambda x: x.product_id == self.subproduct_2_1)
-        # self.assertEqual(po2_line.date_planned.date(), available_date)  # fixme
+        # check the order for the product with less delay is ordered after the order
+        # with more delay (which means today), to do not receive product not used in
+        # that time
+        new_po_1_date = new_po.date_order - relativedelta(
+            days=int(
+                self.subproduct_2_1.purchase_delay - self.subproduct_1_1.purchase_delay
+            )
+        )
+        new_po_1_date.replace(hour=0)
+        self.assertEqual(new_po_1_date, new_po_1_date)
+
+        new_po_1_line = new_po_1.order_line.filtered(
+            lambda x: x.product_id == self.subproduct_2_1
+        )
+        self.assertTrue(new_po_1_line)
+        self.assertEqual(new_po_1_line.date_planned.date(), available_date)
+
+        # FIXME se i 2 prodotti sono acquistati dalla stesso fornitore, la data dell'
+        #  ordine risulta la più lontana invece della più vicina

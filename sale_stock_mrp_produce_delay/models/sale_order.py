@@ -572,6 +572,22 @@ class SaleOrderLine(models.Model):
             res["context"] = {"search_default_id": self.late_product_ids.ids}
         return res
 
+    def _prepare_procurement_values(self, group_id=False):
+        values = super()._prepare_procurement_values()
+        # if self:
+        avail_date, avail_date_info = self.get_available_date(
+            self.product_id,
+            self.product_uom_qty,
+            self.commitment_date or fields.Date.context_today(self),
+        )
+        if avail_date:
+            avail_date_dt = self.env["purchase.order.line"]._convert_to_middle_of_day(
+                fields.Datetime.from_string(avail_date)
+            )
+            values["date_planned"] = avail_date_dt
+            values["date_deadline"] = avail_date_dt
+        return values
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"

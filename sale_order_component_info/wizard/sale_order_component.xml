@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_component" model="ir.ui.view">
+        <field name="name">view.sale.component</field>
+        <field name="model">sale.component</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Components">
+                <p class="oe_grey">
+                    Components of this order line.
+                </p>
+                <group>
+                    <field name="sale_order_line_id" />
+                </group>
+                <group>
+                    <field name="line_ids" nolabel="1">
+                        <tree decoration-warning="parent_product_id != False">
+                            <field name="product_id" />
+                            <field name="parent_product_id" />
+                            <field name="state" invisible="1" />
+                            <field name="product_type" invisible="1" />
+                            <field name="qty_to_deliver" />
+                            <field name="component_bookmarked_qty" />
+                            <field name="virtual_available_at_date" />
+                            <field name="qty_available_today" invisible="1" />
+                            <field name="free_qty_today" invisible="1" />
+                            <field name="scheduled_date" invisible="0" />
+                            <field name="commitment_date" invisible="0" />
+                            <field name="customer_lead" invisible="1" />
+                            <field name="warehouse_id" invisible="1" />
+                            <field name="is_mto" invisible="1" />
+                            <field name="product_uom" invisible="1" />
+                            <field name="display_qty_widget" invisible="1" />
+                            <widget name="qty_at_date_widget" width="0.1" />
+                            <field name="sol_product_uom_qty" invisible="1" />
+                            <field name="sol_qty_delivered" invisible="1" />
+                            <field name="qty_available" />
+                            <field name="incoming_qty" />
+                            <field name="outgoing_qty" />
+                            <field name="component_bom_qty" invisible="1" />
+                            <field name="bookmarked_qty" />
+                            <field name="virtual_available" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Close" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_component" model="ir.actions.act_window">
+        <field name="name">Sale Components</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.component</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

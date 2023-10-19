@@ -181,8 +181,9 @@ class SaleComponentLine(models.TransientModel):
                 continue
             line.warehouse_id = line.sale_order_line_id.order_id.warehouse_id
             # REMOVE use of commitment_date as scheduled date shown in popup
+            # UPD commitment_date has been replaced by date_order
             if line.sale_order_line_id.order_id.state in ["sale", "done"]:
-                confirm_date = line.sale_order_line_id.order_id.confirmation_date
+                confirm_date = line.sale_order_line_id.order_id.date_order
             else:
                 confirm_date = now
             # add produce_delay to customer_lead (equal to line.product_id.sale_delay)

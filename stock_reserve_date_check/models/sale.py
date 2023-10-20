@@ -1,6 +1,6 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
@@ -44,20 +44,18 @@ class SaleOrder(models.Model):
                             produce_delay = int(line.product_id.produce_delay)
                         elif line.product_id.bom_ids:
                             bom_id = line.product_id.bom_ids[0]
-                            if bom_id.routing_id:
+                            if bom_id.operation_ids:
                                 produce_delay = int(
                                     sum(
-                                        bom_id.mapped(
-                                            "routing_id.operation_ids.time_cycle_manual"
-                                        )
+                                        bom_id.mapped("operation_ids.time_cycle_manual")
                                         or [0]
                                     )
                                     / 1440
                                 )
                         errors.append(
                             _(
-                                "Reservation of product [[%s] %s] is not possible for date"
-                                " %s!\nAvailable date: %s %s\n"
+                                "Reservation of product [[%s] %s] is not possible "
+                                "for date %s!\nAvailable date: %s %s\n"
                                 "Exception availability info:\n%s"
                             )
                             % (

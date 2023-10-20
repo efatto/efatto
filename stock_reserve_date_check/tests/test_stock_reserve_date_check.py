@@ -11,7 +11,7 @@ class TestStockReserveDateCheck(TestProductionData):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env.ref("base.res_partner_2")
-        cls.partner.customer = True
+        cls.partner.customer_rank = 1
         cls.buy_route = cls.env.ref("purchase_stock.route_warehouse0_buy")
         cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
         cls.vendor = cls.env.ref("base.res_partner_3")
@@ -60,7 +60,7 @@ class TestStockReserveDateCheck(TestProductionData):
                     "commitment_date": commitment_date,
                 }
             )
-        line = self.env["sale.order.line"].sudo(self.test_user).create(vals)
+        line = self.env["sale.order.line"].with_user(self.test_user).create(vals)
         line.product_id_change()
         line._convert_to_write(line._cache)
         return line
@@ -69,7 +69,7 @@ class TestStockReserveDateCheck(TestProductionData):
     def test_00_sale_from_stock(self):
         order1 = (
             self.env["sale.order"]
-            .sudo(self.test_user)
+            .with_user(self.test_user)
             .create(
                 {
                     "partner_id": self.partner.id,
@@ -78,13 +78,13 @@ class TestStockReserveDateCheck(TestProductionData):
         )
         self._create_sale_order_line(order1, self.product, 5)
         with self.assertRaises(UserError):
-            order1.sudo(self.test_user).action_confirm()
+            order1.with_user(self.test_user).action_confirm()
         self.assertEqual(order1.state, "draft")
 
     def test_01_sale_from_stock(self):
         order2 = (
             self.env["sale.order"]
-            .sudo(self.test_user)
+            .with_user(self.test_user)
             .create(
                 {
                     "partner_id": self.partner.id,
@@ -95,7 +95,7 @@ class TestStockReserveDateCheck(TestProductionData):
         self._create_sale_order_line(
             order2, self.product, qty=5, commitment_date=commitment_date
         )
-        order2.sudo(self.test_user).action_confirm()
+        order2.with_user(self.test_user).action_confirm()
         self.assertEqual(order2.state, "sale")
 
     @mute_logger("odoo.models", "odoo.models.unlink", "odoo.addons.base.ir.ir_model")
@@ -103,7 +103,7 @@ class TestStockReserveDateCheck(TestProductionData):
         self.top_product.produce_delay = 14
         order3 = (
             self.env["sale.order"]
-            .sudo(self.test_user)
+            .with_user(self.test_user)
             .create(
                 {
                     "partner_id": self.partner.id,
@@ -115,12 +115,12 @@ class TestStockReserveDateCheck(TestProductionData):
             order3, self.top_product, qty=5, commitment_date=commitment_date
         )
         with self.assertRaises(UserError):
-            order3.sudo(self.test_user).action_confirm()
+            order3.with_user(self.test_user).action_confirm()
         self.assertEqual(order3.state, "draft")
         # top product 14 days + subproduct 28 days
         commitment_date = fields.Datetime.now() + relativedelta(days=14 + 28)
         order_line = order3.order_line[0]
         order_line.write({"commitment_date": commitment_date})
         order_line._convert_to_write(order_line._cache)
-        order3.sudo(self.test_user).action_confirm()
+        order3.with_user(self.test_user).action_confirm()
         self.assertEqual(order3.state, "sale")

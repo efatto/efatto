@@ -98,16 +98,6 @@
           name="attrs"
         >{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
             </field>
-            <label for="lead_days" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
-            </label>
-            <xpath expr="//div[hasclass('o_row')]" position="attributes">
-                <attribute
-          name="attrs"
-        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
-            </xpath>
             <group name="auto_minimum" position="attributes">
                 <attribute
           name="attrs"
@@ -116,7 +106,7 @@
             <xpath expr="//form/sheet/group" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button
-            name="%(stock.action_orderpoint_form)d"
+            name="%(stock.action_orderpoint)d"
             type="action"
             class="oe_stat_button"
             icon="fa-list"

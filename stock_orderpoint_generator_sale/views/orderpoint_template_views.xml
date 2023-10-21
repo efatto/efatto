@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_warehouse_orderpoint_template_tree" model="ir.ui.view">
+        <field name="name">stock.warehouse.orderpoint.template.tree</field>
+        <field name="model">stock.warehouse.orderpoint.template</field>
+        <field
+      name="inherit_id"
+      ref="stock_orderpoint_generator.view_warehouse_orderpoint_template_tree"
+    />
+        <field name="arch" type="xml">
+            <field name="auto_generate" position="after">
+                <field name="move_days" />
+                <field name="product_ctg_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="warehouse_orderpoint_search">
+        <field name="name">stock.warehouse.orderpoint.search</field>
+        <field name="model">stock.warehouse.orderpoint</field>
+        <field name="inherit_id" ref="stock.warehouse_orderpoint_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='name']" position="after">
+                <field name="orderpoint_tmpl_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_warehouse_orderpoint_template_form" model="ir.ui.view">
+        <field name="name">stock.warehouse.orderpoint.template.form</field>
+        <field name="model">stock.warehouse.orderpoint.template</field>
+        <field
+      name="inherit_id"
+      ref="stock_orderpoint_generator.view_warehouse_orderpoint_template_form"
+    />
+        <field name="arch" type="xml">
+            <field name="auto_generate" position="after">
+                <field name="compute_on_sale" />
+                <field name="move_days" />
+                <field name="variation_percent" />
+                <field name="service_level" />
+                <field name="order_mngt_cost" />
+                <field name="product_ctg_ids" widget="many2many_tags" />
+            </field>
+            <xpath expr="//field[@name='auto_min_qty']/.." position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </xpath>
+            <field name="auto_min_qty" position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="auto_max_qty" position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="product_min_qty" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_min_qty','=', False)], 'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="qty_multiple" position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': [('compute_on_sale', '=', True)]}</attribute>
+            </field>
+            <field name="auto_max_qty_criteria" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_max_date_start" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_max_date_end" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_max_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_qty_criteria" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_date_start" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <field name="auto_min_date_end" position="attributes">
+                <attribute
+          name="attrs"
+        >{'required': [('auto_min_qty','!=', False), ('compute_on_sale', '=', False)]}</attribute>
+            </field>
+            <group name="auto_minimum" position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': ['|', ('auto_min_qty','=', False), ('compute_on_sale', '=', True)]}</attribute>
+            </group>
+            <xpath expr="//form/sheet/group" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+            name="%(stock.action_orderpoint)d"
+            type="action"
+            class="oe_stat_button"
+            icon="fa-list"
+            context="{'search_default_orderpoint_tmpl_id': active_id}"
+          >
+                            <field
+              string="Orderpoints"
+              name="orderpoint_count"
+              widget="statinfo"
+            />
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//notebook/page[@name='auto_rules']" position="attributes">
+                <attribute
+          name="attrs"
+        >{'invisible': ['|', ('auto_generate', '=', False), ('product_ctg_ids', '!=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Info" name="info">
+                    <field name="log_info" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

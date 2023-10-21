@@ -55,6 +55,8 @@ jobs:
         run: pip3 install -e "git+https://github.com/sergiocorato/server-backend@14.0-mig-base_external_dbsource_sqlite#egg=odoo14-addon-base_external_dbsource_sqlite&subdirectory=setup/base_external_dbsource_sqlite"
       - name: Install base_external_dbsource_mssql module not yet merged
         run: pip3 install -e "git+https://github.com/sergiocorato/server-backend@14.0-mig-base_external_dbsource_mssql#egg=odoo14-addon-base_external_dbsource_mssql&subdirectory=setup/base_external_dbsource_mssql"
+      - name: Install stock_orderpoint_generator module not yet merged
+        run: pip3 install -e "git+https://github.com/sergiocorato/stock-logistics-warehouse@14.0-mig-stock_orderpoint_generator#egg=odoo14-addon-stock_orderpoint_generator&subdirectory=setup/stock_orderpoint_generator"
       - name: Install mrp_production_demo module from e-efatto repo
         run: pip3 install -e "git+https://github.com/sergiocorato/e-efatto@14.0#egg=odoo14-addon-mrp_production_demo&subdirectory=setup/mrp_production_demo"
       - name: Install purchase_line_procurement_group module not yet merged

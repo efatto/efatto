@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_reserve_date_check
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-13 13:55+0000\n"
+"PO-Revision-Date: 2022-09-13 13:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale.py:44
+#, python-format
+msgid "(Produce delay: %.0f days)"
+msgstr "(Tempo di produzione: %.0f giorni)"
+
+#. module: stock_reserve_date_check
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
+msgid "Enable Reserve Date Check"
+msgstr "Abilita Controllo Riserva per Date"
+
+#. module: stock_reserve_date_check
+#: model:ir.model.fields,help:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
+msgid "Forbid reservation on not possible date"
+msgstr "Vieta la riserva in date non possibili"
+
+#. module: stock_reserve_date_check
+#: model:ir.model,name:stock_reserve_date_check.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di Produzione"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale.py:36
+#, python-format
+msgid "Reservation of product [[%s] %s] is not possible for date %s!\n"
+"Available date: %s %s\n"
+"Exception availability info:\n"
+"%s"
+msgstr "Non è possibile riservare il prodotto [[%s] %s] per la data %s!\n"
+"Possibile data d'acquisto: %s %s\n"
+"Informazioni sulle eccezioni disponibilità:\n"
+"%s"
+
+#. module: stock_reserve_date_check
+#: model:ir.model,name:stock_reserve_date_check.model_sale_order
+msgid "Sale Order"
+msgstr "Ordine di vendita"
+
+#. module: stock_reserve_date_check
+#: model:ir.model,name:stock_reserve_date_check.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+

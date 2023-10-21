@@ -262,7 +262,6 @@ class OrderpointTemplate(models.Model):
                         vals["product_min_qty"] = min_qty
                     if record.auto_max_qty:
                         vals["product_max_qty"] = max_qty
-                    vals["lead_days"] = product_id.purchase_delay
                     vals["qty_multiple"] = product_id.purchase_multiple_qty
                     vals["orderpoint_tmpl_id"] = record.id
                     orderpoint_model.create(vals)

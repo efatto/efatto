@@ -14,6 +14,7 @@
     "installable": True,
     "depends": [
         "sale",
+        "sales_team",
     ],
     "data": [
         "views/res_config_settings_view.xml",

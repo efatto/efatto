@@ -9,14 +9,13 @@ from odoo.tools.float_utils import float_round
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    @api.multi
     def _compute_sales_count(self):
         r = super()._compute_sales_count()
         if not self.user_has_groups("sales_team.group_sale_salesman"):
             return r
         days = 365
-        if self.company_id.sale_stat_days:
-            days = self.company_id.sale_stat_days
+        if self.env.company.sale_stat_days:
+            days = self.env.company.sale_stat_days
         date_from = fields.Datetime.to_string(
             fields.datetime.combine(
                 fields.datetime.now() - timedelta(days=days), time.min
@@ -35,6 +34,9 @@ class ProductProduct(models.Model):
         ):
             r[group["product_id"][0]] = group["product_uom_qty"]
         for product in self:
+            if not product.id:
+                product.sales_count = 0.0
+                continue
             product.sales_count = float_round(
                 r.get(product.id, 0), precision_rounding=product.uom_id.rounding
             )

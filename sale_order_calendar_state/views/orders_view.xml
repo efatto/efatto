@@ -1,5 +1,4 @@
 <?xml version="1.0" ?>
-<!-- pylint:disable=dangerous-view-replace-wo-priority -->
 <odoo>
 
     <record id="view_order_form_calendar_state" model="ir.ui.view">
@@ -84,7 +83,10 @@
                 <field name="name" />
                 <field name="production_id" />
             </field>
-            <field name="amount_total" position="replace">
+            <field name="amount_total" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="amount_total" position="after">
                 <field name="custom_production_qty_calendar" />
                 <field name="production_notes_calendar" />
                 <field name="blocked_note_calendar" />

@@ -12,7 +12,8 @@ class StockMove(models.Model):
         domain = [
             ("product_id", "=", product.id),
             ("state", "!=", "cancel"),
-            ("date_expected", ">=", product.product_tmpl_id.date_oldest_open_move),
+            ("group_id.date_expected", ">=",
+             product.product_tmpl_id.date_oldest_open_move),
         ]
         view = self.env.ref(
             "stock_move_available_date_expected.view_stock_reserved_tree"

@@ -15,6 +15,7 @@ class Orderpoint(models.Model):
     orderpoint_tmpl_id = fields.Many2one(
         'stock.warehouse.orderpoint.template'
     )
+    note = fields.Char(string='Note')
 
 
 class OrderpointTemplate(models.Model):

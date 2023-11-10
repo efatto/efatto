@@ -10,7 +10,6 @@
     "depends": [
         "mrp_production_demo",
         "product_sellers_info",
-        "sale_backorder",
         "sale_order_archive",
         "sale_order_line_date",
         "stock_move_available_date_expected",

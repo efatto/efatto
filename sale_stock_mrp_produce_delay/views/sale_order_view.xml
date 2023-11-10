@@ -5,7 +5,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='last_date_delivered']" position="after">
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
                 <label for="available_date" states="draft,sent" />
                 <div name="available_date_info" states="draft,sent">
                     <div>

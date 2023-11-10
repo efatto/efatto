@@ -1,6 +1,7 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class PurchaseOrderTag(models.Model):
@@ -16,13 +17,22 @@ class PurchaseOrderTag(models.Model):
     order_state = fields.Selection(selection="_get_order_state")
     company_id = fields.Many2one("res.company", string="Company")
 
-    _sql_constraints = [
-        (
-            "purchase_tag_uniq",
-            "unique(color, company_id)",
-            _("A tag type for the same order state already exists for this company!"),
-        )
-    ]
+    @api.constrains("color", "company_id")
+    def _constrains_color_unique(self):
+        for rec in self:
+            if self.search_count(
+                [
+                    ("color", "=", rec.color),
+                    ("id", "!=", rec.id),
+                    ("company_id", "=", rec.company_id.id),
+                ]
+            ):
+                raise UserError(
+                    _(
+                        "A tag type for the same order state and company already exists"
+                        "!"
+                    )
+                )
 
     @api.model
     def _get_order_state(self):

@@ -8,4 +8,4 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     production_ids = fields.One2many(string="Productions")
-    production_count = fields.Integer(string="Production Count")
+    mrp_production_count = fields.Integer(string="Production Count")

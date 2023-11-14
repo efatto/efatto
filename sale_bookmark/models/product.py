@@ -5,7 +5,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_round
 
-from odoo.addons import decimal_precision as dp
 from odoo.addons.stock.models.product import OPERATORS
 
 
@@ -18,7 +17,7 @@ class ProductProduct(models.Model):
     bookmarked_qty = fields.Float(
         compute="_compute_quantities",
         search="_search_bookmarked_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="Quantity of bookmarked outgoing products.\n"
         "In particular contexts, products in a quotation sent are bookmarked for "
         "the customer.\n"
@@ -119,7 +118,7 @@ class ProductTemplate(models.Model):
         "bookmarked",
         compute="_compute_quantities",
         search="_search_bookmarked_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
 
     @api.depends(

@@ -353,7 +353,7 @@ class SaleOrderLine(models.Model):
         return res
 
     def _prepare_procurement_values(self, group_id=False):
-        values = super()._prepare_procurement_values()
+        values = super()._prepare_procurement_values(group_id)
         # if self:
         avail_date, avail_date_info = self.get_available_date(
             self.product_id,

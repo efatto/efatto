@@ -77,10 +77,14 @@
                 <attribute name="date_start">max_commitment_date</attribute>
                 <attribute name="color">calendar_state</attribute>
                 <attribute name="mode">month</attribute>
+                <attribute name="event_limit">0</attribute>
             </calendar>
-            <field name="partner_id" position="after">
-                <field name="color" invisible="1" />
-                <field name="name" />
+            <field name="currency_id" position="after">
+                <field name="calendar_state" invisible="1" filters="1" color="calendar_state"/>
+            </field>
+            <field name="payment_term_id" position="after">
+                <field name="partner_id" position="move"/>
+                <field name="state" position="move" invisible="1"/>
                 <field name="production_id" />
             </field>
             <field name="amount_total" position="attributes">

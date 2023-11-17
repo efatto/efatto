@@ -85,6 +85,7 @@
             <field name="payment_term_id" position="after">
                 <field name="partner_id" position="move"/>
                 <field name="state" position="move" invisible="1"/>
+                <field name="color" />
                 <field name="production_id" />
             </field>
             <field name="amount_total" position="attributes">

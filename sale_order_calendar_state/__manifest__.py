@@ -34,5 +34,6 @@
         "views/picking_view.xml",
         "views/sale_data.xml",
     ],
+    "qweb": ["static/src/xml/web_calendar.xml"],
     "installable": True,
 }

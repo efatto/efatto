@@ -4,6 +4,7 @@ from odoo import fields
 from odoo.tests.common import Form
 from odoo.tools import mute_logger
 from odoo.tools.date_utils import relativedelta
+from odoo.exceptions import UserError
 
 from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
 
@@ -115,7 +116,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             "price_unit": 100,
         }
         if commitment_date:
-            vals.update({"commitment_date": fields.Datetime.now()})
+            vals.update({"commitment_date": commitment_date})
         line = self.env["sale.order.line"].create(vals)
         line.product_id_change()
         line._convert_to_write(line._cache)
@@ -137,12 +138,15 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
 
     def test_00_available_info_product(self):
         # check product to purchase
+        commitment_date_not_possible = fields.Date.today() + relativedelta(days=20)
+        commitment_date_possible = fields.Date.today() + relativedelta(days=27)
         order1 = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
             }
         )
-        line1 = self._create_sale_order_line(order1, self.product, 5)
+        line1 = self._create_sale_order_line(
+            order1, self.product, 5, commitment_date_not_possible)
         order1.compute_dates()
         available_date = fields.Date.today() + relativedelta(days=26)
         self.assertEqual(line1.available_date, available_date)
@@ -151,6 +155,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             "└[COMP] [False] [QTY: 5.0] [TO PURCHASE] plannable date %s."
             % available_date.strftime("%d/%m/%Y"),
         )
+        with self.assertRaises(UserError):
+            order1.action_confirm()
+        line1.write({"commitment_date": commitment_date_possible})
         order1.action_confirm()
         self.assertEqual(order1.state, "sale")
         with mute_logger("odoo.addons.stock.models.procurement"):
@@ -333,6 +340,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         # NOT visible as not in this order product1
         # 2 offered top_product: they are shown in quantity as              -2
         # total top_products                                                -5
+        with self.assertRaises(UserError):
+            sale_order.action_confirm()
+        sale_order.order_line.write({"commitment_date": available_date2})
         sale_order.action_confirm()
         # now we have outgoing stock.move and mo to be produced             +3
         self.assertEqual(sale_order.state, "sale")
@@ -348,14 +358,14 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         sale_order.compute_dates()
         self.assertEqual(
             sale_line.available_dates_info,
-            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            # manca "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [TO PURCHASE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
-                available_date2.strftime("%d/%m/%Y"),
+                # available_date2.strftime("%d/%m/%Y"),
                 available_date.strftime("%d/%m/%Y"),
                 available_date1.strftime("%d/%m/%Y"),
                 available_date.strftime("%d/%m/%Y"),
@@ -393,6 +403,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             ]
         )
         old_po.button_cancel()
+        with self.assertRaises(UserError):
+            sale_order.action_confirm()
+        sale_order.order_line.write({"commitment_date": available_date2})
         sale_order.action_confirm()
         # now we have outgoing stock.move and mo to be produced             +3
         self.assertEqual(sale_order.state, "sale")

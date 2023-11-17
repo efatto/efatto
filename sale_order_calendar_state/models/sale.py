@@ -138,27 +138,33 @@ class SaleOrder(models.Model):
     )
 
     # temporary solution to show more info in calendar view
-    @api.depends('partner_id', 'name', 'production_id',
-                 'custom_production_qty_calendar', 'production_notes_calendar',
-                 'blocked_note_calendar', 'is_prototype_calendar')
+    @api.depends(
+        "partner_id",
+        "name",
+        "production_id",
+        "custom_production_qty_calendar",
+        "production_notes_calendar",
+        "blocked_note_calendar",
+        "is_prototype_calendar",
+    )
     def name_get(self):
         result = []
         for order in self:
-            if order._context.get('params') \
-                    and order._context.get('params').get('view_type') == 'calendar':
-                name = '%s %s' % (
-                    order.partner_id.name, order.name
-                )
+            if (
+                order._context.get("params")
+                and order._context.get("params").get("view_type") == "calendar"
+            ):
+                name = "%s %s" % (order.partner_id.name, order.name)
                 if order.production_id:
-                    name += ' %s' % order.production_id.name
+                    name += " %s" % order.production_id.name
                 if order.custom_production_qty_calendar:
-                    name += ' %s' % order.custom_production_qty_calendar
+                    name += " %s" % order.custom_production_qty_calendar
                 if order.production_notes_calendar:
-                    name += ' %s' % order.production_notes_calendar
+                    name += " %s" % order.production_notes_calendar
                 if order.blocked_note_calendar:
-                    name += ' %s' % order.blocked_note_calendar
+                    name += " %s" % order.blocked_note_calendar
                 if order.is_prototype_calendar:
-                    name += ' %s' % order.is_prototype_calendar
+                    name += " %s" % order.is_prototype_calendar
             else:
                 name = order.name
             result.append((order.id, name))

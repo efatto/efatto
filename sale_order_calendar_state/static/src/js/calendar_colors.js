@@ -2,9 +2,13 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
   "use strict";
   var CalendarRenderer = require("web.CalendarRenderer");
   var CalendarModel = require("web.CalendarModel");
+  const core = require("web.core");
+  var qweb = core.qweb;
 
   CalendarModel.include({
-    load: function (params) {
+    __load: function (params) {
+      // reset fieldColor to color as calendar_state is not a valid color, but it is
+      // used to replace color with custom defined in calendar.scss
       if (params.modelName === "sale.order") {
         params.fieldColor = "color";
       }
@@ -51,6 +55,24 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
           shipped: -301,
         };
       }
+    },
+    _eventRender: function (event) {
+      var result = this._super(event);
+      if (this.model === "sale.order") {
+        var qweb_context = {
+          event: event,
+          record: event.extendedProps.record,
+          color: this.getColor(event.extendedProps.record.color),
+          showTime: !self.hideTime && event.extendedProps.showTime,
+        };
+        this.qweb_context = qweb_context;
+        if (_.isEmpty(qweb_context.record)) {
+          return '';
+        } else {
+          return qweb.render("calendar-box", qweb_context);
+        }
+      }
+      return result;
     },
   });
 });

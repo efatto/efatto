@@ -69,8 +69,7 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
         if (_.isEmpty(qweb_context.record)) {
           return "";
         }
-          return qweb.render("calendar-box", qweb_context);
-
+        return qweb.render("calendar-box", qweb_context);
       }
       return result;
     },

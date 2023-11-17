@@ -80,11 +80,16 @@
                 <attribute name="event_limit">0</attribute>
             </calendar>
             <field name="currency_id" position="after">
-                <field name="calendar_state" invisible="1" filters="1" color="calendar_state"/>
+                <field
+          name="calendar_state"
+          invisible="1"
+          filters="1"
+          color="calendar_state"
+        />
             </field>
             <field name="payment_term_id" position="after">
-                <field name="partner_id" position="move"/>
-                <field name="state" position="move" invisible="1"/>
+                <field name="partner_id" position="move" />
+                <field name="state" position="move" invisible="1" />
                 <field name="color" />
                 <field name="production_id" />
             </field>

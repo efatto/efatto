@@ -7,7 +7,7 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
 
   CalendarModel.include({
     __load: function (params) {
-      // reset fieldColor to color as calendar_state is not a valid color, but it is
+      // Reset fieldColor to color as calendar_state is not a valid color, but it is
       // used to replace color with custom defined in calendar.scss
       if (params.modelName === "sale.order") {
         params.fieldColor = "color";
@@ -67,10 +67,10 @@ odoo.define("sale_order_calendar_state.CalendarColors", function (require) {
         };
         this.qweb_context = qweb_context;
         if (_.isEmpty(qweb_context.record)) {
-          return '';
-        } else {
-          return qweb.render("calendar-box", qweb_context);
+          return "";
         }
+          return qweb.render("calendar-box", qweb_context);
+
       }
       return result;
     },

@@ -354,19 +354,21 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         self.production.action_assign()
         self.production.product_qty = 2.0
         self.production.button_mark_done()
-        # self.assertEqual(len(self.production), 1)
+        self.assertEqual(self.production.source_procurement_group_id.name,
+                         sale_order.name)
+        self.assertEqual(len(self.production), 1)
 
         sale_order.compute_dates()
         self.assertEqual(
             sale_line.available_dates_info,
-            # manca "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
+            "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [TO PURCHASE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-2-1] [QTY: 24.0] [TO PURCHASE] plannable date %s.\n"
             "─[BOM] [MANUF 1-1] [QTY: 15.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 30.0] [TO PURCHASE] plannable date %s."
             % (
-                # available_date2.strftime("%d/%m/%Y"),
+                available_date2.strftime("%d/%m/%Y"),
                 available_date.strftime("%d/%m/%Y"),
                 available_date1.strftime("%d/%m/%Y"),
                 available_date.strftime("%d/%m/%Y"),

@@ -1,0 +1,7 @@
+<template>
+    <t t-extend="CalendarView.sidebar.filter">
+        <t t-jquery="span[class='o_cw_filter_title text-truncate flex-grow']" t-operation="replace">
+            <span t-attf-class="o_cw_filter_title text-truncate flex-grow o_underline_color_#{widget.getColor(event.extendedProps.record.calendar_state)}" t-esc="filter.label" t-attf-title="#{ ['all', false].includes(filter.value) or !widget.avatar_field ? filter.label : '' }"/>
+        </t>
+    </t>
+</template>

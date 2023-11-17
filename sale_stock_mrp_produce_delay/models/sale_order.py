@@ -7,7 +7,6 @@ from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.date_utils import relativedelta
 
 
 class SaleOrderLine(models.Model):
@@ -359,7 +358,8 @@ class SaleOrderLine(models.Model):
         avail_date, avail_date_info = self.get_available_date(
             self.product_id,
             self.product_uom_qty,
-            self.commitment_date and self.commitment_date.date()
+            self.commitment_date
+            and self.commitment_date.date()
             or fields.Date.context_today(self),
         )
         if avail_date:

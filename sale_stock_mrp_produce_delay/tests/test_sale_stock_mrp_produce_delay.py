@@ -1,10 +1,10 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests.common import Form
 from odoo.tools import mute_logger
 from odoo.tools.date_utils import relativedelta
-from odoo.exceptions import UserError
 
 from odoo.addons.mrp_production_demo.tests.common_data import TestProductionData
 
@@ -146,7 +146,8 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
             }
         )
         line1 = self._create_sale_order_line(
-            order1, self.product, 5, commitment_date_not_possible)
+            order1, self.product, 5, commitment_date_not_possible
+        )
         order1.compute_dates()
         available_date = fields.Date.today() + relativedelta(days=26)
         self.assertEqual(line1.available_date, available_date)

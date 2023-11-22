@@ -354,8 +354,9 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         self.production.action_assign()
         self.production.product_qty = 2.0
         self.production.button_mark_done()
-        self.assertEqual(self.production.source_procurement_group_id.name,
-                         sale_order.name)
+        self.assertEqual(
+            self.production.source_procurement_group_id.name, sale_order.name
+        )
         self.assertEqual(len(self.production), 1)
 
         sale_order.compute_dates()

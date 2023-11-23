@@ -148,12 +148,11 @@ class SaleOrder(models.Model):
         "is_prototype_calendar",
     )
     def name_get(self):
-        result = []
-        for order in self:
-            if (
-                order._context.get("params")
-                and order._context.get("params").get("view_type") == "calendar"
-            ):
+        if (
+                self.env.context.get("default_calendar_state", False)
+        ):
+            result = []
+            for order in self:
                 name = "%s %s" % (order.partner_id.name, order.name)
                 if order.production_id:
                     name += " %s" % order.production_id.name
@@ -165,9 +164,9 @@ class SaleOrder(models.Model):
                     name += " %s" % order.blocked_note_calendar
                 if order.is_prototype_calendar:
                     name += " %s" % order.is_prototype_calendar
-            else:
-                name = order.name
-            result.append((order.id, name))
+                result.append((order.id, name))
+        else:
+            result = super(SaleOrder, self).name_get()
         return result
 
     @api.depends("production_ids")

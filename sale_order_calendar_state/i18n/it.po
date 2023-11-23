@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_calendar_state
+# 	* sale_order_calendar_state
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 13:31+0000\n"
-"PO-Revision-Date: 2023-06-16 13:31+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-23 09:04+0000\n"
+"PO-Revision-Date: 2023-11-23 09:04+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,8 @@ msgstr ""
 
 #. module: sale_order_calendar_state
 #: model:mail.template,body_html:sale_order_calendar_state.email_template_delivery_date_changed
-msgid "\n"
+msgid ""
+"\n"
 "Dear ${object.partner_id.name},<br>\n"
 "The expected delivery date has changed from ${object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} to ${object.max_commitment_date.strftime('%d/%m/%Y')},\n"
 "we hope this won't be a problem.<br>\n"
@@ -57,12 +58,12 @@ msgid "Alert customer of change"
 msgstr "Avvisa il cliente della modifica"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__available
 msgid "Available"
 msgstr "Disponibile"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__blocked
 msgid "BLOCKED"
 msgstr "BLOCCATO"
 
@@ -133,7 +134,7 @@ msgid "Custom To Produce"
 msgstr "Custom Da Produrre"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__production_done
 msgid "DONE - production"
 msgstr "COMPLETATO - produzione"
 
@@ -153,7 +154,7 @@ msgid "Delivery date for order ${object.name}"
 msgstr "Data di consegna per l'ordine ${object.name}"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__delivery_done
 msgid "Delivery done"
 msgstr "Consegna completata"
 
@@ -163,9 +164,14 @@ msgid "Discard"
 msgstr "Annulla"
 
 #. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_account_move__display_name
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mail_compose_message__display_name
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_wizard_mark_blocked__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_mail_compose_message
@@ -173,6 +179,11 @@ msgid "Email composition wizard"
 msgstr "Procedura guidata composizione email"
 
 #. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_account_move__id
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mail_compose_message__id
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production__id
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking__id
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_wizard_mark_blocked__id
 msgid "ID"
 msgstr ""
@@ -183,12 +194,7 @@ msgid "In Production"
 msgstr "In Produzione"
 
 #. module: sale_order_calendar_state
-#: model:ir.model,name:sale_order_calendar_state.model_account_invoice
-msgid "Invoice"
-msgstr "Fattura"
-
-#. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__invoiced
 msgid "Invoiced"
 msgstr "Fatturato"
 
@@ -199,6 +205,16 @@ msgid "Is Blocked"
 msgstr "È bloccato"
 
 #. module: sale_order_calendar_state
+#: model:ir.model,name:sale_order_calendar_state.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: sale_order_calendar_state
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_account_move____last_update
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mail_compose_message____last_update
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_calendar_state.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_wizard_mark_blocked____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -273,13 +289,26 @@ msgid "Note"
 msgstr "Nota"
 
 #. module: sale_order_calendar_state
+#: model_terms:ir.actions.act_window,help:sale_order_calendar_state.act_sale_order_calendar_state
+msgid ""
+"Once the quotation is confirmed by the customer, it becomes a sales "
+"order.<br> You will be able to create an invoice and collect the payment."
+msgstr ""
+
+#. module: sale_order_calendar_state
+#: model:ir.actions.act_window,name:sale_order_calendar_state.act_sale_order_calendar_state
+#: model:ir.ui.menu,name:sale_order_calendar_state.menu_act_sale_order_calendar_state
+msgid "Orders calendar state"
+msgstr "Calendario stato ordini"
+
+#. module: sale_order_calendar_state
 #: model:ir.actions.act_window,name:sale_order_calendar_state.act_sale_order_delivery
 #: model:ir.ui.menu,name:sale_order_calendar_state.menu_act_sale_order_delivery
 msgid "Orders to deliver"
 msgstr "Ordini da consegnare"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__partially_delivered
 msgid "Partially delivered"
 msgstr "Parzialmente consegnato"
 
@@ -309,34 +338,24 @@ msgid "Production Order"
 msgstr "Ordine di Produzione"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__production_ready
 msgid "Production ready"
 msgstr "Produzione pronta"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__delivery_ready
 msgid "READY TO DELIVER"
 msgstr "PRONTO PER SPED"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_pack
 msgid "READY TO PACK"
 msgstr "PRONTO DA PRELEVARE"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__production_started
 msgid "READY TO PACK - production"
 msgstr "PRONTO DA PRELEVARE - produzione"
-
-#. module: sale_order_calendar_state
-#: model:ir.model,name:sale_order_calendar_state.model_mrp_product_produce
-msgid "Record Production"
-msgstr "Registrare la Produzione"
-
-#. module: sale_order_calendar_state
-#: model:ir.model,name:sale_order_calendar_state.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
 
 #. module: sale_order_calendar_state
 #: model:ir.actions.server,name:sale_order_calendar_state.ir_cron_sale_order_calendar_state_ir_actions_server
@@ -346,9 +365,9 @@ msgid "Sale order calendar state"
 msgstr "Stato di calendario ordine di vendita"
 
 #. module: sale_order_calendar_state
-#: model:ir.model,name:sale_order_calendar_state.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+#: model:ir.model,name:sale_order_calendar_state.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di Vendita"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__commitment_date
@@ -361,34 +380,39 @@ msgid "Scheduled Delivery Date:"
 msgstr "Data prevista di consegna:"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__shipped
 msgid "Shipped"
 msgstr "Spedito"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_evaluate
 msgid "TO EVALUATE"
 msgstr "DA VALUTARE"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_evaluate_production
 msgid "TO EVALUATE - production"
 msgstr "DA VALUTARE IN PRODUZIONE"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_process
 msgid "TO PROCESS"
 msgstr "DA PIANIFICARE"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_test
 msgid "Test check"
 msgstr "Prova collaudo"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,help:sale_order_calendar_state.field_sale_order__commitment_date
-msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
-msgstr "Questa è la data di consegna promessa al cliente. Se è definita, l'ordine di consegna sarà programmato in base a questa data piuttosto che a quella basata sui tempi di consegna del prodotto."
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+"Questa è la data di consegna promessa al cliente. Se è definita, l'ordine di"
+" consegna sarà programmato in base a questa data piuttosto che a quella "
+"basata sui tempi di consegna del prodotto."
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_search_color
@@ -396,19 +420,19 @@ msgid "To Produce"
 msgstr "Da Produrre"
 
 #. module: sale_order_calendar_state
-#: selection:mrp.production,additional_state:0
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__mrp_production__additional_state__to_assembly
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_assembly
 msgid "To assembly"
 msgstr "Da assemblare"
 
 #. module: sale_order_calendar_state
-#: selection:mrp.production,additional_state:0
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__mrp_production__additional_state__to_submanufacture
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_submanufacture
 msgid "To submanufacture"
 msgstr "In assemblaggio esterno"
 
 #. module: sale_order_calendar_state
-#: selection:mrp.production,additional_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__mrp_production__additional_state__to_test
 msgid "To test"
 msgstr "Da collaudare"
 
@@ -425,25 +449,25 @@ msgstr "Rimuovi stampato logistica"
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Unmark state"
-msgstr "Cancella stato aggiuntivo"
+msgstr "Rimuovi stato aggiuntivo"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_receive
 msgid "WAIT MATERIAL"
 msgstr "ATTESA MATERIALE"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__to_produce
 msgid "WAIT MATERIAL manufacture"
 msgstr "ATTESA MATERIALE produzione"
 
 #. module: sale_order_calendar_state
-#: selection:sale.order,calendar_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__sale_order__calendar_state__production_planned
 msgid "WAIT PRODUCTION"
 msgstr "ATTESA LAVORAZIONE"
 
 #. module: sale_order_calendar_state
-#: selection:mrp.production,additional_state:0
+#: model:ir.model.fields.selection,name:sale_order_calendar_state.selection__mrp_production__additional_state__to_produce
 msgid "Waiting material"
 msgstr "In attesa materiali"
 

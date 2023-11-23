@@ -194,11 +194,29 @@
         <field name="context">{'search_default_production_to_produce': True}</field>
     </record>
 
+    <record id="act_sale_order_calendar_state" model="ir.actions.act_window">
+        <field name="name">Orders calendar state</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="view_sale_order_calendar" />
+        <field name="view_mode">calendar,form</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="domain">[]</field>
+        <field name="context">{'default_calendar_state': True}</field>
+    </record>
+
     <menuitem
     action="act_sale_order_delivery"
     id="menu_act_sale_order_delivery"
     parent="sale.sale_order_menu"
     sequence="15"
+    groups="sales_team.group_sale_salesman"
+  />
+    <menuitem
+    action="act_sale_order_calendar_state"
+    id="menu_act_sale_order_calendar_state"
+    parent="sale.sale_order_menu"
+    sequence="16"
     groups="sales_team.group_sale_salesman"
   />
 

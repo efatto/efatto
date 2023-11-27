@@ -250,9 +250,17 @@ class Product(models.Model):
             res[product_id] = {}
             if dates_in_the_past:
                 qty_available = (
-                    quants_res.get(product_id, 0.0) - moves_in_res_past
-                    and moves_in_res_past.get(product_id, 0.0) + moves_out_res_past
-                    and moves_out_res_past.get(product_id, 0.0)
+                    quants_res.get(product_id, 0.0)
+                    - (
+                        moves_in_res_past
+                        and moves_in_res_past.get(product_id, 0.0)
+                        or 0.0
+                    )
+                    + (
+                        moves_out_res_past
+                        and moves_out_res_past.get(product_id, 0.0)
+                        or 0.0
+                    )
                 )
             else:
                 qty_available = quants_res.get(product_id, 0.0)

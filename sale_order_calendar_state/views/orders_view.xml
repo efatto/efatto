@@ -200,7 +200,10 @@
         <field name="res_model">sale.order</field>
         <field name="view_id" ref="view_sale_order_calendar" />
         <field name="view_mode">calendar,form</field>
-        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field
+      name="search_view_id"
+      ref="sale.sale_order_view_search_inherit_quotation"
+    />
         <field name="domain">[]</field>
         <field name="context">{'default_calendar_state': True}</field>
     </record>

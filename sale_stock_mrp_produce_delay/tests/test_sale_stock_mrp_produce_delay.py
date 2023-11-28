@@ -312,7 +312,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         )
         sale_order.compute_dates()
         self.assertEqual(
-            sale_line.available_dates_info,
+            sale_order.order_line.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [FROM STOCK] plannable date %s.\n"
@@ -361,7 +361,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
 
         sale_order.compute_dates()
         self.assertEqual(
-            sale_line.available_dates_info,
+            sale_order.order_line.available_dates_info,
             "[BOM] [MANUF] [QTY: 3.0] [TO PRODUCE] plannable date %s.\n"
             "─[BOM] [MANUF 1-2] [QTY: 6.0] [TO PRODUCE] plannable date %s.\n"
             "─└[COMP] [MANUF 1-1-1] [QTY: 18.0] [TO PURCHASE] plannable date %s.\n"

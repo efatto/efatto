@@ -148,9 +148,7 @@ class SaleOrder(models.Model):
         "is_prototype_calendar",
     )
     def name_get(self):
-        if (
-                self.env.context.get("default_calendar_state", False)
-        ):
+        if self.env.context.get("default_calendar_state", False):
             result = []
             for order in self:
                 name = "%s %s" % (order.partner_id.name, order.name)

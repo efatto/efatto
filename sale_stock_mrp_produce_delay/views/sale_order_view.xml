@@ -44,5 +44,28 @@
             </xpath>
         </field>
     </record>
-
+    <record id="view_order_form_inherit_sale_stock_qty" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field
+      name="inherit_id"
+      ref="sale_stock.view_order_form_inherit_sale_stock_qty"
+    />
+        <field name="arch" type="xml">
+            <xpath
+        expr="//page/field[@name='order_line']/form/group/group/div[@name='ordered_qty']/field[@name='product_uom']"
+        position="after"
+      >
+                <field name="is_kit" invisible="1" />
+                <field name="commitment_date" invisible="1" />
+            </xpath>
+            <xpath
+        expr="//page/field[@name='order_line']/tree/field[@name='qty_delivered']"
+        position="after"
+      >
+                <field name="is_kit" invisible="1" />
+                <field name="commitment_date" invisible="1" />
+            </xpath>
+        </field>
+    </record>
 </odoo>

@@ -20,32 +20,32 @@
             </t>
         </t>
     </div>
-    <div t-extend="sale_stock.QtyDetailPopOver">
-        <t t-jquery="table > tbody" t-operation="replace">
-            <tbody>
-                <t t-if="!data.is_mto and !data.is_kit">
-                    <tr>
-                        <td><strong>Forecasted Stock</strong><br />
-                            <t t-if="data.virtual_available_at_date > 0">
-                                <small>Stock available date<span
-                    t-esc="data.delivery_date"
-                  /></small>
-                            </t>
-                            <t t-else="data.virtual_available_at_date = 0">
-                                <small>Stock unavailable</small>
-                            </t>
-                        </td>
-                        <td><t t-esc='data.virtual_available_at_date' />
-                            <t t-esc='data.product_uom.data.display_name' /></td>
-                    </tr>
-                </t>
-                <t t-else="">
-                    <tr>
-                        <td><strong>Available Delivery</strong></td>
-                        <td class="oe-right"><span t-esc="data.available_date" /></td>
-                    </tr>
-                </t>
-            </tbody>
-        </t>
-    </div>
+<!--    <div t-extend="sale_stock.QtyDetailPopOver">-->
+<!--        <t t-jquery="table > tbody" t-operation="replace">-->
+<!--            <tbody>-->
+<!--                <t t-if="!data.is_mto and !data.is_kit">-->
+<!--                    <tr>-->
+<!--                        <td><strong>Forecasted Stock</strong><br />-->
+<!--                            <t t-if="data.virtual_available_at_date > 0">-->
+<!--                                <small>Stock available date<span-->
+<!--                    t-esc="data.delivery_date"-->
+<!--                  /></small>-->
+<!--                            </t>-->
+<!--                            <t t-else="data.virtual_available_at_date = 0">-->
+<!--                                <small>Stock unavailable</small>-->
+<!--                            </t>-->
+<!--                        </td>-->
+<!--                        <td><t t-esc='data.virtual_available_at_date' />-->
+<!--                            <t t-esc='data.product_uom.data.display_name' /></td>-->
+<!--                    </tr>-->
+<!--                </t>-->
+<!--                <t t-else="">-->
+<!--                    <tr>-->
+<!--                        <td><strong>Available Delivery</strong></td>-->
+<!--                        <td class="oe-right"><span t-esc="data.available_date" /></td>-->
+<!--                    </tr>-->
+<!--                </t>-->
+<!--            </tbody>-->
+<!--        </t>-->
+<!--    </div>-->
 </templates>

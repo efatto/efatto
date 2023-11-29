@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
         )
         # add moves with date > date_deadline to date_error_moves list
         moves_to_check = (incoming_stock_moves | reserved_stock_moves).filtered(
-            lambda move: move.date and move.date_deadline
+            lambda move: move.date is not None and move.date_deadline is not None
         )
         date_error_moves = [
             x.date_deadline.date() for x in moves_to_check if x.date > x.date_deadline

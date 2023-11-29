@@ -205,7 +205,6 @@
       name="search_view_id"
       ref="sale.sale_order_view_search_inherit_quotation"
     />
-        <field name="domain">[]</field>
         <field name="context">{'default_calendar_state': True}</field>
     </record>
 

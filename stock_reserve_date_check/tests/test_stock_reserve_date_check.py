@@ -124,3 +124,8 @@ class TestStockReserveDateCheck(TestProductionData):
         order_line._convert_to_write(order_line._cache)
         order3.with_user(self.test_user).action_confirm()
         self.assertEqual(order3.state, "sale")
+        order3.action_cancel()
+        self.assertEqual(order3.state, "cancel")
+        order3.action_draft()
+        order3.action_confirm()
+        self.assertEqual(order3.state, "sale")

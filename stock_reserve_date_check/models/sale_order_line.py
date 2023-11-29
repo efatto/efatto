@@ -45,14 +45,14 @@ class SaleOrderLine(models.Model):
             + domain_move_out_loc
         )
         # check moves with date > date_deadline
-        # FIXME This check was disabled (see 'pass' at line 55), so why do it?
-        # date_error_moves = [
-        #     x.date_deadline.date()
-        #     for x in incoming_stock_moves | reserved_stock_moves
-        #     if x.date > x.date_deadline
-        # ]
-        # if date_error_moves:
-        #     pass
+        moves_to_check = (incoming_stock_moves | reserved_stock_moves).filtered(
+            lambda move: move.date and move.date_deadline
+        )
+        date_error_moves = [
+            x.date_deadline.date() for x in moves_to_check if x.date > x.date_deadline
+        ]
+        if date_error_moves:
+            pass
         for reserve_date in set(
             [x.date() for x in reserved_stock_moves.mapped("date_deadline")]
             + [y.date() for y in incoming_stock_moves.mapped("date_deadline")]

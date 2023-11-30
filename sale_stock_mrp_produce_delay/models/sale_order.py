@@ -23,7 +23,9 @@ class SaleOrderLine(models.Model):
     )
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
-    is_kit = fields.Boolean(compute="_compute_is_kit", store=True)
+    is_kit = fields.Boolean(
+        related="product_id.is_kit", store=True
+    )
     display_qty_widget = fields.Boolean(store=True)
     available_date = fields.Date(copy=False)
     last_available_date_compute = fields.Datetime(copy=False)

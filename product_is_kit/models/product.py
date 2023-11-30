@@ -35,6 +35,6 @@ class ProductProduct(models.Model):
     def _compute_is_kit(self):
         for product in self:
             product.is_kit = False
-            bom_kits = self.env['mrp.bom']._get_product2bom(product, bom_type='phantom')
+            bom_kits = self.env["mrp.bom"]._get_product2bom(product, bom_type="phantom")
             if product.filtered(lambda p: bom_kits.get(p)):
                 product.is_kit = True

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_bookmark
+# 	* sale_bookmark
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 06:41+0000\n"
-"PO-Revision-Date: 2021-05-13 06:41+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-30 17:28+0000\n"
+"PO-Revision-Date: 2023-11-30 17:28+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,22 +36,43 @@ msgid "Computed bookmarked"
 msgstr "Prenotato Automaticamente"
 
 #. module: sale_bookmark
-#: code:addons/sale_bookmark/models/product.py:29
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_bookmark.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_bookmark
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_product__id
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_template__id
+#: model:ir.model.fields,field_description:sale_bookmark.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_bookmark
+#: code:addons/sale_bookmark/models/product.py:0
 #, python-format
 msgid "Invalid domain left operand %s"
 msgstr ""
 
 #. module: sale_bookmark
-#: code:addons/sale_bookmark/models/product.py:31
+#: code:addons/sale_bookmark/models/product.py:0
 #, python-format
 msgid "Invalid domain operator %s"
 msgstr ""
 
 #. module: sale_bookmark
-#: code:addons/sale_bookmark/models/product.py:33
+#: code:addons/sale_bookmark/models/product.py:0
 #, python-format
 msgid "Invalid domain right operand %s"
 msgstr ""
+
+#. module: sale_bookmark
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_product____last_update
+#: model:ir.model.fields,field_description:sale_bookmark.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_bookmark.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_bookmark
 #: model:ir.model,name:sale_bookmark.model_product_product
@@ -61,21 +82,18 @@ msgstr "Prodotto"
 #. module: sale_bookmark
 #: model:ir.model,name:sale_bookmark.model_product_template
 msgid "Product Template (Multi-Company)"
-msgstr ""
+msgstr "Modello prodotto (Multi-azienda)"
 
 #. module: sale_bookmark
 #: model:ir.model.fields,help:sale_bookmark.field_product_product__bookmarked_qty
-msgid "Quantity of bookmarked outgoing products.\n"
+msgid ""
+"Quantity of bookmarked outgoing products.\n"
 "In particular contexts, products in a quotation sent are bookmarked for the customer.\n"
 "This mark is only for informative purposes and do not have any effects."
-msgstr "Quantità di prodotti in uscita prenotati.\n"
+msgstr ""
+"Quantità di prodotti in uscita prenotati.\n"
 "In contesti particolari, i prodotti in una quotazione inviata sono marcati come prenotati dal cliente.\n"
 "Questa marcatura è solo a scopi informativi e non ha alcun effetto."
-
-#. module: sale_bookmark
-#: model:ir.model,name:sale_bookmark.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
 
 #. module: sale_bookmark
 #: model:ir.model.fields,field_description:sale_bookmark.field_product_product__sale_order_line_ids
@@ -88,6 +106,17 @@ msgid "Sale Orders bookmarked"
 msgstr "Quotazioni di vendita Prenotate"
 
 #. module: sale_bookmark
+#: model:ir.model,name:sale_bookmark.model_sale_order
+msgid "Sales Order"
+msgstr "Ordini di vendita"
+
+#. module: sale_bookmark
+#: model_terms:ir.ui.view,arch_db:sale_bookmark.product_form_view_procurement_button
+#: model_terms:ir.ui.view,arch_db:sale_bookmark.product_template_form_view_procurement_button
+msgid "Stock forecast"
+msgstr "Rendiconto previsionale"
+
+#. module: sale_bookmark
 #: model:ir.model.fields,help:sale_bookmark.field_product_product__sale_order_line_ids
 msgid "Technical: used to compute quantities."
 msgstr "Tecnico: usato per calcolare le quantità."
@@ -96,4 +125,3 @@ msgstr "Tecnico: usato per calcolare le quantità."
 #: model:ir.model.fields,field_description:sale_bookmark.field_product_template__bookmarked_qty
 msgid "bookmarked"
 msgstr "Prenotato"
-

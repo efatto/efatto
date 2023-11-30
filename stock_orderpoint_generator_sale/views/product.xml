@@ -5,14 +5,13 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock.view_template_property_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='route_ids']" position="after">
-                <label
-          for="orderpoint_generate_active"
+            <xpath expr="//group[@name='stock_property']" position="before">
+                <group
+          name="orderpoint_info"
           attrs="{'invisible':[('type','=','service')]}"
-        />
-                <div attrs="{'invisible':[('type','=','service')]}">
-                    <field name="orderpoint_generate_active" class="oe_inline" />
-                </div>
+        >
+                    <field name="orderpoint_generate_active" />
+                </group>
             </xpath>
         </field>
     </record>

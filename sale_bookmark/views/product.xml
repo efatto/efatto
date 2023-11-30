@@ -57,9 +57,7 @@
         expr="//button[@name='action_product_forecast_report']/div"
         position="after"
       >
-                <div
-          class="o_field_widget o_stat_value mr4"
-        >
+                <div class="o_field_widget o_stat_value mr4">
                     <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         v:<field
               name="virtual_available"
@@ -103,9 +101,7 @@
         expr="//button[@name='action_product_tmpl_forecast_report']/div"
         position="after"
       >
-                <div
-          class="o_field_widget o_stat_value mr4"
-        >
+                <div class="o_field_widget o_stat_value mr4">
                     <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         v:<field
               name="virtual_available"

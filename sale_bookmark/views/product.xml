@@ -57,8 +57,10 @@
         expr="//button[@name='action_product_forecast_report']/div"
         position="after"
       >
-                <div class="o_field_widget o_stat_value mr4">
-                    <div>
+                <div
+          class="o_field_widget o_stat_value mr4"
+        >
+                    <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         v:<field
               name="virtual_available"
               widget="statinfo"
@@ -66,9 +68,12 @@
             />
                         (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1" />
                     </div>
-                    <div>
+                    <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         -u<field name="outgoing_qty" widget="statinfo" nolabel="1" />
                         +e<field name="incoming_qty" widget="statinfo" nolabel="1" />)
+                    </div>
+                    <div attrs="{'invisible':[('is_kit', '=', False)]}">
+                        Stock forecast
                     </div>
                 </div>
             </xpath>
@@ -98,8 +103,10 @@
         expr="//button[@name='action_product_tmpl_forecast_report']/div"
         position="after"
       >
-                <div class="o_field_widget o_stat_value mr4">
-                    <div>
+                <div
+          class="o_field_widget o_stat_value mr4"
+        >
+                    <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         v:<field
               name="virtual_available"
               widget="statinfo"
@@ -107,9 +114,12 @@
             />
                         (-p<field name="bookmarked_qty" widget="statinfo" nolabel="1" />
                     </div>
-                    <div>
+                    <div attrs="{'invisible':[('is_kit', '=', True)]}">
                         -u<field name="outgoing_qty" widget="statinfo" nolabel="1" />
                         +e<field name="incoming_qty" widget="statinfo" nolabel="1" />)
+                    </div>
+                    <div attrs="{'invisible':[('is_kit', '=', False)]}">
+                        Stock forecast
                     </div>
                 </div>
             </xpath>

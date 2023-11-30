@@ -16,6 +16,7 @@
         "mrp_production_demo",
         "mrp_sale_info_link_notes",
         "partner_priority",
+        "product_is_kit",
         "purchase_line_procurement_group",
         "sale_force_invoiced",
         "sale_order_line_date",

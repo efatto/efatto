@@ -136,6 +136,12 @@ class SaleOrder(models.Model):
         index=True,
         store=True,
     )
+    has_kit = fields.Boolean(
+        string="Has kit",
+        compute="_compute_has_kit",
+        index=True,
+        store=True,
+    )
 
     # temporary solution to show more info in calendar view
     @api.depends(
@@ -193,6 +199,11 @@ class SaleOrder(models.Model):
                 and any(x.blocked_note for x in order.production_ids)
                 else ""
             )
+
+    @api.depends("order_line.product_id.is_kit")
+    def _compute_has_kit(self):
+        for order in self:
+            order.has_kit = any(line.product_id.is_kit for line in order.order_line)
 
     @api.depends("order_line.product_id.categ_id")
     def _compute_custom_production(self):

@@ -11,7 +11,7 @@
           attrs="{'invisible':[('type','=','service')]}"
         />
                 <div attrs="{'invisible':[('type','=','service')]}">
-                    <field name="is_kit" class="oe_inline" /> days
+                    <field name="is_kit" class="oe_inline" />
                 </div>
             </xpath>
         </field>

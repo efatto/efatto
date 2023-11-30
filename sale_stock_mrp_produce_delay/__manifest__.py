@@ -8,6 +8,7 @@
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [
+        "product_is_kit",
         "sale_order_archive",
         "stock_reserve_date_check",
     ],

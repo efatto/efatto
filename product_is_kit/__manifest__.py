@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": [
         "mrp",
+        "stock",
     ],
     "data": [
         "views/product.xml",

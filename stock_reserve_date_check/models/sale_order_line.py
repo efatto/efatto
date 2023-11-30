@@ -52,8 +52,14 @@ class SaleOrderLine(models.Model):
             x.date_deadline.date() for x in moves_to_check if x.date > x.date_deadline
         ]
         for reserve_date in set(
-            [x.date() for x in [w.date_deadline or w.date for w in reserved_stock_moves]]
-            + [y.date() for y in [z.date_deadline or z.date for z in incoming_stock_moves]]
+            [
+                x.date()
+                for x in [w.date_deadline or w.date for w in reserved_stock_moves]
+            ]
+            + [
+                y.date()
+                for y in [z.date_deadline or z.date for z in incoming_stock_moves]
+            ]
             + [date_start]
         ):
             available_info.append(

@@ -152,33 +152,39 @@
                 <filter
           name="production_to_produce"
           string="To Produce"
-          domain="[('calendar_state', 'in', ('to_produce', 'production_ready'))]"
+          domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('production_id', '!=', False)]"
         />
                 <filter
           name="production_started"
           string="In Production"
-          domain="[('calendar_state', '=', 'production_started')]"
+          domain="[('calendar_state', '=', 'production_started'), ('production_id', '!=', False)]"
         />
                 <filter
           name="production_done"
           string="Production Done"
-          domain="[('calendar_state', '=', 'production_done')]"
+          domain="[('calendar_state', '=', 'production_done'), ('production_id', '!=', False)]"
         />
                 <separator />
                 <filter
           name="custom_production_to_produce"
           string="Custom To Produce"
-          domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '>', 0)]"
+          domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
         />
                 <filter
           name="custom_production_started"
           string="Custom In Production"
-          domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '>', 0)]"
+          domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
         />
                 <filter
           name="custom_production_done"
           string="Custom Production Done"
-          domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0)]"
+          domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+        />
+                <separator />
+                <filter
+          name="components"
+          string="Components"
+          domain="['|', ('has_kit', '=', True), ('production_id', '=', False)]"
         />
             </filter>
         </field>

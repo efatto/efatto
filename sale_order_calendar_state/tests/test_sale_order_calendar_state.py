@@ -149,6 +149,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         backorder.save().action_backorder()
         self.assertEqual(len(man_order.procurement_group_id.mrp_production_ids), 2)
         self.assertEqual(order.calendar_state, "production_started")
+        self.assertEqual(man_order.state, "done")
 
         mo_backorder = man_order.procurement_group_id.mrp_production_ids[-1]
         mo_backorder_form = Form(mo_backorder)

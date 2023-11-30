@@ -28,7 +28,7 @@ class ProductTemplate(models.Model):
                     ]
                 )
             product_template.date_oldest_open_move = min(
-                [x.date_deadline for x in moves]
+                [x.date_deadline or x.date for x in moves]
                 or [
                     fields.Datetime.now(),
                 ]

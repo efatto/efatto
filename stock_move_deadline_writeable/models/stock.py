@@ -6,5 +6,4 @@ from odoo import fields, models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    date_deadline = fields.Datetime(
-        readonly=False)
+    date_deadline = fields.Datetime(readonly=False)

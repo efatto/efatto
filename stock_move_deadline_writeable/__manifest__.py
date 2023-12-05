@@ -13,7 +13,6 @@
     "depends": [
         "stock",
     ],
-    "data": [
-    ],
+    "data": [],
     "installable": True,
 }

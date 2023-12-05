@@ -248,13 +248,13 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         self.assertEqual(
             self.subproduct_1_1.with_context(
                 to_date=fields.Date.today()
-            ).virtual_available_at_date_deadline,
+            ).virtual_available_at_date_move,
             0,
         )
         self.assertEqual(
             self.subproduct_1_1.with_context(
                 to_date=purchase_planned_date1
-            ).virtual_available_at_date_deadline,
+            ).virtual_available_at_date_move,
             18,
         )
         # MANUF 1-1-1 is incoming so disappear, as bom MANUF 1-1
@@ -301,13 +301,13 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         self.assertEqual(
             self.subproduct_2_1.with_context(
                 to_date=fields.Date.today()
-            ).virtual_available_at_date_deadline,
+            ).virtual_available_at_date_move,
             0,
         )
         self.assertEqual(
             self.subproduct_2_1.with_context(
                 to_date=purchase_planned_date2
-            ).virtual_available_at_date_deadline,
+            ).virtual_available_at_date_move,
             25,
         )
         sale_order.compute_dates()

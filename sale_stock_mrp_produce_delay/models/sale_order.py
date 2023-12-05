@@ -150,8 +150,8 @@ class SaleOrderLine(models.Model):
                         SELECT
                         MIN(-sm.id) as id,
                         sm.product_id,
-                        CASE WHEN sm.date_deadline > CURRENT_DATE
-                        THEN sm.date_deadline
+                        CASE WHEN sm.date > CURRENT_DATE
+                        THEN sm.date
                         ELSE CURRENT_DATE END
                         AS date,
                         SUM(sm.product_qty) AS product_qty,
@@ -171,13 +171,13 @@ class SaleOrderLine(models.Model):
                         ('confirmed','partially_available','assigned','waiting')
                         and source_location.usage != 'internal'
                         and dest_location.usage = 'internal'
-                        GROUP BY sm.date_deadline, sm.product_id, sm.company_id
+                        GROUP BY sm.date, sm.product_id, sm.company_id
                         UNION ALL
                         SELECT
                             MIN(-sm.id) as id,
                             sm.product_id,
-                            CASE WHEN sm.date_deadline > CURRENT_DATE
-                                THEN sm.date_deadline
+                            CASE WHEN sm.date > CURRENT_DATE
+                                THEN sm.date
                                 ELSE CURRENT_DATE END
                             AS date,
                             SUM(-(sm.product_qty)) AS product_qty,
@@ -197,7 +197,7 @@ class SaleOrderLine(models.Model):
                             ('confirmed','partially_available','assigned','waiting')
                         and source_location.usage = 'internal'
                         and dest_location.usage != 'internal'
-                        GROUP BY sm.date_deadline,sm.product_id, sm.company_id)
+                        GROUP BY sm.date,sm.product_id, sm.company_id)
                      as MAIN
                      LEFT JOIN
                      (SELECT DISTINCT date
@@ -205,7 +205,7 @@ class SaleOrderLine(models.Model):
                       (
                          SELECT CURRENT_DATE AS DATE
                          UNION ALL
-                         SELECT sm.date_deadline AS date
+                         SELECT sm.date AS date
                          FROM stock_move sm
                          LEFT JOIN
                          stock_location source_location
@@ -215,7 +215,7 @@ class SaleOrderLine(models.Model):
                          ON sm.location_dest_id = dest_location.id
                          WHERE
                          sm.state IN ('confirmed','assigned','waiting')
-                         and sm.date_deadline > CURRENT_DATE
+                         and sm.date > CURRENT_DATE
                          and ((dest_location.usage = 'internal'
                          AND source_location.usage != 'internal')
                           or (source_location.usage = 'internal'

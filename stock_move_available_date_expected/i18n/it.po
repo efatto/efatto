@@ -45,18 +45,18 @@ msgid "Date Oldest Open Move"
 msgstr "Apri movimento data meno recente"
 
 #. module: stock_move_available_date_expected
-#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_move_search_date_deadline
+#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.view_move_search_date_move
 msgid "Date expected from today"
 msgstr "Data impegno da oggi"
 
 #. module: stock_move_available_date_expected
-#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_form_view_procurement_button_date_deadline
-#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_template_form_view_procurement_button_date_deadline
+#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_form_view_procurement_button_date_move
+#: model_terms:ir.ui.view,arch_db:stock_move_available_date_expected.product_template_form_view_procurement_button_date_move
 msgid "Expected Moves"
 msgstr "Movimenti per data impegno"
 
 #. module: stock_move_available_date_expected
-#: model:ir.model.fields,field_description:stock_move_available_date_expected.field_product_product__virtual_available_at_date_deadline
+#: model:ir.model.fields,field_description:stock_move_available_date_expected.field_product_product__virtual_available_at_date_move
 msgid "Forecast Quantity Expected Date"
 msgstr "Quantità Prevista Data Impegno"
 
@@ -131,7 +131,7 @@ msgid "Purchase"
 msgstr "Acquisto"
 
 #. module: stock_move_available_date_expected
-#: model:ir.model.fields,field_description:stock_move_available_date_expected.field_stock_move__qty_available_at_date_deadline
+#: model:ir.model.fields,field_description:stock_move_available_date_expected.field_stock_move__qty_available_at_date_move
 msgid "Qty Available At Date Expected"
 msgstr "Disponibilità"
 

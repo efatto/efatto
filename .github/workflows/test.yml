@@ -61,6 +61,8 @@ jobs:
         run: pip3 install -e "git+https://github.com/sergiocorato/e-efatto@14.0#egg=odoo14-addon-mrp_production_demo&subdirectory=setup/mrp_production_demo"
       - name: Install purchase_line_procurement_group module not yet merged
         run: pip3 install -e "git+https://github.com/sergiocorato/purchase-workflow@14.0-mig-purchase_line_procurement_group#egg=odoo14-addon-purchase_line_procurement_group&subdirectory=setup/purchase_line_procurement_group"
+      - name: Install stock_warehouse_orderpoint_stock_info module not yet merged
+        run: pip3 install -e "git+https://github.com/sergiocorato/stock-logistics-warehouse@14.0-mig-stock_warehouse_orderpoint_stock_info#egg=odoo14-addon-stock_warehouse_orderpoint_stock_info&subdirectory=setup/stock_warehouse_orderpoint_stock_info"
       - name: Install connector_whs module from e-efatto repo
         run: pip3 install -e "git+https://github.com/sergiocorato/e-efatto@14.0-mig-connector_whs#egg=odoo14-addon-connector_whs&subdirectory=setup/connector_whs"
       - name: Install addons and dependencies

@@ -10,7 +10,7 @@ class StockProcurementDraftPurchase(SavepointCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.user_model = cls.env["res.users"].with_context(no_reset_password=True)
         cls.partner = cls.env.ref("base.res_partner_2")
-        cls.partner.customer = True
+        cls.partner.customer_rank = 1
         cls.procurement = cls.env["procurement.group"]
         buy = cls.env.ref("purchase_stock.route_warehouse0_buy")
         cls.vendor = cls.env.ref("base.res_partner_3")
@@ -35,6 +35,16 @@ class StockProcurementDraftPurchase(SavepointCase):
             {
                 "name": "John",
                 "login": "test",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        (
+                            cls.env.ref("stock.group_stock_manager")
+                            | cls.env.ref("purchase.group_purchase_manager")
+                        ).ids,
+                    )
+                ],
             }
         )
         cls.op1 = cls.op_model.create(
@@ -74,7 +84,9 @@ class StockProcurementDraftPurchase(SavepointCase):
             "active_ids": orderpoint.ids,
             "active_id": orderpoint.id,
         }
-        wizard = self.manual_procurement_wiz.sudo(user).with_context(context).create({})
+        wizard = (
+            self.manual_procurement_wiz.with_user(user).with_context(context).create({})
+        )
         wizard.make_procurement()
         return wizard
 

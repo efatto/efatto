@@ -61,29 +61,20 @@ class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
     @api.model
-    def run(
-        self, product_id, product_qty, product_uom, location_id, name, origin, values
-    ):
-        if values.get("orderpoint_id", False):
+    def run(self, procurements, raise_user_error=True):
+        for procurement in procurements:
             # subtract qty in PO in draft and sent states for current OP
-            orderpoint_id = values["orderpoint_id"]
-            if (
-                orderpoint_id.include_draft_purchase
-                and (
-                    orderpoint_id.draft_purchase_order_qty
-                    + orderpoint_id.incoming_location_qty
-                    + orderpoint_id.product_location_qty
-                    - orderpoint_id.outgoing_location_qty
-                )
-                >= orderpoint_id.product_min_qty
-            ):
-                return False
-        return super().run(
-            product_id=product_id,
-            product_qty=product_qty,
-            product_uom=product_uom,
-            location_id=location_id,
-            name=name,
-            origin=origin,
-            values=values,
-        )
+            if procurement.values.get("orderpoint_id"):
+                orderpoint_id = procurement.values["orderpoint_id"]
+                if (
+                    orderpoint_id.include_draft_purchase
+                    and (
+                        orderpoint_id.draft_purchase_order_qty
+                        + orderpoint_id.incoming_location_qty
+                        + orderpoint_id.product_location_qty
+                        - orderpoint_id.outgoing_location_qty
+                    )
+                    >= orderpoint_id.product_min_qty
+                ):
+                    return False
+        return super().run(procurements, raise_user_error=raise_user_error)

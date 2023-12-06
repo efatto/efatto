@@ -250,13 +250,13 @@ msgstr "Prodotto finito"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_marked_blocked
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
 msgid "Mark blocked"
-msgstr "Bloccato"
+msgstr "Imposta a bloccato"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
-msgid "Mark not blocked"
-msgstr "Non bloccato"
+msgid "Sblocca"
+msgstr "Rimuovi il bloccato"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_picking_form

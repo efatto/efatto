@@ -52,7 +52,7 @@ msgstr "Totale"
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint__virtual_location_missing_qty
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint_template__virtual_location_missing_qty
 msgid "Virtual missing Qty On Location"
-msgstr "Quantità virtuale mancenate nell'ubicazione"
+msgstr "Quantità virtuale mancante nell'ubicazione"
 
 #. module: stock_procurement_draft_purchase
 #: model:ir.model.fields,field_description:stock_procurement_draft_purchase.field_stock_warehouse_orderpoint__virtual_location_draft_purchase_qty

@@ -16,7 +16,9 @@ class SaleOrder(models.Model):
         for order in self:
             if order.enable_reserve_date_check:
                 errors = []
-                for line in order.order_line.filtered("product_id"):
+                for line in order.order_line.filtered(
+                    lambda x: x.product_id and x.product_id.type == "product"
+                ):
                     commitment_date = (
                         line.commitment_date
                         and line.commitment_date.date()

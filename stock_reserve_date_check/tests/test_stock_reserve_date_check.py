@@ -28,6 +28,7 @@ class TestStockReserveDateCheck(TestProductionData):
                 {
                     "name": "Product Test",
                     "standard_price": 50.0,
+                    "type": "product",
                     "seller_ids": [(6, 0, [supplierinfo.id])],
                     "route_ids": [(6, 0, [cls.buy_route.id])],
                 }
@@ -77,6 +78,7 @@ class TestStockReserveDateCheck(TestProductionData):
             )
         )
         self._create_sale_order_line(order1, self.product, 5)
+        self.assertEqual(self.product.type, "product")
         with self.assertRaises(UserError):
             order1.with_user(self.test_user).action_confirm()
         self.assertEqual(order1.state, "draft")

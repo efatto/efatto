@@ -24,28 +24,28 @@ class StockWarehouseOrderpoint(models.Model):
     )
 
     def _search_is_virtual_location_missing_qty(self, operator, value):
-        orders = self.env["stock.warehouse.orderpoint"].search(
+        ops = self.env["stock.warehouse.orderpoint"].search(
             [("product_min_qty", ">", 0)], limit=None
         )
-        orders = orders.filtered(
+        ops = ops.filtered(
             lambda x: x.product_min_qty > x.virtual_location_draft_purchase_qty
         )
-        return [("id", "in", orders.ids)]
+        return [("id", "in", ops.ids)]
 
     def _compute_product_purchase_qty(self):
-        for order in self:
+        for op in self:
             purchase_order_line_ids = self.env["purchase.order.line"].search(
                 [
                     ("state", "in", ["draft", "sent"]),
-                    ("product_id", "=", order.product_id.id),
-                    ("orderpoint_id.location_id", "=", order.location_id.id),
-                    ("orderpoint_id", "=", order.id),
+                    ("product_id", "=", op.product_id.id),
+                    ("orderpoint_id.location_id", "=", op.location_id.id),
+                    ("orderpoint_id", "=", op.id),
                 ]
             )
             purchase_qty = sum(purchase_order_line_ids.mapped("product_uom_qty") or [0])
-            virtual_draft_purchase_qty = order.virtual_location_qty + purchase_qty
-            virtual_missing_qty = virtual_draft_purchase_qty - order.product_min_qty
-            order.update(
+            virtual_draft_purchase_qty = op.virtual_location_qty + purchase_qty
+            virtual_missing_qty = virtual_draft_purchase_qty - op.product_min_qty
+            op.update(
                 {
                     "draft_purchase_order_qty": purchase_qty,
                     "virtual_location_draft_purchase_qty": virtual_draft_purchase_qty,

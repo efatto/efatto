@@ -15,6 +15,7 @@ class StockWarehouseOrderpoint(models.Model):
     )
     virtual_location_missing_qty = fields.Float(
         string="Virtual missing Qty On Location",
+        help="Only negative values are meaningful",
         compute="_compute_product_purchase_qty",
     )
     is_virtual_location_missing_qty = fields.Boolean(
@@ -44,7 +45,9 @@ class StockWarehouseOrderpoint(models.Model):
             )
             purchase_qty = sum(purchase_order_line_ids.mapped("product_uom_qty") or [0])
             virtual_draft_purchase_qty = op.virtual_location_qty + purchase_qty
-            virtual_missing_qty = virtual_draft_purchase_qty - op.product_min_qty
+            virtual_missing_qty = min(
+                [virtual_draft_purchase_qty - op.product_min_qty, 0]
+            )
             op.update(
                 {
                     "draft_purchase_order_qty": purchase_qty,

@@ -14,6 +14,7 @@
         "sale_stock_mrp_produce_delay",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "wizard/sale_order_component.xml",
         "views/sale.xml",
     ],

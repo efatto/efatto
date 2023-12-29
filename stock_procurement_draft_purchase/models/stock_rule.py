@@ -1,12 +1,11 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockWarehouseOrderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
 
-    include_draft_purchase = fields.Boolean()
     draft_purchase_order_qty = fields.Float(
         string="Purchase RdP On Location", compute="_compute_product_purchase_qty"
     )
@@ -48,6 +47,8 @@ class StockWarehouseOrderpoint(models.Model):
             virtual_missing_qty = min(
                 [virtual_draft_purchase_qty - op.product_min_qty, 0]
             )
+            if op.product_id.is_kit:
+                virtual_missing_qty = 0
             op.update(
                 {
                     "draft_purchase_order_qty": purchase_qty,
@@ -58,26 +59,3 @@ class StockWarehouseOrderpoint(models.Model):
                     else False,
                 }
             )
-
-
-class ProcurementGroup(models.Model):
-    _inherit = "procurement.group"
-
-    @api.model
-    def run(self, procurements, raise_user_error=True):
-        for procurement in procurements:
-            # subtract qty in PO in draft and sent states for current OP
-            if procurement.values.get("orderpoint_id"):
-                orderpoint_id = procurement.values["orderpoint_id"]
-                if (
-                    orderpoint_id.include_draft_purchase
-                    and (
-                        orderpoint_id.draft_purchase_order_qty
-                        + orderpoint_id.incoming_location_qty
-                        + orderpoint_id.product_location_qty
-                        - orderpoint_id.outgoing_location_qty
-                    )
-                    >= orderpoint_id.product_min_qty
-                ):
-                    return False
-        return super().run(procurements, raise_user_error=raise_user_error)

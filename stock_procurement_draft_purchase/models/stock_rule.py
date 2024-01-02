@@ -38,8 +38,11 @@ class StockWarehouseOrderpoint(models.Model):
                 [
                     ("state", "in", ["draft", "sent"]),
                     ("product_id", "=", op.product_id.id),
-                    ("orderpoint_id.location_id", "=", op.location_id.id),
-                    ("orderpoint_id", "=", op.id),
+                    (
+                        "order_id.picking_type_id.default_location_dest_id",
+                        "=",
+                        op.location_id.id,
+                    ),
                 ]
             )
             purchase_qty = sum(purchase_order_line_ids.mapped("product_uom_qty") or [0])

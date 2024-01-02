@@ -74,10 +74,11 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
         self.assertEqual(op1.virtual_location_draft_purchase_qty, 0)
         # launch scheduler, it will order 50 pc of product
         self.run_stock_procurement_scheduler()
+        op1.refresh()
         self.assertEqual(op1.draft_purchase_order_qty, 50)
         self.assertEqual(op1.virtual_location_draft_purchase_qty, 50)
         purchase_orders = self.env["purchase.order"].search(
-            [("order_line.orderpoint_id", "=", op1.id)]
+            [("order_line.product_id", "=", op1.product_id.id)]
         )
         self.assertEqual(len(purchase_orders), 1)
         purchase_order1 = purchase_orders[0]

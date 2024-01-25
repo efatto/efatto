@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="product.product_supplierinfo_search_view" />
         <field name="arch" type="xml">
             <field name="product_tmpl_id" position="after">
-                <field name="product_code"/>
-                <field name="product_name"/>
+                <field name="product_code" />
+                <field name="product_name" />
             </field>
         </field>
     </record>

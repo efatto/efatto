@@ -295,8 +295,8 @@ msgstr "Massima Data prevista di consegna:"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__max_commitment_date
-msgid "New Scheduled Delivery Date"
-msgstr "Nuova Data prevista di consegna"
+msgid "Max Scheduled Delivery Date"
+msgstr "Massima Data prevista di consegna"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_wizard_mark_blocked__note

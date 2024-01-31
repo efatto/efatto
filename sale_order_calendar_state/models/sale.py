@@ -106,7 +106,7 @@ class SaleOrder(models.Model):
         compute="_compute_max_commitment_date",
         inverse="_inverse_max_commitment_date",
         store=True,
-        string="New Scheduled Delivery Date",
+        string="Max Scheduled Delivery Date",
     )
     delivery_week = fields.Integer(compute="_compute_delivery_week", store=True)
     custom_production_qty = fields.Integer(

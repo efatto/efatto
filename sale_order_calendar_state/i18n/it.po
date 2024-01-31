@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 16:59+0000\n"
-"PO-Revision-Date: 2023-11-30 16:59+0000\n"
+"POT-Creation-Date: 2024-01-31 16:38+0000\n"
+"PO-Revision-Date: 2024-01-31 16:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -255,7 +255,7 @@ msgstr "Imposta a bloccato"
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
-msgid "Sblocca"
+msgid "Mark not blocked"
 msgstr "Rimuovi il bloccato"
 
 #. module: sale_order_calendar_state
@@ -282,6 +282,11 @@ msgstr "In assemblaggio esterno"
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.mrp_production_form_view
 msgid "Mark to test"
 msgstr "Da collaudare"
+
+#. module: sale_order_calendar_state
+#: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_order_form_calendar_state
+msgid "Max Delivery Date"
+msgstr "Massima data prevista di consegna"
 
 #. module: sale_order_calendar_state
 #: model_terms:ir.ui.view,arch_db:sale_order_calendar_state.view_sale_order_kanban_color
@@ -370,7 +375,7 @@ msgstr "Stato di calendario ordine di vendita"
 #. module: sale_order_calendar_state
 #: model:ir.model,name:sale_order_calendar_state.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini di Vendita"
+msgstr "Ordini di vendita"
 
 #. module: sale_order_calendar_state
 #: model:ir.model.fields,field_description:sale_order_calendar_state.field_sale_order__commitment_date

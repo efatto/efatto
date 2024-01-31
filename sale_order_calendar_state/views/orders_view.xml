@@ -1,16 +1,37 @@
 <?xml version="1.0" ?>
 <odoo>
 
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="commitment_date" position="after">
+                <field name="max_commitment_date" widget="date" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="commitment_date" position="after">
+                <field name="max_commitment_date" widget="date" optional="hide" />
+            </field>
+        </field>
+    </record>
+
     <record id="view_order_form_calendar_state" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//notebook/page[@name='other_information']/group/group/div/field[@name='commitment_date']"
-        position="before"
+        expr="//notebook/page[@name='other_information']/group/group[@name='sale_shipping']"
+        position="inside"
       >
-                <field name="max_commitment_date" />
-                <div>
+                <label for="max_commitment_date" string="Max Delivery Date" />
+                <div name="max_commitment_date_div" class="o_row">
+                    <field name="max_commitment_date" widget="date" />
                     <button
             name="alert_customer_changed_delivery"
             type="object"

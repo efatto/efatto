@@ -42,21 +42,13 @@ class OrderpointTemplate(models.Model):
                 "stock.warehouse.orderpoint"
             ].search_count([("orderpoint_tmpl_id", "=", record.id)])
 
-    def _check_compute_on_sale(self):
+    @api.constrains("compute_on_sale", "auto_max_qty_criteria")
+    def _constrains_compute_on_sale(self):
         for rule in self:
-            if rule.compute_on_sale:
-                if rule.auto_max_qty_criteria != "sum":
-                    return False
-        return True
-
-    _constraints = [
-        (
-            _check_compute_on_sale,
-            'You have to select "sum" as auto max qty criteria when "compute on sale" '
-            "is selected",
-            ["compute_on_sale", "auto_max_qty_criteria"],
-        ),
-    ]
+            if rule.compute_on_sale and rule.auto_max_qty_criteria != "sum":
+                raise UserError(_(
+                    'You have to select "sum" as auto max qty criteria when '
+                    '"compute on sale" is selected'))
 
     @api.onchange("compute_on_sale")
     def onchange_compute_on_sale(self):

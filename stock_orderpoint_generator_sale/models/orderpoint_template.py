@@ -46,9 +46,12 @@ class OrderpointTemplate(models.Model):
     def _constrains_compute_on_sale(self):
         for rule in self:
             if rule.compute_on_sale and rule.auto_max_qty_criteria != "sum":
-                raise UserError(_(
-                    'You have to select "sum" as auto max qty criteria when '
-                    '"compute on sale" is selected'))
+                raise UserError(
+                    _(
+                        'You have to select "sum" as auto max qty criteria when '
+                        '"compute on sale" is selected'
+                    )
+                )
 
     @api.onchange("compute_on_sale")
     def onchange_compute_on_sale(self):

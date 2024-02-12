@@ -32,6 +32,7 @@ class ProductProduct(models.Model):
 
     is_kit = fields.Boolean(string="Is Kit", compute="_compute_is_kit", store=True)
 
+    @api.depends("route_ids", "bom_ids")
     def _compute_is_kit(self):
         for product in self:
             product.is_kit = False

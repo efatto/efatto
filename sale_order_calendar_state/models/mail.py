@@ -22,4 +22,4 @@ class MailComposeMessage(models.TransientModel):
             self.env["sale.order"]._inverse_max_commitment_date(
                 # self._context["default_res_id"]
             )
-        return super(MailComposeMessage, self).send_mail()
+        return super(MailComposeMessage, self).send_mail(auto_commit=auto_commit)

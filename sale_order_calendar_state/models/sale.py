@@ -235,6 +235,8 @@ class SaleOrder(models.Model):
 
     def _inverse_max_commitment_date(self):
         for order in self:
+            order.write({
+                "commitment_date": max(order.order_line.mapped("commitment_date"))})
             order.order_line.write({"commitment_date": order.max_commitment_date})
 
     @api.depends("order_line.commitment_date", "commitment_date", "date_order")

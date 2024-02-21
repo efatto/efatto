@@ -17,7 +17,7 @@
       name="body_html"
     ><![CDATA[
 Dear ${object.partner_id.name},<br>
-The expected delivery date has changed from ${object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} to ${object.max_commitment_date.strftime('%d/%m/%Y')},
+The expected delivery date has changed from ${object.commitment_date and object.commitment_date.strftime('%d/%m/%Y') or 'TBD'} to ${object.max_commitment_date.strftime('%d/%m/%Y')},
 we hope this won't be a problem.<br>
 <br>
 Best Regards,<br>

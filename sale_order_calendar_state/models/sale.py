@@ -235,10 +235,12 @@ class SaleOrder(models.Model):
 
     def _inverse_max_commitment_date(self):
         for order in self:
-            if order.max_commitment_date != max(
-                order.order_line.mapped("commitment_date")
-            ) and not order.commitment_date:
-                order.commitment_date = order.max_commitment_date
+            if not order.commitment_date:
+                order_line_commitment_dates = order.order_line.filtered(
+                    "commitment_date"
+                ).mapped("commitment_date")
+                if order_line_commitment_dates:
+                    order.commitment_date = max(order_line_commitment_dates)
             order.order_line.commitment_date = order.max_commitment_date
 
     @api.depends("order_line.commitment_date", "commitment_date", "date_order")

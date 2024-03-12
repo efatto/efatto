@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_invoice_single_tax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-12 13:48+0000\n"
+"PO-Revision-Date: 2024-03-12 13:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_single_tax
+#: model:ir.model.fields,field_description:account_invoice_single_tax.field_account_move__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: account_invoice_single_tax
+#: model:ir.model.fields,field_description:account_invoice_single_tax.field_account_move__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: account_invoice_single_tax
+#: model:ir.model.fields,field_description:account_invoice_single_tax.field_account_move__id
+msgid "ID"
+msgstr ""
+
+#. module: account_invoice_single_tax
+#: model:ir.model,name:account_invoice_single_tax.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: account_invoice_single_tax
+#: model:ir.model.fields,field_description:account_invoice_single_tax.field_account_move____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: account_invoice_single_tax
+#: code:addons/account_invoice_single_tax/models/account_invoice.py:0
+#, python-format
+msgid "Multiple/None Taxes Defined in lines: %s"
+msgstr "Più di una/nessuna imposta definita sulle righe: %s"

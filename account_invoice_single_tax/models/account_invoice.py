@@ -7,7 +7,7 @@ class AccountInvoice(models.Model):
 
     def single_invoice_line_tax(self):
         errors = []
-        for invoice in self:
+        for invoice in self.filtered(lambda x: x.is_invoice()):
             for invoice_line in invoice.invoice_line_ids:
                 if len(invoice_line.tax_ids) != 1:
                     error_string = "[%s] %s \n" % (invoice.name, invoice_line.name)

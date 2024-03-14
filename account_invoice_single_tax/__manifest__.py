@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Single tax restrict in invoice",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
     "category": "Localisation / Accounting",

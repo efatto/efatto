@@ -433,6 +433,8 @@ class SaleOrder(models.Model):
             #    calendar_states.append((PRODUCTION_PLANNED, fields.Datetime.now()))
             if mrp_states & {"progress"}:
                 calendar_states.append((PRODUCTION_STARTED, fields.Datetime.now()))
+            if mrp_states & {"consumed"}:
+                calendar_states.append((PRODUCTION_STARTED, fields.Datetime.now()))
             if mrp_additional_states:
                 for mrp_additional_state in mrp_additional_states:
                     calendar_states.append(

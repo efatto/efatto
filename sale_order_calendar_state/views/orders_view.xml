@@ -173,17 +173,22 @@
                 <filter
           name="production_to_produce"
           string="To Produce"
-          domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('production_id', '!=', False)]"
+          domain="[('custom_production_qty', '=', 0), ('calendar_state', 'in', ('to_produce', 'production_ready')), ('production_id', '!=', False)]"
         />
                 <filter
           name="production_started"
           string="In Production"
-          domain="[('calendar_state', '=', 'production_started'), ('production_id', '!=', False)]"
+          domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_started'), ('production_id', '!=', False)]"
         />
                 <filter
           name="production_done"
           string="Production Done"
-          domain="[('calendar_state', '=', 'production_done'), ('production_id', '!=', False)]"
+          domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_done'), ('production_id', '!=', False)]"
+        />
+                <filter
+          name="production_all"
+          string="Production All"
+          domain="[('custom_production_qty', '=', 0), ('production_id', '!=', False)]"
         />
                 <separator />
                 <filter
@@ -200,6 +205,11 @@
           name="custom_production_done"
           string="Custom Production Done"
           domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+        />
+                <filter
+          name="custom_production_all"
+          string="Custom Production All"
+          domain="[('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
         />
                 <separator />
                 <filter

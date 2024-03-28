@@ -20,8 +20,8 @@ class MrpProduction(models.Model):
     is_blocked = fields.Boolean()
     blocked_note = fields.Char()
 
-    def _post_inventory(self, cancel_backorder=False):
-        res = super()._post_inventory(cancel_backorder=cancel_backorder)
+    def button_consume(self):
+        res = super().button_consume()
         self.write({"additional_state": "to_assembly"})
         return res
 

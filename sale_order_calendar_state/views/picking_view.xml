@@ -12,7 +12,7 @@
             </field>
             <button name="button_validate" position="after">
                 <field name="is_assigned" invisible="1" />
-                <field name="custom_production_qty" invisible="1"/>
+                <field name="custom_production_qty" invisible="1" />
                 <button
           name="mark_printed_for_logistic"
           attrs="{'invisible': ['|', '|', '|', ('custom_production_qty', '>', 0), ('picking_type_code', '!=', 'outgoing'), ('is_assigned', '=', True), ('state', 'in', ['draft', 'cancel'])]}"

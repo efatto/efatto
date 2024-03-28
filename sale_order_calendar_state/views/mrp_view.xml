@@ -27,25 +27,25 @@
           name="button_mark_to_produce"
           type="object"
           string="Mark to produce"
-          attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('additional_state', '=', 'to_produce')]}"
+          attrs="{'invisible': ['|', ('state', 'not in', ['progress', 'consumed']), ('additional_state', '=', 'to_produce')]}"
         />
                 <button
           name="button_mark_to_assembly"
           type="object"
           string="Mark to assembly"
-          attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('additional_state', '=', 'to_assembly')]}"
+          attrs="{'invisible': ['|', ('state', 'not in', ['progress', 'consumed']), ('additional_state', '=', 'to_assembly')]}"
         />
                 <button
           name="button_mark_to_submanufacture"
           type="object"
           string="Mark to submanufacture"
-          attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('additional_state', '=', 'to_submanufacture')]}"
+          attrs="{'invisible': ['|', ('state', 'not in', ['progress', 'consumed']), ('additional_state', '=', 'to_submanufacture')]}"
         />
                 <button
           name="button_mark_to_test"
           type="object"
           string="Mark to test"
-          attrs="{'invisible': ['|', '|', ('state', '!=', 'progress'), ('additional_state', '=', False), ('additional_state', 'in', ['to_produce', 'to_test'])]}"
+          attrs="{'invisible': ['|', '|', ('state', 'not in', ['progress', 'consumed']), ('additional_state', '=', False), ('additional_state', 'in', ['to_produce', 'to_test'])]}"
         />
                 <button
           name="button_unmark_additional_state"

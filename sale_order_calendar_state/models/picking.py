@@ -13,7 +13,8 @@ class Picking(models.Model):
     is_assigned = fields.Boolean(string="Printed for logistic", copy=False)
     custom_production_qty = fields.Integer(
         related="sale_id.custom_production_qty",
-        string="Sale Custom Production Quantity")
+        string="Sale Custom Production Quantity",
+    )
 
     @api.depends("state")
     def _compute_date_ready_to_deliver(self):

@@ -15,6 +15,10 @@ class Picking(models.Model):
         related="sale_id.custom_production_qty",
         string="Sale Custom Production Quantity",
     )
+    has_kit = fields.Boolean(
+        related="sale_id.has_kit",
+        string="Sale Has Kit",
+    )
 
     @api.depends("state")
     def _compute_date_ready_to_deliver(self):

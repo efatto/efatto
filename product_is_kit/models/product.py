@@ -32,10 +32,11 @@ class ProductProduct(models.Model):
 
     is_kit = fields.Boolean(string="Is Kit", compute="_compute_is_kit", store=True)
 
-    @api.depends("route_ids", "bom_ids")
+    @api.depends("route_ids", "bom_ids.type")
     def _compute_is_kit(self):
         for product in self:
-            product.is_kit = False
-            bom_kits = self.env["mrp.bom"]._get_product2bom(product, bom_type="phantom")
-            if product.filtered(lambda p: bom_kits.get(p)):
-                product.is_kit = True
+            product.is_kit = bool(
+                any(bom.type == "phantom" for bom in product.bom_ids)
+                and self.env.ref("mrp.route_warehouse0_manufacture")
+                in product.route_ids
+            )

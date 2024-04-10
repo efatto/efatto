@@ -115,7 +115,8 @@ class SaleComponentLine(models.TransientModel):
     free_qty_today = fields.Float(compute="_compute_qty_at_date")
     qty_available_today = fields.Float(compute="_compute_qty_at_date")
     warehouse_id = fields.Many2one("stock.warehouse", compute="_compute_qty_at_date")
-    qty_to_deliver = fields.Float(compute="_compute_qty_to_deliver")
+    qty_to_deliver = fields.Float(
+        compute="_compute_qty_to_deliver", digits="Product Unit of Measure")
     is_mto = fields.Boolean(compute="_compute_is_mto")
     display_qty_widget = fields.Boolean(compute="_compute_qty_to_deliver")
 

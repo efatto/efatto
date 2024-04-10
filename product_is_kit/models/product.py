@@ -21,9 +21,7 @@ class ProductTemplate(models.Model):
             template.is_kit = False
 
     def _search_is_kit(self, operator, value):
-        products = self.env["product.product"].search(
-            [("is_kit", operator, value)]
-        )
+        products = self.env["product.product"].search([("is_kit", operator, value)])
         return [("id", "in", products.mapped("product_tmpl_id").ids)]
 
 

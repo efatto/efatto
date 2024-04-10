@@ -23,6 +23,12 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    mrp_component_ids = fields.Many2many(
+        comodel_name="product.product",
+        string="Components",
+        compute="_compute_mrp_component_ids",
+    )
+
     def _bom_explode(self, product_id, products):
         bom = self.env["mrp.bom"]._bom_find(
             product=product_id, company_id=self.company_id.id
@@ -40,3 +46,9 @@ class SaleOrder(models.Model):
             for product in [r[0].product_id for r in bom_line_data]:
                 products = self._bom_explode(product, products)
         return products
+
+    def _compute_mrp_component_ids(self):
+        for order in self:
+            order.mrp_component_ids = order.production_ids.mapped(
+                "move_raw_ids.product_id"
+            )

@@ -109,7 +109,8 @@ class SaleComponentLine(models.TransientModel):
     sol_qty_delivered = fields.Float(related="sale_order_line_id.qty_delivered")
     product_uom = fields.Many2one(related="sale_order_line_id.product_uom")
     component_bom_qty = fields.Float(readonly=True)
-    virtual_available_at_date = fields.Float(compute="_compute_qty_at_date")
+    virtual_available_at_date = fields.Float(
+        compute="_compute_qty_at_date", digits="Product Unit of Measure")
     scheduled_date = fields.Datetime(compute="_compute_qty_at_date")
     free_qty_today = fields.Float(compute="_compute_qty_at_date")
     qty_available_today = fields.Float(compute="_compute_qty_at_date")

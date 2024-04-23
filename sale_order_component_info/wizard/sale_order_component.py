@@ -110,13 +110,15 @@ class SaleComponentLine(models.TransientModel):
     product_uom = fields.Many2one(related="sale_order_line_id.product_uom")
     component_bom_qty = fields.Float(readonly=True)
     virtual_available_at_date = fields.Float(
-        compute="_compute_qty_at_date", digits="Product Unit of Measure")
+        compute="_compute_qty_at_date", digits="Product Unit of Measure"
+    )
     scheduled_date = fields.Datetime(compute="_compute_qty_at_date")
     free_qty_today = fields.Float(compute="_compute_qty_at_date")
     qty_available_today = fields.Float(compute="_compute_qty_at_date")
     warehouse_id = fields.Many2one("stock.warehouse", compute="_compute_qty_at_date")
     qty_to_deliver = fields.Float(
-        compute="_compute_qty_to_deliver", digits="Product Unit of Measure")
+        compute="_compute_qty_to_deliver", digits="Product Unit of Measure"
+    )
     is_mto = fields.Boolean(compute="_compute_is_mto")
     display_qty_widget = fields.Boolean(compute="_compute_qty_to_deliver")
 

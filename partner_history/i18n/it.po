@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* partner_history
+# 	* partner_history
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-16 15:06+0000\n"
-"PO-Revision-Date: 2020-08-16 15:06+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 14:01+0000\n"
+"PO-Revision-Date: 2024-04-26 14:01+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,70 +16,62 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: partner_history
-#: model:ir.model,name:partner_history.model_account_account
-msgid "Account"
-msgstr "Conto"
-
-#. module: partner_history
 #: model:ir.model,name:partner_history.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_create_uid
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__create_uid
 msgid "Created by"
 msgstr "Creato da"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_create_date
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__create_date
 msgid "Created on"
 msgstr "Creato il"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_date_from
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__date_from
 msgid "Date From"
 msgstr "Dalla data"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_date_to
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__date_to
 msgid "Date To"
 msgstr "Alla data"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_display_name
+#: model:ir.model.fields,field_description:partner_history.field_res_partner__display_name
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_id
+#: model:ir.model.fields,field_description:partner_history.field_res_partner__id
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__id
 msgid "ID"
 msgstr ""
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history___last_update
+#: model:ir.model.fields,field_description:partner_history.field_res_partner____last_update
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_write_uid
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__write_uid
 msgid "Last Updated by"
 msgstr "Ultima modifica di"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_write_date
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__write_date
 msgid "Last Updated on"
 msgstr "Ultima modifica il"
 
 #. module: partner_history
-#: model:ir.model.fields,field_description:partner_history.field_account_account_history_name
+#: model:ir.model.fields,field_description:partner_history.field_res_partner_history__name
 msgid "Name"
 msgstr "Nome"
-
-#. module: partner_history
-#: code:addons/partner_history/models/partner_history.py:32
-#, python-format
-msgid "Partner history term %s overlaps with %s"
-msgstr "Lo storico del nome del partner %s si sovrappone con %s"
 
 #. module: partner_history
 #: model:ir.model.fields,field_description:partner_history.field_res_partner_history__partner_id
@@ -98,3 +90,8 @@ msgstr "Storico Nome Partner"
 msgid "Partner history"
 msgstr "Storico Nome Partner"
 
+#. module: partner_history
+#: code:addons/partner_history/models/partner_history.py:0
+#, python-format
+msgid "Partner history term %s overlaps with %s"
+msgstr "Lo storico del nome del partner %s si sovrappone con %s"

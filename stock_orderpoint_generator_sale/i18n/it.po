@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_orderpoint_generator_sale
+# 	* stock_orderpoint_generator_sale
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-21 12:26+0000\n"
-"PO-Revision-Date: 2022-06-21 12:26+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 15:29+0000\n"
+"PO-Revision-Date: 2024-04-26 15:29+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,14 +26,25 @@ msgid "Auto Max Qty Criteria"
 msgstr "Criterio Auto Max per quantità"
 
 #. module: stock_orderpoint_generator_sale
-#: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
-msgid "Average"
-msgstr "Medio"
-
-#. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__compute_on_sale
 msgid "Compute On Sale"
 msgstr "Calcola Sul Venduto"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_product__display_name
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_template__display_name
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint__display_name
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_product__id
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_template__id
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint__id
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__id
+msgid "ID"
+msgstr ""
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__variation_percent
@@ -46,35 +57,28 @@ msgid "Info"
 msgstr "Informazioni"
 
 #. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_product____last_update
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_product_template____last_update
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint____last_update
+#: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__log_info
 msgid "Log Info"
 msgstr "Log Informazioni"
 
 #. module: stock_orderpoint_generator_sale
-#: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
-msgid "Maximum"
-msgstr "Massimo"
-
-#. module: stock_orderpoint_generator_sale
-#: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
-msgid "Minimum"
-msgstr "Minimo"
-
-#. module: stock_orderpoint_generator_sale
 #: model:ir.model,name:stock_orderpoint_generator_sale.model_stock_warehouse_orderpoint
 msgid "Minimum Inventory Rule"
-msgstr "Regola di scorta minima"
+msgstr "Regola di inventario minimo"
 
 #. module: stock_orderpoint_generator_sale
-#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:179
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
 #, python-format
 msgid "Missing price in product %s!"
 msgstr "Prezzo mancante nel prodotto %s!"
-
-#. module: stock_orderpoint_generator_sale
-#: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
-msgid "Most frequent"
-msgstr "Più frequente"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__move_days
@@ -82,10 +86,14 @@ msgid "Move Days"
 msgstr "Giorni movimenti precedenti"
 
 #. module: stock_orderpoint_generator_sale
-#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:60
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
 #, python-format
-msgid "Move days cannot be equal to 0!"
-msgstr "Giorni movimenti precedenti non possono essere uguali a 0!"
+msgid ""
+"Move days cannot be equal to 0 if Auto max qty is set and no min and max "
+"date are set!"
+msgstr ""
+"I giorni dei movimenti non possono essere uguali a 0 se Quantità massima "
+"automatica è impostata e né la minima né la massima data sono impostate!"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__order_mngt_cost
@@ -121,11 +129,11 @@ msgstr "Categoria prodotto"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model,name:stock_orderpoint_generator_sale.model_product_template
-msgid "Product Template (Multi-Company)"
-msgstr ""
+msgid "Product Template"
+msgstr "Modello prodotto"
 
 #. module: stock_orderpoint_generator_sale
-#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:172
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
 #, python-format
 msgid "Product with phantom bom excluded: %s"
 msgstr "Prodotto con bom di tipo kit escluso: %s"
@@ -138,7 +146,7 @@ msgstr "Modello regole di riordino"
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__auto_max_qty_criteria
 msgid "Select a criteria to auto compute the maximum"
-msgstr "Seleziona un criterio per calcolare il massimo"
+msgstr "Selezionare un criterio per calcolare in automatico il massimo"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__service_level
@@ -146,15 +154,20 @@ msgid "Service Level"
 msgstr "Livello di Servizio"
 
 #. module: stock_orderpoint_generator_sale
-#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:67
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
 #, python-format
 msgid "Service level cannot be equal to 50 or <= 0!"
 msgstr "Il livello di Servizio non può essere uguale a 50 o <= 0!"
 
 #. module: stock_orderpoint_generator_sale
-#: selection:stock.warehouse.orderpoint.template,auto_max_qty_criteria:0
+#: model:ir.model.fields.selection,name:stock_orderpoint_generator_sale.selection__stock_warehouse_orderpoint_template__auto_max_qty_criteria__sum
 msgid "Sum"
 msgstr "Somma"
+
+#. module: stock_orderpoint_generator_sale
+#: model:ir.model.fields,help:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__move_days
+msgid "Used when not filled date from and to in maximum criteria"
+msgstr "Usato quando le date non sono impostate nel criterio del massimo"
 
 #. module: stock_orderpoint_generator_sale
 #: model:ir.model.fields,field_description:stock_orderpoint_generator_sale.field_stock_warehouse_orderpoint_template__variation_percent
@@ -162,7 +175,21 @@ msgid "Variation Percent"
 msgstr "Variazione Percentuale"
 
 #. module: stock_orderpoint_generator_sale
-#: constraint:stock.warehouse.orderpoint.template:0
-msgid "You have to select \"sum\" as auto max qty criteria when \"compute on sale\" is selected"
-msgstr "È necessario selezionare \"somma\" come criterio di auto massimo quanto \"calcola sul venduto\" è selezionato"
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
+#, python-format
+msgid ""
+"You have to select \"sum\" as auto max qty criteria when \"compute on sale\""
+" is selected"
+msgstr ""
+"È necessario selezionare \"somma\" come criterio di auto massimo quando \"calcola sul venduto\""
+" è selezionato"
 
+#. module: stock_orderpoint_generator_sale
+#: code:addons/stock_orderpoint_generator_sale/models/orderpoint_template.py:0
+#, python-format
+msgid ""
+"[%s] Product orderpoint created (from max qty in selected date range / move "
+"days period: %s)"
+msgstr ""
+"[%s] Regole di riordino del prodotto create (dalla massima quantià nel periodo selezionato / periodo "
+"in giorni dei movimenti di magazzino: %s)"

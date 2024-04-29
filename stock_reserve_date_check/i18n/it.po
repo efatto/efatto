@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_reserve_date_check
+# 	* stock_reserve_date_check
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 13:55+0000\n"
-"PO-Revision-Date: 2022-09-13 13:55+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 15:21+0000\n"
+"PO-Revision-Date: 2024-04-26 15:21+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,10 +16,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_reserve_date_check
-#: code:addons/stock_reserve_date_check/models/sale.py:44
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#, python-format
+msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
+msgstr "%s[Di.Ba.] [%s] [Q.tà: %s] [%s] data pianificabile %s.\n"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#, python-format
+msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n"
+msgstr "%s[COMP] [%s] [Q.tà: %s] [%s] data pianificabile %s.\n"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale.py:0
 #, python-format
 msgid "(Produce delay: %.0f days)"
 msgstr "(Tempo di produzione: %.0f giorni)"
+
+#. module: stock_reserve_date_check
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order__display_name
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
 
 #. module: stock_reserve_date_check
 #: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
@@ -27,34 +49,66 @@ msgid "Enable Reserve Date Check"
 msgstr "Abilita Controllo Riserva per Date"
 
 #. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#, python-format
+msgid "FROM STOCK"
+msgstr "DA MAGAZZINO"
+
+#. module: stock_reserve_date_check
 #: model:ir.model.fields,help:stock_reserve_date_check.field_sale_order__enable_reserve_date_check
 msgid "Forbid reservation on not possible date"
 msgstr "Vieta la riserva in date non possibili"
 
 #. module: stock_reserve_date_check
-#: model:ir.model,name:stock_reserve_date_check.model_mrp_production
-msgid "Production Order"
-msgstr "Ordine di Produzione"
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order__id
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: stock_reserve_date_check
-#: code:addons/stock_reserve_date_check/models/sale.py:36
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order____last_update
+#: model:ir.model.fields,field_description:stock_reserve_date_check.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
 #, python-format
-msgid "Reservation of product [[%s] %s] is not possible for date %s!\n"
+msgid "No available info found!"
+msgstr "Nessuna informazione di disponibilità trovata!"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale.py:0
+#, python-format
+msgid ""
+"Reservation of product [[%s] %s] is not possible for date %s!\n"
 "Available date: %s %s\n"
 "Exception availability info:\n"
 "%s"
-msgstr "Non è possibile riservare il prodotto [[%s] %s] per la data %s!\n"
+msgstr ""
+"Non è possibile riservare il prodotto [[%s] %s] per la data %s!\n"
 "Possibile data d'acquisto: %s %s\n"
 "Informazioni sulle eccezioni disponibilità:\n"
 "%s"
 
 #. module: stock_reserve_date_check
 #: model:ir.model,name:stock_reserve_date_check.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: stock_reserve_date_check
-#: model:ir.model,name:stock_reserve_date_check.model_stock_move
-msgid "Stock Move"
-msgstr "Movimento di magazzino"
+#: model:ir.model,name:stock_reserve_date_check.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
 
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#, python-format
+msgid "TO PRODUCE"
+msgstr "DA PRODURRE"
+
+#. module: stock_reserve_date_check
+#: code:addons/stock_reserve_date_check/models/sale_order_line.py:0
+#, python-format
+msgid "TO PURCHASE"
+msgstr "DA ACQUISTARE"

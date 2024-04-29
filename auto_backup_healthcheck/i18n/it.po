@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* auto_backup_healthcheck
+# 	* auto_backup_healthcheck
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-14 16:47+0000\n"
-"PO-Revision-Date: 2022-03-14 16:47+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 14:30+0000\n"
+"PO-Revision-Date: 2024-04-26 14:30+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,11 +18,25 @@ msgstr ""
 #. module: auto_backup_healthcheck
 #: model:ir.model,name:auto_backup_healthcheck.model_db_backup
 msgid "Database Backup"
-msgstr "Backup Database"
+msgstr "Backup database"
 
 #. module: auto_backup_healthcheck
-#: code:addons/auto_backup_healthcheck/models/db_backup.py:18
+#: code:addons/auto_backup_healthcheck/models/db_backup.py:0
 #, python-format
 msgid "Database backup succeeded."
 msgstr "Backup del Database riuscito."
 
+#. module: auto_backup_healthcheck
+#: model:ir.model.fields,field_description:auto_backup_healthcheck.field_db_backup__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: auto_backup_healthcheck
+#: model:ir.model.fields,field_description:auto_backup_healthcheck.field_db_backup__id
+msgid "ID"
+msgstr ""
+
+#. module: auto_backup_healthcheck
+#: model:ir.model.fields,field_description:auto_backup_healthcheck.field_db_backup____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"

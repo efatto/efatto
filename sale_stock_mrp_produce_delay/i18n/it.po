@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_stock_mrp_produce_delay
+# 	* sale_stock_mrp_produce_delay
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-06 17:39+0000\n"
-"PO-Revision-Date: 2022-12-06 17:39+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 15:06+0000\n"
+"PO-Revision-Date: 2024-04-26 15:06+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,49 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:357
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:384
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:413
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:435
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:457
-#, python-format
-msgid "### Some moves have date expected lower than date! ###"
-msgstr "### Alcuni movimenti hanno una data impegno più bassa della data! ###"
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:390
-#, python-format
-msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-""
-msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.\n"
-""
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:351
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:378
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:407
-#, python-format
-msgid "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
-""
-msgstr "%s[DiBa] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
-""
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:429
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:451
-#, python-format
-msgid "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.%s\n"
-""
-msgstr "%s[COMP] [%s] [QTÀ: %s] [%s] data pianificabile %s.%s\n"
-""
-
-#. module: sale_stock_mrp_produce_delay
 #: model_terms:ir.ui.view,arch_db:sale_stock_mrp_produce_delay.view_order_form
 msgid "(Last computed on:"
 msgstr "(Ultimo calcolo il:"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:485
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:0
 #, python-format
 msgid "(Produce delay: %.0f days)"
 msgstr "(Tempo di produzione: %.0f giorni)"
@@ -80,13 +43,6 @@ msgid "Available Dates Info"
 msgstr "Info Date Disponibili"
 
 #. module: sale_stock_mrp_produce_delay
-#. openerp-web
-#: code:addons/sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml:40
-#, python-format
-msgid "Available Delivery"
-msgstr "Disponibilità Consegna"
-
-#. module: sale_stock_mrp_produce_delay
 #: model:ir.model,name:sale_stock_mrp_produce_delay.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Distinta base"
@@ -102,43 +58,61 @@ msgid "Compute arrival prediction"
 msgstr "Calcola previsione d'arrivo"
 
 #. module: sale_stock_mrp_produce_delay
-#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__display_qty_widget
-msgid "Display Qty Widget"
-msgstr "Mostra Widget Qtà"
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
 
 #. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:13
-#, python-format
-msgid "FROM STOCK"
-msgstr "DA MAGAZZINO"
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__display_qty_widget
+msgid "Display Qty Widget"
+msgstr "Widget visualizza q.tà"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,help:sale_stock_mrp_produce_delay.field_sale_order__available_date
 msgid "First available date computed in date/hour of available_date_compute"
-msgstr "Prima data disponibilità calcolata in data/ora del calcolo available_date_compute"
-
-#. module: sale_stock_mrp_produce_delay
-#. openerp-web
-#: code:addons/sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml:26
-#, python-format
-msgid "Forecasted Stock"
-msgstr "Magazzino Previsto"
+msgstr ""
+"Prima data disponibilità calcolata in data/ora del calcolo "
+"available_date_compute"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__free_qty_today
 msgid "Free Qty Today"
-msgstr "Qtà Libera Oggi"
+msgstr "Q.tà libera odierna"
+
+#. module: sale_stock_mrp_produce_delay
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom__id
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_stock_mrp_produce_delay
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__is_kit
+msgid "Is Kit"
+msgstr "È un kit"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__is_mto
 msgid "Is Mto"
-msgstr "E' MTO"
+msgstr "È su ordine (MTO)"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order__last_available_date_compute
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__last_available_date_compute
 msgid "Last Available Date Compute"
 msgstr "Ultimo Calcolo Data Disponibilità"
+
+#. module: sale_stock_mrp_produce_delay
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_mrp_bom_line____last_update
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__late_product_ids
@@ -151,88 +125,53 @@ msgid "Predicted Arrival Late"
 msgstr "Previsto Arrivo in Ritardo"
 
 #. module: sale_stock_mrp_produce_delay
-#: model:ir.model,name:sale_stock_mrp_produce_delay.model_product_template
-msgid "Product Template (Multi-Company)"
-msgstr ""
-
-#. module: sale_stock_mrp_produce_delay
 #: model_terms:ir.ui.view,arch_db:sale_stock_mrp_produce_delay.mrp_product_product_search_view
 msgid "Product id"
 msgstr ""
 
 #. module: sale_stock_mrp_produce_delay
-#: model:ir.model,name:sale_stock_mrp_produce_delay.model_purchase_order_line
-msgid "Purchase Order Line"
-msgstr "Riga ordine di acquisto"
-
-#. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__qty_available_today
 msgid "Qty Available Today"
-msgstr "Qtà Disponibile Oggi"
+msgstr "Q.tà disponibile oggi"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__qty_to_deliver
 msgid "Qty To Deliver"
-msgstr "Qtà da Consegnare"
+msgstr "Q.tà da consegnare"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model,name:sale_stock_mrp_produce_delay.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Ordine di vendita"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model,name:sale_stock_mrp_produce_delay.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__scheduled_date
 msgid "Scheduled Date"
-msgstr "Data pianificata"
+msgstr "Data programmata"
 
 #. module: sale_stock_mrp_produce_delay
-#. openerp-web
-#: code:addons/sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml:28
+#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:0
 #, python-format
-msgid "Stock available date"
-msgstr "Data disponibilità di magazzino"
-
-#. module: sale_stock_mrp_produce_delay
-#. openerp-web
-#: code:addons/sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml:31
-#, python-format
-msgid "Stock unavailable"
-msgstr "Non disponibile a magazzino"
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:14
-#, python-format
-msgid "TO PRODUCE"
-msgstr "DA PRODURRE"
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:15
-#, python-format
-msgid "TO PURCHASE"
-msgstr "DA ACQUISTARE"
-
-#. module: sale_stock_mrp_produce_delay
-#: code:addons/sale_stock_mrp_produce_delay/models/sale_order.py:480
-#, python-format
-msgid "This line is scheduled for: %s.\n"
+msgid ""
+"This line is scheduled for: %s.\n"
 "However it is now planned to arrive for %s. %s\n"
 "%s"
-msgstr "Questa riga è prevista per il: %s.\n"
+msgstr ""
+"Questa riga è prevista per il: %s.\n"
 "Però è attualmente pianificata per l'arrivo per il %s. %s\n"
 "%s"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__virtual_available_at_date
 msgid "Virtual Available At Date"
-msgstr "Data Virtuale Disponibilità"
+msgstr "Disponibilità virtuale alla data"
 
 #. module: sale_stock_mrp_produce_delay
 #: model:ir.model.fields,field_description:sale_stock_mrp_produce_delay.field_sale_order_line__warehouse_id
 msgid "Warehouse"
 msgstr "Magazzino"
-

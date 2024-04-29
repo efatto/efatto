@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_dn_client_ref
+# 	* l10n_it_dn_client_ref
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-20 07:22+0000\n"
-"PO-Revision-Date: 2022-07-20 07:22+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 15:16+0000\n"
+"PO-Revision-Date: 2024-04-26 15:16+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,12 +16,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_it_dn_client_ref
-#: model:ir.model.fields,field_description:l10n_it_dn_client_ref.field_stock_delivery_note_line__client_order_ref
-msgid "Sale Customer Reference"
-msgstr "Riferimento ordine cliente"
-
-#. module: l10n_it_dn_client_ref
 #: model:ir.model,name:l10n_it_dn_client_ref.model_stock_delivery_note_line
 msgid "Delivery Note Line"
 msgstr "Riga DdT"
 
+#. module: l10n_it_dn_client_ref
+#: model:ir.model.fields,field_description:l10n_it_dn_client_ref.field_stock_delivery_note_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_dn_client_ref
+#: model:ir.model.fields,field_description:l10n_it_dn_client_ref.field_stock_delivery_note_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_dn_client_ref
+#: model:ir.model.fields,field_description:l10n_it_dn_client_ref.field_stock_delivery_note_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_dn_client_ref
+#: model:ir.model.fields,field_description:l10n_it_dn_client_ref.field_stock_delivery_note_line__client_order_ref
+msgid "Sale Customer Reference"
+msgstr "Riferimento ordine cliente"

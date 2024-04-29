@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_state_tag
+# 	* purchase_state_tag
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 11:04+0000\n"
-"PO-Revision-Date: 2022-03-07 11:04+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 14:09+0000\n"
+"PO-Revision-Date: 2024-04-26 14:09+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,11 +16,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_state_tag
-#: code:addons/purchase_state_tag/models/purchase_tag.py:21
-#: sql_constraint:purchase.order.tag:0
+#: code:addons/purchase_state_tag/models/purchase_tag.py:0
 #, python-format
-msgid "A tag type for the same order state already exists for this company!"
-msgstr "Un'etichetta per lo stesso stato d'ordine esiste già per questa azienda!"
+msgid "A tag type for the same order state and company already exists!"
+msgstr "Un'etichetta per lo stesso stato d'ordine e azienda esiste già!"
 
 #. module: purchase_state_tag
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order_tag__active
@@ -54,16 +53,19 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: purchase_state_tag
+#: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order_tag__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: purchase_state_tag
+#: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order_tag__id
 msgid "ID"
 msgstr ""
 
 #. module: purchase_state_tag
+#: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order_tag____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -86,7 +88,7 @@ msgstr "Stato Ordine"
 #. module: purchase_state_tag
 #: model:ir.model,name:purchase_state_tag.model_purchase_order
 msgid "Purchase Order"
-msgstr "Ordine di Acquisto"
+msgstr "Ordine di acquisto"
 
 #. module: purchase_state_tag
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order_tag__name
@@ -97,7 +99,6 @@ msgstr "Etichetta Ordine Acquisto"
 #: model:ir.actions.act_window,name:purchase_state_tag.purchase_order_tag_action
 #: model:ir.ui.menu,name:purchase_state_tag.menu_tag_in_config_purchase
 #: model_terms:ir.ui.view,arch_db:purchase_state_tag.purchase_order_tag_form_view
-#: model_terms:ir.ui.view,arch_db:purchase_state_tag.purchase_order_tag_tree_view
 msgid "Purchase Tags"
 msgstr "Etichette Acquisti"
 
@@ -108,11 +109,13 @@ msgstr "Etichetta ordine acquisto"
 
 #. module: purchase_state_tag
 #: model:ir.model.fields,help:purchase_state_tag.field_purchase_order_tag__active
-msgid "Set active to false to hide the Purchase Order Tag without removing it."
-msgstr "Imposta attivo a falso per nascondere l'Etichetta Ordine Acquisto senza eliminarla."
+msgid ""
+"Set active to false to hide the Purchase Order Tag without removing it."
+msgstr ""
+"Imposta attivo a falso per nascondere l'Etichetta Ordine Acquisto senza "
+"eliminarla."
 
 #. module: purchase_state_tag
 #: model:ir.model.fields,field_description:purchase_state_tag.field_purchase_order__tag_ids
 msgid "Tag"
 msgstr "Etichetta"
-

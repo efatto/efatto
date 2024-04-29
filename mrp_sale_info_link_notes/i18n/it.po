@@ -1,19 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_sale_info_link_notes
+# 	* mrp_sale_info_link_notes
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-26 11:16+0000\n"
-"PO-Revision-Date: 2022-09-26 11:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 14:32+0000\n"
+"PO-Revision-Date: 2024-04-26 14:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mrp_sale_info_link_notes
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info_link_notes.report_delivery_document_production_notes
+msgid "<strong>Production notes:</strong>"
+msgstr "<strong>Note di produzione:</strong>"
+
+#. module: mrp_sale_info_link_notes
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_sale_info_link_notes
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_sale_order__id
+msgid "ID"
+msgstr ""
 
 #. module: mrp_sale_info_link_notes
 #: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_mrp_production__is_prototype
@@ -27,13 +44,19 @@ msgid "Is Prototype Calendar"
 msgstr "È un Prototipo in Calendario"
 
 #. module: mrp_sale_info_link_notes
-#: code:addons/mrp_sale_info_link_notes/models/sale_order.py:18
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info_link_notes.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mrp_sale_info_link_notes
+#: code:addons/mrp_sale_info_link_notes/models/sale_order.py:0
 #, python-format
 msgid "MO Notes: %s"
 msgstr "Note MO: %s"
 
 #. module: mrp_sale_info_link_notes
-#: code:addons/mrp_sale_info_link_notes/models/sale_order.py:25
+#: code:addons/mrp_sale_info_link_notes/models/sale_order.py:0
 #, python-format
 msgid "PROTOTYPE"
 msgstr "PROTOTIPO"
@@ -52,10 +75,9 @@ msgstr "Note Produzione in Calendario"
 #. module: mrp_sale_info_link_notes
 #: model:ir.model,name:mrp_sale_info_link_notes.model_mrp_production
 msgid "Production Order"
-msgstr "Ordine di Produzione"
+msgstr "Ordine di produzione"
 
 #. module: mrp_sale_info_link_notes
 #: model:ir.model,name:mrp_sale_info_link_notes.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Ordine di vendita"
-

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_dn_force_number
+# 	* l10n_it_dn_force_number
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 13:16+0000\n"
-"PO-Revision-Date: 2022-02-14 13:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2024-04-26 13:56+0000\n"
+"PO-Revision-Date: 2024-04-26 13:56+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +21,21 @@ msgid "Delivery Note Creator"
 msgstr "Autore DdT"
 
 #. module: l10n_it_dn_force_number
+#: model:ir.model.fields,field_description:l10n_it_dn_force_number.field_stock_delivery_note_create_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: l10n_it_dn_force_number
+#: model:ir.model.fields,field_description:l10n_it_dn_force_number.field_stock_delivery_note_create_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_it_dn_force_number
+#: model:ir.model.fields,field_description:l10n_it_dn_force_number.field_stock_delivery_note_create_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: l10n_it_dn_force_number
 #: model:ir.model.fields,field_description:l10n_it_dn_force_number.field_stock_delivery_note_create_wizard__name
 msgid "Name"
 msgstr "Numero DDT"
-
-#. module: l10n_it_dn_force_number
-#: model:ir.model,name:l10n_it_dn_force_number.model_stock_picking
-msgid "Transfer"
-msgstr "Trasferimento"
-

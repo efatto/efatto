@@ -140,7 +140,7 @@ class TestSaleOrderCalendarState(TestProductionData):
         mo_form = Form(man_order)
         mo_form.qty_producing = 2
         man_order = mo_form.save()
-        self.assertEqual(order.calendar_state, "production_started")
+        self.assertEqual(order.calendar_state, "to_produce")
         action = man_order.button_mark_done()
         self.assertEqual(order.calendar_state, "production_started")
         backorder = Form(

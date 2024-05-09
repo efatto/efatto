@@ -8,6 +8,7 @@ class ProviderGrid(models.Model):
     _inherit = "delivery.carrier"
 
     def _get_price_available(self, order):
+        super()._get_price_available(order)
         self.ensure_one()
         total = weight = volume = quantity = 0
         for line in order.order_line:

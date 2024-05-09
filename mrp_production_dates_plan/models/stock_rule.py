@@ -7,10 +7,13 @@ class StockRule(models.Model):
 
     def _get_date_planned(self, product_id, company_id, values):
         super()._get_date_planned(product_id, company_id, values)
+        date_requested = fields.Date.context_today(self)
+        if values.get("date_planned", False):
+            date_requested = fields.Date.from_string(values["date_planned"])
         avail_date, avail_date_info = self.env["sale.order.line"].get_available_date(
             product_id,
             values["orderpoint_id"].qty_to_order or 1,
-            fields.Date.context_today(self),
+            date_requested,
         )
         if avail_date:
             date_planned = avail_date - relativedelta(days=product_id.produce_delay)

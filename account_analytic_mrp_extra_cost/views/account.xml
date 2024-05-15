@@ -9,6 +9,10 @@
                 <field name="extra_cost" sum="Total Extra Cost MRP"/>
                 <field name="extra_cost_invoice_line_ids" widget="many2many_tags"/>
             </field>
+            <field name="account_id" position="after">
+                <field name="invoice_id" />
+                <field name="partner_id" />
+            </field>
         </field>
     </record>
 </odoo>

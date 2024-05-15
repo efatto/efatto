@@ -15,6 +15,7 @@ class AccountAnalyticLine(models.Model):
         comodel_name="account.invoice.line",
         compute="_compute_extra_cost",
     )
+    invoice_id = fields.Many2one(related='move_id.invoice_id')
 
     def _compute_extra_cost(self):
         for line in self:

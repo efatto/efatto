@@ -14,6 +14,8 @@ class ProviderGrid(models.Model):
         for line in order.order_line:
             if line.state == "cancel":
                 continue
+            if line.product_id and line.product_id.type == "service":
+                continue
             if not line.is_delivery:
                 total += line.price_subtotal
             if not line.product_id or line.is_delivery:

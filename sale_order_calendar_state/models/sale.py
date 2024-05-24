@@ -200,10 +200,23 @@ class SaleOrder(models.Model):
                 else ""
             )
 
-    @api.depends("order_line.product_id.is_kit")
+    @api.depends("order_line.product_id", "state")
     def _compute_has_kit(self):
+        # Compute and store on product_id only, because bom type can be changed by the
+        # user only for this sale order. Add state to recompute when user confirm the
+        # order.
         for order in self:
-            order.has_kit = any(line.product_id.is_kit for line in order.order_line)
+            if any(
+                x.product_id.bom_ids.filtered(
+                    lambda bom: bom.type == "phantom"
+                    and self.env.ref("mrp.route_warehouse0_manufacture")
+                    in bom.product_id.route_ids
+                )
+                for x in order.order_line
+            ):
+                order.has_kit = True
+            else:
+                order.has_kit = False
 
     @api.depends("order_line.product_id.categ_id")
     def _compute_custom_production(self):

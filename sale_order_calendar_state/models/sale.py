@@ -210,7 +210,7 @@ class SaleOrder(models.Model):
                 x.product_id.bom_ids.filtered(
                     lambda bom: bom.type == "phantom"
                     and self.env.ref("mrp.route_warehouse0_manufacture")
-                    in bom.product_id.route_ids
+                    in x.product_id.route_ids
                 )
                 for x in order.order_line
             ):

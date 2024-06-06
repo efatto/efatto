@@ -16,7 +16,13 @@
                 <field name="has_kit" invisible="1" />
                 <button
           name="mark_printed_for_logistic"
-          attrs="{'invisible': ['|', '|', '|', ('is_assigned', '=', True), ('state', 'in', ['draft', 'cancel']), ('picking_type_code', '!=', 'outgoing'), '&amp;', ('custom_production_qty', '>', 0), ('has_kit', '=', False)]}"
+          attrs="{'invisible': [
+                '|', '|', '|',
+                    ('is_assigned', '=', True),
+                    ('state', 'in', ['draft', 'cancel']),
+                    ('picking_type_code', '!=', 'outgoing'),
+                '&amp;',
+                    ('custom_production_qty', '>', 0), ('has_kit', '=', False)]}"
           string="Mark printed for logistic"
           type="object"
           class="oe_highlight"
@@ -24,7 +30,13 @@
         />
                 <button
           name="unmark_printed_for_logistic"
-          attrs="{'invisible': ['|', '|', '|', ('is_assigned', '=', False), ('state', 'in', ['draft', 'cancel']), ('picking_type_code', '!=', 'outgoing'), '&amp;', ('custom_production_qty', '>', 0), ('has_kit', '=', False)]}"
+          attrs="{'invisible': [
+                '|', '|', '|',
+                    ('is_assigned', '=', False),
+                    ('state', 'in', ['draft', 'cancel']),
+                    ('picking_type_code', '!=', 'outgoing'),
+                '&amp;',
+                    ('custom_production_qty', '>', 0), ('has_kit', '=', False)]}"
           string="Unmark printed for logistic"
           type="object"
           groups="stock.group_stock_user"

@@ -8,7 +8,8 @@ class StockRule(models.Model):
     def _get_date_planned(self, product_id, company_id, values):
         super()._get_date_planned(product_id, company_id, values)
         date_requested = fields.Date.context_today(self)
-        if values.get("date_planned", False):
+        if values.get("date_planned", False) and not values.get("orderpoint_id", False):
+            # not sure when this happens, sold MTO products perhaps
             date_requested = fields.Date.from_string(values["date_planned"])
         avail_date, avail_date_info = self.env["sale.order.line"].get_available_date(
             product_id,

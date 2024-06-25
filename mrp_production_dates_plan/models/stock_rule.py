@@ -13,7 +13,9 @@ class StockRule(models.Model):
             date_requested = fields.Date.from_string(values["date_planned"])
         avail_date, avail_date_info = self.env["sale.order.line"].get_available_date(
             product_id,
-            values["orderpoint_id"].qty_to_order or 1,
+            values["orderpoint_id"].qty_to_order
+            if values.get("orderpoint_id", False)
+            else 1,
             date_requested,
         )
         if avail_date:

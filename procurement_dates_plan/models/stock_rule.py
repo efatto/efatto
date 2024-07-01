@@ -7,11 +7,13 @@ class StockRule(models.Model):
 
     def _prepare_purchase_order(self, company_id, origins, values):
         res = super()._prepare_purchase_order(
-            company_id=company_id, origins=origins, values=values)
+            company_id=company_id, origins=origins, values=values
+        )
         purchase_date = min(
             [
-                fields.Datetime.from_string(value['date_planned'])
-                - relativedelta(days=int(value['supplier'].delay)) for value in values
+                fields.Datetime.from_string(value["date_planned"])
+                - relativedelta(days=int(value["supplier"].delay))
+                for value in values
             ]
         )
         res.update(date_order=purchase_date)

@@ -87,6 +87,10 @@
             <field name="partner_shipping_id" position="after">
                 <field name="partner_priority_id" />
             </field>
+            <field name="split_comment" position="after">
+                <field name="has_kit" />
+                <field name="in_kit" />
+            </field>
         </field>
     </record>
 

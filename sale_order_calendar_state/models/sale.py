@@ -142,6 +142,17 @@ class SaleOrder(models.Model):
         index=True,
         store=True,
     )
+    in_kit = fields.Boolean(
+        compute="_compute_in_kit",
+        store=True,
+        index=True,
+        string="Has a Kit and is Custom",
+    )
+
+    @api.depends("has_kit", "custom_production_qty")
+    def _compute_in_kit(self):
+        for order in self:
+            order.in_kit = bool(order.custom_production_qty > 0 and order.has_kit)
 
     # temporary solution to show more info in calendar view
     @api.depends(

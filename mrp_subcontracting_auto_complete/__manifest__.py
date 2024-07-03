@@ -6,8 +6,8 @@
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
     "summary": "Validate a IN picking with submanufactured products will "
-               "complete the production, even if the qty production is the "
-               "same of qty requested.",
+    "complete the production, even if the qty production is the "
+    "same of qty requested.",
     "license": "AGPL-3",
     "category": "Manufacture",
     "depends": [

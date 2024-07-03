@@ -64,7 +64,7 @@ jobs:
       - name: Install stock_warehouse_orderpoint_stock_info module not yet merged
         run: pip3 install -e "git+https://github.com/sergiocorato/stock-logistics-warehouse@14.0-mig-stock_warehouse_orderpoint_stock_info#egg=odoo14-addon-stock_warehouse_orderpoint_stock_info&subdirectory=setup/stock_warehouse_orderpoint_stock_info"
       - name: Install connector_whs module from e-efatto repo
-        run: pip3 install -e "git+https://github.com/sergiocorato/e-efatto@14.0-mig-connector_whs#egg=odoo14-addon-connector_whs&subdirectory=setup/connector_whs"
+        run: pip3 install -e "git+https://github.com/sergiocorato/e-efatto@14.0#egg=odoo14-addon-connector_whs&subdirectory=setup/connector_whs"
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Check licenses

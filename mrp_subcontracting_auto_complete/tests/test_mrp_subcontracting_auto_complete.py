@@ -33,6 +33,7 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
                 "standard_price": 50.0,
                 "seller_ids": [(6, 0, [supplierinfo_subcontractor.id])],
                 "route_ids": [(6, 0, [buy.id])],
+                "type": "product",
             }
         )
         cls.component = cls.env["product.product"].create(
@@ -41,6 +42,7 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
                 "standard_price": 7.0,
                 "seller_ids": [(6, 0, [supplierinfo_vendor.id])],
                 "route_ids": [(6, 0, [buy.id])],
+                "type": "product",
             }
         )
         bom_form = Form(cls.env["mrp.bom"])

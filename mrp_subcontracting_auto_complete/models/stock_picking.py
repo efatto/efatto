@@ -1,5 +1,6 @@
-from odoo import models
 from datetime import timedelta
+
+from odoo import models
 
 
 class StockPicking(models.Model):
@@ -7,24 +8,26 @@ class StockPicking(models.Model):
 
     def _action_done(self):
         for picking in self:
-            productions_to_done = picking._get_subcontracted_productions(
+            productions_to_done = (
+                picking._get_subcontracted_productions()
             )._subcontracting_filter_to_done_zero_qty()
             for production in productions_to_done:
                 if production.qty_producing == 0:
                     production.qty_producing = production.product_qty
                     production._set_qty_producing()
-                    production.with_context(
-                        subcontract_move_id=True).button_mark_done()
+                    production.with_context(subcontract_move_id=True).button_mark_done()
                     # For consistency, set the date on production move before the date
                     # on picking. (Traceability report + Product Moves menu item)
-                    minimum_date = min(picking.move_line_ids.mapped('date'))
+                    minimum_date = min(picking.move_line_ids.mapped("date"))
                     production_moves = (
-                        production.move_raw_ids
-                        | production.move_finished_ids)
+                        production.move_raw_ids | production.move_finished_ids
+                    )
                     production_moves.write(
-                        {'date': minimum_date - timedelta(seconds=1)})
+                        {"date": minimum_date - timedelta(seconds=1)}
+                    )
                     production_moves.move_line_ids.write(
-                        {'date': minimum_date - timedelta(seconds=1)})
+                        {"date": minimum_date - timedelta(seconds=1)}
+                    )
         return super(StockPicking, self)._action_done()
 
 

@@ -12,6 +12,7 @@
     "category": "Manufacture",
     "depends": [
         "mrp_subcontracting",
+        "purchase_stock",
     ],
     "data": [],
     "installable": True,

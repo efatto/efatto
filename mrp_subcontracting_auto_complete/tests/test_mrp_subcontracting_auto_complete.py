@@ -1,4 +1,3 @@
-
 import time
 
 from odoo.tests.common import Form, SingleTransactionCase
@@ -79,8 +78,9 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
 
     def test_00_procurement_from_subcontractor(self):
         self.assertEqual(self.product.bom_ids.ids, self.bom.ids)
-        self.assertEqual(self.product.bom_ids.subcontractor_ids.ids,
-                         self.subcontractor.ids)
+        self.assertEqual(
+            self.product.bom_ids.subcontractor_ids.ids, self.subcontractor.ids
+        )
         self.assertTrue(self.product.seller_ids.is_subcontractor)
         orderpoint_form = Form(self.orderpoint_model)
         orderpoint_form.warehouse_id = self.warehouse
@@ -104,3 +104,13 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
         self.assertEqual(purchase_order.state, "draft")
         purchase_order.button_confirm()
         self.assertEqual(purchase_order.state, "purchase")
+        self.assertTrue(purchase_order.subcontract_production_ids)
+        mo = purchase_order.subcontract_production_ids
+        self.assertEqual(mo.state, "confirmed")
+        picking = purchase_order.picking_ids
+        for op in picking.mapped("move_line_ids"):
+            if op.product_id.type == "product":
+                op.qty_done = op.move_id.product_uom_qty
+        picking.button_validate()
+        self.assertEqual(picking.state, "done")
+        self.assertEqual(mo.state, "done")

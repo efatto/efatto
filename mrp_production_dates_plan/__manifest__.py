@@ -14,5 +14,5 @@
         "stock_reserve_date_check",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

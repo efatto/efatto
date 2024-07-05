@@ -5,7 +5,7 @@ class Company(models.Model):
     _inherit = "res.company"
 
     forecast_lead = fields.Float(
-        "Forecast Lead Time",
+        "Forecast Lead Days",
         default=0.0,
         required=True,
         help="Security days for all procurements.",

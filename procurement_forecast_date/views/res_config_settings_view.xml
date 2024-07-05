@@ -11,7 +11,7 @@
                     <div class="o_setting_right_pane">
                         <label for="forecast_lead" />
                         <div class="text-muted">
-                            Number of days for wich products are ordered
+                            Number of days for wich products are procured
                         </div>
                         <field name="forecast_lead" />
                     </div>

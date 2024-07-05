@@ -11,7 +11,6 @@
     "category": "Manufacture",
     "depends": [
         "mrp",
-        "procurement_dates_plan",
         "stock_reserve_date_check",
     ],
     "data": [],

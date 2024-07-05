@@ -19,7 +19,7 @@ class ProductProduct(models.Model):
             self._context.get("from_date"),
             datetime.combine(
                 fields.Date.today()
-                + relativedelta(days=self.env.company.forecast_lead),
+                + relativedelta(days=self.env.company.procurement_days),
                 time.max,
             )
             # self._context.get('to_date'),

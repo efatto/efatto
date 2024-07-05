@@ -35,8 +35,8 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__forecast_lead
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__forecast_lead
+#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__procurement_days
+#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__procurement_days
 msgid "Forecast Lead Days"
 msgstr "Giorni di approvvigionamento previsti"
 
@@ -70,7 +70,7 @@ msgid "Product"
 msgstr "Prodotto"
 
 #. module: procurement_forecast_date
-#: model:ir.model.fields,help:procurement_forecast_date.field_res_company__forecast_lead
-#: model:ir.model.fields,help:procurement_forecast_date.field_res_config_settings__forecast_lead
+#: model:ir.model.fields,help:procurement_forecast_date.field_res_company__procurement_days
+#: model:ir.model.fields,help:procurement_forecast_date.field_res_config_settings__procurement_days
 msgid "Security days for all procurements."
 msgstr "Giorni di sicurezza per tutti gli approvvigionamenti."

@@ -12,11 +12,11 @@
                     <div class="o_setting_left_pane">
                     </div>
                     <div class="o_setting_right_pane">
-                        <label for="forecast_lead" />
+                        <label for="procurement_days" />
                         <div class="text-muted">
                             Number of days for which products are procured
                         </div>
-                        <field name="forecast_lead" />
+                        <field name="procurement_days" />
                     </div>
                 </div>
             </xpath>

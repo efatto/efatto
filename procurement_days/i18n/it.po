@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* procurement_forecast_date
+# 	* procurement_days
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 10:18+0000\n"
-"PO-Revision-Date: 2024-07-05 10:18+0000\n"
+"POT-Creation-Date: 2024-07-05 12:10+0000\n"
+"PO-Revision-Date: 2024-07-05 12:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,62 +15,62 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_product_product__assigned_attachment_ids
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__assigned_attachment_ids
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__assigned_attachment_ids
+#. module: procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_product_product__assigned_attachment_ids
+#: model:ir.model.fields,field_description:procurement_days.field_res_company__assigned_attachment_ids
+#: model:ir.model.fields,field_description:procurement_days.field_res_config_settings__assigned_attachment_ids
 msgid "Assigned Attachments"
 msgstr "Allegati assegnati"
 
-#. module: procurement_forecast_date
-#: model:ir.model,name:procurement_forecast_date.model_res_company
+#. module: procurement_days
+#: model:ir.model,name:procurement_days.model_res_company
 msgid "Companies"
 msgstr "Aziende"
 
-#. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_product_product__display_name
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__display_name
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__display_name
+#. module: procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_product_product__display_name
+#: model:ir.model.fields,field_description:procurement_days.field_res_company__display_name
+#: model:ir.model.fields,field_description:procurement_days.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
-#. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__procurement_days
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__procurement_days
-msgid "Forecast Lead Days"
-msgstr "Giorni di approvvigionamento previsti"
-
-#. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_product_product__id
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company__id
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings__id
+#. module: procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_product_product__id
+#: model:ir.model.fields,field_description:procurement_days.field_res_company__id
+#: model:ir.model.fields,field_description:procurement_days.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
-#. module: procurement_forecast_date
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_product_product____last_update
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_company____last_update
-#: model:ir.model.fields,field_description:procurement_forecast_date.field_res_config_settings____last_update
+#. module: procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_product_product____last_update
+#: model:ir.model.fields,field_description:procurement_days.field_res_company____last_update
+#: model:ir.model.fields,field_description:procurement_days.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
-#. module: procurement_forecast_date
-#: model_terms:ir.ui.view,arch_db:procurement_forecast_date.res_config_settings_view_form_stock
-msgid "Number of days for which products are ordered"
-msgstr "Numero di giorni per i quali i prodotti sono ordinati"
+#. module: procurement_days
+#: model_terms:ir.ui.view,arch_db:procurement_days.res_config_settings_view_form_stock
+msgid "Number of days for which products are procured"
+msgstr "Numero di giorni per i quali i prodotto sono approvvigionati"
 
-#. module: procurement_forecast_date
-#: model:ir.model,name:procurement_forecast_date.model_res_config_settings
+#. module: procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_res_company__procurement_days
+#: model:ir.model.fields,field_description:procurement_days.field_res_config_settings__procurement_days
+msgid "Procurement Days"
+msgstr "Giorni di approvvigionamento"
+
+#. module: procurement_days
+#: model:ir.model,name:procurement_days.model_res_config_settings
 msgid "Procurement purchase grouping settings"
 msgstr "Configurazione raggruppamento approvvigionamenti acquisto"
 
-#. module: procurement_forecast_date
-#: model:ir.model,name:procurement_forecast_date.model_product_product
+#. module: procurement_days
+#: model:ir.model,name:procurement_days.model_product_product
 msgid "Product"
 msgstr "Prodotto"
 
-#. module: procurement_forecast_date
-#: model:ir.model.fields,help:procurement_forecast_date.field_res_company__procurement_days
-#: model:ir.model.fields,help:procurement_forecast_date.field_res_config_settings__procurement_days
+#. module: procurement_days
+#: model:ir.model.fields,help:procurement_days.field_res_company__procurement_days
+#: model:ir.model.fields,help:procurement_days.field_res_config_settings__procurement_days
 msgid "Security days for all procurements."
 msgstr "Giorni di sicurezza per tutti gli approvvigionamenti."

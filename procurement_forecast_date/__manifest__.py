@@ -1,17 +1,18 @@
 # Copyright 2024 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Procurement ignore lead days",
+    "name": "Use forecast date",
     "version": "14.0.1.0.0",
     "author": "Sergio Corato",
     "website": "https://github.com/sergiocorato/efatto",
-    "summary": "Ignore lead days on setting dates in product moves dates.",
+    "summary": "Without changing lead date.",
     "license": "AGPL-3",
     "category": "Stock",
     "depends": [
-        "stock",
-        "stock_reserve_date_check",
+        "purchase_stock",
     ],
-    "data": [],
+    "data": [
+        "views/res_config_settings_view.xml",
+    ],
     "installable": True,
 }

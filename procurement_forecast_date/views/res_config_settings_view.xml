@@ -2,7 +2,10 @@
 <odoo>
     <record id="res_config_settings_view_form_stock" model="ir.ui.view">
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="purchase_stock.res_config_settings_view_form_stock" />
+        <field
+      name="inherit_id"
+      ref="purchase_stock.res_config_settings_view_form_stock"
+    />
         <field name="arch" type="xml">
             <xpath expr="//label[@for='days_to_purchase']/../.." position="after">
                 <div class="col-12 col-lg-6 o_setting_box">

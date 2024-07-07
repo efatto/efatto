@@ -60,14 +60,27 @@ class SaleComponent(models.TransientModel):
             if vals:
                 # sort vals to create sale component line parent before children
                 vals.sort(key=lambda t: t.get("parent_id", 0))
-            for val in vals:
-                if val.get("parent_id", False):
-                    parent_id = [x for x in res if x.product_id.id == val["parent_id"]]
-                    if parent_id:
-                        val.update({"parent_id": parent_id[0].id})
-                res.append(self.env["sale.component.line"].create(val))
+            res = self._create_component_line(vals)
             res = [x.id for x in res]
         return self.env["sale.component.line"].browse(res)
+
+    def _create_component_line(self, vals, res=None):
+        if not res:
+            res = []
+        vals_todo_after = []
+        for val in vals:
+            if val.get("parent_id", False):
+                parent_ids = [x for x in res if x.product_id.id == val["parent_id"]]
+                if parent_ids:
+                    parent_id = parent_ids[0].id
+                    val.update({"parent_id": parent_id})
+                else:
+                    vals_todo_after.append(val)
+                    continue
+            res.append(self.env["sale.component.line"].create(val))
+        if vals_todo_after:
+            res = self._create_component_line(vals_todo_after, res)
+        return res
 
     sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line", default=_get_sale_order_line, readonly=True

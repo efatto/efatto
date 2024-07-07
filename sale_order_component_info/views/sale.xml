@@ -7,17 +7,16 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//page/field[@name='order_line']/tree/field[@name='product_uom']"
+        expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']"
         position="before"
       >
                 <field name="display_qty_component_widget" invisible="1" />
                 <button
           name="%(sale_order_component_info.action_sale_component)d"
-          string="Components"
           type="action"
           attrs="{'invisible': [('display_qty_component_widget', '=', False)]}"
           class="oe_stat_button"
-          icon="fa-info-circle"
+          icon="fa-sitemap"
           groups="base.group_user"
         >
                 </button>

@@ -9,12 +9,10 @@
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [
-        "account",
         "web",
     ],
     "data": [
         "views/form.xml",
-        "views/account_invoice_view.xml",
     ],
     "installable": True,
 }

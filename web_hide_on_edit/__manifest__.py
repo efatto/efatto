@@ -5,7 +5,7 @@
     "version": "14.0.1.0.0",
     "category": "Extra Tools",
     "summary": "Hide statusbar when the user is editing the document.",
-    "author": "Sergio Corato",
+    "author": "Sergio Corato, Marco Colombo",
     "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [

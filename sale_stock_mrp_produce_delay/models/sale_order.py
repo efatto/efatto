@@ -12,19 +12,7 @@ from odoo.exceptions import UserError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    virtual_available_at_date = fields.Float(
-        compute="_compute_stock_qty_at_date", store=True
-    )
-    scheduled_date = fields.Datetime(compute="_compute_stock_qty_at_date", store=True)
-    free_qty_today = fields.Float(compute="_compute_stock_qty_at_date", store=True)
-    qty_available_today = fields.Float(compute="_compute_stock_qty_at_date", store=True)
-    warehouse_id = fields.Many2one(
-        "stock.warehouse", compute="_compute_stock_qty_at_date", store=True
-    )
-    qty_to_deliver = fields.Float(store=True)
-    is_mto = fields.Boolean(store=True)
-    is_kit = fields.Boolean(related="product_id.is_kit", store=True)
-    display_qty_widget = fields.Boolean(store=True)
+    is_kit = fields.Boolean(related="product_id.is_kit")
     available_date = fields.Date(copy=False)
     last_available_date_compute = fields.Datetime(copy=False)
     available_dates_info = fields.Text(copy=False)

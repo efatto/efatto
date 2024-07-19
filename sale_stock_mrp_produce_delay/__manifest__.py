@@ -17,7 +17,7 @@
         "views/sale_order_view.xml",
     ],
     "qweb": [
-        "static/src/xml/qty_at_date.xml",
+        # "static/src/xml/qty_at_date.xml",
     ],
     "installable": True,
 }

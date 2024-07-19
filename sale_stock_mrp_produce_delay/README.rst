@@ -33,13 +33,17 @@ availability date of product avoiding negative stock.
 Usage
 =====
 
-Sulla riga ordine di vendita è presente un'icona (i) quando:
+Odoo mostra di default, sulla riga dell'ordine di vendita, un'icona di disponibilità del prodotto, in blu quando il sistema trova una disponibilità futura a stock del prodotto, in rosso in caso contrario.
 
- #. l'ordine non ha una data di impegno;
- #. la riga non ha una data di impegno.
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/14.0/sale_stock_mrp_produce_delay/static/description/icona_azzurra.png
+    :alt: Icona azzurra
 
-L'icona è in blu quando il sistema trova una disponibilità futura a stock del prodotto. È in rosso in caso contrario.
+.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/14.0/sale_stock_mrp_produce_delay/static/description/icona_rossa.png
+    :alt: Icona rossa
 
+Questo modulo nasconde questa icona quando l'ordine o la riga hanno una data di impegno, in quanto sarà compito di chi organizza gli approvvigionamenti fare in modo che questa data venga rispettata oppure di cambiarla, mentre chi ha completato la vendita non ha più competenza a riguardo.
+
+Inoltre questo modulo modifica il comportamento dell'icona?
 Quando l'icona è in blu mostra la quantità disponibile per coprire la richiesta alla prima data possibile, senza che questo prelievo incida sullo stock in modo da farlo diventare negativo.
 
 Es. con una richiesta di 1 pz con un ordine alla data odierna del 01/07/2021 la disponibilità è immediata:

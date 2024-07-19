@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -387,15 +386,12 @@ availability date of product avoiding negative stock.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>Sulla riga ordine di vendita è presente un’icona (i) quando:</p>
-<blockquote>
-<ol class="arabic simple">
-<li>l’ordine non ha una data di impegno;</li>
-<li>la riga non ha una data di impegno.</li>
-</ol>
-</blockquote>
-<p>L’icona è in blu quando il sistema trova una disponibilità futura a stock del prodotto. È in rosso in caso contrario.</p>
-<p>Quando l’icona è in blu mostra la quantità disponibile per coprire la richiesta alla prima data possibile, senza che questo prelievo incida sullo stock in modo da farlo diventare negativo.</p>
+<p>Odoo mostra di default, sulla riga dell’ordine di vendita, un’icona di disponibilità del prodotto, in blu quando il sistema trova una disponibilità futura a stock del prodotto, in rosso in caso contrario.</p>
+<img alt="Icona azzurra" src="https://raw.githubusercontent.com/sergiocorato/efatto/14.0/sale_stock_mrp_produce_delay/static/description/icona_azzurra.png" />
+<img alt="Icona rossa" src="https://raw.githubusercontent.com/sergiocorato/efatto/14.0/sale_stock_mrp_produce_delay/static/description/icona_rossa.png" />
+<p>Questo modulo nasconde questa icona quando l’ordine o la riga hanno una data di impegno, in quanto sarà compito di chi organizza gli approvvigionamenti fare in modo che questa data venga rispettata oppure di cambiarla, mentre chi ha completato la vendita non ha più competenza a riguardo.</p>
+<p>Inoltre questo modulo modifica il comportamento dell’icona?
+Quando l’icona è in blu mostra la quantità disponibile per coprire la richiesta alla prima data possibile, senza che questo prelievo incida sullo stock in modo da farlo diventare negativo.</p>
 <p>Es. con una richiesta di 1 pz con un ordine alla data odierna del 01/07/2021 la disponibilità è immediata:</p>
 <img alt="Richiesta quantità iniziale" src="https://raw.githubusercontent.com/sergiocorato/efatto/14.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita.png" />
 <p>in quanto l’articolo è disponibile e lo stock previsto finale è superiore alla quantità richiesta. Con una richiesta di 4.662 pz la disponibilità è per il:</p>

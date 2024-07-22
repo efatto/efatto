@@ -25,7 +25,10 @@
                     </div>
                 </div>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+            <xpath
+        expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+        position="after"
+      >
                 <field name="predicted_arrival_late" invisible="1" />
                 <field name="late_product_ids" invisible="1" />
                 <field name="is_kit" invisible="1" />

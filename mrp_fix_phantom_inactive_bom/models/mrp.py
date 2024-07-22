@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import models, _
 from odoo.exceptions import UserError
 from odoo.tools import float_round
 

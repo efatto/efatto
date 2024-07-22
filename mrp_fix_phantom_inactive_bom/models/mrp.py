@@ -1,4 +1,4 @@
-from odoo import models, _
+from odoo import _, models
 from odoo.exceptions import UserError
 from odoo.tools import float_round
 
@@ -6,7 +6,7 @@ from odoo.tools import float_round
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    def explode(self, product, quantity, picking_type=False):
+    def explode(self, product, quantity, picking_type=False):  # noqa C901
         """
         Override core method to fix bug from un-identified module
         """
@@ -19,10 +19,10 @@ class MrpBom(models.Model):
             visited[v] = True
             recStack[v] = True
             for neighbour in graph[v]:
-                if visited[neighbour] == False:
-                    if check_cycle(neighbour, visited, recStack, graph) == True:
+                if visited[neighbour] is False:
+                    if check_cycle(neighbour, visited, recStack, graph) is True:
                         return True
-                elif recStack[neighbour] == True:
+                elif recStack[neighbour] is True:
                     return True
             recStack[v] = False
             return False
@@ -75,7 +75,7 @@ class MrpBom(models.Model):
                 continue
 
             line_quantity = current_qty * current_line.product_qty
-            if not current_line.product_id in product_boms:
+            if current_line.product_id not in product_boms:
                 update_product_boms()
                 product_ids.clear()
             bom = product_boms.get(current_line.product_id)
@@ -121,7 +121,7 @@ class MrpBom(models.Model):
                             )
                         )
                     V |= {bom_line.product_id.product_tmpl_id.id}
-                    if not bom_line.product_id in product_boms:
+                    if bom_line.product_id not in product_boms:
                         product_ids.add(bom_line.product_id.id)
                 boms_done.append(
                     (

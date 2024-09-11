@@ -7,17 +7,19 @@
 -->
     <div t-extend="sale_stock.qtyAtDate">
         <t t-jquery="div" t-operation="replace">
-            <t
-        t-if="widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and widget.data.scheduled_date &gt; widget.data.commitment_date and !widget.data.is_kit"
-      >
-                <a tabindex="0" class="fa fa-area-chart text-danger" />
-            </t>
-            <t t-elif="widget.data.is_mto or widget.data.is_kit">
-                <a tabindex="0" />
-            </t>
-            <t t-else="">
-                <a tabindex="0" class="fa fa-area-chart text-primary" />
-            </t>
+            <div t-att-class="!widget.data.display_qty_widget ? 'invisible' : ''">
+                <t
+          t-if="widget.data.virtual_available_at_date &lt; widget.data.qty_to_deliver and widget.data.scheduled_date &gt; widget.data.commitment_date and !widget.data.is_kit"
+        >
+                    <a tabindex="0" class="fa fa-area-chart text-danger" />
+                </t>
+                <t t-elif="widget.data.is_mto or widget.data.is_kit">
+                    <a tabindex="0" />
+                </t>
+                <t t-else="">
+                    <a tabindex="0" class="fa fa-area-chart text-primary" />
+                </t>
+            </div>
         </t>
     </div>
 <!--    <div t-extend="sale_stock.QtyDetailPopOver">-->

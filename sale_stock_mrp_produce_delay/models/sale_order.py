@@ -40,8 +40,9 @@ class SaleOrderLine(models.Model):
         "order_id.commitment_date",
     )
     def _compute_qty_to_deliver(self):
-        """Based on _compute_qty_to_deliver method of sale.order.line
-        model in Odoo v13 'sale_stock' module.
+        """
+        Override to show only in 'draft' state when there isn't commitment_date
+        in line or in order.
         """
         for line in self:
             line.qty_to_deliver = line.product_uom_qty - line.qty_delivered
@@ -50,6 +51,7 @@ class SaleOrderLine(models.Model):
                 and not line.commitment_date
                 and not line.order_id.commitment_date
                 and line.product_type == "product"
+                and line.product_uom
                 and line.qty_to_deliver > 0
             )
 

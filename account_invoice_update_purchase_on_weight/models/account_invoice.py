@@ -17,7 +17,7 @@ class AccountInvoiceLine(models.Model):
                     price_unit, self.purchase_line_id.product_uom)
             purchase_line_vals = {
                 'price_unit': price_unit,
-                'weight_price_unit': price_unit / self.product_id.weight
+                'weight_price_unit': price_unit / (self.product_id.weight or 1)
             }
             self.purchase_line_id.with_context(
                 skip_update_weight_price_unit=True).write(purchase_line_vals)
@@ -43,5 +43,5 @@ class AccountInvoiceLine(models.Model):
                     ) or not supplierinfo.date_start
                 ):
                     supplierinfo.write({
-                        'price': price_unit / self.product_id.weight,
+                        'price': price_unit / (self.product_id.weight or 1),
                     })

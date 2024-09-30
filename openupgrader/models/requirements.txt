@@ -1,0 +1,2 @@
+odooly
+mysql-connector-python

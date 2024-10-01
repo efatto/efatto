@@ -11,7 +11,11 @@ class AutoInstallModule(models.Model):
         comodel_name="ir.module.module",
         string="Module Installed (alternative of name)",
     )
-    module_to_install = fields.Text(
+    module_installed_name = fields.Char(
+        related=module_installed_id.name,
+        string="Module Installed Name"
+    )
+    module_to_install_name = fields.Text(
         string="Technical Name of Module To Install",
         required=True,
     )

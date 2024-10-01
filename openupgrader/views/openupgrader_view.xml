@@ -176,7 +176,13 @@
                     </group>
                     <group>
                         <field name="sql_update_command_ids" />
-                        <field name="module_auto_install_ids" />
+                        <field name="module_auto_install_ids">
+                            <tree>
+                                <field name="name" />
+                                <field name="module_installed_name" />
+                                <field name="module_to_install_name" />
+                            </tree>
+                        </field>
                         <field name="module_to_delete_after_migration_ids" />
                         <field name="module_to_uninstall_after_migration_ids" />
                         <field name="module_to_uninstall_before_migration_ids" />

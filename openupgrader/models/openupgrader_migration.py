@@ -50,7 +50,8 @@ class OpenupgraderMigration(models.Model):
     ../bin/pip install --force-reinstall -r requirements.txt
     """
 
-    db_name = fields.Char(string="Database name")
+    db_name = fields.Char(string="Database name",
+                          default=lambda self: self.env.cr.dbname)
     db_user = fields.Char(string="Database user")
     db_password = fields.Char(string="Database password")
     pg_user = fields.Char(string="Postgres user", default="odoo")

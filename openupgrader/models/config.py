@@ -12,7 +12,7 @@ class AutoInstallModule(models.Model):
         string="Module Installed (alternative of name)",
     )
     module_installed_name = fields.Char(
-        related=module_installed_id.name,
+        related="module_installed_id.name",
         string="Module Installed Name"
     )
     module_to_install_name = fields.Text(
@@ -72,7 +72,7 @@ class OpenupgraderConfig(models.Model):
     module_to_delete_after_migration_ids = fields.Many2many(
         comodel_name="ir.module.module",
         relation="delete_module_rel",
-        column1="current_module_id",
+        column1="delete_current_module_id",
         column2="delete_module_id",
         string="Modules to delete after migration",
         help="List of modules to delete",
@@ -80,15 +80,15 @@ class OpenupgraderConfig(models.Model):
     module_to_uninstall_after_migration_ids = fields.Many2many(
         comodel_name="ir.module.module",
         relation="uninstall_after_module_rel",
-        column1="current_module_id",
-        column2="uninstall_module_after_id",
+        column1="uninstall_after_current_module_id",
+        column2="uninstall_after_module_id",
         string="Module to uninstall after migration",
     )
     module_to_uninstall_before_migration_ids = fields.Many2many(
         comodel_name="ir.module.module",
         relation="uninstall_before_module_rel",
-        column1="current_module_id",
-        column2="uninstall_module_before_id",
+        column1="uninstall_before_current_module_id",
+        column2="uninstall_before_module_id",
         string="Module to uninstall before migration",
     )
 

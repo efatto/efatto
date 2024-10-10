@@ -69,3 +69,6 @@ class AccountInvoiceLine(models.Model):
                     'discount2': self.discount2,
                     'discount3': self.discount3,
                 })
+        # set standard_price of product to net price
+        if self.price_subtotal:
+            self.product_id.standard_price = self.price_subtotal / (self.quantity or 1)

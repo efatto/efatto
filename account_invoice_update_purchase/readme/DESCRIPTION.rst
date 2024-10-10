@@ -5,7 +5,7 @@ Cliccando il bottone, vengono aggiornati:
 #. la riga d'ordine di acquisto
 #. il listino prezzi di acquisto del fornitore del prodotto
 #. il costo del movimento di magazzino¹
-#. se il "Metodo determinazione costo" della categoria del prodotto è "Costo Medio": il costo del prodotto²
+#. il costo del prodotto, eccetto il caso in cui il "Metodo determinazione costo" della categoria del prodotto sia "Costo Medio" e sia installato il modulo: product_cost_price_avco_sync
 
 .. image:: ../static/description/bottone.png
     :alt: Bottone
@@ -18,4 +18,3 @@ Cliccando il bottone, vengono aggiornati:
 Note:
 
 #. ¹tramite il modulo incluso nelle dipendenze: purchase_stock_price_unit_sync
-#. ²se è installato il modulo: product_cost_price_avco_sync

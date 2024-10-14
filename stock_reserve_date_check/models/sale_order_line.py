@@ -166,8 +166,10 @@ class SaleOrderLine(models.Model):
             purchase_available_date = fields.Date.today() + relativedelta(
                 days=int(product_id.purchase_delay)
             )
-            if stock_available_date and stock_available_date <= purchase_available_date:
-                # available in stock
+            if stock_available_date:
+                # removed by customer request:
+                # and stock_available_date <= purchase_available_date:
+                # so get any future date of purchase order as available from stock
                 available_date = stock_available_date
                 option = stock_options["from_stock"]
                 available_text = _(

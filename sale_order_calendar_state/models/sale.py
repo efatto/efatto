@@ -369,7 +369,11 @@ class SaleOrder(models.Model):
             # stampo > giallo (sempre anche se mancano materiali) WAITING_FOR_PACKING
             calendar_state = []
             if all([x.state == "done" for x in picking_ids]):
-                calendar_state = DONE_DELIVERY
+                delivery_notes = picking_ids.mapped("delivery_note_id")
+                if delivery_notes and any([x.state != "done" for x in delivery_notes]):
+                    calendar_state = WAITING_FOR_PACKING
+                else:
+                    calendar_state = DONE_DELIVERY
             elif all(x.is_assigned for x in picking_ids):
                 calendar_state = WAITING_FOR_PACKING
             elif all(
@@ -434,7 +438,16 @@ class SaleOrder(models.Model):
             ).mapped("additional_state")
             if mrp_additional_states:
                 mrp_additional_states = set(mrp_additional_states)
-            if mrp_states & {"to_close", "done"}:
+            if (
+                mrp_states & {"to_close", "done"}
+                and (
+                    calendar_states
+                    and not any(
+                        x[0] in (DONE_DELIVERY, WAITING_FOR_PACKING)
+                        for x in calendar_states)
+                )
+            ):
+                # set DONE state only when there are not open or done pickings
                 calendar_states.append((DONE, fields.Datetime.now()))
             if mrp_states & {"draft", "confirmed"}:
                 for mrp_production in mrp_production_ids:

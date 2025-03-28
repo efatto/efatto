@@ -7,7 +7,7 @@
     "description": "Add product multiple qty to product sellers; add computed fields "
                    "for product multiple qty and purchase delay of first seller.",
     "author": "Sergio Corato",
-    "website": "https://github.com/sergiocorato/efatto",
+    "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",
     "depends": [
         "stock",

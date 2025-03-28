@@ -10,7 +10,7 @@
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'depends': ['analytic', 'sale'],
     'category': 'Sales Management',
     'data': [

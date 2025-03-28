@@ -7,7 +7,7 @@
     'summary': 'Show info on manufacturing orders generated from sales order',
     'version': '12.0.1.0.2',
     'category': 'Sales Management',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'author': 'Sergio Corato',
     'license': 'AGPL-3',
     'application': False,

@@ -7,7 +7,7 @@
     'author': 'Sergio Corato',
     'description':
         'Limit visibility of event to involved users, excluding hr employee.',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'calendar',

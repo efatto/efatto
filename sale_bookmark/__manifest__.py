@@ -4,7 +4,7 @@
     'name': 'Sale Bookmark',
     'version': '12.0.1.0.4',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'category': 'Tools',
     'license': 'AGPL-3',
     'depends': [

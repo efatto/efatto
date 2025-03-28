@@ -10,7 +10,7 @@ Add the next groups to base user:
 - mrp.group_mrp_routings
 """,
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'mrp',

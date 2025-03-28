@@ -6,7 +6,7 @@
     'version': '12.0.1.0.2',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'description': 'Sale order auto confirm',
     'license': 'AGPL-3',
     'depends': [

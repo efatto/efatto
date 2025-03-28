@@ -6,7 +6,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Delivery fix price wich is computed with vat',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'delivery',

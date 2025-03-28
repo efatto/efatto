@@ -8,7 +8,7 @@
     'description':
         'Write account payment order on open invoices',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'depends': [
         'account_payment_partner',
     ],

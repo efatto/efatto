@@ -7,7 +7,7 @@
     'category': 'Accounting & Finance',
     'author': 'Sergio Corato',
     'description': 'Italian Central Journal with history of partner',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_central_journal_subtotal',

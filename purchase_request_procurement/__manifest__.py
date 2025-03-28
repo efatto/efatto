@@ -6,7 +6,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Add procurement to purchase request line.',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'purchase_request',

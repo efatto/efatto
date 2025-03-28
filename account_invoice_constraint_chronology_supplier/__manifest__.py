@@ -6,7 +6,7 @@
     "version": "12.0.1.0.1",
     "author": "Odoo Community Association (OCA), ACSONE SA/NV, Sergio Corato",
     "maintainer": "Sergio Corato",
-    "website": "https://github.com/sergiocorato/efatto",
+    "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",
     "category": "Accounting",
     "depends": ["account"],

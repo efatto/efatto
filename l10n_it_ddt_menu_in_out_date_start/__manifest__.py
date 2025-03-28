@@ -6,7 +6,7 @@
     'version': '12.0.1.0.0',
     'category': 'other',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'description': '''This auto-install module add date start in supplier DDT''',
     'depends': [

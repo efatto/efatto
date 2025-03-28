@@ -9,7 +9,7 @@
     'description':
         'View task on calendar based on date_end and date_start',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'project',

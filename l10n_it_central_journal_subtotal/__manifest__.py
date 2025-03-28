@@ -6,7 +6,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'Add subtotal to page in central journal report',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_account',

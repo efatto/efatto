@@ -6,7 +6,7 @@
     'category': 'other',
     'author': 'Sergio Corato',
     'description': 'General report in a landscape layout',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'account_financial_report_group',

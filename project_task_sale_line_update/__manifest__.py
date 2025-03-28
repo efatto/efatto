@@ -8,7 +8,7 @@
         'When updated sale line link in task, by default analytic line remain linked '
         'to the original sale line.',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'sale',

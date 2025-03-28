@@ -7,7 +7,7 @@
     'category': 'Account',
     'description': 'Add default reverse charge data',
     'author': 'Sergio Corato',
-    'website': 'https://github.com/sergiocorato/efatto',
+    'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
         'l10n_it_reverse_charge',

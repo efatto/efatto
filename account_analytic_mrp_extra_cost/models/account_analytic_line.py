@@ -11,6 +11,9 @@ class AccountAnalyticLine(models.Model):
     extra_cost = fields.Float(
         compute="_compute_extra_cost",
     )
+    extra_cost_no_product = fields.Float(
+        compute="_compute_extra_cost",
+    )
     extra_cost_invoice_line_ids = fields.Many2many(
         comodel_name="account.invoice.line",
         compute="_compute_extra_cost",
@@ -79,7 +82,8 @@ class AccountAnalyticLine(models.Model):
                     if x.account_id == line.general_account_id
                     or [0]
                 )
-                line.extra_cost = - (extra_cost + extra_cost_no_product)
+                line.extra_cost = - extra_cost
+                line.extra_cost_no_product = - extra_cost_no_product
                 if extra_cost_invoice_lines:
                     line.extra_cost_invoice_line_ids = [
                         (6, 0, extra_cost_invoice_lines.ids)]
@@ -87,4 +91,5 @@ class AccountAnalyticLine(models.Model):
                     line.extra_cost_invoice_line_ids = False
             else:
                 line.extra_cost = 0.0
+                line.extra_cost_no_product = 0.0
                 line.extra_cost_invoice_line_ids = False

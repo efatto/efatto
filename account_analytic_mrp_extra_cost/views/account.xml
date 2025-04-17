@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <field name="amount" position="after">
                 <field name="extra_cost" sum="Total Extra Cost MRP"/>
+                <field name="extra_cost_no_product" sum="Total Extra Cost No Product MRP"/>
                 <field name="extra_cost_invoice_line_ids" widget="many2many_tags"/>
             </field>
             <field name="account_id" position="after">

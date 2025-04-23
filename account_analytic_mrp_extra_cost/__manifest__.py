@@ -15,5 +15,6 @@
     ],
     'data': [
         'views/account.xml',
+        'views/account_invoice_line_views.xml',
     ],
 }

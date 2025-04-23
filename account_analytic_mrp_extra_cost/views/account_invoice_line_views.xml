@@ -7,7 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='price_unit']" position="after">
                 <field name="exclude_extra_cost"
-                    attrs="{'invisible': ['|',
+                    attrs="{'invisible': ['|', '|', '|',
+                        ('price_subtotal', '=', 0),
+                        ('account_analytic_id', '=', False),
                         ('invoice_type', 'in', ['out_invoice', 'out_refund']),
                         ('display_type', 'in', ('line_section', 'line_note'))]}"/>
             </xpath>
@@ -19,7 +21,11 @@
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="after">
-                <button name="button_exclude_extra_cost" type="object" icon="fa-dollar"/>
+                <button name="button_exclude_extra_cost" type="object" icon="fa-edit"
+                    attrs="{'invisible': ['|',
+                        ('price_subtotal', '=', 0),
+                        ('account_analytic_id', '=', False),
+                    ]}"/>
                 <field name="exclude_extra_cost"/>
             </xpath>
         </field>

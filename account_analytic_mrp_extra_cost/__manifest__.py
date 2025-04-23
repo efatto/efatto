@@ -3,7 +3,7 @@
 {
     'name': 'Invoice analytic line mrp extra cost',
     'summary': 'Compute extra cost from analytic in invoices versus mrp stock moves',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Accounting',
     'author': 'Sergio Corato',
     'website': 'https://github.com/efatto/efatto',

@@ -40,6 +40,7 @@ class AccountAnalyticLine(models.Model):
                 all_invoice_lines = invoice.invoice_line_ids.filtered(
                     lambda x: x.account_analytic_id == line.account_id
                     and x.account_id == line.general_account_id
+                    and not x.exclude_extra_cost
                 )
                 no_product_invoice_lines = all_invoice_lines.filtered(
                     lambda y: not y.product_id

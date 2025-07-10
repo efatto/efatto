@@ -3,7 +3,7 @@
 
 {
     'name': 'Italy - Default DDT data',
-    'version': '12.0.1.0.0',
+    'version': '14.0.1.0.0',
     'category': 'other',
     'description': '''
     Add usual DDT type for Italy, with default date range from 01-01 to 12-31.
@@ -12,10 +12,10 @@
     'website': 'https://github.com/efatto/efatto',
     'license': 'AGPL-3',
     'depends': [
-        'l10n_it_ddt',
+        # 'l10n_it_ddt',
     ],
     'data': [
-        'data/ddt_type.xml',
+        # 'data/ddt_type.xml',
     ],
     'installable': True,
 }

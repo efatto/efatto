@@ -14,13 +14,13 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         cls.Product = cls.env['product.product']
         cls.partner = cls.env.ref('base.res_partner_2')
         user_type_expense = cls.env.ref('account.data_account_type_expenses').id
-        cls.invoice_line_account_id = cls.env['account.account'].search(
-            [('user_type_id', '=', user_type_expense)], limit=1).id
-        cls.invoice_line_account_id_1 = cls.env['account.account'].create({
+        cls.invoice_line_account = cls.env['account.account'].search(
+            [('user_type_id', '=', user_type_expense)], limit=1)
+        cls.invoice_line_account_1 = cls.env['account.account'].create({
             'code': 'EXP_ACCOUNT',
             'name': 'Expense account',
             'user_type_id': user_type_expense,
-        }).id
+        })
         cls.analytic_account = cls.env['account.analytic.account'].create({
             'name': 'Analytic account test',
         })
@@ -63,10 +63,6 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         cls.account_journal_purchase = cls.env['account.journal'].search([
             ('type', '=', 'purchase'),
         ])
-        # cls.account_journal_purchase.write({
-        #     'group_invoice_lines': True,
-        #     'group_method': 'account',
-        # })
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
@@ -102,50 +98,43 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         subproduct_1_1_invoice_qty = 12.0  # 10 in MO, purchase 24 pc, 12 with analytic
         subproduct_1_2_invoice_qty = 5.0  # 6 in MO
         subproduct_1_3_invoice_qty = 7.0  # not in MO, there are 14 subproduct 1_4
-        # self.assertTrue(self.account_journal_purchase.group_invoice_lines)
-        invoice = self.env['account.invoice'].create([{
-            'partner_id': self.partner.id,
-            'type': 'in_invoice',
-            'account_id': self.partner.property_account_payable_id.id,
-            'journal_id': self.account_journal_purchase.id,
-            'invoice_line_ids': [
-                (0, 0, {
-                    'name': 'test',
-                    'product_id': self.subproduct_1_1.id,
-                    'uom_id': self.subproduct_1_1.uom_id.id,
-                    'quantity': subproduct_1_1_invoice_qty,
-                    'price_unit': new_price_subproduct_1_1,
-                    'account_id': self.invoice_line_account_id,
-                    'account_analytic_id': self.analytic_account.id,
-                }),
-                (0, 0, {
-                    'name': 'test',
-                    'product_id': self.subproduct_1_1.id,
-                    'uom_id': self.subproduct_1_1.uom_id.id,
-                    'quantity': subproduct_1_1_invoice_qty,
-                    'price_unit': new_price_subproduct_1_1 + 9,
-                    'account_id': self.invoice_line_account_id_1,
-                }),
-                (0, 0, {
-                    'name': 'test',
-                    'product_id': self.subproduct_1_2.id,
-                    'uom_id': self.subproduct_1_2.uom_id.id,
-                    'quantity': subproduct_1_2_invoice_qty,
-                    'price_unit': new_price_subproduct_1_2,
-                    'account_id': self.invoice_line_account_id,
-                    'account_analytic_id': self.analytic_account.id,
-                }),
-                (0, 0, {
-                    'name': 'test',
-                    'product_id': self.subproduct_1_3.id,
-                    'uom_id': self.subproduct_1_3.uom_id.id,
-                    'quantity': subproduct_1_3_invoice_qty,
-                    'price_unit': self.subproduct_1_3.standard_price,
-                    'account_id': self.invoice_line_account_id_1,
-                    'account_analytic_id': self.analytic_account.id,
-                })
-            ]
-        }])
+        invoice_form = Form(self.env['account.invoice'])
+        invoice_form.partner_id = self.partner
+        invoice_form.type = 'in_invoice'
+        invoice_form.account_id = self.partner.property_account_payable_id
+        invoice_form.journal_id = self.account_journal_purchase
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_1
+            line_form.uom_id = self.subproduct_1_1.uom_id
+            line_form.quantity = subproduct_1_1_invoice_qty
+            line_form.price_unit = new_price_subproduct_1_1
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_1
+            line_form.uom_id = self.subproduct_1_1.uom_id
+            line_form.quantity = subproduct_1_1_invoice_qty
+            line_form.price_unit = new_price_subproduct_1_1 + 9
+            line_form.account_id = self.invoice_line_account_1
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_2
+            line_form.uom_id = self.subproduct_1_2.uom_id
+            line_form.quantity = subproduct_1_2_invoice_qty
+            line_form.price_unit = new_price_subproduct_1_2
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_3
+            line_form.uom_id = self.subproduct_1_3.uom_id
+            line_form.quantity = subproduct_1_3_invoice_qty
+            line_form.price_unit = self.subproduct_1_3.standard_price
+            line_form.account_id = self.invoice_line_account_1
+            line_form.account_analytic_id = self.analytic_account
+        invoice = invoice_form.save()
         invoice.action_invoice_open()
 
         analytic_lines = self.env['account.analytic.line'].search([

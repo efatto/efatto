@@ -1,90 +1,90 @@
 # Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models
+from odoo.tools.float_utils import float_round
 
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     extra_cost = fields.Float(
+        string="Actual Cost Total",
         compute="_compute_extra_cost",
     )
-    extra_cost_no_product = fields.Float(
+    extra_cost_unit = fields.Float(
+        string="Actual Cost Unit",
         compute="_compute_extra_cost",
     )
+    extra_cost_qty = fields.Float(
+        string="Actual Cost Quantity",
+        compute="_compute_extra_cost",
+    )
+    # row without a product must be added to mis builder directly for the entire amount
     extra_cost_invoice_line_ids = fields.Many2many(
+        string="Actual Cost Invoice Lines",
         comodel_name="account.invoice.line",
         compute="_compute_extra_cost",
     )
     invoice_id = fields.Many2one(related='move_id.invoice_id')
+    mrp_raw_move_ids = fields.Many2many(
+        comodel_name="stock.move",
+        compute="_compute_mrp_raw_move_ids",
+        string="Mrp stock raw moves",
+        # not storable as production are not linked here
+    )
+
+    def _compute_mrp_raw_move_ids(self):
+        for line in self:
+            mrp_raw_move_ids = self.env['stock.move'].browse()
+            if line.product_id or line.move_id.product_id:
+                mrp_raw_move_ids = self.env['stock.move'].search([
+                    ("product_id", "=", (line.product_id | line.move_id.product_id).id),
+                    ("raw_material_production_id.analytic_account_id",
+                     "=", line.account_id.id),
+                    ("state", "!=", "cancel"),
+                ])
+            line.mrp_raw_move_ids = mrp_raw_move_ids
 
     def _compute_extra_cost(self):
         for line in self:
             if line.move_id.invoice_id.type in [
                 'in_invoice', 'in_refund'
             ]:
-                # N.B. this function work only if it creates analytic lines grouped by
-                # account, with account_group_invoice_line and journal has active option
-                # 'group_invoice_lines': True,
-                # 'group_method': 'account',
-                # So add an error if not configured in this way.
                 invoice = line.move_id.invoice_id
-                if not (invoice.journal_id.group_invoice_lines and
-                        invoice.journal_id.group_method == 'account'):
-                    raise ValidationError(_(
-                        "Invoice journal %s is not configured with grouped lines "
-                        "option by account!" % invoice.journal_id.name
-                    ))
-                all_invoice_lines = invoice.invoice_line_ids.filtered(
+                product_invoice_lines = invoice.invoice_line_ids.filtered(
                     lambda x: x.account_analytic_id == line.account_id
                     and x.account_id == line.general_account_id
+                    and x.product_id == line.product_id
                     and not x.exclude_extra_cost
                 )
-                no_product_invoice_lines = all_invoice_lines.filtered(
-                    lambda y: not y.product_id
-                )
-                invoice_lines = all_invoice_lines - no_product_invoice_lines
-                products = invoice_lines.mapped('product_id')
-                raw_mo_moves = self.env['stock.move'].search([
-                    ('raw_material_production_id.analytic_account_id', '=',
-                     line.account_id.id),
-                ])
-                raw_products = raw_mo_moves.mapped('product_id')
-                # create dicts with {product: lines}
-                raw_move_by_product = {product: raw_mo_moves.filtered(
-                    lambda y: y.product_id == product
-                ) for product in raw_products}
-                invoice_line_by_products = {product: invoice_lines.filtered(
-                    lambda y: y.product_id == product
-                ) for product in products}
                 extra_cost = 0.0
+                extra_cost_qty = 0.0
                 extra_cost_invoice_lines = self.env["account.invoice.line"]
-                # get extra cost for every group of invoice lines of an invoice for a
-                # product
-                for product in invoice_line_by_products:
-                    invoice_cost = sum([
-                        invoice_line.price_subtotal_signed for invoice_line in
-                        invoice_line_by_products[product]
-                    ])
-                    raw_move_cost = - sum(
-                        [
-                            raw_move.price_unit * raw_move.quantity_done for raw_move in
-                            raw_move_by_product[product]
-                        ] if product in raw_move_by_product else [0.0]
-                    )
-                    if invoice_cost > raw_move_cost:
-                        extra_cost += invoice_cost - raw_move_cost
-                        extra_cost_invoice_lines |= invoice_line_by_products[product]
-                # add extra cost for invoice lines without product
-                extra_cost_no_product = sum(
-                    x.price_subtotal_signed for x in no_product_invoice_lines
-                    if x.account_id == line.general_account_id
-                    or [0]
+                # invoice_cost and raw_move_cost and extra_cost are positive when
+                # they are costs, viceversa they are income if they are negative
+                invoice_cost = sum([
+                    invoice_line.price_subtotal_signed for invoice_line in
+                    product_invoice_lines
+                ])
+                extra_cost += float_round(
+                    invoice_cost,
+                    precision_rounding=invoice.currency_id.rounding,
                 )
-                line.extra_cost = - extra_cost
-                line.extra_cost_no_product = - extra_cost_no_product
+                invoice_qty = sum([  # todo check if refund is negative!
+                    invoice_line.quantity for invoice_line in
+                    product_invoice_lines
+                ])
+                extra_cost_qty += invoice_qty
+                extra_cost_invoice_lines |= product_invoice_lines
+                if line.mrp_raw_move_ids:
+                    consumed_qty = sum(line.mapped('mrp_raw_move_ids.product_uom_qty'))
+                else:
+                    # impute all the quantity from the line
+                    consumed_qty = extra_cost_qty
+                line.extra_cost_unit = - extra_cost / extra_cost_qty
+                line.extra_cost = - extra_cost / extra_cost_qty * consumed_qty
+                line.extra_cost_qty = consumed_qty
                 if extra_cost_invoice_lines:
                     line.extra_cost_invoice_line_ids = [
                         (6, 0, extra_cost_invoice_lines.ids)]
@@ -92,5 +92,6 @@ class AccountAnalyticLine(models.Model):
                     line.extra_cost_invoice_line_ids = False
             else:
                 line.extra_cost = 0.0
-                line.extra_cost_no_product = 0.0
+                line.extra_cost_unit = 0.0
+                line.extra_cost_qty = 0.0
                 line.extra_cost_invoice_line_ids = False

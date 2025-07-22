@@ -63,15 +63,15 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         cls.account_journal_purchase = cls.env['account.journal'].search([
             ('type', '=', 'purchase'),
         ])
-        cls.account_journal_purchase.write({
-            'group_invoice_lines': True,
-            'group_method': 'account',
-        })
+        # cls.account_journal_purchase.write({
+        #     'group_invoice_lines': True,
+        #     'group_method': 'account',
+        # })
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
-    def test_01_invoice_mo(self):
+    def test_01_invoice_complete_production(self):
         self.production = self.env['mrp.production'].create({
             'name': 'MO-Test',
             'product_id': self.top_product.id,
@@ -97,12 +97,12 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertEqual(self.production.state, 'done')
 
         # create invoice
-        new_price_subproduct_1_1 = self.subproduct_1_1.standard_price + 15.0
-        new_price_subproduct_1_2 = self.subproduct_1_2.standard_price - 100.0
-        subproduct_1_1_invoice_qty = 12.0
-        subproduct_1_2_invoice_qty = 5.0
-        subproduct_1_3_invoice_qty = 7.0
-        self.assertTrue(self.account_journal_purchase.group_invoice_lines)
+        new_price_subproduct_1_1 = 25.0
+        new_price_subproduct_1_2 = 8.0
+        subproduct_1_1_invoice_qty = 12.0  # 10 in MO, purchase 24 pc, 12 with analytic
+        subproduct_1_2_invoice_qty = 5.0  # 6 in MO
+        subproduct_1_3_invoice_qty = 7.0  # not in MO, there are 14 subproduct 1_4
+        # self.assertTrue(self.account_journal_purchase.group_invoice_lines)
         invoice = self.env['account.invoice'].create([{
             'partner_id': self.partner.id,
             'type': 'in_invoice',
@@ -123,7 +123,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
                     'product_id': self.subproduct_1_1.id,
                     'uom_id': self.subproduct_1_1.uom_id.id,
                     'quantity': subproduct_1_1_invoice_qty,
-                    'price_unit': new_price_subproduct_1_1,
+                    'price_unit': new_price_subproduct_1_1 + 9,
                     'account_id': self.invoice_line_account_id_1,
                 }),
                 (0, 0, {
@@ -153,12 +153,17 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         ])
         self.assertTrue(analytic_lines)
         self.assertEqual(len(self.production.move_raw_ids), 3)
-        # subproduct 1.1 is invoiced for (10 + 2) * (10 + 15) >
-        #  compute 300 versus 100 -> + 200
-        # subproduct 1.2 is invoiced for (6 - 1) * (price - 100) > not compute
-        # subproduct 1.3 is invoiced for (not + 7) * (220) > compute 1540
-        # subproduct 1.4 is not invoiced > not in invoice
-        extra_cost = 0
+        # subproduct 1.1 is invoiced for 12 pc, 10 of them used in MO, at price 25, so
+        # take the cost of 10 * 25 = 250
+        # subproduct 1.2 is invoiced for 5 pc, but MO uses 6 pc, at price 8, so take the
+        # cost of 6 * 8 = 48
+        # subproduct 1.3 is invoiced but not used in production, but it has the analytic
+        # account set, so take the total cost of the line: 7 * self.subproduct_1_3.standard_price
+        # subproduct 1.4 is not invoiced, so take the cost of the last purchase with
+        # enough quantity to be eligible, if not possible take the last purchase, else
+        # take the product standard price (which is the cost)
+        actual_cost = 0
+        # check subproduct 1_1
         subproduct_1_1_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
             and x.product_id == self.subproduct_1_1
@@ -166,19 +171,63 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         subproduct_1_1_move_raws = self.production.move_raw_ids.filtered(
             lambda x: x.product_id == self.subproduct_1_1
         )
-        extra_cost += (
+        actual_unit_cost_subproduct_1_1 = (
             sum(x.price_subtotal for x in subproduct_1_1_invoice_lines)
-            + sum(x.quantity_done * x.price_unit for x in subproduct_1_1_move_raws)
+            / sum(x.quantity for x in subproduct_1_1_invoice_lines)
         )
+        self.assertAlmostEqual(actual_unit_cost_subproduct_1_1, 25, 2)
+        actual_qty_subproduct_1_1 = sum(
+            x.quantity_done for x in subproduct_1_1_move_raws)
+        actual_cost += (actual_qty_subproduct_1_1 * actual_unit_cost_subproduct_1_1)
+        self.assertAlmostEqual(actual_cost, 250, 2)
+        # check subproduct 1_2
+        subproduct_1_2_invoice_lines = invoice.invoice_line_ids.filtered(
+            lambda x: x.account_analytic_id == self.analytic_account
+                      and x.product_id == self.subproduct_1_2
+        )
+        subproduct_1_2_move_raws = self.production.move_raw_ids.filtered(
+            lambda x: x.product_id == self.subproduct_1_2
+        )
+        actual_unit_cost_subproduct_1_2 = (
+            sum(x.price_subtotal for x in subproduct_1_2_invoice_lines)
+            / sum(x.quantity for x in subproduct_1_2_invoice_lines)
+        )
+        self.assertAlmostEqual(actual_unit_cost_subproduct_1_2, 8, 2)
+        actual_qty_subproduct_1_2 = sum(
+            x.quantity_done for x in subproduct_1_2_move_raws)
+        actual_cost += (actual_qty_subproduct_1_2 * actual_unit_cost_subproduct_1_2)
+        self.assertAlmostEqual(actual_cost, 250 + 48, 2)
+        # check subproduct 1_3
         subproduct_1_3_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
-            and x.product_id == self.subproduct_1_3
+                      and x.product_id == self.subproduct_1_3
         )
-        extra_cost += (
+        actual_cost_subproduct_1_3 = (
             sum(x.price_subtotal for x in subproduct_1_3_invoice_lines)
         )
-
+        actual_qty_subproduct_1_3 = sum(
+            x.quantity for x in subproduct_1_3_invoice_lines)
         self.assertAlmostEqual(
-            sum(analytic_lines.mapped('extra_cost')),
-            - extra_cost
+            actual_cost_subproduct_1_3,
+            actual_qty_subproduct_1_3 * self.subproduct_1_3.standard_price, 2)
+        actual_cost += actual_cost_subproduct_1_3
+        self.assertAlmostEqual(
+            actual_cost, 250 + 48 + 1540, 2)
+        # TODO get cost of subproduct 1_4, which is not invoiced and don't have an
+        #  analytic line
+        subproduct_1_4_move_raws = self.production.move_raw_ids.filtered(
+            lambda x: x.product_id == self.subproduct_1_4
+        )
+        actual_qty_subproduct_1_4 = sum(
+            x.quantity_done for x in subproduct_1_4_move_raws)
+        actual_cost_subproduct_1_4 = (
+            actual_qty_subproduct_1_4 * self.subproduct_1_4.standard_price
+        )
+        # todo this cost is not present in analytic lines, how to show it? use a
+        #  dedicated row in mis builder?
+        # check value in analytic lines is the same
+        self.assertAlmostEqual(
+            sum(analytic_lines.mapped("extra_cost")),
+            - actual_cost,
+            2
         )

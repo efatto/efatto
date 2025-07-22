@@ -22,13 +22,13 @@ msgstr "Riga analitica"
 
 #. module: account_analytic_mrp_extra_cost
 #: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost
-msgid "Extra Cost"
-msgstr "Costo aggiuntivo"
+msgid "Actual Cost"
+msgstr "Costo effettivo da produzione"
 
 #. module: account_analytic_mrp_extra_cost
 #: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost_invoice_line_ids
-msgid "Extra Cost Invoice Line"
-msgstr "Riga fattura costo aggiuntivo"
+msgid "Actual Cost Invoice Line"
+msgstr "Riga fattura costo effettivo"
 
 #. module: account_analytic_mrp_extra_cost
 #: code:addons/account_analytic_mrp_extra_cost/models/account_analytic_line.py:34
@@ -38,6 +38,6 @@ msgstr "Il registro fatture %s non è configurato con il raggruppamento righe pe
 
 #. module: account_analytic_mrp_extra_cost
 #: model_terms:ir.ui.view,arch_db:account_analytic_mrp_extra_cost.view_account_analytic_line_tree
-msgid "Total Extra Cost MRP"
-msgstr "Totale costo aggiuntivo produzione"
+msgid "Total Actual Cost MRP"
+msgstr "Totale costo effettivo produzione"
 

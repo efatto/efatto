@@ -6,8 +6,7 @@
         <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
         <field name="arch" type="xml">
             <field name="amount" position="after">
-                <field name="extra_cost" sum="Total Extra Cost MRP"/>
-                <field name="extra_cost_no_product" sum="Total Extra Cost No Product MRP"/>
+                <field name="extra_cost" sum="Total Actual Cost MRP"/>
                 <field name="extra_cost_invoice_line_ids" widget="many2many_tags"/>
             </field>
             <field name="account_id" position="after">

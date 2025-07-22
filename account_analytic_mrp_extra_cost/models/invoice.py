@@ -6,7 +6,7 @@ class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     exclude_extra_cost = fields.Boolean(
-        "No Extra Cost"
+        "No Actual Cost"
     )
 
     @api.one

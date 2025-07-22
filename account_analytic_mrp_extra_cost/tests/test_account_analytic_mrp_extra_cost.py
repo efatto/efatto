@@ -1,7 +1,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 # Copyright 2023 Sergio Corato <https://github.com/sergiocorato>
 from odoo.tests import SavepointCase, Form
-from odoo.tools import mute_logger
+from odoo.tools import mute_logger, relativedelta
+from odoo import fields
 
 
 class AccountAnalyticMrpExtraCost(SavepointCase):
@@ -97,18 +98,20 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         new_price_subproduct_1_2 = 8.0
         subproduct_1_1_invoice_qty = 12.0  # 10 in MO, purchase 24 pc, 12 with analytic
         subproduct_1_2_invoice_qty = 5.0  # 6 in MO
-        subproduct_1_3_invoice_qty = 7.0  # not in MO, there are 14 subproduct 1_4
+        subproduct_1_3_invoice_qty = 7.0  # not in MO
+        # there are also 14 subproduct 1_4
         invoice_form = Form(self.env['account.invoice'])
         invoice_form.partner_id = self.partner
         invoice_form.type = 'in_invoice'
+        invoice_form.date_invoice = fields.Date.today() + relativedelta(days=-2)
         invoice_form.account_id = self.partner.property_account_payable_id
         invoice_form.journal_id = self.account_journal_purchase
         with invoice_form.invoice_line_ids.new() as line_form:
             line_form.name = 'test'
             line_form.product_id = self.subproduct_1_1
             line_form.uom_id = self.subproduct_1_1.uom_id
-            line_form.quantity = subproduct_1_1_invoice_qty
-            line_form.price_unit = new_price_subproduct_1_1
+            line_form.quantity = subproduct_1_1_invoice_qty + 10
+            line_form.price_unit = new_price_subproduct_1_1 + 10
             line_form.account_id = self.invoice_line_account
             line_form.account_analytic_id = self.analytic_account
         with invoice_form.invoice_line_ids.new() as line_form:
@@ -136,6 +139,24 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             line_form.account_analytic_id = self.analytic_account
         invoice = invoice_form.save()
         invoice.action_invoice_open()
+        # create another invoice to check this invoice, as more recent, is used
+        invoice_form1 = Form(self.env['account.invoice'])
+        invoice_form1.partner_id = self.partner
+        invoice_form1.type = 'in_invoice'
+        invoice_form1.date_invoice = fields.Date.today()
+        invoice_form1.account_id = self.partner.property_account_payable_id
+        invoice_form1.journal_id = self.account_journal_purchase
+        with invoice_form1.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_1
+            line_form.uom_id = self.subproduct_1_1.uom_id
+            line_form.quantity = subproduct_1_1_invoice_qty
+            line_form.price_unit = new_price_subproduct_1_1
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        invoice1 = invoice_form1.save()
+        invoice1.action_invoice_open()
+        # todo create a refund to ensure values are preserved
 
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', self.analytic_account.id),
@@ -147,13 +168,13 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         # subproduct 1.2 is invoiced for 5 pc, but MO uses 6 pc, at price 8, so take the
         # cost of 6 * 8 = 48
         # subproduct 1.3 is invoiced but not used in production, but it has the analytic
-        # account set, so take the total cost of the line: 7 * self.subproduct_1_3.standard_price
+        # account set, so take the total cost of the line: 7 * 220 = 1540
         # subproduct 1.4 is not invoiced, so take the cost of the last purchase with
         # enough quantity to be eligible, if not possible take the last purchase, else
         # take the product standard price (which is the cost)
         actual_cost = 0
         # check subproduct 1_1
-        subproduct_1_1_invoice_lines = invoice.invoice_line_ids.filtered(
+        subproduct_1_1_invoice_lines = invoice1.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
             and x.product_id == self.subproduct_1_1
         )

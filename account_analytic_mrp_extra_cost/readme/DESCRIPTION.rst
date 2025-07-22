@@ -4,6 +4,8 @@ Nel caso in cui in fattura ci siano prodotti non presenti nei movimenti di scari
 
 Il modulo quindi estrae per ogni riga delle fatture/note di credito acquisti con il conto analitico della produzione e lo stesso prodotto, il costo d'acquisto unitario. La media pesata del costo d'aquisto delle righe analitiche con lo stesso prodotto verrà moltiplicata per la somma delle quantità consumate nelle produzioni collegate a quel conto analitico.
 
+La quantità che prevale è quindi quella indicata nei consumi delle produzioni, ignorando quindi acquisti fatturati per quantità superiori.
+
 Nella maschera delle righe analitiche è possibile vedere il totale costo aggiuntivo calcolato e le righe fatture/note di credito fornitori relative:
 
 .. image:: ../static/description/risultato.png

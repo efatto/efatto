@@ -33,21 +33,53 @@ class AccountAnalyticLine(models.Model):
         string="Mrp stock raw moves",
         # not storable as production are not linked here
     )
+    mrp_raw_move_unit_amount = fields.Float(
+        compute="_compute_mrp_raw_move_ids",
+        string="Mrp stock raw moves unit amount",
+    )
 
     def _compute_mrp_raw_move_ids(self):
         for line in self:
-            mrp_raw_move_ids = self.env['stock.move'].browse()
-            if line.product_id or line.move_id.product_id:
+            if line.product_id:
+                mrp_raw_move_unit_amount = line.unit_amount
                 mrp_raw_move_ids = self.env['stock.move'].search([
-                    ("product_id", "=", (line.product_id | line.move_id.product_id).id),
+                    ("product_id", "=", line.product_id.id),
                     ("raw_material_production_id.analytic_account_id",
                      "=", line.account_id.id),
                     ("state", "!=", "cancel"),
                 ])
-            line.mrp_raw_move_ids = mrp_raw_move_ids
+                all_lines = self.env['account.analytic.line'].search([
+                    ('account_id', '=', line.account_id.id),
+                    ('product_id', '=', line.product_id.id),
+                ])
+                all_lines = all_lines.sorted(
+                    lambda l: l.move_id.invoice_id.date_invoice, reverse=True)
+                qty_all_lines = sum(all_lines.mapped("unit_amount"))
+                qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
+                if len(all_lines) == 1:
+                    mrp_raw_move_unit_amount = qty_consumed_total
+                elif qty_all_lines != qty_consumed_total:
+                    qty_residual = qty_consumed_total
+                    # compute for all lines onthefly to get the current line amount
+                    for all_line in all_lines:
+                        if all_line.unit_amount <= qty_residual:
+                            mrp_raw_move_unit_amount = all_line.unit_amount
+                            qty_residual -= all_line.unit_amount
+                        else:
+                            mrp_raw_move_unit_amount = qty_residual
+                            qty_residual -= qty_residual
+                        if all_line == line:
+                            break
+                line.mrp_raw_move_ids = mrp_raw_move_ids
+                line.mrp_raw_move_unit_amount = mrp_raw_move_unit_amount
+            else:
+                line.mrp_raw_move_ids = False
+                line.mrp_raw_move_unit_amount = 0.0
 
     def _compute_extra_cost(self):
-        for line in self:
+        for line in self.sorted(
+            lambda l: l.move_id.invoice_id.date_invoice, reverse=True
+        ):
             if line.move_id.invoice_id.type in [
                 'in_invoice', 'in_refund'
             ]:
@@ -78,12 +110,20 @@ class AccountAnalyticLine(models.Model):
                 extra_cost_qty += invoice_qty
                 extra_cost_invoice_lines |= product_invoice_lines
                 if line.mrp_raw_move_ids:
-                    consumed_qty = sum(line.mapped('mrp_raw_move_ids.product_uom_qty'))
+                    # sum even if the amount is zero, as it could be already fulfilled
+                    # in other lines
+                    consumed_qty = line.mrp_raw_move_unit_amount
                 else:
                     # impute all the quantity from the line
                     consumed_qty = extra_cost_qty
-                line.extra_cost_unit = - extra_cost / extra_cost_qty
-                line.extra_cost = - extra_cost / extra_cost_qty * consumed_qty
+                line.extra_cost_unit = float_round(
+                    - extra_cost / extra_cost_qty,
+                    precision_digits=2
+                )
+                line.extra_cost = float_round(
+                    - extra_cost / extra_cost_qty * consumed_qty,
+                    precision_digits=2
+                )
                 line.extra_cost_qty = consumed_qty
                 if extra_cost_invoice_lines:
                     line.extra_cost_invoice_line_ids = [

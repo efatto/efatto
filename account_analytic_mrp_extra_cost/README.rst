@@ -13,21 +13,21 @@ Invoice analytic line mrp actual cost
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-sergiocorato%2Fefatto-lightgray.png?logo=github
-    :target: https://github.com/sergiocorato/efatto/tree/12.0/account_analytic_mrp_extra_cost
-    :alt: sergiocorato/efatto
+.. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
+    :target: https://github.com/efatto/efatto/tree/12.0/account_analytic_mrp_extra_cost
+    :alt: efatto/efatto
 
-|badge1| |badge2| |badge3|
+|badge1| |badge2| |badge3| 
 
-Questo modulo calcola il costo aggiuntivo sostenuto da fatture o note di credito fornitori per prodotto detraendo la parte già sostenuta nelle righe di consumo dei componenti. Nel caso in cui in fattura ci siano prodotti non presenti nei movimenti di scarico della produzione, verranno imputati interamente.
+Questo modulo calcola il costo effettivo sostenuto da fatture o note di credito fornitori per prodotto in relazione al consumo dei componenti di una produzione.
 
-Questo approccio è chiaramente limitato all'esattezza dei prodotti consumati nella produzione: se fosse stato consumato il prodotto alternativo al prodotto presente in fattura, il costo verrebbe imputato doppiamente.
+Nel caso in cui in fattura ci siano prodotti non presenti nei movimenti di scarico della produzione oppure ci siano servizi, vanno imputati interamente attraverso il sistema di reportistica in uso.
 
-Il modulo quindi prende le righe delle fatture/note di credito acquisti e le righe di movimenti di magazzino dei componenti della produzione, tutte raggruppate per prodotto, e restituisce solo l'eventuale differenza positiva.
+Il modulo quindi estrae per ogni riga delle fatture/note di credito acquisti con il conto analitico della produzione e lo stesso prodotto, il costo d'acquisto unitario. La media pesata del costo d'aquisto delle righe analitiche con lo stesso prodotto verrà moltiplicata per la somma delle quantità consumate nelle produzioni collegate a quel conto analitico.
 
-Nella maschera delle righe analitiche sono stati aggiunti un campo con il totale costo aggiuntivo calcolato e le righe fatture/note di credito fornitori relative:
+Nella maschera delle righe analitiche è possibile vedere il totale costo aggiuntivo calcolato e le righe fatture/note di credito fornitori relative:
 
-.. image:: https://raw.githubusercontent.com/sergiocorato/efatto/12.0/account_analytic_mrp_extra_cost/static/description/risultato.png
+.. image:: https://raw.githubusercontent.com/efatto/efatto/12.0/account_analytic_mrp_extra_cost/static/description/risultato.png
     :alt: Risultato
 
 **Table of contents**
@@ -38,10 +38,10 @@ Nella maschera delle righe analitiche sono stati aggiunti un campo con il totale
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/sergiocorato/efatto/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/efatto/efatto/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/sergiocorato/efatto/issues/new?body=module:%20account_analytic_mrp_extra_cost%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/efatto/efatto/issues/new?body=module:%20account_analytic_mrp_extra_cost%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -61,6 +61,6 @@ Contributors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `sergiocorato/efatto <https://github.com/sergiocorato/efatto/tree/12.0/account_analytic_mrp_extra_cost>`_ project on GitHub.
+This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/12.0/account_analytic_mrp_extra_cost>`_ project on GitHub.
 
 You are welcome to contribute.

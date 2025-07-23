@@ -97,7 +97,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         new_price_subproduct_1_1 = 25.0
         new_price_subproduct_1_2 = 8.0
         subproduct_1_1_invoice_qty = 12.0  # 10 in MO, purchase 24 pc, 12 with analytic
-        subproduct_1_2_invoice_qty = 5.0  # 6 in MO
+        subproduct_1_2_invoice_qty = 10.0  # 6 in MO, refund for 5
         subproduct_1_3_invoice_qty = 7.0  # not in MO
         # there are also 14 subproduct 1_4
         invoice_form = Form(self.env['account.invoice'])
@@ -156,7 +156,31 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             line_form.account_analytic_id = self.analytic_account
         invoice1 = invoice_form1.save()
         invoice1.action_invoice_open()
-        # todo create a refund to ensure values are preserved
+        # create a refund to check values
+        refund_form = Form(self.env['account.invoice'])
+        refund_form.partner_id = self.partner
+        refund_form.type = 'in_refund'
+        refund_form.date_invoice = fields.Date.today()
+        refund_form.account_id = self.partner.property_account_payable_id
+        refund_form.journal_id = self.account_journal_purchase
+        with refund_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_1
+            line_form.uom_id = self.subproduct_1_1.uom_id
+            line_form.quantity = 4
+            line_form.price_unit = new_price_subproduct_1_1 - 5
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        with refund_form.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_2
+            line_form.uom_id = self.subproduct_1_2.uom_id
+            line_form.quantity = 5
+            line_form.price_unit = 4
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        refund = refund_form.save()
+        refund.action_invoice_open()
 
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', self.analytic_account.id),
@@ -165,11 +189,13 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertEqual(len(self.production.move_raw_ids), 3)
         # subproduct 1.1 is invoiced for 12 pc, 10 of them used in MO, at price 25, so
         # take the cost of 10 * 25 = 250
-        # subproduct 1.2 is invoiced for 5 pc, but MO uses 6 pc, at price 8, so take the
-        # cost of 6 * 8 = 48
+        # subproduct 1.2 is invoiced for 10 pc at price 8 and refunded for 5 pc at
+        # price 4, but MO uses 6 pc, so take the cost of 6 * 8 = 48
         # subproduct 1.3 is invoiced but not used in production, but it has the analytic
         # account set, so take the total cost of the line: 7 * 220 = 1540
-        # subproduct 1.4 is not invoiced, so take the cost of the last purchase with
+        # subproduct 1.4 is not invoiced, so cannot be shown here as it doesn't create
+        # an analytic line
+        # in reporting logic, take the cost of the last purchase with
         # enough quantity to be eligible, if not possible take the last purchase, else
         # take the product standard price (which is the cost)
         actual_cost = 0
@@ -223,19 +249,8 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         actual_cost += actual_cost_subproduct_1_3
         self.assertAlmostEqual(
             actual_cost, 250 + 48 + 1540, 2)
-        # TODO get cost of subproduct 1_4, which is not invoiced and don't have an
-        #  analytic line
-        subproduct_1_4_move_raws = self.production.move_raw_ids.filtered(
-            lambda x: x.product_id == self.subproduct_1_4
-        )
-        actual_qty_subproduct_1_4 = sum(
-            x.quantity_done for x in subproduct_1_4_move_raws)
-        actual_cost_subproduct_1_4 = (
-            actual_qty_subproduct_1_4 * self.subproduct_1_4.standard_price
-        )
-        # todo this cost is not present in analytic lines, how to show it? use a
-        #  dedicated row in mis builder?
-        # check value in analytic lines is the same
+        # Note: the cost of subproduct 1_4 has to be put in reports in another way, as
+        # it is not present in analytic lines.
         self.assertAlmostEqual(
             sum(analytic_lines.mapped("extra_cost")),
             - actual_cost,

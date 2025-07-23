@@ -54,6 +54,8 @@ class AccountAnalyticLine(models.Model):
                 ])
                 all_lines = all_lines.sorted(
                     lambda l: l.move_id.invoice_id.date_invoice, reverse=True)
+                all_lines = all_lines.sorted(
+                    lambda l: l.move_id.invoice_id.type == 'in_refund')
                 qty_all_lines = sum(all_lines.mapped("unit_amount"))
                 qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
                 if len(all_lines) == 1:
@@ -80,9 +82,10 @@ class AccountAnalyticLine(models.Model):
         for line in self.sorted(
             lambda l: l.move_id.invoice_id.date_invoice, reverse=True
         ):
-            if line.move_id.invoice_id.type in [
-                'in_invoice', 'in_refund'
-            ]:
+            if line.move_id.invoice_id.type == 'in_invoice':
+                # ignore in_refund as qty is computed on consumed qty from production
+                # generated analytic lines from refund will be used anyway in method
+                # _compute_mrp_raw_move_ids()
                 invoice = line.move_id.invoice_id
                 product_invoice_lines = invoice.invoice_line_ids.filtered(
                     lambda x: x.account_analytic_id == line.account_id
@@ -103,7 +106,7 @@ class AccountAnalyticLine(models.Model):
                     invoice_cost,
                     precision_rounding=invoice.currency_id.rounding,
                 )
-                invoice_qty = sum([  # todo check if refund is negative!
+                invoice_qty = sum([
                     invoice_line.quantity for invoice_line in
                     product_invoice_lines
                 ])
@@ -114,7 +117,7 @@ class AccountAnalyticLine(models.Model):
                     # in other lines
                     consumed_qty = line.mrp_raw_move_unit_amount
                 else:
-                    # impute all the quantity from the line
+                    # set all the quantities from the line
                     consumed_qty = extra_cost_qty
                 line.extra_cost_unit = float_round(
                     - extra_cost / extra_cost_qty,

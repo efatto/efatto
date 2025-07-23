@@ -65,20 +65,16 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             ('type', '=', 'purchase'),
         ])
 
-    @mute_logger(
-        'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
-    )
-    def test_01_invoice_complete_production(self):
-        self.production = self.env['mrp.production'].create({
-            'name': 'MO-Test',
-            'product_id': self.top_product.id,
-            'product_uom_id': self.top_product.uom_id.id,
-            'product_qty': 2,
-            'bom_id': self.main_bom.id,
-            'analytic_account_id': self.analytic_account.id,
-        })
+    def _create_production(self, qty):
+        production_form = Form(self.env['mrp.production'])
+        production_form.product_id = self.top_product
+        production_form.product_uom_id = self.top_product.uom_id
+        production_form.bom_id = self.main_bom
+        production_form.analytic_account_id = self.analytic_account
+        self.production = production_form.save()
         self.assertTrue(self.production)
         self.assertTrue(self.production.analytic_account_id)
+        self.production.product_qty = qty
         self.production.action_assign()
         self.production.button_plan()
         produce_form = Form(
@@ -92,6 +88,12 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         wizard.do_produce()
         self.production.button_mark_done()
         self.assertEqual(self.production.state, 'done')
+
+    @mute_logger(
+        'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
+    )
+    def test_01_invoice_complete_production(self):
+        self._create_production(qty=2)
 
         # create invoice
         new_price_subproduct_1_1 = 25.0
@@ -186,7 +188,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             ('account_id', '=', self.analytic_account.id),
         ])
         self.assertTrue(analytic_lines)
-        self.assertEqual(len(self.production.move_raw_ids), 3)
+        self.assertEqual(len(self.production.move_raw_ids.mapped("product_id")), 3)
         # subproduct 1.1 is invoiced for 12 pc, 10 of them used in MO, at price 25, so
         # take the cost of 10 * 25 = 250
         # subproduct 1.2 is invoiced for 10 pc at price 8 and refunded for 5 pc at

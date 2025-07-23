@@ -48,19 +48,21 @@ class AccountAnalyticLine(models.Model):
                      "=", line.account_id.id),
                     ("state", "!=", "cancel"),
                 ])
+                # exclude positive lines generated from refunds from computation, but
+                # assign them anyway mrp_raw_move_ids to exclude easily from reports
                 all_lines = self.env['account.analytic.line'].search([
                     ('account_id', '=', line.account_id.id),
                     ('product_id', '=', line.product_id.id),
+                    ('amount', '<', 0),
                 ])
                 all_lines = all_lines.sorted(
                     lambda l: l.move_id.invoice_id.date_invoice, reverse=True)
                 all_lines = all_lines.sorted(
                     lambda l: l.move_id.invoice_id.type == 'in_refund')
-                qty_all_lines = sum(all_lines.mapped("unit_amount"))
                 qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
                 if len(all_lines) == 1:
                     mrp_raw_move_unit_amount = qty_consumed_total
-                elif qty_all_lines != qty_consumed_total:
+                else:
                     qty_residual = qty_consumed_total
                     # compute for all lines onthefly to get the current line amount
                     for all_line in all_lines:

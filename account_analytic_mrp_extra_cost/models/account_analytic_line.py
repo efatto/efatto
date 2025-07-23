@@ -72,6 +72,8 @@ class AccountAnalyticLine(models.Model):
                         else:
                             mrp_raw_move_unit_amount = qty_residual
                             qty_residual -= qty_residual
+                        if line == all_lines[-1] and qty_residual:
+                            mrp_raw_move_unit_amount += qty_residual
                         if all_line == line:
                             break
                 line.mrp_raw_move_ids = mrp_raw_move_ids

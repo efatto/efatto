@@ -184,6 +184,23 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             line_form.account_analytic_id = self.analytic_account
         refund = refund_form.save()
         refund.action_invoice_open()
+        # create another invoice to check this invoice, as more recent, is used
+        invoice_form2 = Form(self.env['account.invoice'])
+        invoice_form2.partner_id = self.partner
+        invoice_form2.type = 'in_invoice'
+        invoice_form2.date_invoice = fields.Date.today()
+        invoice_form2.account_id = self.partner.property_account_payable_id
+        invoice_form2.journal_id = self.account_journal_purchase
+        with invoice_form2.invoice_line_ids.new() as line_form:
+            line_form.name = 'test'
+            line_form.product_id = self.subproduct_1_2
+            line_form.uom_id = self.subproduct_1_2.uom_id
+            line_form.quantity = 2
+            line_form.price_unit = new_price_subproduct_1_2
+            line_form.account_id = self.invoice_line_account
+            line_form.account_analytic_id = self.analytic_account
+        invoice2 = invoice_form2.save()
+        invoice2.action_invoice_open()
 
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', self.analytic_account.id),

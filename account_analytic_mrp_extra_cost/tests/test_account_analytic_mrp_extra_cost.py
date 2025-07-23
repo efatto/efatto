@@ -88,13 +88,14 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         wizard.do_produce()
         self.production.button_mark_done()
         self.assertEqual(self.production.state, 'done')
+        return self.production
 
     @mute_logger(
         'odoo.models', 'odoo.models.unlink', 'odoo.addons.base.ir.ir_model'
     )
     def test_01_invoice_complete_production(self):
-        self._create_production(qty=2)
-
+        productions = self._create_production(qty=2)
+        productions |= self._create_production(qty=3)
         # create invoice
         new_price_subproduct_1_1 = 25.0
         new_price_subproduct_1_2 = 8.0
@@ -188,42 +189,55 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             ('account_id', '=', self.analytic_account.id),
         ])
         self.assertTrue(analytic_lines)
-        self.assertEqual(len(self.production.move_raw_ids.mapped("product_id")), 3)
+        for production in productions:
+            self.assertEqual(len(production.move_raw_ids.mapped("product_id")), 3)
         # subproduct 1.1 is invoiced for 12 pc, 10 of them used in MO, at price 25, so
-        # take the cost of 10 * 25 = 250
+        # take the cost of 12 * 25€ + 13 * 35€ = 755
         # subproduct 1.2 is invoiced for 10 pc at price 8 and refunded for 5 pc at
-        # price 4, but MO uses 6 pc, so take the cost of 6 * 8 = 48
+        # price 4, but MO uses 6 pc, so take the cost of 6 * 8 = 48 for 2 productions, +
+        # 3 productions = 120
         # subproduct 1.3 is invoiced but not used in production, but it has the analytic
         # account set, so take the total cost of the line: 7 * 220 = 1540
         # subproduct 1.4 is not invoiced, so cannot be shown here as it doesn't create
         # an analytic line
-        # in reporting logic, take the cost of the last purchase with
+        # (note for reporting logic: take the cost of the last purchase with
         # enough quantity to be eligible, if not possible take the last purchase, else
-        # take the product standard price (which is the cost)
+        # take the product standard price (which is the cost))
         actual_cost = 0
         # check subproduct 1_1
-        subproduct_1_1_invoice_lines = invoice1.invoice_line_ids.filtered(
+        subproduct_1_1_invoice1_lines = invoice1.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
             and x.product_id == self.subproduct_1_1
         )
-        subproduct_1_1_move_raws = self.production.move_raw_ids.filtered(
+        subproduct_1_1_invoice_lines = invoice.invoice_line_ids.filtered(
+            lambda x: x.account_analytic_id == self.analytic_account
+                      and x.product_id == self.subproduct_1_1
+        )
+        subproduct_1_1_move_raws = productions.mapped("move_raw_ids").filtered(
             lambda x: x.product_id == self.subproduct_1_1
         )
+        actual_unit_cost1_subproduct_1_1 = (
+            sum(x.price_subtotal for x in subproduct_1_1_invoice1_lines)
+            / sum(x.quantity for x in subproduct_1_1_invoice1_lines)
+        )
+        self.assertAlmostEqual(actual_unit_cost1_subproduct_1_1, 25, 2)
         actual_unit_cost_subproduct_1_1 = (
             sum(x.price_subtotal for x in subproduct_1_1_invoice_lines)
             / sum(x.quantity for x in subproduct_1_1_invoice_lines)
         )
-        self.assertAlmostEqual(actual_unit_cost_subproduct_1_1, 25, 2)
+        self.assertAlmostEqual(actual_unit_cost_subproduct_1_1, 35, 2)
         actual_qty_subproduct_1_1 = sum(
             x.quantity_done for x in subproduct_1_1_move_raws)
-        actual_cost += (actual_qty_subproduct_1_1 * actual_unit_cost_subproduct_1_1)
-        self.assertAlmostEqual(actual_cost, 250, 2)
+        actual_cost += (
+            13 * actual_unit_cost_subproduct_1_1
+            + 12 * actual_unit_cost1_subproduct_1_1)
+        self.assertAlmostEqual(actual_cost, 755, 2)
         # check subproduct 1_2
         subproduct_1_2_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
                       and x.product_id == self.subproduct_1_2
         )
-        subproduct_1_2_move_raws = self.production.move_raw_ids.filtered(
+        subproduct_1_2_move_raws = productions.mapped("move_raw_ids").filtered(
             lambda x: x.product_id == self.subproduct_1_2
         )
         actual_unit_cost_subproduct_1_2 = (
@@ -234,7 +248,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         actual_qty_subproduct_1_2 = sum(
             x.quantity_done for x in subproduct_1_2_move_raws)
         actual_cost += (actual_qty_subproduct_1_2 * actual_unit_cost_subproduct_1_2)
-        self.assertAlmostEqual(actual_cost, 250 + 48, 2)
+        self.assertAlmostEqual(actual_cost, 755 + (48 + 72), 2)
         # check subproduct 1_3
         subproduct_1_3_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
@@ -250,11 +264,27 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             actual_qty_subproduct_1_3 * self.subproduct_1_3.standard_price, 2)
         actual_cost += actual_cost_subproduct_1_3
         self.assertAlmostEqual(
-            actual_cost, 250 + 48 + 1540, 2)
+            actual_cost, 755 + (80 + 40) + 1540, 2)
         # Note: the cost of subproduct 1_4 has to be put in reports in another way, as
         # it is not present in analytic lines.
         self.assertAlmostEqual(
-            sum(analytic_lines.mapped("extra_cost")),
-            - actual_cost,
+            sum(analytic_lines.filtered(
+                lambda a: a.product_id == self.subproduct_1_3
+            ).mapped("extra_cost")),
+            - 1540,
+            2
+        )
+        self.assertAlmostEqual(
+            sum(analytic_lines.filtered(
+                lambda a: a.product_id == self.subproduct_1_1
+            ).mapped("extra_cost")),
+            - 755,
+            2
+        )
+        self.assertAlmostEqual(
+            sum(analytic_lines.filtered(
+                lambda a: a.product_id == self.subproduct_1_2
+            ).mapped("extra_cost")),
+            - (80 + 40),
             2
         )

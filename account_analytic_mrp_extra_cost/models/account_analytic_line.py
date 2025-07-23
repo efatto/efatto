@@ -124,11 +124,11 @@ class AccountAnalyticLine(models.Model):
                     # set all the quantities from the line
                     consumed_qty = extra_cost_qty
                 line.extra_cost_unit = float_round(
-                    - extra_cost / extra_cost_qty,
+                    - extra_cost / (extra_cost_qty or 1),
                     precision_digits=2
                 )
                 line.extra_cost = float_round(
-                    - extra_cost / extra_cost_qty * consumed_qty,
+                    - extra_cost / (extra_cost_qty or 1) * consumed_qty,
                     precision_digits=2
                 )
                 line.extra_cost_qty = consumed_qty

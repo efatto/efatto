@@ -13,9 +13,9 @@
         'mrp_analytic',
         'sale_mrp',
     ],
-    'conflicts': [
-        'account_group_invoice_line',
-    ],
+    # 'conflicts': [
+    #     'account_group_invoice_line',
+    # ],
     'data': [
         'views/account.xml',
         'views/account_invoice_line_views.xml',

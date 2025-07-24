@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'installable': True,
     'depends': [
+        "mis_builder_query_drilldown",
         'mrp_analytic',
         'sale_mrp',
     ],

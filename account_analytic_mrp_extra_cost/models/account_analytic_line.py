@@ -65,16 +65,16 @@ class AccountAnalyticLine(models.Model):
                 ])
             if operator == "!=":
                 # this domain is [('has_mrp_raw_moves', '!=', False)]
-                # so we return the lines which has a mrp_raw_move_ids with a value or not
-                # todo if value is assigned
+                # so we return the lines which has a mrp_raw_move_ids with a value
+                # or not
                 filtered_lines = lines.filtered(
                     lambda l: l._get_mrp_row_info()[0]
                 )
                 return [("id", "in", filtered_lines.ids)]
             elif operator == "=":
                 # this domain is [('has_mrp_raw_moves', '=', False)]
-                # so we return the lines which hasn't a mrp_raw_move_ids with a value or not
-                # todo if value is assigned
+                # so we return the lines which hasn't a mrp_raw_move_ids with a value
+                # or not
                 filtered_lines = lines.filtered(
                     lambda l: not l._get_mrp_row_info()[0]
                 )

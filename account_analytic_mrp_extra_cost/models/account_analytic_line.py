@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api
-from odoo.tools.float_utils import float_round
 
 
 class AccountAnalyticLine(models.Model):
@@ -90,34 +89,35 @@ class AccountAnalyticLine(models.Model):
              "=", self.account_id.id),
             ("state", "!=", "cancel"),
         ])
-        # exclude positive lines generated from refunds from computation, but
-        # assign them anyway mrp_raw_move_ids to exclude easily from reports
-        all_lines = self.env['account.analytic.line'].search([
-            ('account_id', '=', self.account_id.id),
-            ('product_id', '=', self.product_id.id),
-            ('amount', '<', 0),
-        ])
-        all_lines = all_lines.sorted(
-            lambda l: l.invoice_id.date_invoice, reverse=True)
-        all_lines = all_lines.sorted(
-            lambda l: l.invoice_id.type == 'in_refund')
-        qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
-        if len(all_lines) == 1:
-            mrp_raw_move_unit_amount = qty_consumed_total
-        else:
-            qty_residual = qty_consumed_total
-            # compute for all lines onthefly to get the current line amount
-            for all_line in all_lines:
-                if all_line.unit_amount <= qty_residual:
-                    mrp_raw_move_unit_amount = all_line.unit_amount
-                    qty_residual -= all_line.unit_amount
-                else:
-                    mrp_raw_move_unit_amount = qty_residual
-                    qty_residual -= qty_residual
-                if self == all_lines[-1] and qty_residual:
-                    mrp_raw_move_unit_amount += qty_residual
-                if all_line == self:
-                    break
+        if mrp_raw_move_ids:
+            # exclude positive lines generated from refunds from computation, but
+            # assign them anyway mrp_raw_move_ids to exclude easily from reports
+            all_lines = self.env['account.analytic.line'].search([
+                ('account_id', '=', self.account_id.id),
+                ('product_id', '=', self.product_id.id),
+                ('amount', '<', 0),
+            ])
+            all_lines = all_lines.sorted(
+                lambda l: l.invoice_id.date_invoice, reverse=True)
+            all_lines = all_lines.sorted(
+                lambda l: l.invoice_id.type == 'in_refund')
+            qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
+            if len(all_lines) == 1:
+                mrp_raw_move_unit_amount = qty_consumed_total
+            else:
+                qty_residual = qty_consumed_total
+                # compute for all lines onthefly to get the current line amount
+                for all_line in all_lines:
+                    if all_line.unit_amount <= qty_residual:
+                        mrp_raw_move_unit_amount = all_line.unit_amount
+                        qty_residual -= all_line.unit_amount
+                    else:
+                        mrp_raw_move_unit_amount = qty_residual
+                        qty_residual -= qty_residual
+                    if self == all_lines[-1] and qty_residual:
+                        mrp_raw_move_unit_amount += qty_residual
+                    if all_line == self:
+                        break
         return mrp_raw_move_ids, mrp_raw_move_unit_amount
 
     def _compute_mrp_raw_move_ids(self):
@@ -145,45 +145,38 @@ class AccountAnalyticLine(models.Model):
                     and x.product_id == line.product_id
                     and not x.exclude_extra_cost
                 )
-                extra_cost = 0.0
-                extra_cost_qty = 0.0
-                extra_cost_invoice_lines = self.env["account.invoice.line"]
-                # invoice_cost and raw_move_cost and extra_cost are positive when
-                # they are costs, viceversa they are income if they are negative
-                invoice_cost = sum([
-                    invoice_line.price_subtotal_signed for invoice_line in
-                    product_invoice_lines
-                ])
-                extra_cost += float_round(
-                    invoice_cost,
-                    precision_rounding=invoice.currency_id.rounding,
-                )
-                invoice_qty = sum([
-                    invoice_line.quantity for invoice_line in
-                    product_invoice_lines
-                ])
-                extra_cost_qty += invoice_qty
-                extra_cost_invoice_lines |= product_invoice_lines
-                if line.mrp_raw_move_ids:
-                    # sum even if the amount is zero, as it could be already fulfilled
-                    # in other lines
-                    consumed_qty = line.mrp_raw_move_unit_amount
+                if product_invoice_lines:
+                    # invoice_cost and raw_move_cost and extra_cost are positive when
+                    # they are costs, viceversa they are income if they are negative
+                    product_invoice_lines_price_subtotal_signed = sum([
+                        invoice_line.price_subtotal_signed for invoice_line in
+                        product_invoice_lines
+                    ])
+                    product_invoice_lines_total_qty = sum([
+                        invoice_line.quantity for invoice_line in
+                        product_invoice_lines
+                    ])
+                    if line.mrp_raw_move_ids:
+                        # sum even if the amount is zero, as it could be already fulfilled
+                        # in other lines
+                        consumed_qty = line.mrp_raw_move_unit_amount
+                    else:
+                        # set all the quantities from the line
+                        consumed_qty = product_invoice_lines_total_qty
+                    line.extra_cost = (
+                        - product_invoice_lines_price_subtotal_signed
+                        / (product_invoice_lines_total_qty or 1) * consumed_qty
+                    )
+                    line.extra_cost_unit = (
+                        - product_invoice_lines_price_subtotal_signed
+                        / (product_invoice_lines_total_qty or 1)
+                    )
+                    line.extra_cost_qty = consumed_qty
+                    line.extra_cost_invoice_line_ids = product_invoice_lines
                 else:
-                    # set all the quantities from the line
-                    consumed_qty = extra_cost_qty
-                line.extra_cost_unit = float_round(
-                    - extra_cost / (extra_cost_qty or 1),
-                    precision_digits=2
-                )
-                line.extra_cost = float_round(
-                    - extra_cost / (extra_cost_qty or 1) * consumed_qty,
-                    precision_digits=2
-                )
-                line.extra_cost_qty = consumed_qty
-                if extra_cost_invoice_lines:
-                    line.extra_cost_invoice_line_ids = [
-                        (6, 0, extra_cost_invoice_lines.ids)]
-                else:
+                    line.extra_cost = 0.0
+                    line.extra_cost_unit = 0.0
+                    line.extra_cost_qty = 0.0
                     line.extra_cost_invoice_line_ids = False
             else:
                 line.extra_cost = 0.0

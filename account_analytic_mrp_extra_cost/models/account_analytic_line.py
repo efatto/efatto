@@ -8,20 +8,19 @@ class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     extra_cost = fields.Float(
-        string="Actual Cost Total",
+        string="Total Cost from MRP",
         compute="_compute_extra_cost",
     )
     extra_cost_unit = fields.Float(
-        string="Actual Cost Unit",
+        string="Unit Cost from MRP",
         compute="_compute_extra_cost",
     )
     extra_cost_qty = fields.Float(
-        string="Actual Cost Quantity",
+        string="Quantity from MRP",
         compute="_compute_extra_cost",
     )
-    # row without a product must be added to mis builder directly for the entire amount
     extra_cost_invoice_line_ids = fields.Many2many(
-        string="Actual Cost Invoice Lines",
+        string="Invoice Lines from MRP",
         comodel_name="account.invoice.line",
         compute="_compute_extra_cost",
     )
@@ -34,7 +33,6 @@ class AccountAnalyticLine(models.Model):
         comodel_name="stock.move",
         compute="_compute_mrp_raw_move_ids",
         string="Mrp stock raw moves",
-        # not storable as production are not linked here
     )
     mrp_raw_move_unit_amount = fields.Float(
         compute="_compute_mrp_raw_move_ids",

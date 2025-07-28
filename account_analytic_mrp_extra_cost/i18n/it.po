@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 17:40+0000\n"
-"PO-Revision-Date: 2023-06-05 17:40+0000\n"
+"POT-Creation-Date: 2025-07-28 07:03+0000\n"
+"PO-Revision-Date: 2025-07-28 07:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,23 +21,85 @@ msgid "Analytic Line"
 msgstr "Riga analitica"
 
 #. module: account_analytic_mrp_extra_cost
-#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost
-msgid "Actual Cost"
-msgstr "Costo effettivo da produzione"
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_stock_move__has_mrp_analytic_lines
+msgid "Has Mrp Analytic Lines"
+msgstr "Ha righe analitiche produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__has_mrp_raw_moves
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__has_mrp_raw_moves
+msgid "Has Mrp Raw Moves"
+msgstr "Ha movimenti di magazzino produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__invoice_id
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__invoice_id
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model,name:account_analytic_mrp_extra_cost.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga fattura"
 
 #. module: account_analytic_mrp_extra_cost
 #: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost_invoice_line_ids
-msgid "Actual Cost Invoice Line"
-msgstr "Riga fattura costo effettivo"
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__extra_cost_invoice_line_ids
+msgid "Invoice Lines from MRP"
+msgstr "Righe fattura da produzione"
 
 #. module: account_analytic_mrp_extra_cost
-#: code:addons/account_analytic_mrp_extra_cost/models/account_analytic_line.py:34
-#, python-format
-msgid "Invoice journal %s is not configured with grouped lines option by account!"
-msgstr "Il registro fatture %s non è configurato con il raggruppamento righe per conto!"
+#: model:ir.model,name:account_analytic_mrp_extra_cost.model_mis_report_instance
+msgid "MIS Report Instance"
+msgstr "Istanza MIS Report"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__mrp_raw_move_ids
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__mrp_raw_move_ids
+msgid "Mrp stock raw moves"
+msgstr "Movimenti di magazzino produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__mrp_raw_move_unit_amount
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__mrp_raw_move_unit_amount
+msgid "Mrp stock raw moves unit amount"
+msgstr "Movimenti di magazzino produzione unità"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_invoice_line__exclude_extra_cost
+msgid "No Actual Cost"
+msgstr "Escludi da costo effettivo produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost_qty
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__extra_cost_qty
+msgid "Quantity from MRP"
+msgstr "Quantità da produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model,name:account_analytic_mrp_extra_cost.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__extra_cost
+msgid "Total Cost from MRP"
+msgstr "Costo totale da produzione"
 
 #. module: account_analytic_mrp_extra_cost
 #: model_terms:ir.ui.view,arch_db:account_analytic_mrp_extra_cost.view_account_analytic_line_tree
-msgid "Total Actual Cost MRP"
-msgstr "Totale costo effettivo produzione"
+msgid "Total MRP Actual Cost"
+msgstr "Totale costi effettivi produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model_terms:ir.ui.view,arch_db:account_analytic_mrp_extra_cost.view_account_analytic_line_tree
+msgid "Total MRP Quantity"
+msgstr "Totale quantità produzione"
+
+#. module: account_analytic_mrp_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_analytic_line__extra_cost_unit
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_hr_timesheet_switch__extra_cost_unit
+msgid "Unit Cost from MRP"
+msgstr "Costo unitario da produzione"
 

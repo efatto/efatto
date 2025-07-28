@@ -9,6 +9,7 @@
                 <field name="extra_cost_unit"/>
                 <field name="extra_cost_qty" sum="Total MRP Quantity"/>
                 <field name="extra_cost" sum="Total MRP Actual Cost"/>
+                <field name="analytic_amount_difference" sum="Total Analytic Amount Difference from MRP"/>
                 <field name="extra_cost_invoice_line_ids" widget="many2many_tags"/>
             </field>
             <field name="account_id" position="after">

@@ -11,6 +11,10 @@ class AccountAnalyticLine(models.Model):
         string="Total Cost from MRP",
         compute="_compute_extra_cost",
     )
+    analytic_amount_difference = fields.Float(
+        string="Analytic Amount Difference from MRP",
+        compute="_compute_extra_cost",
+    )
     extra_cost_unit = fields.Float(
         string="Unit Cost from MRP",
         compute="_compute_extra_cost",
@@ -165,6 +169,7 @@ class AccountAnalyticLine(models.Model):
                         - product_invoice_lines_price_subtotal_signed
                         / (product_invoice_lines_total_qty or 1) * consumed_qty
                     )
+                    line.analytic_amount_difference = line.amount - line.extra_cost
                     line.extra_cost_unit = (
                         - product_invoice_lines_price_subtotal_signed
                         / (product_invoice_lines_total_qty or 1)
@@ -173,11 +178,13 @@ class AccountAnalyticLine(models.Model):
                     line.extra_cost_invoice_line_ids = product_invoice_lines
                 else:
                     line.extra_cost = 0.0
+                    line.analytic_amount_difference = 0.0
                     line.extra_cost_unit = 0.0
                     line.extra_cost_qty = 0.0
                     line.extra_cost_invoice_line_ids = False
             else:
                 line.extra_cost = 0.0
+                line.analytic_amount_difference = 0.0
                 line.extra_cost_unit = 0.0
                 line.extra_cost_qty = 0.0
                 line.extra_cost_invoice_line_ids = False

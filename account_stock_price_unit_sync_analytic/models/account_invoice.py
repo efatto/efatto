@@ -9,13 +9,14 @@ class AccountInvoice(models.Model):
             # Get all invoice lines with a product and retrieve all the invoice lines
             # from other invoices with these products to update stock prices.
             product_invoice_line_ids = self.mapped('invoice_line_ids').filtered(
-                lambda x: x.product_id and not x.exclude_extra_cost
+                lambda x: x.product_id
             )
             if product_invoice_line_ids:
                 product_invoice_lines = self.env['account.invoice.line'].search([
                     ('product_id', 'in', product_invoice_line_ids.mapped(
                         'product_id.id')),
                     ('invoice_type', '=', 'in_invoice'),
+                    ('exclude_extra_cost', '=', False),
                 ])
                 product_invoice_lines |= product_invoice_line_ids
                 if product_invoice_lines:

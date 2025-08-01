@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_supplier_form_update_purchase" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.update.purchase</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <button name="action_invoice_draft" position="after">
+                <button
+                    string="Sync price unit in stock moves"
+                    type="object"
+                    name="button_sync_price_unit"
+                    class="oe_stat_button"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

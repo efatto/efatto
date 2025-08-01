@@ -17,6 +17,7 @@
         'sale_mrp',
     ],
     'data': [
+        'views/account_view.xml',
         'views/stock_move.xml',
     ],
 }

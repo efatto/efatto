@@ -4,10 +4,7 @@ from odoo import models
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def action_invoice_open(self):
-        res = super().action_invoice_open()
-        if not self:
-            return res
+    def button_sync_price_unit(self):
         if self.type == 'in_invoice':
             # Get all invoice lines with a product and retrieve all the invoice lines
             # from other invoices with these products to update stock prices.
@@ -24,4 +21,10 @@ class AccountInvoice(models.Model):
                 product_invoice_lines |= product_invoice_line_ids
                 if product_invoice_lines:
                     product_invoice_lines.account_stock_price_unit_sync()
+
+    def action_invoice_open(self):
+        res = super().action_invoice_open()
+        if not self:
+            return res
+        self.button_sync_price_unit()
         return res

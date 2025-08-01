@@ -12,6 +12,7 @@
     'installable': True,
     'depends': [
         'account',
+        'account_analytic_mrp_extra_cost',  # depend on this only to exclude_extra_cost field  # noqa
         'mrp_production_procurement_analytic',
         'sale_mrp',
     ],

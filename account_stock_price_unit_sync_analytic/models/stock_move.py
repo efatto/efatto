@@ -62,6 +62,7 @@ class StockMove(models.Model):
                 ('invoice_type', '=', 'in_invoice'),
                 ('price_unit', '!=', 0),
                 ('quantity', '!=', 0),
+                ('exclude_extra_cost', '=', False),
             ])
             invoice_lines.account_stock_price_unit_sync()
 
@@ -72,6 +73,7 @@ class StockMove(models.Model):
                 ('invoice_type', '=', 'in_invoice'),
                 ('price_unit', '!=', 0),
                 ('quantity', '!=', 0),
+                ('exclude_extra_cost', '=', False),
             ])
             invoice_lines.account_stock_price_unit_sync()
 

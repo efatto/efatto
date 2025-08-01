@@ -42,8 +42,8 @@ class StockMove(models.Model):
             lambda x: x.location_dest_id.usage != 'internal' and
             x.location_id.usage == 'internal'
         )
-        # TODO eseguire il sync anche sui movimenti senza conto analitico?
-        # only moves linked to a sale or a production have to be updated
+        # update separately moves with an analytic account linked to a sale or a
+        # production and others
         analytic_moves_to_do = outgoing_moves.filtered(
             lambda x: x.sale_line_id.order_id.analytic_account_id or
             x.raw_material_production_id.analytic_account_id

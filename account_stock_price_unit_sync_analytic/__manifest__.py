@@ -15,4 +15,7 @@
         'mrp_production_procurement_analytic',
         'sale_mrp',
     ],
+    'data': [
+        'views/stock_move.xml',
+    ],
 }

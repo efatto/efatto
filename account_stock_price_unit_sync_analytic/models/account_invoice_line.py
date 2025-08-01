@@ -70,21 +70,23 @@ class AccountInvoiceLine(models.Model):
                     if len(lines.mapped('uom_id')) > 1:
                         # todo group by different uom_id? or is it possible to compute?
                         continue
-                    # compute an avg price on qty invoiced and put in price unit of
-                    # stockmoves (without qty limit)
+                    # compute an avg weighted price on qty invoiced and put it in price
+                    # unit of the stock moves (without qty limit)
                     # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for a
                     # total of 28 pz and 6.034,00€ at an average price of 215,50€
                     # so put 215,50€ in unit price of stock moves
                     total_qty = sum(lines.mapped('quantity'))
-                    avg_price_unit = [
+                    # we could use price_subtotal too, btw this method is used in
+                    # another call
+                    total_prices = sum([
                         line.quantity * line._get_invoice_line_price_unit()
                         for line in lines]
-                    if avg_price_unit:
-                        avg_price_unit = sum(avg_price_unit) / (total_qty or 1)
-                    else:
+                    )
+                    if not total_prices:
                         continue
-                    # search without date nor state as they are unpredictable
-                    # stock move from sales or productions
+                    avg_price_unit = total_prices / (total_qty or 1)
+                    # search without date nor state as the stock move from sales or
+                    # productions are unpredictable
                     used_move_ids = self.env['stock.move'].search([
                         ('product_id', '=', product.id),
                         ('location_dest_id.usage', 'in', ['production', 'customer']),
@@ -96,11 +98,16 @@ class AccountInvoiceLine(models.Model):
                     used_move_ids.write({
                         'is_analytic_synced': True,
                         'price_unit': - avg_price_unit,
+                        'price_sync_date': fields.Datetime.now(),
                     })
                 else:
                     # update stock moves residual from analytic search
                     # stock move from sales or productions
                     # before invoice lines to get price by date incoming move
+                    # todo lo scarico dalla produzione non ha il conto analitico?
+                    #  verificare quali movimenti di magazzino si stanno escludendo qui
+                    #  per una produzione "abituale" almeno (con un po' di modifiche
+                    #  post-creazione)
                     invoice_lines = lines_grouped[product][False]
                     used_moves = self.env['stock.move'].search([
                         ('is_analytic_synced', '=', False),
@@ -111,7 +118,9 @@ class AccountInvoiceLine(models.Model):
                         ('raw_material_production_id.analytic_account_id', '!=', False),
                     ])
                     for used_move in used_moves:
-                        # get best invoice line for price
+                        # get only purchase invoice lines linked to a purchase order
+                        # and filtered with a date before the date of the move, to get
+                        # only prices valid for that past period, and use the first one
                         moved_purchase_invoice_lines = invoice_lines.filtered(
                             lambda x: x.purchase_line_id.move_ids
                         )
@@ -130,4 +139,6 @@ class AccountInvoiceLine(models.Model):
                                 price_unit = line._get_invoice_line_price_unit()
                                 used_move.write({
                                     'price_unit': - price_unit,
+                                    'price_sync_date': fields.Datetime.now(),
+                                    'price_date': line.invoice_id.date_invoice,
                                 })

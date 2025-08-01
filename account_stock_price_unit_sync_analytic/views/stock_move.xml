@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_search_date_expected" model="ir.ui.view">
+        <field name="name">stock.move.search</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <filter
+                    string="Has analytic account from sales or productions"
+                    name="has_analytic_account"
+                    domain="[('has_analytic_account', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

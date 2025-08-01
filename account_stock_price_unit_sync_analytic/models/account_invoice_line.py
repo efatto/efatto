@@ -67,21 +67,24 @@ class AccountInvoiceLine(models.Model):
             for analytic in lines_grouped[product]:
                 if analytic:
                     lines = lines_grouped[product][analytic]
-                    if len(lines.mapped('uom_id')) > 1:
-                        # todo group by different uom_id? or is it possible to compute?
-                        continue
-                    # compute an avg weighted price on qty invoiced and put it in price
-                    # unit of the stock moves (without qty limit)
-                    # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for a
-                    # total of 28 pz and 6.034,00€ at an average price of 215,50€
-                    # so put 215,50€ in unit price of stock moves
-                    total_qty = sum(lines.mapped('quantity'))
-                    # we could use price_subtotal too, btw this method is used in
-                    # another call
-                    total_prices = sum([
-                        line.quantity * line._get_invoice_line_price_unit()
-                        for line in lines]
-                    )
+                    total_qty = 0
+                    total_prices = 0
+                    product_uom_id = product.uom_po_id
+                    for line in lines:
+                        # get qty with uom line converted to product uom
+                        # compute an avg weighted price on qty invoiced and put it in
+                        # price unit of the stock moves (without qty limit)
+                        # e.g.: purchase 18 pz at 188€ each and 10 pz at 265€ each, for
+                        # a total of 28 pz and 6.034,00€ at an average price of 215,50€
+                        # so put 215,50€ in unit price of stock moves
+                        product_uom_qty = line.uom_id._compute_quantity(
+                            line.quantity, product_uom_id)
+                        total_qty += product_uom_qty
+                        # we could use price_subtotal too, btw this method is used in
+                        # another call
+                        total_prices += (
+                            line.quantity * line._get_invoice_line_price_unit()
+                        )
                     if not total_prices:
                         continue
                     avg_price_unit = total_prices / (total_qty or 1)

@@ -39,7 +39,7 @@ class MrpProductionSyncPriceLine(models.TransientModel):
     def _compute_move_price_variation(self):
         self.write({'move_price_variation': False})
         for line in self.filtered(
-                lambda x: x.current_price and x.quantity_done):
+                lambda x: x.current_price and x.move_id.quantity_done):
             line.move_price_variation = 100 *\
                 (line.new_price - line.current_price) / line.current_price
 

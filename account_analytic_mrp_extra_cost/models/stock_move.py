@@ -11,18 +11,23 @@ class StockMove(models.Model):
 
     def _get_analytic_info(self):
         self.ensure_one()
-        analytic_lines = self.env['account.analytic.line'].browse()
+        analytic_lines = self.env["account.analytic.line"].browse()
         if (
             self.state != "cancel"
             and self.product_id
             and self.raw_material_production_id
         ):
-            analytic_lines = self.env['account.analytic.line'].search([
-                ('account_id', '=',
-                 self.raw_material_production_id.analytic_account_id.id),
-                ('product_id', '=', self.product_id.id),
-                ('amount', '<', 0),
-            ])
+            analytic_lines = self.env["account.analytic.line"].search(
+                [
+                    (
+                        "account_id",
+                        "=",
+                        self.raw_material_production_id.analytic_account_id.id,
+                    ),
+                    ("product_id", "=", self.product_id.id),
+                    ("amount", "<", 0),
+                ]
+            )
         return analytic_lines
 
     def _compute_has_mrp_analytic_lines(self):
@@ -33,35 +38,38 @@ class StockMove(models.Model):
     @api.model
     def _search_has_mrp_analytic_lines(self, operator, value):
         if self.env.context.get("mis_report_filters") or value:
-            lines = self.env['stock.move'].browse()
+            lines = self.env["stock.move"].browse()
             if self.env.context.get("mis_report_filters"):
                 mis_report_filters = self.env.context.get("mis_report_filters")
                 if mis_report_filters.get("analytic_account_id"):
                     dict_domain = mis_report_filters.get("analytic_account_id")
-                    lines = self.env['stock.move'].search([
+                    lines = self.env["stock.move"].search(
+                        [
+                            ("state", "!=", "cancel"),
+                            ("product_id", "!=", False),
+                            (
+                                "raw_material_production_id.analytic_account_id",
+                                dict_domain["operator"],
+                                dict_domain["value"],
+                            ),
+                        ]
+                    )
+            elif value:
+                lines = self.env["stock.move"].search(
+                    [
                         ("state", "!=", "cancel"),
                         ("product_id", "!=", False),
-                        ("raw_material_production_id.analytic_account_id",
-                         dict_domain["operator"], dict_domain["value"]),
-                    ])
-            elif value:
-                lines = self.env['stock.move'].search([
-                    ("state", "!=", "cancel"),
-                    ("product_id", "!=", False),
-                    ("raw_material_production_id.analytic_account_id", "=", value),
-                ])
+                        ("raw_material_production_id.analytic_account_id", "=", value),
+                    ]
+                )
             if operator == "!=":
                 # this domain is [('has_mrp_analytic_lines', '!=', False)]
                 # so we return the lines which has analytic lines with a value or not
-                filtered_lines = lines.filtered(
-                    lambda l: l._get_analytic_info()
-                )
+                filtered_lines = lines.filtered(lambda l: l._get_analytic_info())
                 return [("id", "in", filtered_lines.ids)]
             elif operator == "=":
                 # this domain is [('has_mrp_analytic_lines', '=', False)]
                 # so we return the lines which hasn't analytic lines with a value or not
-                filtered_lines = lines.filtered(
-                    lambda l: not l._get_analytic_info()
-                )
+                filtered_lines = lines.filtered(lambda l: not l._get_analytic_info())
                 return [("id", "in", filtered_lines.ids)]
         return [("id", operator, value)]

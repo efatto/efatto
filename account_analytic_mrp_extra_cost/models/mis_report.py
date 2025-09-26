@@ -16,7 +16,5 @@ class MisReportInstance(models.Model):
         if analytic_account_id:
             for i, domain_item in enumerate(domain):
                 if domain_item[0] in ["has_mrp_raw_moves", "has_mrp_analytic_lines"]:
-                    domain[i] = (
-                        (domain_item[0], domain_item[1], analytic_account_id)
-                    )
+                    domain[i] = (domain_item[0], domain_item[1], analytic_account_id)
         return super().drilldown(arg)

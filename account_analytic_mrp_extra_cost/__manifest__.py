@@ -3,7 +3,7 @@
 {
     "name": "Invoice analytic line mrp actual cost",
     "summary": "Compute actual mrp cost from analytic line from invoices",
-    "version": "12.0.1.1.0",
+    "version": "14.0.1.0.0",
     "category": "Accounting",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",

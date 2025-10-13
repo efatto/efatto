@@ -100,7 +100,8 @@ class AccountAnalyticLine(models.Model):
                 ('amount', '<', 0),
             ])
             all_lines = all_lines.sorted(
-                lambda l: l.invoice_id.date_invoice, reverse=True)
+                lambda l: l.invoice_id.date_invoice if l.invoice_id.date_invoice
+                else l.date, reverse=True)
             all_lines = all_lines.sorted(
                 lambda l: l.invoice_id.type == 'in_refund')
             qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
@@ -134,7 +135,8 @@ class AccountAnalyticLine(models.Model):
 
     def _compute_extra_cost(self):
         for line in self.sorted(
-            lambda l: l.invoice_id.date_invoice, reverse=True
+            lambda l: l.invoice_id.date_invoice if l.invoice_id.date_invoice
+            else l.date, reverse=True
         ):
             if line.invoice_id.type == 'in_invoice':
                 # ignore in_refund as qty is computed on consumed qty from production

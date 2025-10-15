@@ -13,7 +13,7 @@
     'depends': [
         'account',
         'account_analytic_mrp_extra_cost',  # depends on this
-        # only for the field exclude_from_actual_cost
+        # only for the field exclude_from_actual_cost_mrp
         'mrp_production_procurement_analytic',
         'sale_mrp',
     ],

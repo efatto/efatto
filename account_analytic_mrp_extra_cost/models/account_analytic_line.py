@@ -147,7 +147,7 @@ class AccountAnalyticLine(models.Model):
                     lambda x: x.account_analytic_id == line.account_id
                     and x.account_id == line.general_account_id
                     and x.product_id == line.product_id
-                    and not x.exclude_extra_cost
+                    and not x.exclude_from_actual_cost
                 )
                 if product_invoice_lines:
                     # invoice_cost and raw_move_cost and extra_cost are positive when

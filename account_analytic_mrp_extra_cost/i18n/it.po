@@ -72,7 +72,7 @@ msgid "Mrp stock raw moves unit amount"
 msgstr "Movimenti di magazzino produzione unità"
 
 #. module: account_analytic_mrp_extra_cost
-#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_invoice_line__exclude_extra_cost
+#: model:ir.model.fields,field_description:account_analytic_mrp_extra_cost.field_account_invoice_line__exclude_from_actual_cost
 msgid "No Actual Cost"
 msgstr "Escludi da costo effettivo produzione"
 

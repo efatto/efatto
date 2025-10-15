@@ -83,6 +83,7 @@ class AccountAnalyticLine(models.Model):
         return [("id", operator, value)]
 
     def _get_mrp_row_info(self):
+        # convert all quantities to the product_uom_id of the analytic line
         self.ensure_one()
         mrp_raw_move_unit_amount = self.unit_amount
         mrp_raw_move_ids = self.env['stock.move'].search([
@@ -104,7 +105,9 @@ class AccountAnalyticLine(models.Model):
                 else l.date, reverse=True)
             all_lines = all_lines.sorted(
                 lambda l: l.invoice_id.type == 'in_refund')
-            qty_consumed_total = sum(mrp_raw_move_ids.mapped("product_uom_qty"))
+            qty_consumed_total = sum(
+                m.product_uom._compute_quantity(m.product_uom_qty, self.product_uom_id)
+                for m in mrp_raw_move_ids)
             if len(all_lines) == 1:
                 mrp_raw_move_unit_amount = qty_consumed_total
             else:
@@ -157,8 +160,10 @@ class AccountAnalyticLine(models.Model):
                         product_invoice_lines
                     ])
                     product_invoice_lines_total_qty = sum([
-                        invoice_line.quantity for invoice_line in
-                        product_invoice_lines
+                        invoice_line.uom_id._compute_quantity(
+                            invoice_line.quantity,
+                            line.product_uom_id)
+                        for invoice_line in product_invoice_lines
                     ])
                     if line.mrp_raw_move_ids:
                         # sum even if the amount is zero, as it could be already fulfilled

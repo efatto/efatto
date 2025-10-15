@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_account_analytic_line_tree" model="ir.ui.view">
-        <field name="name">account.analytic.line.tree.extra_cost</field>
+        <field name="name">account.analytic.line.tree.actual.cost</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
         <field name="arch" type="xml">
             <field name="amount" position="after">
-                <field name="extra_cost_unit"/>
-                <field name="extra_cost_qty" sum="Total MRP Quantity"/>
-                <field name="extra_cost" sum="Total MRP Actual Cost"/>
+                <field name="actual_cost_mrp_unit"/>
+                <field name="actual_cost_mrp_qty" sum="Total MRP Quantity"/>
+                <field name="actual_cost_mrp" sum="Total MRP Actual Cost"/>
                 <field name="analytic_amount_difference" sum="Total Analytic Amount Difference from MRP"/>
-                <field name="extra_cost_invoice_line_ids" widget="many2many_tags"/>
+                <field name="actual_cost_mrp_invoice_line_ids" widget="many2many_tags"/>
             </field>
             <field name="account_id" position="after">
                 <field name="invoice_id" />

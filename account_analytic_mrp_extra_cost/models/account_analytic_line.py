@@ -7,26 +7,26 @@ from odoo import fields, models, api
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    extra_cost = fields.Float(
+    actual_cost_mrp = fields.Float(
         string="Total Cost from MRP",
-        compute="_compute_extra_cost",
+        compute="_compute_actual_cost",
     )
     analytic_amount_difference = fields.Float(
         string="Analytic Amount Difference from MRP",
-        compute="_compute_extra_cost",
+        compute="_compute_actual_cost",
     )
-    extra_cost_unit = fields.Float(
+    actual_cost_mrp_unit = fields.Float(
         string="Unit Cost from MRP",
-        compute="_compute_extra_cost",
+        compute="_compute_actual_cost",
     )
-    extra_cost_qty = fields.Float(
+    actual_cost_mrp_qty = fields.Float(
         string="Quantity from MRP",
-        compute="_compute_extra_cost",
+        compute="_compute_actual_cost",
     )
-    extra_cost_invoice_line_ids = fields.Many2many(
+    actual_cost_mrp_invoice_line_ids = fields.Many2many(
         string="Invoice Lines from MRP",
         comodel_name="account.invoice.line",
-        compute="_compute_extra_cost",
+        compute="_compute_actual_cost",
     )
     invoice_id = fields.Many2one(related='move_id.invoice_id')
     has_mrp_raw_moves = fields.Boolean(
@@ -133,7 +133,7 @@ class AccountAnalyticLine(models.Model):
                 line.mrp_raw_move_ids = False
                 line.mrp_raw_move_unit_amount = 0.0
 
-    def _compute_extra_cost(self):
+    def _compute_actual_cost(self):
         for line in self.sorted(
             lambda l: l.invoice_id.date_invoice if l.invoice_id.date_invoice
             else l.date, reverse=True
@@ -147,10 +147,10 @@ class AccountAnalyticLine(models.Model):
                     lambda x: x.account_analytic_id == line.account_id
                     and x.account_id == line.general_account_id
                     and x.product_id == line.product_id
-                    and not x.exclude_from_actual_cost
+                    and not x.exclude_from_actual_cost_mrp
                 )
                 if product_invoice_lines:
-                    # invoice_cost and raw_move_cost and extra_cost are positive when
+                    # invoice_cost and raw_move_cost and actual_cost_mrp are positive when
                     # they are costs, viceversa they are income if they are negative
                     product_invoice_lines_price_subtotal_signed = sum([
                         invoice_line.price_subtotal_signed for invoice_line in
@@ -167,26 +167,26 @@ class AccountAnalyticLine(models.Model):
                     else:
                         # set all the quantities from the line
                         consumed_qty = product_invoice_lines_total_qty
-                    line.extra_cost = (
+                    line.actual_cost_mrp = (
                         - product_invoice_lines_price_subtotal_signed
                         / (product_invoice_lines_total_qty or 1) * consumed_qty
                     )
-                    line.analytic_amount_difference = line.amount - line.extra_cost
-                    line.extra_cost_unit = (
+                    line.analytic_amount_difference = line.amount - line.actual_cost_mrp
+                    line.actual_cost_mrp_unit = (
                         - product_invoice_lines_price_subtotal_signed
                         / (product_invoice_lines_total_qty or 1)
                     )
-                    line.extra_cost_qty = consumed_qty
-                    line.extra_cost_invoice_line_ids = product_invoice_lines
+                    line.actual_cost_mrp_qty = consumed_qty
+                    line.actual_cost_mrp_invoice_line_ids = product_invoice_lines
                 else:
-                    line.extra_cost = 0.0
+                    line.actual_cost_mrp = 0.0
                     line.analytic_amount_difference = 0.0
-                    line.extra_cost_unit = 0.0
-                    line.extra_cost_qty = 0.0
-                    line.extra_cost_invoice_line_ids = False
+                    line.actual_cost_mrp_unit = 0.0
+                    line.actual_cost_mrp_qty = 0.0
+                    line.actual_cost_mrp_invoice_line_ids = False
             else:
-                line.extra_cost = 0.0
+                line.actual_cost_mrp = 0.0
                 line.analytic_amount_difference = 0.0
-                line.extra_cost_unit = 0.0
-                line.extra_cost_qty = 0.0
-                line.extra_cost_invoice_line_ids = False
+                line.actual_cost_mrp_unit = 0.0
+                line.actual_cost_mrp_qty = 0.0
+                line.actual_cost_mrp_invoice_line_ids = False

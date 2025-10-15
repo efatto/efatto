@@ -220,7 +220,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         # (note for reporting logic: take the cost of the last purchase with
         # enough quantity to be eligible, if not possible take the last purchase, else
         # take the product standard price (which is the cost))
-        actual_cost = 0
+        actual_cost_mrp = 0
         # check subproduct 1_1
         subproduct_1_1_invoice1_lines = invoice1.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
@@ -245,10 +245,10 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertAlmostEqual(actual_unit_cost_subproduct_1_1, 35, 2)
         actual_qty_subproduct_1_1 = sum(
             x.quantity_done for x in subproduct_1_1_move_raws)
-        actual_cost += (
+        actual_cost_mrp += (
             13 * actual_unit_cost_subproduct_1_1
             + 12 * actual_unit_cost1_subproduct_1_1)
-        self.assertAlmostEqual(actual_cost, 755, 2)
+        self.assertAlmostEqual(actual_cost_mrp, 755, 2)
         # check subproduct 1_2
         subproduct_1_2_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
@@ -264,8 +264,8 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertAlmostEqual(actual_unit_cost_subproduct_1_2, 8, 2)
         actual_qty_subproduct_1_2 = sum(
             x.quantity_done for x in subproduct_1_2_move_raws)
-        actual_cost += (actual_qty_subproduct_1_2 * actual_unit_cost_subproduct_1_2)
-        self.assertAlmostEqual(actual_cost, 755 + (48 + 72), 2)
+        actual_cost_mrp += (actual_qty_subproduct_1_2 * actual_unit_cost_subproduct_1_2)
+        self.assertAlmostEqual(actual_cost_mrp, 755 + (48 + 72), 2)
         # check subproduct 1_3
         subproduct_1_3_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
@@ -279,29 +279,29 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         self.assertAlmostEqual(
             actual_cost_subproduct_1_3,
             actual_qty_subproduct_1_3 * self.subproduct_1_3.standard_price, 2)
-        actual_cost += actual_cost_subproduct_1_3
+        actual_cost_mrp += actual_cost_subproduct_1_3
         self.assertAlmostEqual(
-            actual_cost, 755 + (80 + 40) + 1540, 2)
+            actual_cost_mrp, 755 + (80 + 40) + 1540, 2)
         # Note: the cost of subproduct 1_4 has to be put in reports in another way, as
         # it is not present in analytic lines.
         self.assertAlmostEqual(
             sum(analytic_lines.filtered(
                 lambda a: a.product_id == self.subproduct_1_3
-            ).mapped("extra_cost")),
+            ).mapped("actual_cost_mrp")),
             - 1540,
             2
         )
         self.assertAlmostEqual(
             sum(analytic_lines.filtered(
                 lambda a: a.product_id == self.subproduct_1_1
-            ).mapped("extra_cost")),
+            ).mapped("actual_cost_mrp")),
             - 755,
             2
         )
         self.assertAlmostEqual(
             sum(analytic_lines.filtered(
                 lambda a: a.product_id == self.subproduct_1_2
-            ).mapped("extra_cost")),
+            ).mapped("actual_cost_mrp")),
             - (80 + 40),
             2
         )

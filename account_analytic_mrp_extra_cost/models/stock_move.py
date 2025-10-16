@@ -4,6 +4,9 @@ from odoo import api, fields, models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    product_expense_account_code = fields.Char(
+        related="product_id.categ_id.property_account_expense_categ_id.code"
+    )
     has_mrp_analytic_lines = fields.Boolean(
         compute="_compute_has_mrp_analytic_lines",
         search="_search_has_mrp_analytic_lines",

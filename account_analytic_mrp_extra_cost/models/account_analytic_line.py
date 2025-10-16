@@ -7,6 +7,9 @@ from odoo import fields, models, api
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
+    general_account_code = fields.Char(
+        related='general_account_id.code',
+    )
     actual_cost_mrp = fields.Float(
         string="Total Cost from MRP",
         compute="_compute_actual_cost",

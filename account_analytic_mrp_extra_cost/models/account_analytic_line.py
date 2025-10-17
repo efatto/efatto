@@ -60,10 +60,12 @@ class AccountAnalyticLine(models.Model):
                         ("account_id", dict_domain["operator"], dict_domain["value"]),
                     ])
             elif value:
-                lines = self.env['account.analytic.line'].search([
-                    ("product_id", "!=", False),
-                    ("account_id", "=", value),
-                ])
+                move_domain = [("product_id", "!=", False)]
+                if value is True:
+                    move_domain.append(("account_id", "!=", False))
+                else:
+                    move_domain.append(("account_id", "=", value))
+                lines = self.env['account.analytic.line'].search(move_domain)
             if operator == "!=":
                 # this domain is [('has_mrp_raw_moves', '!=', False)]
                 # so we return the lines which has a mrp_raw_move_ids with a value

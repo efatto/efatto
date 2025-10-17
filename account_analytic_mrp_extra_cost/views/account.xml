@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
         <field name="arch" type="xml">
             <field name="amount" position="after">
+                <field name="general_account_id"/>
                 <field name="actual_cost_mrp_unit"/>
                 <field name="actual_cost_mrp_qty" sum="Total MRP Quantity"/>
                 <field name="actual_cost_mrp" sum="Total MRP Actual Cost"/>

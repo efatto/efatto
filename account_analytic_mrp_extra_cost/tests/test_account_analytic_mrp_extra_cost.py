@@ -228,7 +228,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         )
         subproduct_1_1_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
-                      and x.product_id == self.subproduct_1_1
+            and x.product_id == self.subproduct_1_1
         )
         subproduct_1_1_move_raws = productions.mapped("move_raw_ids").filtered(
             lambda x: x.product_id == self.subproduct_1_1
@@ -243,8 +243,8 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
             / sum(x.quantity for x in subproduct_1_1_invoice_lines)
         )
         self.assertAlmostEqual(actual_unit_cost_subproduct_1_1, 35, 2)
-        actual_qty_subproduct_1_1 = sum(
-            x.quantity_done for x in subproduct_1_1_move_raws)
+        # actual_qty_subproduct_1_1 = sum(
+        #     x.quantity_done for x in subproduct_1_1_move_raws)
         actual_cost_mrp += (
             13 * actual_unit_cost_subproduct_1_1
             + 12 * actual_unit_cost1_subproduct_1_1)
@@ -252,7 +252,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         # check subproduct 1_2
         subproduct_1_2_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
-                      and x.product_id == self.subproduct_1_2
+            and x.product_id == self.subproduct_1_2
         )
         subproduct_1_2_move_raws = productions.mapped("move_raw_ids").filtered(
             lambda x: x.product_id == self.subproduct_1_2
@@ -269,7 +269,7 @@ class AccountAnalyticMrpExtraCost(SavepointCase):
         # check subproduct 1_3
         subproduct_1_3_invoice_lines = invoice.invoice_line_ids.filtered(
             lambda x: x.account_analytic_id == self.analytic_account
-                      and x.product_id == self.subproduct_1_3
+            and x.product_id == self.subproduct_1_3
         )
         actual_cost_subproduct_1_3 = (
             sum(x.price_subtotal for x in subproduct_1_3_invoice_lines)

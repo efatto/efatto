@@ -49,8 +49,9 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def _search_has_mrp_raw_moves(self, operator, value):
+        res = []
         if self.env.context.get("mis_report_filters") or value:
-            lines = self.env['account.analytic.line'].browse()
+            lines = self.env['account.analytic.line']
             if self.env.context.get("mis_report_filters"):
                 mis_report_filters = self.env.context.get("mis_report_filters")
                 if mis_report_filters.get("analytic_account_id"):
@@ -59,30 +60,30 @@ class AccountAnalyticLine(models.Model):
                         ("product_id", "!=", False),
                         ("account_id", dict_domain["operator"], dict_domain["value"]),
                     ])
-            elif value:
-                move_domain = [("product_id", "!=", False)]
-                if value is True:
-                    move_domain.append(("account_id", "!=", False))
-                else:
-                    move_domain.append(("account_id", "=", value))
-                lines = self.env['account.analytic.line'].search(move_domain)
-            if operator == "!=":
-                # this domain is [('has_mrp_raw_moves', '!=', False)]
-                # so we return the lines which has a mrp_raw_move_ids with a value
-                # or not
-                filtered_lines = lines.filtered(
-                    lambda l: l._get_mrp_row_info()[0]
-                )
-                return [("id", "in", filtered_lines.ids)]
-            elif operator == "=":
-                # this domain is [('has_mrp_raw_moves', '=', False)]
-                # so we return the lines which hasn't a mrp_raw_move_ids with a value
-                # or not
-                filtered_lines = lines.filtered(
-                    lambda l: not l._get_mrp_row_info()[0]
-                )
-                return [("id", "in", filtered_lines.ids)]
-        return [("id", operator, value)]
+            elif value is not True and isinstance(value, int):
+                # value is the id of the account_analytic
+                lines = self.env['account.analytic.line'].search([
+                    ("product_id", "!=", False), ("account_id", "=", value)])
+            if lines and value is False:
+                if operator == "!=":
+                    # this domain is [('has_mrp_raw_moves', '!=', False)],
+                    # so we return the lines that have a mrp_raw_move_ids with a value
+                    # or not
+                    filtered_lines = lines.filtered(
+                        lambda l: l._get_mrp_row_info()[0]
+                    )
+                    return [("id", "in", filtered_lines.ids)]
+                if operator == "=":
+                    # this domain is [('has_mrp_raw_moves', '=', False)],
+                    # so we return the lines that haven't a mrp_raw_move_ids with a
+                    # value or not
+                    filtered_lines = lines.filtered(
+                        lambda l: not l._get_mrp_row_info()[0]
+                    )
+                    return [("id", "in", filtered_lines.ids)]
+            if lines:
+                return [("id", "in", lines.ids)]
+        return res
 
     def _get_mrp_row_info(self):
         # convert all quantities to the product_uom_id of the analytic line
@@ -102,17 +103,18 @@ class AccountAnalyticLine(models.Model):
                 ('product_id', '=', self.product_id.id),
                 ('amount', '<', 0),
             ])
-            all_lines = all_lines.sorted(
-                lambda l: l.invoice_id.date_invoice if l.invoice_id.date_invoice
-                else l.date, reverse=True)
-            all_lines = all_lines.sorted(
-                lambda l: l.invoice_id.type == 'in_refund')
+            if all_lines:
+                all_lines = all_lines.sorted(
+                    lambda l: l.invoice_id.date_invoice if l.invoice_id.date_invoice
+                    else l.date, reverse=True)
+            if all_lines:
+                all_lines = all_lines.sorted(lambda l: l.invoice_id.type == 'in_refund')
             qty_consumed_total = sum(
                 m.product_uom._compute_quantity(m.product_uom_qty, self.product_uom_id)
                 for m in mrp_raw_move_ids)
-            if len(all_lines) == 1:
+            if all_lines and len(all_lines) == 1:
                 mrp_raw_move_unit_amount = qty_consumed_total
-            else:
+            elif all_lines:
                 qty_residual = qty_consumed_total
                 # compute for all lines onthefly to get the current line amount
                 for all_line in all_lines:
@@ -155,8 +157,9 @@ class AccountAnalyticLine(models.Model):
                     and not x.exclude_from_actual_cost_mrp
                 )
                 if product_invoice_lines:
-                    # invoice_cost and raw_move_cost and actual_cost_mrp are positive when
-                    # they are costs, viceversa they are income if they are negative
+                    # invoice_cost and raw_move_cost and actual_cost_mrp are positive
+                    # when they are costs, viceversa they are income if they are
+                    # negative
                     product_invoice_lines_price_subtotal_signed = sum([
                         invoice_line.price_subtotal_signed for invoice_line in
                         product_invoice_lines
@@ -168,8 +171,8 @@ class AccountAnalyticLine(models.Model):
                         for invoice_line in product_invoice_lines
                     ])
                     if line.mrp_raw_move_ids:
-                        # sum even if the amount is zero, as it could be already fulfilled
-                        # in other lines
+                        # sum even if the amount is zero, as it could be already
+                        # fulfilled in other lines
                         consumed_qty = line.mrp_raw_move_unit_amount
                     else:
                         # set all the quantities from the line

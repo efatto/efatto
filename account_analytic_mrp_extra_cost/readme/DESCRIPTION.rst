@@ -6,7 +6,13 @@ Il modulo quindi estrae per ogni riga delle fatture/note di credito acquisti con
 
 La quantità che prevale è quindi quella indicata nei consumi delle produzioni, ignorando quindi acquisti fatturati per quantità superiori.
 
-Nella maschera delle righe analitiche è possibile vedere il totale costo aggiuntivo calcolato e le righe fatture/note di credito fornitori relative:
+Un possibile report potrebbe quindi esporre le seguenti informazioni:
 
-.. image:: ../static/description/risultato.png
-    :alt: Risultato
+#. materiali consumati da magazzino interno, per i quali non c'è stata una fattura di acquisto che abbia generato righe analitiche (es. senza rotta MTO o l'ordine generato non è stato fatturato, oppure materiali presi da magazzino generico)
+#. materiali consumati da acquisti specifici per i prodotti presenti nelle produzioni collegate al conto analitico (solo per la quantità effettivamente utilizzata, esclusi le eventuale eccedenze che verranno stoccate a magazzino)
+#. differenza costo effettivo rispetto a costi analitici: questo valore segnala possibili errori di scarico nelle produzioni collegate al conto analitico. Fa questa operazione: somma tutti i consumi per prodotto da movimenti di magazzino non annullati generati dalla produzione; da questi consumi calcola il saldo della quantità da scaricare per ogni riga analitica per data di acquisto, in modo da restituire la quantità residua per quella riga: se resta un valore di differenza per l'ultima riga, la mostra a video. Il valore dovrebbe essere 0, se non lo è vuol dire che: se positivo, i consumi da righe analitiche sono inferiori ai consumi da righe di magazzino. Viceversa se negativo.
+#. tutti i movimenti da righe analitiche di cui non si trova un corrispondenza nella produzione (confrontati per prodotto) vengono qui rendicontati, indipendentemente dalle quantità indicate.
+
+Costo montaggi e costo accessori: sono valutate sono per la presenza del riferimento al conto analitico, indipendentemente dall'utilizzo o meno sulla produzione.
+
+Nella produzione eseguita non sono presenti servizi, quindi non sono rilevanti.

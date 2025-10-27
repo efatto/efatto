@@ -13,6 +13,9 @@ class AccountAnalyticLine(models.Model):
     )
     analytic_amount_difference = fields.Float(
         string="Analytic Amount Difference from MRP",
+        help="Difference between analytic amount and actual cost from MRP. The sum of "
+             "the values for the same product in the same analytic account "
+             "should be 0, to be investigated if not.",
         compute="_compute_actual_cost",
     )
     actual_cost_mrp_unit = fields.Float(

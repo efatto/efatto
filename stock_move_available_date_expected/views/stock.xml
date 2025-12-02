@@ -50,6 +50,9 @@
                 <field name="qty_signed" string="Quantity" />
                 <field name="qty_available_at_date_move" />
                 <field name="qty_available" string="Qty by hand" />
+                <field name="reserve_origin" optional="hide" />
+                <field name="reserve_date" widget="date" optional="hide" />
+                <field name="reserved_availability" />
                 <button
           name="remove_stock_move_reservation"
           string="Remove reservation"
@@ -64,8 +67,7 @@
           string="Manual Quants"
           attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done'))]}"
         />
-                <field name="reserve_origin" />
-                <field name="reserve_date" widget="date" />
+
                 <field
           name="purchase_ids"
           widget="many2many_tags"

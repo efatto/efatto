@@ -18,6 +18,9 @@
           groups="base.group_user"
         />
             </xpath>
+            <field name="forecast_availability" position="after">
+                <field name="reserved_availability" />
+            </field>
         </field>
     </record>
 </odoo>

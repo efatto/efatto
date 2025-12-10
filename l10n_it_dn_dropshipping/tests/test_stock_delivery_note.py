@@ -1,6 +1,8 @@
 # Copyright 2021 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import Form
+
 from odoo.addons.l10n_it_delivery_note.tests.delivery_note_common import (
     StockDeliveryNoteCommon,
 )
@@ -9,7 +11,9 @@ from odoo.addons.l10n_it_delivery_note.tests.delivery_note_common import (
 class StockDeliveryNote(StockDeliveryNoteCommon):
     def setUp(self):
         super().setUp()
-        self.partner_shipping = self.create_partner("Shipping Address")
+        self.partner_shipping = self.create_partner(
+            "Shipping Address", self.env.user.company_id
+        )
         self.partner_shipping.write(
             {
                 "parent_id": self.recipient.id,
@@ -24,8 +28,6 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
         ).id
         self.env.user.write({"groups_id": [(3, use_adv_notes_group_id)]})
 
-        StockPicking = self.env["stock.picking"]
-        StockBackorderConfirmationWizard = self.env["stock.backorder.confirmation"]
         sales_order = self.create_sales_order(
             [
                 self.large_desk_line,  # 1
@@ -40,16 +42,19 @@ class StockDeliveryNote(StockDeliveryNoteCommon):
 
         # deliver only the first product
         picking.move_lines[0].quantity_done = 1
-
-        backorder_wiz_id = picking.button_validate()["res_id"]
-        backorder_wiz = StockBackorderConfirmationWizard.browse(backorder_wiz_id)
+        res = picking.button_validate()
+        backorder_wiz = Form(
+            self.env[res["res_model"]].with_context(res["context"])
+        ).save()
         backorder_wiz.process()
         self.assertTrue(picking.delivery_note_id)
         self.assertEqual(picking.delivery_note_id.partner_id, self.recipient)
         self.assertEqual(
             picking.delivery_note_id.partner_shipping_id, self.partner_shipping
         )
-        picking_backorder = StockPicking.search([("backorder_id", "=", picking.id)])
+        picking_backorder = self.env["stock.picking"].search(
+            [("backorder_id", "=", picking.id)]
+        )
         self.assertEqual(len(picking_backorder.move_lines), 1)
         picking_backorder.move_lines[0].quantity_done = 1
         picking_backorder.button_validate()

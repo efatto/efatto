@@ -54,6 +54,7 @@ class TestStockReserveDateCheck(TestProductionData):
             "product_id": product.id,
             "product_uom_qty": qty,
             "price_unit": 100,
+            "enable_reserve_date_check": True,
         }
         if commitment_date:
             vals.update(

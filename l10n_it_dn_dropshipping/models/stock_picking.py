@@ -17,7 +17,6 @@ class StockPicking(models.Model):
             }
         )
 
-    @api.multi
     @api.returns("res.partner")
     def get_partners(self):
         partner_id = self.mapped("partner_id")

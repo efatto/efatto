@@ -74,6 +74,7 @@ class TestStockReserveDateCheck(TestProductionData):
             .create(
                 {
                     "partner_id": self.partner.id,
+                    "enable_reserve_date_check": True,
                 }
             )
         )
@@ -90,6 +91,7 @@ class TestStockReserveDateCheck(TestProductionData):
             .create(
                 {
                     "partner_id": self.partner.id,
+                    "enable_reserve_date_check": True,
                 }
             )
         )
@@ -109,6 +111,7 @@ class TestStockReserveDateCheck(TestProductionData):
             .create(
                 {
                     "partner_id": self.partner.id,
+                    "enable_reserve_date_check": True,
                 }
             )
         )

@@ -128,6 +128,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         commitment_date_possible = fields.Date.today() + relativedelta(days=27)
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
+        order_form.enable_reserve_date_check = True
         with order_form.order_line.new() as line:
             line.product_id = self.product
             line.product_uom_qty = 5
@@ -173,6 +174,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 26 days purch
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
+        order_form.enable_reserve_date_check = True
         sale_order = order_form.save()
         self._set_product_unavailable(self.top_product, 0)
         order_form = Form(sale_order)
@@ -385,6 +387,7 @@ class TestSaleStockMrpProduceDelay(TestProductionData):
         #      -> 2pc subproduct_1_1 [MANUF 1-1-1] * 3 = 30pc (stock) -> 26 days purch
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
+        order_form.enable_reserve_date_check = True
         sale_order = order_form.save()
         self._set_product_unavailable(self.top_product, 0)
         order_form = Form(sale_order)

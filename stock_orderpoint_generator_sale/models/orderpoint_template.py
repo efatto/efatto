@@ -420,11 +420,7 @@ class OrderpointTemplate(models.Model):
         """Clean old instance by setting those inactives"""
         super()._disable_old_instances(products)
         orderpoints = self.env["stock.warehouse.orderpoint"].search(
-            [
-                "|",
-                ("orderpoint_tmpl_id", "=", self.id),
-                ("product_id", "in", products.ids),
-            ]
+            [("orderpoint_tmpl_id", "=", self.id)]
         )
         orderpoints.write({"active": False})
 

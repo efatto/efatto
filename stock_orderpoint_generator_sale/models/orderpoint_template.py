@@ -367,12 +367,19 @@ class OrderpointTemplate(models.Model):
                     if lot_to_reorder < (max_qty / reorder_coeff):
                         lot_to_reorder = max_qty / reorder_coeff
                     max_qty = min_qty + lot_to_reorder
+                    # if there is a multiple quantity to purchase, and maximum quantity
+                    # if lower than minimum quantity + multiple quantity to purchase,
+                    # then set max quantity to minimum quantity + multiple quantity to
+                    # purchase
+                    purchase_multiple_qty = product_id.purchase_multiple_qty
+                    if purchase_multiple_qty > (max_qty - min_qty):
+                        max_qty = min_qty + purchase_multiple_qty
                     # end function
                     if record.auto_min_qty:
                         vals["product_min_qty"] = min_qty
                     if record.auto_max_qty:
                         vals["product_max_qty"] = max_qty
-                    vals["qty_multiple"] = product_id.purchase_multiple_qty
+                    vals["qty_multiple"] = purchase_multiple_qty
                     vals["orderpoint_tmpl_id"] = record.id
                     if self.env.context.get("is_draft"):
                         vals["is_draft"] = True

@@ -76,13 +76,21 @@ class OrderpointTemplate(models.Model):
             self._create_instances(products)
 
     def button_confirm_orderpoints(self):
-        # disable current orderpoints and re-enable the newly created
-        self.env["stock.warehouse.orderpoint"].search(
+        # disable orderpoints linked to products and re-enable the newly created
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
             [
                 ("orderpoint_tmpl_id", "=", self.id),
                 ("is_draft", "=", False),
             ]
-        ).write({"active": False})
+        )
+        products = orderpoints.mapped("product_id")
+        orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("orderpoint_tmpl_id", "=", False),
+                ("product_id", "in", products.ids),
+            ]
+        )
+        (orderpoints | orderpoints_not_linked).write({"active": False})
         self.env["stock.warehouse.orderpoint"].search(
             [
                 ("orderpoint_tmpl_id", "=", self.id),

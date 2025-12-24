@@ -1,5 +1,5 @@
 # Copyright 2015-2019 ACSONE SA/NV (<http://acsone.eu>)
-# Copyright 2020-2023 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -45,13 +45,13 @@ class AccountMove(models.Model):
                 if inv.invoice_date and inv.date and inv.invoice_date > inv.date:
                     raise UserError(
                         _(
-                            "Supplier invoice date %s cannot be later than "
-                            "the date of registration %s!"
-                            % (
-                                inv.invoice_date.strftime("%d/%m/%Y"),
-                                inv.date.strftime("%d/%m/%Y"),
-                            )
+                            "Supplier invoice date %(inv_date)s cannot be later than "
+                            "the date of registration %(reg_date)s!"
                         )
+                        % {
+                            "inv_date": inv.invoice_date.strftime("%d/%m/%Y"),
+                            "reg_date": inv.date.strftime("%d/%m/%Y"),
+                        }
                     )
             if inv not in previously_validated:
                 invoices = self.search(

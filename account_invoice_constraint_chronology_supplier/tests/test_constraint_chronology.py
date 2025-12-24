@@ -5,11 +5,11 @@
 from datetime import datetime, timedelta
 
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
-class TestAccountConstraintChronologySupplier(SavepointCase):
+class TestAccountConstraintChronologySupplier(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -29,26 +29,18 @@ class TestAccountConstraintChronologySupplier(SavepointCase):
                 }
             ]
         )
-        cls.account_type_expense = cls.env["account.account.type"].create(
-            {
-                "name": "Account type expense",
-                "type": "other",
-                "include_initial_balance": True,
-                "internal_group": "expense",
-            }
-        )
         cls.account_expense = cls.env["account.account"].create(
             {
                 "name": "Account expense",
                 "code": "X2021",
-                "user_type_id": cls.account_type_expense.id,
+                "account_type": "expense_direct_cost",
                 "reconcile": True,
             }
         )
         cls.account_journal_purchase_check = cls.env["account.journal"].create(
             {
                 "name": "Purchase journal with check chronology",
-                "code": "PURCH",
+                "code": "PURCK",
                 "type": "purchase",
                 "check_chronology": True,
             }
@@ -56,7 +48,7 @@ class TestAccountConstraintChronologySupplier(SavepointCase):
         cls.account_journal_purchase = cls.env["account.journal"].create(
             {
                 "name": "Purchase journal without check chronology",
-                "code": "PURCH",
+                "code": "PUNCK",
                 "type": "purchase",
             }
         )

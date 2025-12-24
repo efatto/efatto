@@ -9,9 +9,9 @@
         <field name="arch" type="xml">
             <field name="refund_sequence" position="after">
                 <field
-          name="check_chronology"
-          attrs="{'readonly': [('type', 'not in', ['sale', 'purchase'])]}"
-        />
+                    name="check_chronology"
+                    attrs="{'readonly': [('type', 'not in', ['sale', 'purchase'])]}"
+                />
             </field>
         </field>
     </record>

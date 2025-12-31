@@ -3,7 +3,7 @@
 {
     "name": "Link tracker show partners",
     "summary": "Add ability to open partners created with a link tracker",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/sergiocorato/efatto",
     "author": "Sergio Corato",

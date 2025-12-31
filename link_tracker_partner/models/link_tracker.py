@@ -113,7 +113,7 @@ class LinkTracker(models.Model):
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.mailing_partner_ids.ids)],
         }
-        if len(self.mailing_partner_ids) == 1:
+        if len(self.mailing_partner_ids.ids) == 1:
             # If there is only one partner, open it directly
             action.update({"view_mode": "form", "res_id": self.mailing_partner_ids.id})
         return action
@@ -127,7 +127,7 @@ class LinkTracker(models.Model):
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.source_partner_ids.ids)],
         }
-        if len(self.source_partner_ids) == 1:
+        if len(self.source_partner_ids.ids) == 1:
             # If there is only one partner, open it directly
             action.update({"view_mode": "form", "res_id": self.source_partner_ids.id})
         return action
@@ -141,7 +141,7 @@ class LinkTracker(models.Model):
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.campaign_partner_ids.ids)],
         }
-        if len(self.campaign_partner_ids) == 1:
+        if len(self.campaign_partner_ids.ids) == 1:
             # If there is only one partner, open it directly
             action.update({"view_mode": "form", "res_id": self.campaign_partner_ids.id})
         return action

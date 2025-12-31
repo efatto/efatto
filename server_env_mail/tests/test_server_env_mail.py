@@ -2,20 +2,21 @@ from odoo.tests.common import TransactionCase
 
 
 class TestIrMailServer(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.user1 = self.env["res.users"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user1 = cls.env["res.users"].create(
             {
                 "login": "user1@somemail.com",
                 "email": "user1@somemail.com",
-                "partner_id": self.env["res.partner"].create({"name": "User 1"}).id,
+                "partner_id": cls.env["res.partner"].create({"name": "User 1"}).id,
                 "groups_id": [
                     (
                         6,
                         0,
                         [
-                            self.env.ref("base.group_user").id,
-                            self.env.ref("base.group_partner_manager").id,
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
                         ],
                     )
                 ],

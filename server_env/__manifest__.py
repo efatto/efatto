@@ -5,7 +5,7 @@
     "version": "14.0.1.0.0",
     "category": "other",
     "author": "Sergio Corato",
-    "website": "https://github.com/efatto/efatto",
+    "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [
         "base",

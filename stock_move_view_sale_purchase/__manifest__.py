@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Stock move purchase/sale ref in tree",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "other",
     "summary": "Show stock move sale and purchase order in tree view",
     "author": "Sergio Corato",

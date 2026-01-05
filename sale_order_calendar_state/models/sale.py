@@ -184,7 +184,7 @@ class SaleOrder(models.Model):
                     name += " %s" % order.is_prototype_calendar
                 result.append((order.id, name))
         else:
-            result = super(SaleOrder, self).name_get()
+            result = super().name_get()
         return result
 
     @api.depends("production_ids")

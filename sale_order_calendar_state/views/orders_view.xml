@@ -26,24 +26,24 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//notebook/page[@name='other_information']/group/group[@name='sale_shipping']"
-        position="inside"
-      >
+                expr="//notebook/page[@name='other_information']/group/group[@name='sale_shipping']"
+                position="inside"
+            >
                 <label for="max_commitment_date" string="Max Delivery Date" />
                 <div name="max_commitment_date_div" class="o_row">
                     <field name="max_commitment_date" widget="date" />
                     <button
-            name="alert_customer_changed_delivery"
-            type="object"
-            string="Alert customer of change"
-            class="oe_inline oe_link"
-          />
+                        name="alert_customer_changed_delivery"
+                        type="object"
+                        string="Alert customer of change"
+                        class="oe_inline oe_link"
+                    />
                 </div>
             </xpath>
             <xpath
-        expr="//notebook/page[@name='other_information']/group"
-        position="inside"
-      >
+                expr="//notebook/page[@name='other_information']/group"
+                position="inside"
+            >
                 <group string="Additional State Info" name="additional_state_info">
                     <field name="is_blocked" />
                     <field name="blocked_note" />
@@ -51,34 +51,34 @@
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <label
-          for="calendar_state"
-          attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"
-        />
+                    for="calendar_state"
+                    attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"
+                />
                 <div
-          class="oe_inline"
-          attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}"
-        >
+                    class="oe_inline"
+                    attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}"
+                >
                    <field name="calendar_state" />
                    <button
-            name="update_forecast_state"
-            type="object"
-            string="Compute"
-            class="oe_inline oe_link"
-          />
+                        name="update_forecast_state"
+                        type="object"
+                        string="Compute"
+                        class="oe_inline oe_link"
+                    />
                    <button
-            name="%(sale_order_calendar_state.action_marked_blocked)d"
-            type="action"
-            string="Mark blocked"
-            class="oe_inline oe_link"
-            attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('is_blocked', '=', True)]}"
-          />
+                        name="%(sale_order_calendar_state.action_marked_blocked)d"
+                        type="action"
+                        string="Mark blocked"
+                        class="oe_inline oe_link"
+                        attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('is_blocked', '=', True)]}"
+                    />
                    <button
-            name="button_mark_not_blocked"
-            type="object"
-            string="Mark not blocked"
-            class="oe_inline oe_link"
-            attrs="{'invisible': [('is_blocked', '!=', True)]}"
-          />
+                        name="button_mark_not_blocked"
+                        type="object"
+                        string="Mark not blocked"
+                        class="oe_inline oe_link"
+                        attrs="{'invisible': [('is_blocked', '!=', True)]}"
+                    />
                 </div>
             </xpath>
             <field name="expected_date" position="attributes">
@@ -108,11 +108,11 @@
             </calendar>
             <field name="currency_id" position="after">
                 <field
-          name="calendar_state"
-          invisible="1"
-          filters="1"
-          color="calendar_state"
-        />
+                    name="calendar_state"
+                    invisible="1"
+                    filters="1"
+                    color="calendar_state"
+                />
             </field>
             <field name="payment_term_id" position="after">
                 <field name="partner_id" position="move" />
@@ -137,30 +137,30 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <kanban
-        class="oe_background_grey"
-        default_group_by="delivery_week"
-        quick_create="false"
-      >
+                class="oe_background_grey"
+                default_group_by="delivery_week"
+                quick_create="false"
+            >
                 <field name="delivery_week" />
                 <field name="color" />
                 <field name="note" />
                 <templates>
                     <t t-name="kanban-box">
                         <div
-              t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}"
-            >
+                            t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}"
+                        >
                         <div class="oe_kanban_content">
                             <h4><field name="name" /></h4>
                             <div style="margin-bottom: 5px"><field
-                    name="partner_id"
-                    widget="one2many"
-                  /></div>
+                                        name="partner_id"
+                                        widget="one2many"
+                                    /></div>
                             <div>Scheduled Delivery Date: <field
-                    name="commitment_date"
-                  /></div>
+                                        name="commitment_date"
+                                    /></div>
                             <div>Max Scheduled Delivery Date: <field
-                    name="max_commitment_date"
-                  /></div>
+                                        name="max_commitment_date"
+                                    /></div>
                         </div>
                         </div>
                     </t>
@@ -177,52 +177,52 @@
             <filter name="my_sale_orders_filter" position="after">
                 <separator />
                 <filter
-          name="production_to_produce"
-          string="To Produce"
-          domain="[('custom_production_qty', '=', 0), ('calendar_state', 'in', ('to_produce', 'production_ready')), ('production_id', '!=', False)]"
-        />
+                    name="production_to_produce"
+                    string="To Produce"
+                    domain="[('custom_production_qty', '=', 0), ('calendar_state', 'in', ('to_produce', 'production_ready')), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="production_started"
-          string="In Production"
-          domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_started'), ('production_id', '!=', False)]"
-        />
+                    name="production_started"
+                    string="In Production"
+                    domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_started'), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="production_done"
-          string="Production Done"
-          domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_done'), ('production_id', '!=', False)]"
-        />
+                    name="production_done"
+                    string="Production Done"
+                    domain="[('custom_production_qty', '=', 0), ('calendar_state', '=', 'production_done'), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="production_all"
-          string="Production All"
-          domain="[('custom_production_qty', '=', 0), ('production_id', '!=', False)]"
-        />
+                    name="production_all"
+                    string="Production All"
+                    domain="[('custom_production_qty', '=', 0), ('production_id', '!=', False)]"
+                />
                 <separator />
                 <filter
-          name="custom_production_to_produce"
-          string="Custom To Produce"
-          domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
-        />
+                    name="custom_production_to_produce"
+                    string="Custom To Produce"
+                    domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="custom_production_started"
-          string="Custom In Production"
-          domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
-        />
+                    name="custom_production_started"
+                    string="Custom In Production"
+                    domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="custom_production_done"
-          string="Custom Production Done"
-          domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
-        />
+                    name="custom_production_done"
+                    string="Custom Production Done"
+                    domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                />
                 <filter
-          name="custom_production_all"
-          string="Custom Production All"
-          domain="[('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
-        />
+                    name="custom_production_all"
+                    string="Custom Production All"
+                    domain="[('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                />
                 <separator />
                 <filter
-          name="components"
-          string="Components"
-          domain="['|', ('has_kit', '=', True), ('production_id', '=', False)]"
-        />
+                    name="components"
+                    string="Components"
+                    domain="['|', ('has_kit', '=', True), ('production_id', '=', False)]"
+                />
             </filter>
         </field>
     </record>
@@ -245,25 +245,25 @@
         <field name="view_mode">calendar,form</field>
         <field name="domain">[('state', 'not in', ('draft', 'cancel'))]</field>
         <field
-      name="search_view_id"
-      ref="sale.sale_order_view_search_inherit_quotation"
-    />
+            name="search_view_id"
+            ref="sale.sale_order_view_search_inherit_quotation"
+        />
         <field name="context">{'default_calendar_state': True}</field>
     </record>
 
     <menuitem
-    action="act_sale_order_delivery"
-    id="menu_act_sale_order_delivery"
-    parent="sale.sale_order_menu"
-    sequence="15"
-    groups="sales_team.group_sale_salesman"
-  />
+        action="act_sale_order_delivery"
+        id="menu_act_sale_order_delivery"
+        parent="sale.sale_order_menu"
+        sequence="15"
+        groups="sales_team.group_sale_salesman"
+    />
     <menuitem
-    action="act_sale_order_calendar_state"
-    id="menu_act_sale_order_calendar_state"
-    parent="sale.sale_order_menu"
-    sequence="16"
-    groups="sales_team.group_sale_salesman"
-  />
+        action="act_sale_order_calendar_state"
+        id="menu_act_sale_order_calendar_state"
+        parent="sale.sale_order_menu"
+        sequence="16"
+        groups="sales_team.group_sale_salesman"
+    />
 
 </odoo>

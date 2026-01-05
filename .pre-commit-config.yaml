@@ -48,12 +48,12 @@ repos:
       # update the NOT INSTALLABLE ADDONS section above
       - id: oca-update-pre-commit-excluded-addons
       - id: oca-fix-manifest-website
-        args: ["https://github.com/sergiocorato/efatto"]
+        args: ["https://github.com/efatto/efatto"]
       - id: oca-gen-addon-readme
         args:
           - --addons-dir=.
           - --branch=16.0
-          - --org-name=sergiocorato
+          - --org-name=efatto
           - --repo-name=efatto
           - --if-source-changed
           - --keep-source-digest

@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Procurement days",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "summary": "Add a procurement delay days without changing lead date.",

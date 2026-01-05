@@ -18,16 +18,16 @@
         <field name="arch" type="xml">
             <field name="accounting_date" position="after">
                 <button
-          name="product_recalculate_value"
-          string="Compute costs with method:"
-          type="object"
-          attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
-        />
+                    name="product_recalculate_value"
+                    string="Compute costs with method:"
+                    type="object"
+                    attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
+                />
                 <field
-          name="valuation_type"
-          nolabel="1"
-          attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
-        />
+                    name="valuation_type"
+                    nolabel="1"
+                    attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}"
+                />
             </field>
         </field>
     </record>

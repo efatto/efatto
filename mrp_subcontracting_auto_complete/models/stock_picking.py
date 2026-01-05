@@ -28,7 +28,7 @@ class StockPicking(models.Model):
                     production_moves.move_line_ids.write(
                         {"date": minimum_date - timedelta(seconds=1)}
                     )
-        return super(StockPicking, self)._action_done()
+        return super()._action_done()
 
 
 class MrpProduction(models.Model):

@@ -3,7 +3,7 @@
 
 {
     "name": "Partner history",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Accounting & Finance",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",

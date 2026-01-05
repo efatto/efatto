@@ -5,7 +5,7 @@
     "summary": "Add ability to open partners created with a link tracker",
     "version": "16.0.1.0.0",
     "category": "Sales",
-    "website": "https://github.com/sergiocorato/efatto",
+    "website": "https://github.com/efatto/efatto",
     "author": "Sergio Corato",
     "maintainers": ["sergiocorato"],
     "license": "AGPL-3",

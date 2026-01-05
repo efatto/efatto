@@ -5,14 +5,14 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//field[@name='order_line']/tree/field[@name='product_qty']"
-        position="after"
-      >
+                expr="//field[@name='order_line']/tree/field[@name='product_qty']"
+                position="after"
+            >
                 <field
-          name="propagate_cancel"
-          optional="hide"
-          groups="purchase.group_purchase_manager"
-        />
+                    name="propagate_cancel"
+                    optional="hide"
+                    groups="purchase.group_purchase_manager"
+                />
             </xpath>
         </field>
     </record>

@@ -11,8 +11,8 @@ class AccountInvoice(models.Model):
             for invoice_line in invoice.invoice_line_ids.filtered(
                 lambda line: not line.display_type and line.price_subtotal != 0.0
             ):
-                if len(invoice_line.tax_ids) != 1:
-                    error_string = "[%s] %s \n" % (invoice.name, invoice_line.name)
+                if len(invoice_line.tax_ids.ids) != 1:
+                    error_string = f"[{invoice.name}] {invoice_line.name} \n"
                     errors.append(error_string)
         if errors:
             raise UserError(

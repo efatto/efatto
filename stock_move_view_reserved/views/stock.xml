@@ -6,10 +6,10 @@
         <field name="arch" type="xml">
             <field name="qty_done" position="after">
                 <field
-          name="product_uom_qty"
-          string="Reserved Qty"
-          sum="Total Reserved Qty"
-        />
+                    name="product_uom_qty"
+                    string="Reserved Qty"
+                    sum="Total Reserved Qty"
+                />
             </field>
             <field name="reference" position="after">
                 <field name="production_id" />

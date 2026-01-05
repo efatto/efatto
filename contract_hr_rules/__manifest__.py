@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Contract, analytic line and hr rules custom",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "other",
     "author": "Sergio Corato",
     "summary": "Contract and hr rules custom",

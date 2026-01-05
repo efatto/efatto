@@ -3,7 +3,7 @@
 
 {
     "name": "Sale order info for components",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.1",
     "category": "other",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",

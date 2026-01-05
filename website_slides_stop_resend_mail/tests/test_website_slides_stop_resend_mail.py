@@ -1,7 +1,7 @@
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestIrMailServer(SavepointCase):
+class TestIrMailServer(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -37,7 +37,7 @@ class TestIrMailServer(SavepointCase):
         slide_slide_model = self.env["slide.slide"]
         values = {
             "name": "Test slide",
-            "slide_type": "webpage",
+            "slide_type": "article",
             "channel_id": self.channel.id,
         }
         return slide_slide_model.create(values)

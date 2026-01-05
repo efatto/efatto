@@ -15,14 +15,14 @@
                 <field name="overtime_move_ids" invisible="True" />
                 <div class="oe_button_box" name="button_box">
                     <button
-            name="open_view_stock_move_overtime"
-            type="object"
-            class="oe_stat_button"
-            icon="fa-list"
-            string="Overtime Moves"
-            groups="stock.group_stock_user"
-            attrs="{'invisible': [('overtime_move_ids', '=', False)]}"
-          >
+                        name="open_view_stock_move_overtime"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-list"
+                        string="Overtime Moves"
+                        groups="stock.group_stock_user"
+                        attrs="{'invisible': [('overtime_move_ids', '=', False)]}"
+                    >
                     </button>
                 </div>
             </xpath>

@@ -3,7 +3,7 @@
 {
     "name": "Stock transfer button in dashboard",
     "summary": "Add button for planned transfer in stock dashboard kanban",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Sergio Corato",
     "category": "Warehouse",
     "license": "AGPL-3",

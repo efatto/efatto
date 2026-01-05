@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Purchase Propagate Cancel Visibility",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "other",
     "summary": """
     When MTO route is removed from a product which has draft RfQ and OUT from Sale

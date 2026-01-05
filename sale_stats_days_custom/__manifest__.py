@@ -3,7 +3,7 @@
 {
     "name": "Custom days for sale button stats",
     "summary": "Show stats with custom days period",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/efatto/efatto",

@@ -6,7 +6,7 @@
     "category": "Sale Management",
     "summary": "Add account analytic menu in Invoicing -> Customers.",
     "author": "Sergio Corato",
-    "website": "https://github.com/efatto/efatto",
+    "website": "https://github.com/sergiocorato/efatto",
     "license": "AGPL-3",
     "depends": [
         "account",

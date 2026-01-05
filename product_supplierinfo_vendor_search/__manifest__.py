@@ -3,7 +3,7 @@
 
 {
     "name": "Supplierinfo Search Vendor Code",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "other",
     "summary": """
     Add field vendor code and name to supplierinfo search.

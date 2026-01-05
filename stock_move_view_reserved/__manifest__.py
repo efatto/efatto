@@ -3,7 +3,7 @@
 
 {
     "name": "Stock move reserved qty in tree",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "other",
     "summary": """
     Show stock move reserved quantity and date in tree view.

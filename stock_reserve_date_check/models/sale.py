@@ -57,19 +57,19 @@ class SaleOrder(models.Model):
                                 )
                         errors.append(
                             _(
-                                "Reservation of product [[%s] %s] is not possible "
-                                "for date %s!\nAvailable date: %s %s\n"
-                                "Exception availability info:\n%s"
-                            )
-                            % (
-                                line.product_id.default_code,
-                                line.product_id.name,
-                                commitment_date.strftime("%d/%m/%Y"),
-                                avail_date.strftime("%d/%m/%Y"),
-                                _("(Produce delay: %.0f days)") % produce_delay
-                                if produce_delay
-                                else "",
-                                "\n".join([x for x in dates_info_clean]),
+                                "Reservation of product [[%(code)s] %(name)s] is not "
+                                "possible for date %(c_date)s!\nAvailable date: "
+                                "%(a_date)s %(delay)s\n"
+                                "Exception availability info:\n%(info)s",
+                                code=line.product_id.default_code,
+                                name=line.product_id.name,
+                                c_date=commitment_date.strftime("%d/%m/%Y"),
+                                a_date=avail_date.strftime("%d/%m/%Y"),
+                                delay=_(
+                                    "(Produce delay: %.0f days)",
+                                    produce_delay if produce_delay else "",
+                                ),
+                                info="\n".join([x for x in dates_info_clean]),
                             )
                         )
                 if errors:

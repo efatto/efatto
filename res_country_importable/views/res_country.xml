@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_country_tree" model="ir.ui.view">
+        <field name="name">res.country.tree</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_tree" />
+        <field name="arch" type="xml">
+            <tree string="Country" position="attributes">
+                <attribute name="create">1</attribute>
+            </tree>
+        </field>
+    </record>
+</odoo>

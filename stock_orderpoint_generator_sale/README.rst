@@ -58,7 +58,7 @@ verranno mantenute le regole di riordino esistenti e quelle create verranno espo
 .. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/regole_in_bozza.png
     :alt: Numero regole in bozza
 
-Si potranno poi confermare, e contemporaneamente disattivare quelle esistenti, con il bottoe `Conferma regole di riordino in bozza`:
+Si potranno poi confermare, e contemporaneamente disattivare quelle esistenti, con il bottone `Conferma regole di riordino in bozza`:
 
 .. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/bottone_conferma.png
     :alt: Conferma regole in bozza
@@ -109,6 +109,8 @@ Nella nazione è stato aggiunto un campo `Coefficiente di riordino`. Questo camp
     :alt: Coefficiente di riordino
 
 Il calcolo del `consumo pezzi nei giorni di LEAD TIME` e del `fattore di lead time` dipende dal `Tempo di risposta per produzione` se il prodotto ha una rotta di produzione o dal `Tempo di risposta per consegne (calcolato)` se il prodotto ha una rotta di acquisto (se le ha entrambe i tempi vengono sommati attualmente).
+
+La quantità minima, massima e il lotto di riordino sono arrotondati alla decina per quantità superiori a 100.
 
 Informazioni sulle formule usate nel file di calcolo https://github.com/efatto/efatto/blob/14.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods
 

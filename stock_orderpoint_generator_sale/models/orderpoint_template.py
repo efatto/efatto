@@ -342,30 +342,34 @@ class OrderpointTemplate(models.Model):
                     security_stock = int(
                         math.ceil(qty_by_day * service_factor * lead_time_factor)
                     )
-                    min_qty = float_round(
-                        math.ceil(consumed_qty_by_lead_time + security_stock),
-                        precision_digits=-1,
-                        rounding_method="UP",
-                    )
+                    min_qty = math.ceil(consumed_qty_by_lead_time + security_stock)
+                    if min_qty >= 100:
+                        min_qty = float_round(
+                            min_qty,
+                            precision_digits=-1,
+                            rounding_method="UP",
+                        )
                     # lot_to_reorder = ARROTONDA.ECCESSO.XCL(
                     #   RADQ(
                     #     2 * record.order_mngt_cost * qty_by_day * move_days
                     #     / (0, 15 * product_id.standard_price)
                     #   ); 1)
-                    lot_to_reorder = float_round(
-                        math.ceil(
-                            (
-                                2
-                                * record.order_mngt_cost
-                                * qty_by_day
-                                * move_days
-                                / (0.15 * product_id.standard_price)
-                            )
-                            ** (1 / 2)
-                        ),
-                        precision_digits=-1,
-                        rounding_method="UP",
+                    lot_to_reorder = math.ceil(
+                        (
+                            2
+                            * record.order_mngt_cost
+                            * qty_by_day
+                            * move_days
+                            / (0.15 * product_id.standard_price)
+                        )
+                        ** (1 / 2)
                     )
+                    if lot_to_reorder >= 100:
+                        lot_to_reorder = float_round(
+                            lot_to_reorder,
+                            precision_digits=-1,
+                            rounding_method="UP",
+                        )
                     reorder_coeff = (
                         fields.first(
                             product_id.seller_ids

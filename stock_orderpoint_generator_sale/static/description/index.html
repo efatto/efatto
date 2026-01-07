@@ -397,7 +397,7 @@ ul.auto-toc {
 <img alt="Check regole in bozza" src="https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/booleano_bozza.png" />
 <p>verranno mantenute le regole di riordino esistenti e quelle create verranno esposte separatamente e resteranno disattive:</p>
 <img alt="Numero regole in bozza" src="https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/regole_in_bozza.png" />
-<p>Si potranno poi confermare, e contemporaneamente disattivare quelle esistenti, con il bottoe <cite>Conferma regole di riordino in bozza</cite>:</p>
+<p>Si potranno poi confermare, e contemporaneamente disattivare quelle esistenti, con il bottone <cite>Conferma regole di riordino in bozza</cite>:</p>
 <img alt="Conferma regole in bozza" src="https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/bottone_conferma.png" />
 <p>Il campo <cite>Crea le regole automaticamente</cite>: se selezionato si evita di dover cliccare sul tasto <cite>Genera regole automatiche</cite> in alto. Attiva un cron che disattiva e ricrea le regole di riordino ad ogni esecuzione, rendendole quindi sempre allineate con la situazione attuale dello stock.</p>
 <img alt="Genera automaticamente" src="https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/genera_automaticamente.png" />
@@ -418,6 +418,7 @@ ul.auto-toc {
 <p>Nella nazione è stato aggiunto un campo <cite>Coefficiente di riordino</cite>. Questo campo viene rilevato dal primo fornitore del prodotto e serve per impostare un massimo di ordini per periodo. Se non impostato viene presunto pari a 4.</p>
 <img alt="Coefficiente di riordino" src="https://raw.githubusercontent.com/efatto/efatto/14.0/stock_orderpoint_generator_sale/static/description/coefficiente_riordino.png" />
 <p>Il calcolo del <cite>consumo pezzi nei giorni di LEAD TIME</cite> e del <cite>fattore di lead time</cite> dipende dal <cite>Tempo di risposta per produzione</cite> se il prodotto ha una rotta di produzione o dal <cite>Tempo di risposta per consegne (calcolato)</cite> se il prodotto ha una rotta di acquisto (se le ha entrambe i tempi vengono sommati attualmente).</p>
+<p>La quantità minima, massima e il lotto di riordino sono arrotondati alla decina per quantità superiori a 100.</p>
 <p>Informazioni sulle formule usate nel file di calcolo <a class="reference external" href="https://github.com/efatto/efatto/blob/14.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods">https://github.com/efatto/efatto/blob/14.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods</a></p>
 </div>
 <div class="section" id="bug-tracker">

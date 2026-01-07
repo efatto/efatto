@@ -8,14 +8,14 @@
             <xpath expr="//button[@name='action_show_details']" position="after">
                 <field name="price_unit" groups="stock.group_stock_manager" />
                 <button
-          name="%(action_update_stock_move_price)d"
-          string="Update stock move price"
-          type="action"
-          icon="fa-dollar"
-          groups="stock.group_stock_manager"
-          attrs="{'invisible': [('show_details_visible', '=', False)]}"
-          options='{"warn": true}'
-        />
+                    name="%(action_update_stock_move_price)d"
+                    string="Update stock move price"
+                    type="action"
+                    icon="fa-dollar"
+                    groups="stock.group_stock_manager"
+                    attrs="{'invisible': [('show_details_visible', '=', False)]}"
+                    options='{"warn": true}'
+                />
             </xpath>
         </field>
     </record>
@@ -26,13 +26,13 @@
             <field name="reference" position="after">
                 <field name="price_unit" groups="stock.group_stock_manager" />
                 <button
-          name="%(action_update_stock_move_price)d"
-          string="Update stock move price"
-          type="action"
-          icon="fa-dollar"
-          groups="stock.group_stock_manager"
-          options='{"warn": true}'
-        />
+                    name="%(action_update_stock_move_price)d"
+                    string="Update stock move price"
+                    type="action"
+                    icon="fa-dollar"
+                    groups="stock.group_stock_manager"
+                    options='{"warn": true}'
+                />
             </field>
         </field>
     </record>

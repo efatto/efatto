@@ -13,11 +13,11 @@
                 </div>
                 <footer>
                     <button
-            class="btn-primary"
-            name="update_stock_move_price"
-            string="Confirm"
-            type="object"
-          />
+                        class="btn-primary"
+                        name="update_stock_move_price"
+                        string="Confirm"
+                        type="object"
+                    />
                     <button class="btn-secondary" special="cancel" string="Discard" />
                 </footer>
             </form>

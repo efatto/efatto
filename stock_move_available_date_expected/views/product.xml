@@ -7,38 +7,38 @@
         <field name="arch" type="xml">
             <button name="action_open_quants" position="before">
                <button
-          string="Expected Moves"
-          type="object"
-          name="open_view_stock_reserved"
-          attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
-          class="oe_stat_button"
-          icon="fa-arrows-v"
-          groups="stock.group_stock_user"
-        />
+                    string="Expected Moves"
+                    type="object"
+                    name="open_view_stock_reserved"
+                    attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
+                    class="oe_stat_button"
+                    icon="fa-arrows-v"
+                    groups="stock.group_stock_user"
+                />
                 </button>
         </field>
     </record>
     <record
-    model="ir.ui.view"
-    id="product_template_form_view_procurement_button_date_move"
-  >
+        model="ir.ui.view"
+        id="product_template_form_view_procurement_button_date_move"
+    >
         <field name="name">product.template_procurement</field>
         <field name="model">product.template</field>
         <field
-      name="inherit_id"
-      ref="stock.product_template_form_view_procurement_button"
-    />
+            name="inherit_id"
+            ref="stock.product_template_form_view_procurement_button"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                <button
-          string="Expected Moves"
-          type="object"
-          name="open_view_stock_reserved"
-          attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
-          class="oe_stat_button"
-          icon="fa-arrows-v"
-          groups="stock.group_stock_user"
-        />
+                    string="Expected Moves"
+                    type="object"
+                    name="open_view_stock_reserved"
+                    attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
+                    class="oe_stat_button"
+                    icon="fa-arrows-v"
+                    groups="stock.group_stock_user"
+                />
                 </xpath>
         </field>
     </record>
@@ -49,13 +49,13 @@
         <field name="arch" type="xml">
             <field name="standard_price" position="after">
                <button
-          name="open_view_stock_reserved"
-          string="Stock Reserved"
-          type="object"
-          class="oe_stat_button"
-          icon="fa-arrows-v"
-          groups="base.group_user"
-        />
+                    name="open_view_stock_reserved"
+                    string="Stock Reserved"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-arrows-v"
+                    groups="base.group_user"
+                />
             </field>
         </field>
     </record>

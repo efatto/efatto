@@ -45,3 +45,4 @@ class SaleOrderLine(models.Model):
                     "res_model": "stock.move",
                     "context": {},
                 }
+        return False

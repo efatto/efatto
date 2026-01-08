@@ -107,7 +107,7 @@ class Product(models.Model):
             raise UserError(_("Invalid domain left operand %s") % field)
         if operator not in ("<", ">", "=", "!=", "<=", ">="):
             raise UserError(_("Invalid domain operator %s") % operator)
-        if not isinstance(value, (float, int)):
+        if not isinstance(value, float | int):
             raise UserError(_("Invalid domain right operand %s") % value)
 
         # TODO: Still optimization possible when searching virtual quantities

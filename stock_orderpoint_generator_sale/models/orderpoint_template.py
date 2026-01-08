@@ -364,6 +364,7 @@ class OrderpointTemplate(models.Model):
                         )
                         ** (1 / 2)
                     )
+                    lot_to_reorder = min(lot_to_reorder, max_qty)
                     if lot_to_reorder >= 100:
                         lot_to_reorder = float_round(
                             lot_to_reorder,

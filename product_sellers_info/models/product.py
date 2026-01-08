@@ -26,7 +26,6 @@ class ProductTemplate(models.Model):
         "Computed from delay of first seller.",
     )
     purchase_multiple_qty = fields.Float(
-        "Purchase Multiple Qty",
         compute="_compute_purchase_delay",
         store=True,
         default=1.0,

@@ -5,7 +5,7 @@
             name="implied_ids"
             eval="[
          (4, ref('product.group_discount_per_so_line')),
-         (4, ref('sale.group_delivery_invoice_address')),
+         (4, ref('account.group_delivery_invoice_address')),
          (4, ref('sale.group_warning_sale')),
          ]"
         />

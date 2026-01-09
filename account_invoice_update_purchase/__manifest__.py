@@ -1,8 +1,8 @@
-# Copyright 2021-2023 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Account Invoice update purchase",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",

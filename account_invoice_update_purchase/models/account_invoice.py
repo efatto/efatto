@@ -69,7 +69,7 @@ class AccountMoveLine(models.Model):
         )
         supplierinfos = self.env["product.supplierinfo"].search(
             [
-                ("name", "=", self.purchase_line_id.order_id.partner_id.id),
+                ("partner_id", "=", self.purchase_line_id.order_id.partner_id.id),
                 "|",
                 ("product_id", "=", self.product_id.id),
                 ("product_tmpl_id", "=", self.product_id.product_tmpl_id.id),

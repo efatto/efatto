@@ -1,10 +1,10 @@
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import Form, TransactionCase
 from odoo.tools import mute_logger
 from odoo.tools.date_utils import relativedelta
 
 
-class AccountInvoiceUpdatePurchase(SavepointCase):
+class AccountInvoiceUpdatePurchase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -15,25 +15,23 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         cls.vendor = cls.env.ref("base.res_partner_3")
         cls.supplierinfo_expired = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.vendor.id,
+                "partner_id": cls.vendor.id,
                 "price": 77,
                 "date_end": fields.Date.today() + relativedelta(days=-10),
             }
         )
         cls.supplierinfo = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.vendor.id,
+                "partner_id": cls.vendor.id,
                 "price": 88,
                 "date_start": fields.Date.today() + relativedelta(days=-9),
             }
         )
         cls.account_liability = cls.env["account.account"].create(
             {
-                "code": "TEST_LIABILITY",
+                "code": "TLIAB",
                 "name": "Liability account",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_current_liabilities"
-                ).id,
+                "account_type": "liability_current",
             }
         )
         cls.tax22 = cls.env["account.tax"].create(
@@ -42,7 +40,6 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
                 "amount": 22,
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
-                "tax_group_id": cls.env.ref("account.tax_group_taxes").id,
                 "invoice_repartition_line_ids": [
                     (
                         0,
@@ -93,22 +90,6 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
             }
         )
 
-    def _create_purchase_order_line(self, order, product, qty, date_planned=False):
-        vals = {
-            "order_id": order.id,
-            "product_id": product.id,
-            "product_qty": qty,
-            "product_uom": product.uom_po_id.id,
-            "price_unit": product.list_price,
-            "name": product.name,
-        }
-        if date_planned:
-            vals.update({"date_planned": date_planned})
-        line = self.env["purchase.order.line"].create(vals)
-        line._onchange_quantity()
-        line._convert_to_write(line._cache)
-        return line
-
     @staticmethod
     def _action_pack_operation_auto_fill(picking):
         for op in picking.mapped("move_line_ids"):
@@ -124,9 +105,15 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
             }
         )
         purchase_planned_date1 = fields.Datetime.now() + relativedelta(days=5)
-        purchase_line = self._create_purchase_order_line(
-            purchase_order1, self.product, 18, purchase_planned_date1
-        )
+        order_form = Form(purchase_order1)
+        with order_form.order_line.new() as line:
+            line.product_id = self.product
+            line.product_qty = 18
+            line.product_uom = self.product.uom_po_id
+            line.name = self.product.name
+            line.date_planned = purchase_planned_date1
+        order_form.save()
+        purchase_line = purchase_order1.order_line[0]
         purchase_order1.button_confirm()
         current_price = purchase_line.price_unit
 
@@ -147,7 +134,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(purchase_line.price_unit, current_price)
         self.assertEqual(self.supplierinfo.price, current_price)
         self.assertEqual(
-            picking.move_lines.filtered(
+            picking.move_ids.filtered(
                 lambda x: x.product_id == self.product
             ).price_unit,
             current_price,
@@ -159,7 +146,7 @@ class AccountInvoiceUpdatePurchase(SavepointCase):
         self.assertEqual(purchase_line.price_unit, new_price)
         self.assertEqual(self.supplierinfo.price, new_price)
         self.assertEqual(
-            picking.move_lines.filtered(
+            picking.move_ids.filtered(
                 lambda x: x.product_id == self.product
             ).price_unit,
             new_price,

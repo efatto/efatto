@@ -32,7 +32,7 @@ class StockMove(models.Model):
                 ("date", "<=", self.date),
                 ("purchase_line_id", "!=", False),
             ]
-        ).sorted(key=lambda l: l.date, reverse=True)
+        ).sorted(key=lambda sm: sm.date, reverse=True)
         if lines:
             last_line = lines[:1]
             invoice_lines = (
@@ -45,7 +45,7 @@ class StockMove(models.Model):
                         ("product_id", "=", self.product_id.id),
                     ]
                 )
-                .sorted(key=lambda l: l.move_id.invoice_date, reverse=True)
+                .sorted(key=lambda aml: aml.move_id.invoice_date, reverse=True)
             )
             if invoice_lines:
                 # get price from invoice if exists
@@ -76,7 +76,7 @@ class StockMove(models.Model):
                     ("product_id", "=", self.product_id.id),
                 ]
             )
-            .sorted(key=lambda l: l.move_id.invoice_date, reverse=True)
+            .sorted(key=lambda aml: aml.move_id.invoice_date, reverse=True)
         )
         if invoice_lines:
             # get price from invoice if exists
@@ -97,7 +97,7 @@ class StockMove(models.Model):
                 ("state", "in", ["purchase", "done"]),
                 ("date_order", "<=", self.date),
             ]
-        ).sorted(key=lambda l: l.order_id.date_order, reverse=True)
+        ).sorted(key=lambda pol: pol.order_id.date_order, reverse=True)
         if lines:
             # Get the most recent Purchase Order Line
             last_line = lines[:1]

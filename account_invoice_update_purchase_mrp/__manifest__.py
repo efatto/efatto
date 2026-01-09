@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "MRP Production Move Price Sync",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "license": "AGPL-3",
     "category": "Manufacturing",
@@ -13,6 +13,7 @@
     "depends": [
         "account_invoice_update_purchase",
         "mrp_production_demo",
+        "purchase_discount",
     ],
     "data": [
         "security/ir.model.access.csv",

@@ -23,7 +23,6 @@ class MrpProductionSyncPriceLine(models.TransientModel):
         readonly=True,
     )
     new_price = fields.Float(
-        string="New Price",
         digits="Product Price",
         required=True,
     )

@@ -76,7 +76,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
     def _start_wizard(self, man_order):
         wizard_data = man_order.check_raw_moves_price_unit()
         update_price_form = Form(
-            self.env["mrp.sync.price"].with_context(wizard_data["context"])
+            self.env["mrp.sync.price"].with_context(**wizard_data["context"])
         )
         update_price_wizard = update_price_form.save()
         update_price_wizard.update_price_unit()
@@ -97,7 +97,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
             ]
         )
         self.assertTrue(po_ids)
-        self.assertEqual(len(po_ids), 1)
+        self.assertEqual(len(po_ids.ids), 1)
         po = po_ids[0]
         po_lines = po.order_line.filtered(
             lambda x: x.product_id == self.product_to_purchase
@@ -105,7 +105,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         self.assertEqual(
             sum(po_line.product_qty for po_line in po_lines), 7 * self.product_qty
         )
-        self.assertEqual(len(po_lines), 1)
+        self.assertEqual(len(po_lines.ids), 1)
         po_line = po_lines[0]
         self.assertAlmostEqual(
             po_line.price_unit,
@@ -121,7 +121,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         # complete purchase
         picking = po.picking_ids[0]
         picking.action_confirm()
-        for move_line in picking.move_lines:
+        for move_line in picking.move_ids:
             move_line.write({"quantity_done": move_line.product_uom_qty})
         picking.button_validate()
         self.assertEqual(picking.state, "done")
@@ -139,7 +139,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         mo_raw_moves = self.man_order.move_raw_ids.filtered(
             lambda x: x.product_id == self.product_to_purchase
         )
-        self.assertEqual(len(mo_raw_moves), 1)
+        self.assertEqual(len(mo_raw_moves.ids), 1)
         # mo_move = mo_raw_moves[0]
         # note: price is set negative when stock move is done
         # self.assertAlmostEqual(mo_move.price_unit, 60.0) # fixme? price is 0
@@ -207,7 +207,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         mo_raw_moves = self.man_order.move_raw_ids.filtered(
             lambda x: x.product_id == self.product_to_purchase
         )
-        self.assertEqual(len(mo_raw_moves), 1)
+        self.assertEqual(len(mo_raw_moves.ids), 1)
         mo_move = mo_raw_moves[0]
         po_price = float_round(
             po_line.price_unit * (1 - po_line.discount / 100.0),
@@ -236,7 +236,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
                     invoice_line_form.discount = 20.0
         invoice_form.save()
         for inv_line in purchase_invoice.invoice_line_ids:
-            self.assertEqual(len(inv_line.tax_ids), 1)
+            self.assertEqual(len(inv_line.tax_ids.ids), 1)
         purchase_invoice.action_post()
         self.assertEqual(purchase_invoice.state, "posted")
         self.assertAlmostEqual(invoice_line.price_unit, 90)
@@ -247,7 +247,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         mo_raw_moves = self.man_order.move_raw_ids.filtered(
             lambda x: x.product_id == self.product_to_purchase
         )
-        self.assertEqual(len(mo_raw_moves), 1)
+        self.assertEqual(len(mo_raw_moves.ids), 1)
         mo_move = mo_raw_moves[0]
         invoice_price = float_round(
             invoice_line.price_unit * (1 - invoice_line.discount / 100.0),
@@ -264,9 +264,6 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
         self.man_order = produce_form.save()
         self.man_order.action_confirm()
         # create directly a purchase invoice for the product
-        other_account_type = self.env["account.account.type"].search(
-            [("type", "=", "other")], limit=1
-        )
         new_purchase_invoice_form = Form(
             self.env["account.move"].with_context(default_move_type="in_invoice")
         )
@@ -279,7 +276,7 @@ class TestAccountInvoiceUpdatePurchaseMrp(TestProductionData):
             invoice_line_form.name = self.product_to_purchase.name
             invoice_line_form.product_id = self.product_to_purchase
             invoice_line_form.account_id = self.env["account.account"].search(
-                [("user_type_id", "=", other_account_type.id)],
+                [("account_type", "=", "other")],
                 limit=1,
             )
             invoice_line_form.quantity = 1

@@ -10,7 +10,7 @@ class DbBackup(models.Model):
     _inherit = "db.backup"
 
     def action_backup(self):
-        super().action_backup()
+        res = super().action_backup()
         url = (
             self.env["ir.config_parameter"]
             .sudo()
@@ -21,5 +21,6 @@ class DbBackup(models.Model):
                 if _("Database backup succeeded.") in backup.message_ids[0].body:
                     msg = backup.message_ids[0].body
                     arguments = {"arg0": ustr(msg), "action": "update"}
-                    r = requests.post(url, data=arguments)
+                    r = requests.post(url, data=arguments, timeout=100)
                     r.raise_for_status()
+        return res

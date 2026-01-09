@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Account Invoice Supplierinfo Update Fix",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "summary": "This module create new supplierinfo on bottom by default and "
     "add check on supplierinfo date validity, based on invoice date.",
     "author": "Sergio Corato",

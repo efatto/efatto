@@ -7,7 +7,6 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     is_kit = fields.Boolean(
-        string="Is Kit",
         compute="_compute_is_kit",
         search="_search_is_kit",
     )
@@ -28,7 +27,7 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    is_kit = fields.Boolean(string="Is Kit", compute="_compute_is_kit", store=True)
+    is_kit = fields.Boolean(compute="_compute_is_kit", store=True)
 
     @api.depends("route_ids", "bom_ids.type")
     def _compute_is_kit(self):

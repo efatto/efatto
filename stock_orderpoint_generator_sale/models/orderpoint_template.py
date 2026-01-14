@@ -317,6 +317,10 @@ class OrderpointTemplate(models.Model):
                         ).days
                     max_qty = stock_max_qty[product_id.id]
                     qty_by_day = max_qty / (move_days or 1)
+                    normal_purchase_delay_used = False
+                    purchase_time_delay_used = False
+                    purchase_overtime_delay_used = False
+                    normal_purchase_delay = product_id._get_normal_purchase_delay()
                     purchase_time_delay = product_id._get_purchase_delay()
                     purchase_overtime_delay = product_id._get_purchase_delay(
                         overtime=True
@@ -330,7 +334,18 @@ class OrderpointTemplate(models.Model):
                         if country_group and country_group == eu_country_group:
                             purchase_delay_max = 90
                     purchase_delay = max(purchase_overtime_delay, purchase_time_delay)
+                    if purchase_delay == purchase_overtime_delay:
+                        purchase_overtime_delay_used = True
+                    else:
+                        purchase_time_delay_used = True
                     purchase_delay = min(purchase_delay, purchase_delay_max)
+                    # nel caso sia usato il ritardo dalla consegna, sommare anche il
+                    # tempo dalla data dell'ordine alla data della prima consegna
+                    # dell'ordine, quindi quella più breve, quindi fare il
+                    # totale dalla data dell'ordine alla consegna effettiva.
+                    if purchase_delay == purchase_overtime_delay:
+                        normal_purchase_delay_used = True
+                        purchase_delay += normal_purchase_delay
                     produce_delay = product_id._get_produce_delay()
                     consumed_qty_by_lead_time = (
                         qty_by_day * (1 + (record.variation_percent / 100.0))
@@ -409,6 +424,7 @@ class OrderpointTemplate(models.Model):
                                     "(Move days: %s, "
                                     "Qty by day: %s, "
                                     "Purchase delay: %s %s, "
+                                    "Normal purchase delay: %s %s, "
                                     "Purchase overtime delay: %s %s, "
                                     "Produce delay: %s, "
                                     "Consumed qty by lead time: %s, "
@@ -425,13 +441,18 @@ class OrderpointTemplate(models.Model):
                                     move_days,
                                     qty_by_day,
                                     purchase_time_delay,
-                                    _("(not used)")
-                                    if purchase_overtime_delay > purchase_time_delay
-                                    else _("(used)"),
+                                    _("(%sused)")
+                                    % ("" if purchase_time_delay_used else _("not ")),
+                                    normal_purchase_delay,
+                                    _("(%sused)")
+                                    % ("" if normal_purchase_delay_used else _("not ")),
                                     purchase_overtime_delay,
-                                    _("Not used")
-                                    if purchase_overtime_delay <= purchase_time_delay
-                                    else _("Used"),
+                                    _("(%sused)")
+                                    % (
+                                        ""
+                                        if purchase_overtime_delay_used
+                                        else _("not ")
+                                    ),
                                     produce_delay,
                                     consumed_qty_by_lead_time,
                                     service_factor,

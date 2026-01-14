@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-10 15:01+0000\n"
-"PO-Revision-Date: 2025-11-10 15:01+0000\n"
+"POT-Creation-Date: 2026-01-14 14:57+0000\n"
+"PO-Revision-Date: 2026-01-14 14:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_supplierinfo____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
+
+#. module: product_supplierinfo_overtime_delay
+#: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_customerinfo__normal_purchase_delay
+#: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_supplierinfo__normal_purchase_delay
+msgid "Normal Purchase Delay"
+msgstr "Tempo normale di ricezione"
+
+#. module: product_supplierinfo_overtime_delay
+#: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_customerinfo__normal_purchase_delay
+#: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_supplierinfo__normal_purchase_delay
+msgid ""
+"Over the past x days (configured in parameter "
+"'purchase_stock.on_time_delivery_days', by default 365 days): the number of "
+"days for this vendor to deliver this product, computed on the first delivery"
+" date."
+msgstr ""
+"Nei precedenti x giorni (configurato nel parametro "
+"'purchase_stock.on_time_delivery_days', per impostazione predefinita 365 "
+"giorni): il numero di giorni per questo fornitoee per consegnare questo "
+"prodotto, calcolato dalla prima data di consegna."
 
 #. module: product_supplierinfo_overtime_delay
 #: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_customerinfo__overtime_purchase_delay
@@ -64,6 +84,11 @@ msgstr "Movimenti in ritardo"
 #: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_supplierinfo__overtime_purchase_delay
 msgid "Overtime Purchase Delay"
 msgstr "Ritardo in acquisto"
+
+#. module: product_supplierinfo_overtime_delay
+#: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_supplierinfo__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
 
 #. module: product_supplierinfo_overtime_delay
 #: model:ir.model,name:product_supplierinfo_overtime_delay.model_product_supplierinfo

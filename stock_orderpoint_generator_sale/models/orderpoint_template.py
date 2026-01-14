@@ -427,6 +427,7 @@ class OrderpointTemplate(models.Model):
                                     "Normal purchase delay: %s %s, "
                                     "Purchase overtime delay: %s %s, "
                                     "Produce delay: %s, "
+                                    "Total purchase delay used in computation: %s, "
                                     "Consumed qty by lead time: %s, "
                                     "Service factor: %s, "
                                     "Lead time factor: %s, "
@@ -454,6 +455,7 @@ class OrderpointTemplate(models.Model):
                                         else _("not ")
                                     ),
                                     produce_delay,
+                                    purchase_delay,
                                     consumed_qty_by_lead_time,
                                     service_factor,
                                     lead_time_factor,

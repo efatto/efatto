@@ -49,6 +49,8 @@ class SupplierInfo(models.Model):
                         or l.product_id.product_tmpl_id == seller.product_tmpl_id
                     )
                 )
+                if not order_lines:
+                    continue
                 overtime_moves = order_lines.move_ids.filtered(
                     lambda m: m.state == "done"
                     and (
@@ -64,18 +66,28 @@ class SupplierInfo(models.Model):
                         for m in overtime_moves
                     ) / len(overtime_moves)
                     overtime_move_ids = overtime_moves
-                first_delivery_move = order_lines.move_ids.filtered(
+                delivery_move_ids = order_lines.move_ids.filtered(
                     lambda m: m.state == "done"
                     and (
                         m.product_id == seller.product_id
                         or m.product_id.product_tmpl_id == seller.product_tmpl_id
                     )
-                ).sorted(lambda m: m.date)[:1]
-                if first_delivery_move:
+                ).sorted(lambda m: m.date)
+                first_delivery_move_ids = self.env["stock.move"]
+                for order_line in order_lines:
+                    first_delivery_move_ids |= delivery_move_ids.filtered(
+                        lambda m, o=order_line: m.purchase_line_id == o
+                    )[:1]
+                if first_delivery_move_ids:
                     normal_purchase_delay = (
-                        first_delivery_move.date.date()
-                        - first_delivery_move.purchase_line_id.order_id.date_order.date()
-                    ).days
+                        sum(
+                            (
+                                fdm_id.date.date()
+                                - fdm_id.purchase_line_id.order_id.date_order.date()
+                            ).days
+                            for fdm_id in first_delivery_move_ids
+                        )
+                    ) / len(first_delivery_move_ids)
             seller.overtime_purchase_delay = overtime_purchase_delay
             seller.normal_purchase_delay = normal_purchase_delay
             seller.overtime_move_ids = overtime_move_ids

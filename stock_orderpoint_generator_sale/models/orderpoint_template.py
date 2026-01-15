@@ -317,10 +317,8 @@ class OrderpointTemplate(models.Model):
                         ).days
                     max_qty = stock_max_qty[product_id.id]
                     qty_by_day = max_qty / (move_days or 1)
-                    normal_purchase_delay_used = False
                     purchase_time_delay_used = False
                     purchase_overtime_delay_used = False
-                    normal_purchase_delay = product_id._get_normal_purchase_delay()
                     purchase_time_delay = product_id._get_purchase_delay()
                     purchase_overtime_delay = product_id._get_purchase_delay(
                         overtime=True
@@ -339,13 +337,6 @@ class OrderpointTemplate(models.Model):
                     else:
                         purchase_time_delay_used = True
                     purchase_delay = min(purchase_delay, purchase_delay_max)
-                    # nel caso sia usato il ritardo dalla consegna, sommare anche il
-                    # tempo dalla data dell'ordine alla data della prima consegna
-                    # dell'ordine, quindi quella più breve, quindi fare il
-                    # totale dalla data dell'ordine alla consegna effettiva.
-                    if purchase_delay == purchase_overtime_delay:
-                        normal_purchase_delay_used = True
-                        purchase_delay += normal_purchase_delay
                     produce_delay = product_id._get_produce_delay()
                     consumed_qty_by_lead_time = (
                         qty_by_day * (1 + (record.variation_percent / 100.0))
@@ -424,7 +415,6 @@ class OrderpointTemplate(models.Model):
                                     "(Move days: %s, "
                                     "Qty by day: %s, "
                                     "Purchase delay: %s %s, "
-                                    "Normal purchase delay: %s %s, "
                                     "Purchase overtime delay: %s %s, "
                                     "Produce delay: %s, "
                                     "Total purchase delay used in computation: %s, "
@@ -444,9 +434,6 @@ class OrderpointTemplate(models.Model):
                                     purchase_time_delay,
                                     _("(%sused)")
                                     % ("" if purchase_time_delay_used else _("not ")),
-                                    normal_purchase_delay,
-                                    _("(%sused)")
-                                    % ("" if normal_purchase_delay_used else _("not ")),
                                     purchase_overtime_delay,
                                     _("(%sused)")
                                     % (

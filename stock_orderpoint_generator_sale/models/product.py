@@ -13,26 +13,6 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def _get_normal_purchase_delay(self, normal_purchase_delay=0):
-        if self.env.ref("purchase_stock.route_warehouse0_buy") in self.route_ids:
-            if self.seller_ids and self.seller_ids[0].normal_purchase_delay:
-                normal_purchase_delay = self.seller_ids[0].normal_purchase_delay
-        if (
-            self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids
-            and self.bom_ids
-        ):
-            bom_purchase_delay = max(
-                [
-                    p._get_normal_purchase_delay(
-                        normal_purchase_delay=normal_purchase_delay
-                    )
-                    for p in self.bom_ids.bom_line_ids.mapped("product_id")
-                ]
-                or [0]
-            )
-            normal_purchase_delay += bom_purchase_delay
-        return normal_purchase_delay
-
     def _get_purchase_delay(self, purchase_delay=0, overtime=False):
         if self.env.ref("purchase_stock.route_warehouse0_buy") in self.route_ids:
             if overtime:

@@ -36,26 +36,6 @@ msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: product_supplierinfo_overtime_delay
-#: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_customerinfo__normal_purchase_delay
-#: model:ir.model.fields,field_description:product_supplierinfo_overtime_delay.field_product_supplierinfo__normal_purchase_delay
-msgid "Normal Purchase Delay"
-msgstr "Tempo normale di ricezione"
-
-#. module: product_supplierinfo_overtime_delay
-#: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_customerinfo__normal_purchase_delay
-#: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_supplierinfo__normal_purchase_delay
-msgid ""
-"Over the past x days (configured in parameter "
-"'purchase_stock.on_time_delivery_days', by default 365 days): the number of "
-"days for this vendor to deliver this product, computed on the first delivery"
-" date."
-msgstr ""
-"Nei precedenti x giorni (configurato nel parametro "
-"'purchase_stock.on_time_delivery_days', per impostazione predefinita 365 "
-"giorni): il numero di giorni per questo fornitoee per consegnare questo "
-"prodotto, calcolato dalla prima data di consegna."
-
-#. module: product_supplierinfo_overtime_delay
 #: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_customerinfo__overtime_purchase_delay
 #: model:ir.model.fields,help:product_supplierinfo_overtime_delay.field_product_supplierinfo__overtime_purchase_delay
 msgid ""

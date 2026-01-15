@@ -6,7 +6,6 @@
         <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
         <field name="arch" type="xml">
             <field name="delay" position="after">
-                <field name="normal_purchase_delay" optional="hide" />
                 <field name="overtime_purchase_delay" optional="hide" />
             </field>
         </field>
@@ -20,10 +19,6 @@
                 <label for="overtime_purchase_delay" />
                 <div>
                     <field name="overtime_purchase_delay" class="oe_inline" />
-                </div>
-                <label for="normal_purchase_delay" />
-                <div>
-                    <field name="normal_purchase_delay" class="oe_inline" />
                 </div>
             </xpath>
             <xpath expr="//form/sheet/group" position="before">

@@ -2,11 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Stock move details in tree",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.1",
     "category": "other",
-    "summary": """
-    Stock product available quantity in move tree
-    """,
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",

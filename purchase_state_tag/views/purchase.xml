@@ -19,16 +19,16 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
-              class="oe_stat_button"
-              type="object"
-              name="toggle_active"
-              icon="fa-archive"
-            >
+                            class="oe_stat_button"
+                            type="object"
+                            name="toggle_active"
+                            icon="fa-archive"
+                        >
                             <field
-                name="active"
-                widget="boolean"
-                options='{"terminology": "archive"}'
-              />
+                                name="active"
+                                widget="boolean"
+                                options='{"terminology": "archive"}'
+                            />
                         </button>
                     </div>
                     <group>
@@ -53,11 +53,11 @@
         </field>
     </record>
     <menuitem
-    action="purchase_order_tag_action"
-    id="menu_tag_in_config_purchase"
-    parent="purchase.menu_purchase_config"
-    sequence="20"
-  />
+        action="purchase_order_tag_action"
+        id="menu_tag_in_config_purchase"
+        parent="purchase.menu_purchase_config"
+        sequence="20"
+    />
 
     <record id="purchase_order_form" model="ir.ui.view">
         <field name="model">purchase.order</field>
@@ -65,11 +65,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_status']" position="after">
                 <field
-          name="tag_ids"
-          domain="[('order_state', '=', state)]"
-          widget="many2many_tags"
-          options="{'color_field': 'color'}"
-        />
+                    name="tag_ids"
+                    domain="[('order_state', '=', state)]"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
             </xpath>
         </field>
     </record>

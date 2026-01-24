@@ -3,7 +3,7 @@
 {
     "name": "CRM lead with existing partner",
     "summary": "Add ability to filter crm lead with existing but not linked partner",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/efatto/efatto",
     "author": "Sergio Corato",

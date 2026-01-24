@@ -5,7 +5,6 @@ class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     partner_email_exists = fields.Boolean(
-        string="Partner Email Exists",
         help="A partner with this email exists and is not linked to this lead",
         compute="_compute_partner_email_exists",
         store=True,

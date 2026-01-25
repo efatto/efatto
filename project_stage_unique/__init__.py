@@ -9,7 +9,7 @@ def pre_init_hook(cr):
     # This work for source term, translation terms are not considered.
     cr.execute(
         """
-        UPDATE project_task_type SET name = CONCAT(name, '_', id) WHERE
+        UPDATE project_task_type SET name = CONCAT(name, '_', id::text) WHERE
             id not in (SELECT min(id) from project_task_type group by name)
     """
     )

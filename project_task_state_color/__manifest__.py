@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Project task colors",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Extra Tools",
     "summary": "Change task color on state.",
     "author": "Sergio Corato",

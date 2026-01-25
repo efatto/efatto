@@ -50,7 +50,7 @@ class ProjectTask(models.Model):
         g = clamp(g * scalefactor)
         b = clamp(b * scalefactor)
 
-        return "#{:02X}{:02X}{:02X}".format(int(r), int(g), int(b))
+        return f"#{int(r):02X}{int(g):02X}{int(b):02X}"
 
     def _compute_hex_task_value(self):
         for task in self:

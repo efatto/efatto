@@ -9,7 +9,7 @@
                 <attribute name="date_stop">planned_date_end</attribute>
                 <attribute name="mode">week</attribute>
             </calendar>
-            <field name="user_id" position="before">
+            <field name="user_ids" position="before">
                 <field name="name" />
             </field>
         </field>

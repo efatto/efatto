@@ -86,7 +86,6 @@ class OrderpointTemplate(models.Model):
         products = orderpoints.mapped("product_id")
         orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
             [
-                ("orderpoint_tmpl_id", "=", False),
                 ("product_id", "in", products.ids),
             ]
         )

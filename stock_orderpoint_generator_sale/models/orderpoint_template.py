@@ -370,12 +370,6 @@ class OrderpointTemplate(models.Model):
                         ** (1 / 2)
                     )
                     lot_to_reorder = min(lot_to_reorder, max_qty)
-                    if lot_to_reorder >= 100:
-                        lot_to_reorder = float_round(
-                            lot_to_reorder,
-                            precision_digits=-1,
-                            rounding_method="UP",
-                        )
                     reorder_coeff = (
                         fields.first(
                             product_id.seller_ids
@@ -383,8 +377,15 @@ class OrderpointTemplate(models.Model):
                         or 4.0
                     )
                     # Set a maximum of orders by period
-                    if lot_to_reorder < (max_qty / reorder_coeff):
-                        lot_to_reorder = max_qty / reorder_coeff
+                    if lot_to_reorder > (max_qty / reorder_coeff):
+                        lot_to_reorder = math.ceil(max_qty / reorder_coeff)
+                    # Round up to 10 if the lot to reorder is greater or equal to 100
+                    if lot_to_reorder >= 100:
+                        lot_to_reorder = float_round(
+                            lot_to_reorder,
+                            precision_digits=-1,
+                            rounding_method="UP",
+                        )
                     max_qty = min_qty + lot_to_reorder
                     # if there is a multiple quantity to purchase, and maximum quantity
                     # if lower than minimum quantity + multiple quantity to purchase,

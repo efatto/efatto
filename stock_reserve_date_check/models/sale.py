@@ -32,6 +32,7 @@ class SaleOrder(models.Model):
                         line.product_id,
                         line.product_uom_qty,
                         fields.Date.context_today(line),
+                        commitment_date=commitment_date,
                     )
                     if avail_date > commitment_date:
                         dates_info = avail_date_info.split("\n")

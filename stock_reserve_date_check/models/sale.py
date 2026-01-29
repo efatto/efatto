@@ -22,11 +22,11 @@ class SaleOrder(models.Model):
                 ):
                     commitment_date = (
                         line.commitment_date
-                        and line.commitment_date.date()
+                        and line.commitment_date
                         or line.order_id.commitment_date
-                        and line.order_id.commitment_date.date()
+                        and line.order_id.commitment_date
                         or line.order_id.date_order
-                        and line.order_id.date_order.date()
+                        and line.order_id.date_order
                     )
                     avail_date, avail_date_info = line.get_available_date(
                         line.product_id,
@@ -34,6 +34,7 @@ class SaleOrder(models.Model):
                         fields.Date.context_today(line),
                         commitment_date=commitment_date,
                     )
+                    commitment_date = commitment_date.date()
                     if avail_date > commitment_date:
                         dates_info = avail_date_info.split("\n")
                         commitment_date_str = commitment_date.strftime("%d/%m/%Y")

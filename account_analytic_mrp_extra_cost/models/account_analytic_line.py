@@ -160,6 +160,15 @@ class AccountAnalyticLine(models.Model):
                     and not x.exclude_from_actual_cost_mrp
                 )
                 if product_invoice_lines:
+                    # exclude lines with different uom
+                    tobe_excluded_invlines = self.env['account.invoice.line']
+                    for product_invl in product_invoice_lines:
+                        if (
+                            product_invl.uom_id.category_id.id
+                            != line.product_uom_id.category_id.id
+                        ):
+                            tobe_excluded_invlines |= product_invl
+                    product_invoice_lines -= tobe_excluded_invlines
                     # invoice_cost and raw_move_cost and actual_cost_mrp are positive
                     # when they are costs, viceversa they are income if they are
                     # negative

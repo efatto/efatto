@@ -15,7 +15,13 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def get_available_date(  # noqa: C901
-        self, product_id, qty, date_start, available_date=False, level=0
+        self,
+        product_id,
+        qty,
+        date_start,
+        available_date=False,
+        level=0,
+        commitment_date=False,
     ):
         child = "└"
         vertical = "─"
@@ -114,6 +120,7 @@ class SaleOrderLine(models.Model):
                         date_start,
                         available_date,
                         level=level + 1,
+                        commitment_date=commitment_date,
                     )
                     if avail_date:
                         avail_dates.append(avail_date)
@@ -157,7 +164,8 @@ class SaleOrderLine(models.Model):
                             op_start_dt,
                             op_end_dt,
                         ) = operation.workcenter_id._get_first_available_slot(
-                            self.commitment_date, operation.time_cycle_manual
+                            self.commitment_date or commitment_date,
+                            operation.time_cycle_manual,
                         )
                         op_start_date = op_start_dt.date()
                         if op_start_date > start_date:

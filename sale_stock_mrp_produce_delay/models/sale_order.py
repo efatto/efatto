@@ -354,11 +354,11 @@ class SaleOrderLine(models.Model):
                 continue
             commitment_date = (
                 line.commitment_date
-                and line.commitment_date.date()
+                and line.commitment_date
                 or line.order_id.commitment_date
-                and line.order_id.commitment_date.date()
+                and line.order_id.commitment_date
                 or line.order_id.date_order
-                and line.order_id.date_order.date()
+                and line.order_id.date_order
             )
             # compute first available date from today, then check if requested date is
             # greater than this date
@@ -368,6 +368,7 @@ class SaleOrderLine(models.Model):
                 fields.Date.context_today(line),
                 commitment_date=commitment_date,
             )
+            commitment_date = commitment_date.date()
             line.available_date = avail_date
             line.last_available_date_compute = fields.Datetime.now()
             dates_info = avail_date_info.split("\n")

@@ -377,7 +377,9 @@ class OrderpointTemplate(models.Model):
                         or 4.0
                     )
                     # Set a maximum of orders by period
+                    computed_lot_to_reorder = False
                     if lot_to_reorder > (max_qty / reorder_coeff):
+                        computed_lot_to_reorder = lot_to_reorder
                         lot_to_reorder = math.ceil(max_qty / reorder_coeff)
                     # Round up to 10 if the lot to reorder is greater or equal to 100
                     if lot_to_reorder >= 100:
@@ -423,7 +425,7 @@ class OrderpointTemplate(models.Model):
                                     "Lead time factor: %s, "
                                     "Security stock: %s, "
                                     "Minimum qty: %s, "
-                                    "Lot to reorder: %s, "
+                                    "Lot to reorder: %s%s, "
                                     "Maximum qty: %s)"
                                 )
                                 % (
@@ -449,6 +451,12 @@ class OrderpointTemplate(models.Model):
                                     security_stock,
                                     min_qty,
                                     lot_to_reorder,
+                                    (
+                                        _(" (Proposed lot to reorder was: %s)")
+                                        % computed_lot_to_reorder
+                                    )
+                                    if computed_lot_to_reorder
+                                    else "",
                                     max_qty,
                                 )
                             ),

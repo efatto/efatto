@@ -366,6 +366,7 @@ class SaleOrderLine(models.Model):
                 line.product_id,
                 line.product_uom_qty,
                 fields.Date.context_today(line),
+                commitment_date=commitment_date,
             )
             line.available_date = avail_date
             line.last_available_date_compute = fields.Datetime.now()

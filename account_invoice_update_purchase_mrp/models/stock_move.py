@@ -17,7 +17,7 @@ class StockMove(models.Model):
     def _get_current_price_unit(self):
         self.ensure_one()
         PurchaseOrderLine = self.env["purchase.order.line"]
-        price_unit = -self.price_unit
+        price_unit = self.price_unit
         date_price_unit = False
         origin_price_unit = False
         # search before datetime of move
@@ -116,7 +116,7 @@ class StockMove(models.Model):
         self.ensure_one()
         move_price_variation = False
         price_unit, date_price_unit, origin_price_unit = self._get_current_price_unit()
-        current_price = -self.price_unit
+        current_price = self.price_unit
         if current_price:
             move_price_variation = 100 * (price_unit - current_price) / current_price
         return {

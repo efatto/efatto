@@ -9,7 +9,6 @@
     "license": "AGPL-3",
     "depends": [
         "product_state",
-        # "product_state_active",
         "product_status",
         "purchase_stock",
     ],

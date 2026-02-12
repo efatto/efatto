@@ -1,4 +1,4 @@
-# Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
+# Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product obsoloscence management",
@@ -17,8 +17,8 @@
     "warehouse orderpoint through Stock orderpoint generator sale module.",
     "data": [
         "data/ir_cron.xml",
-        "views/product_category.xml",
-        "views/crm.xml",
+        "views/product_state.xml",
+        "views/product_product.xml",
     ],
     "installable": True,
 }

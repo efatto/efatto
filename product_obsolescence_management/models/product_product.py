@@ -14,6 +14,9 @@ class ProductProduct(models.Model):
     )
     replacement_product_ids = fields.Many2many(
         comodel_name="product.product",
+        relation="product_product_replacement_rel",
+        column1="product_id",
+        column2="replacement_product_id",
     )
     replacement_product_available_date = fields.Date(
         compute="_compute_replacement_product_available_date",

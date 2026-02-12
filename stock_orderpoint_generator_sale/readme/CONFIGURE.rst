@@ -65,13 +65,11 @@ Il campo `Categoria prodotti`: filtra i prodotti su cui generare le regole di ri
 .. image:: ../static/description/categoria_prodotti.png
     :alt: Categoria prodotti
 
-Nella nazione è stato aggiunto un campo `Coefficiente di riordino`. Questo campo viene rilevato dal primo fornitore del prodotto e serve per impostare un massimo di ordini per periodo. Se non impostato viene presunto pari a 4.
+Nella nazione è stato aggiunto un campo `Coefficiente di riordino`. Questo campo viene rilevato dal primo fornitore del prodotto e viene usato per definire un massimo sul lotto di riordino, pari alla quantità massima acquistata nel periodo scelto diviso per il `Coefficiente di riordino`. Se non impostato viene presunto pari a 4. La quantità minima, massima e il lotto di riordino sono arrotondati alla decina per quantità superiori a 100. Se il lotto di riordino viene modificato da questi calcoli verso il basso, viene mostrato il lotto originariamente calcolato nel log della creazione delle regole.
 
 .. image:: ../static/description/coefficiente_riordino.png
     :alt: Coefficiente di riordino
 
 Il calcolo del `consumo pezzi nei giorni di LEAD TIME` e del `fattore di lead time` dipende dal `Tempo di risposta per produzione` se il prodotto ha una rotta di produzione o dal `Tempo di risposta per consegne (calcolato)` se il prodotto ha una rotta di acquisto (se le ha entrambe i tempi vengono sommati attualmente).
-
-La quantità minima, massima e il lotto di riordino sono arrotondati alla decina per quantità superiori a 100. Il lotto di riordino è limitato alla quantità massima acquistata nel periodo scelto.
 
 Informazioni sulle formule usate nel file di calcolo https://github.com/efatto/efatto/blob/14.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods

@@ -40,9 +40,8 @@ class ProductTemplate(models.Model):
             if product_tmpl.custom_purchase_delay and product_tmpl.purchase_ok:
                 product_tmpl.purchase_delay = product_tmpl.custom_purchase_delay
             elif product_tmpl.seller_ids and product_tmpl.purchase_ok:
-                product_tmpl.purchase_delay = product_tmpl.seller_ids[0].delay
-                product_tmpl.purchase_multiple_qty = product_tmpl.seller_ids[
-                    0
-                ].multiple_qty
+                seller_id = fields.first(product_tmpl.seller_ids)
+                product_tmpl.purchase_delay = seller_id.delay
+                product_tmpl.purchase_multiple_qty = seller_id.multiple_qty
             else:
                 product_tmpl.purchase_delay = 0

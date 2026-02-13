@@ -324,12 +324,16 @@ class OrderpointTemplate(models.Model):
                     )
                     # Max purchase delay if extra UE supplier is 180 days, else 90 days
                     eu_country_group = self.env.ref("base.europe")
-                    seller_id = product_id.seller_ids[:1]
+                    seller_id = fields.first(product_id.seller_ids)
                     purchase_delay_max = 180
+                    reorder_coeff = 4
+                    purchase_min_qty = 0
                     if seller_id:
                         country_group = seller_id.name.country_id.country_group_ids[:1]
                         if country_group and country_group == eu_country_group:
                             purchase_delay_max = 90
+                        reorder_coeff = seller_id.country_id.reorder_coeff or 4
+                        purchase_min_qty = seller_id.min_qty
                     purchase_delay = max(purchase_overtime_delay, purchase_time_delay)
                     if purchase_delay == purchase_overtime_delay:
                         purchase_overtime_delay_used = True
@@ -348,6 +352,7 @@ class OrderpointTemplate(models.Model):
                         math.ceil(qty_by_day * service_factor * lead_time_factor)
                     )
                     min_qty = math.ceil(consumed_qty_by_lead_time + security_stock)
+                    min_qty = max(min_qty, purchase_min_qty)
                     if min_qty >= 100:
                         min_qty = float_round(
                             min_qty,
@@ -370,17 +375,21 @@ class OrderpointTemplate(models.Model):
                         ** (1 / 2)
                     )
                     lot_to_reorder = min(lot_to_reorder, max_qty)
-                    reorder_coeff = (
-                        fields.first(
-                            product_id.seller_ids
-                        ).name.country_id.reorder_coeff
-                        or 4.0
-                    )
-                    # Set a maximum of orders by period
+                    # Set EOQ with these criteria:
+                    # coeff EOQ = MAXQTY / REORDER COEFF
+                    # MOQ = purchase_min_qty
+                    # 1: EOQ is less than coeff EOQ: USE coeff EOQ
+                    # 2: EOQ is greater than coeff EOQ but less than MAXQTY: use EOQ, so
+                    #    nothing to change
+                    # 3: EOQ is greater of both: use MAXQTY
+                    # All with minimum MOQ by multiple of MPQ
                     computed_lot_to_reorder = False
-                    if lot_to_reorder > (max_qty / reorder_coeff):
+                    coeff_eoq = math.ceil(max_qty / reorder_coeff)
+                    if lot_to_reorder <= coeff_eoq:
                         computed_lot_to_reorder = lot_to_reorder
-                        lot_to_reorder = math.ceil(max_qty / reorder_coeff)
+                        lot_to_reorder = coeff_eoq
+                    elif lot_to_reorder > max_qty:
+                        lot_to_reorder = max_qty
                     # Round up to 10 if the lot to reorder is greater or equal to 100
                     if lot_to_reorder >= 100:
                         lot_to_reorder = float_round(
@@ -389,19 +398,14 @@ class OrderpointTemplate(models.Model):
                             rounding_method="UP",
                         )
                     max_qty = min_qty + lot_to_reorder
-                    # if there is a multiple quantity to purchase, and maximum quantity
-                    # if lower than minimum quantity + multiple quantity to purchase,
-                    # then set max quantity to minimum quantity + multiple quantity to
-                    # purchase
-                    purchase_multiple_qty = product_id.purchase_multiple_qty
-                    if purchase_multiple_qty > (max_qty - min_qty):
-                        max_qty = min_qty + purchase_multiple_qty
+                    # Purchase multiple qty is set in qty_multiple in op, so it's not
+                    # necessary to use it for max qty computation
                     # end function
                     if record.auto_min_qty:
                         vals["product_min_qty"] = min_qty
                     if record.auto_max_qty:
                         vals["product_max_qty"] = max_qty
-                    vals["qty_multiple"] = purchase_multiple_qty
+                    vals["qty_multiple"] = product_id.purchase_multiple_qty
                     vals["orderpoint_tmpl_id"] = record.id
                     if self.env.context.get("is_draft"):
                         vals["is_draft"] = True

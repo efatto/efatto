@@ -329,10 +329,12 @@ class OrderpointTemplate(models.Model):
                     reorder_coeff = 4
                     purchase_min_qty = 0
                     if seller_id:
-                        country_group = seller_id.name.country_id.country_group_ids[:1]
-                        if country_group and country_group == eu_country_group:
-                            purchase_delay_max = 90
-                        reorder_coeff = seller_id.country_id.reorder_coeff or 4
+                        country_id = seller_id.name.country_id
+                        if country_id:
+                            country_group = fields.first(country_id.country_group_ids)
+                            if country_group and country_group == eu_country_group:
+                                purchase_delay_max = 90
+                            reorder_coeff = country_id.reorder_coeff or 4
                         purchase_min_qty = seller_id.min_qty
                     purchase_delay = max(purchase_overtime_delay, purchase_time_delay)
                     if purchase_delay == purchase_overtime_delay:

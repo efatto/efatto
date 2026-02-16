@@ -480,7 +480,13 @@ class OrderpointTemplate(models.Model):
         orderpoints = self.env["stock.warehouse.orderpoint"].search(
             [("orderpoint_tmpl_id", "=", self.id)]
         )
-        orderpoints.write({"active": False})
+        products = orderpoints.mapped("product_id")
+        orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("product_id", "in", products.ids),
+            ]
+        )
+        (orderpoints | orderpoints_not_linked).write({"active": False})
 
     @api.model
     def _get_product_qty_by_criteria_sale(

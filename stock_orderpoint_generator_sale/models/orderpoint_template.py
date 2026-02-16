@@ -318,6 +318,8 @@ class OrderpointTemplate(models.Model):
                             record.auto_max_date_end - record.auto_max_date_start
                         ).days
                     max_qty = stock_max_qty[product_id.id]
+                    if not max_qty or max_qty < 1:
+                        continue
                     qty_by_day = max_qty / (move_days or 1)
                     purchase_time_delay_used = False
                     purchase_overtime_delay_used = False

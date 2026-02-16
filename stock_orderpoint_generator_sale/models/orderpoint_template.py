@@ -359,7 +359,6 @@ class OrderpointTemplate(models.Model):
                         math.ceil(qty_by_day * service_factor * lead_time_factor)
                     )
                     min_qty = math.ceil(consumed_qty_by_lead_time + security_stock)
-                    min_qty = max(min_qty, purchase_min_qty)
                     if min_qty >= 100:
                         min_qty = float_round(
                             min_qty,
@@ -397,6 +396,8 @@ class OrderpointTemplate(models.Model):
                         lot_to_reorder = coeff_eoq
                     elif lot_to_reorder > max_qty:
                         lot_to_reorder = max_qty
+                    if lot_to_reorder < purchase_min_qty:
+                        lot_to_reorder = purchase_min_qty
                     # Round up to 10 if the lot to reorder is greater or equal to 100
                     if lot_to_reorder >= 100:
                         lot_to_reorder = float_round(

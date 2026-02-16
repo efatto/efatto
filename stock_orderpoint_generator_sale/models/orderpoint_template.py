@@ -15,7 +15,10 @@ from odoo.tools.float_utils import float_round
 class Orderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
 
-    orderpoint_tmpl_id = fields.Many2one("stock.warehouse.orderpoint.template")
+    orderpoint_tmpl_id = fields.Many2one(
+        "stock.warehouse.orderpoint.template",
+        ondelete="cascade",
+    )
     is_draft = fields.Boolean(
         string="Is Draft",
         help="To be enabled manually",

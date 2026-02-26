@@ -24,7 +24,7 @@ class ProductProduct(models.Model):
             self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids
             and self.bom_ids
         ):
-            bom_purchase_delay = max(
+            purchase_delay = max(
                 [
                     p._get_purchase_delay(
                         purchase_delay=purchase_delay, overtime=overtime
@@ -33,7 +33,6 @@ class ProductProduct(models.Model):
                 ]
                 or [0]
             )
-            purchase_delay += bom_purchase_delay
         return purchase_delay
 
     def _get_produce_delay(self, produce_delay=0):

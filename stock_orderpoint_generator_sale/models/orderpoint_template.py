@@ -348,13 +348,12 @@ class OrderpointTemplate(models.Model):
                         purchase_time_delay_used = True
                     purchase_delay = min(purchase_delay, purchase_delay_max)
                     produce_delay = product_id._get_produce_delay()
+                    total_delay = max(purchase_delay + produce_delay, 1)
                     consumed_qty_by_lead_time = (
                         qty_by_day * (1 + (record.variation_percent / 100.0))
-                    ) * ((purchase_delay + produce_delay) or 1)
+                    ) * total_delay
                     service_factor = norm.ppf(record.service_level)
-                    lead_time_factor = ((purchase_delay + produce_delay) or 1) ** (
-                        1 / 2
-                    )
+                    lead_time_factor = total_delay ** (1 / 2)
                     security_stock = int(
                         math.ceil(qty_by_day * service_factor * lead_time_factor)
                     )
@@ -432,6 +431,7 @@ class OrderpointTemplate(models.Model):
                                     "Purchase overtime delay: %s %s, "
                                     "Produce delay: %s, "
                                     "Total purchase delay used in computation: %s, "
+                                    "Total delay: %s, "
                                     "Consumed qty by lead time: %s, "
                                     "Service factor: %s, "
                                     "Lead time factor: %s, "
@@ -457,6 +457,7 @@ class OrderpointTemplate(models.Model):
                                     ),
                                     produce_delay,
                                     purchase_delay,
+                                    total_delay,
                                     consumed_qty_by_lead_time,
                                     service_factor,
                                     lead_time_factor,

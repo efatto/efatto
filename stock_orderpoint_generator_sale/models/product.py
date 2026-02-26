@@ -40,14 +40,13 @@ class ProductProduct(models.Model):
         if self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids:
             produce_delay += self.produce_delay
             if self.bom_ids:
-                bom_produce_delay = max(
+                produce_delay = max(
                     [
                         p._get_produce_delay(produce_delay)
                         for p in self.bom_ids.bom_line_ids.mapped("product_id")
                     ]
                     or [0]
                 )
-                produce_delay += bom_produce_delay
         return produce_delay
 
     def _compute_historic_sale_quantities_dict(

@@ -384,11 +384,11 @@ class OrderpointTemplate(models.Model):
                     # Set EOQ with these criteria:
                     # coeff EOQ = MAXQTY / REORDER COEFF
                     # MOQ = purchase_min_qty
-                    # 1: EOQ is less than coeff EOQ: USE coeff EOQ
+                    # 1: EOQ is lower than coeff EOQ: USE coeff EOQ
                     # 2: EOQ is greater than coeff EOQ but less than MAXQTY: use EOQ, so
                     #    nothing to change
                     # 3: EOQ is greater of both: use MAXQTY
-                    # All with minimum MOQ by multiple of MPQ
+                    # If EOQ is lower than MOQ: use MOQ
                     computed_lot_to_reorder = False
                     coeff_eoq = math.ceil(max_qty / reorder_coeff)
                     if lot_to_reorder <= coeff_eoq:

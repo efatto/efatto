@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product sellers info",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "other",
     "summary": "Add product multiple qty to product sellers; add computed fields "
     "for product multiple qty and purchase delay of first seller (this one can be "
@@ -11,7 +11,7 @@
     "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",
     "depends": [
-        "stock",
+        "purchase_stock",
     ],
     "data": [
         "views/product.xml",

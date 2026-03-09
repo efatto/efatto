@@ -1,4 +1,4 @@
-Nell'ordine di vendita è stata aggiunta un'opzione, attivata di default ma che l'utente può disabilitare, che blocca la vendita con date di impegno non possibili:
+Nell'ordine di vendita è stata aggiunta un'opzione, disabilitata di default ma che l'utente può attivare, che blocca la vendita con date di impegno non possibili:
 
 .. image:: ../static/description/enable.png
     :alt: Abilita
@@ -18,7 +18,7 @@ Che può essere risolto spostando la data di impegno, oppure disabilitando il co
 .. image:: ../static/description/disable.png
     :alt: Disabilita
 
-N.B.: L'errore viene esposto per un singolo prodotto/componente, cambiando la data con una in cui tale prodotto è acquistabile o in magazzino, potrebbe essere esposto un errore per un altro prodotto/componente e così via a scalare. Per calcolare la prima data utile complessiva, è disponibile il bottone seguente (se installato il modulo https://github.com/sergiocorato/efatto/tree/12.0/sale_stock_mrp_produce_delay ):
+N.B.: L'errore viene esposto per un singolo prodotto/componente, cambiando la data con una in cui tale prodotto è acquistabile o in magazzino, potrebbe essere esposto un errore per un altro prodotto/componente e così via a scalare. Per calcolare la prima data utile complessiva, è disponibile il bottone seguente (se installato il modulo https://github.com/sergiocorato/efatto/tree/14.0/sale_stock_mrp_produce_delay ):
 
 .. image:: ../static/description/calcola.png
     :alt: Calcola

@@ -90,12 +90,14 @@ class SaleOrderLine(models.Model):
                     ]
                     or [False]
                 )
-        # else:
-        #     raise UserError(_("No available info found!"))
         if product_id.bom_ids:
-            # fixme need to filter boms?
+            # if there is a specific bom selected, use it, else the first one
+            # todo move to a overridable method to extend with other logics
             option = stock_options["to_produce"]
-            bom_id = fields.first(product_id.bom_ids)
+            if hasattr(self, "bom_id") and self.bom_id:
+                bom_id = self.bom_id
+            else:
+                bom_id = fields.first(product_id.bom_ids)
             avail_dates = []
             if stock_available_date:
                 # available in stock

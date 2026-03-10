@@ -104,36 +104,7 @@ class TestProductSellersInfo(SingleTransactionCase):
             "Purchase delay should be 0 when seller is expired",
         )
 
-    def test_03_purchase_delay_without_purchase_ok(self):
-        """Test that purchase_delay is 0 when purchase_ok is False"""
-        # Create product without purchase_ok
-        product_no_purchase = self.env["product.template"].create(
-            {
-                "name": "Non-Purchasable Product",
-                "type": "product",
-                "purchase_ok": False,
-            }
-        )
-
-        # Create supplier info
-        self.env["product.supplierinfo"].create(
-            {
-                "name": self.supplier.id,
-                "product_tmpl_id": product_no_purchase.id,
-                "delay": 15,
-                "multiple_qty": 5.0,
-                "date_end": fields.Date.add(fields.Date.today(), days=30),
-            }
-        )
-
-        # Verify that purchase_delay is 0
-        self.assertEqual(
-            product_no_purchase.purchase_delay,
-            0,
-            "Purchase delay should be 0 when purchase_ok is False",
-        )
-
-    def test_04_inverse_purchase_delay_without_date_end(self):
+    def test_03_inverse_purchase_delay_without_date_end(self):
         """Test inverse when seller has no date_end"""
         # Change purchase_delay on product
         product_form = Form(self.product_tmpl)

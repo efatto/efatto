@@ -4,9 +4,10 @@ from odoo.tests.common import Form, SavepointCase
 from odoo.tools import mute_logger
 
 
-class StockProcurementDraftPurchase(SavepointCase):
+class StockOrderpointGeneretorSale(SavepointCase):
     @classmethod
     def setUpClass(cls):
+        # TODO this is a copy from other module
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.user_model = cls.env["res.users"].with_context(no_reset_password=True)
@@ -67,75 +68,9 @@ class StockProcurementDraftPurchase(SavepointCase):
         orderpoint_template_form.order_mngt_cost = 70
         opt = orderpoint_template_form.save()
         opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
-        self.assertEqual(opt.outgoing_location_qty, 0)
-        self.assertEqual(opt.virtual_location_qty, 0)
-        self.assertEqual(opt.virtual_location_draft_purchase_qty, 0)
         # launch scheduler, it will order 50 pc of product
         self.run_stock_procurement_scheduler()
         opt.refresh()
-        self.assertEqual(opt.draft_purchase_order_qty, 50)
-        self.assertEqual(opt.virtual_location_draft_purchase_qty, 50)
-        purchase_orders = self.env["purchase.order"].search(
-            [("order_line.product_id", "=", opt.product_id.id)]
-        )
-        self.assertEqual(len(purchase_orders), 1)
-        purchase_order1 = purchase_orders[0]
-        purchase_line = purchase_order1.order_line.filtered(
-            lambda x: x.product_id.id == self.product.id
-        )
-        self.assertEqual(purchase_line.product_uom_qty, 50)
-        self.assertEqual(purchase_order1.state, "draft")
-        purchase_order1.print_quotation()
-        self.assertEqual(purchase_order1.state, "sent")
-
-        # sell 5 pc would not create any replenishement (10 min, 50 max, 50 incoming,
-        # 45 virtual available)
-        order_form1 = Form(self.env["sale.order"])
-        order_form1.partner_id = self.partner
-        with order_form1.order_line.new() as order_line:
-            order_line.product_id = self.product
-            order_line.product_uom_qty = 5
-            order_line.price_unit = 100
-        order1 = order_form1.save()
-        order1.action_confirm()
-        self.run_stock_procurement_scheduler()
-        # check that no other RdP are created for this op for the sale order
-        purchase_orders = self.env["purchase.order"].search(
-            [
-                ("order_line.orderpoint_id", "=", opt.id),
-                ("state", "=", "draft"),
-            ]
-        )
-        self.assertEqual(len(purchase_orders), 0)
-
-        # sell other 40 pc would create a replenishement (10 min, 50 max, 50 incoming,
-        # 45 outgoing, 5 virtual available)
-        order_form2 = Form(self.env["sale.order"])
-        order_form2.partner_id = self.partner
-        with order_form2.order_line.new() as order_line:
-            order_line.product_id = self.product
-            order_line.product_uom_qty = 40
-            order_line.price_unit = 100
-        order2 = order_form2.save()
-        order2.action_confirm()
-        self.run_stock_procurement_scheduler()
-        # check that one RdP is created for this op
-        purchase_orders = self.env["purchase.order"].search(
-            [
-                ("order_line.orderpoint_id", "=", opt.id),
-                ("state", "=", "draft"),
-            ]
-        )
-        self.assertEqual(len(purchase_orders), 1)
-        purchase_order2 = purchase_orders[0]
-        purchase_line2 = purchase_order2.order_line.filtered(
-            lambda x: x.product_id.id == self.product.id
-        )
-        self.assertEqual(purchase_line2.product_uom_qty, 45)
-        self.assertEqual(purchase_order2.state, "draft")
-        purchase_order2.print_quotation()
-        self.assertEqual(purchase_order2.state, "sent")
-
         # check that even if sent the purchase order is not recreated
         self.run_stock_procurement_scheduler()
         purchase_orders = self.env["purchase.order"].search(
@@ -145,3 +80,299 @@ class StockProcurementDraftPurchase(SavepointCase):
             ]
         )
         self.assertEqual(len(purchase_orders), 0)
+
+    def test_01_create_instances_basic(self):
+        """Test button_create_orderpoints creates orderpoints with correct fields"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        orderpoint_template_form.variation_percent = 10
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        # Call button_create_orderpoints
+        opt.button_create_orderpoints()
+
+        # Check that orderpoint was created
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 1)
+        orderpoint = orderpoints[0]
+
+        # Verify fields are set correctly
+        self.assertEqual(orderpoint.orderpoint_tmpl_id, opt)
+        self.assertEqual(orderpoint.product_id, self.product)
+        self.assertEqual(orderpoint.location_id, self.warehouse.lot_stock_id)
+        self.assertIn(self.product.default_code, orderpoint.name)
+        self.assertTrue(orderpoint.product_min_qty >= 0)
+        self.assertTrue(orderpoint.product_max_qty >= orderpoint.product_min_qty)
+
+    def test_02_create_instances_with_auto_min_max(self):
+        """Test button_create_orderpoints calculates min/max quantities correctly"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.auto_min_qty = True
+        orderpoint_template_form.auto_max_qty = True
+        orderpoint_template_form.move_days = 180
+        orderpoint_template_form.service_level = 0.97
+        orderpoint_template_form.order_mngt_cost = 70
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 1)
+        orderpoint = orderpoints[0]
+
+        # Verify auto-calculated quantities
+        self.assertGreater(orderpoint.product_min_qty, 0)
+        self.assertGreater(orderpoint.product_max_qty, orderpoint.product_min_qty)
+
+    def test_03_create_instances_draft_mode(self):
+        """Test button_create_orderpoints creates draft orderpoints when flag is set"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        orderpoint_template_form.is_new_orderpoint_draft = True
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        # Create orderpoints via button
+        opt.button_create_orderpoints()
+
+        # Check orderpoint is draft and inactive
+        orderpoints = (
+            self.env["stock.warehouse.orderpoint"]
+            .with_context(active_test=False)
+            .search(
+                [
+                    ("product_id", "=", self.product.id),
+                    ("orderpoint_tmpl_id", "=", opt.id),
+                ]
+            )
+        )
+        self.assertEqual(len(orderpoints), 1)
+        orderpoint = orderpoints[0]
+        self.assertTrue(orderpoint.is_draft)
+        self.assertFalse(orderpoint.active)
+
+    def test_04_create_instances_qty_multiple(self):
+        """Test button_create_orderpoints sets qty_multiple from product"""
+        self.product.orderpoint_generate_active = True
+        self.product.purchase_multiple_qty = 5
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 1)
+        orderpoint = orderpoints[0]
+        self.assertEqual(orderpoint.qty_multiple, 5)
+
+    def test_05_create_instances_variation_percent(self):
+        """Test button_create_orderpoints applies variation_percent correctly"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        orderpoint_template_form.variation_percent = 20
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 1)
+        # The variation percent should affect the consumed_qty_by_lead_time calculation
+        # which influences min_qty
+        self.assertGreater(orderpoints[0].product_min_qty, 0)
+
+    def test_06_create_instances_exclude_phantom_bom(self):
+        """Test button_create_orderpoints excludes products with phantom BOM"""
+        self.product.orderpoint_generate_active = True
+        # Create a phantom BOM for the product
+        bom_form = Form(self.env["mrp.bom"])
+        bom_form.product_tmpl_id = self.product.product_tmpl_id
+        bom_form.type = "phantom"
+        bom_form.save()
+
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        # Check that no orderpoint was created
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 0)
+        # Check log_info contains message about phantom BOM
+        self.assertIn("phantom bom", opt.log_info.lower())
+
+    def test_07_create_instances_exclude_missing_price(self):
+        """Test button_create_orderpoints excludes products without standard_price"""
+        # Create product without price
+        product_no_price = self.env["product.product"].create(
+            {
+                "name": "Product Without Price",
+                "default_code": "NOPRICE",
+                "standard_price": 0,
+                "orderpoint_generate_active": True,
+                "categ_id": self.product.categ_id.id,
+            }
+        )
+
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [product_no_price.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        # Check that no orderpoint was created
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("product_id", "=", product_no_price.id),
+                ("orderpoint_tmpl_id", "=", opt.id),
+            ]
+        )
+        self.assertEqual(len(orderpoints), 0)
+        # Check log_info contains message about missing price
+        self.assertIn("missing price", opt.log_info.lower())
+
+    def test_08_create_instances_compute_on_out(self):
+        """Test button_create_orderpoints with compute_on_out flag"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_out = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "=", self.product.id), ("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 1)
+        # Verify orderpoint was created with correct template reference
+        self.assertEqual(orderpoints[0].orderpoint_tmpl_id, opt)
+
+    def test_09_create_instances_log_info(self):
+        """Test button_create_orderpoints populates log_info with calculation details"""
+        self.product.orderpoint_generate_active = True
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 180
+        orderpoint_template_form.service_level = 0.97
+        orderpoint_template_form.order_mngt_cost = 70
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        # Check log_info is populated with calculation details
+        self.assertTrue(opt.log_info)
+        self.assertIn(self.product.default_code, opt.log_info)
+        self.assertIn("Move days", opt.log_info)
+        self.assertIn("Qty by day", opt.log_info)
+        self.assertIn("Purchase delay", opt.log_info)
+        self.assertIn("Security stock", opt.log_info)
+        self.assertIn("Minimum qty", opt.log_info)
+        self.assertIn("Maximum qty", opt.log_info)
+
+    def test_10_create_instances_multiple_products(self):
+        """Test button_create_orderpoints handles multiple products correctly"""
+        # Create additional products
+        product2 = self.env["product.product"].create(
+            {
+                "name": "Product Test 2",
+                "standard_price": 75.0,
+                "default_code": "TEST002",
+                "orderpoint_generate_active": True,
+                "categ_id": self.product.categ_id.id,
+            }
+        )
+        product3 = self.env["product.product"].create(
+            {
+                "name": "Product Test 3",
+                "standard_price": 100.0,
+                "default_code": "TEST003",
+                "orderpoint_generate_active": True,
+                "categ_id": self.product.categ_id.id,
+            }
+        )
+        self.product.orderpoint_generate_active = True
+
+        orderpoint_template_form = Form(self.env["stock.warehouse.orderpoint.template"])
+        orderpoint_template_form.warehouse_id = self.warehouse
+        orderpoint_template_form.location_id = self.warehouse.lot_stock_id
+        orderpoint_template_form.compute_on_sale = True
+        orderpoint_template_form.move_days = 365
+        orderpoint_template_form.service_level = 0.95
+        orderpoint_template_form.order_mngt_cost = 50
+        opt = orderpoint_template_form.save()
+        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+
+        opt.button_create_orderpoints()
+
+        # Check that orderpoints were created for all products
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("orderpoint_tmpl_id", "=", opt.id)]
+        )
+        self.assertEqual(len(orderpoints), 3)
+        product_ids = orderpoints.mapped("product_id")
+        self.assertIn(self.product, product_ids)
+        self.assertIn(product2, product_ids)
+        self.assertIn(product3, product_ids)

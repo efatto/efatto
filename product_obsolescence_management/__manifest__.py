@@ -12,8 +12,7 @@
         "product_status",
         "purchase_stock",
     ],
-    "summary": "Add crm lead for products, with reflex on stock "
-    "warehouse orderpoint through Stock orderpoint generator sale module.",
+    "summary": "Simple module to manage product obsolescence and replacement.",
     "data": [
         "data/ir_cron.xml",
         "views/product_state.xml",

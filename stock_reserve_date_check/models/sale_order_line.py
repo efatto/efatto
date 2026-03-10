@@ -164,7 +164,10 @@ class SaleOrderLine(models.Model):
                             op_start_dt,
                             op_end_dt,
                         ) = operation.workcenter_id._get_first_available_slot(
-                            self.commitment_date or commitment_date,
+                            max(
+                                fields.Datetime.to_datetime(start_date),
+                                (self.commitment_date or commitment_date),
+                            ),
                             operation.time_cycle_manual,
                         )
                         op_start_date = op_start_dt.date()

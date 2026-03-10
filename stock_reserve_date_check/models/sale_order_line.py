@@ -1,7 +1,6 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
-from odoo.exceptions import UserError
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
@@ -27,6 +26,7 @@ class SaleOrderLine(models.Model):
         vertical = "─"
         available_info = []
         available_dates_info = ""
+        stock_available_date = False
         (
             domain_quant_loc,
             domain_move_in_loc,
@@ -51,21 +51,21 @@ class SaleOrderLine(models.Model):
             + domain_move_out_loc
         )
         # use stock move date as it is shown as scheduled date
-        for reserve_date in set(
-            [x.date() for x in [w.date or w.date for w in reserved_stock_moves]]
-            + [y.date() for y in [z.date or z.date for z in incoming_stock_moves]]
-            + [date_start]
-        ):
-            available_info.append(
-                {
-                    "info": "Stock move",
-                    "date": reserve_date,
-                    "qty": product_id.with_context(
-                        to_date=reserve_date
-                    ).virtual_available_at_date_move,
-                }
-            )
-        # FIXME when all dates has sufficient availability is ignored!
+        if reserved_stock_moves or incoming_stock_moves:
+            for reserve_date in set(
+                [x.date() for x in [w.date or w.date for w in reserved_stock_moves]]
+                + [y.date() for y in [z.date or z.date for z in incoming_stock_moves]]
+            ):
+                available_info.append(
+                    {
+                        "info": "Stock move",
+                        "date": reserve_date,
+                        "qty": product_id.with_context(
+                            to_date=reserve_date
+                        ).virtual_available_at_date_move,
+                    }
+                )
+        # FIXME when all dates have sufficient availability is ignored!
         # todo remove all availability with a previous availability with qty <
         #  requested qty, to prevent "steal" of goods from reserved moves
         #  get the available date later of the far available date with qty <
@@ -74,7 +74,7 @@ class SaleOrderLine(models.Model):
                 x["date"] for x in available_info if x["qty"] < qty
             ]
             if not farther_unreservable_dates:
-                # all dates have a sufficient qty
+                # all dates have sufficient qty
                 farther_unreservable_dates = [min([x["date"] for x in available_info])]
                 stock_available_date = farther_unreservable_dates[0]
             elif len(farther_unreservable_dates) == len(available_info):
@@ -90,12 +90,12 @@ class SaleOrderLine(models.Model):
                     ]
                     or [False]
                 )
-        else:
-            raise UserError(_("No available info found!"))
+        # else:
+        #     raise UserError(_("No available info found!"))
         if product_id.bom_ids:
             # fixme need to filter boms?
             option = stock_options["to_produce"]
-            bom_id = product_id.bom_ids[0]
+            bom_id = fields.first(product_id.bom_ids)
             avail_dates = []
             if stock_available_date:
                 # available in stock
@@ -154,7 +154,7 @@ class SaleOrderLine(models.Model):
                 elif bom_id.operation_ids:
                     produce_delay = (
                         sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0])
-                        / 1440
+                        / 1440  # 60 min * 24 hours = 1 day
                     )
                 # get current next available slot for this product in its workcenter
                 if bom_id.operation_ids:

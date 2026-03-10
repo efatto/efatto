@@ -17,7 +17,6 @@ class ProductTemplate(models.Model):
         compute="_compute_purchase_delay",
         inverse="_inverse_purchase_delay",
         store=True,
-        default=0.0,
         help="Lead time in days to purchase this product. "
         "Computed from delay of first seller.",
     )
@@ -26,7 +25,6 @@ class ProductTemplate(models.Model):
         compute="_compute_purchase_delay",
         inverse="_inverse_purchase_delay",
         store=True,
-        default=1.0,
         help="Purchase multiple quantity to purchase this product. "
         "Computed from multiple quantity of first seller.",
     )
@@ -34,21 +32,22 @@ class ProductTemplate(models.Model):
     @api.depends("seller_ids", "seller_ids.delay", "purchase_ok")
     def _compute_purchase_delay(self):
         for product_tmpl in self:
-            if (
-                product_tmpl.seller_ids.filtered(
-                    lambda s: not s.date_end or s.date_end >= fields.Date.today()
-                )
-                and product_tmpl.purchase_ok
+            purchase_delay = 0
+            purchase_multiple_qty = 1
+            if product_tmpl.seller_ids.filtered(
+                lambda s: not s.date_end or s.date_end >= fields.Date.today()
             ):
                 seller_id = fields.first(
                     product_tmpl.seller_ids.filtered(
                         lambda s: not s.date_end or s.date_end >= fields.Date.today()
                     )
                 )
-                product_tmpl.purchase_delay = seller_id.delay
-                product_tmpl.purchase_multiple_qty = seller_id.multiple_qty
-            else:
-                product_tmpl.purchase_delay = 0
+                if seller_id and seller_id.delay:
+                    purchase_delay = seller_id.delay
+                if seller_id and seller_id.multiple_qty:
+                    purchase_multiple_qty = seller_id.multiple_qty
+            product_tmpl.purchase_delay = purchase_delay
+            product_tmpl.purchase_multiple_qty = purchase_multiple_qty
 
     def _inverse_purchase_delay(self):
         for product_tmpl in self:
@@ -60,5 +59,7 @@ class ProductTemplate(models.Model):
                         lambda s: not s.date_end or s.date_end >= fields.Date.today()
                     )
                 )
-                seller_id.delay = product_tmpl.purchase_delay
-                seller_id.multiple_qty = product_tmpl.purchase_multiple_qty
+                if seller_id and product_tmpl.purchase_delay:
+                    seller_id.delay = product_tmpl.purchase_delay
+                if seller_id and product_tmpl.purchase_multiple_qty:
+                    seller_id.multiple_qty = product_tmpl.purchase_multiple_qty

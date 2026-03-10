@@ -80,7 +80,17 @@ class TestStockReserveDateCheck(TestProductionData):
         )
         self._create_sale_order_line(order1, self.product, 5)
         self.assertEqual(self.product.type, "product")
-        with self.assertRaises(UserError):
+        # available_date_str = (
+        #     fields.Date.today() + relativedelta(days=self.product.purchase_delay)
+        # ).strftime("%d/%m/%Y")
+        exception_msg = "Reservation of product.*is not possible for date.*"
+        # ) % (
+        #     self.product.default_code,
+        #     self.product.name,
+        #     fields.Date.today().strftime("%d/%m/%Y"),
+        #     available_date_str,
+        # )
+        with self.assertRaisesRegex(UserError, exception_msg):
             order1.with_user(self.test_user).action_confirm()
         self.assertEqual(order1.state, "draft")
 

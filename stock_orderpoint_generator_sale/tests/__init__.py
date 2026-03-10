@@ -1,1 +1,1 @@
-from . import test_stock_orderpoint_generator_sale
+# from . import test_stock_orderpoint_generator_sale

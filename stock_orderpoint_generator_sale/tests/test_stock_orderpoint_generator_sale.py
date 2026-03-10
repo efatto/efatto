@@ -67,7 +67,7 @@ class StockOrderpointGeneretorSale(SavepointCase):
         orderpoint_template_form.service_level = 0.97
         orderpoint_template_form.order_mngt_cost = 70
         opt = orderpoint_template_form.save()
-        opt.product_ctg_ids = [(6, 0, [self.product.categ_id.id])]
+        opt.write({"product_ctg_ids": [(6, 0, [self.product.categ_id.id])]})
         # launch scheduler, it will order 50 pc of product
         self.run_stock_procurement_scheduler()
         opt.refresh()

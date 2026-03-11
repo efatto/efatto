@@ -10,23 +10,27 @@ class ProductProduct(models.Model):
         help="Minimum stock quantity for the product to be stored in the warehouse.",
     )
     is_to_be_replaced = fields.Boolean(
-        compute="_compute_is_to_be_replaced", store=True, default=False
+        related="product_state_id.is_end_of_life",
+        store=True,
+        help="If the product is to be replaced. This flag is related to product state "
+        "`end of life` field.",
     )
     replacement_product_ids = fields.Many2many(
         comodel_name="product.product",
         relation="product_product_replacement_rel",
         column1="product_id",
         column2="replacement_product_id",
+        help="List of replacement products for the current product. "
+        "These products are used when the current product is marked as "
+        "`to be replaced`.",
     )
     replacement_product_available_date = fields.Date(
         compute="_compute_replacement_product_available_date",
         store=True,
+        help="First date when a purchase order for the replacement product is available"
+        ". This date is computed only when a product is `to be replaced` and has "
+        "at least one purchase order line in state `purchase` or `done`.",
     )
-
-    @api.depends("product_state_id.is_end_of_life")
-    def _compute_is_to_be_replaced(self):
-        for record in self:
-            record.is_to_be_replaced = record.product_state_id.is_end_of_life
 
     @api.depends("is_to_be_replaced", "replacement_product_ids.purchase_order_line_ids")
     def _compute_replacement_product_available_date(self):

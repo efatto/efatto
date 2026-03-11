@@ -1,1 +1,1 @@
-from . import test_product_obsolescence_management
+from . import test_product_status_replacement

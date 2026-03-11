@@ -40,7 +40,7 @@ class TestProductObsolescenceManagement(SingleTransactionCase):
             }
         )
         cls.cron_obsolesence_id = cls.env.ref(
-            "product_obsolescence_management.ir_cron_product_state"
+            "product_status_replacement.ir_cron_product_state"
         )
 
     def test_00_assign_product_state_create_min_qty(self):
@@ -55,7 +55,10 @@ class TestProductObsolescenceManagement(SingleTransactionCase):
             line.price_unit = 100
             line.name = self.product.name
         sale_order = order_form.save()
-        self.product.product_state_id.is_end_of_life = True
+        product_form = Form(self.product)
+        product_form.end_of_life_date = fields.Date.today() + relativedelta(days=-1)
+        product_form.save()
+        self.assertEqual(self.product.state, "endoflife")
         self.cron_obsolesence_id.method_direct_trigger()
         self.assertEqual(
             self.product.min_stock_qty,

@@ -2,18 +2,12 @@ from odoo import api, fields, models
 from odoo.fields import first
 
 
-class ProductProduct(models.Model):
-    _inherit = "product.product"
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
 
     min_stock_qty = fields.Float(
         store=True,
         help="Minimum stock quantity for the product to be stored in the warehouse.",
-    )
-    is_to_be_replaced = fields.Boolean(
-        related="product_state_id.is_end_of_life",
-        store=True,
-        help="If the product is to be replaced. This flag is related to product state "
-        "`end of life` field.",
     )
     replacement_product_ids = fields.Many2many(
         comodel_name="product.product",
@@ -32,18 +26,22 @@ class ProductProduct(models.Model):
         "at least one purchase order line in state `purchase` or `done`.",
     )
 
-    @api.depends("is_to_be_replaced", "replacement_product_ids.purchase_order_line_ids")
+    @api.depends("state", "replacement_product_ids.purchase_order_line_ids")
     def _compute_replacement_product_available_date(self):
-        for r in self:
-            purchase_lines = r.replacement_product_ids.purchase_order_line_ids.filtered(
+        for p in self:
+            purchase_lines = p.replacement_product_ids.purchase_order_line_ids.filtered(
                 lambda pol: pol.state in ["purchase", "done"]
             )
-            if r.is_to_be_replaced and purchase_lines:
-                r.replacement_product_available_date = first(
+            if p.state == "endoflife" and purchase_lines:
+                p.replacement_product_available_date = first(
                     purchase_lines
                 ).date_planned
             else:
-                r.replacement_product_available_date = False
+                p.replacement_product_available_date = False
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
     def update_product_state(self):
         orderpoint_obj = self.env["stock.warehouse.orderpoint"]
@@ -61,6 +59,7 @@ class ProductProduct(models.Model):
                 )
                 / 10
             )
+            # TODO from here on
             if (
                 not product.replacement_product_available_date
                 and product.replacement_product_ids
@@ -75,4 +74,5 @@ class ProductProduct(models.Model):
                     )
                 if orderpoints:
                     first(product.replacement_product_ids)
-                    # todo create op for the replacement product (using an existing method?)
+                    # todo create op for the replacement product
+                    #  (or using an existing method?)

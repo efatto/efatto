@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
     <record id="ir_cron_product_state" model="ir.cron">
-        <field name="name">Product obsolescence state</field>
+        <field name="name">Update product status replacement</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
@@ -9,7 +9,7 @@
         <field name="model_id" ref="product.model_product_product" />
         <field
       name="code"
-    >model.search([('is_to_be_replaced', '=', True)]).update_product_state()</field>
+    >model.search([('state', '=', 'endoflife')]).update_product_state()</field>
         <field name="doall" eval="False" />
     </record>
 </odoo>

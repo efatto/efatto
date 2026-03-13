@@ -76,5 +76,4 @@ class SaleOrder(models.Model):
                         )
                 if errors:
                     raise UserError(" ".join(errors))
-        super().action_confirm()
-        return True
+        return super().action_confirm()

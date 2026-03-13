@@ -425,7 +425,6 @@ class SaleOrder(models.Model):
             order.order_line.compute_dates()
 
     def action_confirm(self):
-        super().action_confirm()
-        for order in self:
-            order.order_line.compute_dates()
-        return True
+        res = super().action_confirm()
+        self.compute_dates()
+        return res

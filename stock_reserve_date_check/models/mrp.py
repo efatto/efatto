@@ -9,7 +9,8 @@ class MrpProduction(models.Model):
     def _check_commitment_date(self):
         # check that date_planned_start is greater than commitment_date
         if (
-            self.date_planned_start
+            self.state in ("draft", "confirmed")
+            and self.date_planned_start
             and self.commitment_date
             and self.commitment_date < self.date_planned_start
         ):

@@ -10,7 +10,7 @@
             <field name="refund_sequence" position="after">
                 <field
                     name="check_chronology"
-                    attrs="{'readonly': [('type', 'not in', ['sale', 'purchase'])]}"
+                    readonly="type not in ['sale', 'purchase']"
                 />
             </field>
         </field>
@@ -19,9 +19,9 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <field name="to_check" position="after">
+            <group name="accounting_info_group" position="inside">
                 <field name="bypass_duplicate_vendor_ref" />
-            </field>
+            </group>
         </field>
     </record>
 </odoo>

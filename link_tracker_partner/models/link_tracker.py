@@ -17,6 +17,8 @@ class LinkTracker(models.Model):
     campaign_partners_count = fields.Integer(
         compute="_compute_partner_ids",
         compute_sudo=True,
+        store=True,
+        index=True,
     )
     source_partner_ids = fields.Many2many(
         comodel_name="res.partner",
@@ -31,6 +33,8 @@ class LinkTracker(models.Model):
     source_partners_count = fields.Integer(
         compute="_compute_partner_ids",
         compute_sudo=True,
+        store=True,
+        index=True,
     )
     mailing_partner_ids = fields.Many2many(
         comodel_name="res.partner",
@@ -45,6 +49,8 @@ class LinkTracker(models.Model):
     mailing_partners_count = fields.Integer(
         compute="_compute_partner_ids",
         compute_sudo=True,
+        store=True,
+        index=True,
     )
 
     @api.depends("source_id", "campaign_id", "mass_mailing_id")
@@ -108,7 +114,7 @@ class LinkTracker(models.Model):
         self.ensure_one()
         action = {
             "name": _("Mailing Partners"),
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "res.partner",
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.mailing_partner_ids.ids)],
@@ -122,7 +128,7 @@ class LinkTracker(models.Model):
         self.ensure_one()
         action = {
             "name": _("Source Partners"),
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "res.partner",
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.source_partner_ids.ids)],
@@ -136,7 +142,7 @@ class LinkTracker(models.Model):
         self.ensure_one()
         action = {
             "name": _("Campaign Partners"),
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "res.partner",
             "type": "ir.actions.act_window",
             "domain": [("id", "in", self.campaign_partner_ids.ids)],

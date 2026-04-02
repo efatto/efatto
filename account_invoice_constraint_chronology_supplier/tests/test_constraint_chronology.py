@@ -5,7 +5,8 @@
 from datetime import datetime, timedelta
 
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
@@ -126,7 +127,7 @@ class TestAccountConstraintChronologySupplier(TransactionCase):
         self.account_journal_purchase.check_chronology = True
         self.assertTrue(self.account_journal_purchase.check_chronology)
         self.account_journal_purchase.type = "bank"
-        self.account_journal_purchase._onchange_type()
+        self.account_journal_purchase._onchange_type_for_alias()
         self.assertFalse(self.account_journal_purchase.check_chronology)
 
     def test_supplier_invoice_date(self):

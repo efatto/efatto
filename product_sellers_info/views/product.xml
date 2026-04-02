@@ -6,27 +6,19 @@
         <field name="inherit_id" ref="stock.view_template_property_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='operations']" position="inside">
-                <label
-                    for="custom_purchase_delay"
-                    attrs="{'invisible':[('type','=','service')]}"
-                />
-                <div attrs="{'invisible':[('type','=','service')]}">
+                <label for="custom_purchase_delay" invisible="type != 'consu'" />
+                <div invisible="type != 'consu'">
                     <field name="custom_purchase_delay" class="oe_inline" /> days
                 </div>
                 <label
                     for="purchase_delay"
-                    attrs="{'invisible':['|', ('type','=','service'), ('custom_purchase_delay', '!=', 0)]}"
+                    invisible="type != 'consu' or custom_purchase_delay != 0"
                 />
-                <div
-                    attrs="{'invisible':['|', ('type','=','service'), ('custom_purchase_delay', '!=', 0)]}"
-                >
+                <div invisible="type != 'consu' or custom_purchase_delay != 0">
                     <field name="purchase_delay" class="oe_inline" /> days
                 </div>
-                <label
-                    for="purchase_multiple_qty"
-                    attrs="{'invisible':[('type','=','service')]}"
-                />
-                <div attrs="{'invisible':[('type','=','service')]}">
+                <label for="purchase_multiple_qty" invisible="type != 'consu'" />
+                <div invisible="type != 'consu'">
                     <field name="purchase_multiple_qty" class="oe_inline" />
                 </div>
             </xpath>

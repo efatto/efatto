@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="calendar.calendar_event_rule_employee" model="ir.rule">
         <field name="domain_force">[('partner_ids','in',user.partner_id.id)]</field>
         <field eval="[(6, 0, [ref('base.group_user')])]" name="groups" />
@@ -11,5 +10,4 @@
         <field name="domain_force">[(1,'=',1)]</field>
         <field eval="[(4, ref('hr.group_hr_user'))]" name="groups" />
     </record>
-
 </odoo>

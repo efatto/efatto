@@ -16,7 +16,7 @@ def running(func):
             result = func(*args, **kwargs)
         else:
             logger.info(
-                "Server state != prod or migr, ignored %s function" % func.__name__
+                f"Server state != prod or migr, ignored {func.__name__} function"
             )
             result = False
         return result

@@ -7,7 +7,7 @@ class AccountMoveLine(models.Model):
     def _get_supplierinfo(self):
         super()._get_supplierinfo()
         supplierinfos = self.product_id.seller_ids.filtered(
-            lambda seller: seller.name == self.move_id.supplier_partner_id
+            lambda seller: seller.partner_id == self.move_id.supplier_partner_id
         )
         valid_supplierinfos = self.env["product.supplierinfo"]
         for supplierinfo in supplierinfos:

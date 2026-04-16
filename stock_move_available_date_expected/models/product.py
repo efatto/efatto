@@ -47,7 +47,7 @@ class ProductTemplate(models.Model):
             "type": "ir.actions.act_window",
             "name": "Stock reserved",
             "domain": domain,
-            "views": [(view.id, "tree"), (False, "pivot")],
+            "views": [(view.id, "list"), (False, "pivot")],
             "res_model": "stock.move",
             "context": {},
         }
@@ -84,7 +84,7 @@ class Product(models.Model):
             "type": "ir.actions.act_window",
             "name": "Stock reserved",
             "domain": domain,
-            "views": [(view.id, "tree"), (False, "pivot")],
+            "views": [(view.id, "list"), (False, "pivot")],
             "res_model": res_model,
             "context": {},
         }
@@ -107,7 +107,7 @@ class Product(models.Model):
             raise UserError(_("Invalid domain left operand %s") % field)
         if operator not in ("<", ">", "=", "!=", "<=", ">="):
             raise UserError(_("Invalid domain operator %s") % operator)
-        if not isinstance(value, (float, int)):
+        if not isinstance(value, float | int):
             raise UserError(_("Invalid domain right operand %s") % value)
 
         # TODO: Still optimization possible when searching virtual quantities
@@ -191,26 +191,26 @@ class Product(models.Model):
         ] + domain_move_out
         moves_in_res = {
             item["product_id"][0]: item["product_qty"]
-            for item in Move.read_group(
+            for item in Move._read_group(
                 domain_move_in_todo,
-                ["product_id", "product_qty"],
                 ["product_id"],
-                orderby="id",
+                ["product_qty:sum"],
+                order="id",
             )
         }
         moves_out_res = {
             item["product_id"][0]: item["product_qty"]
-            for item in Move.read_group(
+            for item in Move._read_group(
                 domain_move_out_todo,
-                ["product_id", "product_qty"],
                 ["product_id"],
-                orderby="id",
+                ["product_qty:sum"],
+                order="id",
             )
         }
         quants_res = {
             item["product_id"][0]: item["quantity"]
-            for item in Quant.read_group(
-                domain_quant, ["product_id", "quantity"], ["product_id"], orderby="id"
+            for item in Quant._read_group(
+                domain_quant, ["product_id"], ["quantity:sum"], order="id"
             )
         }
         if dates_in_the_past:
@@ -226,20 +226,20 @@ class Product(models.Model):
             ] + domain_move_out_done
             moves_in_res_past = {
                 item["product_id"][0]: item["product_qty"]
-                for item in Move.read_group(
+                for item in Move._read_group(
                     domain_move_in_done,
-                    ["product_id", "product_qty"],
                     ["product_id"],
-                    orderby="id",
+                    ["product_qty:sum"],
+                    order="id",
                 )
             }
             moves_out_res_past = {
                 item["product_id"][0]: item["product_qty"]
-                for item in Move.read_group(
+                for item in Move._read_group(
                     domain_move_out_done,
-                    ["product_id", "product_qty"],
                     ["product_id"],
-                    orderby="id",
+                    ["product_qty:sum"],
+                    order="id",
                 )
             }
 

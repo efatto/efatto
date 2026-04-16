@@ -7,88 +7,87 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <filter
-          string="Date expected from today"
-          name="date_from_today"
-          domain="[
+                    string="Date expected from today"
+                    name="date_from_today"
+                    domain="[
                     ('date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
-        />
+                />
             </xpath>
         </field>
     </record>
 
     <record id="view_stock_reserved_tree" model="ir.ui.view">
-        <field name="name">view.stock.move.tree</field>
+        <field name="name">view.stock.move.list</field>
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
-            <tree
-        decoration-muted="state == 'cancel'"
-        decoration-warning="qty_available_at_date_move&lt;0 and state not in ('done', 'cancel')"
-        create="false"
-        default_order="date"
-      >
+            <list
+                decoration-muted="state == 'cancel'"
+                decoration-warning="qty_available_at_date_move&lt;0 and state not in ('done', 'cancel')"
+                create="false"
+                default_order="date"
+            >
                 <field name="product_id" />
                 <field name="date" string="Date Expected" widget="date" />
                 <field name="move_origin" />
                 <button
-          name="open_incoming_move_origin"
-          string="Open income's origin"
-          type="object"
-          attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', '[OUT]')]}"
-          class="oe_stat_button"
-          icon="fa-sign-in"
-          groups="base.group_user"
-        />
+                    name="open_incoming_move_origin"
+                    string="Open income's origin"
+                    type="object"
+                    invisible="move_origin == '' or '[OUT]' in move_origin"
+                    class="oe_stat_button"
+                    icon="fa-sign-in"
+                    groups="base.group_user"
+                />
                 <button
-          name="open_outgoing_move_origin"
-          string="Open outgo's origin"
-          type="object"
-          attrs="{'invisible': ['|', ('move_origin', '=', ''), ('move_origin', 'ilike', '[IN]')]}"
-          class="oe_stat_button"
-          icon="fa-sign-out-alt"
-          groups="base.group_user"
-        />
+                    name="open_outgoing_move_origin"
+                    string="Open outgo's origin"
+                    type="object"
+                    invisible="move_origin == '' or '[IN]' in move_origin"
+                    class="oe_stat_button"
+                    icon="fa-sign-out-alt"
+                    groups="base.group_user"
+                />
                 <field name="qty_signed" string="Quantity" />
                 <field name="qty_available_at_date_move" />
                 <field name="qty_available" string="Qty by hand" />
                 <field name="reserve_origin" optional="hide" />
                 <field name="reserve_date" widget="date" optional="hide" />
-                <field name="reserved_availability" />
                 <button
-          name="remove_stock_move_reservation"
-          string="Remove reservation"
-          type="object"
-          icon="fa-unlock-alt"
-          attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done','confirmed'))]}"
-        />
+                    name="remove_stock_move_reservation"
+                    string="Remove reservation"
+                    type="object"
+                    icon="fa-unlock-alt"
+                    invisible="move_line_quantity != False or picking_code == 'incoming' or state in ('cancel', 'done', 'confirmed')"
+                />
                 <button
-          name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
-          type="action"
-          icon="fa-lock"
-          string="Manual Quants"
-          attrs="{'invisible':['|','|',('move_line_qty_done', '!=', False),('picking_code','=','incoming'),('state','in',('cancel','done'))]}"
-        />
+                    name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
+                    type="action"
+                    icon="fa-lock"
+                    string="Manual Quants"
+                    invisible="move_line_quantity != False or picking_code == 'incoming' or state in ('cancel', 'done')"
+                />
 
                 <field
-          name="purchase_ids"
-          widget="many2many_tags"
-          options="{'color_field': 'color'}"
-        />
+                    name="purchase_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
                 <field name="production_ids" widget="many2many_tags" />
                 <field
-          name="move_line_ids"
-          widget="many2many_tags"
-          string="Reservations"
-          invisible="1"
-        />
+                    name="move_line_ids"
+                    widget="many2many_tags"
+                    string="Reservations"
+                    invisible="1"
+                />
                 <field name="picking_code" invisible="1" />
-                <field name="move_line_qty_done" invisible="1" />
+                <field name="move_line_quantity" invisible="1" />
                 <field
-          name="product_uom"
-          invisible="1"
-          options="{'no_open': True, 'no_create': True}"
-          string="Unit of Measure"
-          groups="uom.group_uom"
-        />
+                    name="product_uom"
+                    invisible="1"
+                    options="{'no_open': True, 'no_create': True}"
+                    string="Unit of Measure"
+                    groups="uom.group_uom"
+                />
                 <field name="picking_id" invisible="1" />
                 <field name="sale_line_id" invisible="1" />
                 <field name="sale_partner_id" invisible="1" />
@@ -96,18 +95,18 @@
                 <field name="production_id" invisible="1" />
                 <field name="raw_material_production_id" invisible="1" />
                 <field
-          name="location_id"
-          groups="stock.group_stock_multi_locations"
-          invisible="1"
-        />
+                    name="location_id"
+                    groups="stock.group_stock_multi_locations"
+                    invisible="1"
+                />
                 <field
-          name="location_dest_id"
-          groups="stock.group_stock_multi_locations"
-          invisible="1"
-        />
+                    name="location_dest_id"
+                    groups="stock.group_stock_multi_locations"
+                    invisible="1"
+                />
                 <field name="state" />
                 <field name="create_date" groups="base.group_no_one" widget="date" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

@@ -190,27 +190,27 @@ class Product(models.Model):
             ("state", "in", ("waiting", "confirmed", "assigned", "partially_available"))
         ] + domain_move_out
         moves_in_res = {
-            item["product_id"][0]: item["product_qty"]
+            item[0].id: item[1]
             for item in Move._read_group(
-                domain_move_in_todo,
-                ["product_id"],
-                ["product_qty:sum"],
-                order="id",
+                domain=domain_move_in_todo,
+                groupby=["product_id"],
+                aggregates=["product_qty:sum"],
             )
         }
         moves_out_res = {
-            item["product_id"][0]: item["product_qty"]
+            item[0].id: item[1]
             for item in Move._read_group(
-                domain_move_out_todo,
-                ["product_id"],
-                ["product_qty:sum"],
-                order="id",
+                domain=domain_move_out_todo,
+                groupby=["product_id"],
+                aggregates=["product_qty:sum"],
             )
         }
         quants_res = {
-            item["product_id"][0]: item["quantity"]
+            item[0].id: item[1]
             for item in Quant._read_group(
-                domain_quant, ["product_id"], ["quantity:sum"], order="id"
+                domain=domain_quant,
+                groupby=["product_id"],
+                aggregates=["quantity:sum"],
             )
         }
         if dates_in_the_past:
@@ -225,21 +225,19 @@ class Product(models.Model):
                 ("date", ">", to_date),
             ] + domain_move_out_done
             moves_in_res_past = {
-                item["product_id"][0]: item["product_qty"]
+                item[0].id: item[1]
                 for item in Move._read_group(
-                    domain_move_in_done,
-                    ["product_id"],
-                    ["product_qty:sum"],
-                    order="id",
+                    domain=domain_move_in_done,
+                    groupby=["product_id"],
+                    aggregates=["product_qty:sum"],
                 )
             }
             moves_out_res_past = {
-                item["product_id"][0]: item["product_qty"]
+                item[0].id: item[1]
                 for item in Move._read_group(
-                    domain_move_out_done,
-                    ["product_id"],
-                    ["product_qty:sum"],
-                    order="id",
+                    domain=domain_move_out_done,
+                    groupby=["product_id"],
+                    aggregates=["product_qty:sum"],
                 )
             }
 

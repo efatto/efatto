@@ -4,9 +4,9 @@ from odoo import _, fields, models
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
-    "from_stock": _("FROM STOCK"),
-    "to_produce": _("TO PRODUCE"),
-    "to_purchase": _("TO PURCHASE"),
+    "from_stock": "FROM STOCK",
+    "to_produce": "TO PRODUCE",
+    "to_purchase": "TO PURCHASE",
 }
 
 
@@ -104,13 +104,13 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options["from_stock"]
                 available_text = _(
-                    "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                ) % (
-                    vertical * level,
-                    product_id.default_code,
-                    qty,
-                    option,
-                    available_date.strftime("%d/%m/%Y"),
+                    "%(level)s[BOM] [%(code)s] [QTY: %(qty)s] [%(option)s] "
+                    "plannable date %(p_date)s.\n",
+                    level=vertical * level,
+                    code=product_id.default_code,
+                    qty=qty,
+                    option=option,
+                    p_date=available_date.strftime("%d/%m/%Y"),
                 )
             else:
                 for bom_line in bom_id.bom_line_ids.sorted(
@@ -131,33 +131,35 @@ class SaleOrderLine(models.Model):
                 if avail_dates:
                     available_date = max(avail_dates)
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                    ) % (
-                        vertical * level,
-                        product_id.default_code,
-                        qty,
-                        option,
-                        available_date.strftime("%d/%m/%Y"),
+                        "%(level)s[BOM] [%(code)s] [QTY: %(qty)s] [%(option)s] "
+                        "plannable date %(p_date)s.\n",
+                        level=vertical * level,
+                        code=product_id.default_code,
+                        qty=qty,
+                        option=option,
+                        p_date=available_date.strftime("%d/%m/%Y"),
                     )
                 else:
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                    ) % (
-                        vertical * level,
-                        product_id.default_code,
-                        qty,
-                        option,
-                        "Not found",
+                        "%(level)s[BOM] [%(code)s] [QTY: %(qty)s] [%(option)s] "
+                        "plannable date %(p_date)s.\n",
+                        level=vertical * level,
+                        code=product_id.default_code,
+                        qty=qty,
+                        option=option,
+                        p_date="Not found",
                     )
             if available_date and not stock_available_date:
                 produce_delay = 0
-                if product_id.produce_delay:
-                    produce_delay = int(product_id.produce_delay)
+                if bom_id.produce_delay:
+                    produce_delay = bom_id.produce_delay
                 elif bom_id.operation_ids:
                     produce_delay = (
                         sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0])
                         / 1440  # 60 min * 24 hours = 1 day
                     )
+                if bom_id.days_to_prepare_mo:
+                    produce_delay += bom_id.days_to_prepare_mo
                 # get current next available slot for this product in its workcenter
                 if bom_id.operation_ids:
                     start_date = available_date
@@ -179,24 +181,24 @@ class SaleOrderLine(models.Model):
                             start_date = op_start_date
                     available_date = start_date
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                    ) % (
-                        vertical * level,
-                        product_id.default_code,
-                        qty,
-                        option,
-                        available_date.strftime("%d/%m/%Y"),
+                        "%(level)s[BOM] [%(code)s] [QTY: %(qty)s] [%(option)s] "
+                        "plannable date %(p_date)s.\n",
+                        level=vertical * level,
+                        code=product_id.default_code,
+                        qty=qty,
+                        option=option,
+                        p_date=available_date.strftime("%d/%m/%Y"),
                     )
                 elif produce_delay:
                     available_date += relativedelta(days=int(produce_delay))
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                    ) % (
-                        vertical * level,
-                        product_id.default_code,
-                        qty,
-                        option,
-                        available_date.strftime("%d/%m/%Y"),
+                        "%(level)s[BOM] [%(code)s] [QTY: %(qty)s] [%(option)s] "
+                        "plannable date %(p_date)s.\n",
+                        level=vertical * level,
+                        code=product_id.default_code,
+                        qty=qty,
+                        option=option,
+                        p_date=available_date.strftime("%d/%m/%Y"),
                     )
             if available_text and available_text not in available_dates_info:
                 available_dates_info += available_text
@@ -211,13 +213,13 @@ class SaleOrderLine(models.Model):
                 available_date = stock_available_date
                 option = stock_options["from_stock"]
                 available_text = _(
-                    "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                ) % (
-                    vertical * (level - 1) + child,
-                    product_id.default_code,
-                    qty,
-                    option,
-                    available_date.strftime("%d/%m/%Y"),
+                    "%(level)s[COMP] [%(code)s] [QTY: %(qty)s] [%(option)s] plannable "
+                    "date %(p_date)s.\n",
+                    level=vertical * (level - 1) + child,
+                    code=product_id.default_code,
+                    qty=qty,
+                    option=option,
+                    p_date=available_date.strftime("%d/%m/%Y"),
                 )
             else:
                 # Check if ordering the product the incoming date will be sooneer
@@ -232,13 +234,13 @@ class SaleOrderLine(models.Model):
                     available_date = stock_available_date
                     option = stock_options["from_stock"]
                 available_text = _(
-                    "%s[COMP] [%s] [QTY: %s] [%s] plannable date %s.\n"
-                ) % (
-                    vertical * (level - 1) + child,
-                    product_id.default_code,
-                    qty,
-                    option,
-                    available_date.strftime("%d/%m/%Y"),
+                    "%(level)s[COMP] [%(code)s] [QTY: %(qty)s] [%(option)s] plannable "
+                    "date %(p_date)s.\n",
+                    level=vertical * (level - 1) + child,
+                    code=product_id.default_code,
+                    qty=qty,
+                    option=option,
+                    p_date=available_date.strftime("%d/%m/%Y"),
                 )
 
             if available_text not in available_dates_info:

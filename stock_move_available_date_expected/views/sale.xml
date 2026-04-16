@@ -6,17 +6,17 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']"
-        position="after"
-      >
+                expr="//page/field[@name='order_line']/list/field[@name='product_uom_qty']"
+                position="after"
+            >
                 <button
-          name="open_view_stock_reserved"
-          type="object"
-          class="oe_stat_button"
-          icon="fa-arrows-v"
-          groups="base.group_user"
-          attrs="{'invisible': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
-        />
+                    name="open_view_stock_reserved"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-arrows-v"
+                    groups="base.group_user"
+                    invisible="state not in ['draft', 'sent', 'sale']"
+                />
             </xpath>
         </field>
     </record>

@@ -1,7 +1,7 @@
 # Copyright 2021 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import _, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -13,14 +13,16 @@ class SaleOrderLine(models.Model):
             if product.qty_available < self.product_uom_qty and product.bom_ids:
                 # if product is not available for requested qty and has bom, show
                 # components
-                product_ids = product.bom_ids[0].bom_line_ids.mapped("product_id").ids
+                product_ids = (
+                    fields.first(product.bom_ids).bom_line_ids.mapped("product_id").ids
+                )
                 domain = [("id", "in", product_ids)]
                 view = self.env.ref("product.product_product_tree_view")
                 return {
                     "type": "ir.actions.act_window",
                     "name": _("Reserved Stock: %s") % product.name,
                     "domain": domain,
-                    "views": [(view.id, "tree"), (False, "form")],
+                    "views": [(view.id, "list"), (False, "form")],
                     "res_model": "product.product",
                     "context": {},
                 }
@@ -41,7 +43,8 @@ class SaleOrderLine(models.Model):
                     "type": "ir.actions.act_window",
                     "name": _("Reserved Stock: %s") % product.name,
                     "domain": domain,
-                    "views": [(view.id, "tree"), (False, "pivot")],
+                    "views": [(view.id, "list"), (False, "pivot")],
                     "res_model": "stock.move",
                     "context": {},
                 }
+        return False

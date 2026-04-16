@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
             if order.enable_reserve_date_check:
                 errors = []
                 for line in order.order_line.filtered(
-                    lambda x: x.product_id and x.product_id.type == "product"
+                    lambda x: x.product_id and x.product_id.type == "consu"
                 ):
                     commitment_date = (
                         line.commitment_date
@@ -45,11 +45,11 @@ class SaleOrder(models.Model):
                         ]
                         dates_info_clean.reverse()
                         produce_delay = 0
-                        if line.product_id.produce_delay:
-                            produce_delay = int(line.product_id.produce_delay)
-                        elif line.product_id.bom_ids:
-                            bom_id = line.product_id.bom_ids[0]
-                            if bom_id.operation_ids:
+                        if line.product_id.bom_ids:
+                            bom_id = fields.first(line.product_id.bom_ids)
+                            if bom_id.produce_delay:
+                                produce_delay = bom_id.produce_delay
+                            elif bom_id.operation_ids:
                                 produce_delay = int(
                                     sum(
                                         bom_id.mapped("operation_ids.time_cycle_manual")
@@ -57,21 +57,23 @@ class SaleOrder(models.Model):
                                     )
                                     / 1440
                                 )
+                            if bom_id.days_to_prepare_mo:
+                                produce_delay += bom_id.days_to_prepare_mo
                         errors.append(
                             _(
-                                "Reservation of product [[%s] %s] is not possible "
-                                "for date %s!\nAvailable date: %s %s\n"
-                                "Exception availability info:\n%s"
-                            )
-                            % (
-                                line.product_id.default_code,
-                                line.product_id.name,
-                                commitment_date.strftime("%d/%m/%Y"),
-                                avail_date.strftime("%d/%m/%Y"),
-                                _("(Produce delay: %.0f days)") % produce_delay
-                                if produce_delay
-                                else "",
-                                "\n".join([x for x in dates_info_clean]),
+                                "Reservation of product [[%(code)s] %(name)s] is not "
+                                "possible for date %(c_date)s!\nAvailable date: "
+                                "%(a_date)s %(delay)s\n"
+                                "Exception availability info:\n%(info)s",
+                                code=line.product_id.default_code,
+                                name=line.product_id.name,
+                                c_date=commitment_date.strftime("%d/%m/%Y"),
+                                a_date=avail_date.strftime("%d/%m/%Y"),
+                                delay=_(
+                                    "(Produce delay: %(p_delay).0f days)",
+                                    p_delay=produce_delay if produce_delay else 0,
+                                ),
+                                info="\n".join([x for x in dates_info_clean]),
                             )
                         )
                 if errors:

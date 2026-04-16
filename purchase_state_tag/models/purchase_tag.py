@@ -15,7 +15,7 @@ class PurchaseOrderTag(models.Model):
     )
     color = fields.Integer()
     order_state = fields.Selection(selection="_get_order_state")
-    company_id = fields.Many2one("res.company", string="Company")
+    company_id = fields.Many2one("res.company")
 
     @api.constrains("color", "company_id")
     def _constrains_color_unique(self):

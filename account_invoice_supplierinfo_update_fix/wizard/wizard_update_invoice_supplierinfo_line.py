@@ -10,7 +10,7 @@ class WizardUpdateInvoiceSupplierinfoLine(models.TransientModel):
         # This work only when user manually set sequences. Anyway, if supplierinfo
         # exists, it is better to do not increment sequence.
         existing_supplierinfo = self.product_id.seller_ids.filtered(
-            lambda x: x.name == self.supplierinfo_id.name
+            lambda x, partner=self.supplierinfo_id.partner_id: x.partner_id == partner
         )
         if existing_supplierinfo:
             # use the same sequence value as esisting supplierinfo

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+stock.access_stock_production_lot_user,stock.production.lot user,stock.model_stock_production_lot,stock.group_stock_user,1,1,0,1
+mrp.access_stock_production_lot_user,stock.production.lot,stock.model_stock_production_lot,mrp.group_mrp_user,1,1,0,1
+access_stock_production_lot_admin,stock_production_lot_admin,stock.model_stock_production_lot,group_production_lot_manager,1,1,1,1

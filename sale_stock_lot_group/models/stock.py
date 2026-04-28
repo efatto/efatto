@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class ProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     @api.depends("name")
     def _compute_sale_order_ids(self):

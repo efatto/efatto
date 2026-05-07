@@ -410,7 +410,7 @@
             name="line_ids"
             eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'})]"
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'})]"
         />
         <field name="riba">True</field>
     </record>
@@ -427,7 +427,7 @@
             name="line_ids"
             eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 2, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'})]"
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'})]"
         />
         <field name="riba">True</field>
     </record>
@@ -447,7 +447,7 @@
             name="line_ids"
             eval="[
         (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 3, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'})]"
+        (0, 0, {'value': 'percent', 'value_amount': 50.0, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'})]"
         />
         <field name="riba">True</field>
     </record>
@@ -467,8 +467,8 @@
             name="line_ids"
             eval="[
         (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333334, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'})]"
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333334, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'})]"
         />
         <field name="riba">True</field>
     </record>
@@ -488,8 +488,8 @@
             name="line_ids"
             eval="[
         (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 2, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'}),
-        (0, 0, {'value': 'percent', 'value_amount': 33.333334, 'payment_days': 10, 'nb_days': 1, 'delay_type': 'months_after_end_of_month'})]"
+        (0, 0, {'value': 'percent', 'value_amount': 33.333333, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'}),
+        (0, 0, {'value': 'percent', 'value_amount': 33.333334, 'payment_days': 10, 'nb_days': 0, 'delay_type': 'months_after_end_of_month'})]"
         />
         <field name="riba">True</field>
     </record>

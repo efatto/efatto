@@ -14,6 +14,7 @@
         "l10n_it_edi_extension",
     ],
     "data": [
+        "data/payment_terms_delay_type_default.xml",
         "data/payment_data.xml",
     ],
     "installable": True,

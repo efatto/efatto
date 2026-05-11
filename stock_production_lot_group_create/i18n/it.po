@@ -1,15 +1,73 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# 	* stock_production_lot_group_create
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-26 14:19+0000\n"
-"PO-Revision-Date: 2024-04-26 14:19+0000\n"
+"POT-Creation-Date: 2026-05-11 13:32+0000\n"
+"PO-Revision-Date: 2026-05-11 13:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: stock_production_lot_group_create
+#: model:ir.model.fields,field_description:stock_production_lot_group_create.field_stock_production_lot__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
+
+#. module: stock_production_lot_group_create
+#: model:res.groups,name:stock_production_lot_group_create.group_production_lot_manager
+msgid "Can create Lots"
+msgstr "Può creare lotti"
+
+#. module: stock_production_lot_group_create
+#: model:ir.model.fields,field_description:stock_production_lot_group_create.field_stock_production_lot__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: stock_production_lot_group_create
+#: model:ir.model.fields,field_description:stock_production_lot_group_create.field_stock_production_lot__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_production_lot_group_create
+#: model:ir.model.fields,field_description:stock_production_lot_group_create.field_stock_production_lot____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: stock_production_lot_group_create
+#: model:ir.model,name:stock_production_lot_group_create.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lotto/Serie"
+
+#. module: stock_production_lot_group_create
+#: model:ir.model.fields,field_description:stock_production_lot_group_create.field_stock_production_lot__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: stock_production_lot_group_create
+#: code:addons/stock_production_lot_group_create/models/stock_production_lot.py:0
+#, python-format
+msgid ""
+"You are not allowed to create a lot or serial number manually.\n"
+"Please create it from a stock picking with an appropriate operation type."
+msgstr ""
+"Non sei autorizzato a creare manualmente un lotto o un numero seriale per i prodotti.\n"
+"Per favore crealo da un picking con un tipo di operazione che lo permetta."
+
+#. module: stock_production_lot_group_create
+#: code:addons/stock_production_lot_group_create/models/stock_production_lot.py:0
+#, python-format
+msgid ""
+"You are not allowed to create a lot or serial number with this operation "
+"type. To change this, go on the operation type and tick the box 'Create New "
+"Lots/Serial Numbers'."
+msgstr ""
+"Non sei autorizzato a creare un lotto o un numero seriale con questo tipo di "
+"operazione. Per cambiare questo, vai sull'operazione e seleziona la casella "
+"'Crea nuovi lotti/numeri seriali'."

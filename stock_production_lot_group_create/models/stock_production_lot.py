@@ -6,7 +6,7 @@ class StockProductionLot(models.Model):
     _inherit = "stock.production.lot"
 
     def _check_create(self):
-        super()._check_create()
+        res = super()._check_create()
         if self.env.user.has_group(
             "stock.group_stock_user"
         ) and not self.env.user.has_group(
@@ -30,3 +30,4 @@ class StockProductionLot(models.Model):
                         "tick the box 'Create New Lots/Serial Numbers'."
                     )
                 )
+        return res

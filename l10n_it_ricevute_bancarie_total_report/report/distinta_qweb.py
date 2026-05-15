@@ -3,15 +3,13 @@ from datetime import datetime
 from odoo import models
 
 
-class DistintaReportQweb(models.AbstractModel):
-    _inherit = "report.l10n_it_ricevute_bancarie.distinta_qweb"
+class SlipReportQweb(models.AbstractModel):
+    _inherit = "report.l10n_it_riba_oca.slip_qweb"
 
     def _get_report_values(self, docids, data=None):
         res = super()._get_report_values(docids=docids, data=data)
         res.update(
-            get_riba_group=self._get_riba_group(
-                self.env["riba.distinta"].browse(docids)
-            )
+            get_riba_group=self._get_riba_group(self.env["riba.slip"].browse(docids))
         )
         return res
 

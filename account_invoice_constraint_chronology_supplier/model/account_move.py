@@ -45,9 +45,10 @@ class AccountMove(models.Model):
                 if inv.invoice_date and inv.date and inv.invoice_date > inv.date:
                     raise UserError(
                         _(
-                            "Supplier invoice date %s cannot be later than "
+                            "Supplier invoice %s date %s cannot be later than "
                             "the date of registration %s!"
                             % (
+                                inv.name,
                                 inv.invoice_date.strftime("%d/%m/%Y"),
                                 inv.date.strftime("%d/%m/%Y"),
                             )
@@ -60,9 +61,13 @@ class AccountMove(models.Model):
                 if invoices:
                     raise UserError(
                         _(
-                            "Chronology Error. Post the invoice with an equal "
+                            "Chronology Error. Found invoices with a later date: "
+                            "{invoices}. Post the invoice with an equal "
                             "or greater date than {invoice_date}."
-                        ).format(invoice_date=invoices[0].date.strftime("%d/%m/%Y"))
+                        ).format(
+                            invoices=", ".join(invoices.mapped("name")),
+                            invoice_date=invoices[0].date.strftime("%d/%m/%Y"),
+                        )
                     )
         return res
 
@@ -101,7 +106,7 @@ class AccountMove(models.Model):
                 ):
                     raise UserError(
                         _(
-                            "Duplicated vendor reference detected. You probably encoded"
-                            " twice the same vendor bill/credit note."
-                        )
+                            "Duplicated vendor reference {} detected. You probably "
+                            "encoded twice the same vendor bill/credit note."
+                        ).format(invoice.ref)
                     )

@@ -1,12 +1,13 @@
 import logging
-_logger = logging.getLogger(__name__)
 
 from odoo import models
 
+_logger = logging.getLogger(__name__)
+
 
 class IrActionsServer(models.Model):
-    _inherit = ['ir.actions.server', "server.env.running"]
-    _name = 'ir.actions.server'
+    _inherit = ["ir.actions.server", "server.env.running"]
+    _name = "ir.actions.server"
 
     def run(self):
         # 1. Check if the server state is allowed to run crons.
@@ -26,4 +27,4 @@ class IrActionsServer(models.Model):
                 )
                 return False
 
-        return super(IrActionsServer, self).run()
+        return super().run()

@@ -3,6 +3,7 @@
 import functools
 import logging
 
+from odoo import fields, models
 from odoo.tools.config import config as system_base_config
 
 logger = logging.getLogger(__name__)
@@ -24,3 +25,26 @@ def running(func):
         return result
 
     return wrap
+
+
+class ServerEnvState(models.AbstractModel):
+    _name = "server.env.state"
+    _description = "Server Env State"
+
+    server_env_state = fields.Selection(
+        [
+            ("prod", "prod"),
+            ("migr", "migr"),
+            ("test", "test"),
+        ],
+        compute="_compute_server_env_state",
+    )
+    is_production_server = fields.Boolean(
+        compute="_compute_server_env_state",
+    )
+
+    def _compute_server_env_state(self):
+        for record in self:
+            server_env_state = system_base_config.get("running_env", "prod")
+            record.server_env_state = server_env_state
+            record.is_production_server = bool(server_env_state == "prod")

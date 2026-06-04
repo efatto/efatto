@@ -22,7 +22,9 @@ Server Env
 
 |badge1| |badge2| |badge3|
 
-This module add a decorator to block mail fetch and send on server when `running_env` is `!=` from `prod` or not configured.
+This module add a decorator to block method on server when `running_env` is `!=` from `prod` or not configured.
+
+In the same condition, it already blocks crons execution.
 
 **Table of contents**
 

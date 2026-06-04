@@ -1,15 +1,78 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# 	* server_env
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-26 14:41+0000\n"
-"PO-Revision-Date: 2024-04-26 14:41+0000\n"
+"POT-Creation-Date: 2026-06-04 17:04+0000\n"
+"PO-Revision-Date: 2026-06-04 17:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: server_env
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server__display_name
+#: model:ir.model.fields,field_description:server_env.field_server_env_state__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: server_env
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server__id
+#: model:ir.model.fields,field_description:server_env.field_server_env_state__id
+msgid "ID"
+msgstr ""
+
+#. module: server_env
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server__is_production_server
+#: model:ir.model.fields,field_description:server_env.field_ir_cron__is_production_server
+#: model:ir.model.fields,field_description:server_env.field_server_env_state__is_production_server
+msgid "Is Production Server"
+msgstr "È un server di produzione"
+
+#. module: server_env
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server____last_update
+#: model:ir.model.fields,field_description:server_env.field_server_env_state____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: server_env
+#: model:ir.model,name:server_env.model_ir_actions_server
+msgid "Server Action"
+msgstr "Azione server"
+
+#. module: server_env
+#: model:ir.model,name:server_env.model_server_env_state
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server__server_env_state
+#: model:ir.model.fields,field_description:server_env.field_ir_cron__server_env_state
+#: model:ir.model.fields,field_description:server_env.field_server_env_state__server_env_state
+msgid "Server Env State"
+msgstr "Stato di servizio del server"
+
+#. module: server_env
+#: model:ir.model.fields,field_description:server_env.field_ir_actions_server__smart_search
+#: model:ir.model.fields,field_description:server_env.field_server_env_state__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: server_env
+#: model:ir.model.fields.selection,name:server_env.selection__ir_actions_server__server_env_state__migr
+#: model:ir.model.fields.selection,name:server_env.selection__server_env_state__server_env_state__migr
+msgid "migr"
+msgstr ""
+
+#. module: server_env
+#: model:ir.model.fields.selection,name:server_env.selection__ir_actions_server__server_env_state__prod
+#: model:ir.model.fields.selection,name:server_env.selection__server_env_state__server_env_state__prod
+msgid "prod"
+msgstr ""
+
+#. module: server_env
+#: model:ir.model.fields.selection,name:server_env.selection__ir_actions_server__server_env_state__test
+#: model:ir.model.fields.selection,name:server_env.selection__server_env_state__server_env_state__test
+msgid "test"
+msgstr ""

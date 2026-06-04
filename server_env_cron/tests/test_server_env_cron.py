@@ -78,7 +78,9 @@ class TestServerEnvCron(SavepointCase):
             )
 
             # Should be executed
-            regular_action.with_context(active_id=test_partner.id).run()
+            regular_action.with_context(
+                active_id=test_partner.id, active_model="res.partner"
+            ).run()
             self.assertEqual(
                 test_partner.comment,
                 "Executed Regular",

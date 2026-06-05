@@ -8,6 +8,9 @@ from datetime import timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+# TODO modifica da fare: al pianificatore, impostando che vada indietro fino alla
+#  prima data possibile e poi in avanti, se non trova slot liberi.
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -308,15 +311,7 @@ class SaleOrderLine(models.Model):
             or self.order_id.commitment_date
             or self.order_id.date_order,
         )
-        produce_delay = 0
-        if self.product_id.produce_delay:
-            produce_delay = int(self.product_id.produce_delay)
-        elif self.product_id.bom_ids:
-            bom_id = self.product_id.bom_ids[0]
-            if bom_id.operation_ids:
-                produce_delay = int(
-                    sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0]) / 1440
-                )
+        _bom_id, produce_delay = self._get_produce_delay(self.product_id)
         raise UserError(
             _(
                 "This line is scheduled for: %s.\n"

@@ -20,6 +20,7 @@ class SaleOrder(models.Model):
                 for line in order.order_line.filtered(
                     lambda x: x.product_id and x.product_id.type == "product"
                 ):
+                    product_id = line.product_id
                     commitment_date = (
                         line.commitment_date
                         and line.commitment_date
@@ -29,7 +30,7 @@ class SaleOrder(models.Model):
                         and line.order_id.date_order
                     )
                     avail_date, avail_date_info = line.get_available_date(
-                        line.product_id,
+                        product_id,
                         line.product_uom_qty,
                         fields.Date.context_today(line),
                         commitment_date=commitment_date,
@@ -44,19 +45,7 @@ class SaleOrder(models.Model):
                             if commitment_date_str not in x and x != ""
                         ]
                         dates_info_clean.reverse()
-                        produce_delay = 0
-                        if line.product_id.produce_delay:
-                            produce_delay = int(line.product_id.produce_delay)
-                        elif line.product_id.bom_ids:
-                            bom_id = line.product_id.bom_ids[0]
-                            if bom_id.operation_ids:
-                                produce_delay = int(
-                                    sum(
-                                        bom_id.mapped("operation_ids.time_cycle_manual")
-                                        or [0]
-                                    )
-                                    / 1440
-                                )
+                        bom_id, produce_delay = line._get_produce_delay(product_id)
                         errors.append(
                             _(
                                 "Reservation of product [[%s] %s] is not possible "
@@ -64,8 +53,8 @@ class SaleOrder(models.Model):
                                 "Exception availability info:\n%s"
                             )
                             % (
-                                line.product_id.default_code,
-                                line.product_id.name,
+                                product_id.default_code,
+                                product_id.name,
                                 commitment_date.strftime("%d/%m/%Y"),
                                 avail_date.strftime("%d/%m/%Y"),
                                 _("(Produce delay: %.0f days)") % produce_delay

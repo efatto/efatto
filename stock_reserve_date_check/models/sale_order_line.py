@@ -1,6 +1,7 @@
 # Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
+from odoo.tools import float_round
 from odoo.tools.date_utils import relativedelta
 
 stock_options = {
@@ -12,6 +13,41 @@ stock_options = {
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
+
+    def _get_produce_delay(self, product_id, qty=0, bom_id=None):
+        # get produce delay from bom operation multiplied by qty
+        self.ensure_one()
+        if not bom_id:
+            found_bom_id = self.env["mrp.bom"]._bom_find(product=product_id)
+            if found_bom_id:
+                bom_id = found_bom_id
+            else:
+                bom_id = fields.first(product_id.bom_ids)
+        if not qty:
+            qty = self.product_uom_qty
+        produce_delay = 0
+        if bom_id.operation_ids:
+            produce_delay = sum(
+                [
+                    float_round(
+                        op.time_cycle_manual
+                        * 100
+                        / op.workcenter_id.time_efficiency
+                        * qty,
+                        precision_digits=0,
+                        rounding_method="UP",
+                    )
+                    + op.workcenter_id.time_start
+                    + op.workcenter_id.time_stop
+                    for op in bom_id.operation_ids
+                ]
+            ) / (
+                60 * 24  # 60 min * 24 hours = 1 day
+            )
+        elif product_id.produce_delay:
+            produce_delay = product_id.produce_delay
+        produce_delay = max(1, int(produce_delay))
+        return bom_id, produce_delay
 
     def get_available_date(  # noqa: C901
         self,
@@ -32,6 +68,11 @@ class SaleOrderLine(models.Model):
             domain_move_in_loc,
             domain_move_out_loc,
         ) = product_id._get_domain_locations()
+        bom_id = False
+        if hasattr(self, "bom_id") and self.bom_id:
+            bom_id = self.bom_id
+        bom_id, produce_delay = self._get_produce_delay(product_id, qty, bom_id)
+        # FIXME: products with mto route in route_ids are never available from stock!
         incoming_stock_moves = self.env["stock.move"].search(
             [
                 ("product_id", "=", product_id.id),
@@ -90,14 +131,10 @@ class SaleOrderLine(models.Model):
                     ]
                     or [False]
                 )
-        if product_id.bom_ids:
+        if bom_id:
             # if there is a specific bom selected, use it, else the first one
             # todo move to a overridable method to extend with other logics
             option = stock_options["to_produce"]
-            if hasattr(self, "bom_id") and self.bom_id:
-                bom_id = self.bom_id
-            else:
-                bom_id = fields.first(product_id.bom_ids)
             avail_dates = []
             if stock_available_date:
                 # available in stock
@@ -150,14 +187,6 @@ class SaleOrderLine(models.Model):
                         "Not found",
                     )
             if available_date and not stock_available_date:
-                produce_delay = 0
-                if product_id.produce_delay:
-                    produce_delay = int(product_id.produce_delay)
-                elif bom_id.operation_ids:
-                    produce_delay = (
-                        sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0])
-                        / 1440  # 60 min * 24 hours = 1 day
-                    )
                 # get current next available slot for this product in its workcenter
                 if bom_id.operation_ids:
                     start_date = available_date
@@ -172,30 +201,36 @@ class SaleOrderLine(models.Model):
                             # todo + relativedelta(-giorni di produzione totali? e come
                             #  aggiungere i tempi di lavorazione/ricezione dei figli?),
                             # ),
-                            operation.time_cycle_manual,
+                            operation.time_cycle_manual * qty,
                         )
                         op_start_date = op_start_dt.date()
                         if op_start_date > start_date:
                             start_date = op_start_date
                     available_date = start_date
+                    available_date += relativedelta(days=produce_delay)
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
+                        "%s[BOM] [%s] [QTY: %s] [%s] plannable start manufacturing "
+                        "date %s, end manufacturing date %s.\n"
                     ) % (
                         vertical * level,
                         product_id.default_code,
                         qty,
                         option,
+                        start_date.strftime("%d/%m/%Y"),
                         available_date.strftime("%d/%m/%Y"),
                     )
                 elif produce_delay:
-                    available_date += relativedelta(days=int(produce_delay))
+                    start_component_date = available_date
+                    available_date += relativedelta(days=produce_delay)
                     available_text = _(
-                        "%s[BOM] [%s] [QTY: %s] [%s] plannable date %s.\n"
+                        "%s[BOM] [%s] [QTY: %s] [%s] plannable start manufacturing "
+                        "date %s, end manufacturing date %s.\n"
                     ) % (
                         vertical * level,
                         product_id.default_code,
                         qty,
                         option,
+                        start_component_date.strftime("%d/%m/%Y"),
                         available_date.strftime("%d/%m/%Y"),
                     )
             if available_text and available_text not in available_dates_info:

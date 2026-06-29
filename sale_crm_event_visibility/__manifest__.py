@@ -3,7 +3,7 @@
 {
     "name": "Sale order event link",
     "summary": "Show event in sale order",
-    "version": "14.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/efatto/efatto",
     "author": "Sergio Corato",

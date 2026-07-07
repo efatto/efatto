@@ -29,7 +29,7 @@ class ProductTemplate(models.Model):
         "Computed from multiple quantity of first seller.",
     )
 
-    @api.depends("seller_ids", "seller_ids.delay", "purchase_ok")
+    @api.depends("seller_ids", "seller_ids.delay", "seller_ids.sequence", "purchase_ok")
     def _compute_purchase_delay(self):
         for product_tmpl in self:
             purchase_delay = 0

@@ -29,37 +29,36 @@ class ProductTemplate(models.Model):
         "Computed from multiple quantity of first seller.",
     )
 
-    @api.depends("seller_ids", "seller_ids.delay", "seller_ids.sequence", "purchase_ok")
+    def _get_first_seller(self):
+        sellers = self.seller_ids.filtered(
+            lambda s: not s.date_end or s.date_end >= fields.Date.context_today(self)
+        )
+        if sellers:
+            return sellers.sorted(key=lambda s: (s.sequence, -s.min_qty, s.price, s.id))[0]
+        return self.env["product.supplierinfo"]
+
+    @api.depends("seller_ids", "seller_ids.delay", "seller_ids.multiple_qty",
+                 "seller_ids.date_end", "seller_ids.sequence", "purchase_ok")
     def _compute_purchase_delay(self):
         for product_tmpl in self:
-            purchase_delay = 0
-            purchase_multiple_qty = 1
-            if product_tmpl.seller_ids.filtered(
-                lambda s: not s.date_end or s.date_end >= fields.Date.today()
-            ):
-                seller_id = fields.first(
-                    product_tmpl.seller_ids.filtered(
-                        lambda s: not s.date_end or s.date_end >= fields.Date.today()
-                    )
-                )
-                if seller_id and seller_id.delay:
-                    purchase_delay = seller_id.delay
-                if seller_id and seller_id.multiple_qty:
-                    purchase_multiple_qty = seller_id.multiple_qty
+            purchase_delay = 0.0
+            purchase_multiple_qty = 1.0
+            if product_tmpl.purchase_ok:
+                seller_id = self._get_first_seller()
+                if seller_id:
+                    if seller_id.delay:
+                        purchase_delay = seller_id.delay
+                    if seller_id.multiple_qty:
+                        purchase_multiple_qty = seller_id.multiple_qty
             product_tmpl.purchase_delay = purchase_delay
             product_tmpl.purchase_multiple_qty = purchase_multiple_qty
 
     def _inverse_purchase_delay(self):
         for product_tmpl in self:
-            if product_tmpl.seller_ids.filtered(
-                lambda s: not s.date_end or s.date_end >= fields.Date.today()
-            ):
-                seller_id = fields.first(
-                    product_tmpl.seller_ids.filtered(
-                        lambda s: not s.date_end or s.date_end >= fields.Date.today()
-                    )
-                )
-                if seller_id and product_tmpl.purchase_delay:
-                    seller_id.delay = product_tmpl.purchase_delay
-                if seller_id and product_tmpl.purchase_multiple_qty:
-                    seller_id.multiple_qty = product_tmpl.purchase_multiple_qty
+            if product_tmpl.purchase_ok:
+                seller_id = self._get_first_seller()
+                if seller_id:
+                    if product_tmpl.purchase_delay:
+                        seller_id.delay = product_tmpl.purchase_delay
+                    if product_tmpl.purchase_multiple_qty:
+                        seller_id.multiple_qty = product_tmpl.purchase_multiple_qty

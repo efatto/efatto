@@ -15,11 +15,11 @@ def running(func):
         if not system_base_config.get("running_env"):
             system_base_config["running_env"] = "test"
         server_running_state = system_base_config.get("running_env")
-        if server_running_state in ["prod", "migr"]:
+        if server_running_state == "prod":
             result = func(*args, **kwargs)
         else:
             logger.info(
-                "Server state != prod or migr, ignored %s function" % func.__name__
+                "Server state != prod, ignored %s function" % func.__name__
             )
             result = False
         return result

@@ -2,5 +2,5 @@ Questo modulo aggiunge un'opzione per calcolare i costi di spedizione sulla base
 
 L'opzione si attiva dal metodo di spedizione:
 
-.. image:: ../static/description/metodo.png
-    :alt: Metodo di spedizione
+.. image:: ../static/description/price_untaxed.png
+    :alt: Prezzi netti

@@ -36,8 +36,8 @@ Questo modulo aggiunge un'opzione per calcolare i costi di spedizione sulla base
 
 L'opzione si attiva dal metodo di spedizione:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/delivery_price_untaxed/static/description/metodo.png
-    :alt: Metodo di spedizione
+.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/delivery_price_untaxed/static/description/price_untaxed.png
+    :alt: Prezzi netti
 
 Bug Tracker
 ===========

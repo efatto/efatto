@@ -3,7 +3,7 @@
 {
     "name": "Sale notes on MRP",
     "summary": "Show info on manufacturing orders from sales order",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/efatto/efatto",
     "author": "Sergio Corato",
@@ -14,9 +14,13 @@
         "mrp_sale_info_link",
     ],
     "data": [
-        "data/calendar.xml",
         "views/sale_order.xml",
         "views/mrp_production.xml",
         "report/stock_report_deliveryslip.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "/mrp_sale_info_link_notes/static/src/scss/web_calendar.scss",
+        ],
+    },
 }

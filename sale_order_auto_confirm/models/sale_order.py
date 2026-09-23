@@ -1,11 +1,14 @@
 # Copyright 2013 Creativiquadrati snc
 # Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import logging
 from datetime import datetime
 
 from dateutil import rrule
 
 from odoo import api, exceptions, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -59,5 +62,6 @@ class SaleOrder(models.Model):
                 try:
                     order.action_confirm()
                 except (exceptions.UserError, exceptions.ValidationError):
+                    _logger.info(f"Unable to confirm order {order.name}")
                     pass
         return {}

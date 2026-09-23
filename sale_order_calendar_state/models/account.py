@@ -7,9 +7,9 @@ from odoo import models
 class AccountInvoice(models.Model):
     _inherit = "account.move"
 
-    def write(self, vals):
-        res = super().write(vals)
-        if "carrier_tracking_ref" in vals:
+    def write(self, values):
+        res = super().write(values)
+        if "carrier_tracking_ref" in values:
             sales = self.mapped("invoice_line_ids.sale_line_ids.order_id")
             if sales:
                 sales._compute_calendar_state()

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_order_tree" model="ir.ui.view">
         <field name="model">sale.order</field>
@@ -49,14 +49,8 @@
                 </group>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <label
-                    for="calendar_state"
-                    attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}"
-                />
-                <div
-                    class="oe_inline"
-                    attrs="{'invisible': [('state', 'in', ('draft','cancel'))]}"
-                >
+                <label for="calendar_state" invisible="state in ('draft', 'cancel')" />
+                <div class="oe_inline" invisible="state in ('draft', 'cancel')">
                     <field name="calendar_state" />
                     <button
                         name="update_forecast_state"
@@ -69,14 +63,14 @@
                         type="action"
                         string="Mark blocked"
                         class="oe_inline oe_link"
-                        attrs="{'invisible': ['|', ('state', '!=', 'sale'), ('is_blocked', '=', True)]}"
+                        invisible="(state != 'sale' or is_blocked)"
                     />
                     <button
                         name="button_mark_not_blocked"
                         type="object"
                         string="Mark not blocked"
                         class="oe_inline oe_link"
-                        attrs="{'invisible': [('is_blocked', '!=', True)]}"
+                        invisible="not is_blocked"
                     />
                 </div>
             </xpath>
@@ -144,7 +138,7 @@
                 <field name="color" />
                 <field name="note" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div
                             t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}"
                         >
@@ -200,22 +194,22 @@
                 <filter
                     name="custom_production_to_produce"
                     string="Custom To Produce"
-                    domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                    domain="[('calendar_state', 'in', ('to_produce', 'production_ready')), ('custom_production_qty', '&gt;', 0), ('production_id', '!=', False)]"
                 />
                 <filter
                     name="custom_production_started"
                     string="Custom In Production"
-                    domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                    domain="[('calendar_state', '=', 'production_started'), ('custom_production_qty', '&gt;', 0), ('production_id', '!=', False)]"
                 />
                 <filter
                     name="custom_production_done"
                     string="Custom Production Done"
-                    domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                    domain="[('calendar_state', '=', 'production_done'), ('custom_production_qty', '&gt;', 0), ('production_id', '!=', False)]"
                 />
                 <filter
                     name="custom_production_all"
                     string="Custom Production All"
-                    domain="[('custom_production_qty', '>', 0), ('production_id', '!=', False)]"
+                    domain="[('custom_production_qty', '&gt;', 0), ('production_id', '!=', False)]"
                 />
                 <separator />
                 <filter

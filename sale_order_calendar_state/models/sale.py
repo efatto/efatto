@@ -171,17 +171,17 @@ class SaleOrder(models.Model):
         if self.env.context.get("default_calendar_state", False):
             result = []
             for order in self:
-                name = "%s %s" % (order.partner_id.name, order.name)
+                name = f"{order.partner_id.name} {order.name}"
                 if order.production_id:
-                    name += " %s" % order.production_id.name
+                    name += f" {order.production_id.name}"
                 if order.custom_production_qty_calendar:
-                    name += " %s" % order.custom_production_qty_calendar
+                    name += f" {order.custom_production_qty_calendar}"
                 if order.production_notes_calendar:
-                    name += " %s" % order.production_notes_calendar
+                    name += f" {order.production_notes_calendar}"
                 if order.blocked_note_calendar:
-                    name += " %s" % order.blocked_note_calendar
+                    name += f" {order.blocked_note_calendar}"
                 if order.is_prototype_calendar:
-                    name += " %s" % order.is_prototype_calendar
+                    name += f" {order.is_prototype_calendar}"
                 result.append((order.id, name))
         else:
             result = super().name_get()
@@ -221,12 +221,12 @@ class SaleOrder(models.Model):
         # order.
         for order in self:
             if any(
-                x.product_id.bom_ids.filtered(
-                    lambda bom: bom.type == "phantom"
+                ol.product_id.bom_ids.filtered(
+                    lambda bom, sol=ol: bom.type == "phantom"
                     and self.env.ref("mrp.route_warehouse0_manufacture")
-                    in x.product_id.route_ids
+                    in sol.product_id.route_ids
                 )
-                for x in order.order_line
+                for ol in order.order_line
             ):
                 order.has_kit = True
             else:
@@ -246,7 +246,7 @@ class SaleOrder(models.Model):
                     ]
                 )
                 order.custom_production_qty_calendar = (
-                    "Q.tà produzione Custom: %s" % order.custom_production_qty
+                    f"Q.tà produzione Custom: {order.custom_production_qty}"
                 )
             else:
                 order.custom_production_qty = 0
@@ -385,15 +385,17 @@ class SaleOrder(models.Model):
             elif all([x.state == "done" for x in picking_ids]):
                 # REMOVED ON CUSTOMER REQUEST
                 # delivery_notes = picking_ids.mapped("delivery_note_id")
-                # if delivery_notes and any([x.state != "done" for x in delivery_notes]):
+                # if delivery_notes and any(
+                #   [x.state != "done" for x in delivery_notes]
+                # ):
                 #     calendar_state = WAITING_FOR_PACKING
                 # else:
                 calendar_state = DONE_DELIVERY
-            elif all(x.is_assigned for x in picking_ids):
+            elif all(x.is_printed_for_logistics for x in picking_ids):
                 calendar_state = WAITING_FOR_PACKING
             elif all(
                 move.state in ["cancel", "done", "assigned"]
-                for move in picking_ids.mapped("move_lines")
+                for move in picking_ids.mapped("move_ids")
             ):
                 if all([x.carrier_tracking_ref for x in picking_ids]):
                     calendar_state = DELIVERY_READY
@@ -406,7 +408,7 @@ class SaleOrder(models.Model):
             elif any(
                 [
                     move.state in ["confirmed", "waiting", "partially_available"]
-                    for move in picking_ids.mapped("move_lines")
+                    for move in picking_ids.mapped("move_ids")
                 ]
             ):
                 calendar_state = MISSING_COMPONENTS_BUY
@@ -472,12 +474,12 @@ class SaleOrder(models.Model):
                         lambda x: x.state != "cancel"
                     ).mapped("state") != ["assigned"]:
                         datetime_planned = fields.Datetime.now() + relativedelta(
-                            days=int(mrp_production.product_id.produce_delay)
+                            days=int(mrp_production.bom_id.produce_delay)
                         )
                         calendar_states.append(
                             (MISSING_COMPONENTS_PRODUCE, datetime_planned)
                         )
-                    elif mrp_production.date_planned_start >= fields.Datetime.now():
+                    elif mrp_production.date_start >= fields.Datetime.now():
                         calendar_states.append(
                             (PRODUCTION_PLANNED, fields.Datetime.now())
                         )
@@ -504,7 +506,7 @@ class SaleOrder(models.Model):
                 [
                     ol.qty_delivered == ol.qty_invoiced == ol.product_uom_qty
                     for ol in self.order_line
-                    if ol.product_id and ol.product_id.type in ["product", "consu"]
+                    if ol.product_id and ol.product_id.type == "consu"
                 ]
             )
             or self.invoice_status == "invoiced"
@@ -516,7 +518,7 @@ class SaleOrder(models.Model):
             # if all([inv.carrier_tracking_ref for inv in self.invoice_ids]):
             #     calendar_states = [(SHIPPED, fields.Datetime.now())]
         if not (picking_ids or purchase_line_ids or mrp_production_ids):
-            # ignore this procurement as it is cancelled
+            # ignore this procurement as it is canceled
             return False
         if not calendar_states:
             calendar_states = [(TOPROCESS, fields.Datetime.now())]
@@ -525,9 +527,9 @@ class SaleOrder(models.Model):
     @api.depends(
         "order_line.qty_invoiced",
         "is_blocked",
-        "picking_ids.move_lines.state",
+        "picking_ids.move_ids.state",
         "picking_ids.state",
-        "picking_ids.is_assigned",
+        "picking_ids.is_printed_for_logistics",
         "picking_ids.delivery_note_id.state",
         "production_ids.additional_state",
         "production_ids.is_blocked",

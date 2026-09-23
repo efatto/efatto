@@ -6,7 +6,7 @@
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",
-    "version": "14.0.1.0.1",
+    "version": "18.0.1.0.0",
     "summary": "Add states to sale order based on manufacturing, deliveries and "
     "purchase, used in calendar view.",
     "depends": [
@@ -14,6 +14,8 @@
         "delivery",
         "l10n_it_delivery_note",
         "mrp_production_demo",
+        "mrp_sale_info",
+        "mrp_sale_info_link",
         "mrp_sale_info_link_notes",
         "partner_priority",
         "product_is_kit",
@@ -29,12 +31,18 @@
         "security/ir.model.access.csv",
         "data/cron.xml",
         "wizard/mark_blocked.xml",
-        "views/assets.xml",
         "views/orders_view.xml",
         "views/mrp_view.xml",
         "views/picking_view.xml",
         "views/sale_data.xml",
     ],
-    # "qweb": ["static/src/xml/web_calendar.xml"],
+    "assets": {
+        "web.report_assets_common": [
+            "/sale_order_calendar_state/static/src/css/calendar.scss",
+        ],
+        "web.assets_backend": [
+            "/sale_order_calendar_state/static/src/js/calendar_colors.js",
+        ],
+    },
     "installable": True,
 }

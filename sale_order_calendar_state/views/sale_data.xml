@@ -10,8 +10,10 @@
         <field name="lang">${object.partner_id.lang}</field>
         <field name="model_id" ref="sale.model_sale_order" />
         <field name="auto_delete" eval="True" />
-        <field name="report_template" ref="sale.action_report_saleorder" />
-        <field name="report_name">${(object.name or '').replace('/','_')}</field>
+        <field
+            name="report_template_ids"
+            eval="[(4, ref('sale.action_report_saleorder'))]"
+        />
         <field
             name="body_html"
         ><![CDATA[

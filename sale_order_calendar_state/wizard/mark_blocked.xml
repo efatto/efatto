@@ -12,11 +12,11 @@
                 </div>
                 <footer>
                     <button
-            class="btn-primary"
-            name="mark_blocked"
-            string="Confirm"
-            type="object"
-          />
+                        class="btn-primary"
+                        name="mark_blocked"
+                        string="Confirm"
+                        type="object"
+                    />
                     <button class="btn-secondary" special="cancel" string="Discard" />
                 </footer>
             </form>

@@ -26,7 +26,7 @@ class MrpProduction(models.Model):
         return res
 
     def button_mark_done(self):
-        res = super(MrpProduction, self).button_mark_done()
+        res = super().button_mark_done()
         for mo in self.filtered(lambda x: x.sale_id):
             mo.sale_id.update_forecast_state()
             mo.additional_state = False

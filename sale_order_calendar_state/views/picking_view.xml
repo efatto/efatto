@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <field name="origin" position="before">
+                <field
+                    name="date_ready_to_deliver"
+                    invisible="picking_type_code in ['incoming', 'internal', 'mrp_operation']"
+                />
+            </field>
+            <button name="button_validate" position="after">
+                <field name="is_printed_for_logistics" invisible="1" />
+                <field name="custom_production_qty" invisible="1" />
+                <field name="has_kit" invisible="1" />
+                <button
+                    name="mark_printed_for_logistic"
+                    string="Mark printed for logistic"
+                    type="object"
+                    class="oe_highlight"
+                    groups="stock.group_stock_user"
+                    invisible="(((is_printed_for_logistics or state in ['draft', 'cancel']) or picking_type_code != 'outgoing') or (custom_production_qty &gt; 0 and not has_kit))"
+                />
+                <button
+                    name="unmark_printed_for_logistic"
+                    string="Unmark printed for logistic"
+                    type="object"
+                    groups="stock.group_stock_user"
+                    invisible="(((not is_printed_for_logistics or state in ['draft', 'cancel']) or picking_type_code != 'outgoing') or (custom_production_qty &gt; 0 and not has_kit))"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="vpicktree" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="date_ready_to_deliver" />
+            </field>
+        </field>
+    </record>
+</odoo>

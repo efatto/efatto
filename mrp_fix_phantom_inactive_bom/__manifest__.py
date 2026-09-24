@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP fix phantom inactive bom",
-    "summary": "Override explode() methon in core MRP",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "MRP",
     "website": "https://github.com/efatto/efatto",
     "author": "Sergio Corato",
@@ -12,6 +11,7 @@
     "installable": True,
     "depends": [
         "mrp",
+        "mrp_production_demo",
     ],
     "data": [],
 }

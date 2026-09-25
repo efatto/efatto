@@ -22,5 +22,4 @@ class ProductProduct(models.Model):
                 + relativedelta(days=self.env.company.procurement_days),
                 time.max,
             ),
-            # self._context.get('to_date'),
         )

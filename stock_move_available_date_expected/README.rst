@@ -13,7 +13,7 @@ Stock move available date expected
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ Stock move available date expected
 
 |badge1| |badge2| |badge3|
 
-This module add a detailed view for stock move on product by date expected.
+This module add a detailed view for stock move on product by date
+expected.
 
 **Table of contents**
 
@@ -32,35 +33,40 @@ This module add a detailed view for stock move on product by date expected.
 Configuration
 =============
 
-È disponibile una vista dei movimenti di magazzino relativi al prodotto con dettagli, accessibile dal prodotto:
+È disponibile una vista dei movimenti di magazzino relativi al prodotto
+con dettagli, accessibile dal prodotto:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/bottone.png
-    :alt: Bottone
+|Bottone|
 
 o dalla riga dell'ordine di vendita
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/icona.png
-    :alt: Icona
+|Icona|
 
-Questa vista contiene dettagli sulla quantità prevista per la data impegno e permette l'accesso agli oggetti da cui è originato il movimento (SO, PO, MO come prodotto finito e come componente):
+Questa vista contiene dettagli sulla quantità prevista per la data
+impegno e permette l'accesso agli oggetti da cui è originato il
+movimento (SO, PO, MO come prodotto finito e come componente):
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/vista.png
-    :alt: Vista
+|Vista|
 
 Le prenotazioni (riserve) presenti sono visualizzate in questa colonna:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/prenotazione.png
-    :alt: Prenotazione
+|Prenotazione|
 
-È inoltre possibile togliere la riserva su un prodotto con un tasto che apre una procedura guidata (accessibile anche dai trasferimenti):
+È inoltre possibile togliere la riserva su un prodotto con un tasto che
+apre una procedura guidata (accessibile anche dai trasferimenti):
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/modifica_prenotazione.png
-    :alt: Modifica prenotazione
+|Modifica prenotazione|
 
 Ecco un esempio dettagliato dei movimenti di un prodotto:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/dettaglio_movimenti.png
-    :alt: Dettaglio movimenti
+|Dettaglio movimenti|
+
+.. |Bottone| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/bottone.png
+.. |Icona| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/icona.png
+.. |Vista| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/vista.png
+.. |Prenotazione| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/prenotazione.png
+.. |Modifica prenotazione| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/modifica_prenotazione.png
+.. |Dettaglio movimenti| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_move_available_date_expected/static/description/dettaglio_movimenti.png
 
 Bug Tracker
 ===========
@@ -76,17 +82,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/stock_move_available_date_expected>`_ project on GitHub.
 

@@ -13,7 +13,7 @@ CRM lead with existing partner
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ CRM lead with existing partner
 
 |badge1| |badge2| |badge3|
 
-This module add ability to filter crm lead by existing partner if not linked.
+This module add ability to filter crm lead by existing partner if not
+linked.
 
 **Table of contents**
 
@@ -32,17 +33,21 @@ This module add ability to filter crm lead by existing partner if not linked.
 Configuration
 =============
 
-Questo modulo aggiunge al lead del CRM un campo per filtrare quelli che sono senza partner ma la cui mail è già presente in un partner registrato.
+Questo modulo aggiunge al lead del CRM un campo per filtrare quelli che
+sono senza partner ma la cui mail è già presente in un partner
+registrato.
 
 Questo è il campo da usare per fare il filtro:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/crm_res_partner_exist/static/description/filtro.png
-    :alt: Filtro
+|Filtro|
 
-Nel lead la mail viene evidenziata nel caso sia presente nell'anagrafica dei partner ma questo non sia collegato a questo lead:
+Nel lead la mail viene evidenziata nel caso sia presente nell'anagrafica
+dei partner ma questo non sia collegato a questo lead:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/crm_res_partner_exist/static/description/email_evidenziata.png
-    :alt: Evidenziatura email
+|Evidenziatura email|
+
+.. |Filtro| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/crm_res_partner_exist/static/description/filtro.png
+.. |Evidenziatura email| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/crm_res_partner_exist/static/description/email_evidenziata.png
 
 Bug Tracker
 ===========
@@ -58,17 +63,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 .. |maintainer-sergiocorato| image:: https://github.com/sergiocorato.png?size=40px
     :target: https://github.com/sergiocorato

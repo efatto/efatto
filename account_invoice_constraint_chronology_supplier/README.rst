@@ -13,7 +13,7 @@ Account Invoice Constraint Chronology
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,14 +22,20 @@ Account Invoice Constraint Chronology
 
 |badge1| |badge2| |badge3|
 
-This module is a replacement of *account_invoice_constraint_chronology* to helps ensuring the chronology of customer and supplier invoice numbers, and excluding check on draft invoices.
+This module is a replacement of *account_invoice_constraint_chronology*
+to helps ensuring the chronology of customer and supplier invoice
+numbers, and excluding check on draft invoices.
 
 It prevents the validation of invoices when:
 
-* there are validated invoices with a later date in the same fiscal year
-* supplier invoice have a date (which generates account move) prior of date_invoice in the same fiscal year
+-  there are validated invoices with a later date in the same fiscal
+   year
+-  supplier invoice have a date (which generates account move) prior of
+   date_invoice in the same fiscal year
 
-It differs from the original module because it ignores draft invoices with a prior date, include vendor invoices and check only the invoices on the same fiscal year.
+It differs from the original module because it ignores draft invoices
+with a prior date, include vendor invoices and check only the invoices
+on the same fiscal year.
 
 **Table of contents**
 
@@ -50,22 +56,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Adrien Peiffer (`Acsone SA/NV <http://www.acsone.eu>`_)
-* Gilles Gilles <meyomesse.gilles@gmail.com>
-* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
-* Thomas Binsfeld <thomas.binsfeld@acsone.eu>
-* Sergio Corato <https://github.com/sergiocorato>
+-  Adrien Peiffer (`Acsone SA/NV <http://www.acsone.eu>`__)
+-  Gilles Gilles <meyomesse.gilles@gmail.com>
+-  Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+-  Thomas Binsfeld <thomas.binsfeld@acsone.eu>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/account_invoice_constraint_chronology_supplier>`_ project on GitHub.
 

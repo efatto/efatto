@@ -13,7 +13,7 @@ MRP fix phantom inactive bom
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,8 +32,9 @@ This module fix a bug in core mrp.bom find bom method.
 Configuration
 =============
 
-Questo modulo rimuove la duplicazione di righe di bom quando un prodotto disattivo è in una bom attiva.
-Normalmente la bom del prodotto disattivo non viene trovata.
+Questo modulo rimuove la duplicazione di righe di bom quando un prodotto
+disattivo è in una bom attiva. Normalmente la bom del prodotto disattivo
+non viene trovata.
 
 Bug Tracker
 ===========
@@ -49,17 +50,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/mrp_fix_phantom_inactive_bom>`_ project on GitHub.
 

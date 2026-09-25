@@ -13,7 +13,7 @@ Purchase Propagate Cancel Visibility
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ Purchase Propagate Cancel Visibility
 
 |badge1| |badge2| |badge3|
 
-This module change groups to `propagate_cancel` in purchase order form to set it visible to purchase manager, instead of only system manager.
+This module change groups to propagate_cancel in purchase order form to
+set it visible to purchase manager, instead of only system manager.
 
 **Table of contents**
 
@@ -33,7 +34,6 @@ Configuration
 =============
 
 Nothing todo.
-
 
 Bug Tracker
 ===========
@@ -49,17 +49,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/purchase_propagate_cancel_visibility>`_ project on GitHub.
 

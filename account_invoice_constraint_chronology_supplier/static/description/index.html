@@ -369,14 +369,20 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:c29a7fd7a5333409ec9364a812a4a5676d748210bfd4d42f7117a77809af9fce
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/efatto/efatto/tree/18.0/account_invoice_constraint_chronology_supplier"><img alt="efatto/efatto" src="https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github" /></a></p>
-<p>This module is a replacement of <em>account_invoice_constraint_chronology</em> to helps ensuring the chronology of customer and supplier invoice numbers, and excluding check on draft invoices.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/efatto/efatto/tree/18.0/account_invoice_constraint_chronology_supplier"><img alt="efatto/efatto" src="https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github" /></a></p>
+<p>This module is a replacement of <em>account_invoice_constraint_chronology</em>
+to helps ensuring the chronology of customer and supplier invoice
+numbers, and excluding check on draft invoices.</p>
 <p>It prevents the validation of invoices when:</p>
 <ul class="simple">
-<li>there are validated invoices with a later date in the same fiscal year</li>
-<li>supplier invoice have a date (which generates account move) prior of date_invoice in the same fiscal year</li>
+<li>there are validated invoices with a later date in the same fiscal
+year</li>
+<li>supplier invoice have a date (which generates account move) prior of
+date_invoice in the same fiscal year</li>
 </ul>
-<p>It differs from the original module because it ignores draft invoices with a prior date, include vendor invoices and check only the invoices on the same fiscal year.</p>
+<p>It differs from the original module because it ignores draft invoices
+with a prior date, include vendor invoices and check only the invoices
+on the same fiscal year.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">

@@ -13,7 +13,7 @@ Force DDT Number
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -24,9 +24,11 @@ Force DDT Number
 
 This module allows to force the ddt numbering.
 
-It add the ddt name field to ddt wizard creation. If user fills that field, the typed value will be used as ddt number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default ddt numbering for a specific ddt.
+It add the ddt name field to ddt wizard creation. If user fills that
+field, the typed value will be used as ddt number. Otherwise, the next
+sequence number will be retrieved and saved. So, the new field has to be
+used when user doesn't want to use the default ddt numbering for a
+specific ddt.
 
 **Table of contents**
 
@@ -52,17 +54,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/l10n_it_dn_force_number>`_ project on GitHub.
 

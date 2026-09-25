@@ -13,7 +13,7 @@ Module to configure sale
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -24,13 +24,11 @@ Module to configure sale
 
 This module configure some option in sale.
 
-Add the next groups to base user:
-* sale.group_discount_per_so_line
-* sale.group_delivery_invoice_address
-* sale.group_warning_sale
+Add the next groups to base user: \* sale.group_discount_per_so_line \*
+sale.group_delivery_invoice_address \* sale.group_warning_sale
 
-Also set tax calculation rouding method as 'globally' and enable group sale
-delivery address.
+Also set tax calculation rouding method as 'globally' and enable group
+sale delivery address.
 
 **Table of contents**
 
@@ -56,17 +54,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/config_sale>`_ project on GitHub.
 

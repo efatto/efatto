@@ -13,7 +13,7 @@ Sale order event link
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,15 +32,17 @@ This module add a related field to event in sale order.
 Configuration
 =============
 
-Questo modulo aggiunge una relazione all'evento collegato all'opportunità all'interno dell'ordine di vendita:
+Questo modulo aggiunge una relazione all'evento collegato
+all'opportunità all'interno dell'ordine di vendita:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_crm_event_visibility/static/description/evento.png
-    :alt: Evento
+|Evento|
 
 Si posso filtrare gli ordini di vendita con il nome dell'evento:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_crm_event_visibility/static/description/ricerca.png
-    :alt: Ricerca
+|Ricerca|
+
+.. |Evento| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_crm_event_visibility/static/description/evento.png
+.. |Ricerca| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_crm_event_visibility/static/description/ricerca.png
 
 Bug Tracker
 ===========
@@ -56,17 +58,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 .. |maintainer-sergiocorato| image:: https://github.com/sergiocorato.png?size=40px
     :target: https://github.com/sergiocorato

@@ -13,7 +13,7 @@ Account Invoice Supplierinfo Update Fix
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,10 +22,12 @@ Account Invoice Supplierinfo Update Fix
 
 |badge1| |badge2| |badge3|
 
-Questo modulo aggiunge due modifiche al modulo account_invoice_supplierinfo_update:
+Questo modulo aggiunge due modifiche al modulo
+account_invoice_supplierinfo_update:
 
-#. i nuovi fornitori sono creati di default in ultima posizione
-#. i fornitori esistenti sono verificati in base alla data di fine validità, basata sulla data della fattura.
+1. i nuovi fornitori sono creati di default in ultima posizione
+2. i fornitori esistenti sono verificati in base alla data di fine
+   validità, basata sulla data della fattura.
 
 **Table of contents**
 
@@ -46,17 +48,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/account_invoice_supplierinfo_update_fix>`_ project on GitHub.
 

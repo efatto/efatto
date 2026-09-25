@@ -13,7 +13,7 @@ Stock reserve date check
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,9 +22,12 @@ Stock reserve date check
 
 |badge1| |badge2| |badge3|
 
-Default behaviour of Odoo reservation mechanism is to reserve product and component on the date requested, even if this lead to missing stock for already reserved products.
+Default behaviour of Odoo reservation mechanism is to reserve product
+and component on the date requested, even if this lead to missing stock
+for already reserved products.
 
-This module add an option on sale, enabled by default, to forbid the reservation of product and component on dates not possible.
+This module add an option on sale, enabled by default, to forbid the
+reservation of product and component on dates not possible.
 
 **Table of contents**
 
@@ -34,30 +37,46 @@ This module add an option on sale, enabled by default, to forbid the reservation
 Configuration
 =============
 
-Nell'ordine di vendita è stata aggiunta un'opzione, disabilitata di default ma che l'utente può attivare, che blocca la vendita con date di impegno non possibili:
+Nell'ordine di vendita è stata aggiunta un'opzione, disabilitata di
+default ma che l'utente può attivare, che blocca la vendita con date di
+impegno non possibili:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/enable.png
-    :alt: Abilita
+|Abilita|
 
 Le date di impegno non possibili sono definite come:
 
-#. l'acquisto del prodotto (o dei suoi componenti) per la data richiesta non è possibile, in quanto i tempi di consegna sono più lunghi
-#. la quantità disponibile nelle date degli scarichi di magazzino già prenotati sono inferiori alla quantità richiesta
+1. l'acquisto del prodotto (o dei suoi componenti) per la data richiesta
+   non è possibile, in quanto i tempi di consegna sono più lunghi
+2. la quantità disponibile nelle date degli scarichi di magazzino già
+   prenotati sono inferiori alla quantità richiesta
 
-In caso il campo sia abilitato e l'impegno nella data richiesta non sia possibile, verrà mostrato un messaggio di errore, in cui sono indicati il prodotto o i suoi componenti, la data di possibile acquisto, le date di disponibilità non conformi:
+In caso il campo sia abilitato e l'impegno nella data richiesta non sia
+possibile, verrà mostrato un messaggio di errore, in cui sono indicati
+il prodotto o i suoi componenti, la data di possibile acquisto, le date
+di disponibilità non conformi:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/errore.png
-    :alt: Errore
+|Errore|
 
-Che può essere risolto spostando la data di impegno, oppure disabilitando il controllo.
+Che può essere risolto spostando la data di impegno, oppure
+disabilitando il controllo.
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/disable.png
-    :alt: Disabilita
+|Disabilita|
 
-N.B.: L'errore viene esposto per un singolo prodotto/componente, cambiando la data con una in cui tale prodotto è acquistabile o in magazzino, potrebbe essere esposto un errore per un altro prodotto/componente e così via a scalare. Per calcolare la prima data utile complessiva, è disponibile il bottone seguente (se installato il modulo https://github.com/sergiocorato/efatto/tree/14.0/sale_stock_mrp_produce_delay ):
+N.B.: L'errore viene esposto per un singolo prodotto/componente,
+cambiando la data con una in cui tale prodotto è acquistabile o in
+magazzino, potrebbe essere esposto un errore per un altro
+prodotto/componente e così via a scalare. Per calcolare la prima data
+utile complessiva, è disponibile il bottone seguente (se installato il
+modulo
+https://github.com/sergiocorato/efatto/tree/14.0/sale_stock_mrp_produce_delay
+):
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/calcola.png
-    :alt: Calcola
+|Calcola|
+
+.. |Abilita| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/enable.png
+.. |Errore| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/errore.png
+.. |Disabilita| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/disable.png
+.. |Calcola| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/stock_reserve_date_check/static/description/calcola.png
 
 Bug Tracker
 ===========
@@ -73,17 +92,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/stock_reserve_date_check>`_ project on GitHub.
 

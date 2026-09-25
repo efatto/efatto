@@ -13,7 +13,7 @@ Link tracker show partners
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ Link tracker show partners
 
 |badge1| |badge2| |badge3|
 
-This module add partner probably after a mass mailing or campaign or source to a link tracker.
+This module add partner probably after a mass mailing or campaign or
+source to a link tracker.
 
 **Table of contents**
 
@@ -32,13 +33,17 @@ This module add partner probably after a mass mailing or campaign or source to a
 Configuration
 =============
 
-Questo modulo aggiunge al tracciamento link la lista dei contatti creati, rilevati in maniera probabilistica.
+Questo modulo aggiunge al tracciamento link la lista dei contatti
+creati, rilevati in maniera probabilistica.
 
-Se il contatto è stato creato successivamente alla creazione del tracciamento (è stata inviata una mail da mass mailing, oppure il partner è collegato alla campagna o alla fonte) viene mostrato nel tracciamento:
+Se il contatto è stato creato successivamente alla creazione del
+tracciamento (è stata inviata una mail da mass mailing, oppure il
+partner è collegato alla campagna o alla fonte) viene mostrato nel
+tracciamento:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/link_tracker_partner/static/description/contatti.png
-    :alt: Contatti
+|Contatti|
 
+.. |Contatti| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/link_tracker_partner/static/description/contatti.png
 
 Bug Tracker
 ===========
@@ -54,17 +59,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 .. |maintainer-sergiocorato| image:: https://github.com/sergiocorato.png?size=40px
     :target: https://github.com/sergiocorato

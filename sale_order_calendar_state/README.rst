@@ -13,7 +13,7 @@ Sale calendar state
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ Sale calendar state
 
 |badge1| |badge2| |badge3|
 
-This module add a field in sale order to show state of production-delivery-invoice of products.
+This module add a field in sale order to show state of
+production-delivery-invoice of products.
 
 **Table of contents**
 
@@ -32,67 +33,78 @@ This module add a field in sale order to show state of production-delivery-invoi
 Configuration
 =============
 
-Nell'ordine di vendita è stato aggiunto un campo calcolato che mostra lo stato della lavorazione dell'ordine in merito alla sua consegnabilità, denominato `Stato di calendario`:
+Nell'ordine di vendita è stato aggiunto un campo calcolato che mostra lo
+stato della lavorazione dell'ordine in merito alla sua consegnabilità,
+denominato \`Stato di calendario\`:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/stato_di_calendario.png
-    :alt: Stato di calendario
+|Stato di calendario|
 
-Nell'ordine di produzione è possibile impostare uno stato aggiuntivo (in successivo sviluppo verrà calcolato in automatico):
+Nell'ordine di produzione è possibile impostare uno stato aggiuntivo (in
+successivo sviluppo verrà calcolato in automatico):
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/stato_aggiuntivo.png
-    :alt: Stato aggiuntivo
+|Stato aggiuntivo|
 
 tramite i vari bottoni:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_attesa_materiali.png
-    :alt: In attesa materiali
+|In attesa materiali|
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_assemblaggio.png
-    :alt: In assemblaggio
+|In assemblaggio|
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_assemblaggio_esterno.png
-    :alt: In assemblaggio esterno
+|In assemblaggio esterno|
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/da_collaudare.png
-    :alt: Da collaudare
+|Da collaudare|
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/cancella_stato_aggiuntivo.png
-    :alt: Cancella stato aggiuntivo
+|Cancella stato aggiuntivo|
 
-Lo stato di calendario, visto che possono esserci diverse situazioni che si avverano allo stesso tempo (es. la produzione è avviata ma mancano dei componenti, prevale la mancanza di componenti) viene assegnato in base alla seguente priorità in ordine decrescente:
+Lo stato di calendario, visto che possono esserci diverse situazioni che
+si avverano allo stesso tempo (es. la produzione è avviata ma mancano
+dei componenti, prevale la mancanza di componenti) viene assegnato in
+base alla seguente priorità in ordine decrescente:
 
-#. BLOCKED
-#. TOPROCESS
-#. PRODUCTION_NOT_EVALUATED
-#. TO_ASSEMBLY
-#. TO_SUBMANUFACTURE
-#. TO_TEST
-#. MISSING_COMPONENTS_PRODUCE
-#. PRODUCTION_PLANNED
-#. PRODUCTION_READY
-#. PRODUCTION_STARTED
-#. DONE
-#. NOT_EVALUATED
-#. MISSING_COMPONENTS_BUY
-#. PARTIALLYDELIVERED
-#. AVAILABLEREADY
-#. WAITING_FOR_PACKING
-#. DELIVERY_READY
-#. DONE_DELIVERY
-#. INVOICED
-#. SHIPPED
+1.  BLOCKED
+2.  TOPROCESS
+3.  PRODUCTION_NOT_EVALUATED
+4.  TO_ASSEMBLY
+5.  TO_SUBMANUFACTURE
+6.  TO_TEST
+7.  MISSING_COMPONENTS_PRODUCE
+8.  PRODUCTION_PLANNED
+9.  PRODUCTION_READY
+10. PRODUCTION_STARTED
+11. DONE
+12. NOT_EVALUATED
+13. MISSING_COMPONENTS_BUY
+14. PARTIALLYDELIVERED
+15. AVAILABLEREADY
+16. WAITING_FOR_PACKING
+17. DELIVERY_READY
+18. DONE_DELIVERY
+19. INVOICED
+20. SHIPPED
 
-Gli stati di calendario relativi alla produzione hanno una priorità più alta rispetto a quelli relativi ai trasferimenti, in quanto la produzione precede il trasferimento dei beni prodotti.
+Gli stati di calendario relativi alla produzione hanno una priorità più
+alta rispetto a quelli relativi ai trasferimenti, in quanto la
+produzione precede il trasferimento dei beni prodotti.
 
-La logica di assegnazione dello stato dà inoltre la priorità alla mancanza di materiali, in seguito se l'OUT è Stampato per logistica, mentre il fatto che tutti i prodotti siano riservati non influisce.
+La logica di assegnazione dello stato dà inoltre la priorità alla
+mancanza di materiali, in seguito se l'OUT è Stampato per logistica,
+mentre il fatto che tutti i prodotti siano riservati non influisce.
 
 L'opzione Stampato logistica è comandato da questi due bottoni:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/marca_stampato_logistica.png
-    :alt: Marca stampato logistica
+|Marca stampato logistica|
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/rimuovi_stampato_logistica.png
-    :alt: Rimuovi stampato logistica
+|Rimuovi stampato logistica|
+
+.. |Stato di calendario| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/stato_di_calendario.png
+.. |Stato aggiuntivo| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/stato_aggiuntivo.png
+.. |In attesa materiali| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_attesa_materiali.png
+.. |In assemblaggio| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_assemblaggio.png
+.. |In assemblaggio esterno| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/in_assemblaggio_esterno.png
+.. |Da collaudare| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/da_collaudare.png
+.. |Cancella stato aggiuntivo| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/cancella_stato_aggiuntivo.png
+.. |Marca stampato logistica| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/marca_stampato_logistica.png
+.. |Rimuovi stampato logistica| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_calendar_state/static/description/rimuovi_stampato_logistica.png
 
 Bug Tracker
 ===========
@@ -108,18 +120,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* 2013 Stefano Siccardi [initial]
-* Sergio Corato <https://github.com/sergiocorato>
+-  2013 Stefano Siccardi [initial]
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/sale_order_calendar_state>`_ project on GitHub.
 

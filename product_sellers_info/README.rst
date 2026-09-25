@@ -13,7 +13,7 @@ Product sellers info
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,11 +32,14 @@ This module add lead days for purchase.
 Configuration
 =============
 
-Con questo modulo è possibile configurare un tempo di attesa acquisto per calcoli di previsione in altri moduli.
-Se non viene impostato un valore, verrà calcolato in automatico dal tempo di attesa del primo fornitore nel tab acquisti.
+Con questo modulo è possibile configurare un tempo di attesa acquisto
+per calcoli di previsione in altri moduli. Se non viene impostato un
+valore, verrà calcolato in automatico dal tempo di attesa del primo
+fornitore nel tab acquisti.
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/product_sellers_info/static/description/tempo_attesa_acquisto.png
-    :alt: Giorni attesa acquisto
+|Giorni attesa acquisto|
+
+.. |Giorni attesa acquisto| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/product_sellers_info/static/description/tempo_attesa_acquisto.png
 
 Bug Tracker
 ===========
@@ -52,17 +55,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/product_sellers_info>`_ project on GitHub.
 

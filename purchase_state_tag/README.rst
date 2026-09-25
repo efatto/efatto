@@ -13,7 +13,7 @@ Purchase tag on state
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,17 +32,23 @@ This module add tag linked to state to purchase order.
 Configuration
 =============
 
-Nell'ordine di acquisto viene aggiunto un campo in cui selezionare delle etichette, filtrate per lo stato dell'ordine. Una volta creata, si può impostare il colore dell'etichetta.
+Nell'ordine di acquisto viene aggiunto un campo in cui selezionare delle
+etichette, filtrate per lo stato dell'ordine. Una volta creata, si può
+impostare il colore dell'etichetta.
 
-N.B.: È possibile impostare una sola etichetta per stato, il cui colore sarà usato nelle viste ad elenco in cui sono visualizzati gli ordini di acquisto, per aver chiaro lo stato dell'ordine.
+N.B.: È possibile impostare una sola etichetta per stato, il cui colore
+sarà usato nelle viste ad elenco in cui sono visualizzati gli ordini di
+acquisto, per aver chiaro lo stato dell'ordine.
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/purchase_state_tag/static/description/etichetta.png
-    :alt: Etichetta
+|Etichetta|
 
-Nella configurazione degli acquisti è disponibile una vista ad elenco delle etichette:
+Nella configurazione degli acquisti è disponibile una vista ad elenco
+delle etichette:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/purchase_state_tag/static/description/configurazione.png
-    :alt: Configurazione
+|Configurazione|
+
+.. |Etichetta| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/purchase_state_tag/static/description/etichetta.png
+.. |Configurazione| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/purchase_state_tag/static/description/configurazione.png
 
 Bug Tracker
 ===========
@@ -58,17 +64,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/purchase_state_tag>`_ project on GitHub.
 

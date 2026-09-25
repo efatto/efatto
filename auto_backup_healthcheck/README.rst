@@ -13,7 +13,7 @@ Auto backup healthcheck
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,7 +32,9 @@ This module add healthcheck ability to auto backup.
 Configuration
 =============
 
-È possibile far inviare un post verso un url a seguito di esito positivo del backup se configurato nei parametri la chiave: auto_backup_healthcheck.url con un url valido.
+È possibile far inviare un post verso un url a seguito di esito positivo
+del backup se configurato nei parametri la chiave:
+auto_backup_healthcheck.url con un url valido.
 
 Bug Tracker
 ===========
@@ -48,17 +50,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/auto_backup_healthcheck>`_ project on GitHub.
 

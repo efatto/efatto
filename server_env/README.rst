@@ -13,7 +13,7 @@ Server Env
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -22,7 +22,8 @@ Server Env
 
 |badge1| |badge2| |badge3|
 
-This module add a decorator to block method on server when `running_env` is `!=` from `prod` or not configured.
+This module add a decorator to block method on server when running_env
+is != from prod or not configured.
 
 In the same condition, it already blocks crons execution.
 
@@ -36,7 +37,7 @@ Usage
 
 Add to .odoorc file this parameter:
 
-.. code-block:: shell
+.. code:: shell
 
    running_env = [test|prod]
 
@@ -54,17 +55,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/server_env>`_ project on GitHub.
 

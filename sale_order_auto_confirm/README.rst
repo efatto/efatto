@@ -13,7 +13,7 @@ Sale order auto confirm
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
@@ -32,15 +32,17 @@ This module add a related field to event in sale order.
 Configuration
 =============
 
-Questo modulo aggiunge una relazione all'evento collegato all'opportunità all'interno dell'ordine di vendita:
+Questo modulo aggiunge una relazione all'evento collegato
+all'opportunità all'interno dell'ordine di vendita:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_auto_confirm/static/description/evento.png
-    :alt: Evento
+|Evento|
 
 Si posso filtrare gli ordini di vendita con il nome dell'evento:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_auto_confirm/static/description/ricerca.png
-    :alt: Ricerca
+|Ricerca|
+
+.. |Evento| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_auto_confirm/static/description/evento.png
+.. |Ricerca| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_order_auto_confirm/static/description/ricerca.png
 
 Bug Tracker
 ===========
@@ -56,17 +58,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/sale_order_auto_confirm>`_ project on GitHub.
 

@@ -2,14 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Product pricelist direct print with all langs",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "other",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "summary": "Print product pricelist with multiple langs at the same time",
     "license": "AGPL-3",
     "depends": [
-        "product_pricelist_direct_print",
+        "product_pricelist_direct_print_xlsx",
     ],
     "data": [
         "views/product_category.xml",

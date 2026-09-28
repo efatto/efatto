@@ -7,7 +7,7 @@ from odoo.osv import expression
 class ProductPricelistPrint(models.TransientModel):
     _inherit = "product.pricelist.print"
 
-    show_all_langs = fields.Boolean(string="Show All Langs")
+    show_all_langs = fields.Boolean()
     show_child_categ = fields.Boolean(string="Show Child Categories")
     show_stock_available = fields.Boolean(
         string="Technical field when show stock availability in pricelist report is "

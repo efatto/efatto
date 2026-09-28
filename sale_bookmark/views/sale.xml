@@ -6,9 +6,9 @@
         <field name="arch" type="xml">
             <field name="show_update_pricelist" position="after">
                 <field
-          name="bookmarked"
-          attrs="{'invisible': ['|', ('bookmarked', '=', False), ('bookmarked_manual', '=', True)]}"
-        />
+                    name="bookmarked"
+                    attrs="{'invisible': ['|', ('bookmarked', '=', False), ('bookmarked_manual', '=', True)]}"
+                />
                 <field name="bookmarked_manual" />
             </field>
         </field>

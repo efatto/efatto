@@ -19,34 +19,35 @@ class SupplierInfo(models.Model):
         store=True,
     )
 
-    @api.depends("name.purchase_line_ids", "name.purchase_line_ids.move_ids")
+    @api.depends(
+        "partner_id.purchase_line_ids", "partner_id.purchase_line_ids.move_ids"
+    )
     def _compute_overtime_purchase_delay(self):
         for seller in self:
             overtime_purchase_delay = 0
             overtime_move_ids = False
-            if seller.name.purchase_line_ids:
+            if seller.partner_id.purchase_line_ids:
                 date_order_days_delta = int(
                     self.env["ir.config_parameter"]
                     .sudo()
                     .get_param("purchase_stock.on_time_delivery_days", default="365")
                 )
-                order_lines = seller.name.purchase_line_ids.filtered(
-                    lambda l: l.date_order
-                    > fields.Datetime.today()
-                    - relativedelta(days=date_order_days_delta)
-                    and l.order_id.state in ["done", "purchase"]
+                order_lines = seller.partner_id.purchase_line_ids.filtered(
+                    lambda pl, s=seller, days=date_order_days_delta: pl.date_order
+                    > fields.Datetime.today() - relativedelta(days=days)
+                    and pl.order_id.state in ["done", "purchase"]
                     and (
-                        l.product_id == seller.product_id
-                        or l.product_id.product_tmpl_id == seller.product_tmpl_id
+                        pl.product_id == s.product_id
+                        or pl.product_id.product_tmpl_id == s.product_tmpl_id
                     )
                 )
                 if not order_lines:
                     continue
                 overtime_moves = order_lines.move_ids.filtered(
-                    lambda m: m.state == "done"
+                    lambda m, s=seller: m.state == "done"
                     and (
-                        m.product_id == seller.product_id
-                        or m.product_id.product_tmpl_id == seller.product_tmpl_id
+                        m.product_id == s.product_id
+                        or m.product_id.product_tmpl_id == s.product_tmpl_id
                     )
                     and m.date
                     > (m.purchase_line_id.date_planned + relativedelta(days=3))
@@ -71,7 +72,7 @@ class SupplierInfo(models.Model):
             "type": "ir.actions.act_window",
             "name": "Stock received overtime",
             "domain": domain,
-            "views": [(view.id, "tree"), (False, "pivot")],
+            "views": [(view.id, "list"), (False, "pivot")],
             "res_model": "stock.move",
             "context": {},
         }

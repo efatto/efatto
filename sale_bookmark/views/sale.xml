@@ -7,9 +7,12 @@
             <field name="show_update_pricelist" position="after">
                 <field
                     name="bookmarked"
-                    attrs="{'invisible': ['|', ('bookmarked', '=', False), ('bookmarked_manual', '=', True)]}"
+                    invisible="(not bookmarked or bookmarked_manual)"
                 />
-                <field name="bookmarked_manual" />
+                <field
+                    name="bookmarked_manual"
+                    readonly="state not in ['draft', 'sent']"
+                />
             </field>
         </field>
     </record>

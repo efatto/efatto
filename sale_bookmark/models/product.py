@@ -31,7 +31,7 @@ class ProductProduct(models.Model):
             raise UserError(_("Invalid domain left operand %s") % field)
         if operator not in ("<", ">", "=", "!=", "<=", ">="):
             raise UserError(_("Invalid domain operator %s") % operator)
-        if not isinstance(value, (float, int)):
+        if not isinstance(value, (float | int)):
             raise UserError(_("Invalid domain right operand %s") % value)
 
         # TODO: Still optimization possible when searching virtual quantities
@@ -59,24 +59,21 @@ class ProductProduct(models.Model):
         domain_sol = [
             ("product_id", "in", self.ids),
             ("order_id.bookmarked", "=", True),
-            ("state", "not in", ("cancel", "sale", "done")),
+            ("state", "not in", ("cancel", "sale")),
         ]
         SaleOrderLine = self.env["sale.order.line"]
         sol_res = {
-            item["product_id"][0]: item["product_uom_qty"]
-            for item in SaleOrderLine.read_group(
-                domain_sol,
-                ["product_id", "product_uom_qty"],
-                ["product_id"],
-                orderby="id",
+            item[0]: item[1]
+            for item in SaleOrderLine._read_group(
+                domain=domain_sol,
+                groupby=["product_id"],
+                aggregates=["product_uom_qty:sum"],
             )
         }
 
         for product in self.with_context(prefetch_fields=False):
-            product_id = product.id
-            rounding = product.uom_id.rounding
-            res[product_id]["bookmarked_qty"] = float_round(
-                sol_res.get(product_id, 0.0), precision_rounding=rounding
+            res[product.id]["bookmarked_qty"] = float_round(
+                sol_res.get(product, 0.0), precision_rounding=product.uom_id.rounding
             )
 
         return res
@@ -88,8 +85,8 @@ class ProductProduct(models.Model):
         "sale_order_line_ids.order_id.bookmarked",
     )
     def _compute_quantities(self):
-        super()._compute_quantities()
-        res = self._compute_bookmarked_quantities_dict(
+        res = super()._compute_quantities()
+        bookmarked_dict = self._compute_bookmarked_quantities_dict(
             self._context.get("lot_id"),
             self._context.get("owner_id"),
             self._context.get("package_id"),
@@ -97,10 +94,12 @@ class ProductProduct(models.Model):
             self._context.get("to_date"),
         )
         for product in self:
-            product.bookmarked_qty = res[product.id]["bookmarked_qty"]
-            product.virtual_available -= res[product.id]["bookmarked_qty"]
+            product.bookmarked_qty = bookmarked_dict[product.id]["bookmarked_qty"]
+            product.virtual_available -= bookmarked_dict[product.id]["bookmarked_qty"]
 
-    def _product_bookmarked_available(self, field_names=None, arg=False):
+        return res
+
+    def _product_bookmarked_available(self):
         """Compatibility method"""
         return self._compute_bookmarked_quantities_dict(
             self._context.get("lot_id"),
@@ -129,11 +128,13 @@ class ProductTemplate(models.Model):
         "product_variant_ids.sale_order_line_ids.order_id.bookmarked",
     )
     def _compute_quantities(self):
-        super()._compute_quantities()
-        res = self._compute_bookmarked_quantities_dict()
+        res = super()._compute_quantities()
+        bookmarked_dict = self._compute_bookmarked_quantities_dict()
         for template in self:
-            template.bookmarked_qty = res[template.id]["bookmarked_qty"]
-            template.virtual_available -= res[template.id]["bookmarked_qty"]
+            template.bookmarked_qty = bookmarked_dict[template.id]["bookmarked_qty"]
+            template.virtual_available -= bookmarked_dict[template.id]["bookmarked_qty"]
+
+        return res
 
     def _compute_bookmarked_quantities_dict(self):
         # TDE FIXME: why not using directly the function fields ?

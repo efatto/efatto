@@ -1,0 +1,533 @@
+# Copyright 2022 Sergio Corato <https://github.com/sergiocorato>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import math
+from datetime import datetime
+
+from scipy.stats import norm
+
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools.date_utils import relativedelta
+from odoo.tools.float_utils import float_round
+
+
+class Orderpoint(models.Model):
+    _inherit = "stock.warehouse.orderpoint"
+
+    orderpoint_tmpl_id = fields.Many2one(
+        "stock.warehouse.orderpoint.template",
+        ondelete="cascade",
+    )
+    is_draft = fields.Boolean(
+        help="To be enabled manually",
+    )
+
+
+class OrderpointTemplate(models.Model):
+    _inherit = "stock.warehouse.orderpoint.template"
+
+    compute_on_sale = fields.Boolean()
+    compute_on_out = fields.Boolean(
+        help="Compute On All Out or Consumed (excluded inventory)",
+    )
+    move_days = fields.Integer(
+        help="Used when not filled date from and to in maximum criteria"
+    )
+    service_level = fields.Float()
+    order_mngt_cost = fields.Float()
+    variation_percent = fields.Float(
+        help="Increment/decrement value of qty by this percent"
+    )
+    product_ctg_ids = fields.Many2many("product.category", string="Product Categories")
+    auto_max_qty_criteria = fields.Selection(selection_add=[("sum", "Sum")])
+    log_info = fields.Text()
+    orderpoint_count = fields.Integer(
+        "# Orderpoint", compute="_compute_orderpoint_count"
+    )
+    draft_orderpoint_count = fields.Integer(
+        "# Draft Orderpoint", compute="_compute_orderpoint_count"
+    )
+    is_new_orderpoint_draft = fields.Boolean(
+        string="New Orderpoints are in Draft",
+        default=True,
+        help="New orderpoints are not confirmed by default",
+    )
+
+    def create_orderpoints(self, products):
+        """
+        Override to create new orderpoints in draft optionally and set old ones
+        inactive
+        TODO check when unlink them
+        """
+        if self.is_new_orderpoint_draft:
+            # delete inactive instances in draft
+            orderpoints = (
+                self.env["stock.warehouse.orderpoint"]
+                .with_context(active_test=False)
+                .search(
+                    [
+                        ("orderpoint_tmpl_id", "=", self.id),
+                        ("active", "=", False),
+                        ("is_draft", "=", True),
+                    ]
+                )
+            )
+            orderpoints.unlink()
+            # create new istances to put in a new o2m
+            self.with_context(is_draft=True)._create_instances(products)
+        else:
+            self._disable_old_instances(products)
+            self._create_instances(products)
+
+    def button_confirm_orderpoints(self):
+        # disable orderpoints linked to products and re-enable the newly created
+        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("orderpoint_tmpl_id", "=", self.id),
+                ("is_draft", "=", False),
+            ]
+        )
+        products = orderpoints.mapped("product_id")
+        orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("product_id", "in", products.ids),
+            ]
+        )
+        (orderpoints | orderpoints_not_linked).write({"active": False})
+        self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("orderpoint_tmpl_id", "=", self.id),
+                ("is_draft", "=", True),
+                ("active", "=", False),
+            ]
+        ).write({"is_draft": False, "active": True})
+
+    def _compute_orderpoint_count(self):
+        for record in self:
+            record.orderpoint_count = self.env[
+                "stock.warehouse.orderpoint"
+            ].search_count(
+                [("orderpoint_tmpl_id", "=", record.id), ("is_draft", "=", False)]
+            )
+            record.draft_orderpoint_count = self.env[
+                "stock.warehouse.orderpoint"
+            ].search_count(
+                [
+                    ("orderpoint_tmpl_id", "=", record.id),
+                    ("is_draft", "=", True),
+                    ("active", "=", False),
+                ]
+            )
+
+    @api.onchange("compute_on_sale", "compute_on_out", "auto_max_qty_criteria")
+    def _onchange_compute_on(self):
+        # only "sum" option is possible when compute_on_* is set
+        # note: auto_max_qty_criteria is invisible in this case
+        if (
+            self.compute_on_sale or self.compute_on_out
+        ) and self.auto_max_qty_criteria != "sum":
+            self.auto_max_qty_criteria = "sum"
+
+    @api.onchange("compute_on_sale", "compute_on_out")
+    def onchange_compute_on_sale(self):
+        if self.compute_on_sale or self.compute_on_out:
+            self.auto_min_qty = self.auto_max_qty = True
+            self.auto_max_qty_criteria = "sum"
+        else:
+            self.auto_min_qty = self.auto_max_qty = False
+            self.auto_max_qty_criteria = False
+
+    @api.constrains(
+        "move_days", "auto_max_date_start", "auto_max_date_end", "auto_max_qty"
+    )
+    def check_move_days(self):
+        for template in self.filtered(lambda x: x.compute_on_sale or x.compute_on_out):
+            if (
+                not template.move_days
+                and not (template.auto_max_date_start or template.auto_max_date_end)
+                and template.auto_max_qty
+            ):
+                raise UserError(
+                    _(
+                        "Move days cannot be equal to 0 if Auto max qty is "
+                        "set and no min and max date are set!"
+                    )
+                )
+
+    @api.constrains("service_level")
+    def check_service_level(self):
+        for template in self.filtered(lambda x: x.compute_on_sale or x.compute_on_out):
+            if template.service_level > 1 or template.service_level <= 0.0:
+                raise UserError(_("Service level cannot be greater than 1 nor <= 0!"))
+
+    @api.model
+    def _get_criteria_methods(self):
+        res = super()._get_criteria_methods()
+        res.update(
+            {
+                "sum": sum,
+            }
+        )
+        return res
+
+    def _template_fields_to_discard(self):
+        """To create every orderpoint we should pop these template
+        customization fields"""
+        res = super()._template_fields_to_discard()
+        res += [
+            "move_days",
+            "service_level",
+            "order_mngt_cost",
+            "compute_on_sale",
+            "compute_on_out",
+            "log_info",
+            "variation_percent",
+            "product_ctg_ids",
+            "is_new_orderpoint_draft",
+        ]
+        return res
+
+    def button_create_orderpoints(self):
+        for template in self:
+            template._create_orderpoints()
+
+    def create_auto_orderpoints(self):
+        for template in self:
+            if template.auto_generate:
+                template._create_orderpoints()
+
+    def _create_orderpoints(self):
+        if not self.auto_last_generation or self.write_date > self.auto_last_generation:
+            self.auto_last_generation = fields.Datetime.now()
+            product_ids = self.auto_product_ids
+            if self.product_ctg_ids:
+                product_ids = self.env["product.product"].search(
+                    [
+                        (
+                            "categ_id",
+                            "child_of",
+                            self.product_ctg_ids.ids,
+                        ),
+                        ("orderpoint_generate_active", "=", True),
+                        ("state", "not in", ["end", "obsolete"]),
+                    ]
+                )
+            self.create_orderpoints(product_ids)
+
+    def _create_instances(self, product_ids):  # noqa C901
+        """Create instances of model using template inherited model and
+        compute autovalues if needed"""
+        orderpoint_model = self.env["stock.warehouse.orderpoint"]
+        for record in self:
+            record.log_info = ""
+            # Flag equality so we compute the values just once
+            if record.compute_on_sale or record.compute_on_out:
+                if record.auto_max_date_start and record.auto_max_date_end:
+                    auto_max_date_end = record.auto_max_date_end
+                    auto_max_date_start = record.auto_max_date_start
+                else:
+                    date_end = datetime.now()
+                    date_start = date_end + relativedelta(days=-record.move_days)
+                    auto_max_date_end = date_end
+                    auto_max_date_start = date_start
+                auto_min_date_end = auto_max_date_end
+                auto_min_date_start = auto_max_date_start
+            else:
+                auto_max_date_end = record.auto_max_date_end
+                auto_max_date_start = record.auto_max_date_start
+                auto_min_date_end = record.auto_min_date_end
+                auto_min_date_start = record.auto_min_date_start
+            auto_same_values = (
+                (auto_max_date_start == auto_min_date_start)
+                and (auto_max_date_end == auto_max_date_end)
+                and (record.auto_max_qty_criteria == record.auto_min_qty_criteria)
+            )
+            stock_max_qty = {}
+            if record.auto_min_qty:
+                stock_min_qty = self._get_product_qty_by_criteria(
+                    product_ids,
+                    location_id=record.location_id,
+                    from_date=auto_min_date_start,
+                    to_date=auto_min_date_end,
+                    criteria=record.auto_min_qty_criteria,
+                )
+                if auto_same_values:
+                    stock_max_qty = stock_min_qty
+            if record.auto_max_qty and not stock_max_qty:
+                if record.compute_on_sale or record.compute_on_out:
+                    stock_max_qty = self._get_product_qty_by_criteria_sale(
+                        product_ids,
+                        location_id=record.location_id,
+                        from_date=auto_max_date_start,
+                        to_date=auto_max_date_end,
+                        criteria=record.auto_max_qty_criteria,
+                        compute_on_sale=record.compute_on_sale,
+                    )
+                else:
+                    stock_max_qty = self._get_product_qty_by_criteria(
+                        product_ids,
+                        location_id=record.location_id,
+                        from_date=auto_max_date_start,
+                        to_date=auto_max_date_end,
+                        criteria=record.auto_max_qty_criteria,
+                    )
+            for data in record.copy_data():
+                for discard_field in self._template_fields_to_discard():
+                    data.pop(discard_field)
+                for product_id in product_ids:
+                    phantom_bom = self.env["mrp.bom"].search(
+                        [
+                            ("type", "=", "phantom"),
+                            "|",
+                            ("product_tmpl_id", "=", product_id.product_tmpl_id.id),
+                            ("product_id", "=", product_id.id),
+                        ]
+                    )
+                    if phantom_bom:
+                        record.log_info = "\n".join(
+                            [
+                                record.log_info,
+                                (
+                                    _(
+                                        "Product with phantom bom excluded: %(code)s",
+                                        code=product_id.default_code,
+                                    )
+                                ),
+                            ]
+                        )
+                        continue
+                    if not product_id.standard_price:
+                        record.log_info = "\n".join(
+                            [
+                                record.log_info,
+                                (
+                                    _(
+                                        "Missing price in product %(code)s!",
+                                        code=product_id.default_code,
+                                    )
+                                ),
+                            ]
+                        )
+                        continue
+                    vals = data.copy()
+                    vals["name"] = f"{vals['name']} - {product_id.default_code}"
+                    vals["product_id"] = product_id.id
+                    # function replicated from calc file
+                    move_days = record.move_days
+                    if (
+                        not move_days
+                        and record.auto_max_date_start
+                        and record.auto_max_date_end
+                    ):
+                        move_days = (
+                            record.auto_max_date_end - record.auto_max_date_start
+                        ).days
+                    max_qty = stock_max_qty[product_id.id]
+                    if not max_qty or max_qty < 1:
+                        continue
+                    qty_by_day = max_qty / (move_days or 1)
+                    purchase_time_delay_used = False
+                    purchase_overtime_delay_used = False
+                    purchase_time_delay = product_id._get_purchase_delay()
+                    purchase_overtime_delay = product_id._get_purchase_delay(
+                        overtime=True
+                    )
+                    # Max purchase delay if extra UE supplier is 180 days, else 90 days
+                    eu_country_group = self.env.ref("base.europe")
+                    seller_id = fields.first(product_id.seller_ids)
+                    purchase_delay_max = 180
+                    reorder_coeff = 4
+                    purchase_min_qty = 0
+                    if seller_id:
+                        country_id = seller_id.partner_id.country_id
+                        if country_id:
+                            country_group = fields.first(country_id.country_group_ids)
+                            if country_group and country_group == eu_country_group:
+                                purchase_delay_max = 90
+                            reorder_coeff = country_id.reorder_coeff or 4
+                        purchase_min_qty = seller_id.min_qty
+                    purchase_delay = max(purchase_overtime_delay, purchase_time_delay)
+                    if purchase_delay == purchase_overtime_delay:
+                        purchase_overtime_delay_used = True
+                    else:
+                        purchase_time_delay_used = True
+                    purchase_delay = min(purchase_delay, purchase_delay_max)
+                    produce_delay = product_id._get_produce_delay()
+                    total_delay = max(purchase_delay + produce_delay, 1)
+                    consumed_qty_by_lead_time = (
+                        qty_by_day * (1 + (record.variation_percent / 100.0))
+                    ) * total_delay
+                    service_factor = norm.ppf(record.service_level)
+                    lead_time_factor = total_delay ** (1 / 2)
+                    security_stock = int(
+                        math.ceil(qty_by_day * service_factor * lead_time_factor)
+                    )
+                    min_qty = math.ceil(consumed_qty_by_lead_time + security_stock)
+                    if min_qty >= 100:
+                        min_qty = float_round(
+                            value=min_qty,
+                            precision_digits=-1,
+                            rounding_method="UP",
+                        )
+                    # lot_to_reorder = ARROTONDA.ECCESSO.XCL(
+                    #   RADQ(
+                    #     2 * record.order_mngt_cost * qty_by_day * move_days
+                    #     / (0, 15 * product_id.standard_price)
+                    #   ); 1)
+                    lot_to_reorder = math.ceil(
+                        (
+                            2
+                            * record.order_mngt_cost
+                            * qty_by_day
+                            * move_days
+                            / (0.15 * product_id.standard_price)
+                        )
+                        ** (1 / 2)
+                    )
+                    lot_to_reorder = min(lot_to_reorder, max_qty)
+                    # Set EOQ with these criteria:
+                    # coeff EOQ = MAXQTY / REORDER COEFF
+                    # MOQ = purchase_min_qty
+                    # 1: EOQ is lower than coeff EOQ: USE coeff EOQ
+                    # 2: EOQ is greater than coeff EOQ but less than MAXQTY: use EOQ, so
+                    #    nothing to change
+                    # 3: EOQ is greater of both: use MAXQTY
+                    # If EOQ is lower than MOQ: use MOQ
+                    computed_lot_to_reorder = False
+                    coeff_eoq = math.ceil(max_qty / reorder_coeff)
+                    if lot_to_reorder <= coeff_eoq:
+                        computed_lot_to_reorder = lot_to_reorder
+                        lot_to_reorder = coeff_eoq
+                    elif lot_to_reorder > max_qty:
+                        lot_to_reorder = max_qty
+                    if lot_to_reorder < purchase_min_qty:
+                        lot_to_reorder = purchase_min_qty
+                    # Round up to 10 if the lot to reorder is greater or equal to 100
+                    if lot_to_reorder >= 100:
+                        lot_to_reorder = float_round(
+                            value=lot_to_reorder,
+                            precision_digits=-1,
+                            rounding_method="UP",
+                        )
+                    max_qty = min_qty + lot_to_reorder
+                    # Purchase multiple qty is set in qty_multiple in op, so it's not
+                    # necessary to use it for max qty computation
+                    # end function
+                    if record.auto_min_qty:
+                        vals["product_min_qty"] = min_qty
+                    if record.auto_max_qty:
+                        vals["product_max_qty"] = max_qty
+                    vals["qty_multiple"] = product_id.purchase_multiple_qty
+                    vals["orderpoint_tmpl_id"] = record.id
+                    if self.env.context.get("is_draft"):
+                        vals["is_draft"] = True
+                        vals["active"] = False
+                    orderpoint_model.create(vals)
+                    record.log_info = "\n".join(
+                        [
+                            record.log_info,
+                            (
+                                _(
+                                    "[%(p_code)s] Product orderpoint created (from max "
+                                    "qty in selected date range "
+                                    "/ move days period: %(stock_max_qty)s) "
+                                    "(Move days: %(m_days)s, "
+                                    "Qty by day: %(q_by_day)s, "
+                                    "Purchase delay: %(p_time_delay)s %(pd_info)s, "
+                                    "Purchase overtime delay: %(p_over_time_delay)s "
+                                    "%(pot_info)s, "
+                                    "Produce delay: %(p_delay)s, "
+                                    "Total purchase delay used in computation: "
+                                    "%(pu_delay)s, "
+                                    "Total delay: %(total_delay)s, "
+                                    "Consumed qty by lead time: %(consumed_qty)s, "
+                                    "Service factor: %(service_factor)s, "
+                                    "Lead time factor: %(lead_time_factor)s, "
+                                    "Security stock: %(security_stock)s, "
+                                    "Minimum qty: %(min_qty)s, "
+                                    "Lot to reorder: "
+                                    "%(lot_to_reorder)s%(lot_to_reorder_info)s, "
+                                    "Maximum qty: %(max_qty)s)"
+                                ).format(
+                                    p_code=product_id.default_code,
+                                    stock_max_qty=stock_max_qty[product_id.id],
+                                    m_days=move_days,
+                                    q_by_day=qty_by_day,
+                                    p_time_delay=purchase_time_delay,
+                                    pd_info=_(
+                                        "(%(used)s used)",
+                                        used=""
+                                        if purchase_time_delay_used
+                                        else _("not "),
+                                    ),
+                                    p_over_time_delay=purchase_overtime_delay,
+                                    pot_info=_(
+                                        "(%(used)s used)",
+                                        used=""
+                                        if purchase_overtime_delay_used
+                                        else _("not "),
+                                    ),
+                                    p_delay=produce_delay,
+                                    pu_delay=purchase_delay,
+                                    total_delay=total_delay,
+                                    consumed_qty=consumed_qty_by_lead_time,
+                                    service_factor=service_factor,
+                                    lead_time_factor=lead_time_factor,
+                                    security_stock=security_stock,
+                                    min_qty=min_qty,
+                                    lot_to_reorder=lot_to_reorder,
+                                    lot_to_reorder_info=(
+                                        _(
+                                            " (Proposed lot to reorder was: %(lot)s)",
+                                            lot=computed_lot_to_reorder,
+                                        )
+                                    )
+                                    if computed_lot_to_reorder
+                                    else "",
+                                    max_qty=max_qty,
+                                )
+                            ),
+                        ]
+                    )
+
+    def _disable_old_instances(self, products):
+        """Clean old instance by setting those inactives"""
+        product_orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "in", products.ids)]
+        )
+        template_orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("orderpoint_tmpl_id", "=", self.id)]
+        )
+        products = template_orderpoints.mapped("product_id")
+        orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
+            [
+                ("product_id", "in", products.ids),
+            ]
+        )
+        (product_orderpoints | template_orderpoints | orderpoints_not_linked).write(
+            {"active": False}
+        )
+
+    @api.model
+    def _get_product_qty_by_criteria_sale(
+        self, products, location_id, from_date, to_date, criteria, compute_on_sale=False
+    ):
+        """Returns a dict with product ids as keys and the resulting
+        calculation of historic moves according to criteria"""
+        stock_qty_history = products._compute_historic_sale_quantities_dict(
+            location_id=location_id,
+            from_date=from_date,
+            to_date=to_date,
+            compute_on_sale=compute_on_sale,
+        )
+        criteria_methods = self._get_criteria_methods()
+        if criteria == "sum":
+            return {
+                x: criteria_methods[criteria](y["move_history"])
+                for x, y in stock_qty_history.items()
+            }
+        return {
+            x: criteria_methods[criteria](y["stock_history"])
+            for x, y in stock_qty_history.items()
+        }

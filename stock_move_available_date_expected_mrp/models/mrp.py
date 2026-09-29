@@ -21,7 +21,7 @@ class StockMove(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Reserved Stock: %s") % product.name,
             "domain": domain,
-            "views": [(view.id, "tree"), (False, "pivot")],
+            "views": [(view.id, "list"), (False, "pivot")],
             "res_model": "stock.move",
             "context": {},
         }

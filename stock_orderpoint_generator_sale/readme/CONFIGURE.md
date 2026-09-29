@@ -1,0 +1,114 @@
+Nella configurazione di magazzino è presente un nuovo menu per creare e
+gestire i modelli di generazione delle regole di riordino:
+
+![Menu](../static/description/menu.png)
+
+Creando un nuovo modello ci sono alcuni campi che è possibile compilare
+per gestire la creazione automatica delle regole di riordino:
+
+Il bottone \`Genera regole automatiche\`: se cliccato, disattiva le
+regole di riordino presenti e collegate al modello attuale e le ricrea,
+si può automatizzare con il campo indicato sotto.
+
+![Genera](../static/description/genera.png)
+
+Se il campo Le nuove regole di riordino sono in bozza è attivo:
+
+![Check regole in bozza](../static/description/booleano_bozza.png)
+
+verranno mantenute le regole di riordino esistenti e quelle create
+verranno esposte separatamente e resteranno disattive:
+
+![Numero regole in bozza](../static/description/regole_in_bozza.png)
+
+Si potranno poi confermare, e contemporaneamente disattivare quelle
+esistenti, con il bottone \`Conferma regole di riordino in bozza\`:
+
+![Conferma regole in bozza](../static/description/bottone_conferma.png)
+
+Il campo \`Crea le regole automaticamente\`: se selezionato si evita di
+dover cliccare sul tasto Genera regole automatiche in alto. Attiva un
+cron che disattiva e ricrea le regole di riordino ad ogni esecuzione,
+rendendole quindi sempre allineate con la situazione attuale dello
+stock.
+
+![Genera automaticamente](../static/description/genera_automaticamente.png)
+
+Il campo \`Calcola sull'uscito\`: se selezionato, basa il calcolo su cui
+valutare la richiesta del prodotto sulle uscite di qualsiasi genere,
+quindi per vendite e consumi di produzione in genere. Selezionandolo
+spariscono i campi per l'impostazione di valori fissi sulle regole di
+riordino, l'auto minimo e massimo e altri criteri inutili con questa
+opzione.
+
+![Calcola sull'uscito](../static/description/calcola_sull_uscito.png)
+
+Il campo \`Calcola sul venduto\`: se selezionato, basa invece il calcolo
+sulle sole uscite per vendita. Se selezionato, prevale sul campo Calcola
+sull'uscito in quanto ne è un sottoinsieme. Selezionandolo spariscono i
+campi per l'impostazione di valori fissi sulle regole di riordino,
+l'auto minimo e massimo e altri criteri inutili con questa opzione.
+
+![Calcola sul venduto](../static/description/calcola_sul_venduto.png)
+
+Il campo \`Giorni movimenti precedenti\`: indica quanti giorni
+precedenti alla data attuale su cui andare a ricercare i movimenti di
+magazzino.
+
+![Giorni movimenti precedenti](../static/description/giorni_movimenti.png)
+
+Il campo \`Variazione percentuale\`: impostando un valore tra -100 e
+100, va a variare il valore della quantità di uscite calcolata in
+proporzione, usandolo nella formula di calcolo della scorta:
+
+![Variazione percentuale](../static/description/variazione.png)
+
+Il campo \`Livello di servizio\`: viene usato nella formula di calcolo
+della scorta:
+
+![Livello di servizio](../static/description/livello_servizio.png)
+
+Il campo \`Costo gestione ordine\`: anch'esso usato nella formula di
+calcolo della scorta:
+
+![Costo gestione ordine](../static/description/costo_gestione_ordini.png)
+
+Il campo \`Categoria prodotti\`: filtra i prodotti su cui generare le
+regole di riordino. In questo modo è possibile creare diversi modelli
+per diverse categorie di prodotti. Nota: i prodotti vengono letti dalle
+categorie prodotti indicate e nelle loro categorie figlie.
+
+![Categoria prodotti](../static/description/categoria_prodotti.png)
+
+Nella nazione è stato aggiunto un campo Coefficiente di riordino. Questo
+campo viene rilevato dal primo fornitore del prodotto e viene usato per
+definire un massimo sul lotto di riordino, pari alla quantità massima
+acquistata nel periodo scelto diviso per il Coefficiente di riordino. Se
+non impostato viene presunto pari a 4. La quantità minima, massima e il
+lotto di riordino sono arrotondati alla decina per quantità superiori a
+100. Se il lotto di riordino viene modificato da questi calcoli verso il
+basso, viene mostrato il lotto originariamente calcolato nel log della
+creazione delle regole. La quantità massima, se non raggiunge la
+quantità minima ordinabile, viene impostata pari a questa.
+
+![Coefficiente di riordino](../static/description/coefficiente_riordino.png)
+
+Il calcolo del consumo pezzi nei giorni di LEAD TIME e del fattore di
+lead time dipende dal Tempo di risposta per produzione se il prodotto ha
+una rotta di produzione o dal Tempo di risposta per consegne (calcolato)
+se il prodotto ha una rotta di acquisto (se le ha entrambe i tempi
+vengono sommati attualmente, TODO decidere quale delle due prevale).
+
+Note:
+
+1.  all'eliminazione di un template di regole di riordino vengono
+    eliminate anche tutte le regole create
+2.  alla conferma delle regole di un template, questo disattiva quelle
+    create da altri template se fossero collegate agli stessi prodotti
+    del template corrente. In questo modo è possibile una generazione
+    progressiva delle regole, ad esempio confermando prima quelle di un
+    template che si applica a tutte le categorie e poi quelle di
+    template che si applicano a categorie specifiche.
+
+Informazioni sulle formule usate nel file di calcolo
+<https://github.com/efatto/efatto/blob/14.0/stock_orderpoint_generator_sale/static/description/calculate-safety-stocks.ods>

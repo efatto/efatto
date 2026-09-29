@@ -19,13 +19,13 @@
                             </div>
                             <div class="o_row d-flex">
                                 <field
-                  name="product_yearly_estimated_qty"
-                  class="oe_inline"
-                />
+                                    name="product_yearly_estimated_qty"
+                                    class="oe_inline"
+                                />
                             </div>
                         </div>
                     </h2>
-              </div>
+                </div>
             </xpath>
         </field>
     </record>

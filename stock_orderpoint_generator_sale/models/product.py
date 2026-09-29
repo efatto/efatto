@@ -37,8 +37,9 @@ class ProductProduct(models.Model):
 
     def _get_produce_delay(self, produce_delay=0):
         if self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids:
-            produce_delay += self.produce_delay
-            if self.bom_ids:
+            bom = self.env["mrp.bom"]._bom_find(self)
+            if bom:
+                produce_delay += bom.produce_delay
                 produce_delay = max(
                     [
                         p._get_produce_delay(produce_delay)

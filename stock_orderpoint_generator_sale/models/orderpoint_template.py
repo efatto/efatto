@@ -20,7 +20,6 @@ class Orderpoint(models.Model):
         ondelete="cascade",
     )
     is_draft = fields.Boolean(
-        string="Is Draft",
         help="To be enabled manually",
     )
 
@@ -28,9 +27,8 @@ class Orderpoint(models.Model):
 class OrderpointTemplate(models.Model):
     _inherit = "stock.warehouse.orderpoint.template"
 
-    compute_on_sale = fields.Boolean(string="Compute On Sale")
+    compute_on_sale = fields.Boolean()
     compute_on_out = fields.Boolean(
-        string="Compute On Out",
         help="Compute On All Out or Consumed (excluded inventory)",
     )
     move_days = fields.Integer(
@@ -41,7 +39,7 @@ class OrderpointTemplate(models.Model):
     variation_percent = fields.Float(
         help="Increment/decrement value of qty by this percent"
     )
-    product_ctg_ids = fields.Many2many("product.category", string="Product Category")
+    product_ctg_ids = fields.Many2many("product.category", string="Product Categories")
     auto_max_qty_criteria = fields.Selection(selection_add=[("sum", "Sum")])
     log_info = fields.Text()
     orderpoint_count = fields.Integer(
@@ -57,7 +55,11 @@ class OrderpointTemplate(models.Model):
     )
 
     def create_orderpoints(self, products):
-        """Override to create new orderpoints in draft optionally"""
+        """
+        Override to create new orderpoints in draft optionally and set old ones
+        inactive
+        TODO check when unlink them
+        """
         if self.is_new_orderpoint_draft:
             # delete inactive instances in draft
             orderpoints = (
@@ -170,7 +172,7 @@ class OrderpointTemplate(models.Model):
         return res
 
     def _template_fields_to_discard(self):
-        """In order to create every orderpoint we should pop this template
+        """To create every orderpoint we should pop these template
         customization fields"""
         res = super()._template_fields_to_discard()
         res += [
@@ -287,8 +289,10 @@ class OrderpointTemplate(models.Model):
                             [
                                 record.log_info,
                                 (
-                                    _("Product with phantom bom excluded: %s")
-                                    % product_id.default_code
+                                    _(
+                                        "Product with phantom bom excluded: %(code)s",
+                                        code=product_id.default_code,
+                                    )
                                 ),
                             ]
                         )
@@ -298,14 +302,16 @@ class OrderpointTemplate(models.Model):
                             [
                                 record.log_info,
                                 (
-                                    _("Missing price in product %s!")
-                                    % product_id.default_code
+                                    _(
+                                        "Missing price in product %(code)s!",
+                                        code=product_id.default_code,
+                                    )
                                 ),
                             ]
                         )
                         continue
                     vals = data.copy()
-                    vals["name"] = "%s - %s" % (vals["name"], product_id.default_code)
+                    vals["name"] = f"{vals['name']} - {product_id.default_code}"
                     vals["product_id"] = product_id.id
                     # function replicated from calc file
                     move_days = record.move_days
@@ -334,7 +340,7 @@ class OrderpointTemplate(models.Model):
                     reorder_coeff = 4
                     purchase_min_qty = 0
                     if seller_id:
-                        country_id = seller_id.name.country_id
+                        country_id = seller_id.partner_id.country_id
                         if country_id:
                             country_group = fields.first(country_id.country_group_ids)
                             if country_group and country_group == eu_country_group:
@@ -360,7 +366,7 @@ class OrderpointTemplate(models.Model):
                     min_qty = math.ceil(consumed_qty_by_lead_time + security_stock)
                     if min_qty >= 100:
                         min_qty = float_round(
-                            min_qty,
+                            value=min_qty,
                             precision_digits=-1,
                             rounding_method="UP",
                         )
@@ -400,7 +406,7 @@ class OrderpointTemplate(models.Model):
                     # Round up to 10 if the lot to reorder is greater or equal to 100
                     if lot_to_reorder >= 100:
                         lot_to_reorder = float_round(
-                            lot_to_reorder,
+                            value=lot_to_reorder,
                             precision_digits=-1,
                             rounding_method="UP",
                         )
@@ -423,54 +429,63 @@ class OrderpointTemplate(models.Model):
                             record.log_info,
                             (
                                 _(
-                                    "[%s] Product orderpoint created (from max qty in "
-                                    "selected date range / move days period: %s) "
-                                    "(Move days: %s, "
-                                    "Qty by day: %s, "
-                                    "Purchase delay: %s %s, "
-                                    "Purchase overtime delay: %s %s, "
-                                    "Produce delay: %s, "
-                                    "Total purchase delay used in computation: %s, "
-                                    "Total delay: %s, "
-                                    "Consumed qty by lead time: %s, "
-                                    "Service factor: %s, "
-                                    "Lead time factor: %s, "
-                                    "Security stock: %s, "
-                                    "Minimum qty: %s, "
-                                    "Lot to reorder: %s%s, "
-                                    "Maximum qty: %s)"
-                                )
-                                % (
-                                    product_id.default_code,
-                                    stock_max_qty[product_id.id],
-                                    move_days,
-                                    qty_by_day,
-                                    purchase_time_delay,
-                                    _("(%sused)")
-                                    % ("" if purchase_time_delay_used else _("not ")),
-                                    purchase_overtime_delay,
-                                    _("(%sused)")
-                                    % (
-                                        ""
-                                        if purchase_overtime_delay_used
-                                        else _("not ")
+                                    "[%(p_code)s] Product orderpoint created (from max "
+                                    "qty in selected date range "
+                                    "/ move days period: %(stock_max_qty)s) "
+                                    "(Move days: %(m_days)s, "
+                                    "Qty by day: %(q_by_day)s, "
+                                    "Purchase delay: %(p_time_delay)s %(pd_info)s, "
+                                    "Purchase overtime delay: %(p_over_time_delay)s "
+                                    "%(pot_info)s, "
+                                    "Produce delay: %(p_delay)s, "
+                                    "Total purchase delay used in computation: "
+                                    "%(pu_delay)s, "
+                                    "Total delay: %(total_delay)s, "
+                                    "Consumed qty by lead time: %(consumed_qty)s, "
+                                    "Service factor: %(service_factor)s, "
+                                    "Lead time factor: %(lead_time_factor)s, "
+                                    "Security stock: %(security_stock)s, "
+                                    "Minimum qty: %(min_qty)s, "
+                                    "Lot to reorder: "
+                                    "%(lot_to_reorder)s%(lot_to_reorder_info)s, "
+                                    "Maximum qty: %(max_qty)s)"
+                                ).format(
+                                    p_code=product_id.default_code,
+                                    stock_max_qty=stock_max_qty[product_id.id],
+                                    m_days=move_days,
+                                    q_by_day=qty_by_day,
+                                    p_time_delay=purchase_time_delay,
+                                    pd_info=_(
+                                        "(%(used)s used)",
+                                        used=""
+                                        if purchase_time_delay_used
+                                        else _("not "),
                                     ),
-                                    produce_delay,
-                                    purchase_delay,
-                                    total_delay,
-                                    consumed_qty_by_lead_time,
-                                    service_factor,
-                                    lead_time_factor,
-                                    security_stock,
-                                    min_qty,
-                                    lot_to_reorder,
-                                    (
-                                        _(" (Proposed lot to reorder was: %s)")
-                                        % computed_lot_to_reorder
+                                    p_over_time_delay=purchase_overtime_delay,
+                                    pot_info=_(
+                                        "(%(used)s used)",
+                                        used=""
+                                        if purchase_overtime_delay_used
+                                        else _("not "),
+                                    ),
+                                    p_delay=produce_delay,
+                                    pu_delay=purchase_delay,
+                                    total_delay=total_delay,
+                                    consumed_qty=consumed_qty_by_lead_time,
+                                    service_factor=service_factor,
+                                    lead_time_factor=lead_time_factor,
+                                    security_stock=security_stock,
+                                    min_qty=min_qty,
+                                    lot_to_reorder=lot_to_reorder,
+                                    lot_to_reorder_info=(
+                                        _(
+                                            " (Proposed lot to reorder was: %(lot)s)",
+                                            lot=computed_lot_to_reorder,
+                                        )
                                     )
                                     if computed_lot_to_reorder
                                     else "",
-                                    max_qty,
+                                    max_qty=max_qty,
                                 )
                             ),
                         ]
@@ -478,17 +493,21 @@ class OrderpointTemplate(models.Model):
 
     def _disable_old_instances(self, products):
         """Clean old instance by setting those inactives"""
-        super()._disable_old_instances(products)
-        orderpoints = self.env["stock.warehouse.orderpoint"].search(
+        product_orderpoints = self.env["stock.warehouse.orderpoint"].search(
+            [("product_id", "in", products.ids)]
+        )
+        template_orderpoints = self.env["stock.warehouse.orderpoint"].search(
             [("orderpoint_tmpl_id", "=", self.id)]
         )
-        products = orderpoints.mapped("product_id")
+        products = template_orderpoints.mapped("product_id")
         orderpoints_not_linked = self.env["stock.warehouse.orderpoint"].search(
             [
                 ("product_id", "in", products.ids),
             ]
         )
-        (orderpoints | orderpoints_not_linked).write({"active": False})
+        (product_orderpoints | template_orderpoints | orderpoints_not_linked).write(
+            {"active": False}
+        )
 
     @api.model
     def _get_product_qty_by_criteria_sale(

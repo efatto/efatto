@@ -6,18 +6,14 @@ class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     is_product_lead = fields.Boolean(
-        string="Is product lead",
         compute="_compute_is_product_lead",
         store=True,
         index=True,
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
     )
-    product_yearly_estimated_qty = fields.Float(
-        string="Product Yearly Estimated Qty",
-    )
+    product_yearly_estimated_qty = fields.Float()
     lead_product_qty = fields.Float(
         string="Qty from CRM lead",
         digits="Product Unit of Measure",

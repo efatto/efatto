@@ -52,7 +52,7 @@ class ProductProduct(models.Model):
                     .search(
                         [
                             ("product_id", "=", product.id),
-                            ("state", "in", ["sale", "done"]),
+                            ("state", "=", "sale"),
                         ]
                     )
                     .mapped("product_uom_qty")

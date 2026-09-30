@@ -9,9 +9,9 @@
                     <field name="min_stock_qty" />
                     <field name="replacement_product_available_date" />
                     <field name="replacement_product_ids">
-                        <tree>
+                        <list>
                             <field name="name" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
             </group>
@@ -27,9 +27,9 @@
                     <field name="min_stock_qty" />
                     <field name="replacement_product_available_date" />
                     <field name="replacement_product_ids">
-                        <tree>
+                        <list>
                             <field name="name" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
             </group>

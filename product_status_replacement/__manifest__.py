@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product status with replacement",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "category": "Tools",
@@ -11,6 +11,7 @@
         "product_state",
         "product_status",
         "purchase_stock",
+        "sale_stock",
     ],
     "data": [
         "data/ir_cron.xml",

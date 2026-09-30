@@ -3,11 +3,12 @@
 
 from odoo import fields
 from odoo.tests import Form
-from odoo.tests.common import SingleTransactionCase
 from odoo.tools.date_utils import relativedelta
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestProductObsolescenceManagement(SingleTransactionCase):
+
+class TestProductStatusReplacement(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -29,13 +30,14 @@ class TestProductObsolescenceManagement(SingleTransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "purchase_ok": True,
             }
         )
         cls.seller = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.supplier.id,
+                "partner_id": cls.supplier.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
             }
         )

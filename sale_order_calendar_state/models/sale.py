@@ -317,6 +317,7 @@ class SaleOrder(models.Model):
         # esempio: se un ordine ha una produzione con stato PRODUCTION_STARTED
         # ed una con stato MISSING_COMPONENTS_BUY
         # l'ordine deve avere stato MISSING_COMPONENTS_BUY, perchè peggiore.
+        self.ensure_one()
         cal_order = [
             BLOCKED,
             TOPROCESS,
@@ -442,11 +443,8 @@ class SaleOrder(models.Model):
                         # availableready is just a state i made to make a difference
                         # between buy and maufacture products
                         calendar_states.append((AVAILABLEREADY, fields.Datetime.now()))
-        mrp_production_ids = self.env["mrp.production"].search(
-            [
-                ("sale_id", "=", procurement.sale_id.id),
-                ("state", "!=", "cancel"),
-            ]
+        mrp_production_ids = self.mrp_production_ids.filtered(
+            lambda x: x.state != "cancel"
         )
         if mrp_production_ids:
             mrp_states = set(mrp_production_ids.mapped("state"))

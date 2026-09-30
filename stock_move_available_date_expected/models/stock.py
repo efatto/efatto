@@ -58,7 +58,7 @@ class StockMove(models.Model):
                         ("product_id", "=", move.product_id.id),
                     ]
                 )
-            production_ids = move.sale_line_id.order_id.production_ids
+            production_ids = move.sale_line_id.order_id.mrp_production_ids
             if purchase_order_line_ids:
                 purchase_ids = purchase_order_line_ids.mapped("order_id")
                 move.reserve_origin = "purchase"

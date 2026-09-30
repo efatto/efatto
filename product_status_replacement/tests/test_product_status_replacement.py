@@ -3,16 +3,15 @@
 
 from odoo import fields
 from odoo.tests import Form
-from odoo.tests.common import SingleTransactionCase
 from odoo.tools.date_utils import relativedelta
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestProductObsolescenceManagement(SingleTransactionCase):
+
+class TestProductStatusReplacement(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.partner = cls.env.ref("base.res_partner_2")
         cls.supplier = cls.env["res.partner"].create(
             {
                 "name": "Test Supplier",
@@ -29,18 +28,16 @@ class TestProductObsolescenceManagement(SingleTransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "purchase_ok": True,
             }
         )
         cls.seller = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.supplier.id,
+                "partner_id": cls.supplier.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
             }
-        )
-        cls.cron_obsolesence_id = cls.env.ref(
-            "product_status_replacement.ir_cron_product_state"
         )
 
     def test_00_assign_product_state_create_min_qty(self):
@@ -59,14 +56,18 @@ class TestProductObsolescenceManagement(SingleTransactionCase):
         product_form.end_of_life_date = fields.Date.today() + relativedelta(days=-1)
         product_form.save()
         self.assertEqual(self.product.state, "endoflife")
-        self.cron_obsolesence_id.method_direct_trigger()
+        self.env["product.product"].search(
+            [("state", "=", "endoflife")]
+        ).update_product_state()
         self.assertEqual(
             self.product.min_stock_qty,
             0,
         )
         sale_order.action_confirm()
         self.assertEqual(sale_order.state, "sale")
-        self.cron_obsolesence_id.method_direct_trigger()
+        self.env["product.product"].search(
+            [("state", "=", "endoflife")]
+        ).update_product_state()
         self.assertEqual(
             self.product.min_stock_qty,
             sale_order.order_line.product_uom_qty / 10,

@@ -4,17 +4,28 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='sale_management']/div" position="inside">
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane" />
-                    <div class="o_setting_right_pane">
-                        <label for="sale_stat_days" />
-                        <div class="text-muted">
-                            Number of days on which sale statistics are computed
+            <xpath expr="//app[@name='sale_management']" position="inside">
+                <block title="Statistics" id="statistics_setting_container">
+                    <setting id="stat_sale">
+                        <div title="Days on which sale statistics are computed">
+                            <label for="sale_stat_days" />
+                            <field
+                                name="sale_stat_days"
+                                class="text-center"
+                                style="width: 3rem;"
+                            />
+                            <div class="d-inline-block">days</div>
+                            <span
+                                class="fa fa-lg fa-building-o p-2"
+                                title="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
                         </div>
-                        <field name="sale_stat_days" />
-                    </div>
-                </div>
+                        <div class="text-muted">
+                            Number of days used to compute sale statistics
+                        </div>
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>

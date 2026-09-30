@@ -11,7 +11,7 @@ class ProductProduct(models.Model):
 
     def _compute_sales_count(self):
         r = super()._compute_sales_count()
-        if not self.user_has_groups("sales_team.group_sale_salesman"):
+        if not self.env.user.has_group("sales_team.group_sale_salesman"):
             return r
         days = 365
         if self.env.company.sale_stat_days:
@@ -29,10 +29,10 @@ class ProductProduct(models.Model):
             ("product_id", "in", self.ids),
             ("date", ">=", date_from),
         ]
-        for group in self.env["sale.report"].read_group(
-            domain, ["product_id", "product_uom_qty"], ["product_id"]
+        for group in self.env["sale.report"]._read_group(
+            domain, ["product_id"], ["product_uom_qty:sum"]
         ):
-            r[group["product_id"][0]] = group["product_uom_qty"]
+            r[group[0]] = group[1]
         for product in self:
             if not product.id:
                 product.sales_count = 0.0

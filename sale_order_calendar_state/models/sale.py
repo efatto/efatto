@@ -351,7 +351,7 @@ class SaleOrder(models.Model):
                     procurement_group, max_commitment_date
                 )
                 if states:
-                    calendar_states += states
+                    calendar_states.append(states)
             if self.is_blocked:
                 calendar_states.append(("blocked", fields.Datetime.now()))
             if calendar_states:

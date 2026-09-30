@@ -8,7 +8,7 @@
     "category": "Tools",
     "license": "AGPL-3",
     "depends": [
-        "product_is_kit",
+        "mrp",
         "sale",
         "stock",
     ],

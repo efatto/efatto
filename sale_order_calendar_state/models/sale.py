@@ -187,30 +187,30 @@ class SaleOrder(models.Model):
             result = super().name_get()
         return result
 
-    @api.depends("production_ids")
+    @api.depends("mrp_production_ids")
     def _compute_production_id(self):
         for order in self:
             order.production_id = (
                 False
-                if not order.production_ids
-                else order.production_ids.sorted(
+                if not order.mrp_production_ids
+                else order.mrp_production_ids.sorted(
                     key=lambda x: x.partner_id, reverse=True
                 )[0]
             )
 
-    @api.depends("blocked_note", "production_ids.blocked_note")
+    @api.depends("blocked_note", "mrp_production_ids.blocked_note")
     def _compute_blocked_note_calendar(self):
         for order in self:
             order.blocked_note_calendar = (
                 order.blocked_note
                 if order.blocked_note
                 else " ".join(
-                    order.production_ids.filtered(lambda x: x.state != "cancel").mapped(
-                        "blocked_note"
-                    )
+                    order.mrp_production_ids.filtered(
+                        lambda x: x.state != "cancel"
+                    ).mapped("blocked_note")
                 )
-                if order.production_ids
-                and any(x.blocked_note for x in order.production_ids)
+                if order.mrp_production_ids
+                and any(x.blocked_note for x in order.mrp_production_ids)
                 else ""
             )
 
@@ -531,9 +531,9 @@ class SaleOrder(models.Model):
         "picking_ids.state",
         "picking_ids.is_printed_for_logistics",
         "picking_ids.delivery_note_id.state",
-        "production_ids.additional_state",
-        "production_ids.is_blocked",
-        "production_ids.move_raw_ids.state",
+        "mrp_production_ids.additional_state",
+        "mrp_production_ids.is_blocked",
+        "mrp_production_ids.move_raw_ids.state",
     )
     def _compute_calendar_state(self):
         for order in self:

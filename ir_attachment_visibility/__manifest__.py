@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "depends": [
         "base",
+        "project",
     ],
     "data": [
         "security/ir.model.access.csv",

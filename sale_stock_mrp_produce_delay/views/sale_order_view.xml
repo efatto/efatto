@@ -6,8 +6,14 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                <label for="available_date" states="draft,sent" />
-                <div name="available_date_info" states="draft,sent">
+                <label
+                    for="available_date"
+                    invisible="state not in ('draft', 'sent')"
+                />
+                <div
+                    name="available_date_info"
+                    invisible="state not in ('draft', 'sent')"
+                >
                     <div>
                         <field name="available_date" />
                     </div>
@@ -26,20 +32,21 @@
                 </div>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
                 position="after"
             >
                 <field name="predicted_arrival_late" invisible="1" />
                 <field name="late_product_ids" invisible="1" />
-                <field name="is_kit" invisible="1" />
+                <field name="is_kits" invisible="1" />
                 <button
-                    attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
                     name="action_delayed_line"
                     type="object"
                     icon="fa-exclamation-triangle"
+                    title="Arriving late"
+                    invisible="not predicted_arrival_late"
                 />
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute
                     name="decoration-danger"
                 >predicted_arrival_late is True</attribute>
@@ -58,14 +65,14 @@
                 expr="//page/field[@name='order_line']/form/group/group/div[@name='ordered_qty']/field[@name='product_uom']"
                 position="after"
             >
-                <field name="is_kit" invisible="1" />
+                <field name="is_kits" invisible="1" />
                 <field name="commitment_date" invisible="1" />
             </xpath>
             <xpath
-                expr="//page/field[@name='order_line']/tree/field[@name='qty_delivered']"
+                expr="//page/field[@name='order_line']/list/field[@name='qty_delivered']"
                 position="after"
             >
-                <field name="is_kit" invisible="1" />
+                <field name="is_kits" invisible="1" />
                 <field name="commitment_date" invisible="1" />
             </xpath>
         </field>

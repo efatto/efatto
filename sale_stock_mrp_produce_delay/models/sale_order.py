@@ -23,7 +23,7 @@ class SaleOrderLine(models.Model):
     )
     qty_to_deliver = fields.Float(store=True)
     is_mto = fields.Boolean(store=True)
-    is_kit = fields.Boolean(related="product_id.is_kit", store=True)
+    is_kits = fields.Boolean(related="product_id.is_kits", store=True)
     display_qty_widget = fields.Boolean(store=True)
     available_date = fields.Date(copy=False)
     last_available_date_compute = fields.Datetime(copy=False)
@@ -50,7 +50,7 @@ class SaleOrderLine(models.Model):
                 line.state == "draft"
                 and not line.commitment_date
                 and not line.order_id.commitment_date
-                and line.product_type == "product"
+                and line.product_type == "consu"
                 and line.product_uom
                 and line.qty_to_deliver > 0
             )
@@ -309,26 +309,30 @@ class SaleOrderLine(models.Model):
             or self.order_id.date_order,
         )
         produce_delay = 0
-        if self.product_id.produce_delay:
-            produce_delay = int(self.product_id.produce_delay)
-        elif self.product_id.bom_ids:
+        if self.product_id.bom_ids:
             bom_id = self.product_id.bom_ids[0]
-            if bom_id.operation_ids:
+            if bom_id.produce_delay:
+                produce_delay = int(bom_id.produce_delay)
+            elif bom_id.operation_ids:
                 produce_delay = int(
                     sum(bom_id.mapped("operation_ids.time_cycle_manual") or [0]) / 1440
                 )
         raise UserError(
             _(
-                "This line is scheduled for: %s.\n"
-                "However it is now planned to arrive for %s. %s\n%s"
-            )
-            % (
-                commitment_date_tz.strftime("%d/%m/%Y"),
-                self.available_date.strftime("%d/%m/%Y"),
-                _("(Produce delay: %.0f days)") % produce_delay
-                if produce_delay
-                else "",
-                self.available_dates_info,
+                "This line is scheduled for: %(commitment_date_tz)s.\n"
+                "However it is now planned to arrive for %(available_date)s."
+                " %(produce_delay)s\n%(available_dates_info)s",
+                commitment_date_tz=commitment_date_tz.strftime("%d/%m/%Y"),
+                available_date=self.available_date.strftime("%d/%m/%Y"),
+                produce_delay=(
+                    _(
+                        "(Produce delay: %(produce_delay).0f days)",
+                        produce_delay=produce_delay,
+                    )
+                    if produce_delay
+                    else ""
+                ),
+                available_dates_info=self.available_dates_info,
             )
         )
 

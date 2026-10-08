@@ -37,11 +37,9 @@
         "views/sale_data.xml",
     ],
     "assets": {
-        "web.report_assets_common": [
-            "/sale_order_calendar_state/static/src/css/calendar.scss",
-        ],
         "web.assets_backend": [
-            "/sale_order_calendar_state/static/src/js/calendar_colors.js",
+            "/sale_order_calendar_state/static/src/css/calendar.scss",
+            "/sale_order_calendar_state/static/src/js/calendar_colors.esm.js",
         ],
     },
     "installable": True,

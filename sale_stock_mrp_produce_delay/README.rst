@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ============================
 Sale stock mrp produce delay
 ============================
@@ -21,7 +17,7 @@ Sale stock mrp produce delay
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-efatto%2Fefatto-lightgray.png?logo=github
-    :target: https://github.com/efatto/efatto/tree/14.0/sale_stock_mrp_produce_delay
+    :target: https://github.com/efatto/efatto/tree/18.0/sale_stock_mrp_produce_delay
     :alt: efatto/efatto
 
 |badge1| |badge2| |badge3|
@@ -39,46 +35,67 @@ Usage
 
 Sulla riga ordine di vendita è presente un'icona (i) quando:
 
- #. l'ordine non ha una data di impegno;
- #. la riga non ha una data di impegno.
+   1. l'ordine non ha una data di impegno;
+   2. la riga non ha una data di impegno.
 
-L'icona è in blu quando il sistema trova una disponibilità futura a stock del prodotto. È in rosso in caso contrario.
+L'icona è in blu quando il sistema trova una disponibilità futura a
+stock del prodotto. È in rosso in caso contrario.
 
-Quando l'icona è in blu mostra la quantità disponibile per coprire la richiesta alla prima data possibile, senza che questo prelievo incida sullo stock in modo da farlo diventare negativo.
+Quando l'icona è in blu mostra la quantità disponibile per coprire la
+richiesta alla prima data possibile, senza che questo prelievo incida
+sullo stock in modo da farlo diventare negativo.
 
-Es. con una richiesta di 1 pz con un ordine alla data odierna del 01/07/2021 la disponibilità è immediata:
+Es. con una richiesta di 1 pz con un ordine alla data odierna del
+01/07/2021 la disponibilità è immediata:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita.png
-    :alt: Richiesta quantità iniziale
+|Richiesta quantità iniziale|
 
-in quanto l'articolo è disponibile e lo stock previsto finale è superiore alla quantità richiesta. Con una richiesta di 4.662 pz la disponibilità è per il:
+in quanto l'articolo è disponibile e lo stock previsto finale è
+superiore alla quantità richiesta. Con una richiesta di 4.662 pz la
+disponibilità è per il:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita_maggiore.png
-    :alt: Richiesta quantità maggiore
+|Richiesta quantità maggiore|
 
-in quanto l'articolo ha una quantità sufficiente a partire da quella data, e la quantità prevista finale è superiore a quella richiesta.
+in quanto l'articolo ha una quantità sufficiente a partire da quella
+data, e la quantità prevista finale è superiore a quella richiesta.
 
-Quando l'icona è rossa segnala che non è possibile fornire da stock il prodotto:
+Quando l'icona è rossa segnala che non è possibile fornire da stock il
+prodotto:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/non_disponibile.png
-    :alt: Non disponibile
+|Non disponibile|
 
-Sull'ordine di vendita è stato aggiunto un bottone per calcolare la prima consegna possibile per tutte le righe dell'ordine:
+Sull'ordine di vendita è stato aggiunto un bottone per calcolare la
+prima consegna possibile per tutte le righe dell'ordine:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/calcola.png
-    :alt: Calcola
+|Calcola|
 
-N.B.: la data di consegna include la somma dei tempi di produzione indicati nei prodotti ed eventuali semilavorati (nel metodo  'get_available_date()` nel modulo padre `stock_reserve_date_check`) considerando anche se c'è uno slot disponibile per la lavorazione nei centri di lavoro alla data richiesta, per cui è 'cautelativa' (l'utente può prevedere una data di impegno inferiore alla data disponibile, in caso di necessità ed essendo a conoscenza della possibilità di farlo). Non prevede comunque calcoli sulla capacità dei centri di lavoro, per cui si considera infinita. La data di consegna inoltre considera il tempo di consegna degli acquisti dai fornitori. Invece il tempo di consegna al cliente non è considerato.
+N.B.: la data di consegna include la somma dei tempi di produzione
+indicati nei prodotti ed eventuali semilavorati (nel metodo
+'get_available_date()\` nel modulo padre stock_reserve_date_check)
+considerando anche se c'è uno slot disponibile per la lavorazione nei
+centri di lavoro alla data richiesta, per cui è 'cautelativa' (l'utente
+può prevedere una data di impegno inferiore alla data disponibile, in
+caso di necessità ed essendo a conoscenza della possibilità di farlo).
+Non prevede comunque calcoli sulla capacità dei centri di lavoro, per
+cui si considera infinita. La data di consegna inoltre considera il
+tempo di consegna degli acquisti dai fornitori. Invece il tempo di
+consegna al cliente non è considerato.
 
-Nelle righe, in caso la data di impegno sia precedente la prima data disponibilità per la riga, è visibile un'icona di segnalazione:
+Nelle righe, in caso la data di impegno sia precedente la prima data
+disponibilità per la riga, è visibile un'icona di segnalazione:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/ritardo.png
-    :alt: Ritardo
+|Ritardo|
 
 che apre un messaggio esplicativo dei dettagli dei componenti mancanti:
 
-.. image:: https://raw.githubusercontent.com/efatto/efatto/14.0/sale_stock_mrp_produce_delay/static/description/messaggio.png
-    :alt: Messaggio
+|Messaggio|
+
+.. |Richiesta quantità iniziale| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita.png
+.. |Richiesta quantità maggiore| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/richiesta_quantita_maggiore.png
+.. |Non disponibile| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/non_disponibile.png
+.. |Calcola| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/calcola.png
+.. |Ritardo| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/ritardo.png
+.. |Messaggio| image:: https://raw.githubusercontent.com/efatto/efatto/18.0/sale_stock_mrp_produce_delay/static/description/messaggio.png
 
 Bug Tracker
 ===========
@@ -86,7 +103,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/efatto/efatto/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/efatto/efatto/issues/new?body=module:%20sale_stock_mrp_produce_delay%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/efatto/efatto/issues/new?body=module:%20sale_stock_mrp_produce_delay%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -94,18 +111,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sergio Corato
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sergio Corato <https://github.com/sergiocorato>
+-  Sergio Corato <https://github.com/sergiocorato>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
-This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/14.0/sale_stock_mrp_produce_delay>`_ project on GitHub.
+This module is part of the `efatto/efatto <https://github.com/efatto/efatto/tree/18.0/sale_stock_mrp_produce_delay>`_ project on GitHub.
 
 You are welcome to contribute.

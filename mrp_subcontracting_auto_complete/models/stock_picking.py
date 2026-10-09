@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from odoo import models
+from odoo.tools.float_utils import float_is_zero
 
 
 class StockPicking(models.Model):
@@ -9,10 +10,10 @@ class StockPicking(models.Model):
     def _action_done(self):
         for picking in self:
             productions_to_done = (
-                picking._get_subcontracted_productions()
-            )._subcontracting_filter_to_done_zero_qty()
+                picking.move_ids._get_recorded_subcontract_production()
+            )
             for production in productions_to_done:
-                if production.qty_producing == 0:
+                if production.qty_producing < production.product_qty:
                     production.qty_producing = production.product_qty
                     production._set_qty_producing()
                     production.with_context(subcontract_move_id=True).button_mark_done()
@@ -34,22 +35,32 @@ class StockPicking(models.Model):
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    def _subcontracting_filter_to_done_zero_qty(self):
-        # REUSE function to filter subcontracting productions, but including productions
-        # with zero qty as they are normally not produced automatically (viceversa,
-        # partial productions are, wich seems at least akward).
-
-        def filter_in(mo):
-            return not (
-                mo.state in ("done", "cancel")
-                or not all(
-                    line.lot_id
-                    for line in mo.move_raw_ids.filtered(
-                        lambda sm: sm.has_tracking != "none"
-                    ).move_line_ids
-                )
-                or mo.product_tracking != "none"
-                and not mo.lot_producing_id
-            )
-
-        return self.filtered(filter_in)
+    def _split_productions(
+        self, amounts=False, cancel_remaining_qty=False, set_consumed_qty=False
+    ):
+        # A subcontracted move may carry an extra empty move line. Keeping the
+        # zero quantity would create a backorder with ``product_qty = 0`` which
+        # violates the ``mrp_production_qty_positive`` constraint. Filter the
+        # empty quantities out before splitting.
+        if not amounts:
+            amounts = {
+                production: [
+                    production.qty_producing,
+                    production._get_quantity_to_backorder(),
+                ]
+                for production in self
+            }
+        cleaned_amounts = {}
+        for production, quantities in amounts.items():
+            rounding = production.product_uom_id.rounding
+            quantities = [
+                quantity
+                for quantity in quantities
+                if not float_is_zero(quantity, precision_rounding=rounding)
+            ]
+            cleaned_amounts[production] = quantities or [production.product_qty]
+        return super()._split_productions(
+            amounts=cleaned_amounts,
+            cancel_remaining_qty=cancel_remaining_qty,
+            set_consumed_qty=set_consumed_qty,
+        )

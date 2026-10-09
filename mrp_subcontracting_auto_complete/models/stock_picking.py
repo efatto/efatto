@@ -9,7 +9,7 @@ class StockPicking(models.Model):
     def _action_done(self):
         for picking in self:
             productions_to_done = (
-                picking._get_subcontracted_productions()
+                picking._get_subcontract_production()
             )._subcontracting_filter_to_done_zero_qty()
             for production in productions_to_done:
                 if production.qty_producing == 0:

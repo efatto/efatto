@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import requests
 
-from odoo import _, models
-from odoo.tools import ustr
+from odoo import models
 
 
 class DbBackup(models.Model):
@@ -17,10 +16,12 @@ class DbBackup(models.Model):
             .get_param("auto_backup_healthcheck.url", False)
         )
         if url:
+            failure_subtype = self.env.ref("auto_backup.mail_message_subtype_failure")
             for backup in self:
-                if _("Database backup succeeded.") in backup.message_ids[0].body:
-                    msg = backup.message_ids[0].body
-                    arguments = {"arg0": ustr(msg), "action": "update"}
-                    r = requests.post(url, data=arguments, timeout=100)
-                    r.raise_for_status()
+                # The last message is the one posted by ``backup_log``: it is a
+                # failure only when it uses the failure subtype.
+                last_message = backup.message_ids[:1]
+                if last_message and last_message.subtype_id != failure_subtype:
+                    arguments = {"arg0": last_message.body, "action": "update"}
+                    requests.post(url, data=arguments, timeout=100).raise_for_status()
         return res

@@ -1,7 +1,9 @@
 import time
+from unittest.mock import patch
 
 from odoo.tests import Form, new_test_user, users
 from odoo.tools import mute_logger
+from odoo.tools.config import config
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -69,9 +71,10 @@ class StockProcurementDraftPurchase(BaseCommon):
         )
 
     def run_stock_procurement_scheduler(self):
-        with mute_logger("odoo.addons.stock.models.procurement"):
-            self.procurement_model.run_scheduler()
-            time.sleep(10)
+        with patch.dict(config.options, {"running_env": "prod"}):
+            with mute_logger("odoo.addons.stock.models.procurement"):
+                self.procurement_model.run_scheduler()
+                time.sleep(10)
 
     @users("test")
     def test_00_procurement_from_subcontractor(self):

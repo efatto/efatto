@@ -2,16 +2,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import time
 
-from odoo.tests.common import Form, SingleTransactionCase
+from odoo.tests import Form, new_test_user
 from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class StockProcurementDraftPurchase(SingleTransactionCase):
+
+class StockProcurementDraftPurchase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.user_model = cls.env["res.users"].with_context(no_reset_password=True)
+        # `warehouse_id`/`location_id` are gated by this group on the
+        # orderpoint form, and orderpoints require storable products.
+        cls.env.ref("base.group_user").write(
+            {"implied_ids": [(4, cls.env.ref("stock.group_stock_multi_locations").id)]}
+        )
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.partner.customer_rank = 1
         cls.procurement_model = cls.env["procurement.group"]
@@ -19,36 +24,26 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
         cls.vendor = cls.env.ref("base.res_partner_3")
         supplierinfo = cls.env["product.supplierinfo"].create(
             {
-                "name": cls.vendor.id,
+                "partner_id": cls.vendor.id,
                 "delay": 30,
             }
         )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Product Test",
+                "is_storable": True,
                 "standard_price": 50.0,
                 "seller_ids": [(6, 0, [supplierinfo.id])],
                 "route_ids": [(6, 0, [buy.id])],
             }
         )
         cls.warehouse = cls.env.ref("stock.warehouse0")
-        cls.scheduler_compute_wiz = cls.env["stock.scheduler.compute"]
         # Create User:
-        cls.test_user = cls.env["res.users"].create(
-            {
-                "name": "John",
-                "login": "test",
-                "groups_id": [
-                    (
-                        6,
-                        0,
-                        (
-                            cls.env.ref("stock.group_stock_manager")
-                            | cls.env.ref("purchase.group_purchase_manager")
-                        ).ids,
-                    )
-                ],
-            }
+        cls.test_user = new_test_user(
+            cls.env,
+            name="John",
+            login="test",
+            groups="stock.group_stock_manager,purchase.group_purchase_manager",
         )
 
     def run_stock_procurement_scheduler(self):
@@ -66,17 +61,14 @@ class StockProcurementDraftPurchase(SingleTransactionCase):
         orderpoint_form.product_max_qty = 50.0
         orderpoint_form.qty_multiple = 1.0
         op1 = orderpoint_form.save()
-        self.assertEqual(op1.product_location_qty, 0)
-        self.assertEqual(op1.incoming_location_qty, 0)
+        self.assertEqual(op1.qty_on_hand, 0)
         self.assertEqual(op1.draft_purchase_order_qty, 0)
-        self.assertEqual(op1.outgoing_location_qty, 0)
-        self.assertEqual(op1.virtual_location_qty, 0)
-        self.assertEqual(op1.virtual_location_draft_purchase_qty, 0)
+        self.assertEqual(op1.qty_forecast, 0)
         # launch scheduler, it will order 50 pc of product
         self.run_stock_procurement_scheduler()
-        op1.refresh()
+        op1.invalidate_recordset()
         self.assertEqual(op1.draft_purchase_order_qty, 50)
-        self.assertEqual(op1.virtual_location_draft_purchase_qty, 50)
+        self.assertEqual(op1.qty_forecast, 50)
         purchase_orders = self.env["purchase.order"].search(
             [("order_line.product_id", "=", op1.product_id.id)]
         )

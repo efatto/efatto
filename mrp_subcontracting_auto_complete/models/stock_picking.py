@@ -12,7 +12,7 @@ class StockPicking(models.Model):
                 picking._get_subcontract_production()
             )._subcontracting_filter_to_done_zero_qty()
             for production in productions_to_done:
-                if production.qty_producing == 0:
+                if production.qty_producing < production.product_qty:
                     production.qty_producing = production.product_qty
                     production._set_qty_producing()
                     production.with_context(subcontract_move_id=True).button_mark_done()

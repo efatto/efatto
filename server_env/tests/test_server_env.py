@@ -27,12 +27,13 @@ class TestServerEnv(SavepointCase):
         )
 
     def test_01_check_server_env_running(self):
-        ir_actions_servers = self.env["ir.actions.server"].search([])
-        for ir_actions_server in ir_actions_servers:
-            self.assertEqual(
-                ir_actions_server.is_production_server,
-                True,
-            )
+        with patch.dict(config.options, {"running_env": "prod"}):
+            ir_actions_servers = self.env["ir.actions.server"].search([])
+            for ir_actions_server in ir_actions_servers:
+                self.assertEqual(
+                    ir_actions_server.is_production_server,
+                    True,
+                )
 
     def test_02_check_server_env_test(self):
         with patch.dict(config.options, {"running_env": "test"}):
@@ -86,3 +87,12 @@ class TestServerEnv(SavepointCase):
                 "Executed Regular",
                 "Regular action should be executed even in test environment",
             )
+
+    def test_03_check_server_env_not_configured(self):
+        with patch.dict(config.options, {"running_env": None}):
+            ir_actions_servers = self.env["ir.actions.server"].search([])
+            for ir_actions_server in ir_actions_servers:
+                self.assertEqual(
+                    ir_actions_server.is_production_server,
+                    False,
+                )

@@ -16,9 +16,19 @@ class IrActionsServer(models.Model):
         # or are called within an ir.cron execution context (lastcall in context).
         action_todo = self.env["ir.actions.server"]
         for action in self.sudo():
+            if not action.model_id:
+                # A server action without model cannot be run: base run() would
+                # fail with KeyError(model_name) when checking access rights.
+                _logger.warning(
+                    "Execution of server action '%s' skipped as no model is "
+                    "configured. (Action ID: %s)",
+                    action.name,
+                    action.id,
+                )
+                continue
             if (
                 not action.is_production_server
-                and not action.model_id.model == "openupgrader.migration"
+                and action.model_id.model != "openupgrader.migration"
                 and (action.usage == "ir_cron" or action.env.context.get("lastcall"))
             ):
                 # Log the block for traceability.
@@ -33,4 +43,6 @@ class IrActionsServer(models.Model):
             else:
                 action_todo |= action
 
+        if not action_todo:
+            return False
         return super(IrActionsServer, action_todo).run()

@@ -9,18 +9,20 @@ from odoo.tools.config import config as system_base_config
 logger = logging.getLogger(__name__)
 
 
+def get_running_env():
+    if not system_base_config.get("running_env"):
+        system_base_config["running_env"] = "test"
+    return system_base_config.get("running_env")
+
+
 def running(func):
     @functools.wraps(func)
     def wrap(*args, **kwargs):
-        if not system_base_config.get("running_env"):
-            system_base_config["running_env"] = "test"
-        server_running_state = system_base_config.get("running_env")
+        server_running_state = get_running_env()
         if server_running_state == "prod":
             result = func(*args, **kwargs)
         else:
-            logger.info(
-                "Server state != prod, ignored %s function" % func.__name__
-            )
+            logger.info("Server state != prod, ignored %s function" % func.__name__)
             result = False
         return result
 
@@ -45,6 +47,6 @@ class ServerEnvState(models.AbstractModel):
 
     def _compute_server_env_state(self):
         for record in self:
-            server_env_state = system_base_config.get("running_env", "prod")
+            server_env_state = get_running_env()
             record.server_env_state = server_env_state
             record.is_production_server = bool(server_env_state == "prod")

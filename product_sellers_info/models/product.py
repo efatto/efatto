@@ -34,11 +34,19 @@ class ProductTemplate(models.Model):
             lambda s: not s.date_end or s.date_end >= fields.Date.context_today(self)
         )
         if sellers:
-            return sellers.sorted(key=lambda s: (s.sequence, -s.min_qty, s.price, s.id))[0]
+            return sellers.sorted(
+                key=lambda s: (s.sequence, -s.min_qty, s.price, s.id)
+            )[0]
         return self.env["product.supplierinfo"]
 
-    @api.depends("seller_ids", "seller_ids.delay", "seller_ids.multiple_qty",
-                 "seller_ids.date_end", "seller_ids.sequence", "purchase_ok")
+    @api.depends(
+        "seller_ids",
+        "seller_ids.delay",
+        "seller_ids.multiple_qty",
+        "seller_ids.date_end",
+        "seller_ids.sequence",
+        "purchase_ok",
+    )
     def _compute_purchase_delay(self):
         for product_tmpl in self:
             purchase_delay = 0.0

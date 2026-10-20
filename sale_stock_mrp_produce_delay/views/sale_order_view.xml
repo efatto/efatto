@@ -47,9 +47,7 @@
                 />
             </xpath>
             <xpath expr="//field[@name='order_line']/list" position="attributes">
-                <attribute
-                    name="decoration-danger"
-                >predicted_arrival_late is True</attribute>
+                <attribute name="decoration-danger">predicted_arrival_late</attribute>
             </xpath>
         </field>
     </record>

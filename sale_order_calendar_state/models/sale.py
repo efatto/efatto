@@ -167,9 +167,9 @@ class SaleOrder(models.Model):
         "blocked_note_calendar",
         "is_prototype_calendar",
     )
-    def name_get(self):
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
         if self.env.context.get("default_calendar_state", False):
-            result = []
             for order in self:
                 name = f"{order.partner_id.name} {order.name}"
                 if order.production_id:
@@ -182,10 +182,8 @@ class SaleOrder(models.Model):
                     name += f" {order.blocked_note_calendar}"
                 if order.is_prototype_calendar:
                     name += f" {order.is_prototype_calendar}"
-                result.append((order.id, name))
-        else:
-            result = super().name_get()
-        return result
+                order.display_name = name
+        return res
 
     @api.depends("mrp_production_ids")
     def _compute_production_id(self):

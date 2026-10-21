@@ -103,6 +103,7 @@ class SaleOrder(models.Model):
         default="to_process",
         required=True,
         compute="_compute_calendar_state",
+        precompute=True,
         store=True,
     )
     max_commitment_date = fields.Datetime(

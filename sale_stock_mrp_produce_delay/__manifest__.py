@@ -16,8 +16,11 @@
         "views/product_view.xml",
         "views/sale_order_view.xml",
     ],
-    "qweb": [
-        "static/src/xml/qty_at_date.xml",
-    ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_stock_mrp_produce_delay/static/src/js/qty_at_date.esm.js",
+            "sale_stock_mrp_produce_delay/static/src/xml/qty_at_date.xml",
+        ],
+    },
     "installable": True,
 }

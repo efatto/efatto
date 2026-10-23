@@ -5,7 +5,6 @@
     "name": "Account Invoice Constraint Chronology",
     "version": "18.0.1.0.0",
     "author": "Odoo Community Association (OCA), ACSONE SA/NV, Sergio Corato",
-    "maintainer": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
     "license": "AGPL-3",
     "category": "Accounting",

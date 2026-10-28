@@ -14,22 +14,20 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     def _get_purchase_delay(self, purchase_delay=0, overtime=False):
+        bom = self.env["mrp.bom"]._bom_find(product=self, company_id=self.company_id.id)
         if self.env.ref("purchase_stock.route_warehouse0_buy") in self.route_ids:
             if overtime:
                 if self.seller_ids and self.seller_ids[0].overtime_purchase_delay:
                     purchase_delay += self.seller_ids[0].overtime_purchase_delay
             else:
                 purchase_delay += self.purchase_delay
-        if (
-            self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids
-            and self.bom_ids
-        ):
+        elif self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids and bom:
             purchase_delay = max(
                 [
                     p._get_purchase_delay(
                         purchase_delay=purchase_delay, overtime=overtime
                     )
-                    for p in self.bom_ids.bom_line_ids.mapped("product_id")
+                    for p in bom.bom_line_ids.mapped("product_id")
                 ]
                 or [0]
             )
@@ -38,11 +36,14 @@ class ProductProduct(models.Model):
     def _get_produce_delay(self, produce_delay=0):
         if self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids:
             produce_delay += self.produce_delay
-            if self.bom_ids:
+            bom = self.env["mrp.bom"]._bom_find(
+                product=self, company_id=self.company_id.id
+            )
+            if bom:
                 produce_delay = max(
                     [
                         p._get_produce_delay(produce_delay)
-                        for p in self.bom_ids.bom_line_ids.mapped("product_id")
+                        for p in bom.bom_line_ids.mapped("product_id")
                     ]
                     or [0]
                 )

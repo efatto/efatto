@@ -15,13 +15,17 @@ class ProductProduct(models.Model):
 
     def _get_purchase_delay(self, purchase_delay=0, overtime=False):
         bom = self.env["mrp.bom"]._bom_find(product=self, company_id=self.company_id.id)
-        if self.env.ref("purchase_stock.route_warehouse0_buy") in self.route_ids:
+        # if it's a production, take purchase delay from components of production
+        # if not (so it's a subcontract) take purchase delay from product itself
+        if (not bom or bom and bom.type not in ["normal", "phantom"]) and self.env.ref(
+            "purchase_stock.route_warehouse0_buy"
+        ) in self.route_ids:
             if overtime:
                 if self.seller_ids and self.seller_ids[0].overtime_purchase_delay:
                     purchase_delay += self.seller_ids[0].overtime_purchase_delay
             else:
                 purchase_delay += self.purchase_delay
-        elif self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids and bom:
+        elif bom and self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids:
             purchase_delay = max(
                 [
                     p._get_purchase_delay(
@@ -34,11 +38,13 @@ class ProductProduct(models.Model):
         return purchase_delay
 
     def _get_produce_delay(self, produce_delay=0):
-        if self.env.ref("mrp.route_warehouse0_manufacture") in self.route_ids:
+        # if it's a production, take produce delay from components of production
+        # if not (so it's a subcontract) take nothing
+        bom = self.env["mrp.bom"]._bom_find(product=self, company_id=self.company_id.id)
+        if (bom and bom.type in ["normal", "phantom"]) and self.env.ref(
+            "mrp.route_warehouse0_manufacture"
+        ) in self.route_ids:
             produce_delay += self.produce_delay
-            bom = self.env["mrp.bom"]._bom_find(
-                product=self, company_id=self.company_id.id
-            )
             if bom:
                 produce_delay = max(
                     [

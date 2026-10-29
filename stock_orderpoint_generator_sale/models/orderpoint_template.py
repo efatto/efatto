@@ -323,9 +323,13 @@ class OrderpointTemplate(models.Model):
                     qty_by_day = max_qty / (move_days or 1)
                     purchase_time_delay_used = False
                     purchase_overtime_delay_used = False
-                    purchase_time_delay = product_id._get_purchase_delay()
+                    purchase_time_delay = product_id._get_purchase_delay(
+                        location=record.location_id, route_id=record.route_id
+                    )
                     purchase_overtime_delay = product_id._get_purchase_delay(
-                        overtime=True
+                        overtime=True,
+                        location=record.location_id,
+                        route_id=record.route_id,
                     )
                     # Max purchase delay if extra UE supplier is 180 days, else 90 days
                     eu_country_group = self.env.ref("base.europe")
@@ -347,7 +351,9 @@ class OrderpointTemplate(models.Model):
                     else:
                         purchase_time_delay_used = True
                     purchase_delay = min(purchase_delay, purchase_delay_max)
-                    produce_delay = product_id._get_produce_delay()
+                    produce_delay = product_id._get_produce_delay(
+                        location=record.location_id, route_id=record.route_id
+                    )
                     total_delay = max(purchase_delay + produce_delay, 1)
                     consumed_qty_by_lead_time = (
                         qty_by_day * (1 + (record.variation_percent / 100.0))

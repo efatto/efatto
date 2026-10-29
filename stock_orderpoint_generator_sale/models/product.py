@@ -13,19 +13,39 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def _get_purchase_delay(self, purchase_delay=0, overtime=False):
+    def _get_delay_rules(self, location=False, route_id=False):
+        """Return the rules used to replenish the product at the given location."""
+        location = location or self.env.context.get("location")
+        if isinstance(location, int):
+            location = self.env["stock.location"].browse(location)
+        if isinstance(route_id, int):
+            route_id = self.env["stock.location.route"].browse(route_id)
+        if not location:
+            company = self.company_id or self.env.company
+            location = (
+                self.env["stock.warehouse"]
+                .search([("company_id", "=", company.id)], limit=1)
+                .lot_stock_id
+            )
+        if not location:
+            return self.env["stock.rule"]
+        return self._get_rules_from_location(location, route_ids=route_id)
+
+    def _get_purchase_delay(
+        self, purchase_delay=0, overtime=False, location=False, route_id=False
+    ):
         bom = self.env["mrp.bom"]._bom_find(product=self, company_id=self.company_id.id)
-        buy_route = self.env.ref("purchase_stock.route_warehouse0_buy")
-        manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
+        rules = self._get_delay_rules(location=location, route_id=route_id)
         is_manufactured = bool(
             bom
             and bom.type in ["normal", "phantom"]
-            and manufacture_route in self.route_ids
+            and rules.filtered(lambda r: r.action == "manufacture")
         )
+        has_purchase_rule = bool(rules.filtered(lambda r: r.action == "buy"))
         # if it's a production, take purchase delay from components of production
         # if not (so it's a subcontract or a purchased product with a BOM) take
         # purchase delay from product itself
-        if not is_manufactured and buy_route in self.route_ids:
+        if not is_manufactured and has_purchase_rule:
             if overtime:
                 if self.seller_ids and self.seller_ids[0].overtime_purchase_delay:
                     purchase_delay += self.seller_ids[0].overtime_purchase_delay
@@ -35,7 +55,9 @@ class ProductProduct(models.Model):
             purchase_delay = max(
                 [
                     p._get_purchase_delay(
-                        purchase_delay=purchase_delay, overtime=overtime
+                        purchase_delay=purchase_delay,
+                        overtime=overtime,
+                        location=location,
                     )
                     for p in bom.bom_line_ids.mapped("product_id")
                 ]
@@ -43,26 +65,25 @@ class ProductProduct(models.Model):
             )
         return purchase_delay
 
-    def _get_produce_delay(self, produce_delay=0):
+    def _get_produce_delay(self, produce_delay=0, location=False, route_id=False):
         # if it's a production, take produce delay from components of production
         # if not (so it's a subcontract) take nothing
         bom = self.env["mrp.bom"]._bom_find(product=self, company_id=self.company_id.id)
-        manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
+        rules = self._get_delay_rules(location=location, route_id=route_id)
         is_manufactured = bool(
             bom
             and bom.type in ["normal", "phantom"]
-            and manufacture_route in self.route_ids
+            and rules.filtered(lambda r: r.action == "manufacture")
         )
         if is_manufactured:
             produce_delay += self.produce_delay
-            if bom:
-                produce_delay = max(
-                    [
-                        p._get_produce_delay(produce_delay)
-                        for p in bom.bom_line_ids.mapped("product_id")
-                    ]
-                    or [0]
-                )
+            produce_delay = max(
+                [
+                    p._get_produce_delay(produce_delay, location=location)
+                    for p in bom.bom_line_ids.mapped("product_id")
+                ]
+                or [0]
+            )
         return produce_delay
 
     def _compute_historic_sale_quantities_dict(

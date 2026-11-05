@@ -29,26 +29,30 @@ class SaleOrder(models.Model):
         compute="_compute_mrp_component_ids",
     )
 
-    def _bom_explode(self, product_id, products):
-        bom = self.env["mrp.bom"]._bom_find(
-            product=product_id, company_id=self.company_id.id
-        )
+    def _bom_explode(self, product, products):
+        """Add the components of product (and of its sub components) to products.
+
+        In Odoo 18 `mrp.bom._bom_find` takes a `product.product` recordset and
+        returns a dict {product: mrp.bom}.
+        """
+        company_id = self.company_id.id or self.env.company.id
+        bom = self.env["mrp.bom"]._bom_find(product, company_id=company_id)[product]
         if bom:
-            bom_line_data = bom.explode(product_id, 1)[1]
+            bom_line_data = bom.explode(product, 1)[1]
             products.extend(
                 {
-                    "product_id": r[0].product_id.id,
-                    "qty": r[1]["qty"],
-                    "parent_id": product_id.id,
+                    "product_id": line.product_id.id,
+                    "qty": line_data["qty"],
+                    "parent_id": product.id,
                 }
-                for r in bom_line_data
+                for line, line_data in bom_line_data
             )
-            for product in [r[0].product_id for r in bom_line_data]:
-                products = self._bom_explode(product, products)
+            for line_product in [line.product_id for line, _data in bom_line_data]:
+                products = self._bom_explode(line_product, products)
         return products
 
     def _compute_mrp_component_ids(self):
         for order in self:
-            order.mrp_component_ids = order.production_ids.mapped(
+            order.mrp_component_ids = order.mrp_production_ids.mapped(
                 "move_raw_ids.product_id"
             )

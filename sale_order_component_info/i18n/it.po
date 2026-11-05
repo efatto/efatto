@@ -112,6 +112,11 @@ msgid "Display Qty Widget"
 msgstr "Widget quantità"
 
 #. module: sale_order_component_info
+#: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__forecast_expected_date
+msgid "Forecast Expected Date"
+msgstr "Previsione per data attesa"
+
+#. module: sale_order_component_info
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__virtual_available
 msgid "Forecast Quantity"
 msgstr "Quantità prevista"
@@ -149,6 +154,11 @@ msgid "Is Mto"
 msgstr "È MTO"
 
 #. module: sale_order_component_info
+#: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__is_storable
+msgid "Track Inventory"
+msgstr "Traccia magazzino"
+
+#. module: sale_order_component_info
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component____last_update
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line____last_update
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_order____last_update
@@ -176,8 +186,8 @@ msgstr ""
 #. module: sale_order_component_info
 #: code:addons/sale_order_component_info/wizard/sale_order_component.py:0
 #, python-format
-msgid "Make To Order"
-msgstr "Procura su ordine"
+msgid "Replenish on Order (MTO)"
+msgstr "Rifornimento su ordine (MTO)"
 
 #. module: sale_order_component_info
 #: model:ir.model.fields,help:sale_order_component_info.field_sale_component_line__customer_lead
@@ -302,6 +312,11 @@ msgstr "Riga ordine di vendita"
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__scheduled_date
 msgid "Scheduled Date"
 msgstr ""
+
+#. module: sale_order_component_info
+#: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__move_ids
+msgid "Stock Moves"
+msgstr "Movimenti di magazzino"
 
 #. module: sale_order_component_info
 #: model:ir.model.fields,field_description:sale_order_component_info.field_sale_component_line__product_uom

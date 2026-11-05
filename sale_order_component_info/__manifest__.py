@@ -3,7 +3,7 @@
 
 {
     "name": "Sale order info for components",
-    "version": "14.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "other",
     "author": "Sergio Corato",
     "website": "https://github.com/efatto/efatto",
@@ -11,6 +11,8 @@
     "license": "AGPL-3",
     "depends": [
         "sale_bookmark",
+        "sale_mrp",
+        "sale_stock",
         "sale_stock_mrp_produce_delay",
     ],
     "data": [

@@ -6,7 +6,6 @@ from collections import defaultdict
 from datetime import timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_round
 
 
@@ -109,9 +108,12 @@ class SaleComponentLine(models.TransientModel):
         "sale.component.line", "parent_id", string="Child Lines", readonly=True
     )
     state = fields.Selection(related="sale_order_line_id.state")
-    commitment_date = fields.Datetime(related="sale_order_line_id.commitment_date")
+    commitment_date = fields.Datetime(
+        related="sale_order_line_id.order_id.commitment_date"
+    )
     customer_lead = fields.Float(related="sale_order_line_id.customer_lead")
     product_type = fields.Selection(related="product_id.type")
+    is_storable = fields.Boolean(related="product_id.is_storable")
     qty_available = fields.Float(related="product_id.qty_available")
     incoming_qty = fields.Float(related="product_id.incoming_qty")
     outgoing_qty = fields.Float(related="product_id.outgoing_qty")
@@ -125,15 +127,35 @@ class SaleComponentLine(models.TransientModel):
     virtual_available_at_date = fields.Float(
         compute="_compute_qty_at_date", digits="Product Unit of Measure"
     )
+    forecast_expected_date = fields.Datetime(compute="_compute_qty_at_date")
     scheduled_date = fields.Datetime(compute="_compute_qty_at_date")
     free_qty_today = fields.Float(compute="_compute_qty_at_date")
     qty_available_today = fields.Float(compute="_compute_qty_at_date")
     warehouse_id = fields.Many2one("stock.warehouse", compute="_compute_qty_at_date")
+    # required by the Odoo 18 qty_at_date_widget popover ('View Forecast')
+    move_ids = fields.One2many(related="sale_order_line_id.move_ids")
     qty_to_deliver = fields.Float(
         compute="_compute_qty_to_deliver", digits="Product Unit of Measure"
     )
     is_mto = fields.Boolean(compute="_compute_is_mto")
     display_qty_widget = fields.Boolean(compute="_compute_qty_to_deliver")
+
+    def _get_component_delay(self, product):
+        """Days needed to make the component available.
+
+        Odoo 18 equivalents of the product delays used in v14: `produce_delay`
+        moved to the BoM, `purchase_delay` is replaced by the vendor delay.
+        """
+        delay = product.sale_delay or 0.0
+        company_id = (
+            self.sale_order_line_id.order_id.company_id.id or self.env.company.id
+        )
+        bom = self.env["mrp.bom"]._bom_find(product, company_id=company_id)[product]
+        if bom:
+            delay += bom.produce_delay or 0.0
+        else:
+            delay += max(product.seller_ids.mapped("delay"), default=0.0)
+        return delay
 
     def _get_bookmarked_components(self):
         child_dict = {}
@@ -145,12 +167,9 @@ class SaleComponentLine(models.TransientModel):
             ("state", "not in", ("cancel", "sale", "done")),
         ]
         sol_res = {
-            item["product_id"][0]: item["product_uom_qty"]
-            for item in self.env["sale.order.line"].read_group(
-                domain_sol,
-                ["product_id", "product_uom_qty"],
-                ["product_id"],
-                orderby="id",
+            product.id: total_qty
+            for product, total_qty in self.env["sale.order.line"]._read_group(
+                domain_sol, ["product_id"], ["product_uom_qty:sum"]
             )
         }
         for product in self.env["product.product"].browse(sol_res.keys()):
@@ -181,7 +200,7 @@ class SaleComponentLine(models.TransientModel):
             )
             component.display_qty_widget = (
                 component.state == "draft"
-                and component.product_type == "product"
+                and component.is_storable
                 and component.qty_to_deliver > 0
             )
 
@@ -203,28 +222,22 @@ class SaleComponentLine(models.TransientModel):
                 confirm_date = line.sale_order_line_id.order_id.date_order
             else:
                 confirm_date = now
-            # add produce_delay to customer_lead (equal to line.product_id.sale_delay)
+            # add produce_delay and purchase_delay to customer_lead
+            # (customer_lead is equal to product.sale_delay)
             date = confirm_date + timedelta(
-                days=(
-                    (line.product_id.sale_delay or 0.0)
-                    + (line.product_id.produce_delay or 0.0)
-                    + (line.product_id.purchase_delay or 0.0)
-                )
+                days=line._get_component_delay(line.product_id)
             )
             grouped_lines[(line.warehouse_id.id, date)] |= line
         treated = self.browse()
         for (warehouse, scheduled_date), lines in grouped_lines.items():
             for line in lines:
-                to_date = (
-                    line.sale_order_line_id.commitment_date
-                    or line.sale_order_line_id.scheduled_date
-                )
+                to_date = line.commitment_date or line.sale_order_line_id.scheduled_date
                 if line.product_id.sale_delay:
                     to_date = to_date + timedelta(
                         days=-(line.product_id.sale_delay or 0.0)
                     )
                 product = line.product_id.with_context(
-                    to_date=to_date, warehouse=warehouse
+                    to_date=to_date, warehouse_id=warehouse
                 )
                 qty_available = product.qty_available
                 free_qty = product.free_qty
@@ -247,6 +260,8 @@ class SaleComponentLine(models.TransientModel):
                 line.virtual_available_at_date = (
                     virtual_available_at_date - missing_component_qty
                 )
+                # no move forecast at component level in 18 widget
+                line.forecast_expected_date = False
                 qty_processed_per_product[product.id] += (
                     line.component_bom_qty * line.sol_product_uom_qty
                 )
@@ -255,6 +270,7 @@ class SaleComponentLine(models.TransientModel):
         remaining.write(
             {
                 "virtual_available_at_date": False,
+                "forecast_expected_date": False,
                 "scheduled_date": False,
                 "free_qty_today": False,
                 "qty_available_today": False,
@@ -279,13 +295,9 @@ class SaleComponentLine(models.TransientModel):
                 line.sale_order_line_id.order_id.warehouse_id.mto_pull_id.route_id
             )
             if not mto_route:
-                try:
-                    warehouse_obj = self.env["stock.warehouse"]
-                    mto_route = warehouse_obj._find_global_route(
-                        "stock.route_warehouse0_mto", _("Make To Order")
-                    )
-                except UserError:
-                    # if route MTO not found in ir_model_data,
-                    # we treat the product as in MTS
-                    pass
+                mto_route = self.env["stock.warehouse"]._find_or_create_global_route(
+                    "stock.route_warehouse0_mto",
+                    _("Replenish on Order (MTO)"),
+                    create=False,
+                )
             line.is_mto = mto_route and mto_route in product_routes

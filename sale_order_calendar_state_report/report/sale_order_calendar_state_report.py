@@ -23,8 +23,9 @@ class SaleOrderCalendarStateReport(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
-        self._cr.execute(
-            """CREATE OR REPLACE VIEW %s AS (
+        self.env.cr.execute(
+            tools.SQL(
+                """CREATE OR REPLACE VIEW %s AS (
             SELECT
                 so.id AS id,
                 co.id AS country_id,
@@ -33,14 +34,16 @@ class SaleOrderCalendarStateReport(models.Model):
                 so.calendar_state AS calendar_state,
                 so.production_id AS production_id,
                 mo.product_qty AS production_qty,
-                to_char(mo.date_planned_start, 'YYYY-MM-DD') AS production_date_planned_start,
-                to_char(so.max_commitment_date, 'YYYY-MM-DD') AS sale_order_max_commitment_date
+                to_char(mo.date_start, 'YYYY-MM-DD') AS production_date_planned_start,
+                to_char(so.max_commitment_date, 'YYYY-MM-DD')
+                 AS sale_order_max_commitment_date
             FROM sale_order so
                 LEFT JOIN mrp_production mo ON mo.id = so.production_id
                 LEFT JOIN res_partner rp ON rp.id = so.partner_id
                 LEFT JOIN res_country co ON co.id = rp.country_id
             WHERE so.production_id is not null
         )
-        """
-            % self._table
+        """,
+                tools.SQL.identifier(self._table),
+            )
         )

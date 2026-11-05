@@ -24,30 +24,30 @@
                 <field name="calendar_state" />
                 <field name="production_date_planned_start" />
                 <filter
-          name="filter_production_date_planned_start"
-          string="Production date planned start: From Last Month"
-          domain="[('production_date_planned_start', '&gt;=', (context_today().replace(day=1) + relativedelta(months=-1)).strftime('%Y-%m-%d'))]"
-        />
+                    name="filter_production_date_planned_start"
+                    string="Production date planned start: From Last Month"
+                    domain="[('production_date_planned_start', '&gt;=', (context_today().replace(day=1) + relativedelta(months=-1)).strftime('%Y-%m-%d'))]"
+                />
                 <filter
-          string="Group by Production Date Planned start"
-          name="groupby_production_date_planned_start"
-          context="{'group_by': 'production_date_planned_start'}"
-        />
+                    string="Group by Production Date Planned start"
+                    name="groupby_production_date_planned_start"
+                    context="{'group_by': 'production_date_planned_start'}"
+                />
                 <filter
-          name="filter_sale_order_max_commitment_date"
-          string="Sale order max commitment date: From Last Month"
-          domain="[('sale_order_max_commitment_date', '&gt;=', (context_today().replace(day=1) + relativedelta(months=-1)).strftime('%Y-%m-%d'))]"
-        />
+                    name="filter_sale_order_max_commitment_date"
+                    string="Sale order max commitment date: From Last Month"
+                    domain="[('sale_order_max_commitment_date', '&gt;=', (context_today().replace(day=1) + relativedelta(months=-1)).strftime('%Y-%m-%d'))]"
+                />
                 <filter
-          string="Group by Sale order max commitment date"
-          name="groupby_sale_order_max_commitment_date"
-          context="{'group_by': 'sale_order_max_commitment_date'}"
-        />
+                    string="Group by Sale order max commitment date"
+                    name="groupby_sale_order_max_commitment_date"
+                    context="{'group_by': 'sale_order_max_commitment_date'}"
+                />
                 <filter
-          string="Group by Calendar State"
-          name="groupby_calendar_state"
-          context="{'group_by': 'calendar_state'}"
-        />
+                    string="Group by Calendar State"
+                    name="groupby_calendar_state"
+                    context="{'group_by': 'calendar_state'}"
+                />
             </search>
         </field>
     </record>
@@ -86,16 +86,16 @@
         <field name="res_model">sale.order.calendar.state.report</field>
         <field name="view_mode">graph,pivot</field>
         <field
-      name="context"
-    >{"search_default_filter_sale_order_max_commitment_date": 1,
+            name="context"
+        >{"search_default_filter_sale_order_max_commitment_date": 1,
                                "search_default_groupby_sale_order_max_commitment_date": 1,
                                "search_default_groupby_calendar_state": 1}</field>
     </record>
 
     <menuitem
-    id="menu_sale_order_calendar_state_report"
-    parent="sale.menu_sale_report"
-    action="action_sale_order_calendar_state_report"
-    name="Sale Order Calendar State"
-  />
+        id="menu_sale_order_calendar_state_report"
+        parent="sale.menu_sale_report"
+        action="action_sale_order_calendar_state_report"
+        name="Sale Order Calendar State"
+    />
 </odoo>

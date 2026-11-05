@@ -4,7 +4,7 @@
         <field name="name">Sale order calendar state report tree</field>
         <field name="model">sale.order.calendar.state.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="calendar_state" />
                 <field name="country_id" />
@@ -13,7 +13,7 @@
                 <field name="sale_order_max_commitment_date" />
                 <field name="production_qty" sum="Total Production Qty" />
                 <field name="amount_untaxed" sum="Total Amount Untaxed" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_sale_order_calendar_state_report_search" model="ir.ui.view">

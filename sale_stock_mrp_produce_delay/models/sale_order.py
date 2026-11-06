@@ -389,7 +389,7 @@ class SaleOrderLine(models.Model):
                 .ids
             )
             predicted_arrival_late = False
-            if line.available_date > commitment_date:
+            if line.available_date and line.available_date > commitment_date:
                 predicted_arrival_late = True
             line.predicted_arrival_late = predicted_arrival_late
 

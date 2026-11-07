@@ -4,7 +4,7 @@
 {
     "name": "Order point generator for range periods",
     "summary": "Mass configuration of stock order points",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "author": "Sergio Corato",
     "category": "Warehouse",
     "license": "AGPL-3",

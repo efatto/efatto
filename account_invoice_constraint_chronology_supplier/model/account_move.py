@@ -45,10 +45,11 @@ class AccountMove(models.Model):
                 if inv.invoice_date and inv.date and inv.invoice_date > inv.date:
                     raise UserError(
                         _(
-                            "Supplier invoice date %(inv_date)s cannot be later than "
-                            "the date of registration %(reg_date)s!"
+                            "Supplier invoice %(invoice)s date %(inv_date)s cannot be "
+                            "later than the date of registration %(reg_date)s!"
                         )
                         % {
+                            "invoice": inv.name,
                             "inv_date": inv.invoice_date.strftime("%d/%m/%Y"),
                             "reg_date": inv.date.strftime("%d/%m/%Y"),
                         }
@@ -60,9 +61,12 @@ class AccountMove(models.Model):
                 if invoices:
                     raise UserError(
                         _(
-                            "Chronology Error. Post the invoice with an equal "
-                            "or greater date than {invoice_date}."
-                        ).format(invoice_date=invoices[0].date.strftime("%d/%m/%Y"))
+                            "Chronology Error. Found invoices with a later date: "
+                            "%(invoices)s. Post the invoice with an equal "
+                            "or greater date than %(invoice_date)s.",
+                            invoices=", ".join(invoices.mapped("name")),
+                            invoice_date=invoices[0].date.strftime("%d/%m/%Y"),
+                        )
                     )
         return res
 
@@ -101,7 +105,9 @@ class AccountMove(models.Model):
                 ):
                     raise UserError(
                         _(
-                            "Duplicated vendor reference detected. You probably encoded"
-                            " twice the same vendor bill/credit note."
+                            "Duplicated vendor reference %(ref)s detected. You "
+                            "probably encoded twice the same vendor bill/credit "
+                            "note.",
+                            ref=invoice.ref,
                         )
                     )

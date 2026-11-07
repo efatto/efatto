@@ -16,9 +16,29 @@ class IrActionsServer(models.Model):
         # or are called within an ir.cron execution context (lastcall in context).
         action_todo = self.env["ir.actions.server"]
         for action in self.sudo():
+            model = action.model_id.exists()
+            if model and model.model and not action.model_name:
+                # model_name is a stored related field: after direct SQL
+                # inserts/migrations it can be out of sync with model_id.
+                # Recompute it before base run() uses it for access checks.
+                action.modified(["model_id"])
+                action.recompute(["model_name"])
+            if not model or not model.model or not action.model_name:
+                # A server action without a valid model cannot be run: base
+                # run() would fail with KeyError(model_name) on access checks.
+                _logger.warning(
+                    "Execution of server action '%s' skipped as no valid model "
+                    "is configured (model_id: %s, model_name: %s). "
+                    "(Action ID: %s)",
+                    action.name,
+                    action.model_id.id or False,
+                    action.model_name,
+                    action.id,
+                )
+                continue
             if (
                 not action.is_production_server
-                and not action.model_id.model == "openupgrader.migration"
+                and model.model != "openupgrader.migration"
                 and (action.usage == "ir_cron" or action.env.context.get("lastcall"))
             ):
                 # Log the block for traceability.
@@ -27,10 +47,12 @@ class IrActionsServer(models.Model):
                     "and it is not a migration action (model: %s). "
                     "(Action ID: %s)",
                     action.name,
-                    action.model_id.model,
+                    model.model,
                     action.id,
                 )
             else:
                 action_todo |= action
 
+        if not action_todo:
+            return False
         return super(IrActionsServer, action_todo).run()

@@ -126,3 +126,12 @@ class TestServerEnv(BaseCommon):
                 "Executed Regular" in test_partner.comment,
                 "Regular action should be executed even in test environment",
             )
+
+    def test_03_check_server_env_not_configured(self):
+        with patch.dict(config.options, {"running_env": None}):
+            ir_actions_servers = self.env["ir.actions.server"].search([])
+            for ir_actions_server in ir_actions_servers:
+                self.assertEqual(
+                    ir_actions_server.is_production_server,
+                    False,
+                )

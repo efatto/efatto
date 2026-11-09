@@ -12,36 +12,60 @@ class SupplierInfo(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    custom_purchase_delay = fields.Integer(
-        string="Purchase Lead Time",
-        help="Lead time in days to purchase this product. If set, it is used instead of"
-        " the computed field.",
-    )
     purchase_delay = fields.Float(
         string="Purchase Lead Time (computed)",
         compute="_compute_purchase_delay",
+        inverse="_inverse_purchase_delay",
         store=True,
-        default=0.0,
         help="Lead time in days to purchase this product. "
         "Computed from delay of first seller.",
     )
     purchase_multiple_qty = fields.Float(
         compute="_compute_purchase_delay",
+        inverse="_inverse_purchase_delay",
         store=True,
-        default=1.0,
         help="Purchase multiple quantity to purchase this product. "
         "Computed from multiple quantity of first seller.",
     )
 
-    @api.depends("seller_ids", "seller_ids.delay", "custom_purchase_delay")
+    def _get_first_seller(self):
+        sellers = self.seller_ids.filtered(
+            lambda s: not s.date_end or s.date_end >= fields.Date.context_today(self)
+        )
+        if sellers:
+            return sellers.sorted(
+                key=lambda s: (s.sequence, -s.min_qty, s.price, s.id)
+            )[0]
+        return self.env["product.supplierinfo"]
+
+    @api.depends(
+        "seller_ids",
+        "seller_ids.delay",
+        "seller_ids.multiple_qty",
+        "seller_ids.date_end",
+        "seller_ids.sequence",
+        "purchase_ok",
+    )
     def _compute_purchase_delay(self):
         for product_tmpl in self:
-            if product_tmpl.custom_purchase_delay and product_tmpl.purchase_ok:
-                product_tmpl.purchase_delay = product_tmpl.custom_purchase_delay
-            elif product_tmpl.seller_ids and product_tmpl.purchase_ok:
-                product_tmpl.purchase_delay = product_tmpl.seller_ids[0].delay
-                product_tmpl.purchase_multiple_qty = product_tmpl.seller_ids[
-                    0
-                ].multiple_qty
-            else:
-                product_tmpl.purchase_delay = 0
+            purchase_delay = 0.0
+            purchase_multiple_qty = 1.0
+            if product_tmpl.purchase_ok:
+                seller_id = self._get_first_seller()
+                if seller_id:
+                    if seller_id.delay:
+                        purchase_delay = seller_id.delay
+                    if seller_id.multiple_qty:
+                        purchase_multiple_qty = seller_id.multiple_qty
+            product_tmpl.purchase_delay = purchase_delay
+            product_tmpl.purchase_multiple_qty = purchase_multiple_qty
+
+    def _inverse_purchase_delay(self):
+        for product_tmpl in self:
+            if product_tmpl.purchase_ok:
+                seller_id = self._get_first_seller()
+                if seller_id:
+                    if product_tmpl.purchase_delay:
+                        seller_id.delay = product_tmpl.purchase_delay
+                    if product_tmpl.purchase_multiple_qty:
+                        seller_id.multiple_qty = product_tmpl.purchase_multiple_qty

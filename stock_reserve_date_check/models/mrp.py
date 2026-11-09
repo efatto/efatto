@@ -17,9 +17,8 @@ class MrpProduction(models.Model):
             ):
                 raise UserError(
                     _(
-                        "Production start date {date_start} cannot be after "
-                        "commitment date {commitment_date}"
-                    ).format(
+                        "Production start date %(date_start)s cannot be after "
+                        "commitment date %(commitment_date)s",
                         date_start=rec.date_start,
                         commitment_date=rec.commitment_date,
                     )

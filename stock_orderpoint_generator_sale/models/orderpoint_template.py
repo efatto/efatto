@@ -454,8 +454,7 @@ class OrderpointTemplate(models.Model):
                                     "Minimum qty: %(min_qty)s, "
                                     "Lot to reorder: "
                                     "%(lot_to_reorder)s%(lot_to_reorder_info)s, "
-                                    "Maximum qty: %(max_qty)s)"
-                                ).format(
+                                    "Maximum qty: %(max_qty)s)",
                                     p_code=product_id.default_code,
                                     stock_max_qty=stock_max_qty[product_id.id],
                                     m_days=move_days,

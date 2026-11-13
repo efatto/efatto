@@ -2,7 +2,7 @@ from openupgradelib import openupgrade
 
 
 @openupgrade.migrate()
-def migrate(env, installed_version):
+def migrate(env, version):
     # save a copy of custom_purchase_delay to reuse later
     openupgrade.copy_columns(
         env.cr,

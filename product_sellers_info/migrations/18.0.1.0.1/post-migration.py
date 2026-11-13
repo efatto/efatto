@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 @openupgrade.migrate()
-def migrate(env, installed_version):
+def migrate(env, version):
     # Assign purchase delay value from custom_purchase_delay saved in the pre-migration
     legacy_name_custom_purchase_delay = openupgrade.get_legacy_name(
         "custom_purchase_delay"

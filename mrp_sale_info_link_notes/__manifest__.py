@@ -18,9 +18,4 @@
         "views/mrp_production.xml",
         "report/stock_report_deliveryslip.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "/mrp_sale_info_link_notes/static/src/scss/web_calendar.scss",
-        ],
-    },
 }

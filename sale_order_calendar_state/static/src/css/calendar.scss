@@ -1,6 +1,3 @@
-.o_underline_color_301 {
-    border-bottom: 4px solid white;
-}
 .oe_kanban_color_301 {
     background-color: white !important;
 }
@@ -9,10 +6,6 @@
     background-color: white !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_302 {
-    border-bottom: 4px solid #fc7e00;
 }
 .oe_kanban_color_302 {
     background-color: #fc7e00 !important;
@@ -23,10 +16,6 @@
     border-color: black !important;
     opacity: 0.7;
 }
-
-.o_underline_color_303 {
-    border-bottom: 4px solid yellow;
-}
 .oe_kanban_color_303 {
     background-color: yellow !important;
 }
@@ -35,10 +24,6 @@
     background-color: yellow !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_304 {
-    border-bottom: 4px solid #e143f1;
 }
 .oe_kanban_color_304 {
     background-color: #e143f1 !important;
@@ -49,10 +34,6 @@
     border-color: black !important;
     opacity: 0.7;
 }
-
-.o_underline_color_305 {
-    border-bottom: 4px solid #3364ea;
-}
 .oe_kanban_color_305 {
     background-color: #3364ea !important;
 }
@@ -61,10 +42,6 @@
     background-color: #3364ea !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_306 {
-    border-bottom: 4px solid #b9e03c;
 }
 .oe_kanban_color_306 {
     background-color: #b9e03c !important;
@@ -75,10 +52,6 @@
     border-color: black !important;
     opacity: 0.7;
 }
-
-.o_underline_color_307 {
-    border-bottom: 4px solid black;
-}
 .oe_kanban_color_307 {
     background-color: black !important;
 }
@@ -87,10 +60,6 @@
     background-color: black !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_308 {
-    border-bottom: 4px solid #25e4d0;
 }
 .oe_kanban_color_308 {
     background-color: #25e4d0 !important;
@@ -101,10 +70,6 @@
     border-color: black !important;
     opacity: 0.7;
 }
-
-.o_underline_color_309 {
-    border-bottom: 4px solid #0e6c0e;
-}
 .oe_kanban_color_309 {
     background-color: #0e6c0e !important;
 }
@@ -113,10 +78,6 @@
     background-color: #0e6c0e !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_310 {
-    border-bottom: 4px solid #5f8c87;
 }
 .oe_kanban_color_310 {
     background-color: #5f8c87 !important;
@@ -127,10 +88,6 @@
     border-color: black !important;
     opacity: 0.7;
 }
-
-.o_underline_color_311 {
-    border-bottom: 4px solid #13b5e3;
-}
 .oe_kanban_color_311 {
     background-color: #13b5e3 !important;
 }
@@ -139,10 +96,6 @@
     background-color: #13b5e3 !important;
     border-color: black !important;
     opacity: 0.7;
-}
-
-.o_underline_color_321 {
-    border-bottom: 4px solid red;
 }
 .oe_kanban_color_321 {
     background-color: red !important;
@@ -154,15 +107,15 @@
     opacity: 0.7;
 }
 
-.o_calendar_container {
-    .o_calendar_view {
-        .o_calendar_widget {
-            .o_field_blocked_note_calendar {
-                font-weight: bold;
-            }
-        }
-    }
+/* The blocked note is a warning shown in the calendar event popover. Odoo 18
+   renders the popover fields as div[name="<field>"] (the 14.0
+   o_field_<field name> class never existed, the widgets only get
+   o_field_<type>). */
+.o_cw_popover [name="blocked_note_calendar"] {
+    font-weight: bold;
 }
-.o_calendar_view .o_calendar_widget .fc-dayGridMonth-view .fc-event .fc-content {
+/* Odoo 18 ships FullCalendar 6: the event body is .fc-event-main
+   (it was .fc-content up to FullCalendar 4). */
+.o_calendar_view .o_calendar_widget .fc-dayGridMonth-view .fc-event .fc-event-main {
     white-space: inherit;
 }

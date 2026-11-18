@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_mail_lost_inbox_rule_list" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.rule.list</field>
+        <field name="model">mail.lost.inbox.rule</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="sender" optional="show" />
+                <field name="recipient" optional="hide" />
+                <field name="subject_keyword" optional="show" />
+                <field name="action" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mail_lost_inbox_rule_form" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.rule.form</field>
+        <field name="model">mail.lost.inbox.rule</field>
+        <field name="arch" type="xml">
+            <form string="Routing Rule">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Criteria">
+                            <field name="sender" />
+                            <field name="recipient" />
+                            <field name="subject_keyword" />
+                        </group>
+                        <group string="Action">
+                            <field name="action" />
+                            <field
+                                name="target_record"
+                                options="{'no_create': True}"
+                                invisible="action != 'record'"
+                                required="action == 'record'"
+                            />
+                            <field
+                                name="assign_user_id"
+                                invisible="action != 'assign'"
+                                required="action == 'assign'"
+                            />
+                            <field
+                                name="create_partner"
+                                invisible="action != 'partner'"
+                            />
+                            <field
+                                name="notify_followers"
+                                invisible="action in ('discard', 'assign')"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sequence" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mail_lost_inbox_rule_search" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.rule.search</field>
+        <field name="model">mail.lost.inbox.rule</field>
+        <field name="arch" type="xml">
+            <search string="Routing Rules">
+                <field name="name" />
+                <field name="sender" />
+                <field name="recipient" />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <filter
+                    name="group_company"
+                    string="Company"
+                    context="{'group_by': 'company_id'}"
+                    groups="base.group_multi_company"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mail_lost_inbox_rule" model="ir.actions.act_window">
+        <field name="name">Lost Mail Routing Rules</field>
+        <field name="res_model">mail.lost.inbox.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_mail_lost_inbox_rule_search" />
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first routing rule
+            </p>
+            <p>
+                A rule attaches a lost email to a record, discards it or assigns
+                it to a user, based on the sender, the recipients or the subject.
+            </p>
+        </field>
+    </record>
+</odoo>

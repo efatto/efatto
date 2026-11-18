@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="module_category_mail_lost_inbox" model="ir.module.category">
+        <field name="name">Lost Mail Inbox</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="group_lost_inbox_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_mail_lost_inbox" />
+        <field name="comment">See the lost mail inbox and route emails.</field>
+    </record>
+
+    <record id="group_lost_inbox_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_mail_lost_inbox" />
+        <field name="implied_ids" eval="[(4, ref('group_lost_inbox_user'))]" />
+        <field
+            name="comment"
+        >Delete entries, manage routing rules and configure the inbox.</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('mail_lost_inbox.group_lost_inbox_manager'))]"
+        />
+    </record>
+
+    <record id="mail_lost_inbox_rule_company" model="ir.rule">
+        <field name="name">Lost Mail: multi-company</field>
+        <field name="model_id" ref="model_mail_lost_inbox" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True" />
+    </record>
+
+    <record id="mail_lost_inbox_rule_rule_company" model="ir.rule">
+        <field name="name">Lost Mail rules: multi-company</field>
+        <field name="model_id" ref="model_mail_lost_inbox_rule" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True" />
+    </record>
+</odoo>

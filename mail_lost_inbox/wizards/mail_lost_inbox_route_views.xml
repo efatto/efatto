@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_mail_lost_inbox_route_form" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.route.form</field>
+        <field name="model">mail.lost.inbox.route</field>
+        <field name="arch" type="xml">
+            <form string="Route Lost Emails">
+                <field name="lost_inbox_ids" widget="many2many_tags" readonly="1" />
+                <group>
+                    <field name="route_action" widget="radio" />
+                </group>
+                <group invisible="route_action != 'record'">
+                    <field
+                        name="target_record"
+                        options="{'no_create': True}"
+                        required="route_action == 'record'"
+                    />
+                </group>
+                <group invisible="route_action != 'partner'">
+                    <field name="partner_id" options="{'no_create': True}" />
+                    <field name="create_partner" />
+                </group>
+                <group invisible="route_action != 'new'">
+                    <field name="new_model_id" options="{'no_create': True}" />
+                    <field name="new_record_name" />
+                </group>
+                <group>
+                    <field name="notify_followers" />
+                </group>
+                <footer>
+                    <button
+                        name="action_route"
+                        string="Route"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mail_lost_inbox_route" model="ir.actions.act_window">
+        <field name="name">Route Lost Emails</field>
+        <field name="res_model">mail.lost.inbox.route</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_lost_inbox_user,mail.lost.inbox user,model_mail_lost_inbox,group_lost_inbox_user,1,1,0,0
+access_mail_lost_inbox_manager,mail.lost.inbox manager,model_mail_lost_inbox,group_lost_inbox_manager,1,1,1,1
+access_mail_lost_inbox_rule_user,mail.lost.inbox.rule user,model_mail_lost_inbox_rule,group_lost_inbox_user,1,0,0,0
+access_mail_lost_inbox_rule_manager,mail.lost.inbox.rule manager,model_mail_lost_inbox_rule,group_lost_inbox_manager,1,1,1,1
+access_mail_lost_inbox_route_user,mail.lost.inbox.route user,model_mail_lost_inbox_route,group_lost_inbox_user,1,1,1,1

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <menuitem
+        id="menu_mail_lost_inbox_root"
+        name="Lost Mail"
+        sequence="85"
+        groups="group_lost_inbox_user"
+    />
+
+    <menuitem
+        id="menu_mail_lost_inbox_inbox"
+        name="Inbox"
+        parent="menu_mail_lost_inbox_root"
+        action="action_mail_lost_inbox"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_mail_lost_inbox_config"
+        name="Configuration"
+        parent="menu_mail_lost_inbox_root"
+        sequence="90"
+        groups="group_lost_inbox_manager"
+    />
+
+    <menuitem
+        id="menu_mail_lost_inbox_rules"
+        name="Routing Rules"
+        parent="menu_mail_lost_inbox_config"
+        action="action_mail_lost_inbox_rule"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_mail_lost_inbox_settings"
+        name="Settings"
+        parent="menu_mail_lost_inbox_config"
+        action="action_mail_lost_inbox_settings"
+        sequence="20"
+    />
+</odoo>

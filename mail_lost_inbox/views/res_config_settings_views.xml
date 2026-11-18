@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.mail_lost_inbox</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="Lost Mail"
+                    string="Lost Mail"
+                    name="mail_lost_inbox"
+                    groups="mail_lost_inbox.group_lost_inbox_manager"
+                >
+                    <block title="Lost Mail Inbox">
+                        <setting
+                            string="Keep Catch-all Mail"
+                            help="Keep emails sent straight to a catch-all address in the inbox instead of bouncing them."
+                        >
+                            <field name="lost_inbox_keep_catchall" />
+                        </setting>
+                        <setting
+                            string="Keep Automatic and Bulk Mail"
+                            help="Also keep automatic replies and bulk emails in the inbox."
+                        >
+                            <field name="lost_inbox_keep_automatic" />
+                        </setting>
+                        <setting
+                            string="Notification Group"
+                            help="Group notified when an email lands in the inbox and no routing rule handled it."
+                        >
+                            <field
+                                name="lost_inbox_notify_group_id"
+                                options="{'no_create': True}"
+                            />
+                        </setting>
+                        <setting
+                            string="Routed Retention"
+                            help="Days before routed and discarded entries are deleted (0 keeps them forever)."
+                        >
+                            <field name="lost_inbox_retention_days" />
+                        </setting>
+                        <setting
+                            string="Pending Retention"
+                            help="Days before pending entries are deleted (0 keeps them until routed or discarded)."
+                        >
+                            <field name="lost_inbox_pending_retention_days" />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_mail_lost_inbox_settings" model="ir.actions.act_window">
+        <field name="name">Lost Mail Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'mail_lost_inbox'}</field>
+    </record>
+</odoo>

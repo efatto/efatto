@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_mail_lost_inbox_list" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.list</field>
+        <field name="model">mail.lost.inbox</field>
+        <field name="arch" type="xml">
+            <list
+                create="false"
+                decoration-muted="state != 'pending'"
+                decoration-bf="state == 'pending'"
+            >
+                <header>
+                    <button
+                        name="%(mail_lost_inbox.action_mail_lost_inbox_route)d"
+                        type="action"
+                        string="Route"
+                        class="btn-primary"
+                    />
+                </header>
+                <field name="date" />
+                <field name="name" />
+                <field name="email_from" />
+                <field name="email_domain" optional="hide" />
+                <field name="reason" optional="hide" />
+                <field name="user_id" widget="many2one_avatar_user" optional="show" />
+                <field name="attachment_count" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'pending'"
+                    decoration-success="state == 'routed'"
+                    decoration-muted="state == 'discarded'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mail_lost_inbox_kanban" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.kanban</field>
+        <field name="model">mail.lost.inbox</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" create="false" class="o_kanban_mobile">
+                <field name="name" />
+                <field name="email_from" />
+                <field name="date" />
+                <field name="user_id" />
+                <field name="state" />
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                    <span class="text-muted">
+                                        <field name="email_from" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <field name="date" />
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field
+                                        name="user_id"
+                                        widget="many2one_avatar_user"
+                                    />
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field
+                                        name="state"
+                                        widget="badge"
+                                        decoration-info="state == 'pending'"
+                                        decoration-success="state == 'routed'"
+                                        decoration-muted="state == 'discarded'"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_mail_lost_inbox_form" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.form</field>
+        <field name="model">mail.lost.inbox</field>
+        <field name="arch" type="xml">
+            <form string="Lost Email" create="false">
+                <header>
+                    <button
+                        name="%(mail_lost_inbox.action_mail_lost_inbox_route)d"
+                        type="action"
+                        string="Route"
+                        class="oe_highlight"
+                        invisible="state != 'pending'"
+                    />
+                    <button
+                        name="action_open_target"
+                        type="object"
+                        string="Open Target Record"
+                        invisible="state != 'routed'"
+                    />
+                    <button
+                        name="action_discard"
+                        type="object"
+                        string="Discard"
+                        confirm="Discard this email? It stays in the inbox until the retention delay removes it."
+                        invisible="state != 'pending'"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email_from" />
+                            <field name="email_to" />
+                            <field name="email_cc" invisible="not email_cc" />
+                            <field name="recipients" invisible="not recipients" />
+                            <field name="date" />
+                            <field name="reason" />
+                        </group>
+                        <group>
+                            <field name="user_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="rule_id" invisible="not rule_id" />
+                            <field name="attachment_count" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message" name="message">
+                            <field
+                                name="body"
+                                nolabel="1"
+                                readonly="1"
+                                options="{'style-inline': true}"
+                            />
+                        </page>
+                        <page string="Original Headers" name="headers">
+                            <field
+                                name="headers"
+                                nolabel="1"
+                                readonly="1"
+                                class="text-monospace"
+                            />
+                        </page>
+                        <page
+                            string="Routing"
+                            name="routing"
+                            invisible="state == 'pending'"
+                        >
+                            <group>
+                                <field name="routed_record_name" />
+                                <field name="routed_model" />
+                                <field name="routed_res_id" />
+                                <field name="routed_by" />
+                                <field name="routed_date" />
+                                <field
+                                    name="discard_reason"
+                                    invisible="not discard_reason"
+                                />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mail_lost_inbox_search" model="ir.ui.view">
+        <field name="name">mail.lost.inbox.search</field>
+        <field name="model">mail.lost.inbox</field>
+        <field name="arch" type="xml">
+            <search string="Lost Emails">
+                <field name="name" string="Subject" />
+                <field name="email_from" />
+                <field name="email_to" />
+                <field name="recipients" />
+                <field name="body" />
+                <filter
+                    name="pending"
+                    string="Pending"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter
+                    name="routed"
+                    string="Routed"
+                    domain="[('state', '=', 'routed')]"
+                />
+                <filter
+                    name="discarded"
+                    string="Discarded"
+                    domain="[('state', '=', 'discarded')]"
+                />
+                <separator />
+                <filter name="mine" string="Mine" domain="[('user_id', '=', uid)]" />
+                <filter
+                    name="unassigned"
+                    string="Unassigned"
+                    domain="[('user_id', '=', False)]"
+                />
+                <filter
+                    name="with_attachments"
+                    string="With Attachments"
+                    domain="[('attachment_ids', '!=', False)]"
+                />
+                <filter
+                    name="catchall"
+                    string="Catch-all"
+                    domain="[('reason', '=', 'catchall')]"
+                />
+                <separator />
+                <filter
+                    name="today"
+                    string="Today"
+                    domain="[('date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    name="last_7_days"
+                    string="Last 7 Days"
+                    domain="[('date', '&gt;=', (context_today() - relativedelta(days=7)).strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+                <filter
+                    name="group_state"
+                    string="Status"
+                    context="{'group_by': 'state'}"
+                />
+                <filter
+                    name="group_email_domain"
+                    string="Sender Domain"
+                    context="{'group_by': 'email_domain'}"
+                />
+                <filter
+                    name="group_user"
+                    string="Responsible"
+                    context="{'group_by': 'user_id'}"
+                />
+                <filter
+                    name="group_company"
+                    string="Company"
+                    context="{'group_by': 'company_id'}"
+                    groups="base.group_multi_company"
+                />
+                <filter
+                    name="group_date"
+                    string="Day"
+                    context="{'group_by': 'date:day'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mail_lost_inbox" model="ir.actions.act_window">
+        <field name="name">Lost Mail Inbox</field>
+        <field name="res_model">mail.lost.inbox</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_mail_lost_inbox_search" />
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No lost email in the inbox
+            </p>
+            <p>
+                Emails that Odoo cannot route to a record are stored here so
+                they can be reviewed and attached to the right record.
+            </p>
+        </field>
+    </record>
+</odoo>

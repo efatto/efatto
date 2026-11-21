@@ -37,33 +37,39 @@
                         string="Validate"
                         class="btn-primary"
                         invisible="state == 'validated'"
-                        groups="helpdesk_mgmt_ai_draft.group_ai_draft_manager"
+                        groups="helpdesk_mgmt_ai.group_ai_draft_manager"
                     />
                     <button
                         name="action_reject"
                         type="object"
                         string="Reject"
                         invisible="state == 'rejected'"
-                        groups="helpdesk_mgmt_ai_draft.group_ai_draft_manager"
+                        groups="helpdesk_mgmt_ai.group_ai_draft_manager"
                     />
                     <button
                         name="action_reset"
                         type="object"
                         string="Back to validation"
                         invisible="state == 'to_validate'"
-                        groups="helpdesk_mgmt_ai_draft.group_ai_draft_manager"
+                        groups="helpdesk_mgmt_ai.group_ai_draft_manager"
                     />
                     <button
                         name="action_check_residue"
                         type="object"
                         string="Check personal data"
-                        groups="helpdesk_mgmt_ai_draft.group_ai_draft_manager"
+                        groups="helpdesk_mgmt_ai.group_ai_draft_manager"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <div class="alert alert-warning" role="alert" invisible="not has_residue">
-                        <p class="fw-bold mb-1">The texts may still contain personal data.</p>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not has_residue"
+                    >
+                        <p
+                            class="fw-bold mb-1"
+                        >The texts may still contain personal data.</p>
                         <field name="residue" />
                     </div>
                     <div class="oe_title">
@@ -81,6 +87,11 @@
                         <group>
                             <field name="team_id" />
                             <field name="category_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
                             <field name="validated_by_id" />
                             <field name="validation_date" />
                             <field name="has_residue" invisible="1" />
@@ -104,19 +115,59 @@
                 <field name="question" />
                 <field name="answer" />
                 <field name="ticket_id" />
-                <filter name="to_validate" string="To validate" domain="[('state', '=', 'to_validate')]" />
-                <filter name="validated" string="Validated" domain="[('state', '=', 'validated')]" />
-                <filter name="rejected" string="Rejected" domain="[('state', '=', 'rejected')]" />
+                <filter
+                    name="to_validate"
+                    string="To validate"
+                    domain="[('state', '=', 'to_validate')]"
+                />
+                <filter
+                    name="validated"
+                    string="Validated"
+                    domain="[('state', '=', 'validated')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
                 <separator />
-                <filter name="knowledge" string="Knowledge base" domain="[('usage', '=', 'knowledge')]" />
-                <filter name="test" string="Test set" domain="[('usage', '=', 'test')]" />
+                <filter
+                    name="knowledge"
+                    string="Knowledge base"
+                    domain="[('usage', '=', 'knowledge')]"
+                />
+                <filter
+                    name="test"
+                    string="Test set"
+                    domain="[('usage', '=', 'test')]"
+                />
                 <separator />
-                <filter name="with_residue" string="Possible personal data" domain="[('has_residue', '=', True)]" />
+                <filter
+                    name="with_residue"
+                    string="Possible personal data"
+                    domain="[('has_residue', '=', True)]"
+                />
                 <group>
-                    <filter name="group_state" string="Status" context="{'group_by': 'state'}" />
-                    <filter name="group_usage" string="Usage" context="{'group_by': 'usage'}" />
-                    <filter name="group_source" string="Source" context="{'group_by': 'source'}" />
-                    <filter name="group_team" string="Team" context="{'group_by': 'team_id'}" />
+                    <filter
+                        name="group_state"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="group_usage"
+                        string="Usage"
+                        context="{'group_by': 'usage'}"
+                    />
+                    <filter
+                        name="group_source"
+                        string="Source"
+                        context="{'group_by': 'source'}"
+                    />
+                    <filter
+                        name="group_team"
+                        string="Team"
+                        context="{'group_by': 'team_id'}"
+                    />
                 </group>
             </search>
         </field>
@@ -137,12 +188,23 @@
         <field name="code">records.action_validate()</field>
     </record>
     <record id="helpdesk_ai_qa_action_export" model="ir.actions.server">
-        <field name="name">Export for the AI (JSONL)</field>
+        <field name="name">Export the knowledge base for the AI (JSONL)</field>
         <field name="model_id" ref="model_helpdesk_ai_qa" />
         <field name="binding_model_id" ref="model_helpdesk_ai_qa" />
         <field name="binding_view_types">list</field>
         <field name="groups_id" eval="[(4, ref('group_ai_draft_manager'))]" />
         <field name="state">code</field>
-        <field name="code">action = records.action_export_jsonl()</field>
+        <field
+            name="code"
+        >action = records.action_export_jsonl(usage='knowledge')</field>
+    </record>
+    <record id="helpdesk_ai_qa_action_export_test" model="ir.actions.server">
+        <field name="name">Export the test set (JSONL)</field>
+        <field name="model_id" ref="model_helpdesk_ai_qa" />
+        <field name="binding_model_id" ref="model_helpdesk_ai_qa" />
+        <field name="binding_view_types">list</field>
+        <field name="groups_id" eval="[(4, ref('group_ai_draft_manager'))]" />
+        <field name="state">code</field>
+        <field name="code">action = records.action_export_jsonl(usage='test')</field>
     </record>
 </odoo>

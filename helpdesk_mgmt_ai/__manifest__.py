@@ -8,6 +8,7 @@
     "category": "After-Sales",
     "license": "AGPL-3",
     "author": "Sergio Corato",
+    "website": "https://github.com/efatto/efatto",
     "depends": ["helpdesk_mgmt", "ai_oca_bridge"],
     "data": [
         "security/helpdesk_ai_draft_security.xml",

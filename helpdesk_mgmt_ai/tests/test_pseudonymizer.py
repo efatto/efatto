@@ -3,8 +3,18 @@
 
 from odoo.tests import BaseCase
 
-from ..tools.confidence import adjust_level, extract_level_lines, parse_level
-from ..tools.pseudonymizer import Pseudonymizer, candidate_names, strip_legal_form
+from ..tools.confidence import (
+    adjust_level,
+    extract_level_lines,
+    normalize_flag,
+    parse_level,
+)
+from ..tools.pseudonymizer import (
+    PLACEHOLDER_RE,
+    Pseudonymizer,
+    candidate_names,
+    strip_legal_form,
+)
 
 TEXT = (
     "Buongiorno, sono Mario Rossi di Rossi Impianti Srl "
@@ -81,3 +91,64 @@ class TestPseudonymizer(BaseCase):
             adjust_level("high", retrieval_score=0.3, min_score=0.5), "medium"
         )
         self.assertEqual(adjust_level(False), "low")
+
+    def test_format_bypasses(self):
+        """Every format a customer uses must be masked, in any case."""
+        pseudonymizer = Pseudonymizer()
+        cases = {
+            "chiamare 0039 347 123 4567 ora": "347",
+            "iban it60x0542811101000000123456": "it60x",
+            "cf omocodia RSSMRA80A01H50LU": "RSSMRA",
+            "fattura ft-2026-145": "ft-2026",
+            "link https://x.it/web?access_token=abc123": "access_token",
+        }
+        for text, leaked in cases.items():
+            clean = pseudonymizer.pseudonymize(text)
+            self.assertNotIn(leaked, clean, text)
+            self.assertIsNone(
+                PLACEHOLDER_RE.search(text) and None
+            )  # the source text has no placeholder
+        self.assertTrue(
+            PLACEHOLDER_RE.search(
+                pseudonymizer.restore(
+                    pseudonymizer.pseudonymize("chiamare 0039 347 123 4567 ora")
+                )
+            )
+            is None
+        )
+
+    def test_generic_word_is_not_replaced(self):
+        """A partner called 'Data Srl' must not turn 'data' into a placeholder."""
+        pseudonymizer = Pseudonymizer()
+        clean = pseudonymizer.pseudonymize(
+            "il campo data non si salva",
+            [("COMPANY", "Data Srl"), ("COMPANY", "Data")],
+        )
+        self.assertEqual(clean, "il campo data non si salva")
+
+    def test_candidate_names_are_not_swallowed(self):
+        self.assertIn(
+            "Mario Rossi",
+            candidate_names("Buongiorno, Sono Mario Rossi di Rossi Impianti Srl."),
+        )
+        self.assertIn("Mario Rossi", candidate_names("Mario Rossi\nRossi Impianti"))
+        self.assertIn(
+            "Luigi Verdi", candidate_names("Srl. Il Sig. Luigi Verdi chiede aiuto")
+        )
+
+    def test_strict_residue_reports_what_the_patterns_miss(self):
+        pseudonymizer = Pseudonymizer()
+        self.assertEqual(pseudonymizer.residue("nessun dato", [], strict=True), [])
+        found = pseudonymizer.residue("ordine 1234567890", [], strict=True)
+        self.assertEqual(found, [("DIGITS", "1234567890")])
+
+    def test_flags_are_normalized(self):
+        """'false' as a string must not become True."""
+        self.assertFalse(normalize_flag("false"))
+        self.assertFalse(normalize_flag("0"))
+        self.assertFalse(normalize_flag(0))
+        self.assertTrue(normalize_flag("true"))
+        self.assertTrue(normalize_flag(True))
+        self.assertIsNone(normalize_flag(None))
+        self.assertIsNone(normalize_flag("boh"))
+        self.assertEqual(adjust_level("high", citations_verified="false"), "low")

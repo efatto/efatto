@@ -103,18 +103,50 @@
                 <field name="ticket_id" />
                 <field name="user_id" />
                 <field name="reason_id" />
-                <filter name="approved" string="Approved" domain="[('outcome', '=', 'approved')]" />
-                <filter name="modified" string="Modified" domain="[('outcome', '=', 'modified')]" />
-                <filter name="rejected" string="Rejected" domain="[('outcome', '=', 'rejected')]" />
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('outcome', '=', 'approved')]"
+                />
+                <filter
+                    name="modified"
+                    string="Modified"
+                    domain="[('outcome', '=', 'modified')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('outcome', '=', 'rejected')]"
+                />
                 <separator />
-                <filter name="abstained" string="Abstentions" domain="[('abstained', '=', True)]" />
+                <filter
+                    name="abstained"
+                    string="Abstentions"
+                    domain="[('abstained', '=', True)]"
+                />
                 <separator />
                 <filter name="create_date" string="Date" date="create_date" />
                 <group>
-                    <filter name="group_confidence" string="Confidence" context="{'group_by': 'confidence'}" />
-                    <filter name="group_outcome" string="Outcome" context="{'group_by': 'outcome'}" />
-                    <filter name="group_reason" string="Reason" context="{'group_by': 'reason_id'}" />
-                    <filter name="group_team" string="Team" context="{'group_by': 'team_id'}" />
+                    <filter
+                        name="group_confidence"
+                        string="Confidence"
+                        context="{'group_by': 'confidence'}"
+                    />
+                    <filter
+                        name="group_outcome"
+                        string="Outcome"
+                        context="{'group_by': 'outcome'}"
+                    />
+                    <filter
+                        name="group_reason"
+                        string="Reason"
+                        context="{'group_by': 'reason_id'}"
+                    />
+                    <filter
+                        name="group_team"
+                        string="Team"
+                        context="{'group_by': 'team_id'}"
+                    />
                 </group>
             </search>
         </field>

@@ -19,8 +19,11 @@ REVIEW_OUTCOMES = [
 class HelpdeskAiDraftLog(models.Model):
     """Log of the drafts: feeds the test set and the metrics.
 
-    It holds only pseudonymized texts, so it can be exported without
-    carrying personal data along.
+    The question and the draft are pseudonymized, but this is not an
+    anonymous dataset: ``note`` and ``confidence_reason`` are free text and
+    may quote the value that slipped through (the review reason 'Personal data
+    slipped through' forces a note). Do not export this model as a training
+    set: it is an operational log.
     """
 
     _name = "helpdesk.ai.draft.log"
@@ -34,6 +37,9 @@ class HelpdeskAiDraftLog(models.Model):
         required=True,
         ondelete="cascade",
         index=True,
+    )
+    company_id = fields.Many2one(
+        related="ticket_id.company_id", string="Company", store=True, index=True
     )
     team_id = fields.Many2one(related="ticket_id.team_id", string="Team", store=True)
     category_id = fields.Many2one(
@@ -54,10 +60,10 @@ class HelpdeskAiDraftLog(models.Model):
         CONFIDENCE_LEVELS, string="Declared Confidence"
     )
     confidence = fields.Selection(CONFIDENCE_LEVELS, string="Final Confidence")
-    confidence_reason = fields.Char(string="Confidence Reason")
-    outcome = fields.Selection(REVIEW_OUTCOMES, string="Outcome", required=True)
+    confidence_reason = fields.Char()
+    outcome = fields.Selection(REVIEW_OUTCOMES, required=True)
     reason_id = fields.Many2one(
         "helpdesk.ai.review.reason", string="Reason", ondelete="restrict"
     )
-    note = fields.Text(string="Note")
+    note = fields.Text()
     sent_to_customer = fields.Boolean(string="Sent to Customer")

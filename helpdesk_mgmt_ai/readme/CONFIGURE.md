@@ -1,6 +1,7 @@
 **Groups.** Give technicians the group *Helpdesk AI Assistant / Technician*.
 The *Manager* group validates the archive, imports solved tickets and manages
-the review reasons.
+the review reasons. The draft log is write-once: no group can edit or delete
+it, so the metrics cannot be changed after the fact.
 
 **AI bridge.** In *AI Bridge* create a bridge with:
 
@@ -10,8 +11,18 @@ the review reasons.
 - Result mode (immediate or asynchronous), URL and authentication of the
   external system
 
-Odoo sends this payload (plus the `_odoo` fields and, for asynchronous calls,
-the `_response_url` added by `ai_oca_bridge`):
+The bridge usage must stay *None*: the question is sent by the ticket buttons,
+never automatically (a constraint refuses an automatic usage).
+
+Do not create a bridge with payload type *Record* on *Helpdesk Ticket*: that
+payload sends the fields of the ticket as they are (description, contact,
+chatter) and defeats the pseudonymization. Use it only on models without
+personal data.
+
+Odoo sends this payload (plus `_odoo` and, for asynchronous calls, the
+`_response_url` added by `ai_oca_bridge`). For this payload type the module
+removes `db_name` and `user_id` from `_odoo`, because the database name is
+usually the customer's name: only `db` (the uuid) and `db_hash` remain.
 
 ```json
 {
@@ -49,14 +60,15 @@ becomes *low* when `citations_verified` is `false` and drops one step when
 **Q&A archive for the AI.** The external system can read the validated
 *knowledge base* entries in two ways:
 
-- export them from the archive list (action *Export for the AI (JSONL)*) and
-  load the file into the RAG index;
+- export them from the archive list (actions *Export the knowledge base for
+  the AI (JSONL)* and *Export the test set (JSONL)*, which never mix) and load
+  the file into the RAG index;
 - read the model `helpdesk.ai.qa` through the Odoo API with a dedicated user,
   filtering `state = validated` and `usage = knowledge`.
 
 Never index the *test set* entries.
 
-**System parameters** (`helpdesk_mgmt_ai_draft.*`):
+**System parameters** (`helpdesk_mgmt_ai.*`):
 
 - `abstention_text`: fixed text the model uses to abstain. Keep it in the
   language of the system prompt.
@@ -65,10 +77,12 @@ Never index the *test set* entries.
 - `test_share_percent`: share of new archive entries kept for the test set
   (default 20).
 - `auto_validate_reviewed`: `True` to validate automatically the replies
-  approved by a technician.
+  approved by a technician. Off by default: the entry is the material the
+  model cites, so it deserves a second pair of eyes.
 - `use_presidio`: `True` to add the recognition of names and places with
   Microsoft Presidio (requires `presidio-analyzer` and the spaCy model on the
-  Odoo server).
+  Odoo server). When it is on and the library or the model is missing, sending
+  is blocked instead of silently degrading name detection.
 - `presidio_language`, `presidio_spacy_model`, `presidio_min_score`:
   Presidio language (`it`), spaCy model (`it_core_news_lg`) and minimum
   entity score (0.6).

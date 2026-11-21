@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 
 from ..tools.pseudonymizer import Pseudonymizer
 
-PARAM_PREFIX = "helpdesk_mgmt_ai_draft."
+PARAM_PREFIX = "helpdesk_mgmt_ai."
 
 
 class HelpdeskAiQa(models.Model):
@@ -27,20 +27,26 @@ class HelpdeskAiQa(models.Model):
     _order = "create_date desc, id desc"
 
     name = fields.Char(string="Title", compute="_compute_name", store=True)
-    question = fields.Text(string="Question", required=True)
-    answer = fields.Text(string="Answer", required=True)
+    question = fields.Text(required=True)
+    answer = fields.Text(required=True)
     source = fields.Selection(
         [
             ("review", "AI draft review"),
             ("import", "Solved ticket import"),
             ("manual", "Manual"),
         ],
-        string="Source",
         required=True,
         default="manual",
     )
     ticket_id = fields.Many2one(
         "helpdesk.ticket", string="Ticket", ondelete="set null", index=True
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        required=True,
+        index=True,
+        default=lambda self: self.env.company,
     )
     team_id = fields.Many2one("helpdesk.ticket.team", string="Team")
     category_id = fields.Many2one("helpdesk.ticket.category", string="Category")
@@ -57,19 +63,26 @@ class HelpdeskAiQa(models.Model):
     )
     usage = fields.Selection(
         [("knowledge", "Knowledge base"), ("test", "Test set")],
-        string="Usage",
         required=True,
         default="knowledge",
         help="Test set entries are never given to the model as sources.",
     )
-    odoo_version = fields.Char(string="Odoo Version", default="18.0")
+    odoo_version = fields.Char(default="18.0")
     validated_by_id = fields.Many2one("res.users", string="Validated by", readonly=True)
-    validation_date = fields.Datetime(string="Validation Date", readonly=True)
-    residue = fields.Text(string="Possible Personal Data", readonly=True)
-    has_residue = fields.Boolean(
-        string="Possible Personal Data Found", compute="_compute_has_residue", store=True
+    validation_date = fields.Datetime(readonly=True)
+    residue = fields.Text(
+        string="Possible Personal Data",
+        readonly=True,
+        compute="_compute_residue",
+        store=True,
+        groups="helpdesk_mgmt_ai.group_ai_draft_user",
     )
-    note = fields.Text(string="Note")
+    has_residue = fields.Boolean(
+        string="Possible Personal Data Found",
+        compute="_compute_has_residue",
+        store=True,
+    )
+    note = fields.Text()
 
     @api.depends("question")
     def _compute_name(self):
@@ -77,6 +90,25 @@ class HelpdeskAiQa(models.Model):
             first_line = (record.question or "").strip().splitlines()
             title = first_line[0] if first_line else ""
             record.name = title[:80] + ("..." if len(title) > 80 else "")
+
+    @api.depends("question", "answer", "ticket_id")
+    def _compute_residue(self):
+        """Stored, so the warning exists before the (blocking) action runs."""
+        for record in self:
+            text = f"{record.question or ''}\n{record.answer or ''}"
+            if not text.strip():
+                record.residue = False
+                continue
+            known = []
+            if record.ticket_id:
+                known = record.ticket_id.sudo()._ai_known_values(text)
+            pseudonymizer = Pseudonymizer()
+            residue = pseudonymizer.residue(
+                record.question or "", known, strict=True
+            ) + pseudonymizer.residue(record.answer or "", known, strict=True)
+            record.residue = (
+                "\n".join(f"{label}: {value}" for label, value in residue) or False
+            )
 
     @api.depends("residue")
     def _compute_has_residue(self):
@@ -88,7 +120,9 @@ class HelpdeskAiQa(models.Model):
     @api.model
     def _ai_param(self, key, default=False):
         return (
-            self.env["ir.config_parameter"].sudo().get_param(PARAM_PREFIX + key, default)
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(PARAM_PREFIX + key, default)
         )
 
     @api.model
@@ -106,18 +140,29 @@ class HelpdeskAiQa(models.Model):
             return 20
 
     def _check_residue(self):
-        """Look again for personal data in question and answer."""
-        for record in self:
-            known = []
-            if record.ticket_id:
-                known = record.ticket_id.sudo()._ai_known_values(
-                    f"{record.question}\n{record.answer}"
+        """Recompute the stored residue fields.
+
+        Kept as an explicit entry point for the *Check personal data* button:
+        the fields are computed, so a blocked validation does not need to
+        write anything (a UserError rolls the request back).
+        """
+        self.env.add_to_compute(self._fields["residue"], self)
+        self.env.add_to_compute(self._fields["has_residue"], self)
+        self.flush_recordset(["residue", "has_residue"])
+        return True
+
+    def write(self, values):
+        """Editing a validated entry sends it back to validation."""
+        if {"question", "answer", "usage"} & set(values):
+            reset = self.filtered(lambda record: record.state != "to_validate")
+            if reset:
+                values = dict(
+                    values,
+                    state="to_validate",
+                    validated_by_id=False,
+                    validation_date=False,
                 )
-            pseudonymizer = Pseudonymizer()
-            residue = pseudonymizer.residue(record.question, known) + pseudonymizer.residue(
-                record.answer, known
-            )
-            record.residue = "\n".join(f"{label}: {value}" for label, value in residue) or False
+        return super().write(values)
 
     # --- actions -------------------------------------------------------------------
 
@@ -132,8 +177,9 @@ class HelpdeskAiQa(models.Model):
             raise UserError(
                 _(
                     "These entries may still contain personal data. Correct them "
-                    "before validating:\n%s",
-                    "\n".join(blocked.mapped("name")),
+                    "before validating:\n%(names)s\n\n%(values)s",
+                    names="\n".join(blocked.mapped("name")),
+                    values="\n".join(blocked.mapped("residue")),
                 )
             )
         self.write(
@@ -171,20 +217,39 @@ class HelpdeskAiQa(models.Model):
             else "",
         }
 
-    def action_export_jsonl(self):
-        """Download the validated entries as JSON Lines, ready for the RAG index."""
-        records = self.filtered(lambda r: r.state == "validated")
+    def action_export_jsonl(self, usage="knowledge"):
+        """Download validated entries as JSON Lines, ready for the RAG index.
+
+        The residue is recomputed first: the stored value cannot see a contact
+        created after the entry.
+        """
+        self._check_residue()
+        records = self.filtered(lambda r: r.state == "validated" and r.usage == usage)
         if not records:
-            raise UserError(_("Select at least one validated entry."))
+            raise UserError(
+                _("Select at least one validated entry of usage '%s'.", usage)
+            )
+        residue = records.filtered("has_residue")
+        if residue:
+            raise UserError(
+                _(
+                    "These entries may still contain personal data and cannot be "
+                    "exported:\n%s",
+                    "\n".join(residue.mapped("name")),
+                )
+            )
         content = "\n".join(
-            json.dumps(record._export_values(), ensure_ascii=False) for record in records
+            json.dumps(record._export_values(), ensure_ascii=False)
+            for record in records
         )
         attachment = self.env["ir.attachment"].create(
             {
-                "name": f"helpdesk_ai_qa_{fields.Date.context_today(self)}.jsonl",
+                "name": f"helpdesk_ai_qa_{usage}_"
+                f"{fields.Date.context_today(self)}.jsonl",
                 "datas": base64.b64encode(content.encode("utf-8")),
                 "mimetype": "application/jsonl",
                 "res_model": self._name,
+                "res_id": records[0].id,
             }
         )
         return {
@@ -196,7 +261,7 @@ class HelpdeskAiQa(models.Model):
     @api.model
     def _create_from_review(self, ticket, answer_clean):
         """Entry created when a technician sends an AI draft to the customer."""
-        auto_validate = self._ai_param("auto_validate_reviewed", "True") in (
+        auto_validate = self._ai_param("auto_validate_reviewed", "False") in (
             "1",
             "True",
             "true",
@@ -206,6 +271,7 @@ class HelpdeskAiQa(models.Model):
             "answer": answer_clean,
             "source": "review",
             "ticket_id": ticket.id,
+            "company_id": ticket.company_id.id,
             "team_id": ticket.team_id.id,
             "category_id": ticket.category_id.id,
             "usage": self._pick_usage(ticket.id, self._default_test_share()),

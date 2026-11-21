@@ -5,38 +5,40 @@
     <!-- Fixed text the model uses to abstain: keep it in the language of the
          system prompt (e.g. "Non ho informazioni verificate per rispondere.") -->
     <record id="param_abstention_text" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.abstention_text</field>
+        <field name="key">helpdesk_mgmt_ai.abstention_text</field>
         <field name="value">I have no verified information to answer.</field>
     </record>
     <!-- 0 = disabled. Set it after measuring the real scores -->
     <record id="param_min_retrieval_score" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.min_retrieval_score</field>
+        <field name="key">helpdesk_mgmt_ai.min_retrieval_score</field>
         <field name="value">0</field>
     </record>
     <record id="param_use_presidio" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.use_presidio</field>
+        <field name="key">helpdesk_mgmt_ai.use_presidio</field>
         <field name="value">False</field>
     </record>
     <record id="param_presidio_language" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.presidio_language</field>
+        <field name="key">helpdesk_mgmt_ai.presidio_language</field>
         <field name="value">it</field>
     </record>
     <record id="param_presidio_spacy_model" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.presidio_spacy_model</field>
+        <field name="key">helpdesk_mgmt_ai.presidio_spacy_model</field>
         <field name="value">it_core_news_lg</field>
     </record>
     <record id="param_presidio_min_score" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.presidio_min_score</field>
+        <field name="key">helpdesk_mgmt_ai.presidio_min_score</field>
         <field name="value">0.6</field>
     </record>
     <!-- Share of new archive entries kept for the test set, in percent -->
     <record id="param_test_share_percent" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.test_share_percent</field>
+        <field name="key">helpdesk_mgmt_ai.test_share_percent</field>
         <field name="value">20</field>
     </record>
-    <!-- Replies approved by a technician enter the archive already validated -->
+    <!-- Replies approved by a technician enter the archive already validated.
+         Off by default: the entry is the material the model cites, so it needs
+         a second pair of eyes. -->
     <record id="param_auto_validate_reviewed" model="ir.config_parameter">
-        <field name="key">helpdesk_mgmt_ai_draft.auto_validate_reviewed</field>
-        <field name="value">True</field>
+        <field name="key">helpdesk_mgmt_ai.auto_validate_reviewed</field>
+        <field name="value">False</field>
     </record>
 </odoo>

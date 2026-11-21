@@ -7,7 +7,7 @@ Personal data is replaced by consistent placeholders ([PERSON_1],
 and is used to put the real data back into the draft answer.
 
 The patterns cover Italian identifiers (codice fiscale, partita IVA, SdI
-recipient code) as well as generic ones (email, IBAN, phone numbers).
+recipient code) as well as generic ones (email, IBAN, phone numbers, URLs).
 """
 
 import re
@@ -17,17 +17,27 @@ PLACEHOLDER_RE = re.compile(r"\[([A-Z]+)_(\d+)\]")
 # Placeholder labels and patterns. Order matters: data with a precise
 # format is searched before more generic data.
 PATTERNS = [
+    # URLs before e-mail: a link may contain an address or a token
+    ("URL", re.compile(r"https?://[^\s<>\"']+", re.IGNORECASE)),
     ("EMAIL", re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")),
     # Italian VAT number, with or without the IT prefix
-    ("VAT", re.compile(r"\b(?:IT ?)?\d{11}\b")),
+    ("VAT", re.compile(r"\b(?:IT ?)?\d{11}\b", re.IGNORECASE)),
     (
         "IBAN",
-        re.compile(r"\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){3,7}(?: ?[A-Z0-9]{1,4})?\b"),
+        re.compile(
+            r"\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){3,7}(?: ?[A-Z0-9]{1,4})?\b",
+            re.IGNORECASE,
+        ),
     ),
-    # Italian fiscal code of a natural person
+    # Italian fiscal code of a natural person, omocodia codes included (letters
+    # LMNPQRSTUV in place of the digits)
     (
         "FISCALCODE",
-        re.compile(r"\b[A-Z]{6}\d{2}[A-EHLMPRST]\d{2}[A-Z]\d{3}[A-Z]\b", re.IGNORECASE),
+        re.compile(
+            r"\b[A-Z]{6}[0-9LMNPQRSTUV]{2}[A-EHLMPRST][0-9LMNPQRSTUV]{2}"
+            r"[A-Z][0-9LMNPQRSTUV]{3}[A-Z]\b",
+            re.IGNORECASE,
+        ),
     ),
     # SdI recipient code, only when introduced by a keyword
     (
@@ -39,20 +49,37 @@ PATTERNS = [
             re.IGNORECASE,
         ),
     ),
-    # Italian landline and mobile numbers
+    # Italian landline and mobile numbers, with +39 or the 0039 prefix
     (
         "PHONE",
         re.compile(
-            r"(?<![\w/])(?:\+39[ .]?)?(?:0\d{1,3}|3\d{2})[ ./-]?\d{3,4}[ ./-]?\d{3,4}"
+            r"(?<![\w/])(?:(?:\+|00)\s?39[\s./-]?)?"
+            r"(?:0\d{1,3}|3\d{2})[ ./-]?\d{3,4}[ ./-]?\d{3,4}"
             r"(?![\w/])"
         ),
     ),
-    # Document numbers such as INV/2026/00145 or FT/2026/00145
-    ("DOCUMENT", re.compile(r"\b[A-Z]{1,6}(?:/[A-Z0-9]{1,6})?/\d{4}/\d{1,6}\b")),
+    # Document numbers such as INV/2026/00145, FT-2026-145 or inv/2026/145
+    (
+        "DOCUMENT",
+        re.compile(
+            r"\b[A-Z]{1,6}(?:[/-][A-Z0-9]{1,6})?[/-]\d{4}[/-]\d{1,6}\b", re.IGNORECASE
+        ),
+    ),
 ]
 
 # Labels whose comparison ignores spaces and separators.
 _COMPACT_LABELS = {"IBAN", "VAT", "PHONE", "FISCALCODE", "SDICODE"}
+
+# Values that must be masked in the strict check only: a leftover "@" or a long
+# run of digits means the generic patterns missed something.
+_STRICT_PATTERNS = [
+    ("EMAIL", re.compile(r"@")),
+    ("DIGITS", re.compile(r"(?<!\d)\d{9,}(?!\d)")),
+    (
+        "SECRET",
+        re.compile(r"(?:access_token|token|password|api[_-]?key)=", re.IGNORECASE),
+    ),
+]
 
 # Italian legal forms, removed to also match the short company name.
 LEGAL_FORMS_RE = re.compile(
@@ -61,9 +88,74 @@ LEGAL_FORMS_RE = re.compile(
     re.IGNORECASE,
 )
 
-_NAME_CANDIDATE_RE = re.compile(
-    r"\b[A-ZÀ-Ý][a-zà-ÿ'’]+(?:\s+(?:[A-ZÀ-Ý][\w'’.&-]*)){1,3}"
-)
+# One or more capitalized words, no digits.
+_NAME_TOKEN_RE = re.compile(r"[A-ZÀ-Ý][a-zà-ÿ'’]*(?:[A-ZÀ-Ý][a-zà-ÿ'’]*)*")
+
+# Fragments that cannot contain a name continued from the previous one.
+_FRAGMENT_RE = re.compile(r"[.!?;:\n\r]+")
+
+# Short words that are also partner names or name parts: replacing them
+# everywhere would corrupt the technical text ("il campo data non si salva").
+NAME_STOP_WORDS = {
+    "acquisti",
+    "agenzia",
+    "alfa",
+    "altro",
+    "archivio",
+    "assistenza",
+    "beta",
+    "casa",
+    "cliente",
+    "clienti",
+    "comune",
+    "contatti",
+    "data",
+    "demo",
+    "diritto",
+    "documento",
+    "documenti",
+    "dove",
+    "fattura",
+    "fatture",
+    "gamma",
+    "giorno",
+    "gruppo",
+    "help",
+    "idea",
+    "info",
+    "magazzino",
+    "mail",
+    "mese",
+    "nota",
+    "notaio",
+    "nuovo",
+    "oggetto",
+    "ordine",
+    "ordini",
+    "parte",
+    "poste",
+    "prima",
+    "prova",
+    "quando",
+    "report",
+    "sara",
+    "sede",
+    "servizi",
+    "sistema",
+    "societa",
+    "sono",
+    "stato",
+    "studio",
+    "supporto",
+    "srl",
+    "tempo",
+    "test",
+    "ufficio",
+    "utente",
+    "vendite",
+    "verifica",
+    "web",
+}
 
 
 def _normalize(label, value):
@@ -80,20 +172,42 @@ def strip_legal_form(name):
     return stripped if stripped and stripped != (name or "").strip() else ""
 
 
-def candidate_names(text, limit=30):
+def is_generic_word(value):
+    """True for a single word that is too common to be replaced everywhere."""
+    return " ".join((value or "").split()).casefold() in NAME_STOP_WORDS
+
+
+def candidate_names(text, limit=40):
     """Sequences of 2-4 capitalized words: possible names.
 
     Odoo compares them with the contacts; on their own they are not enough
-    to say that they are personal data.
+    to say that they are personal data. Every window of a fragment is tried,
+    so "Sono Mario Rossi" also yields "Mario Rossi".
     """
     seen = []
-    for match in _NAME_CANDIDATE_RE.finditer(text or ""):
-        candidate = match.group(0).strip(" .,;:")
-        if candidate not in seen:
-            seen.append(candidate)
-        if len(seen) >= limit:
-            break
+    for fragment in _FRAGMENT_RE.split(text or ""):
+        tokens = _NAME_TOKEN_RE.findall(fragment)
+        for size in (2, 3, 4):
+            for index in range(len(tokens) - size + 1):
+                candidate = " ".join(tokens[index : index + size])
+                if candidate not in seen:
+                    seen.append(candidate)
+                if len(seen) >= limit:
+                    return seen
     return seen
+
+
+def ilike_escape(value):
+    """Escape a value used with the '=ilike' operator in Odoo."""
+    return (value or "").replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+
+
+def _dedupe(items):
+    unique = []
+    for item in items:
+        if item not in unique:
+            unique.append(item)
+    return unique
 
 
 class Pseudonymizer:
@@ -102,34 +216,37 @@ class Pseudonymizer:
     def __init__(self, mapping=None):
         # placeholder -> original value
         self.mapping = dict(mapping or {})
+        self._index = {}
+        for placeholder, original in self.mapping.items():
+            label = self._label_of(placeholder)
+            if label:
+                self._index[(label, _normalize(label, original))] = placeholder
 
     # --- placeholders -------------------------------------------------------
 
-    def _label_of(self, placeholder):
+    @staticmethod
+    def _label_of(placeholder):
         match = PLACEHOLDER_RE.fullmatch(placeholder)
         return match.group(1) if match else ""
 
     def _find_placeholder(self, label, value):
-        key = _normalize(label, value)
-        for placeholder, original in self.mapping.items():
-            if self._label_of(placeholder) == label and _normalize(label, original) == key:
-                return placeholder
-        return None
+        return self._index.get((label, _normalize(label, value)))
 
     def placeholder_for(self, label, value):
         existing = self._find_placeholder(label, value)
         if existing:
             return existing
         numbers = [
-            int(m.group(2))
-            for m in (PLACEHOLDER_RE.fullmatch(p) for p in self.mapping)
-            if m and m.group(1) == label
+            int(match.group(2))
+            for match in (PLACEHOLDER_RE.fullmatch(p) for p in self.mapping)
+            if match and match.group(1) == label
         ]
         placeholder = f"[{label}_{max(numbers, default=0) + 1}]"
         self.mapping[placeholder] = value
+        self._index[(label, _normalize(label, value))] = placeholder
         return placeholder
 
-    # --- pseudonymization ------------------------------------------------------
+    # --- pseudonymization ---------------------------------------------------
 
     @staticmethod
     def _value_regex(value):
@@ -150,14 +267,18 @@ class Pseudonymizer:
         return "".join(pieces)
 
     def _replace_known(self, text, known_values):
-        # Longest values first, so that "Mario Rossi" wins over "Rossi".
+        # Longest values first, so that "Mario Rossi" wins over "Rossi", and by
+        # value on equal length: the output must not depend on the hash seed.
         items = sorted(
-            {(label, value.strip()) for label, value in known_values if value and value.strip()},
-            key=lambda item: len(item[1]),
-            reverse=True,
+            {
+                (label, value.strip())
+                for label, value in known_values
+                if value and value.strip()
+            },
+            key=lambda item: (-len(item[1]), item[1]),
         )
         for label, value in items:
-            if len(value) < 3:
+            if len(value) < 3 or is_generic_word(value):
                 continue
             regex = self._value_regex(value)
             if regex.search(PLACEHOLDER_RE.sub(" ", text)):
@@ -195,24 +316,31 @@ class Pseudonymizer:
         text = self._replace_known(text, known_values)
         return text
 
-    # --- checks and restore ----------------------------------------------------
+    # --- checks and restore -------------------------------------------------
 
-    def residue(self, text, known_values=()):
-        """Personal data still present in the text, as (label, value) pairs."""
+    def residue(self, text, known_values=(), strict=False):
+        """Personal data still present in the text, as (label, value) pairs.
+
+        With ``strict`` the check also reports what the generic patterns would
+        have missed: a leftover "@", a long run of digits, a query string.
+        """
         text = PLACEHOLDER_RE.sub(" ", text or "")
         found = []
         for label, value in known_values:
             value = (value or "").strip()
-            if len(value) >= 3 and self._value_regex(value).search(text):
-                found.append((label, value))
+            if len(value) >= 3 and not is_generic_word(value):
+                if self._value_regex(value).search(text):
+                    found.append((label, value))
         for label, regex in PATTERNS:
             for match in regex.finditer(text):
-                found.append((label, match.group(1) if match.groups() else match.group(0)))
-        unique = []
-        for item in found:
-            if item not in unique:
-                unique.append(item)
-        return unique
+                found.append(
+                    (label, match.group(1) if match.groups() else match.group(0))
+                )
+        if strict:
+            for label, regex in _STRICT_PATTERNS:
+                for match in regex.finditer(text):
+                    found.append((label, match.group(0)))
+        return _dedupe(found)
 
     def restore(self, text):
         """Put the original values back in place of the known placeholders."""

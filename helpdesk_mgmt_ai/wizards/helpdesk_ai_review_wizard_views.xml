@@ -8,7 +8,9 @@
         <field name="arch" type="xml">
             <form>
                 <div class="alert alert-info" role="alert" invisible="not abstained">
-                    <p class="mb-0">The model did not find enough sources and abstained. Write the reply or reject the draft with a reason.</p>
+                    <p
+                        class="mb-0"
+                    >The model did not find enough sources and abstained. Write the reply or reject the draft with a reason.</p>
                 </div>
                 <group>
                     <group>
@@ -21,7 +23,10 @@
                             decoration-warning="confidence == 'medium'"
                             decoration-danger="confidence == 'low'"
                         />
-                        <field name="confidence_reason" invisible="not confidence_reason" />
+                        <field
+                            name="confidence_reason"
+                            invisible="not confidence_reason"
+                        />
                         <field name="abstained" invisible="1" />
                     </group>
                     <group>
@@ -38,10 +43,16 @@
                             invisible="outcome == 'approved' and not reason_requires_note"
                             required="reason_requires_note"
                         />
-                        <field name="send_to_customer" invisible="outcome == 'rejected'" />
+                        <field
+                            name="send_to_customer"
+                            invisible="outcome == 'rejected'"
+                        />
                     </group>
                 </group>
-                <separator string="Reply to the customer" invisible="outcome == 'rejected'" />
+                <separator
+                    string="Reply to the customer"
+                    invisible="outcome == 'rejected'"
+                />
                 <field
                     name="answer"
                     invisible="outcome == 'rejected'"

@@ -6,7 +6,7 @@
         id="menu_ai_draft_root"
         name="AI Assistant"
         sequence="60"
-        web_icon="helpdesk_mgmt_ai_draft,static/description/icon.png"
+        web_icon="helpdesk_mgmt_ai,static/description/icon.png"
         groups="group_ai_draft_user"
     />
     <menuitem

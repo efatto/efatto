@@ -39,6 +39,30 @@ def parse_level(value):
     return _ALIASES.get(value.strip().casefold(), False)
 
 
+_TRUE_FLAGS = {"1", "true", "yes", "y", "si", "sì", "on"}
+_FALSE_FLAGS = {"0", "false", "no", "n", "off"}
+
+
+def normalize_flag(value):
+    """True/False for a flag sent as JSON or by a form; None when unknown.
+
+    An external system may send ``false``, ``"false"`` or ``"0"`` for the same
+    thing: ``bool("false")`` is True, so the raw value cannot be used.
+    """
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return None
+    if isinstance(value, int | float):
+        return bool(value)
+    text = str(value).strip().casefold()
+    if text in _TRUE_FLAGS:
+        return True
+    if text in _FALSE_FLAGS:
+        return False
+    return None
+
+
 def extract_level_lines(answer):
     """Remove the confidence and reason lines from the text and return them.
 
@@ -67,13 +91,14 @@ def downgrade(level, steps=1):
 def adjust_level(level, citations_verified=None, retrieval_score=None, min_score=0.0):
     """Final level: the system can only lower the declared one.
 
-    - citations not verified (explicit False): low;
+    - citations not verified (false, "false", 0...): low;
     - retrieval score below the threshold: one level lower;
     - no declared level: low.
+    A missing flag is not a negative one: it does not downgrade by itself.
     """
     if not level:
         return "low"
-    if citations_verified is False:
+    if normalize_flag(citations_verified) is False:
         return "low"
     try:
         score = float(retrieval_score) if retrieval_score is not None else None
@@ -87,4 +112,6 @@ def adjust_level(level, citations_verified=None, retrieval_score=None, min_score
 def is_abstention(answer, abstention_text):
     if not abstention_text:
         return False
-    return (answer or "").strip().casefold().startswith(abstention_text.strip().casefold())
+    return (
+        (answer or "").strip().casefold().startswith(abstention_text.strip().casefold())
+    )

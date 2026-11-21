@@ -14,7 +14,7 @@
                     type="object"
                     string="Prepare AI draft"
                     invisible="ai_state not in ('none', 'done', 'error')"
-                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                    groups="helpdesk_mgmt_ai.group_ai_draft_user"
                 />
                 <button
                     name="action_ai_send_question"
@@ -22,7 +22,7 @@
                     string="Approve and send the question"
                     class="btn-primary"
                     invisible="ai_state != 'question_ready'"
-                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                    groups="helpdesk_mgmt_ai.group_ai_draft_user"
                 />
                 <button
                     name="action_ai_open_review"
@@ -30,7 +30,7 @@
                     string="Review AI draft"
                     class="btn-primary"
                     invisible="ai_state != 'draft_ready'"
-                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                    groups="helpdesk_mgmt_ai.group_ai_draft_user"
                 />
                 <button
                     name="action_ai_reset"
@@ -38,14 +38,14 @@
                     string="Cancel AI draft"
                     invisible="ai_state in ('none', 'done')"
                     confirm="The question and the draft in progress will be deleted. Continue?"
-                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                    groups="helpdesk_mgmt_ai.group_ai_draft_user"
                 />
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="AI Assistant"
                     name="ai_draft"
-                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                    groups="helpdesk_mgmt_ai.group_ai_draft_user"
                 >
                     <group>
                         <group>
@@ -77,7 +77,11 @@
                             />
                         </group>
                     </group>
-                    <div class="alert alert-danger" role="alert" invisible="not ai_error">
+                    <div
+                        class="alert alert-danger"
+                        role="alert"
+                        invisible="not ai_error"
+                    >
                         <field name="ai_error" />
                     </div>
                     <div
@@ -85,15 +89,31 @@
                         role="alert"
                         invisible="not ai_residue"
                     >
-                        <p class="fw-bold mb-1">The question may still contain personal data.</p>
+                        <p
+                            class="fw-bold mb-1"
+                        >The question may still contain personal data.</p>
                         <p class="mb-1">Correct the text before sending it.</p>
                         <field name="ai_residue" />
                     </div>
                     <separator string="Question to send to the model" />
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        invisible="ai_state != 'question_ready'"
+                    >
+                        <p
+                            class="mb-0"
+                        >Names that are not stored as a contact in Odoo are not detected automatically: check the text before sending it.</p>
+                    </div>
                     <field
                         name="ai_question_clean"
                         readonly="ai_state != 'question_ready'"
                         placeholder="Press 'Prepare AI draft' to generate the pseudonymized question."
+                    />
+                    <field
+                        name="ai_personal_data_checked"
+                        invisible="ai_state != 'question_ready'"
+                        required="ai_state == 'question_ready'"
                     />
                     <separator
                         string="Draft reply"

@@ -5,23 +5,31 @@ import logging
 
 from markupsafe import Markup
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, UserError
+from odoo.osv import expression
 from odoo.tools import html2plaintext, plaintext2html
 
 from ..tools.confidence import (
     adjust_level,
     extract_level_lines,
     is_abstention,
+    normalize_flag,
     parse_level,
 )
-from ..tools.pseudonymizer import Pseudonymizer, candidate_names, strip_legal_form
+from ..tools.pseudonymizer import (
+    Pseudonymizer,
+    candidate_names,
+    ilike_escape,
+    is_generic_word,
+    strip_legal_form,
+)
 from .helpdesk_ai_draft_log import CONFIDENCE_LEVELS
 
 _logger = logging.getLogger(__name__)
 
-PARAM_PREFIX = "helpdesk_mgmt_ai_draft."
-USER_GROUP = "helpdesk_mgmt_ai_draft.group_ai_draft_user"
+PARAM_PREFIX = "helpdesk_mgmt_ai."
+USER_GROUP = "helpdesk_mgmt_ai.group_ai_draft_user"
 
 AI_STATES = [
     ("none", "To prepare"),
@@ -94,7 +102,20 @@ class HelpdeskTicket(models.Model):
         help="Mapping between placeholders and real data. It stays in Odoo only.",
     )
     ai_residue = fields.Text(
-        string="Possible Remaining Personal Data", copy=False, readonly=True
+        string="Possible Remaining Personal Data",
+        copy=False,
+        readonly=True,
+        groups=USER_GROUP,
+        compute="_compute_ai_residue",
+        store=True,
+        help="Personal data found in the question by the last check. Sending "
+        "is blocked while this field is not empty.",
+    )
+    ai_personal_data_checked = fields.Boolean(
+        string="I checked the question for personal data",
+        copy=False,
+        help="A name that is not stored as a contact in Odoo is not detected "
+        "automatically: the technician confirms that the text is clean.",
     )
     ai_draft_clean = fields.Text(
         string="Pseudonymized Draft", copy=False, readonly=True
@@ -133,7 +154,9 @@ class HelpdeskTicket(models.Model):
 
     def _ai_param(self, key, default=False):
         return (
-            self.env["ir.config_parameter"].sudo().get_param(PARAM_PREFIX + key, default)
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(PARAM_PREFIX + key, default)
         )
 
     def _ai_check_user(self):
@@ -142,7 +165,9 @@ class HelpdeskTicket(models.Model):
 
     def _ai_source_text(self):
         self.ensure_one()
-        description = html2plaintext(self.description or "")
+        # include_references=False: the default appends the link targets as
+        # footnotes, i.e. portal access tokens and tracking URLs.
+        description = html2plaintext(self.description or "", include_references=False)
         return f"{self.name or ''}\n\n{description}".strip()
 
     def _ai_partner_values(self, partner):
@@ -153,11 +178,17 @@ class HelpdeskTicket(models.Model):
         if name:
             values.append((label, name))
             short = strip_legal_form(name)
-            if short:
+            if short and not is_generic_word(short):
                 values.append((label, short))
             if not partner.is_company:
-                # First name or surname alone, when long enough
-                values += [(label, part) for part in name.split() if len(part) >= 4]
+                # First name or surname alone, when long enough and not a
+                # common word: replacing "data" everywhere would corrupt the
+                # text when a partner is called "Data Srl".
+                values += [
+                    (label, part)
+                    for part in name.split()
+                    if len(part) >= 4 and not is_generic_word(part)
+                ]
         for field_name, field_label in (
             ("email", "EMAIL"),
             ("phone", "PHONE"),
@@ -180,13 +211,17 @@ class HelpdeskTicket(models.Model):
         if self.partner_id:
             commercial = self.partner_id.sudo().commercial_partner_id
             partners |= self.partner_id.sudo() | commercial | commercial.child_ids
-        # Names in the text that match existing contacts
+        # Names in the text that match existing contacts, in one query: the
+        # candidates are 2-4 word windows, so a loop would be dozens of
+        # searches per ticket.
+        variants = set()
         for candidate in candidate_names(text):
-            variants = {candidate, strip_legal_form(candidate)} - {""}
-            for variant in variants:
-                found = Partner.search([("name", "=ilike", variant)], limit=1)
-                if found:
-                    partners |= found
+            variants |= {candidate, strip_legal_form(candidate)} - {""}
+        if variants:
+            domain = expression.OR(
+                [[("name", "=ilike", ilike_escape(variant))] for variant in variants]
+            )
+            partners |= Partner.search(domain)
         values = []
         for partner in partners:
             values += self._ai_partner_values(partner)
@@ -201,7 +236,8 @@ class HelpdeskTicket(models.Model):
             return []
         analyzer = _get_presidio_analyzer(
             self._ai_param("presidio_language", "it") or "it",
-            self._ai_param("presidio_spacy_model", "it_core_news_lg") or "it_core_news_lg",
+            self._ai_param("presidio_spacy_model", "it_core_news_lg")
+            or "it_core_news_lg",
         )
         if not analyzer:
             return []
@@ -233,6 +269,91 @@ class HelpdeskTicket(models.Model):
             known += presidio
         return clean, pseudonymizer, known
 
+    def _ai_residue_values(self, text, known_values=()):
+        """Personal data left in a text, known values and strict check.
+
+        The mapping is not needed: placeholders are removed by ``residue()``.
+        """
+        self.ensure_one()
+        pseudonymizer = Pseudonymizer()
+        known = self._ai_known_values(text) + list(known_values)
+        return pseudonymizer.residue(text, known, strict=True)
+
+    @api.depends("ai_question_clean", "partner_id", "partner_name", "partner_email")
+    def _compute_ai_residue(self):
+        """Stored, so the warning survives a blocked send.
+
+        A blocked action raises, and Odoo rolls back everything written in the
+        same request: the residue cannot be computed there.
+        """
+        for ticket in self:
+            if not ticket.ai_question_clean:
+                ticket.ai_residue = False
+                continue
+            residue = ticket._ai_residue_values(ticket.ai_question_clean)
+            ticket.ai_residue = ticket._ai_format_residue(residue)
+
+    def _ai_check_presidio_available(self):
+        """Fail closed when name detection is enabled but not installed."""
+        self.ensure_one()
+        if self._ai_param("use_presidio") not in ("1", "True", "true"):
+            return
+        analyzer = _get_presidio_analyzer(
+            self._ai_param("presidio_language", "it") or "it",
+            self._ai_param("presidio_spacy_model", "it_core_news_lg")
+            or "it_core_news_lg",
+        )
+        if not analyzer:
+            raise UserError(
+                _(
+                    "Presidio is enabled but not available on the server: "
+                    "name detection is disabled. Install presidio-analyzer and "
+                    "the spaCy model, or disable the parameter."
+                )
+            )
+
+    def _ai_assert_approved_question(self):
+        """Gate used by every path that builds the payload for the model.
+
+        Called by the payload builder too, so a direct ``execute_ai_bridge``
+        call or an automatic bridge cannot send an unapproved text: the
+        fields can be written by any user who may write the ticket, so the
+        authorisation is checked here and not only in the button.
+        """
+        self.ensure_one()
+        self._ai_check_user()
+        if self.ai_state != "sent":
+            raise UserError(
+                _(
+                    "Ticket %s has no approved question to send to the model.",
+                    self.display_name,
+                )
+            )
+        if not self.ai_personal_data_checked:
+            raise UserError(
+                _(
+                    "Confirm that you checked the question for personal data "
+                    "before sending it."
+                )
+            )
+        residue = self._ai_residue_values(self.ai_question_clean or "")
+        if residue:
+            raise UserError(
+                _(
+                    "Sending blocked: the question may still contain personal "
+                    "data.\n%s",
+                    self._ai_format_residue(residue),
+                )
+            )
+        return True
+
+    @staticmethod
+    def _ai_text(value):
+        """A Char field cannot receive a dict or a list from the model."""
+        if value is None or value is False:
+            return False
+        return value if isinstance(value, str) else str(value)
+
     @staticmethod
     def _ai_format_residue(residue):
         return "\n".join(f"{label}: {value}" for label, value in residue) or False
@@ -246,6 +367,7 @@ class HelpdeskTicket(models.Model):
                 [
                     ("payload_type", "=", "helpdesk_question"),
                     ("model_id.model", "=", self._name),
+                    ("company_id", "in", [False, self.env.company.id]),
                 ]
             )
         )
@@ -276,8 +398,14 @@ class HelpdeskTicket(models.Model):
         return sorted(modules.mapped("name"))
 
     def _ai_prepare_bridge_payload(self):
-        """Data sent to the external system: no personal data."""
+        """Data sent to the external system: no personal data.
+
+        The gate is here, not only in the button: a direct
+        ``execute_ai_bridge`` call or an automatic bridge must not send a text
+        that was not approved.
+        """
         self.ensure_one()
+        self._ai_assert_approved_question()
         return {
             "question": self.ai_question_clean or "",
             "ticket": f"TICKET-{self.id}",
@@ -289,18 +417,21 @@ class HelpdeskTicket(models.Model):
         }
 
     def _ai_format_sources(self, sources):
-        if not sources:
+        if not sources or not isinstance(sources, list | tuple):
             return False
         items = []
         for source in sources:
             if isinstance(source, dict):
-                ref = source.get("ref") or ""
-                title = source.get("title") or source.get("url") or ref
-                url = source.get("url") or ""
+                ref = str(source.get("ref") or "")
+                url = str(source.get("url") or "")
+                title = str(source.get("title") or url or ref)
                 label = f"[{ref}] {title}" if ref else title
                 if url.startswith(("https://", "http://")):
                     items.append(
-                        Markup('<li><a href="%s" target="_blank">%s</a></li>')
+                        Markup(
+                            '<li><a href="%s" target="_blank" '
+                            'rel="noopener noreferrer">%s</a></li>'
+                        )
                         % (url, label)
                     )
                 else:
@@ -321,6 +452,7 @@ class HelpdeskTicket(models.Model):
             "ai_model_name": False,
             "ai_execution_id": False,
             "ai_error": False,
+            "ai_personal_data_checked": False,
         }
 
     # --- technician actions -------------------------------------------------------
@@ -333,16 +465,14 @@ class HelpdeskTicket(models.Model):
                 raise UserError(
                     _("Ticket %s already has a draft in progress.", ticket.display_name)
                 )
-            clean, pseudonymizer, known = ticket._ai_pseudonymize(
+            clean, pseudonymizer, _known = ticket._ai_pseudonymize(
                 ticket._ai_source_text()
             )
-            residue = pseudonymizer.residue(clean, known)
             values = ticket._ai_reset_draft_values()
             values.update(
                 {
                     "ai_question_clean": clean,
                     "ai_placeholder_map": pseudonymizer.mapping,
-                    "ai_residue": ticket._ai_format_residue(residue),
                     "ai_state": "question_ready",
                 }
             )
@@ -358,18 +488,21 @@ class HelpdeskTicket(models.Model):
         question = (self.ai_question_clean or "").strip()
         if not question:
             raise UserError(_("The question to send is empty."))
+        if not self.ai_personal_data_checked:
+            raise UserError(
+                _(
+                    "Confirm that you checked the question for personal data "
+                    "before sending it."
+                )
+            )
+        self._ai_check_presidio_available()
         # The technician may have edited the text: check everything again.
         pseudonymizer = Pseudonymizer(self.ai_placeholder_map or {})
         clean, pseudonymizer, known = self._ai_pseudonymize(question, pseudonymizer)
-        residue = pseudonymizer.residue(clean, known)
+        residue = pseudonymizer.residue(clean, known, strict=True)
         if residue:
-            self.write(
-                {
-                    "ai_question_clean": clean,
-                    "ai_placeholder_map": pseudonymizer.mapping,
-                    "ai_residue": self._ai_format_residue(residue),
-                }
-            )
+            # No write here: the action raises and Odoo rolls the request back.
+            # ai_residue is a stored compute, so it already shows the values.
             raise UserError(
                 _(
                     "Sending blocked: the question may still contain personal data.\n"
@@ -382,7 +515,6 @@ class HelpdeskTicket(models.Model):
             {
                 "ai_question_clean": clean,
                 "ai_placeholder_map": pseudonymizer.mapping,
-                "ai_residue": False,
                 "ai_state": "sent",
                 "ai_error": False,
             }
@@ -402,8 +534,14 @@ class HelpdeskTicket(models.Model):
             # The bridge did not start (disabled or not allowed for this user)
             self.write({"ai_state": "question_ready"})
             raise UserError(
-                _("The bridge '%s' is not available for your user.", bridge.display_name)
+                _(
+                    "The bridge '%s' is not available for your user.",
+                    bridge.display_name,
+                )
             )
+        # The execution is pinned now: an asynchronous draft is accepted only
+        # for this execution, not for a previous send of the same ticket.
+        self.write({"ai_execution_id": execution.id})
         if execution.state == "error":
             self.write(
                 {
@@ -447,7 +585,7 @@ class HelpdeskTicket(models.Model):
         }
 
     def action_ai_reset(self):
-        """Bring the assistant back to the initial state (after an error or a change of mind)."""
+        """Back to the initial state (after an error or a change of mind)."""
         self._ai_check_user()
         values = self._ai_reset_draft_values()
         values.update(
@@ -482,14 +620,42 @@ class HelpdeskTicket(models.Model):
         """
         self.ensure_one()
         ticket = self.sudo()
+        # A late or repeated webhook must not resurrect a ticket that was
+        # cancelled or already reviewed, nor restore a different execution.
+        if ticket.ai_state != "sent":
+            _logger.warning(
+                "Draft ignored for ticket %s: state is %s, not 'sent'.",
+                ticket.id,
+                ticket.ai_state,
+            )
+            return False
+        if execution and ticket.ai_execution_id and ticket.ai_execution_id != execution:
+            _logger.warning(
+                "Draft ignored for ticket %s: it belongs to execution %s.",
+                ticket.id,
+                execution.id,
+            )
+            return False
+        sent_question = (execution.payload or {}).get("question") if execution else None
+        if sent_question and sent_question != (ticket.ai_question_clean or ""):
+            _logger.warning(
+                "Draft ignored for ticket %s: it answers a different question.",
+                ticket.id,
+            )
+            return False
         if not isinstance(data, dict):
             data = {"answer": str(data or "")}
         answer = data.get("answer") or data.get("body") or ""
+        if not isinstance(answer, str):
+            answer = str(answer)
         answer, line_level, line_reason = extract_level_lines(answer)
         declared = parse_level(data.get("confidence")) or line_level
         reason = data.get("confidence_reason") or line_reason or False
         abstention_text = ticket._ai_param("abstention_text", "")
-        abstained = bool(data.get("abstained")) or is_abstention(answer, abstention_text)
+        # "false" or "0" as a string is truthy: normalize before using it
+        abstained = normalize_flag(data.get("abstained")) is True or is_abstention(
+            answer, abstention_text
+        )
         try:
             min_score = float(ticket._ai_param("min_retrieval_score", "0") or 0)
         except ValueError:
@@ -502,24 +668,34 @@ class HelpdeskTicket(models.Model):
                 retrieval_score=data.get("retrieval_score"),
                 min_score=min_score,
             )
-        pseudonymizer = Pseudonymizer(ticket.ai_placeholder_map or {})
+        # Only the placeholders that were in the question sent: the answer
+        # cannot refer to a value the model never received.
+        question = ticket.ai_question_clean or ""
+        mapping = {
+            placeholder: value
+            for placeholder, value in (ticket.ai_placeholder_map or {}).items()
+            if placeholder in question
+        }
+        pseudonymizer = Pseudonymizer(mapping)
         restored = pseudonymizer.restore(answer)
         draft_html = plaintext2html(restored)
-        ticket.write(
-            {
-                "ai_draft_clean": answer,
-                "ai_draft": draft_html,
-                "ai_sources": ticket._ai_format_sources(data.get("sources")),
-                "ai_abstained": abstained,
-                "ai_confidence_declared": declared or False,
-                "ai_confidence": final,
-                "ai_confidence_reason": reason,
-                "ai_model_name": data.get("model") or False,
-                "ai_execution_id": execution.id if execution else False,
-                "ai_state": "draft_ready",
-                "ai_error": False,
-            }
-        )
+        # Savepoint: the note and the state must land together or not at all.
+        with self.env.cr.savepoint():
+            ticket.write(
+                {
+                    "ai_draft_clean": answer,
+                    "ai_draft": draft_html,
+                    "ai_sources": ticket._ai_format_sources(data.get("sources")),
+                    "ai_abstained": abstained,
+                    "ai_confidence_declared": declared or False,
+                    "ai_confidence": final,
+                    "ai_confidence_reason": self._ai_text(reason),
+                    "ai_model_name": self._ai_text(data.get("model")),
+                    "ai_execution_id": execution.id if execution else False,
+                    "ai_state": "draft_ready",
+                    "ai_error": False,
+                }
+            )
         if abstained:
             heading = _("AI draft: the model did not find enough sources.")
         else:

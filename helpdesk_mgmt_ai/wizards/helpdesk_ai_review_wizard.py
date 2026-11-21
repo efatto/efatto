@@ -5,12 +5,14 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import html2plaintext
 
-from ..models.helpdesk_ai_draft_log import CONFIDENCE_LEVELS, REVIEW_OUTCOMES
-from ..tools.pseudonymizer import Pseudonymizer
+from ..models.helpdesk_ai_draft_log import REVIEW_OUTCOMES
+from ..tools.pseudonymizer import PLACEHOLDER_RE, Pseudonymizer
 
 
 def _normalized_text(html):
-    return " ".join(html2plaintext(html or "").split())
+    # include_references=False: the default appends the link targets, i.e.
+    # portal tokens and tracking URLs, to the text
+    return " ".join(html2plaintext(html or "", include_references=False).split())
 
 
 class HelpdeskAiReviewWizard(models.TransientModel):
@@ -20,9 +22,7 @@ class HelpdeskAiReviewWizard(models.TransientModel):
     ticket_id = fields.Many2one(
         "helpdesk.ticket", string="Ticket", required=True, readonly=True
     )
-    outcome = fields.Selection(
-        REVIEW_OUTCOMES, string="Outcome", required=True, default="approved"
-    )
+    outcome = fields.Selection(REVIEW_OUTCOMES, required=True, default="approved")
     answer = fields.Html(string="Reply to the Customer", sanitize=True)
     reason_id = fields.Many2one(
         "helpdesk.ai.review.reason",
@@ -32,12 +32,12 @@ class HelpdeskAiReviewWizard(models.TransientModel):
     reason_requires_note = fields.Boolean(
         related="reason_id.requires_note", string="Note Required"
     )
-    note = fields.Text(string="Note")
+    note = fields.Text()
     send_to_customer = fields.Boolean(
         string="Send the Reply to the Customer", default=True
     )
     confidence = fields.Selection(
-        CONFIDENCE_LEVELS, related="ticket_id.ai_confidence", string="Confidence"
+        related="ticket_id.ai_confidence", string="Confidence"
     )
     confidence_reason = fields.Char(
         related="ticket_id.ai_confidence_reason", string="Confidence Reason"
@@ -70,9 +70,9 @@ class HelpdeskAiReviewWizard(models.TransientModel):
     def _effective_outcome(self):
         """A draft marked as approved but with a changed text counts as modified."""
         self.ensure_one()
-        if self.outcome == "approved" and _normalized_text(self.answer) != _normalized_text(
-            self.ticket_id.ai_draft
-        ):
+        if self.outcome == "approved" and _normalized_text(
+            self.answer
+        ) != _normalized_text(self.ticket_id.ai_draft):
             return "modified"
         return self.outcome
 
@@ -93,6 +93,24 @@ class HelpdeskAiReviewWizard(models.TransientModel):
         if send:
             if not _normalized_text(self.answer):
                 raise UserError(_("The reply to the customer is empty."))
+            # A placeholder left in the reply would reach the customer as
+            # "[PERSON_1]": known or not, it must be resolved by hand.
+            leftovers = sorted(
+                {
+                    match.group(0)
+                    for match in PLACEHOLDER_RE.finditer(
+                        html2plaintext(self.answer, include_references=False)
+                    )
+                }
+            )
+            if leftovers:
+                raise UserError(
+                    _(
+                        "The reply still contains placeholders: %s\nReplace them "
+                        "with the real text before sending.",
+                        ", ".join(leftovers),
+                    )
+                )
             ticket.message_post(
                 body=self.answer,
                 message_type="comment",
@@ -100,12 +118,26 @@ class HelpdeskAiReviewWizard(models.TransientModel):
                 partner_ids=ticket.partner_id.ids,
             )
         final_clean = False
+        pseudonymizer = Pseudonymizer(ticket.ai_placeholder_map or {})
         if outcome != "rejected":
-            pseudonymizer = Pseudonymizer(ticket.ai_placeholder_map or {})
-            final_clean, _pseudonymizer, _known = ticket._ai_pseudonymize(
-                html2plaintext(self.answer or ""), pseudonymizer
+            final_clean, pseudonymizer, _known = ticket._ai_pseudonymize(
+                html2plaintext(self.answer or "", include_references=False),
+                pseudonymizer,
             )
-        self.env["helpdesk.ai.draft.log"].create(
+        # The free text written by the technician is where a value that slipped
+        # through gets quoted: pseudonymize it before it enters the log.
+        note_clean = False
+        if (self.note or "").strip():
+            note_clean, _pseudonymizer, _known = ticket._ai_pseudonymize(
+                self.note, pseudonymizer
+            )
+        reason_clean = False
+        if (ticket.ai_confidence_reason or "").strip():
+            reason_clean, _pseudonymizer, _known = ticket._ai_pseudonymize(
+                ticket.ai_confidence_reason, pseudonymizer
+            )
+        # sudo: the log is written by the flow, never by hand (read-only ACL)
+        self.env["helpdesk.ai.draft.log"].sudo().create(
             {
                 "ticket_id": ticket.id,
                 "execution_id": ticket.ai_execution_id.id,
@@ -116,10 +148,10 @@ class HelpdeskAiReviewWizard(models.TransientModel):
                 "abstained": ticket.ai_abstained,
                 "confidence_declared": ticket.ai_confidence_declared,
                 "confidence": ticket.ai_confidence,
-                "confidence_reason": ticket.ai_confidence_reason,
+                "confidence_reason": reason_clean,
                 "outcome": outcome,
                 "reason_id": self.reason_id.id if outcome != "approved" else False,
-                "note": self.note,
+                "note": note_clean,
                 "sent_to_customer": send,
             }
         )

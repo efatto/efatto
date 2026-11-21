@@ -3,7 +3,11 @@
 1. Open a ticket and press **Prepare AI draft**. The *AI Assistant* tab shows
    the pseudonymized question.
 2. Check the question. You can complete it with version, module and error
-   message. Press **Approve and send the question**.
+   message. Tick **I checked the question for personal data** and press
+   **Approve and send the question**. If the automatic check still finds a
+   value, the send is refused and the values are listed in the AI tab. Names
+   that are not stored as a contact in Odoo are not detected: they are what
+   the checkbox is for.
 3. When the draft is ready, it appears as an internal note with its
    confidence level. Press **Review AI draft** and choose:
    - *Approved as is*: the reply is sent as it is;
@@ -12,7 +16,8 @@
 
    Changing the text of a draft marked as approved counts as modified and
    requires a reason. The reasons *Other* and *Personal data slipped
-   through* require a note.
+   through* require a note. Any placeholder left in the reply (`[PERSON_1]`,
+   known or not) blocks the send: replace it with the real text by hand.
 
 **Q&A archive**
 
@@ -22,9 +27,10 @@
 2. In *AI Assistant / Q&A Archive* check each imported entry: correct the
    text if needed, set the usage (knowledge base or test set) and press
    **Validate**. Entries that may still contain personal data cannot be
-   validated.
-3. Select the validated entries and run **Export for the AI (JSONL)** to
-   update the RAG index.
+   validated; editing a validated entry sends it back to validation.
+3. Select the validated entries and run **Export the knowledge base for the
+   AI (JSONL)** to update the RAG index. The test set has its own action and
+   is never indexed.
 
 **Metrics**
 

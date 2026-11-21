@@ -7,7 +7,9 @@
         <field name="model">helpdesk.ai.qa.import.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <p class="text-muted">Solved tickets with a reply from the staff become question and answer pairs, pseudonymized and to validate. Tickets already in the archive are skipped.</p>
+                <p
+                    class="text-muted"
+                >Solved tickets with a reply from the staff become question and answer pairs, pseudonymized and to validate. Tickets already in the archive are skipped.</p>
                 <group>
                     <group>
                         <field name="date_from" />

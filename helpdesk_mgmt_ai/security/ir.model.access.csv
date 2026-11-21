@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_ai_review_reason_user,helpdesk.ai.review.reason user,model_helpdesk_ai_review_reason,group_ai_draft_user,1,0,0,0
+access_helpdesk_ai_review_reason_manager,helpdesk.ai.review.reason manager,model_helpdesk_ai_review_reason,group_ai_draft_manager,1,1,1,1
+access_helpdesk_ai_draft_log_user,helpdesk.ai.draft.log user,model_helpdesk_ai_draft_log,group_ai_draft_user,1,0,1,0
+access_helpdesk_ai_draft_log_manager,helpdesk.ai.draft.log manager,model_helpdesk_ai_draft_log,group_ai_draft_manager,1,1,1,1
+access_helpdesk_ai_qa_user,helpdesk.ai.qa user,model_helpdesk_ai_qa,group_ai_draft_user,1,0,0,0
+access_helpdesk_ai_qa_manager,helpdesk.ai.qa manager,model_helpdesk_ai_qa,group_ai_draft_manager,1,1,1,1
+access_helpdesk_ai_review_wizard_user,helpdesk.ai.review.wizard user,model_helpdesk_ai_review_wizard,group_ai_draft_user,1,1,1,1
+access_helpdesk_ai_qa_import_wizard_manager,helpdesk.ai.qa.import.wizard manager,model_helpdesk_ai_qa_import_wizard,group_ai_draft_manager,1,1,1,1

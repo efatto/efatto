@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="helpdesk_ai_review_wizard_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ai.review.wizard.form</field>
+        <field name="model">helpdesk.ai.review.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-info" role="alert" invisible="not abstained">
+                    <p class="mb-0">The model did not find enough sources and abstained. Write the reply or reject the draft with a reason.</p>
+                </div>
+                <group>
+                    <group>
+                        <field name="ticket_id" />
+                        <field
+                            name="confidence"
+                            widget="badge"
+                            invisible="abstained"
+                            decoration-success="confidence == 'high'"
+                            decoration-warning="confidence == 'medium'"
+                            decoration-danger="confidence == 'low'"
+                        />
+                        <field name="confidence_reason" invisible="not confidence_reason" />
+                        <field name="abstained" invisible="1" />
+                    </group>
+                    <group>
+                        <field name="outcome" widget="radio" />
+                        <field
+                            name="reason_id"
+                            invisible="outcome == 'approved'"
+                            required="outcome != 'approved'"
+                            options="{'no_create': True}"
+                        />
+                        <field name="reason_requires_note" invisible="1" />
+                        <field
+                            name="note"
+                            invisible="outcome == 'approved' and not reason_requires_note"
+                            required="reason_requires_note"
+                        />
+                        <field name="send_to_customer" invisible="outcome == 'rejected'" />
+                    </group>
+                </group>
+                <separator string="Reply to the customer" invisible="outcome == 'rejected'" />
+                <field
+                    name="answer"
+                    invisible="outcome == 'rejected'"
+                    readonly="outcome == 'approved'"
+                />
+                <separator string="Cited sources" invisible="not sources" />
+                <field name="sources" invisible="not sources" />
+                <footer>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        string="Confirm"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

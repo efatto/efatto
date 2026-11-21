@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="ticket_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form - AI draft</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="ai_state" invisible="1" />
+                <button
+                    name="action_ai_prepare_question"
+                    type="object"
+                    string="Prepare AI draft"
+                    invisible="ai_state not in ('none', 'done', 'error')"
+                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                />
+                <button
+                    name="action_ai_send_question"
+                    type="object"
+                    string="Approve and send the question"
+                    class="btn-primary"
+                    invisible="ai_state != 'question_ready'"
+                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                />
+                <button
+                    name="action_ai_open_review"
+                    type="object"
+                    string="Review AI draft"
+                    class="btn-primary"
+                    invisible="ai_state != 'draft_ready'"
+                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                />
+                <button
+                    name="action_ai_reset"
+                    type="object"
+                    string="Cancel AI draft"
+                    invisible="ai_state in ('none', 'done')"
+                    confirm="The question and the draft in progress will be deleted. Continue?"
+                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="AI Assistant"
+                    name="ai_draft"
+                    groups="helpdesk_mgmt_ai_draft.group_ai_draft_user"
+                >
+                    <group>
+                        <group>
+                            <field name="ai_state" readonly="1" />
+                            <field
+                                name="ai_confidence"
+                                invisible="ai_state not in ('draft_ready', 'done') or ai_abstained"
+                                decoration-success="ai_confidence == 'high'"
+                                decoration-warning="ai_confidence == 'medium'"
+                                decoration-danger="ai_confidence == 'low'"
+                                widget="badge"
+                            />
+                            <field
+                                name="ai_confidence_reason"
+                                invisible="not ai_confidence_reason"
+                            />
+                            <field name="ai_abstained" invisible="not ai_abstained" />
+                        </group>
+                        <group>
+                            <field
+                                name="ai_confidence_declared"
+                                invisible="not ai_confidence_declared"
+                            />
+                            <field name="ai_model_name" invisible="not ai_model_name" />
+                            <field
+                                name="ai_execution_id"
+                                invisible="not ai_execution_id"
+                                groups="base.group_system"
+                            />
+                        </group>
+                    </group>
+                    <div class="alert alert-danger" role="alert" invisible="not ai_error">
+                        <field name="ai_error" />
+                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not ai_residue"
+                    >
+                        <p class="fw-bold mb-1">The question may still contain personal data.</p>
+                        <p class="mb-1">Correct the text before sending it.</p>
+                        <field name="ai_residue" />
+                    </div>
+                    <separator string="Question to send to the model" />
+                    <field
+                        name="ai_question_clean"
+                        readonly="ai_state != 'question_ready'"
+                        placeholder="Press 'Prepare AI draft' to generate the pseudonymized question."
+                    />
+                    <separator
+                        string="Draft reply"
+                        invisible="ai_state not in ('draft_ready', 'done')"
+                    />
+                    <field
+                        name="ai_draft"
+                        invisible="ai_state not in ('draft_ready', 'done')"
+                    />
+                    <separator string="Sources" invisible="not ai_sources" />
+                    <field name="ai_sources" invisible="not ai_sources" />
+                    <separator string="Review history" invisible="not ai_log_ids" />
+                    <field name="ai_log_ids" invisible="not ai_log_ids" readonly="1">
+                        <list>
+                            <field name="create_date" string="Date" />
+                            <field name="user_id" />
+                            <field name="confidence" />
+                            <field name="outcome" />
+                            <field name="reason_id" />
+                            <field name="sent_to_customer" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_ticket_ai_pending" model="ir.actions.act_window">
+        <field name="name">Tickets with an AI Draft in Progress</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">list,form</field>
+        <field
+            name="domain"
+        >[('ai_state', 'in', ('question_ready', 'sent', 'draft_ready', 'error'))]</field>
+    </record>
+</odoo>

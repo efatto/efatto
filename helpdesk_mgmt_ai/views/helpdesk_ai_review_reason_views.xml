@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="helpdesk_ai_review_reason_view_list" model="ir.ui.view">
+        <field name="name">helpdesk.ai.review.reason.list</field>
+        <field name="model">helpdesk.ai.review.reason</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="code" />
+                <field name="requires_note" />
+                <field name="active" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+    <record id="helpdesk_ai_review_reason_action" model="ir.actions.act_window">
+        <field name="name">Review Reasons</field>
+        <field name="res_model">helpdesk.ai.review.reason</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

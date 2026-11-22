@@ -1,0 +1,1026 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_mgmt_ai
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__abstained
+msgid "Abstention"
+msgstr "Astensione"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Abstentions"
+msgstr "Astensioni"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_draft_root
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "AI Assistant"
+msgstr "Assistente AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_error
+msgid "AI Assistant Error"
+msgstr "Errore assistente AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_state
+msgid "AI Assistant Status"
+msgstr "Stato assistente AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.act_window,name:helpdesk_mgmt_ai.helpdesk_ai_draft_log_action
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_log_ids
+msgid "AI Draft Log"
+msgstr "Registro bozze AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__source__review
+msgid "AI draft review"
+msgstr "Revisione bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model,name:helpdesk_mgmt_ai.model_helpdesk_ai_review_reason
+msgid "AI Draft Review Reason"
+msgstr "Motivo di revisione della bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid "AI draft to review. Confidence: %s"
+msgstr "Bozza AI da rivedere. Affidabilità: %s"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "AI draft: the model did not find enough sources."
+msgstr "Bozza AI: il modello non ha trovato fonti sufficienti."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa_import_wizard__answer_mode__all
+msgid "All staff replies"
+msgstr "Tutte le risposte del supporto"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__answer
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__answer_mode
+msgid "Answer"
+msgstr "Risposta"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Answer (pseudonymized)"
+msgstr "Risposta (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Approve and send the question"
+msgstr "Approva e invia la domanda"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Approved"
+msgstr "Approvate"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__outcome__approved
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__outcome__approved
+msgid "Approved as is"
+msgstr "Approvata senza modifiche"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Back to validation"
+msgstr "Riporta da validare"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__execution_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_execution_id
+msgid "Bridge Execution"
+msgstr "Esecuzione bridge"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_import_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_review_wizard_view_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Cancel AI draft"
+msgstr "Annulla bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__category_ids
+msgid "Categories"
+msgstr "Categorie"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__category_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__category_id
+msgid "Category"
+msgstr "Categoria"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Check personal data"
+msgstr "Controlla dati personali"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__sources
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_sources
+msgid "Cited Sources"
+msgstr "Fonti citate"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_review_wizard_view_form
+msgid "Cited sources"
+msgstr "Fonti citate"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__date_from
+msgid "Closed from"
+msgstr "Chiusi dal"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__date_to
+msgid "Closed to"
+msgstr "Chiusi al"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__code
+msgid "Code"
+msgstr "Codice"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__confidence
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_confidence
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Confidence"
+msgstr "Affidabilità"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_pivot
+msgid "Confidence calibration"
+msgstr "Calibrazione dell'affidabilità"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__confidence_reason
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__confidence_reason
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_confidence_reason
+msgid "Confidence Reason"
+msgstr "Motivo dell'affidabilità"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_draft_config
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_review_wizard_view_form
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Correct the text before sending it."
+msgstr "Correggi il testo prima di inviarlo."
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_form
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_list
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_list
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Date"
+msgstr "Data"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__confidence_declared
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_confidence_declared
+msgid "Declared Confidence"
+msgstr "Affidabilità dichiarata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_draft_log
+msgid "Draft Log"
+msgstr "Registro bozze"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_draft
+msgid "Draft Reply"
+msgstr "Bozza di risposta"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Draft reply"
+msgstr "Bozza di risposta"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__draft_ready
+msgid "Draft to review"
+msgstr "Bozza da rivedere"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__error
+msgid "Error"
+msgstr "Errore"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__confidence
+msgid "Final Confidence"
+msgstr "Affidabilità finale"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__final_answer_clean
+msgid "Final Reply (pseudonymized)"
+msgstr "Risposta finale (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_form
+msgid "Final reply (pseudonymized)"
+msgstr "Risposta finale (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.module.category,name:helpdesk_mgmt_ai.module_category_helpdesk_ai_draft
+msgid "Helpdesk AI Assistant"
+msgstr "Assistente AI Helpdesk"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model,name:helpdesk_mgmt_ai.model_helpdesk_ai_draft_log
+msgid "Helpdesk AI Draft Log"
+msgstr "Registro bozze AI dei ticket"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model,name:helpdesk_mgmt_ai.model_helpdesk_ai_qa
+msgid "Helpdesk AI Question and Answer"
+msgstr "Domanda e risposta AI dell'helpdesk"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__ai_bridge__result_type__helpdesk_draft
+msgid "Helpdesk: draft reply"
+msgstr "Helpdesk: bozza di risposta"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__ai_bridge__payload_type__helpdesk_question
+msgid "Helpdesk: pseudonymized question"
+msgstr "Helpdesk: domanda pseudonimizzata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence__high
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence_declared__high
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__confidence__high
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence__high
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence_declared__high
+msgid "High"
+msgstr "Alto"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_import_wizard_view_form
+msgid "Import"
+msgstr "Importa"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.act_window,name:helpdesk_mgmt_ai.helpdesk_ai_qa_import_wizard_action
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_qa_import
+msgid "Import Solved Tickets"
+msgstr "Importa ticket risolti"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model,name:helpdesk_mgmt_ai.model_helpdesk_ai_qa_import_wizard
+msgid "Import Solved Tickets into the AI Archive"
+msgstr "Importa ticket risolti nell'archivio AI"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_qa_import_wizard.py:0
+msgid "Imported Entries to Validate"
+msgstr "Voci importate da validare"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_incomplete
+msgid "Incomplete"
+msgstr "Incompleta"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__usage__knowledge
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Knowledge base"
+msgstr "Base di conoscenza"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa_import_wizard__answer_mode__last
+msgid "Last staff reply"
+msgstr "Ultima risposta del supporto"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_confidence
+msgid "Level declared by the model, lowered by the system when the citations are not verified or the sources found are not relevant enough."
+msgstr "Livello dichiarato dal modello, abbassato dal sistema se le citazioni non sono verificate o le fonti trovate sono poco pertinenti."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence__low
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence_declared__low
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__confidence__low
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence__low
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence_declared__low
+msgid "Low"
+msgstr "Basso"
+
+#. module: helpdesk_mgmt_ai
+#: model:res.groups,name:helpdesk_mgmt_ai.group_ai_draft_manager
+msgid "Manager"
+msgstr "Responsabile"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__source__manual
+msgid "Manual"
+msgstr "Manuale"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_placeholder_map
+msgid "Mapping between placeholders and real data. It stays in Odoo only."
+msgstr "Corrispondenza tra segnaposto e dati reali. Resta solo in Odoo."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__limit
+msgid "Maximum Tickets"
+msgstr "Numero massimo di ticket"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence__medium
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__confidence_declared__medium
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__confidence__medium
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence__medium
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_confidence_declared__medium
+msgid "Medium"
+msgstr "Medio"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__model_name
+msgid "Model"
+msgstr "Modello"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__draft_clean
+msgid "Model Draft"
+msgstr "Bozza del modello"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_form
+msgid "Model draft (pseudonymized)"
+msgstr "Bozza del modello (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_model_name
+msgid "Model Used"
+msgstr "Modello usato"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__outcome__modified
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__outcome__modified
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Modified"
+msgstr "Modificata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_needless_abstention
+msgid "Needless abstention"
+msgstr "Astensione non necessaria"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "No AI bridge is configured for tickets. Create a bridge with model 'Helpdesk Ticket', payload type 'Helpdesk: pseudonymized question' and result type 'Helpdesk: draft reply'."
+msgstr "Nessun bridge AI configurato per i ticket. Crea un bridge con modello 'Ticket', tipo di payload 'Helpdesk: domanda pseudonimizzata' e tipo di risultato 'Helpdesk: bozza di risposta'."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_qa_import_wizard.py:0
+msgid "No solved ticket matches the filters."
+msgstr "Nessun ticket risolto corrisponde ai filtri."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_qa_import_wizard.py:0
+#, python-format
+msgid "None of the %s tickets found has a reply from the staff."
+msgstr "Nessuno dei %s ticket trovati ha una risposta del supporto."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__note
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__note
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__note
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Note"
+msgstr "Nota"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__requires_note
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__reason_requires_note
+msgid "Note Required"
+msgstr "Nota obbligatoria"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__odoo_version
+msgid "Odoo Version"
+msgstr "Versione di Odoo"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Only enabled technicians can use the AI assistant."
+msgstr "Solo i tecnici abilitati possono usare l'assistente AI."
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_other
+msgid "Other"
+msgstr "Altro"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_version
+msgid "Other version or Enterprise"
+msgstr "Altra versione o Enterprise"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_out_of_scope
+msgid "Out of scope"
+msgstr "Fuori ambito"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__outcome
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__outcome
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Outcome"
+msgstr "Esito"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_graph
+msgid "Outcomes by confidence"
+msgstr "Esiti per affidabilità"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__test_share
+msgid "Part of the entries kept out of the knowledge base and used only to measure precision."
+msgstr "Parte delle voci tenuta fuori dalla base di conoscenza e usata solo per misurare la precisione."
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_personal_data
+msgid "Personal data slipped through"
+msgstr "Dato personale sfuggito"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_placeholder_map
+msgid "Placeholder Table"
+msgstr "Tabella dei segnaposto"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__residue
+msgid "Possible Personal Data"
+msgstr "Possibili dati personali"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Possible personal data"
+msgstr "Possibili dati personali"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__has_residue
+msgid "Possible Personal Data Found"
+msgstr "Trovati possibili dati personali"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_residue
+msgid "Possible Remaining Personal Data"
+msgstr "Possibili dati personali rimasti"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Prepare AI draft"
+msgstr "Prepara bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Prepare the question first with 'Prepare AI draft'."
+msgstr "Prima prepara la domanda con 'Prepara bozza AI'."
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Press 'Prepare AI draft' to generate the pseudonymized question."
+msgstr "Premi 'Prepara bozza AI' per generare la domanda pseudonimizzata."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_draft_clean
+msgid "Pseudonymized Draft"
+msgstr "Bozza pseudonimizzata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_question_clean
+msgid "Pseudonymized Question"
+msgstr "Domanda pseudonimizzata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.act_window,name:helpdesk_mgmt_ai.helpdesk_ai_qa_action
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_qa
+msgid "Q&A Archive"
+msgstr "Archivio domande e risposte"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__question
+msgid "Question"
+msgstr "Domanda"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Question (pseudonymized)"
+msgstr "Domanda (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__question_clean
+msgid "Question Sent"
+msgstr "Domanda inviata"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_form
+msgid "Question sent (pseudonymized)"
+msgstr "Domanda inviata (pseudonimizzata)"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Question sent."
+msgstr "Domanda inviata."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Question sent: the draft will arrive as soon as it is ready."
+msgstr "Domanda inviata: la bozza arriverà appena pronta."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__question_ready
+msgid "Question to approve"
+msgstr "Domanda da approvare"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Question to send to the model"
+msgstr "Domanda da inviare al modello"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__reason_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__reason_id
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Reject"
+msgstr "Scarta"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_draft_log__outcome__rejected
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__state__rejected
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_review_wizard__outcome__rejected
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Rejected"
+msgstr "Scartata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__answer
+msgid "Reply to the Customer"
+msgstr "Risposta al cliente"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_review_wizard_view_form
+msgid "Reply to the customer"
+msgstr "Risposta al cliente"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__reason_id
+msgid "Required when the draft is modified or rejected."
+msgstr "Obbligatorio se la bozza viene modificata o scartata."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#: model:ir.model,name:helpdesk_mgmt_ai.model_helpdesk_ai_review_wizard
+msgid "Review AI Draft"
+msgstr "Revisione della bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Review AI draft"
+msgstr "Rivedi la bozza AI"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Review history"
+msgstr "Storico revisioni"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.act_window,name:helpdesk_mgmt_ai.helpdesk_ai_review_reason_action
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_review_reason
+msgid "Review Reasons"
+msgstr "Motivi di modifica o scarto"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__done
+msgid "Reviewed"
+msgstr "Revisionata"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+msgid "Select a reason: the draft has been modified."
+msgstr "Indica il motivo: la bozza è stata modificata."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+msgid "Select a reason: the draft has been rejected."
+msgstr "Indica il motivo: la bozza è stata scartata."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ai_qa.py:0
+msgid "Select at least one validated entry."
+msgstr "Seleziona almeno una voce validata."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__send_to_customer
+msgid "Send the Reply to the Customer"
+msgstr "Invia la risposta al cliente"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid ""
+"Sending blocked: the question may still contain personal data.\n"
+"%s\n"
+"Correct the text and try again."
+msgstr ""
+"Invio bloccato: nella domanda restano possibili dati personali.\n"
+"%s\n"
+"Correggi il testo e riprova."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__sent_to_customer
+msgid "Sent to Customer"
+msgstr "Inviata al cliente"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__test_share
+msgid "Share for the Test Set (%)"
+msgstr "Quota per il set di prova (%)"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__source__import
+msgid "Solved ticket import"
+msgstr "Importazione da ticket risolti"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_import_wizard_view_form
+msgid "Solved tickets with a reply from the staff become question and answer pairs, pseudonymized and to validate. Tickets already in the archive are skipped."
+msgstr "I ticket risolti con una risposta del supporto diventano coppie di domanda e risposta, pseudonimizzate e da validare. I ticket già presenti nell'archivio vengono saltati."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__source
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Source"
+msgstr "Origine"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Sources"
+msgstr "Fonti"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__state
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Status"
+msgstr "Stato"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__team_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__team_id
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_draft_log_view_search
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Team"
+msgstr "Team"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__team_ids
+msgid "Teams"
+msgstr "Team"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__user_id
+#: model:res.groups,name:helpdesk_mgmt_ai.group_ai_draft_user
+msgid "Technician"
+msgstr "Tecnico"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__usage__test
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Test set"
+msgstr "Set di prova"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ai_qa__usage
+msgid "Test set entries are never given to the model as sources."
+msgstr "Le voci del set di prova non vengono mai fornite al modello come fonti."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_question_clean
+msgid "Text that will be sent to the model. The technician can correct or complete it (version, module, error message) before sending it."
+msgstr "Testo che verrà inviato al modello. Il tecnico può correggerlo o completarlo (versione, modulo, messaggio d'errore) prima dell'invio."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/ai_bridge.py:0
+#, python-format
+msgid "The bridge '%s' can only be used with helpdesk tickets."
+msgstr "Il bridge '%s' si può usare solo con i ticket di assistenza."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid "The bridge '%s' is not available for your user."
+msgstr "Il bridge '%s' non è disponibile per il tuo utente."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "The call to the model failed."
+msgstr "La chiamata al modello non è riuscita."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid "The call to the model failed. See the details in the bridge execution '%s'."
+msgstr "La chiamata al modello non è riuscita. Dettagli nell'esecuzione del bridge '%s'."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "The draft is ready to review."
+msgstr "Bozza pronta da rivedere."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__abstained
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_abstained
+msgid "The Model Abstained"
+msgstr "Il modello si è astenuto"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_review_wizard_view_form
+msgid "The model did not find enough sources and abstained. Write the reply or reject the draft with a reason."
+msgstr "Il modello non ha trovato fonti sufficienti e si è astenuto. Scrivi la risposta o scarta la bozza indicando il motivo."
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "The question and the draft in progress will be deleted. Continue?"
+msgstr "La domanda e la bozza in corso verranno cancellate. Continuare?"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "The question may still contain personal data."
+msgstr "Nella domanda restano possibili dati personali."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "The question to send is empty."
+msgstr "La domanda da inviare è vuota."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+#, python-format
+msgid "The reason '%s' requires a note."
+msgstr "Il motivo '%s' richiede una nota."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.constraint,message:helpdesk_mgmt_ai.constraint_helpdesk_ai_review_reason_code_unique
+msgid "The reason code must be unique."
+msgstr "Il codice del motivo deve essere unico."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+msgid "The reply to the customer is empty."
+msgstr "La risposta al cliente è vuota."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ai_review_reason__requires_note
+msgid "The technician must explain the reason with a note."
+msgstr "Il tecnico deve spiegare il motivo con una nota."
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "The texts may still contain personal data."
+msgstr "Nei testi restano possibili dati personali."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "There is no draft to review."
+msgstr "Non c'è una bozza da rivedere."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ai_qa.py:0
+#, python-format
+msgid ""
+"These entries may still contain personal data. Correct them before validating:\n"
+"%s"
+msgstr ""
+"In queste voci restano possibili dati personali. Correggile prima di validarle:\n"
+"%s"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+msgid "This draft has already been reviewed."
+msgstr "Questa bozza è già stata revisionata."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_draft_log__ticket_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__ticket_id
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_review_wizard__ticket_id
+msgid "Ticket"
+msgstr "Ticket"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid "Ticket %s already has a draft in progress."
+msgstr "Il ticket %s ha già una bozza in corso."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa_import_wizard__ticket_count
+msgid "Tickets Found"
+msgstr "Ticket trovati"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.ui.menu,name:helpdesk_mgmt_ai.menu_ai_draft_pending
+msgid "Tickets in Progress"
+msgstr "Ticket in corso"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.act_window,name:helpdesk_mgmt_ai.action_ticket_ai_pending
+msgid "Tickets with an AI Draft in Progress"
+msgstr "Ticket con bozza AI in corso"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__name
+msgid "Title"
+msgstr "Titolo"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__none
+msgid "To prepare"
+msgstr "Da preparare"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__state__to_validate
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "To validate"
+msgstr "Da validare"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__usage
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Usage"
+msgstr "Uso"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.server,name:helpdesk_mgmt_ai.helpdesk_ai_qa_action_validate
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_form
+msgid "Validate"
+msgstr "Valida"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ai_qa__state__validated
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.helpdesk_ai_qa_view_search
+msgid "Validated"
+msgstr "Validata"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__validated_by_id
+msgid "Validated by"
+msgstr "Validata da"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ai_qa__validation_date
+msgid "Validation Date"
+msgstr "Data di validazione"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields.selection,name:helpdesk_mgmt_ai.selection__helpdesk_ticket__ai_state__sent
+msgid "Waiting for the model"
+msgstr "In attesa del modello"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_wrong
+msgid "Wrong"
+msgstr "Errata"
+
+#. module: helpdesk_mgmt_ai
+#: model:helpdesk.ai.review.reason,name:helpdesk_mgmt_ai.reason_source
+msgid "Wrong or missing source"
+msgstr "Fonte sbagliata o mancante"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,field_description:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_personal_data_checked
+msgid "I checked the question for personal data"
+msgstr "Ho controllato la domanda alla ricerca di dati personali"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_personal_data_checked
+msgid "A name that is not stored as a contact in Odoo is not detected automatically: the technician confirms that the text is clean."
+msgstr "Un nome che non corrisponde a un contatto presente in Odoo non viene rilevato automaticamente: il tecnico conferma che il testo è pulito."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.model.fields,help:helpdesk_mgmt_ai.field_helpdesk_ticket__ai_residue
+msgid "Personal data found in the question by the last check. Sending is blocked while this field is not empty."
+msgstr "Dati personali trovati nella domanda dall'ultimo controllo. L'invio è bloccato finché questo campo non è vuoto."
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.server,name:helpdesk_mgmt_ai.helpdesk_ai_qa_action_export
+msgid "Export the knowledge base for the AI (JSONL)"
+msgstr "Esporta la knowledge base per l'AI (JSONL)"
+
+#. module: helpdesk_mgmt_ai
+#: model:ir.actions.server,name:helpdesk_mgmt_ai.helpdesk_ai_qa_action_export_test
+msgid "Export the test set (JSONL)"
+msgstr "Esporta il set di test (JSONL)"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ai_qa.py:0
+#, python-format
+msgid "Select at least one validated entry of usage '%s'."
+msgstr "Selezionare almeno una voce validata di uso '%s'."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_qa_import_wizard.py:0
+msgid "The maximum number of tickets must be positive."
+msgstr "Il numero massimo di ticket deve essere positivo."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_qa_import_wizard.py:0
+msgid "The share for the test set must be between 0 and 100."
+msgstr "La percentuale per il set di test deve essere compresa tra 0 e 100."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+#, python-format
+msgid "Ticket %s has no approved question to send to the model."
+msgstr "Il ticket %s non ha una domanda approvata da inviare al modello."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Confirm that you checked the question for personal data before sending it."
+msgstr "Confermare di aver controllato la domanda alla ricerca di dati personali prima di inviarla."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ticket.py:0
+msgid "Presidio is enabled but not available on the server: name detection is disabled. Install presidio-analyzer and the spaCy model, or disable the parameter."
+msgstr "Presidio è attivo ma non disponibile sul server: il riconoscimento dei nomi è disattivato. Installare presidio-analyzer e il modello spaCy, oppure disattivare il parametro."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/ai_bridge.py:0
+msgid "The payload type 'Helpdesk: pseudonymized question' can only be used with usage 'None': the question is sent by the ticket buttons, never automatically."
+msgstr "Il tipo di payload 'Helpdesk: pseudonymized question' si può usare solo con utilizzo 'None': la domanda viene inviata dai pulsanti del ticket, mai automaticamente."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/wizards/helpdesk_ai_review_wizard.py:0
+#, python-format
+msgid "The reply still contains placeholders: %s\nReplace them with the real text before sending."
+msgstr "La risposta contiene ancora segnaposto: %s\nSostituirli con il testo reale prima di inviare."
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ai_qa.py:0
+#, python-format
+msgid "These entries may still contain personal data and cannot be exported:\n%s"
+msgstr "Queste voci possono ancora contenere dati personali e non possono essere esportate:\n%s"
+
+#. module: helpdesk_mgmt_ai
+#: code:addons/helpdesk_mgmt_ai/models/helpdesk_ai_qa.py:0
+#, python-format
+msgid "These entries may still contain personal data. Correct them before validating:\n%(names)s\n\n%(values)s"
+msgstr "Queste voci possono ancora contenere dati personali. Correggerle prima di validare:\n%(names)s\n\n%(values)s"
+
+#. module: helpdesk_mgmt_ai
+#: model_terms:ir.ui.view,arch_db:helpdesk_mgmt_ai.ticket_view_form
+msgid "Names that are not stored as a contact in Odoo are not detected automatically: check the text before sending it."
+msgstr "I nomi che non corrispondono a un contatto presente in Odoo non vengono rilevati automaticamente: controllare il testo prima di inviarlo."

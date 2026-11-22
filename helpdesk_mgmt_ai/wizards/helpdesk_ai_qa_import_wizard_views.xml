@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="helpdesk_ai_qa_import_wizard_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ai.qa.import.wizard.form</field>
+        <field name="model">helpdesk.ai.qa.import.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p
+                    class="text-muted"
+                >Solved tickets with a reply from the staff become question and answer pairs, pseudonymized and to validate. Tickets already in the archive are skipped.</p>
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to" />
+                        <field name="team_ids" widget="many2many_tags" />
+                        <field name="category_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="answer_mode" widget="radio" />
+                        <field name="test_share" />
+                        <field name="limit" />
+                        <field name="ticket_count" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_import"
+                        type="object"
+                        string="Import"
+                        class="btn-primary"
+                        invisible="not ticket_count"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="helpdesk_ai_qa_import_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import Solved Tickets</field>
+        <field name="res_model">helpdesk.ai.qa.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

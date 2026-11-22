@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="helpdesk_ai_draft_log_view_list" model="ir.ui.view">
+        <field name="name">helpdesk.ai.draft.log.list</field>
+        <field name="model">helpdesk.ai.draft.log</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="create_date" string="Date" />
+                <field name="ticket_id" />
+                <field name="team_id" optional="show" />
+                <field name="category_id" optional="hide" />
+                <field name="user_id" />
+                <field name="model_name" optional="hide" />
+                <field name="abstained" optional="show" />
+                <field name="confidence_declared" optional="hide" />
+                <field
+                    name="confidence"
+                    widget="badge"
+                    decoration-success="confidence == 'high'"
+                    decoration-warning="confidence == 'medium'"
+                    decoration-danger="confidence == 'low'"
+                />
+                <field
+                    name="outcome"
+                    widget="badge"
+                    decoration-success="outcome == 'approved'"
+                    decoration-warning="outcome == 'modified'"
+                    decoration-danger="outcome == 'rejected'"
+                />
+                <field name="reason_id" />
+                <field name="sent_to_customer" optional="hide" />
+            </list>
+        </field>
+    </record>
+    <record id="helpdesk_ai_draft_log_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ai.draft.log.form</field>
+        <field name="model">helpdesk.ai.draft.log</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ticket_id" />
+                            <field name="team_id" />
+                            <field name="category_id" />
+                            <field name="user_id" />
+                            <field name="create_date" string="Date" />
+                        </group>
+                        <group>
+                            <field name="outcome" />
+                            <field name="reason_id" />
+                            <field name="note" />
+                            <field name="sent_to_customer" />
+                        </group>
+                        <group>
+                            <field name="abstained" />
+                            <field name="confidence_declared" />
+                            <field name="confidence" />
+                            <field name="confidence_reason" />
+                        </group>
+                        <group>
+                            <field name="model_name" />
+                            <field name="execution_id" groups="base.group_system" />
+                        </group>
+                    </group>
+                    <separator string="Question sent (pseudonymized)" />
+                    <field name="question_clean" />
+                    <separator string="Model draft (pseudonymized)" />
+                    <field name="draft_clean" />
+                    <separator string="Final reply (pseudonymized)" />
+                    <field name="final_answer_clean" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="helpdesk_ai_draft_log_view_pivot" model="ir.ui.view">
+        <field name="name">helpdesk.ai.draft.log.pivot</field>
+        <field name="model">helpdesk.ai.draft.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Confidence calibration">
+                <field name="confidence" type="row" />
+                <field name="outcome" type="col" />
+            </pivot>
+        </field>
+    </record>
+    <record id="helpdesk_ai_draft_log_view_graph" model="ir.ui.view">
+        <field name="name">helpdesk.ai.draft.log.graph</field>
+        <field name="model">helpdesk.ai.draft.log</field>
+        <field name="arch" type="xml">
+            <graph string="Outcomes by confidence" type="bar" stacked="1">
+                <field name="confidence" />
+                <field name="outcome" />
+            </graph>
+        </field>
+    </record>
+    <record id="helpdesk_ai_draft_log_view_search" model="ir.ui.view">
+        <field name="name">helpdesk.ai.draft.log.search</field>
+        <field name="model">helpdesk.ai.draft.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="ticket_id" />
+                <field name="user_id" />
+                <field name="reason_id" />
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('outcome', '=', 'approved')]"
+                />
+                <filter
+                    name="modified"
+                    string="Modified"
+                    domain="[('outcome', '=', 'modified')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('outcome', '=', 'rejected')]"
+                />
+                <separator />
+                <filter
+                    name="abstained"
+                    string="Abstentions"
+                    domain="[('abstained', '=', True)]"
+                />
+                <separator />
+                <filter name="create_date" string="Date" date="create_date" />
+                <group>
+                    <filter
+                        name="group_confidence"
+                        string="Confidence"
+                        context="{'group_by': 'confidence'}"
+                    />
+                    <filter
+                        name="group_outcome"
+                        string="Outcome"
+                        context="{'group_by': 'outcome'}"
+                    />
+                    <filter
+                        name="group_reason"
+                        string="Reason"
+                        context="{'group_by': 'reason_id'}"
+                    />
+                    <filter
+                        name="group_team"
+                        string="Team"
+                        context="{'group_by': 'team_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="helpdesk_ai_draft_log_action" model="ir.actions.act_window">
+        <field name="name">AI Draft Log</field>
+        <field name="res_model">helpdesk.ai.draft.log</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+    </record>
+</odoo>

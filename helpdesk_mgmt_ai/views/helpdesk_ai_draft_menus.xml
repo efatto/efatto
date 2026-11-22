@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="menu_ai_draft_root"
+        name="AI Assistant"
+        sequence="60"
+        web_icon="helpdesk_mgmt_ai,static/description/icon.png"
+        groups="group_ai_draft_user"
+    />
+    <menuitem
+        id="menu_ai_draft_pending"
+        name="Tickets in Progress"
+        parent="menu_ai_draft_root"
+        action="action_ticket_ai_pending"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_ai_qa"
+        name="Q&amp;A Archive"
+        parent="menu_ai_draft_root"
+        action="helpdesk_ai_qa_action"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_ai_draft_log"
+        name="Draft Log"
+        parent="menu_ai_draft_root"
+        action="helpdesk_ai_draft_log_action"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_ai_draft_config"
+        name="Configuration"
+        parent="menu_ai_draft_root"
+        sequence="90"
+        groups="group_ai_draft_manager"
+    />
+    <menuitem
+        id="menu_ai_qa_import"
+        name="Import Solved Tickets"
+        parent="menu_ai_draft_config"
+        action="helpdesk_ai_qa_import_wizard_action"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_ai_review_reason"
+        name="Review Reasons"
+        parent="menu_ai_draft_config"
+        action="helpdesk_ai_review_reason_action"
+        sequence="20"
+    />
+</odoo>

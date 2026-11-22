@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="reason_wrong" model="helpdesk.ai.review.reason">
+        <field name="name">Wrong</field>
+        <field name="code">wrong</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="reason_incomplete" model="helpdesk.ai.review.reason">
+        <field name="name">Incomplete</field>
+        <field name="code">incomplete</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="reason_source" model="helpdesk.ai.review.reason">
+        <field name="name">Wrong or missing source</field>
+        <field name="code">source</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="reason_version" model="helpdesk.ai.review.reason">
+        <field name="name">Other version or Enterprise</field>
+        <field name="code">version</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="reason_out_of_scope" model="helpdesk.ai.review.reason">
+        <field name="name">Out of scope</field>
+        <field name="code">out_of_scope</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="reason_needless_abstention" model="helpdesk.ai.review.reason">
+        <field name="name">Needless abstention</field>
+        <field name="code">needless_abstention</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="reason_personal_data" model="helpdesk.ai.review.reason">
+        <field name="name">Personal data slipped through</field>
+        <field name="code">personal_data</field>
+        <field name="sequence">70</field>
+        <field name="requires_note">True</field>
+    </record>
+    <record id="reason_other" model="helpdesk.ai.review.reason">
+        <field name="name">Other</field>
+        <field name="code">other</field>
+        <field name="sequence">100</field>
+        <field name="requires_note">True</field>
+    </record>
+</odoo>

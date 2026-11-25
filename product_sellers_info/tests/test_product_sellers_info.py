@@ -122,3 +122,28 @@ class TestProductSellersInfo(SingleTransactionCase):
             self.product_tmpl.purchase_multiple_qty,
             "Seller multiple_qty should be updated even without date_end",
         )
+
+    def test_04_compute_purchase_delay_multiple_products(self):
+        """Each product must use its own first seller, not a shared one."""
+        product_tmpl_2 = self.env["product.template"].create(
+            {
+                "name": "Test Product 2",
+                "type": "consu",
+                "is_storable": True,
+                "purchase_ok": True,
+            }
+        )
+        seller_2 = self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.supplier2.id,
+                "product_tmpl_id": product_tmpl_2.id,
+                "delay": 25,
+                # sorts before the sellers of the first product
+                "sequence": 0,
+            }
+        )
+        # force the compute on a multi-record recordset, as happens when the
+        # field is added to an existing database or recomputed in batch
+        (self.product_tmpl | product_tmpl_2)._compute_purchase_delay()
+        self.assertEqual(self.product_tmpl.purchase_delay, self.seller.delay)
+        self.assertEqual(product_tmpl_2.purchase_delay, seller_2.delay)

@@ -51,7 +51,7 @@ class ProductTemplate(models.Model):
             purchase_delay = 0.0
             purchase_multiple_qty = 1.0
             if product_tmpl.purchase_ok:
-                seller_id = self._get_first_seller()
+                seller_id = product_tmpl._get_first_seller()
                 if seller_id:
                     if seller_id.delay:
                         purchase_delay = seller_id.delay
@@ -63,7 +63,7 @@ class ProductTemplate(models.Model):
     def _inverse_purchase_delay(self):
         for product_tmpl in self:
             if product_tmpl.purchase_ok:
-                seller_id = self._get_first_seller()
+                seller_id = product_tmpl._get_first_seller()
                 if seller_id:
                     if product_tmpl.purchase_delay:
                         seller_id.delay = product_tmpl.purchase_delay

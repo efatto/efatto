@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_mail_catchall_list" model="ir.ui.view">
+        <field name="name">mail.catchall.list</field>
+        <field name="model">mail.catchall</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="date" />
+                <field name="name" />
+                <field name="email_from" />
+                <field name="email_to" />
+                <field name="message_attachment_count" optional="hide" />
+                <field name="fetchmail_server_id" optional="show" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mail_catchall_form" model="ir.ui.view">
+        <field name="name">mail.catchall.form</field>
+        <field name="model">mail.catchall</field>
+        <field name="arch" type="xml">
+            <form string="Catch-all Email" create="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email_from" />
+                            <field name="email_to" />
+                            <field name="date" />
+                        </group>
+                        <group>
+                            <field name="fetchmail_server_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mail_catchall_search" model="ir.ui.view">
+        <field name="name">mail.catchall.search</field>
+        <field name="model">mail.catchall</field>
+        <field name="arch" type="xml">
+            <search string="Catch-all Emails">
+                <field name="name" string="Subject" />
+                <field name="email_from" />
+                <field name="email_to" />
+                <separator />
+                <filter
+                    name="today"
+                    string="Today"
+                    domain="[('date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+                <filter
+                    name="group_server"
+                    string="Mail Server"
+                    context="{'group_by': 'fetchmail_server_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mail_catchall" model="ir.actions.act_window">
+        <field name="name">Catch-all Mail</field>
+        <field name="res_model">mail.catchall</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_mail_catchall_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No catch-all email yet
+            </p>
+            <p>
+                Incoming emails that no alias can route are stored here when the
+                fetchmail server has no "Create a New Record" model and
+                "Catch Unroutable Emails" is enabled.
+            </p>
+        </field>
+    </record>
+</odoo>

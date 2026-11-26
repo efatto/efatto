@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Sergio Corato <https://github.com/sergiocorato>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="mail_catchall_menu"
+        name="Catch-all Mail"
+        parent="base.menu_email"
+        action="action_mail_catchall"
+        sequence="7"
+        groups="base.group_system"
+    />
+</odoo>

@@ -3,7 +3,7 @@
 {
     "name": "Mail Lost Inbox",
     "summary": "Keep unroutable incoming emails in an inbox and route them "
-    "to the right record",
+    "to the right record [WIP: review and test before usage, if needed]",
     "version": "18.0.1.0.0",
     "category": "Productivity/Discuss",
     "author": "Sergio Corato",

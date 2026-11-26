@@ -123,6 +123,50 @@ class TestMailFetchmailCatchall(TransactionCase):
         self.assertEqual(partner.name, "Alias routed email")
         self.assertEqual(partner.function, "Alias route")
 
+    def test_system_user_can_create_object_id_record(self):
+        user = self.env["res.users"].create(
+            {
+                "name": "Fetchmail Administrator",
+                "login": "fetchmail_admin",
+                "email": "fetchmail_admin@example.com",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            self.env.ref("base.group_user").id,
+                            self.env.ref("base.group_system").id,
+                        ],
+                    )
+                ],
+            }
+        )
+        # a system user is not necessarily a partner manager, so the
+        # res.partner create ACL must be bypassed like the fetchmail cron does
+        self.server.object_id = self.partner_model
+        # also deny creation with a record rule: this is what happens on
+        # project.task (v17/v18 To-do) after the note.note migration
+        self.env["ir.rule"].create(
+            {
+                "name": "Deny partner creation",
+                "model_id": self.partner_model.id,
+                "domain_force": "[(0, '=', 1)]",
+                "perm_read": False,
+                "perm_write": False,
+                "perm_create": True,
+                "perm_unlink": False,
+            }
+        )
+        raw = self._make_email(subject="Partner from fetchmail button")
+        res_id = (
+            self.env["mail.thread"]
+            .with_user(user)
+            .with_context(default_fetchmail_server_id=self.server.id)
+            .message_process(self.partner_model.model, raw)
+        )
+        partner = self.env["res.partner"].browse(res_id)
+        self.assertEqual(partner.name, "Partner from fetchmail button")
+
     def test_no_fetchmail_context_keeps_standard_behaviour(self):
         raw = self._make_email(subject="Not from fetchmail")
         with self.assertRaises(ValueError):

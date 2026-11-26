@@ -31,6 +31,13 @@ class MailThread(models.AbstractModel):
             .exists()
         )
         if server:
+            # A system user can see the fetchmail server and click "Fetch
+            # Now", but may not be in the target model's groups. Fetchmail
+            # processing must behave like the cron (and like alias routes,
+            # which use sudo for system users) and bypass those ACLs.
+            if self.env.is_system():
+                self = self.sudo()
+            server = server.with_env(self.env)
             # Let the fallback model receive direct writes to the catch-all
             # alias, which core would bounce before using the fallback.
             self = self.with_context(mail_fetchmail_catchall=True)
